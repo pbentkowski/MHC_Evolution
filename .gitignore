@@ -1,0 +1,4 @@
+*.o
+dist
+build
+SCBuild

@@ -1,0 +1,5 @@
+<map id="Gene::mutateGeneWhole" name="Gene::mutateGeneWhole">
+<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="224,5,413,32"/>
+<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="231,56,407,83"/>
+<area shape="rect" id="node4" href="$class_random_numbs.html#a301ebb1a7c447763903f925a634da605" title="Core method. Generates one integer random number from a given interval with an uniform distribution..." alt="" coords="237,107,401,133"/>
+</map>

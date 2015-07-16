@@ -1,0 +1,6 @@
+<map id="Tagging_system::getInstance" name="Tagging_system::getInstance">
+<area shape="rect" id="node2" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="270,5,407,32"/>
+<area shape="rect" id="node3" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="254,56,423,83"/>
+<area shape="rect" id="node4" href="$class_gene.html#aa8423091bc1ee7f678b0d63f8a723584" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="249,107,429,133"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="313,157,364,184"/>
+</map>

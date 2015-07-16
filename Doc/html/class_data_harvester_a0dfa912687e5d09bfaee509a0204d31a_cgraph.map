@@ -1,0 +1,4 @@
+<map id="DataHarvester::saveNumOfPathoSpeciesToFile" name="DataHarvester::saveNumOfPathoSpeciesToFile">
+<area shape="rect" id="node2" href="$class_environment.html#ae2adc5e02f72005d7854a4d597c4c294" title="Core method. Gets the number of species of pathogens. " alt="" coords="250,5,433,46"/>
+<area shape="rect" id="node3" href="$class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac" title="Core method. Gets a number of individuals in a selected species of pathogen. " alt="" coords="240,70,443,111"/>
+</map>

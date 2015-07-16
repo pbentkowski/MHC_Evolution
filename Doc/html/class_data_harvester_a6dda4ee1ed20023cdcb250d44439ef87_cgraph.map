@@ -1,0 +1,5 @@
+<map id="DataHarvester::savePathoPopulToFile" name="DataHarvester::savePathoPopulToFile">
+<area shape="rect" id="node2" href="$class_environment.html#ae2adc5e02f72005d7854a4d597c4c294" title="Core method. Gets the number of species of pathogens. " alt="" coords="242,5,425,46"/>
+<area shape="rect" id="node3" href="$class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac" title="Core method. Gets a number of individuals in a selected species of pathogen. " alt="" coords="232,70,435,111"/>
+<area shape="rect" id="node4" href="$class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c" title="Data harvesting method. Gets the genome of selected pathogen in human&#45;readable format. " alt="" coords="237,135,430,177"/>
+</map>

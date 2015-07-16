@@ -1,0 +1,17 @@
+<map id="RandomNumbs::getInstance" name="RandomNumbs::getInstance">
+<area shape="rect" id="node2" href="$class_environment.html#a39ab859e426f7ccfb0ce35169a7f7e7f" title="Core method. Initializes a vector containing host population. " alt="" coords="249,5,460,32"/>
+<area shape="rect" id="node3" href="$class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="260,57,449,98"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="515,181,565,208"/>
+<area shape="rect" id="node5" href="$class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="260,174,449,215"/>
+<area shape="rect" id="node6" href="$class_environment.html#a56c39a47a881880bd36c3b8c5f0dbe8a" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="253,239,456,281"/>
+<area shape="rect" id="node7" href="$class_environment.html#a09af2890db9eb1a02069adfb8836aa47" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="253,305,456,346"/>
+<area shape="rect" id="node8" href="$class_environment.html#ad7f96a8620fa9df1601c613130b275e0" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="243,370,467,411"/>
+<area shape="rect" id="node9" href="$class_environment.html#a90177792fb03087e1fc64dca78f7e312" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="243,435,467,477"/>
+<area shape="rect" id="node10" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="286,501,423,528"/>
+<area shape="rect" id="node11" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="270,552,439,579"/>
+<area shape="rect" id="node12" href="$class_gene.html#aa8423091bc1ee7f678b0d63f8a723584" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="265,603,445,629"/>
+<area shape="rect" id="node13" href="$class_host.html#a48c01d4345818b873ceed7597588bd6d" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="255,654,454,695"/>
+<area shape="rect" id="node14" href="$class_host.html#a303c0d61ab48aaa709fccfcdd14a156e" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="255,719,454,761"/>
+<area shape="rect" id="node15" href="$class_host.html#a505527db337d87670e5ab37eb9818fa3" title="Core method. Performing crossing over and chromosome selection before mating. " alt="" coords="267,785,442,812"/>
+<area shape="rect" id="node16" href="$class_host.html#ab30250ea6fdd47221d65914b3e6de4e0" title="Core method. Randomly swaps places of Chromosome One and Chromosome Two to avoid situation when they ..." alt="" coords="267,836,442,863"/>
+</map>

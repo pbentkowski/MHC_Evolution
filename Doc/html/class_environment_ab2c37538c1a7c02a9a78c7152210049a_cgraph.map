@@ -1,0 +1,10 @@
+<map id="Environment::infectOneFromSpec" name="Environment::infectOneFromSpec">
+<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="273,5,463,32"/>
+<area shape="rect" id="node3" href="$class_random_numbs.html#a301ebb1a7c447763903f925a634da605" title="Core method. Generates one integer random number from a given interval with an uniform distribution..." alt="" coords="286,56,450,83"/>
+<area shape="rect" id="node4" href="$class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="273,107,463,149"/>
+<area shape="rect" id="node9" href="$class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="273,173,463,214"/>
+<area shape="rect" id="node5" href="$class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076" title="Core method. Fetches the pathogene&#39;s chromosome. " alt="" coords="533,172,710,199"/>
+<area shape="rect" id="node6" href="$class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="532,223,711,249"/>
+<area shape="rect" id="node7" href="$class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc" title="Compares two genes if they have a span of length of N bits similar to each other. ..." alt="" coords="513,71,730,97"/>
+<area shape="rect" id="node8" href="$class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="532,121,711,148"/>
+</map>
