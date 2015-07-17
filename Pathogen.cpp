@@ -108,8 +108,9 @@ void Pathogen::setNewPathogen(int num_of_loci, int gene_size, int species,
 void Pathogen::chromoMutProcess(double mut_probabl, int timeStamp){
     for(int i = 0; i < ChromosomePat.size(); ++i){
 //        ChromosomePat[i].mutateGeneWhole(mut_probabl);
-        ChromosomePat[i].mutateGeneWhole(mut_probabl, LowerGeneValue,
-                UpperGeneValue, timeStamp);
+//        ChromosomePat[i].mutateGeneWhole(mut_probabl, LowerGeneValue,
+//                UpperGeneValue, timeStamp);
+        ChromosomePat[i].mutateGeneBitByBit(mut_probabl, timeStamp);
     }
 }
 

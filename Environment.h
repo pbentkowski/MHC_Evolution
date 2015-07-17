@@ -58,6 +58,7 @@ public:
     void calculateHostsFitnessPerGene();
     void calculateHostsFitnessPlainPresent();
     void calculateHostsFitnessForDrift();
+    void calculateHostsFitnessAlphaXsqr(double alpha);
     void selectAndReprodHostsAddOffspring();
     void selectAndReprodHostsReplace();
     void selectAndReproducePathoFlexPopSizes();

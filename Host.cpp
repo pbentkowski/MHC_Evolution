@@ -389,7 +389,6 @@ void Host::swapChromosomes(){
     }
 }
 
-
 /**
  * @brief Core method. Calculates host individual fitness as the number 
  * of exposed pathogens divided by the genome size.
@@ -413,8 +412,32 @@ void Host::calculateFitnessJustInfection(){
     Fitness = (double) NumOfPathogesPresented;
 }
 
+/**
+ * @brief Core method. Sets fitness as 1, a fixed value to simulate genetic drift.
+ * 
+ */
 void Host::calculateFitnessForDrift(){
     Fitness = 1.0;
+}
+
+/**
+ * @brief Core method. Calculates host individual fitness in proportion to one
+ * over the square of the number o genes scaled to by factor \f$ \alpha \f$:
+ * 
+ * \f$ F = \frac{P}{(\alpha \cdot N)^{2}} \f$
+ * 
+ * where \f$0 < \alpha < 1 \f$, \f$ P \f$ is the number of pathogens exposed and
+ * \f$ N \f$ in the sum of number of genes in both chromosomes.
+ * 
+ * @param alpha - scaling parameter
+ */
+void Host::calculateFitnessAlphaXSqr(double alpha){
+    double NN = (double) (ChromosomeOne.size() + ChromosomeTwo.size());
+    if (ChromosomeOne.size() + ChromosomeTwo.size()){
+        Fitness = (double) NumOfPathogesPresented / std::pow(alpha * NN, 2.0);
+    } else {
+        Fitness = 0.0;
+    }
 }
 
 /**
@@ -425,7 +448,6 @@ void Host::calculateFitnessForDrift(){
 double Host::getFitness(){
     return Fitness;
 }
-
 
 /**
  * @brief Core method. Clears data regarding infections and fitness.

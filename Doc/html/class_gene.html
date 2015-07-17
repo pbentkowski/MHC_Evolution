@@ -134,9 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4ce721b2fe74621cbfcf92bb3c3e5ee5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a4ce721b2fe74621cbfcf92bb3c3e5ee5">mutateGeneWhole</a> (double mut_prob_whole, int low_lim, int up_lim, int timeStamp)</td></tr>
 <tr class="memdesc:a4ce721b2fe74621cbfcf92bb3c3e5ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Mutates a gene by overwriting a whole new bit-string by a number given in a defined range.  <a href="#a4ce721b2fe74621cbfcf92bb3c3e5ee5">More...</a><br /></td></tr>
 <tr class="separator:a4ce721b2fe74621cbfcf92bb3c3e5ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8423091bc1ee7f678b0d63f8a723584"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#aa8423091bc1ee7f678b0d63f8a723584">mutateGeneBitByBit</a> (double mut_probabl, int timeStamp)</td></tr>
-<tr class="memdesc:aa8423091bc1ee7f678b0d63f8a723584"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one.  <a href="#aa8423091bc1ee7f678b0d63f8a723584">More...</a><br /></td></tr>
-<tr class="separator:aa8423091bc1ee7f678b0d63f8a723584"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9179fd84199c114a1e8bcea73ae22c36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a9179fd84199c114a1e8bcea73ae22c36">mutateGeneBitByBit</a> (double pm_mut_probabl, int timeStamp)</td></tr>
+<tr class="memdesc:a9179fd84199c114a1e8bcea73ae22c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one.  <a href="#a9179fd84199c114a1e8bcea73ae22c36">More...</a><br /></td></tr>
+<tr class="separator:a9179fd84199c114a1e8bcea73ae22c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac0df5c1d80054e7191bad9bfb325c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#aac0df5c1d80054e7191bad9bfb325c00">printGeneToScreen</a> ()</td></tr>
 <tr class="memdesc:aac0df5c1d80054e7191bad9bfb325c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary method useful for debugging. Prints a gene to the screen.  <a href="#aac0df5c1d80054e7191bad9bfb325c00">More...</a><br /></td></tr>
 <tr class="separator:aac0df5c1d80054e7191bad9bfb325c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -248,7 +248,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa8423091bc1ee7f678b0d63f8a723584"></a>
+<a class="anchor" id="a9179fd84199c114a1e8bcea73ae22c36"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -256,7 +256,7 @@ Public Attributes</h2></td></tr>
           <td class="memname">void Gene::mutateGeneBitByBit </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>mut_probabl</em>, </td>
+          <td class="paramname"><em>pm_mut_probabl</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -286,8 +286,8 @@ Public Attributes</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_gene_aa8423091bc1ee7f678b0d63f8a723584_cgraph.png" border="0" usemap="#class_gene_aa8423091bc1ee7f678b0d63f8a723584_cgraph" alt=""/></div>
-<map name="class_gene_aa8423091bc1ee7f678b0d63f8a723584_cgraph" id="class_gene_aa8423091bc1ee7f678b0d63f8a723584_cgraph">
+<div class="center"><img src="class_gene_a9179fd84199c114a1e8bcea73ae22c36_cgraph.png" border="0" usemap="#class_gene_a9179fd84199c114a1e8bcea73ae22c36_cgraph" alt=""/></div>
+<map name="class_gene_a9179fd84199c114a1e8bcea73ae22c36_cgraph" id="class_gene_a9179fd84199c114a1e8bcea73ae22c36_cgraph">
 <area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="237,5,427,32"/><area shape="rect" id="node3" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="244,56,420,83"/><area shape="rect" id="node4" href="class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="235,107,429,133"/><area shape="rect" id="node5" href="class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="249,157,415,184"/></map>
 </div>
 </p>
@@ -606,7 +606,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_gene.html">Gene</a></li>
-    <li class="footer">Generated on Tue Jul 14 2015 19:02:26 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Fri Jul 17 2015 17:06:21 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -44,12 +44,12 @@ public:
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene);
+        double hostDeletion, double hostDuplication, int maxGene, double alpha);
     void inputParamsToFile(int rndSeed, int geneLength, int exposedMatch,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene);
+        double hostDeletion, double hostDuplication, int maxGene, double alpha);
     void setAllFilesAsFirtsTimers();
     void saveNumOfPathoSpeciesToFile(Environment &EnvObj, int tayme);
     void saveHostClonesTagsToFile(Environment &EnvObj, int tayme);

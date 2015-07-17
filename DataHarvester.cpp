@@ -122,7 +122,7 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int exposedM
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene){
+        double hostDeletion, double hostDuplication, int maxGene, double alpha){
     bool ifError = false;
     if (rndSeed < 0){
         std::cout<< "\nError in RNG seed. It has to be a positive integer!." << std::endl;
@@ -166,6 +166,11 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int exposedM
                 "number used to initialize the system. "<< std::endl;
         ifError = true;
     }
+    if (alpha < 0.0 or alpha > 1.0){
+        std::cout<< "\nError in the hosts' alpha factor for the host fitness function. " <<
+                "It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
     return ifError;
 }
 
@@ -195,7 +200,7 @@ void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int exposedMa
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene){
+        double hostDeletion, double hostDuplication, int maxGene, double alpha){
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv");
 
@@ -231,6 +236,8 @@ void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int exposedMa
             hostDuplication << std::endl;
     InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
             maxGene << std::endl;
+    InputParams << "\tAlpha_factor_for_the_host_fitness_function = " <<
+            alpha << std::endl;
     InputParams.close();
 }
     

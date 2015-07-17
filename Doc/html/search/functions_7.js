@@ -3,7 +3,7 @@ var searchData=
   ['main',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
   ['mergechromosomes',['mergeChromosomes',['../class_host.html#a55edfefc42f7306c85983474500ef10b',1,'Host']]],
   ['mmtopmscaling',['MMtoPMscaling',['../class_environment.html#a13b07a4255b87d29541d0f78af6f49f7',1,'Environment']]],
-  ['mutategenebitbybit',['mutateGeneBitByBit',['../class_gene.html#aa8423091bc1ee7f678b0d63f8a723584',1,'Gene']]],
+  ['mutategenebitbybit',['mutateGeneBitByBit',['../class_gene.html#a9179fd84199c114a1e8bcea73ae22c36',1,'Gene']]],
   ['mutategenewhole',['mutateGeneWhole',['../class_gene.html#a625cc7e2a230d7e9594da553aed60c17',1,'Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp)'],['../class_gene.html#a4ce721b2fe74621cbfcf92bb3c3e5ee5',1,'Gene::mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim, int timeStamp)']]],
   ['mutatehosts',['mutateHosts',['../class_environment.html#ad3d9445c714e728df229eabbe425fff1',1,'Environment']]],
   ['mutatehostswithdeldupl',['mutateHostsWithDelDupl',['../class_environment.html#af7fc9c6750f847a8260df37927646583',1,'Environment']]],

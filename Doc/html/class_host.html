@@ -188,7 +188,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6079285b3b8bb5280d52500e6b7fc7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Calculates host individual fitness as the number of exposed pathogens divided by the genome size.  <a href="#a6079285b3b8bb5280d52500e6b7fc7ef">More...</a><br /></td></tr>
 <tr class="separator:a6079285b3b8bb5280d52500e6b7fc7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a614430aea49534f29b63232414cf4fcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a614430aea49534f29b63232414cf4fcd">calculateFitnessForDrift</a> ()</td></tr>
+<tr class="memdesc:a614430aea49534f29b63232414cf4fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets fitness as 1, a fixed value to simulate genetic drift.  <a href="#a614430aea49534f29b63232414cf4fcd">More...</a><br /></td></tr>
 <tr class="separator:a614430aea49534f29b63232414cf4fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca12c9829c01995669e842876478c7fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#aca12c9829c01995669e842876478c7fb">calculateFitnessAlphaXSqr</a> (double alpha)</td></tr>
+<tr class="memdesc:aca12c9829c01995669e842876478c7fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Calculates host individual fitness in proportion to one over the square of the number o genes scaled to by factor <img class="formulaInl" alt="$ \alpha $" src="form_12.png"/>:  <a href="#aca12c9829c01995669e842876478c7fb">More...</a><br /></td></tr>
+<tr class="separator:aca12c9829c01995669e842876478c7fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87d357c93783916037446bf8096ed45d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a87d357c93783916037446bf8096ed45d">getFitness</a> ()</td></tr>
 <tr class="memdesc:a87d357c93783916037446bf8096ed45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns current value of host's fitness.  <a href="#a87d357c93783916037446bf8096ed45d">More...</a><br /></td></tr>
 <tr class="separator:a87d357c93783916037446bf8096ed45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -326,7 +330,35 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Calculates host individual fitness as the number of exposed pathogens divided by the genome size. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00398">398</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00397">397</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aca12c9829c01995669e842876478c7fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Host::calculateFitnessAlphaXSqr </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Calculates host individual fitness in proportion to one over the square of the number o genes scaled to by factor <img class="formulaInl" alt="$ \alpha $" src="form_12.png"/>: </p>
+<p><img class="formulaInl" alt="$ F = \frac{P}{(\alpha \cdot N)^{2}} $" src="form_8.png"/></p>
+<p>where <img class="formulaInl" alt="$0 < \alpha < 1 $" src="form_9.png"/>, <img class="formulaInl" alt="$ P $" src="form_10.png"/> is the number of pathogens exposed and <img class="formulaInl" alt="$ N $" src="form_11.png"/> in the sum of number of genes in both chromosomes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha</td><td>- scaling parameter do make the transition be </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00434">434</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -343,7 +375,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00416">416</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Core method. Sets fitness as 1, a fixed value to simulate genetic drift. </p>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00419">419</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,7 +396,7 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Calculates host individual fitness simply as the number of exposed pathogens. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00412">412</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00411">411</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -553,7 +587,7 @@ Here is the call graph for this function:</div>
 
 <p>Core method. Clears data regarding infections and fitness. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00433">433</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00455">455</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -708,7 +742,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns current value of host's fitness. </p>
 <dl class="section return"><dt>Returns</dt><dd>current value of host's fitness </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00425">425</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00448">448</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -982,7 +1016,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Gives a host's genome in a human-readable format. With all the gene specs. </p>
 <dl class="section return"><dt>Returns</dt><dd>a STL string containing the host's genome and its annotations in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00449">449</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00471">471</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1067,7 +1101,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_host.html">Host</a></li>
-    <li class="footer">Generated on Tue Jul 14 2015 19:02:27 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Fri Jul 17 2015 17:06:21 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

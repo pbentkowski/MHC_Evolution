@@ -1,5 +1,5 @@
 <map id="Tagging_system::getTag" name="Tagging_system::getTag">
 <area shape="rect" id="node2" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="243,5,381,32"/>
 <area shape="rect" id="node3" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="227,56,397,83"/>
-<area shape="rect" id="node4" href="$class_gene.html#aa8423091bc1ee7f678b0d63f8a723584" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="222,107,402,133"/>
+<area shape="rect" id="node4" href="$class_gene.html#a9179fd84199c114a1e8bcea73ae22c36" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="222,107,402,133"/>
 </map>

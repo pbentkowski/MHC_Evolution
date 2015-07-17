@@ -6,3 +6,8 @@
 \form#5:$ p_{t} = 1 - exp\left[ 1/b \cdot \ln [1 - p_{m} (1 - 0.5^{b})]\right] $
 \form#6:$ p_{t} = 1 - exp\left( 1/b \cdot \ln [1 - p_{m} (1 - 0.5^{b})]\right) $
 \form#7:$ p_{t} = 1 - \exp\left( 1/b \cdot \ln [1 - p_{m} (1 - 0.5^{b})]\right) $
+\form#8:$ F = \frac{P}{(\alpha \cdot N)^{2}} $
+\form#9:$0 < \alpha < 1 $
+\form#10:$ P $
+\form#11:$ N $
+\form#12:$ \alpha $

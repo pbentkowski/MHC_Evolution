@@ -266,6 +266,12 @@ void Environment::calculateHostsFitnessForDrift(){
     }
 }
 
+void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
+    for(int i = 0; i < HostPopulation.size(); ++i){
+        HostPopulation[i].calculateFitnessAlphaXSqr(alpha);
+    }
+}
+
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
  * proportionate selection method.

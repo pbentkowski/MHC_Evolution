@@ -1,6 +1,7 @@
 var searchData=
 [
   ['calculatefitnessaccchromsize',['calculateFitnessAccChromSize',['../class_host.html#a6079285b3b8bb5280d52500e6b7fc7ef',1,'Host']]],
+  ['calculatefitnessalphaxsqr',['calculateFitnessAlphaXSqr',['../class_host.html#aca12c9829c01995669e842876478c7fb',1,'Host']]],
   ['calculatefitnessfordrift',['calculateFitnessForDrift',['../class_host.html#a614430aea49534f29b63232414cf4fcd',1,'Host']]],
   ['calculatefitnessjustinfection',['calculateFitnessJustInfection',['../class_host.html#aeb8564ae54f8bbf968a62f13c61083df',1,'Host']]],
   ['calculatehostsfitnessfordrift',['calculateHostsFitnessForDrift',['../class_environment.html#a596cf4db11a6e6356211a45540e04c7d',1,'Environment']]],
