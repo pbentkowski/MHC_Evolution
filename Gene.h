@@ -31,7 +31,7 @@
 typedef boost::dynamic_bitset<> genestring;
 
 /**
- * @brief Core class. Stores and handles a single gene object. 
+ * @brief Core class. Stores and handles a single gene object. Has methods to access and to mutate a gene.
  */
 class Gene {
 public:
