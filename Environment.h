@@ -72,7 +72,7 @@ public:
     void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
         double dupl, unsigned int maxGene, int timeStamp);
     double MMtoPMscaling(double MM_prob_mut, int geneLength);
-    
+
     // === Data harvesting methods ===
     unsigned getPathoNumOfSpecies();
     unsigned getPathoSpeciesPopSize(unsigned spec_numb);
@@ -86,7 +86,7 @@ public:
     int getSingleHostRealGeneOne(int i, int j);
     int getSingleHostRealGeneTwo(int i, int j);
     double getHostFitness(int indx);
-    
+
 };
 
 #endif	/* ENVIRONMENT_H */
