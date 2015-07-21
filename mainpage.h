@@ -1,8 +1,10 @@
 /** 
  * @mainpage "Modelling MHC evolutionary dynamics"
  * 
- * @author Piotr Bentkowski : <a href="mailto:bentkowski.piotr@gmail.com
- * ?subject=MHC evolutionary dynamics v1.0">bentkowski.piotr@gmail.com</a> \n
+ * @authors Coded by <b>Piotr Bentkowski</b>: <a href="mailto:bentkowski.piotr@gmail.com
+ * ?subject=MHC evolutionary dynamics - model code v1.0">bentkowski.piotr@gmail.com</a> \n
+ * in collaboration with <b>Jacek Radwan</b>: <a href="mailto:jradwan@amu.edu.pl
+ * ?subject=MHC evolutionary dynamics - model code v1.0">jradwan@amu.edu.pl</a> \n
  * \n
  * <a href="https://sites.google.com/site/evobiolab/home">Evolutionary Biology Group</a> \n
  * Faculty of Biology \n
@@ -45,7 +47,9 @@
  * \n 
  * $<b> scons -Q scenario="Scenarios/main_default.cpp"</b>\n \n
  * replacing "Scenarios/main_default.cpp" with the path to your own custom <i>main_xyz.cpp</i>. Use our 
- * <i>main_core.cpp</i> file as the base to develop your own scenarios of MHC evolution dynamics. 
+ * <i>main_core.cpp</i> file as the base to develop your own scenarios of MHC evolution dynamics. WARNING!
+ * Using our Scons script overwrites the <i>main.cpp</i> file in the main source directory - always
+ * store your scenarios somewhere else then the <i>main.cpp</i> file!
  * 
  * @section Parameters
  * <b>Program takes exactly 17 parameters. These are:</b> \n
@@ -69,6 +73,7 @@
  * <b> 14 </b>- Probability of deleting a gene in the host ([0,1] range). \n
  * <b> 15 </b>- Probability of duplicating a gene in the host ([0,1] range). \n
  * <b> 16 </b>- Maximal number of genes permitted in one host chromosome. \n
+ * <b> 17 </b>- Parameter \f$\alpha\f$ in the fitness function. \n
  * \n
  * This program can recognise simple errors in the argument list (a value out of
  * range, negative values when positive are needed etc.), but will not recognise

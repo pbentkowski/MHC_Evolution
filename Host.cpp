@@ -422,7 +422,7 @@ void Host::calculateFitnessForDrift(){
 
 /**
  * @brief Core method. Calculates host individual fitness in proportion to one
- * over the square of the number o genes scaled to by factor \f$ \alpha \f$:
+ * over the square of the number of genes scaled to by factor \f$ \alpha \f$:
  * 
  * \f$ F = \frac{P}{(\alpha \cdot N)^{2}} \f$
  * 
@@ -435,6 +435,28 @@ void Host::calculateFitnessAlphaXSqr(double alpha){
     double NN = (double) (ChromosomeOne.size() + ChromosomeTwo.size());
     if (ChromosomeOne.size() + ChromosomeTwo.size()){
         Fitness = (double) NumOfPathogesPresented / std::pow(alpha * NN, 2.0);
+    } else {
+        Fitness = 0.0;
+    }
+}
+
+/**
+ * @brief Core method. Calculates host individual fitness in proportion to the
+ * Gaussian function of the number of genes scaled to by factor \f$ \alpha \f$:
+ * 
+ * \f$ F = P \cdot \exp \left[-(\alpha N)^{2}\right] \f$
+ * 
+ * where \f$0 < \alpha < 1 \f$ and scales the slope of the Gaussian function,
+ * \f$ P \f$ is the number of pathogens exposed and \f$ N \f$ in the sum of 
+ * number of genes in both chromosomes.
+ * 
+ * @param alpha - scaling parameter
+ */
+void Host::calculateFitnessExpFunc(double alpha){
+    double NN = (double) (ChromosomeOne.size() + ChromosomeTwo.size());
+    if (ChromosomeOne.size() + ChromosomeTwo.size()){
+        Fitness = (double) NumOfPathogesPresented
+                            * std::exp( - std::pow(alpha * NN, 2.0));
     } else {
         Fitness = 0.0;
     }

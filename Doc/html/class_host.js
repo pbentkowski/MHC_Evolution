@@ -6,6 +6,7 @@ var class_host =
     [ "assignChromTwo", "class_host.html#ab3e04fdf569863ddeee00d6d2f5c990d", null ],
     [ "calculateFitnessAccChromSize", "class_host.html#a6079285b3b8bb5280d52500e6b7fc7ef", null ],
     [ "calculateFitnessAlphaXSqr", "class_host.html#aca12c9829c01995669e842876478c7fb", null ],
+    [ "calculateFitnessExpFunc", "class_host.html#a9134661842de046453acc0342ef74eb6", null ],
     [ "calculateFitnessForDrift", "class_host.html#a614430aea49534f29b63232414cf4fcd", null ],
     [ "calculateFitnessJustInfection", "class_host.html#aeb8564ae54f8bbf968a62f13c61083df", null ],
     [ "chromoMutProcess", "class_host.html#a5911792258205cae25a2a4796061fe49", null ],

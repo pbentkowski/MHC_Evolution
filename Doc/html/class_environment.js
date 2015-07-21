@@ -2,6 +2,8 @@ var class_environment =
 [
     [ "Environment", "class_environment.html#a8b427c4448d8b7536666837521b9e83d", null ],
     [ "~Environment", "class_environment.html#a8e294735187880dd3d59be10c425b29d", null ],
+    [ "calculateHostsFitnessAlphaXsqr", "class_environment.html#a0994a6e48ab6a97cbff9feb68ce9dcd3", null ],
+    [ "calculateHostsFitnessExpScaling", "class_environment.html#a5f156d009868bce000e653b25fe53967", null ],
     [ "calculateHostsFitnessForDrift", "class_environment.html#a596cf4db11a6e6356211a45540e04c7d", null ],
     [ "calculateHostsFitnessPerGene", "class_environment.html#ae63fad9a51f8700cf96cd3019f5a3bec", null ],
     [ "calculateHostsFitnessPlainPresent", "class_environment.html#a2d11b6356c2d62e7ebf4c97115118c5c", null ],

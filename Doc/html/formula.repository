@@ -11,3 +11,6 @@
 \form#10:$ P $
 \form#11:$ N $
 \form#12:$ \alpha $
+\form#13:$\alpha$
+\form#14:$ F = P \cdot \exp{-(\alpha N)^{2}} $
+\form#15:$ F = P \cdot \exp \left[-(\alpha N)^{2}\right] $

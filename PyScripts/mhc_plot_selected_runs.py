@@ -21,7 +21,7 @@ def LoadTheData(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 14))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 20))   # change here
             InterestigThing = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 11))
             geneNumb = float(l[2])
@@ -45,11 +45,11 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 10000
+    Xmax = 2500
     Ymax = 60
 
     pathoGenSize = 10  # change to select a different set of data
-    pathoNumSpec = 1e-05  # change to select a different set of data
+    pathoNumSpec = 0.05  # change to select a different set of data
     saveFiggs = False  # True to save figures to disk, False to not save
 
     nnn = "antigens: " + str(pathoGenSize) + "   muts: " + str(pathoNumSpec)

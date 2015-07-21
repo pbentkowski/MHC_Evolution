@@ -221,7 +221,7 @@ int main(int argc, char** argv) {
                 ENV.mutatePathogens(pathoMutationProb, i);
                 ENV.clearPathoInfectionData();
             }
-            ENV.calculateHostsFitnessAlphaXsqr(alpha);
+            ENV.calculateHostsFitnessExpScaling(alpha);
             ENV.selectAndReprodHostsReplace();
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, 
                     duplication, maxGene, i);
@@ -245,7 +245,7 @@ int main(int argc, char** argv) {
                 ENV.mutatePathogens(pathoMutationProb, i);
                 ENV.clearPathoInfectionData();
             }
-            ENV.calculateHostsFitnessAlphaXsqr(alpha);
+            ENV.calculateHostsFitnessExpScaling(alpha);
             ENV.selectAndReprodHostsReplace();
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, 
                     duplication, maxGene, i);
@@ -258,7 +258,7 @@ int main(int argc, char** argv) {
     }
     ENV.selectAndReproducePathoFixedPopSizes();
     ENV.mutatePathogens(pathoMutationProb, numOfHostGenerations);
-    ENV.calculateHostsFitnessAlphaXsqr(alpha);
+    ENV.calculateHostsFitnessExpScaling(alpha);
     ENV.selectAndReprodHostsReplace();
     ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, 
             maxGene, numOfHostGenerations);

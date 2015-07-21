@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=mhcEvolution
+PROJECTNAME=MHC_Code
 
 # Active Configuration
 DEFAULTCONF=Release

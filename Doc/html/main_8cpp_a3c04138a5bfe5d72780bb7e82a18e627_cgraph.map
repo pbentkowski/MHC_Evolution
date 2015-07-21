@@ -1,7 +1,7 @@
 <map id="main" name="main">
 <area shape="rect" id="node2" href="$main_8cpp.html#ac225f5c6e0e3615f223c552c5501bfa6" title="A handful of tips about the input parameters. " alt="" coords="171,5,282,32"/>
-<area shape="rect" id="node3" href="$class_data_harvester.html#abf64c3681278437c1b15e506c06103ca" title="Input params validation method. Does the basic check if the entered parameters are free of total nons..." alt="" coords="129,57,324,98"/>
-<area shape="rect" id="node4" href="$class_data_harvester.html#adc9152b8d03dbe79e7b8764139e2656d" title="Data harvesting method. Writes all the input params and some run stats to a file. Must be run only on..." alt="" coords="133,122,321,163"/>
+<area shape="rect" id="node3" href="$class_data_harvester.html#a329f51d0d5cf66a2e537f0ecf7f1a4be" title="Input params validation method. Does the basic check if the entered parameters are free of total nons..." alt="" coords="129,57,324,98"/>
+<area shape="rect" id="node4" href="$class_data_harvester.html#a7c5c9707887a994ff450b0fcbb9fb806" title="Data harvesting method. Writes all the input params and some run stats to a file. Must be run only on..." alt="" coords="133,122,321,163"/>
 <area shape="rect" id="node6" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="405,368,595,395"/>
 <area shape="rect" id="node7" href="$class_random_numbs.html#a8d886d9174fe7e5621638941af204ccd" title="Core method. Seeds the PRNG. Remember to call as the first function after initializing this class..." alt="" coords="141,501,312,528"/>
 <area shape="rect" id="node8" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="129,552,324,579"/>
@@ -18,7 +18,7 @@
 <area shape="rect" id="node36" href="$class_environment.html#a90177792fb03087e1fc64dca78f7e312" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="115,318,339,359"/>
 <area shape="rect" id="node37" href="$class_environment.html#aca4e6ca55f909cd1f5e00e01daa1ac54" title="Core method. Iterates through the all genes of the pathogen population and performs mutations in gene..." alt="" coords="124,1151,329,1177"/>
 <area shape="rect" id="node38" href="$class_environment.html#af43ff3d50276e23f42895c6c7ddac69c" title=". Core method. Clears information about infection and fitness in the whole pathogen population..." alt="" coords="105,1201,348,1228"/>
-<area shape="rect" id="node39" href="$class_environment.html#a2d11b6356c2d62e7ebf4c97115118c5c" title="Core method. Iterates through the host population and calculates the Fitness for each single individu..." alt="" coords="131,1253,322,1294"/>
+<area shape="rect" id="node39" href="$class_environment.html#a5f156d009868bce000e653b25fe53967" title="Environment::calculateHosts\lFitnessExpScaling" alt="" coords="131,1253,322,1294"/>
 <area shape="rect" id="node40" href="$class_environment.html#a09af2890db9eb1a02069adfb8836aa47" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="125,435,328,477"/>
 <area shape="rect" id="node42" href="$class_environment.html#a11ca1135314c732332eaf55b5890b57e" title="Core method. Iterates through the all genes of the host population and performs POINT mutations in ge..." alt="" coords="137,1318,316,1359"/>
 <area shape="rect" id="node43" href="$class_environment.html#adff3e1c9799ef7a3bc8d7b988bda3381" title=". Core method. Clears information about infection and fitness in the whole host population. " alt="" coords="105,1384,349,1411"/>

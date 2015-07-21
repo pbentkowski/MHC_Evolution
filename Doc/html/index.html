@@ -99,8 +99,10 @@ $(document).ready(function(){initNavTree('index.html','');});
 <div class="title">"Modelling MHC evolutionary dynamics" </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Piotr Bentkowski : <a href="#" onclick="location.href='mai'+'lto:'+'ben'+'tk'+'ows'+'ki'+'.pi'+'ot'+'r@g'+'ma'+'il.'+'co'+'m
-?'+'su'+'bje'+'ct'+'=MH'+'C '+'evo'+'lu'+'tio'+'na'+'ry '+'dy'+'nam'+'ic'+'s v'+'1.'+'0'; return false;">bentkowski.piotr@gmail.com</a> <br />
+<div class="textblock"><dl class="section author"><dt>Authors</dt><dd>Coded by <b>Piotr Bentkowski</b>: <a href="#" onclick="location.href='mai'+'lto:'+'ben'+'tk'+'ows'+'ki'+'.pi'+'ot'+'r@g'+'ma'+'il.'+'co'+'m
+?'+'su'+'bje'+'ct'+'=MH'+'C '+'evo'+'lu'+'tio'+'na'+'ry '+'dy'+'nam'+'ic'+'s -'+' m'+'ode'+'l '+'cod'+'e '+'v1.'+'0'; return false;">bentkowski.piotr@gmail.com</a> <br />
+in collaboration with <b>Jacek Radwan</b>: <a href="#" onclick="location.href='mai'+'lto:'+'jra'+'dw'+'an@'+'am'+'u.e'+'du'+'.pl'+'
+?'+'sub'+'je'+'ct='+'MH'+'C e'+'vo'+'lut'+'io'+'nar'+'y '+'dyn'+'am'+'ics'+' -'+' mo'+'de'+'l c'+'od'+'e v'+'1.'+'0'; return false;">jradwan@amu.edu.pl</a> <br />
 <br />
 <a href="https://sites.google.com/site/evobiolab/home">Evolutionary Biology Group</a> <br />
 Faculty of Biology <br />
@@ -135,7 +137,7 @@ The code here can be also used like a toolbox for your research. You can stitch 
  <br />
  $<b> scons -Q scenario="Scenarios/main_default.cpp"</b><br />
  <br />
-replacing "Scenarios/main_default.cpp" with the path to your own custom <em>main_xyz.cpp</em>. Use our <em>main_core.cpp</em> file as the base to develop your own scenarios of MHC evolution dynamics.</p>
+replacing "Scenarios/main_default.cpp" with the path to your own custom <em>main_xyz.cpp</em>. Use our <em>main_core.cpp</em> file as the base to develop your own scenarios of MHC evolution dynamics. WARNING! Using our Scons script overwrites the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file in the main source directory - always store your scenarios somewhere else then the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file!</p>
 <h1><a class="anchor" id="Parameters"></a>
 Parameters</h1>
 <p><b>Program takes exactly 17 parameters. These are:</b> <br />
@@ -156,6 +158,7 @@ Parameters</h1>
 <b> 14 </b>- Probability of deleting a gene in the host ([0,1] range). <br />
 <b> 15 </b>- Probability of duplicating a gene in the host ([0,1] range). <br />
 <b> 16 </b>- Maximal number of genes permitted in one host chromosome. <br />
+<b> 17 </b>- Parameter <img class="formulaInl" alt="$\alpha$" src="form_13.png"/> in the fitness function. <br />
 <br />
 This program can recognise simple errors in the argument list (a value out of range, negative values when positive are needed etc.), but will not recognise when they don't make a 'biological' sense.</p>
 <h1><a class="anchor" id="The"></a>
@@ -177,7 +180,7 @@ Output and data visualisation</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jul 17 2015 17:06:21 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Jul 21 2015 16:38:43 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

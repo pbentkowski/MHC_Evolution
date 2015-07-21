@@ -75,6 +75,7 @@ public:
     void calculateFitnessAccChromSize();
     void calculateFitnessForDrift();
     void calculateFitnessAlphaXSqr(double alpha);
+    void calculateFitnessExpFunc(double alpha);
     double getFitness();
     // === Data harvesting methods ===
     std::string stringChromosomes();

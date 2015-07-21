@@ -151,6 +151,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2d11b6356c2d62e7ebf4c97115118c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a596cf4db11a6e6356211a45540e04c7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a596cf4db11a6e6356211a45540e04c7d">calculateHostsFitnessForDrift</a> ()</td></tr>
 <tr class="separator:a596cf4db11a6e6356211a45540e04c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0994a6e48ab6a97cbff9feb68ce9dcd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a0994a6e48ab6a97cbff9feb68ce9dcd3">calculateHostsFitnessAlphaXsqr</a> (double alpha)</td></tr>
+<tr class="separator:a0994a6e48ab6a97cbff9feb68ce9dcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f156d009868bce000e653b25fe53967"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a5f156d009868bce000e653b25fe53967">calculateHostsFitnessExpScaling</a> (double alpha)</td></tr>
+<tr class="separator:a5f156d009868bce000e653b25fe53967"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56c39a47a881880bd36c3b8c5f0dbe8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a56c39a47a881880bd36c3b8c5f0dbe8a">selectAndReprodHostsAddOffspring</a> ()</td></tr>
 <tr class="memdesc:a56c39a47a881880bd36c3b8c5f0dbe8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Forms the next generation of hosts using the fitness proportionate selection method.  <a href="#a56c39a47a881880bd36c3b8c5f0dbe8a">More...</a><br /></td></tr>
 <tr class="separator:a56c39a47a881880bd36c3b8c5f0dbe8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,6 +266,51 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0994a6e48ab6a97cbff9feb68ce9dcd3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::calculateHostsFitnessAlphaXsqr </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00269">269</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f156d009868bce000e653b25fe53967"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::calculateHostsFitnessExpScaling </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00275">275</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_a5f156d009868bce000e653b25fe53967_icgraph.png" border="0" usemap="#class_environment_a5f156d009868bce000e653b25fe53967_icgraph" alt=""/></div>
+<map name="class_environment_a5f156d009868bce000e653b25fe53967_icgraph" id="class_environment_a5f156d009868bce000e653b25fe53967_icgraph">
+<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="245,12,296,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a596cf4db11a6e6356211a45540e04c7d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -315,15 +364,6 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00257">257</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_environment_a2d11b6356c2d62e7ebf4c97115118c5c_icgraph.png" border="0" usemap="#class_environment_a2d11b6356c2d62e7ebf4c97115118c5c_icgraph" alt=""/></div>
-<map name="class_environment_a2d11b6356c2d62e7ebf4c97115118c5c_icgraph" id="class_environment_a2d11b6356c2d62e7ebf4c97115118c5c_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="245,12,296,39"/></map>
-</div>
-</p>
-
 </div>
 </div>
 <a class="anchor" id="adff3e1c9799ef7a3bc8d7b988bda3381"></a>
@@ -341,7 +381,7 @@ Here is the caller graph for this function:</div>
 
 <p>. Core method. Clears information about infection and fitness in the whole host population. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00545">545</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00557">557</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -369,7 +409,7 @@ Here is the caller graph for this function:</div>
 
 <p>. Core method. Clears information about infection and fitness in the whole pathogen population. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00532">532</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00544">544</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -396,7 +436,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00722">722</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00734">734</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -432,7 +472,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string of the host's chromosome in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00695">695</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00707">707</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -461,7 +501,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Gets the host population size. </p>
 <dl class="section return"><dt>Returns</dt><dd>host population size </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00670">670</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00682">682</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -523,7 +563,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string of the pathogen's chromosome in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00684">684</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00696">696</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -552,7 +592,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Gets the number of species of pathogens. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of pathogen species </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00650">650</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00662">662</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -588,7 +628,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of individuals of a selected species. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00661">661</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00673">673</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -615,7 +655,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00704">704</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00716">716</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -642,7 +682,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00709">709</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00721">721</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -669,7 +709,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00699">699</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00711">711</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -697,7 +737,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00714">714</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00726">726</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -734,7 +774,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00718">718</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00730">730</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -891,7 +931,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>- calculated corresponding point mutation </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00625">625</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00637">637</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -937,7 +977,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00559">559</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00571">571</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -994,7 +1034,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00576">576</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00588">588</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -1051,7 +1091,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00595">595</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00607">607</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1096,7 +1136,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00637">637</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00649">649</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1126,7 +1166,7 @@ Here is the caller graph for this function:</div>
 <p>The new generation takes place of individuals which got removed from population due to too low fitness.</p>
 <p>Iterates through the host population selecting the next generation for reproduction using <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">fitness proportionate selection method</a> (also known as the roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00282">282</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00294">294</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1155,7 +1195,7 @@ Here is the call graph for this function:</div>
 <p>Core method. Forms the next generation of hosts using the fitness proportionate selection method. Replaces the old population with a new one. </p>
 <p>Iterates through the host population selecting the next generation for reproduction using <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">fitness proportionate selection method</a> (also known as the roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00350">350</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00362">362</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1193,7 +1233,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Forms the next generation of hosts using the fitness proportionate selection method. It keeps population sizes of different pathogens species at a fixed number. </p>
 <p>Iterates through the pathogen population selecting the next generation for reproduction using fitness proportionate selection method (roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00482">482</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00494">494</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1231,7 +1271,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Forms the next generation of hosts using the fitness proportionate selection method. It can adjust species population sizes in proportion to its individuals fitness values keeping the total number of pathogens fixed. </p>
 <p>Iterates through the pathogen population selecting the next generation for reproduction using fitness proportionate selection method (roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00414">414</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00426">426</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1560,7 +1600,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_environment.html">Environment</a></li>
-    <li class="footer">Generated on Fri Jul 17 2015 17:06:21 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Jul 21 2015 16:38:43 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
