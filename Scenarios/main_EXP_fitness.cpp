@@ -73,9 +73,6 @@ void printTipsToRun(){
 /**
  * @brief The main function. Things are happening here. 
  * 
- * This particular scenario aims at testing does a fitness function in a shape of a Gaussian curve will
- * limit the size of the genotype and in what way.
- * 
  * Compile this program with:
  * $ g++ -g -O0 -o mem_test_MHC main.cpp Gene.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++11
  * Run Valgrind with:

@@ -260,21 +260,39 @@ void Environment::calculateHostsFitnessPlainPresent(){
     }
 }
 
+/**
+ * @brief Core method. Iterates through the host population and calculates the
+ * Fitness for each single individual by calling 
+ * Host::calculateFitnessForDrift(), which assigns "1" for each cell to make
+ * the genetic driff work.
+ */
 void Environment::calculateHostsFitnessForDrift(){
     for(int i = 0; i < HostPopulation.size(); ++i){
         HostPopulation[i].calculateFitnessForDrift();
     }
 }
 
+/**
+ * @brief Core method. Iterates through the host population and calculates the
+ * Fitness for each single individual by calling 
+ * Host::calculateHostsFitnessAlphaXsqr(), which uses one over the square on
+ * number of genes as a fitness cost.
+ */
 void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
     for(int i = 0; i < HostPopulation.size(); ++i){
         HostPopulation[i].calculateFitnessAlphaXSqr(alpha);
     }
 }
 
+/**
+ * @brief Core method. Iterates through the host population and calculates the
+ * Fitness for each single individual by calling 
+ * Host::calculateFitnessExpFunc(), which uses a Gaussian function to accommodate
+ * the costs of having lots of genes.
+ */
 void Environment::calculateHostsFitnessExpScaling(double alpha){
     for(int i = 0; i < HostPopulation.size(); ++i){
-        HostPopulation[i].calculateFitnessAlphaXSqr(alpha);
+        HostPopulation[i].calculateFitnessExpFunc(alpha);
     }
 }
 
