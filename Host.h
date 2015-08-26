@@ -1,9 +1,9 @@
-/* 
+/*
  * File:   Host.h
  * Author: Piotr Bentkowski : bentkowski.piotr@gmail.com
  *
  * Created on 16 February 2015, 16:13
- * 
+ *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -47,12 +47,13 @@ public:
 //    std::vector<int> PathogesPresented;
     unsigned NumOfPathogesInfecting;
     unsigned NumOfPathogesPresented;
+    unsigned NumOfMhcAlleles;
     int SelectedForReproduction;
     void setNewHost(int num_of_loci, int gene_size, int timeStamp);
     void chromoMutProcess(double mut_probabl, int timeStamp);
-    void chromoMutProcessWithDelDupl(double mut_probabl, double del, 
+    void chromoMutProcessWithDelDupl(double mut_probabl, double del,
         double dupli, int maxGene, int timeStamp);
-    void chromoMutProcessWithDelDuplPointMuts(double mut_probabl, double del, 
+    void chromoMutProcessWithDelDuplPointMuts(double mut_probabl, double del,
         double dupli, int maxGene, int timeStamp);
     void clearInfections();
     chromovector doCrossAndMeiosis(double corssing_prob);
@@ -62,6 +63,8 @@ public:
     unsigned getGenomeSize();
     unsigned getChromoOneSize();
     unsigned getChromoTwoSize();
+    double getChromoOneUniqAlleles();
+    double getChromoTwoUniqAlleles();
     void assignChromOne(chromovector One);
     void assignChromTwo(chromovector Two);
     genestring getSingleGeneFromOne(int indx);
@@ -76,6 +79,7 @@ public:
     void calculateFitnessForDrift();
     void calculateFitnessAlphaXSqr(double alpha);
     void calculateFitnessExpFunc(double alpha);
+    void calculateFitnessExpFuncUniqAlleles(double alpha);
     double getFitness();
     // === Data harvesting methods ===
     std::string stringChromosomes();

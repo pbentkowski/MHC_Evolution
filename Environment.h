@@ -60,6 +60,7 @@ public:
     void calculateHostsFitnessForDrift();
     void calculateHostsFitnessAlphaXsqr(double alpha);
     void calculateHostsFitnessExpScaling(double alpha);
+    void calculateHostsFitnessExpScalingUniqAlleles(double alpha);
     void selectAndReprodHostsAddOffspring();
     void selectAndReprodHostsReplace();
     void selectAndReproducePathoFlexPopSizes();

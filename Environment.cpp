@@ -1,9 +1,9 @@
-/* 
+/*
  * File:   Environment.cpp
  * Author: Piotr Bentkowski : bentkowski.piotr@gmail.com
- * 
+ *
  * Created on 18 February 2015, 16:46
- * 
+ *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -20,7 +20,7 @@
  *    MA 02110-1301, USA.
  */
 #include <complex>
-#include <vector> 
+#include <vector>
 #include <string>
 #include <math.h>
 
@@ -40,15 +40,14 @@ Environment::Environment() {
 Environment::~Environment() {
 }
 
-
 /**
  * @brief Core method. Initializes a vector containing host population.
- * 
- * Sets and fills a vector containing the host population. Parameters like size 
+ *
+ * Sets and fills a vector containing the host population. Parameters like size
  * of the population, length of genes represented by bit-strings, number of
  * genes in a chromosome (remember that there are two chromosomes) are
  * user-defined, the rest is set at random (e.g. actual gene values).
- * 
+ *
  * @param pop_size - number of host individuals in a simulation
  * @param gene_size - number of bits in bit-represented genes
  * @param chrom_size - number of genes in a chromosome
@@ -64,21 +63,21 @@ void Environment::setHostPopulation(int pop_size, int gene_size, int chrom_size,
 
 /**
  * @brief Core method. Initializes a vector containing host population.
- * 
- * Sets and fills a vector containing the host population. Parameters like size 
+ *
+ * Sets and fills a vector containing the host population. Parameters like size
  * of the population and the length of genes represented by bit-strings are
- * user-defined. Whereas the range of the number of genes in a chromosome 
+ * user-defined. Whereas the range of the number of genes in a chromosome
  * (remember that there are two chromosomes) is selected randomly from a set
  * range of possible values, the rest of parameters is set totally at random
- * (e.g. actual gene values). 
- * 
+ * (e.g. actual gene values).
+ *
  * @param pop_size - number of host individuals in a simulation
  * @param gene_size - number of bits in bit-represented genes
  * @param chrom_size_lower - lower limit of the number of genes in a chromosome
  * @param chrom_size_uper - upper limit of the number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostPopulation(int pop_size, int gene_size, 
+void Environment::setHostPopulation(int pop_size, int gene_size,
         int chrom_size_lower, int chrom_size_uper, int timeStamp){
     if(chrom_size_lower > chrom_size_uper){
         int tmp_size = chrom_size_lower;
@@ -93,23 +92,22 @@ void Environment::setHostPopulation(int pop_size, int gene_size,
     }
 }
 
-
 /**
- * @brief Core method. Initializes the pathogen population. 
- * 
+ * @brief Core method. Initializes the pathogen population.
+ *
  * Given the number of individuals, number of bit per gene, desired number of
- * genes in a genome and desired number of pathogen species it generates 
- * random population of pathogens. Number of individuals will be evenly 
- * distributed between species and their genes will be selected randomly from 
+ * genes in a genome and desired number of pathogen species it generates
+ * random population of pathogens. Number of individuals will be evenly
+ * distributed between species and their genes will be selected randomly from
  * different pools of bit strings.
- * 
+ *
  * @param pop_size - total number of individuals
  * @param gene_size - number of bits per gene
  * @param chrom_size - number of genes per genome
  * @param numb_of_species - number of species
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setPathoPopulationSeparateGenePools(int pop_size, int gene_size, 
+void Environment::setPathoPopulationSeparateGenePools(int pop_size, int gene_size,
         int chrom_size, int numb_of_species, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
@@ -139,21 +137,21 @@ void Environment::setPathoPopulationSeparateGenePools(int pop_size, int gene_siz
 }
 
 /**
- * @brief Core method. Initializes the pathogen population. 
- * 
+ * @brief Core method. Initializes the pathogen population.
+ *
  * Given the number of individuals, number of bit per gene, desired number of
- * genes in a genome and desired number of pathogen species it generates 
- * random population of pathogens. Number of individuals will be evenly 
+ * genes in a genome and desired number of pathogen species it generates
+ * random population of pathogens. Number of individuals will be evenly
  * distributed between species and each species draws its genes from the same
  * pool of possible bit strings.
- * 
+ *
  * @param pop_size - total number of individuals
  * @param gene_size - number of bits per gene
  * @param chrom_size - number of genes per genome
  * @param numb_of_species - number of species
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size, 
+void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
         int chrom_size, int numb_of_species, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
@@ -182,13 +180,13 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
 /**
  * @brief Core method. Iterates through the host population and the parasite
  * population to "infect" the hosts with parasites. With heterozygote advantage.
- * 
+ *
  * Each host is exposed to one, randomly selected individual from a pathogen
- * species. Exposition procedure for a single host is repeated for all 
+ * species. Exposition procedure for a single host is repeated for all
  * pathogen species. Maximum number of pathogens a host can contract in one go
  * equals to the number of pathogen species. Fitness is calculated with heterozygote
  * advantage added (antigen recognition just by allele give a full advantage).
- * 
+ *
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
  */
@@ -200,8 +198,8 @@ void Environment::infectOneFromSpecHetero(int simil_mesure){
         for(int sp = 0; sp < PathPopulation.size(); ++sp){
             if(PathPopulation[sp].size()){
                 j = p_RandomNumbs->NextInt(0, PathPopulation[sp].size()-1);
-                H2P.doesInfectedHeteroBetter(HostPopulation[i], 
-                        PathPopulation[sp][j], simil_mesure); 
+                H2P.doesInfectedHeteroBetter(HostPopulation[i],
+                        PathPopulation[sp][j], simil_mesure);
             }
         }
     }
@@ -210,14 +208,14 @@ void Environment::infectOneFromSpecHetero(int simil_mesure){
 /**
  * @brief Core method. Iterates through the host population and the parasite
  * population to "infect" the hosts with parasites. No heterozygote advantage.
- * 
+ *
  * Each host is exposed to one, randomly selected individual from a pathogen
- * species. Exposition procedure for a single host is repeated for all 
+ * species. Exposition procedure for a single host is repeated for all
  * pathogen species. Maximum number of pathogens a host can contract in one go
  * equals to the number of pathogen species.Fitness is calculated with NO heterozygote
  * advantage added (both alleles have to recognize the antigen to gain the full
  * advantage).
- * 
+ *
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
  */
@@ -229,8 +227,8 @@ void Environment::infectOneFromSpecHomo(int simil_mesure){
         for(int sp = 0; sp < PathPopulation.size(); ++sp){
             if(PathPopulation[sp].size()){
                 j = p_RandomNumbs->NextInt(0, PathPopulation[sp].size()-1);
-                H2P.doesInfectedHomoBetter(HostPopulation[i], 
-                        PathPopulation[sp][j], simil_mesure); 
+                H2P.doesInfectedHomoBetter(HostPopulation[i],
+                        PathPopulation[sp][j], simil_mesure);
             }
         }
     }
@@ -238,7 +236,7 @@ void Environment::infectOneFromSpecHomo(int simil_mesure){
 
 /**
  * @brief Core method. Iterates through the host population and calculates the
- * Fitness for each single individual by calling 
+ * Fitness for each single individual by calling
  * Host::calculateFitnessAccChromSize(), which takes the number of MHC genes
  * under account.
  */
@@ -250,7 +248,7 @@ void Environment::calculateHostsFitnessPerGene(){
 
 /**
  * @brief Core method. Iterates through the host population and calculates the
- * Fitness for each single individual by calling 
+ * Fitness for each single individual by calling
  * Host::calculateHostsFitnessPlainInfect(), which is the plain-and-lame sum
  * of presented pathogens.
  */
@@ -262,7 +260,7 @@ void Environment::calculateHostsFitnessPlainPresent(){
 
 /**
  * @brief Core method. Iterates through the host population and calculates the
- * Fitness for each single individual by calling 
+ * Fitness for each single individual by calling
  * Host::calculateFitnessForDrift(), which assigns "1" for each cell to make
  * the genetic driff work.
  */
@@ -274,7 +272,7 @@ void Environment::calculateHostsFitnessForDrift(){
 
 /**
  * @brief Core method. Iterates through the host population and calculates the
- * Fitness for each single individual by calling 
+ * Fitness for each single individual by calling
  * Host::calculateHostsFitnessAlphaXsqr(), which uses one over the square on
  * number of genes as a fitness cost.
  */
@@ -286,7 +284,7 @@ void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
 
 /**
  * @brief Core method. Iterates through the host population and calculates the
- * Fitness for each single individual by calling 
+ * Fitness for each single individual by calling
  * Host::calculateFitnessExpFunc(), which uses a Gaussian function to accommodate
  * the costs of having lots of genes.
  */
@@ -297,17 +295,29 @@ void Environment::calculateHostsFitnessExpScaling(double alpha){
 }
 
 /**
+ * @brief Core method. Iterates through the host population and calculates the
+ * Fitness for each single individual by calling
+ * Host::calculateFitnessExpFuncUniqAlleles(), which uses a Gaussian function
+ * to accommodate the costs of having lots of unique MHC alleles in chromosomes.
+ */
+void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
+    for(int i = 0; i < HostPopulation.size(); ++i){
+        HostPopulation[i].calculateFitnessExpFuncUniqAlleles(alpha);
+    }
+}
+
+/**
  * @brief Core method. Forms the next generation of hosts using the fitness
  * proportionate selection method.
- * 
- * The new generation takes place of individuals which got removed from 
+ *
+ * The new generation takes place of individuals which got removed from
  * population due to too low fitness.
- * 
- * Iterates through the host population selecting the next generation 
- * for reproduction using 
+ *
+ * Iterates through the host population selecting the next generation
+ * for reproduction using
  * <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">
- * fitness proportionate selection method</a> (also known as the roulette wheel 
- * selection). 
+ * fitness proportionate selection method</a> (also known as the roulette wheel
+ * selection).
  */
 void Environment::selectAndReprodHostsAddOffspring(){
     unsigned pop_size = HostPopulation.size();
@@ -361,7 +371,7 @@ void Environment::selectAndReprodHostsAddOffspring(){
         }
         HostPopulation.push_back(HostPopulation[indx_mother]);
         HostPopulation.back().assignChromTwo(HostPopulation[indx_father].getChromosomeTwo());
-        // Randomly swaps places of chromosomes to avoid situation when they 
+        // Randomly swaps places of chromosomes to avoid situation when they
         // effectively become two separate populations.
         HostPopulation.back().swapChromosomes();
     }
@@ -370,12 +380,12 @@ void Environment::selectAndReprodHostsAddOffspring(){
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
  * proportionate selection method. Replaces the old population with a new one.
- * 
- * Iterates through the host population selecting the next generation 
- * for reproduction using 
+ *
+ * Iterates through the host population selecting the next generation
+ * for reproduction using
  * <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">
- * fitness proportionate selection method</a> (also known as the roulette wheel 
- * selection). 
+ * fitness proportionate selection method</a> (also known as the roulette wheel
+ * selection).
  */
 void Environment::selectAndReprodHostsReplace(){
     std::vector<Host> NewHostsVec;
@@ -413,7 +423,7 @@ void Environment::selectAndReprodHostsReplace(){
             if(rnd <= 0){
                HostPopulation[p].SelectedForReproduction += 1;
                NewHostsVec.back().assignChromTwo(HostPopulation[p].getChromosomeTwo());
-               // Randomly swaps places of chromosomes to avoid situation when 
+               // Randomly swaps places of chromosomes to avoid situation when
                // they effectively become two separate populations.
                NewHostsVec.back().swapChromosomes();
                goto aley_oop;
@@ -434,11 +444,11 @@ void Environment::selectAndReprodHostsReplace(){
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
  * proportionate selection method. It can adjust species population sizes in
- * proportion to its individuals fitness values keeping the total number of 
- * pathogens fixed. 
- * 
- * Iterates through the pathogen population selecting the next generation 
- * for reproduction using  fitness proportionate selection method (roulette 
+ * proportion to its individuals fitness values keeping the total number of
+ * pathogens fixed.
+ *
+ * Iterates through the pathogen population selecting the next generation
+ * for reproduction using  fitness proportionate selection method (roulette
  * wheel selection).
  */
 void Environment::selectAndReproducePathoFlexPopSizes(){
@@ -452,7 +462,7 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
             total_ifected += PathPopulation[i][j].NumOfHostsInfected;
 //            PathPopulation[i][j].NumOfHostsInfected += 1;
             // A trick to have more survivors
-            sum_of_fit += PathPopulation[i][j].NumOfHostsInfected; 
+            sum_of_fit += PathPopulation[i][j].NumOfHostsInfected;
         }
     }
 //    std::cout << "Total infected: " << total_ifected << std::endl;
@@ -476,7 +486,7 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
         }
     }
     int PopSize;
-    // Elimination of the unfit 
+    // Elimination of the unfit
     int PopOfPopsSize = PathPopulation.size();
     for (int i = PopOfPopsSize - 1; i >= 0; --i){
         PopSize = PathPopulation[i].size();
@@ -502,11 +512,11 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
 
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
- * proportionate selection method. It keeps population sizes of different 
+ * proportionate selection method. It keeps population sizes of different
  * pathogens species at a fixed number.
- * 
- * Iterates through the pathogen population selecting the next generation 
- * for reproduction using fitness proportionate selection method (roulette 
+ *
+ * Iterates through the pathogen population selecting the next generation
+ * for reproduction using fitness proportionate selection method (roulette
  * wheel selection).
  */
 void Environment::selectAndReproducePathoFixedPopSizes(){
@@ -516,16 +526,16 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
     int SpecTotInfected[(int) PathPopulation.size()];
     int total_ifected = 0;
     for (int i = 0; i < PathPopulation.size(); ++i){
-        PopSizes[i] = PathPopulation[i].size(); 
+        PopSizes[i] = PathPopulation[i].size();
         SpecTotInfected[i] = 0;
         for (int j = 0; j < PathPopulation[i].size(); ++j){
             SpecTotInfected[i] += PathPopulation[i][j].NumOfHostsInfected;
             total_ifected += PathPopulation[i][j].NumOfHostsInfected;
         }
     }
-    if(total_ifected == 0) 
+    if(total_ifected == 0)
         return;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance(); 
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for (int k = 0; k < PathPopulation.size(); ++k){
         TmpPathVec.clear();
         int n = 0;
@@ -551,7 +561,7 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
             std::cout << "old pop: " << PathPopulation[k].size() <<
                 " | new pop: " << TmpPathVec.size() << std::endl;
         }
-    
+
     }
 }
 
@@ -580,9 +590,9 @@ void Environment::clearHostInfectionsData(){
 }
 
 /**
- * @brief Core method. Iterates through the all genes of the host population 
+ * @brief Core method. Iterates through the all genes of the host population
  * and performs mutations in genes with a given probability.
- * 
+ *
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param timeStamp - current time (number of the model iteration)
  */
@@ -593,17 +603,17 @@ void Environment::mutateHosts(double mut_probabl, int timeStamp){
 }
 
 /**
- * @brief Core method. Iterates through the all genes of the host population 
+ * @brief Core method. Iterates through the all genes of the host population
  * and performs mutations in genes with a given probability. Also deletions and
  * duplications of genes.
- * 
+ *
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param del - mutation probability, probability a gene will be deleted
- * @param dupli - mutation probability, probability a gene will be duplicated 
+ * @param dupli - mutation probability, probability a gene will be duplicated
  * (and added at the end of the Chromosome vector)
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::mutateHostsWithDelDupl(double mut_probabl, double del, 
+void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
         double dupl, unsigned int maxGene, int timeStamp){
     for(int k = 0; k < HostPopulation.size(); ++k){
         HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl,
@@ -612,20 +622,20 @@ void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
 }
 
 /**
- * @brief Core method. Iterates through the all genes of the host population 
- * and performs POINT mutations in genes with a given probability. Also 
+ * @brief Core method. Iterates through the all genes of the host population
+ * and performs POINT mutations in genes with a given probability. Also
  * deletions and duplications of genes.
- * 
+ *
  * @param pm_mut_probabl - probability of a point mutation in a single gene.
  * @param del - mutation probability, probability a gene will be deleted
- * @param dupli - mutation probability, probability a gene will be duplicated 
+ * @param dupli - mutation probability, probability a gene will be duplicated
  * (and added at the end of the Chromosome vector)
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
         double del, double dupl, unsigned int maxGene, int timeStamp){
     for(int k = 0; k < HostPopulation.size(); ++k){
-        HostPopulation[k].chromoMutProcessWithDelDuplPointMuts(pm_mut_probabl, 
+        HostPopulation[k].chromoMutProcessWithDelDuplPointMuts(pm_mut_probabl,
                 del, dupl, maxGene, timeStamp);
     }
 }
@@ -634,34 +644,34 @@ void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
  * @brief Core method. When given micro-recombination mutation probability it
  * returns point-mutation probability calculated the way that it the average
  * number of new MHC match in both mutation scenarios.
- * 
- * It implements the way in Ejsmond MJ, Radwan J. 2015. *Red Queen drives 
- * positive selection on Major Histocompatibility Complex genes (MHC)* 
+ *
+ * It implements the way in Ejsmond MJ, Radwan J. 2015. *Red Queen drives
+ * positive selection on Major Histocompatibility Complex genes (MHC)*
  * [not published yet] micro-recombination mutation is transformed to
  * point-mutation probability:
- * 
+ *
  *  \f$ p_{t} = 1 - \left[1 - p_{m} (1 - 0.5^{b})\right]^{1/b} \f$
- * 
- * where \f$b\f$ is the number of bits, \f$p_{m}\f$ is the old-style mutation 
- * probability. Only to avoid problems when calculating the power of \f$1/b\f$ 
+ *
+ * where \f$b\f$ is the number of bits, \f$p_{m}\f$ is the old-style mutation
+ * probability. Only to avoid problems when calculating the power of \f$1/b\f$
  * when \f$b\f$ is large and the base is small we re-phrased it into:
- * 
+ *
  * \f$ p_{t} = 1 - \exp\left( 1/b \cdot \ln [1 - p_{m} (1 - 0.5^{b})]\right) \f$
- * 
+ *
  * @param MM_prob_mut - micro-recombination mutation ('old-style' mutation)
  * @param geneLength - number of bits in a gene representation
  * @return - calculated corresponding point mutation
  */
 double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
     double bitt = (double) geneLength;
-    return 1.0 - std::exp((1.0 / bitt) * std::log(1.0 -  MM_prob_mut 
+    return 1.0 - std::exp((1.0 / bitt) * std::log(1.0 -  MM_prob_mut
             * (1.0 - std::pow(0.5, bitt))));
 }
 
 /**
- * @brief Core method. Iterates through the all genes of the pathogen population 
+ * @brief Core method. Iterates through the all genes of the pathogen population
  * and performs mutations in genes with a given probability.
- * 
+ *
  * @param mut_probabl - probability of a mutation in a single gene.
  */
 void Environment::mutatePathogens(double mut_probabl, int timeStamp){
@@ -674,7 +684,7 @@ void Environment::mutatePathogens(double mut_probabl, int timeStamp){
 
 /**
  * @brief Core method. Gets the number of species of pathogens.
- * 
+ *
  * @return number of pathogen species
  */
 unsigned Environment::getPathoNumOfSpecies(){
@@ -684,7 +694,7 @@ unsigned Environment::getPathoNumOfSpecies(){
 /**
  * @brief Core method. Gets a number of individuals in a selected species
  * of pathogen.
- * 
+ *
  * @param spec_numb - number of selected species.
  * @return number of individuals of a selected species.
  */
@@ -694,7 +704,7 @@ unsigned Environment::getPathoSpeciesPopSize(unsigned spec_numb){
 
 /**
  * @brief Core method. Gets the host population size.
- * 
+ *
  * @return host population size
  */
 unsigned Environment::getHostsPopSize(){
@@ -705,20 +715,20 @@ unsigned Environment::getHostsPopSize(){
 
 /**
  * @brief Data harvesting method. Gets the genome of selected pathogen in
- * human-readable format. 
- * 
+ * human-readable format.
+ *
  * @param i pathogen species number
  * @param j individual's index within the pathogen species vector
  * @return a string of the pathogen's chromosome in a human-readable format.
  */
 std::string Environment::getPathoGenesToString(int i, int j){
-    return PathPopulation[i][j].stringGenesFromGenome();    
+    return PathPopulation[i][j].stringGenesFromGenome();
 }
 
 /**
  * @brief Data harvesting method. Gets the genome of selected host in
- * human-readable format. 
- * 
+ * human-readable format.
+ *
  * @param i individual's index within the host vector
  * @return  a string of the host's chromosome in a human-readable format.
  */

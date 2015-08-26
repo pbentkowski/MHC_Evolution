@@ -20,7 +20,7 @@ import matplotlib.animation as animation
 
 # This variable sets that every Nth row is used for plotting
 # thanks to that we get a speedy animation.
-everyOtherRow = 10
+everyOtherRow = 2
 
 MAXX = 110
 scale = 10**5
@@ -38,7 +38,7 @@ mhcMeans = np.genfromtxt("HostMHCsNumbUniq_ChrOne.csv")
 GenerData = np.genfromtxt("HostsGeneDivers.csv")
 print "Done loading data files!"
 
-# -- trimmig rows
+# -- trimming rows
 lastRow = genMeans[-1, :]
 genMeans = genMeans[::everyOtherRow]
 genMeans = np.vstack([genMeans, lastRow])
@@ -94,4 +94,4 @@ def animate(i):
 ani = animation.FuncAnimation(fig, animate, frames=len(GenerData),
                               interval=200, blit=False)
 ani.save('MHC_evol.mp4', fps=30)
-plt.show()
+#plt.show()
