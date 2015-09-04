@@ -49,12 +49,14 @@ public:
     unsigned NumOfPathogesPresented;
     unsigned NumOfMhcAlleles;
     int SelectedForReproduction;
+    int TimeOfRecombin;
     void setNewHost(int num_of_loci, int gene_size, int timeStamp);
     void chromoMutProcess(double mut_probabl, int timeStamp);
     void chromoMutProcessWithDelDupl(double mut_probabl, double del,
         double dupli, int maxGene, int timeStamp);
     void chromoMutProcessWithDelDuplPointMuts(double mut_probabl, double del,
         double dupli, int maxGene, int timeStamp);
+    void chromoRecombination(double recomb_prob, int timeStamp);
     void clearInfections();
     chromovector doCrossAndMeiosis(double corssing_prob);
     chromovector getChromosomeOne();

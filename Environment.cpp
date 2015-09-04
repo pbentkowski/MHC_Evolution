@@ -653,8 +653,9 @@ void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
  *  \f$ p_{t} = 1 - \left[1 - p_{m} (1 - 0.5^{b})\right]^{1/b} \f$
  *
  * where \f$b\f$ is the number of bits, \f$p_{m}\f$ is the old-style mutation
- * probability. Only to avoid problems when calculating the power of \f$1/b\f$
- * when \f$b\f$ is large and the base is small we re-phrased it into:
+ * probability. Only to avoid problems with numerical stability when calculating
+ * the power of \f$1/b\f$ when \f$b\f$ is large and the base is small we
+ * re-phrased it into:
  *
  * \f$ p_{t} = 1 - \exp\left( 1/b \cdot \ln [1 - p_{m} (1 - 0.5^{b})]\right) \f$
  *

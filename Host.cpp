@@ -175,6 +175,21 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
 }
 
 /**
+ * @brief Core method. Performs recombination between host's chromosomes by
+ * inserting a brake in randomly selected genes on Chromosome One and Two 
+ * and swapping the resulting parts of the chromosomes.
+ * 
+ * @param recomb_prob - probability of the recombination event in host's genome
+ * @param timeStamp - current time (current number of the model iteration) 
+ */
+void Host::chromoRecombination(double recomb_prob, int timeStamp){
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    if (p_RandomNumbs->NextReal(0.0, 1.0) < recomb_prob){
+        
+    }
+}
+
+/**
  * @brief Core method. Performing crossing over and chromosome selection before
  * mating.
  * 
