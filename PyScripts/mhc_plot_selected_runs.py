@@ -45,12 +45,13 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 2500
-    Ymax = 60
+    Xmax = 5000
+    Ymax = 300
+    textXlocal = 3400
 
-    pathoGenSize = 1  # change to select a different set of data
+    pathoGenSize = 25  # change to select a different set of data
     pathoNumSpec = 1e-05  # change to select a different set of data
-    saveFiggs = False  # True to save figures to disk, False to not save
+    saveFiggs = True  # True to save figures to disk, False to not save
 
     nnn = "antigens: " + str(pathoGenSize) + "   muts: " + str(pathoNumSpec)
 
@@ -75,7 +76,7 @@ def main():
             p.axis([0, Xmax, 0, Ymax])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(1400, 100), xycoords='data',
+    ax = p.annotate(nnn, xy=(textXlocal, 250), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
@@ -101,7 +102,7 @@ def main():
             p.axis([0, Xmax, 0, 6])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(1200, 3.5), xycoords='data',
+    ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
@@ -125,7 +126,7 @@ def main():
             p.axis([0, Xmax, 0, 2.5])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(1200, 2.0), xycoords='data',
+    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
@@ -151,7 +152,7 @@ def main():
             p.axis([0, Xmax, 0, 30.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(1300, 25), xycoords='data',
+    ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
@@ -176,7 +177,7 @@ def main():
 #            p.xlim([0, Xmax])
 #            p.xticks(size=AxisTickFontSize)
 #            p.yticks(size=AxisTickFontSize)
-#    ax = p.annotate(nnn, xy=(1300, 2000), xycoords='data',
+#    ax = p.annotate(nnn, xy=(textXlocal, 2000), xycoords='data',
 #                    fontsize=AnnotateFontSize)
 #    p.grid()
 

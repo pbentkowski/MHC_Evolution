@@ -20,7 +20,7 @@ import matplotlib.animation as animation
 
 # This variable sets that every Nth row is used for plotting
 # thanks to that we get a speedy animation.
-everyOtherRow = 2
+everyOtherRow = 5
 
 MAXX = 110
 scale = 10**5

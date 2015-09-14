@@ -54,6 +54,7 @@ public:
         int chrom_size_uper, int numb_of_species, int timeStamp);
     void infectOneFromSpecHetero(int simil_mesure);
     void infectOneFromSpecHomo(int simil_mesure);
+    void infectOneFromOneSpecHetero(int simil_mesure);
     void infectEveryOne(int simil_mesure);
     void calculateHostsFitnessPerGene();
     void calculateHostsFitnessPlainPresent();

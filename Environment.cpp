@@ -235,6 +235,36 @@ void Environment::infectOneFromSpecHomo(int simil_mesure){
 }
 
 /**
+  * @brief Core method. Iterates through the host population and the parasite
+ * population to "infect" the hosts with parasites. With heterozygote advantage
+ * and it permits a pathogen species to infect a host only ONES.
+ *
+ * Each host is exposed to one, randomly selected individual from a pathogen
+ * species. Exposition procedure for a single host is repeated for all
+ * pathogen species. Maximum number of pathogens a host can contract in one go
+ * equals to the number of pathogen species. Fitness is calculated with heterozygote
+ * advantage added (antigen recognition just by allele give a full advantage). One
+ * species can infect a host only ONES.
+ *
+ * @param simil_mesure - number of bits which have to be similar, to expose
+ * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
+ */
+void Environment::infectOneFromOneSpecHetero(int simil_mesure){
+    H2Pinteraction H2P;
+    int j;
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    for(int i = 0; i < HostPopulation.size(); ++i){
+        for(int sp = 0; sp < PathPopulation.size(); ++sp){
+            if(PathPopulation[sp].size()){
+                j = p_RandomNumbs->NextInt(0, PathPopulation[sp].size()-1);
+                H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i],
+                        PathPopulation[sp][j], simil_mesure);
+            }
+        }
+    }
+}
+
+/**
  * @brief Core method. Iterates through the host population and calculates the
  * Fitness for each single individual by calling
  * Host::calculateFitnessAccChromSize(), which takes the number of MHC genes

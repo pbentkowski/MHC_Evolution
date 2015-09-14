@@ -43,7 +43,7 @@ public:
     //Host(const Host& orig);
     virtual ~Host();
     // === Core methods ===
-//    std::vector<int> PathogesInfecting;
+    std::vector<int> PathoSpecInfecting;
 //    std::vector<int> PathogesPresented;
     unsigned NumOfPathogesInfecting;
     unsigned NumOfPathogesPresented;

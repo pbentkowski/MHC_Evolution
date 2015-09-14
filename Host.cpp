@@ -185,7 +185,7 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
 void Host::chromoRecombination(double recomb_prob, int timeStamp){
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     if (p_RandomNumbs->NextReal(0.0, 1.0) < recomb_prob){
-        
+       // needs to be done!
     }
 }
 
@@ -578,7 +578,7 @@ double Host::getFitness(){
  * @brief Core method. Clears data regarding infections and fitness.
  */
 void Host::clearInfections(){
-//    PathogesInfecting.clear();
+    PathoSpecInfecting.clear();
 //    PathogesPresented.clear();
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;

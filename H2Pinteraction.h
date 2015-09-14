@@ -43,6 +43,7 @@ public:
     void doesInfectedHeteroBetter(Host &host, Pathogen &patho, int simil_mesure);
     void doesInfectedHomoBetter(Host &host, Pathogen &patho, int simil_mesure);
     void doesInfectedAllToAll(Host &host, Pathogen &patho, int simil_mesure);
+    void doesInfectedHeteroOnePerSpec(Host &host, Pathogen &patho, int simil_mesure);
 };
 
 #endif	/* H2PINTERACTION_H */
