@@ -134,6 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a303c0d61ab48aaa709fccfcdd14a156e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a303c0d61ab48aaa709fccfcdd14a156e">chromoMutProcessWithDelDuplPointMuts</a> (double mut_probabl, double del, double dupli, int maxGene, int timeStamp)</td></tr>
 <tr class="memdesc:a303c0d61ab48aaa709fccfcdd14a156e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Decides (on a random basis) if there will be any mutations in the genome.  <a href="#a303c0d61ab48aaa709fccfcdd14a156e">More...</a><br /></td></tr>
 <tr class="separator:a303c0d61ab48aaa709fccfcdd14a156e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada5564c9d57e18ce046e131a5968e08f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ada5564c9d57e18ce046e131a5968e08f">chromoRecombination</a> (double recomb_prob, int timeStamp)</td></tr>
+<tr class="memdesc:ada5564c9d57e18ce046e131a5968e08f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Performs recombination between host's chromosomes by inserting a brake in randomly selected genes on Chromosome One and Two and swapping the resulting parts of the chromosomes.  <a href="#ada5564c9d57e18ce046e131a5968e08f">More...</a><br /></td></tr>
+<tr class="separator:ada5564c9d57e18ce046e131a5968e08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c21e1938c61966dc2657a437aeec9b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a7c21e1938c61966dc2657a437aeec9b9">clearInfections</a> ()</td></tr>
 <tr class="memdesc:a7c21e1938c61966dc2657a437aeec9b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Clears data regarding infections and fitness.  <a href="#a7c21e1938c61966dc2657a437aeec9b9">More...</a><br /></td></tr>
 <tr class="separator:a7c21e1938c61966dc2657a437aeec9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -158,6 +161,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a03e175acb665dc22d96bb3a038571af7"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a03e175acb665dc22d96bb3a038571af7">getChromoTwoSize</a> ()</td></tr>
 <tr class="memdesc:a03e175acb665dc22d96bb3a038571af7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of genes in the Chromosome Two.  <a href="#a03e175acb665dc22d96bb3a038571af7">More...</a><br /></td></tr>
 <tr class="separator:a03e175acb665dc22d96bb3a038571af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad84a6fab9904782aa633deab0ad5e506"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ad84a6fab9904782aa633deab0ad5e506">getChromoOneUniqAlleles</a> ()</td></tr>
+<tr class="memdesc:ad84a6fab9904782aa633deab0ad5e506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of unique MHC alleles in the Chromosome One.  <a href="#ad84a6fab9904782aa633deab0ad5e506">More...</a><br /></td></tr>
+<tr class="separator:ad84a6fab9904782aa633deab0ad5e506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05b417630dd1095b967de411bdb350a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ad05b417630dd1095b967de411bdb350a">getChromoTwoUniqAlleles</a> ()</td></tr>
+<tr class="memdesc:ad05b417630dd1095b967de411bdb350a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of unique MHC alleles in the Chromosome Two.  <a href="#ad05b417630dd1095b967de411bdb350a">More...</a><br /></td></tr>
+<tr class="separator:ad05b417630dd1095b967de411bdb350a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6ecd452f531bbcaf469d5d9d42b8028"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ac6ecd452f531bbcaf469d5d9d42b8028">assignChromOne</a> (<a class="el" href="_h2_pinteraction_8cpp.html#adcfab8f2ed9ed0c694cb95d35c91aa78">chromovector</a> One)</td></tr>
 <tr class="memdesc:ac6ecd452f531bbcaf469d5d9d42b8028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Assigns a new chromosome to host's Chromosome ONE.  <a href="#ac6ecd452f531bbcaf469d5d9d42b8028">More...</a><br /></td></tr>
 <tr class="separator:ac6ecd452f531bbcaf469d5d9d42b8028"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,6 +205,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9134661842de046453acc0342ef74eb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a9134661842de046453acc0342ef74eb6">calculateFitnessExpFunc</a> (double alpha)</td></tr>
 <tr class="memdesc:a9134661842de046453acc0342ef74eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Calculates host individual fitness in proportion to the Gaussian function of the number of genes scaled to by factor <img class="formulaInl" alt="$ \alpha $" src="form_12.png"/>:  <a href="#a9134661842de046453acc0342ef74eb6">More...</a><br /></td></tr>
 <tr class="separator:a9134661842de046453acc0342ef74eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad185a5e02c8ed0930e4d400e9c0e6a9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ad185a5e02c8ed0930e4d400e9c0e6a9a">calculateFitnessExpFuncUniqAlleles</a> (double alpha)</td></tr>
+<tr class="memdesc:ad185a5e02c8ed0930e4d400e9c0e6a9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Calculates host individual fitness in proportion to the Gaussian function of the number of unique MHC alleles in the chromosome scaled to by factor <img class="formulaInl" alt="$ \alpha $" src="form_12.png"/>:  <a href="#ad185a5e02c8ed0930e4d400e9c0e6a9a">More...</a><br /></td></tr>
+<tr class="separator:ad185a5e02c8ed0930e4d400e9c0e6a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87d357c93783916037446bf8096ed45d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a87d357c93783916037446bf8096ed45d">getFitness</a> ()</td></tr>
 <tr class="memdesc:a87d357c93783916037446bf8096ed45d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns current value of host's fitness.  <a href="#a87d357c93783916037446bf8096ed45d">More...</a><br /></td></tr>
 <tr class="separator:a87d357c93783916037446bf8096ed45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,12 +223,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a0d79bd02d6147f8e94ae975dc42ae026"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a0d79bd02d6147f8e94ae975dc42ae026">PathoSpecInfecting</a></td></tr>
+<tr class="separator:a0d79bd02d6147f8e94ae975dc42ae026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac173100d13da6dfeb93387f0d689c349"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ac173100d13da6dfeb93387f0d689c349">NumOfPathogesInfecting</a></td></tr>
 <tr class="separator:ac173100d13da6dfeb93387f0d689c349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0411c059e63ed72507b0c370880b5ab"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ad0411c059e63ed72507b0c370880b5ab">NumOfPathogesPresented</a></td></tr>
 <tr class="separator:ad0411c059e63ed72507b0c370880b5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab56ce3fe28076749e087269cb100299a"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ab56ce3fe28076749e087269cb100299a">NumOfMhcAlleles</a></td></tr>
+<tr class="separator:ab56ce3fe28076749e087269cb100299a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50bc219031501dd2c19a69d4e3f19533"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a50bc219031501dd2c19a69d4e3f19533">SelectedForReproduction</a></td></tr>
 <tr class="separator:a50bc219031501dd2c19a69d4e3f19533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ac8f1f9b0c989efbade931db22e236d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a4ac8f1f9b0c989efbade931db22e236d">TimeOfRecombin</a></td></tr>
+<tr class="separator:a4ac8f1f9b0c989efbade931db22e236d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Core class. Stores and handles a single host object. Each host has multiple instances of <a class="el" href="class_gene.html" title="Core class. Stores and handles a single gene object. Has methods to access and to mutate a gene...">Gene</a> class objects and stores them in 2 vectors called ChromosomeOne and ChromosomeTwo which simulate a diploid genome. </p>
@@ -288,7 +306,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00365">365</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00445">445</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,7 +332,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00374">374</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00454">454</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -333,7 +351,7 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Calculates host individual fitness as the number of exposed pathogens divided by the genome size. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00397">397</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00477">477</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -361,7 +379,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00434">434</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00514">514</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -389,7 +407,44 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00455">455</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00535">535</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad185a5e02c8ed0930e4d400e9c0e6a9a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Host::calculateFitnessExpFuncUniqAlleles </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Calculates host individual fitness in proportion to the Gaussian function of the number of unique MHC alleles in the chromosome scaled to by factor <img class="formulaInl" alt="$ \alpha $" src="form_12.png"/>: </p>
+<p><img class="formulaInl" alt="$ F = P \cdot \exp \left[-(\alpha N)^{2}\right] $" src="form_15.png"/></p>
+<p>where <img class="formulaInl" alt="$0 < \alpha < 1 $" src="form_9.png"/> and scales the slope of the Gaussian function, <img class="formulaInl" alt="$ P $" src="form_10.png"/> is the number of pathogens exposed and <img class="formulaInl" alt="$ N $" src="form_11.png"/> in the sum of number of unique MHC alleles in both chromosomes.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha</td><td>- scaling parameter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00558">558</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_host_ad185a5e02c8ed0930e4d400e9c0e6a9a_cgraph.png" border="0" usemap="#class_host_ad185a5e02c8ed0930e4d400e9c0e6a9a_cgraph" alt=""/></div>
+<map name="class_host_ad185a5e02c8ed0930e4d400e9c0e6a9a_cgraph" id="class_host_ad185a5e02c8ed0930e4d400e9c0e6a9a_cgraph">
+<area shape="rect" id="node2" href="class_host.html#ad84a6fab9904782aa633deab0ad5e506" title="Returns the number of unique MHC alleles in the Chromosome One. " alt="" coords="230,5,442,32"/><area shape="rect" id="node3" href="class_host.html#ad05b417630dd1095b967de411bdb350a" title="Returns the number of unique MHC alleles in the Chromosome Two. " alt="" coords="229,56,443,83"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -408,7 +463,7 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Sets fitness as 1, a fixed value to simulate genetic drift. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00419">419</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00499">499</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -427,7 +482,7 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Calculates host individual fitness simply as the number of exposed pathogens. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00411">411</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00491">491</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -603,6 +658,52 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="ada5564c9d57e18ce046e131a5968e08f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Host::chromoRecombination </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>recomb_prob</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Performs recombination between host's chromosomes by inserting a brake in randomly selected genes on Chromosome One and Two and swapping the resulting parts of the chromosomes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">recomb_prob</td><td>- probability of the recombination event in host's genome </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00185">185</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_host_ada5564c9d57e18ce046e131a5968e08f_cgraph.png" border="0" usemap="#class_host_ada5564c9d57e18ce046e131a5968e08f_cgraph" alt=""/></div>
+<map name="class_host_ada5564c9d57e18ce046e131a5968e08f_cgraph" id="class_host_ada5564c9d57e18ce046e131a5968e08f_cgraph">
+<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="243,5,432,32"/><area shape="rect" id="node3" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="249,56,425,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a7c21e1938c61966dc2657a437aeec9b9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -618,7 +719,7 @@ Here is the call graph for this function:</div>
 
 <p>Core method. Clears data regarding infections and fitness. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00477">477</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00580">580</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -646,7 +747,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a Chromosome vector. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00192">192</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00207">207</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -675,7 +776,36 @@ Here is the call graph for this function:</div>
 <p>Returns the number of genes in the Chromosome One. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of MHC genes in the Chromosome One. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00281">281</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00296">296</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad84a6fab9904782aa633deab0ad5e506"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Host::getChromoOneUniqAlleles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of unique MHC alleles in the Chromosome One. </p>
+<dl class="section return"><dt>Returns</dt><dd>number of unique MHC alleles in the Chromosome One. </dd></dl>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00316">316</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_host_ad84a6fab9904782aa633deab0ad5e506_icgraph.png" border="0" usemap="#class_host_ad84a6fab9904782aa633deab0ad5e506_icgraph" alt=""/></div>
+<map name="class_host_ad84a6fab9904782aa633deab0ad5e506_icgraph" id="class_host_ad84a6fab9904782aa633deab0ad5e506_icgraph">
+<area shape="rect" id="node2" href="class_host.html#ad185a5e02c8ed0930e4d400e9c0e6a9a" title="Core method. Calculates host individual fitness in proportion to the Gaussian function of the number ..." alt="" coords="267,5,443,46"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -695,14 +825,14 @@ Here is the call graph for this function:</div>
 <p>Core method. Returns the first chromosome. </p>
 <dl class="section return"><dt>Returns</dt><dd>Chromosome One </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00333">333</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00413">413</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_host_ac387176ba203f6aa1f20610f5679385a_icgraph.png" border="0" usemap="#class_host_ac387176ba203f6aa1f20610f5679385a_icgraph" alt=""/></div>
 <map name="class_host_ac387176ba203f6aa1f20610f5679385a_icgraph" id="class_host_ac387176ba203f6aa1f20610f5679385a_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node5" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,45,760,72"/><area shape="rect" id="node6" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,70,661,111"/></map>
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node8" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,201,423,242"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node5" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,86,661,127"/><area shape="rect" id="node6" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,143,760,169"/><area shape="rect" id="node9" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,183,661,225"/></map>
 </div>
 </p>
 
@@ -724,14 +854,14 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns the first chromosome. </p>
 <dl class="section return"><dt>Returns</dt><dd>Chromosome Two </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00342">342</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00422">422</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_host_aa5afa38408ebba644f56667364213f0d_icgraph.png" border="0" usemap="#class_host_aa5afa38408ebba644f56667364213f0d_icgraph" alt=""/></div>
 <map name="class_host_aa5afa38408ebba644f56667364213f0d_icgraph" id="class_host_aa5afa38408ebba644f56667364213f0d_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node5" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,45,760,72"/><area shape="rect" id="node6" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,70,661,111"/></map>
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node8" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,201,423,242"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node5" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,86,661,127"/><area shape="rect" id="node6" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,143,760,169"/><area shape="rect" id="node9" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,183,661,225"/></map>
 </div>
 </p>
 
@@ -753,7 +883,36 @@ Here is the caller graph for this function:</div>
 <p>Returns the number of genes in the Chromosome Two. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of MHC genes in the Chromosome Two. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00290">290</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00305">305</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad05b417630dd1095b967de411bdb350a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Host::getChromoTwoUniqAlleles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of unique MHC alleles in the Chromosome Two. </p>
+<dl class="section return"><dt>Returns</dt><dd>number of unique MHC alleles in the Chromosome Two. </dd></dl>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00348">348</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_host_ad05b417630dd1095b967de411bdb350a_icgraph.png" border="0" usemap="#class_host_ad05b417630dd1095b967de411bdb350a_icgraph" alt=""/></div>
+<map name="class_host_ad05b417630dd1095b967de411bdb350a_icgraph" id="class_host_ad05b417630dd1095b967de411bdb350a_icgraph">
+<area shape="rect" id="node2" href="class_host.html#ad185a5e02c8ed0930e4d400e9c0e6a9a" title="Core method. Calculates host individual fitness in proportion to the Gaussian function of the number ..." alt="" coords="267,5,443,46"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -773,7 +932,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns current value of host's fitness. </p>
 <dl class="section return"><dt>Returns</dt><dd>current value of host's fitness </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00470">470</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00573">573</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -793,7 +952,7 @@ Here is the caller graph for this function:</div>
 <p>Returns the total number of genes in the genome. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of all MHC genes in the host </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00272">272</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00287">287</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -850,7 +1009,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an integer representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00226">226</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00241">241</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -877,7 +1036,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an integer representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00250">250</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00265">265</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -904,7 +1063,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a bitstring representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00301">301</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00381">381</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -931,7 +1090,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a bitstring representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00318">318</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00398">398</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -951,7 +1110,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Merges both chromosomes to create an object easier to handle is some situations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Chromosome vector containing genes from both, Chromosome One and Two </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00352">352</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00432">432</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1047,7 +1206,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Gives a host's genome in a human-readable format. With all the gene specs. </p>
 <dl class="section return"><dt>Returns</dt><dd>a STL string containing the host's genome and its annotations in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00493">493</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00596">596</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1225,7 @@ Here is the caller graph for this function:</div>
 
 <p>Core method. Randomly swaps places of Chromosome One and Chromosome Two to avoid situation when they effectively become two separate populations. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00382">382</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00462">462</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1080,6 +1239,20 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ab56ce3fe28076749e087269cb100299a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned Host::NumOfMhcAlleles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_host_8h_source.html#l00050">50</a> of file <a class="el" href="_host_8h_source.html">Host.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac173100d13da6dfeb93387f0d689c349"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1108,6 +1281,20 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a0d79bd02d6147f8e94ae975dc42ae026"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; Host::PathoSpecInfecting</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_host_8h_source.html#l00046">46</a> of file <a class="el" href="_host_8h_source.html">Host.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a50bc219031501dd2c19a69d4e3f19533"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1118,7 +1305,21 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_host_8h_source.html#l00050">50</a> of file <a class="el" href="_host_8h_source.html">Host.h</a>.</p>
+<p>Definition at line <a class="el" href="_host_8h_source.html#l00051">51</a> of file <a class="el" href="_host_8h_source.html">Host.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4ac8f1f9b0c989efbade931db22e236d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Host::TimeOfRecombin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_host_8h_source.html#l00052">52</a> of file <a class="el" href="_host_8h_source.html">Host.h</a>.</p>
 
 </div>
 </div>
@@ -1132,7 +1333,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_host.html">Host</a></li>
-    <li class="footer">Generated on Wed Jul 22 2015 19:18:13 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Mon Sep 14 2015 17:34:28 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

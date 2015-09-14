@@ -5,7 +5,8 @@
 <area shape="rect" id="node6" href="$class_gene.html#a9179fd84199c114a1e8bcea73ae22c36" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="241,187,421,213"/>
 <area shape="rect" id="node7" href="$class_host.html#a48c01d4345818b873ceed7597588bd6d" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="231,238,430,279"/>
 <area shape="rect" id="node8" href="$class_host.html#a303c0d61ab48aaa709fccfcdd14a156e" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="231,303,430,345"/>
-<area shape="rect" id="node9" href="$class_host.html#a505527db337d87670e5ab37eb9818fa3" title="Core method. Performing crossing over and chromosome selection before mating. " alt="" coords="243,369,418,396"/>
-<area shape="rect" id="node10" href="$class_host.html#ab30250ea6fdd47221d65914b3e6de4e0" title="Core method. Randomly swaps places of Chromosome One and Chromosome Two to avoid situation when they ..." alt="" coords="243,420,418,447"/>
+<area shape="rect" id="node9" href="$class_host.html#ada5564c9d57e18ce046e131a5968e08f" title="Core method. Performs recombination between host&#39;s chromosomes by inserting a brake in randomly selec..." alt="" coords="237,369,425,396"/>
+<area shape="rect" id="node10" href="$class_host.html#a505527db337d87670e5ab37eb9818fa3" title="Core method. Performing crossing over and chromosome selection before mating. " alt="" coords="243,420,418,447"/>
+<area shape="rect" id="node11" href="$class_host.html#ab30250ea6fdd47221d65914b3e6de4e0" title="Core method. Randomly swaps places of Chromosome One and Chromosome Two to avoid situation when they ..." alt="" coords="243,471,418,497"/>
 <area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="480,77,531,104"/>
 </map>
