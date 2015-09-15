@@ -132,7 +132,7 @@ Compilation</h1>
  <br />
  $<b> g++ -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> -std=c++1y </b><br />
  <br />
-It should compile in -std=c++11 standard with minor warnings. <br />
+It should also compile with flag -std=c++11 only with minor warnings. <br />
 The code here can be also used like a toolbox for your research. You can stitch your own <em>main_yourown.cpp</em> file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:<br />
  <br />
  $<b> scons -Q scenario="Scenarios/main_default.cpp"</b><br />
@@ -149,7 +149,7 @@ Parameters</h1>
 <b> 05 </b>- <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> population size.<br />
 <b> 06 </b>- Number of pathogen species.<br />
 <b> 07 </b>- Number of genes in one host chromosome (they have two chromosomes) when the model is being initialised. <br />
-<b> 08 </b>- Number of pathogen generations per one host generation. <br />
+<b> 08 </b>- Number of genes in pathogen chromosome (they have just one chromosome). <br />
 <b> 09 </b>- Number of pathogen generations per one host generation. <br />
 <b> 10 </b>- Number of host generations (effective length of model run). <br />
 <b> 11 </b>- Probability of mutation in hosts ([0,1] range). <br />
@@ -180,7 +180,7 @@ Output and data visualisation</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Sep 14 2015 17:34:28 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

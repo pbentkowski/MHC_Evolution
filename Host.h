@@ -88,6 +88,7 @@ public:
     int getOneGeneFromOne(int indx);
     int getOneGeneFromTwo(int indx);
 private:
+    // === Very core methods ===
     std::vector<Gene> ChromosomeOne;
     std::vector<Gene> ChromosomeTwo;
     double Fitness;

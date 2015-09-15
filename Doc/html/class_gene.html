@@ -137,15 +137,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9179fd84199c114a1e8bcea73ae22c36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a9179fd84199c114a1e8bcea73ae22c36">mutateGeneBitByBit</a> (double pm_mut_probabl, int timeStamp)</td></tr>
 <tr class="memdesc:a9179fd84199c114a1e8bcea73ae22c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one.  <a href="#a9179fd84199c114a1e8bcea73ae22c36">More...</a><br /></td></tr>
 <tr class="separator:a9179fd84199c114a1e8bcea73ae22c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac0df5c1d80054e7191bad9bfb325c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#aac0df5c1d80054e7191bad9bfb325c00">printGeneToScreen</a> ()</td></tr>
-<tr class="memdesc:aac0df5c1d80054e7191bad9bfb325c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary method useful for debugging. Prints a gene to the screen.  <a href="#aac0df5c1d80054e7191bad9bfb325c00">More...</a><br /></td></tr>
-<tr class="separator:aac0df5c1d80054e7191bad9bfb325c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0fc6e3368eb622a651223344940424"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a3e0fc6e3368eb622a651223344940424">getBitGene</a> ()</td></tr>
-<tr class="memdesc:a3e0fc6e3368eb622a651223344940424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the gene, can be used to pass the gene string to an another method.  <a href="#a3e0fc6e3368eb622a651223344940424">More...</a><br /></td></tr>
+<tr class="memdesc:a3e0fc6e3368eb622a651223344940424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the gene in a bit-string format, can be used to pass the gene string to an another method.  <a href="#a3e0fc6e3368eb622a651223344940424">More...</a><br /></td></tr>
 <tr class="separator:a3e0fc6e3368eb622a651223344940424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a42d7f7e61eeeb780c49e1622186256"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a3a42d7f7e61eeeb780c49e1622186256">getTheRealGene</a> ()</td></tr>
 <tr class="memdesc:a3a42d7f7e61eeeb780c49e1622186256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the gene it it integer form. The gene is a private data field to prevent it from being changed accidently.  <a href="#a3a42d7f7e61eeeb780c49e1622186256">More...</a><br /></td></tr>
 <tr class="separator:a3a42d7f7e61eeeb780c49e1622186256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac0df5c1d80054e7191bad9bfb325c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#aac0df5c1d80054e7191bad9bfb325c00">printGeneToScreen</a> ()</td></tr>
+<tr class="memdesc:aac0df5c1d80054e7191bad9bfb325c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary method useful for debugging. Prints a gene to the screen.  <a href="#aac0df5c1d80054e7191bad9bfb325c00">More...</a><br /></td></tr>
+<tr class="separator:aac0df5c1d80054e7191bad9bfb325c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -221,10 +221,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Returns the gene, can be used to pass the gene string to an another method. </p>
+<p>Core method. Returns the gene in a bit-string format, can be used to pass the gene string to an another method. </p>
 <dl class="section return"><dt>Returns</dt><dd>bitgene - a gene in a bit-string format, a boost::dynamic_bitset object. </dd></dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00173">173</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00175">175</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ Public Attributes</h2></td></tr>
 <p>Core method. Returns the gene it it integer form. The gene is a private data field to prevent it from being changed accidently. </p>
 <dl class="section return"><dt>Returns</dt><dd>integer representation of a gene. </dd></dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00184">184</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00186">186</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,7 +281,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00148">148</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00150">150</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -380,12 +380,14 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mut_prob_whole</td><td>- probability of a whole-gene mutation. </td></tr>
+    <tr><td class="paramname">low_lim</td><td>- lower limit of possible gene value. </td></tr>
+    <tr><td class="paramname">up_lim</td><td>- upper limit of possible gene value. </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00120">120</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00122">122</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -413,7 +415,7 @@ Here is the call graph for this function:</div>
 
 <p>Auxiliary method useful for debugging. Prints a gene to the screen. </p>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00191">191</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00193">193</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,7 +608,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_gene.html">Gene</a></li>
-    <li class="footer">Generated on Mon Sep 14 2015 17:34:27 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

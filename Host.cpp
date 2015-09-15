@@ -52,6 +52,7 @@ Host::~Host() {
  * 
  * @param num_of_loci - number of gene loci in a chromosome
  * @param gene_size - the length of the bit-string representing a gene
+ * @param timeStamp - current time (number of the model iteration)
  */
 void Host::setNewHost(int num_of_loci, int gene_size, int timeStamp){
     NumOfPathogesInfecting = 0;
@@ -88,7 +89,7 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp){
 
 /**
  * @brief Core method. Decides (on a random basis) if there will be any mutations
- * in the genome.
+ * in the genome: deletion, duplication or change of a gene.
  * 
  * Iterates through the both chromosomes and calls gene mutation function. Genes 
  * mutate at random depending on the probability which was user-defined. Also at
@@ -99,6 +100,8 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp){
  * @param del - mutation probability, probability a gene will be deleted
  * @param dupli - mutation probability, probability a gene will be duplicated 
  * (and added at the end of the Chromosome vector)
+ * @param maxGene - maximal allowed number of genes in a chromosome (user 
+ * defined parameter).
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del, 
@@ -143,6 +146,8 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
  * @param del - mutation probability, probability a gene will be deleted
  * @param dupli - mutation probability, probability a gene will be duplicated 
  * (and added at the end of the Chromosome vector)
+ * @param maxGene - maximal allowed number of genes in a chromosome (user 
+ * defined parameter).
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
@@ -376,7 +381,7 @@ double Host::getChromoTwoUniqAlleles(){
  * the chromosome One.
  * 
  * @param indx - index of the gene you wanna get.
- * @return a bitstring representation of a gene with a given index.
+ * @return a bit-string representation of a gene with a given index.
  */
 genestring Host::getSingleGeneFromOne(int indx){
     if(indx < ChromosomeOne.size()){
@@ -509,7 +514,7 @@ void Host::calculateFitnessForDrift(){
  * where \f$0 < \alpha < 1 \f$, \f$ P \f$ is the number of pathogens exposed and
  * \f$ N \f$ in the sum of number of genes in both chromosomes.
  * 
- * @param alpha - scaling parameter
+ * @param alpha - scaling parameter for F() shape
  */
 void Host::calculateFitnessAlphaXSqr(double alpha){
     double NN = (double) (ChromosomeOne.size() + ChromosomeTwo.size());
@@ -530,7 +535,7 @@ void Host::calculateFitnessAlphaXSqr(double alpha){
  * \f$ P \f$ is the number of pathogens exposed and \f$ N \f$ in the sum of 
  * number of genes in both chromosomes.
  * 
- * @param alpha - scaling parameter
+ * @param alpha - scaling parameter for F() shape
  */
 void Host::calculateFitnessExpFunc(double alpha){
     double NN = (double) (ChromosomeOne.size() + ChromosomeTwo.size());
@@ -553,7 +558,7 @@ void Host::calculateFitnessExpFunc(double alpha){
  * \f$ P \f$ is the number of pathogens exposed and \f$ N \f$ in the sum of 
  * number of unique MHC alleles in both chromosomes.
  * 
- * @param alpha - scaling parameter
+ * @param alpha - scaling parameter for F() shape
  */
 void Host::calculateFitnessExpFuncUniqAlleles(double alpha){
     double NN = getChromoOneUniqAlleles() + getChromoTwoUniqAlleles();

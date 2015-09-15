@@ -39,7 +39,6 @@ public:
     DataHarvester();
 //    DataHarvester(const DataHarvester& orig);
     virtual ~DataHarvester();
-    bool ifThisIsNumber();
     bool checkParamsIfWrong(int rndSeed, int geneLength, int exposedMatch,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
@@ -52,7 +51,6 @@ public:
         double hostDeletion, double hostDuplication, int maxGene, double alpha);
     void setAllFilesAsFirtsTimers();
     void saveNumOfPathoSpeciesToFile(Environment &EnvObj, int tayme);
-    void saveHostClonesTagsToFile(Environment &EnvObj, int tayme);
     void savePathoPopulToFile(Environment &EnvObj, int tayme);
     void saveHostPopulToFile(Environment &EnvObj, int tayme);
     void saveHostGeneticDivers(Environment &EnvObj, int tayme);

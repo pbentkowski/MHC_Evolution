@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['savehostclonestagstofile',['saveHostClonesTagsToFile',['../class_data_harvester.html#a8e54e33c5e6c23930bd21ec7692e9bd6',1,'DataHarvester']]],
   ['savehostgenenumbers',['saveHostGeneNumbers',['../class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf',1,'DataHarvester']]],
   ['savehostgeneticdivers',['saveHostGeneticDivers',['../class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33',1,'DataHarvester']]],
   ['savehostpopultofile',['saveHostPopulToFile',['../class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736',1,'DataHarvester']]],

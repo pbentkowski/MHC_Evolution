@@ -115,6 +115,8 @@ void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp) {
  * a number given in a defined range.
  *
  * @param mut_prob_whole - probability of a whole-gene mutation.
+ * @param low_lim - lower limit of possible gene value. 
+ * @param up_lim - upper limit of possible gene value.
  * @param timeStamp - current time (current number of the model iteration).
  */
 void Gene::mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim,
@@ -165,8 +167,8 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
 }
 
 /**
- * @brief Core method. Returns the gene, can be used to pass the gene string to
- * an another method.
+ * @brief Core method. Returns the gene in a bit-string format, can be used to
+ * pass the gene string to an another method.
  *
  * @return bitgene - a gene in a bit-string format, a boost::dynamic_bitset object.
  */
