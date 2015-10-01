@@ -51,6 +51,8 @@ public:
                         int low_lim, int up_lim, int timeStamp);
     chromovector getChomosome();
     void chromoMutProcess(double mut_probabl, int timeStamp);
+    void chromoMutProcessWithRestric(double mut_probabl, int timeStamp,
+                                     std::set<int>& noMutts);
     genestring getSingleGene(int indx);
     int getSpeciesTag();
     void clearInfections();

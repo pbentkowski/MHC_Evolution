@@ -10,9 +10,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/piotr/MHC_Code/Gene.cpp</file>
+            <file>file:/home/piotr/MHC_Code/Gene.h</file>
+            <file>file:/home/piotr/MHC_Code/Pathogen.h</file>
             <file>file:/home/piotr/MHC_Code/Host.h</file>
             <file>file:/home/piotr/MHC_Code/Environment.cpp</file>
             <file>file:/home/piotr/MHC_Code/Host.cpp</file>
+            <file>file:/home/piotr/MHC_Code/main.cpp</file>
+            <file>file:/home/piotr/MHC_Code/Pathogen.cpp</file>
+            <file>file:/home/piotr/MHC_Code/Environment.h</file>
         </group>
     </open-files>
 </project-private>

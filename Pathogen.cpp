@@ -115,6 +115,23 @@ void Pathogen::chromoMutProcess(double mut_probabl, int timeStamp){
 }
 
 /**
+ * @brief Core method. Decides (on a random basis) if there will be any mutations
+ * in the genome. But some positions in the bit-string are not allowed to change. 
+ * 
+ * @param mut_probabl - mutation probability, a probability a gene will be
+ * replaced by a new one
+ * @param timeStamp - current time (current number of the model iteration)
+ * @param noMutts - a std::set containing indices of residues of the bit-string 
+ * that are not allowed to change
+ */
+void Pathogen::chromoMutProcessWithRestric(double mut_probabl, int timeStamp,
+        std::set<int>& noMutts){
+    for(int i = 0; i < ChromosomePat.size(); ++i){
+        ChromosomePat[i].mutateBitByBitWithRestric(mut_probabl, timeStamp, noMutts);
+    }
+}
+
+/**
  * @brief Core method. Fetches a single gene from a genome in a bit-string format.
  *
  * @param indx - index number of gene in a chromosome

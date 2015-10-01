@@ -167,6 +167,38 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
 }
 
 /**
+ * @brief Core method. Iterates through a gene sequence and (if selected so)
+ * flips the value of a single bit to an opposite one. But certain bits are not
+ * permitted to mutate - these are specified in a global std::set.
+ * 
+ * @param mut_probabl - probability of mutating a single bit.
+ * @param timeStamp - current time (current number of the model iteration).
+ * @param noMutts - a std::set containing indices of residues of the bit-string 
+ * that are not allowed to change.
+ */
+void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp, 
+        std::set<int>& noMutts){
+    int currentGene = TheGene;
+    bool exists;
+    boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgene.size(); ++i) { 
+        exists = noMutts.find(i) != noMutts.end();
+        if(exists == false and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+            bitgene[i].flip();
+        }
+    TheGene = (int) bitgene.to_ulong();
+    }
+    if(currentGene != TheGene){
+        ParentTags.push_back(GenesTag);
+        MutationTime.push_back(timeOfOrigin);
+        Tagging_system* pTagging_system = Tagging_system::getInstance();
+        GenesTag = pTagging_system->getTag();
+        timeOfOrigin = timeStamp;
+    }
+}
+
+/**
  * @brief Core method. Returns the gene in a bit-string format, can be used to
  * pass the gene string to an another method.
  *

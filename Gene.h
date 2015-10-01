@@ -24,6 +24,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 
 #include "boost/dynamic_bitset.hpp"
 #include "RandomNumbs.h"
@@ -44,6 +45,8 @@ public:
     void mutateGeneWhole(double mut_prob_whole, int timeStamp);
     void mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim, int timeStamp);
     void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);
+    void mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
+                                   std::set<int>& noMutts);
     genestring getBitGene();
     int getTheRealGene();
     // === Data harvesting ===

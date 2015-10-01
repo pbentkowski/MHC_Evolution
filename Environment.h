@@ -69,6 +69,8 @@ public:
     void clearHostInfectionsData();
     void clearPathoInfectionData();
     void mutatePathogens(double mut_probabl, int timeStamp);
+    void mutatePathogensWithRestric(double mut_probabl, int timeStamp,
+                                    std::set<int>& noMutts);
     void mutateHosts(double mut_probabl, int timeStamp);
     void mutateHostsWithDelDupl(double mut_probabl, double del, double dupl, 
         unsigned int maxGene, int timeStamp);

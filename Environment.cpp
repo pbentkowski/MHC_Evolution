@@ -704,11 +704,31 @@ double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
  * and performs mutations in genes with a given probability.
  *
  * @param mut_probabl - probability of a mutation in a single gene.
+ * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutatePathogens(double mut_probabl, int timeStamp){
     for (int i = 0; i < PathPopulation.size(); ++i){
         for (int j = 0; j < PathPopulation[i].size(); ++j){
             PathPopulation[i][j].chromoMutProcess(mut_probabl, timeStamp);
+        }
+    }
+}
+
+/**
+ * @brief Core method. Iterates through the all genes of the pathogen population
+ * and performs mutations in genes with a given probability. But some positions
+ * in the bit-string (gene) are not allowed to change.
+ * 
+ * @param mut_probabl - probability of a mutation in a single gene.
+ * @param timeStamp - current time (number of the model iteration)
+ * @param noMutts
+ */
+void Environment::mutatePathogensWithRestric(double mut_probabl, int timeStamp,
+        std::set<int>& noMutts){
+    for (int i = 0; i < PathPopulation.size(); ++i){
+        for (int j = 0; j < PathPopulation[i].size(); ++j){
+            PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl, 
+                    timeStamp, noMutts);
         }
     }
 }
