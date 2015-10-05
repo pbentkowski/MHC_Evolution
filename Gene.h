@@ -42,6 +42,8 @@ public:
     virtual ~Gene();
     void setNewGene(int lenght, int timeStamp); 
     void setNewGene(int lenght, int low_lim, int up_lim, int timeStamp);
+    void setNewFixedGene(int lenght, int timeStamp, int fixedGene,
+                         unsigned long int fixedTag);
     void mutateGeneWhole(double mut_prob_whole, int timeStamp);
     void mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim, int timeStamp);
     void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);

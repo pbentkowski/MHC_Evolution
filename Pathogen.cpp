@@ -65,6 +65,20 @@ void Pathogen::setNewPathogen(int num_of_loci, int gene_size, int species, int t
     }
 }
 
+
+void Pathogen::setNewPathoFixedGene(int num_of_loci, int gene_size, int species,
+        int timeStamp, int fixedGene, unsigned long int fixedTag){
+    Species = species;
+    NumOfHostsInfected = 0;
+    SelectedToReproduct = 0;
+    LowerGeneValue = 0;
+    UpperGeneValue = std::pow(2, gene_size) - 1;
+    for(int i = 0; i < num_of_loci; ++i){
+        ChromosomePat.push_back(Gene());
+        ChromosomePat.back().setNewFixedGene(gene_size, timeStamp, fixedGene, fixedTag);
+    }
+}
+
 /**
  * @brief Core method. Sets a new Pathogen object.
  *

@@ -47,6 +47,8 @@ public:
     unsigned NumOfHostsInfected;  // how many host are infected
     int SelectedToReproduct;
     void setNewPathogen(int num_of_loci, int gene_size, int species, int timeStamp);
+    void setNewPathoFixedGene(int num_of_loci, int gene_size, int species, int timeStamp,
+                              int fixedGene, unsigned long int fixedTag);
     void setNewPathogen(int num_of_loci, int gene_size, int species,
                         int low_lim, int up_lim, int timeStamp);
     chromovector getChomosome();

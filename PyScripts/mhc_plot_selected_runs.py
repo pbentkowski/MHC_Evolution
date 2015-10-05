@@ -45,13 +45,13 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 3000
-    Ymax = 300
-    textXlocal = 2000
+    Xmax = 2500
+    Ymax = 100
+    textXlocal = 1500
 
-    pathoGenSize = 20  # change to select a different set of data
+    pathoGenSize = 5  # change to select a different set of data
     pathoNumSpec = 32  # change to select a different set of data
-    saveFiggs = False  # True to save figures to disk, False to not save
+    saveFiggs = True  # True to save figures to disk, False to not save
 
     nnn = "antigens: " + str(pathoGenSize) + "   species: " + str(pathoNumSpec)
 
@@ -64,7 +64,7 @@ def main():
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[4][annotShift + i*annotScale])
     #        print XX, YY
-            if item[2] == "NO":
+            if item[2] == "YES":
                 ax = p.plot(item[3], item[4], 'r-')
             else:
                 ax = p.plot(item[3], item[4], 'b-')
@@ -76,7 +76,7 @@ def main():
             p.axis([0, Xmax, 0, Ymax])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(textXlocal, 250), xycoords='data',
+    ax = p.annotate(nnn, xy=(textXlocal, 80), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:

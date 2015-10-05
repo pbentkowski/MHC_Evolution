@@ -50,6 +50,8 @@ public:
         int chrom_size, int numb_of_species, int timeStamp);
     void setPathoPopulatioUniformGenome(int pop_size, int gene_size, 
         int chrom_size, int numb_of_species, int timeStamp);
+    void setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
+        int chrom_size, int numb_of_species, int timeStamp);
     void setPathoPopulation(int pop_size, int gene_size, int chrom_size_lower,
         int chrom_size_uper, int numb_of_species, int timeStamp);
     void infectOneFromSpecHetero(int simil_mesure);
