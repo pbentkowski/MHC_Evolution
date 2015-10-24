@@ -22,7 +22,10 @@ import matplotlib.animation as animation
 # thanks to that we get a speedy animation.
 everyOtherRow = 5
 
-MAXX = 110
+MAXX = 40
+XX_tikz = 5.0
+MAYY = 3500
+MHC_all = 100
 scale = 10**5
 
 FontSize = 20
@@ -51,11 +54,11 @@ GenerData = np.vstack([GenerData, lastRow])
 # -- trimmed
 
 binz = np.arange(0.5, MAXX+0.5, 1.0)
-tick_binz = np.arange(0, MAXX+1, 10.0)
+tick_binz = np.arange(0, MAXX+1, XX_tikz)
 
 fig = plt.figure(1, figsize=(15, 9))
 ax1 = plt.subplot2grid((3, 3), (0, 0), colspan=3)
-ax1.axis([0, GenerData[:, 0].max(), 0, 300])
+ax1.axis([0, GenerData[:, 0].max(), 0, MHC_all])
 ax1.set_ylabel('number of \nMHC allels', fontsize=FontSize)
 ax1.set_xlabel('time (host generations)', fontsize=FontSize)
 ax1.plot(GenerData[:, 0], GenerData[:, 3], 'k-')
@@ -83,8 +86,8 @@ def animate(i):
              edgecolor="none")
     plt.hist(mhcMeans[i, 1::], bins=binz, color=(0.8, 0.0, 0.0, 1.0),
              edgecolor="none")
-    plt.vlines(100, 0, 900, color="b", lw=2)
-    plt.ylim(ymax=900)
+    plt.vlines(100, 0, MAYY, color="b", lw=2)
+    plt.ylim(ymax=MAYY)
     plt.xlim(xmax=MAXX)
     plt.xticks(tick_binz)
     plt.grid(True)

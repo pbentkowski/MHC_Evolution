@@ -197,7 +197,7 @@ int main(int argc, char** argv) {
     Environment ENV;
     Data2file.setAllFilesAsFirtsTimers();
     // mutation exclusion set:
-    std::set<int> noMutss = {16};
+    std::set<int> noMutss = {17};
 
     ENV.setHostPopulation(hostPopSize, geneLength, hostGeneNumbb, 0);
 

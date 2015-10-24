@@ -11,6 +11,7 @@ for Evolutionary Biology Group, Faculty of Biology
 
 import os
 import re
+import sys
 import pylab as p
 import linecache as ln
 
@@ -46,11 +47,11 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 100
+    Ymax = 200
     textXlocal = 1500
 
-    pathoGenSize = 5  # change to select a different set of data
-    pathoNumSpec = 32  # change to select a different set of data
+    pathoGenSize = 20  # change to select a different set of data
+    pathoNumSpec = int(sys.argv[1])  # change to select a different set of data
     saveFiggs = True  # True to save figures to disk, False to not save
 
     nnn = "antigens: " + str(pathoGenSize) + "   species: " + str(pathoNumSpec)
@@ -76,7 +77,7 @@ def main():
             p.axis([0, Xmax, 0, Ymax])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(textXlocal, 80), xycoords='data',
+    ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
@@ -159,31 +160,6 @@ def main():
         p.savefig("g_" + str(pathoGenSize) + ".s_" +
                   str(pathoNumSpec) + "_H_fitt.png")
 
-#    p.figure(5, figsize=(14, 7))
-#    i = 1
-#    for item in TheData:
-#        if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
-#    #        print XX, YY
-#            if item[2] == "NO":
-#                ax = p.plot(item[3], item[7], 'r-')
-#            else:
-#                ax = p.plot(item[3], item[7], 'b-')
-##            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
-##                            xycoords='data', fontsize=AnnotateFontSize)
-#            i = i + 1
-#            p.ylabel("number of genes in the population",
-#                     fontsize=AxLabelFontSize)
-#            p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-#            p.xlim([0, Xmax])
-#            p.xticks(size=AxisTickFontSize)
-#            p.yticks(size=AxisTickFontSize)
-#    ax = p.annotate(nnn, xy=(textXlocal, 2000), xycoords='data',
-#                    fontsize=AnnotateFontSize)
-#    p.grid()
-
-#    if saveFiggs:
-#        p.savefig("g_" + str(pathoGenSize) + ".s_" +
-#                  str(pathoNumSpec) + "_CV.png")
     p.show()
 
 
