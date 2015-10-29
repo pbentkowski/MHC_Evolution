@@ -60,6 +60,23 @@ def bitSimWhinIndiv(BitLyst, sim_measure=7):
         return np.NaN
 
 
+def hamDistWhinIndiv(BitLyst):
+    """Hamming distances between genes in one pathogen."""
+    try:
+        N = len(BitLyst)
+        compArr = np.ones((N*(N-1))/2)
+        k = 0
+        for ii, itmOne in enumerate(BitLyst):
+            for jj in np.arange(ii+1, N, 1):
+                compArr[k] = hamming_distance(itmOne, BitLyst[jj])
+                k += 1
+        return compArr
+    except:
+        print "ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
+        print "Can't load the data!"
+        return np.NaN
+
+
 def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
     """ """
     try:
@@ -106,7 +123,7 @@ def loadThePopulation(FILE):
                                 spp_list.append(ll)
                                 ll = []
                                 old_spec = new_spec
-                                print j + 1
+#                                print j + 1
                             else:
                                 spp_list.append(ll)
                                 ll = []
@@ -116,11 +133,21 @@ def loadThePopulation(FILE):
                     ll.append(line.split()[0])
         spp_list.append(ll)
         LL.append(spp_list)
-        print j + 1
+#        print j + 1
         return LL
     except IOError as e:
         print "I/O error({0}) in loadThePopulation(): {1}".format(e.errno,
                                                                   e.strerror)
+
+
+def hamDisthistAll(LL):
+    """Mean Hamming distances for all individuals (mean is calculated for
+    a single Pathogen."""
+    DD = []
+    for sp in LL:
+        for indv in sp:
+            DD.append(np.mean(hamDistWhinIndiv(indv)))
+    return np.array(DD)
 
 
 def main():
