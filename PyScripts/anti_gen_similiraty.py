@@ -78,7 +78,8 @@ def hamDistWhinIndiv(BitLyst):
 
 
 def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
-    """ """
+    """Takes two sets of antigens (two individual pathogens) and compares them
+    (antigen by antigen) according to their fit to MHC"""
     try:
         compArr = np.zeros(len(indOne))
         for k, itmOne in enumerate(indOne):
@@ -88,6 +89,23 @@ def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
         return compArr
     except:
         print "ERROR in anti_gen_similiraty.bitSimBetweenIndv():",
+        print "Can't proccess the data!"
+        return np.NaN
+
+
+def hamDistBetweenIndv(indOne, indTwo):
+    """Takes two sets of antigens (tow individual pathogens) and compares them
+    (antigen by antigen) according to Hamming distance."""
+    try:
+        compArr = np.zeros(len(indOne) * len(indTwo))
+        k = 0
+        for itmOne in indOne:
+            for itmTwo in indTwo:
+                compArr[k] = hamming_distance(itmOne, itmTwo)
+                k += 1
+        return compArr
+    except:
+        print "ERROR in anti_gen_similiraty.hamDistBetweenIndv():",
         print "Can't proccess the data!"
         return np.NaN
 
@@ -140,14 +158,81 @@ def loadThePopulation(FILE):
                                                                   e.strerror)
 
 
-def hamDisthistAll(LL):
+def bitSimAll(Popul, simmes=7):
+    """ """
+    DD = []
+    for sp in Popul:
+        for indv in sp:
+            DD.append(np.mean(bitSimWhinIndiv(indv, simmes)))
+    return np.array(DD)
+
+
+def bitSimInsideSpec(Spec, simm):
+    """ """
+    N = len(Spec)
+    compArr = np.zeros(2*len(Spec))
+    rndIndx_1 = np.random.randint(0, N, 2*N)
+    rndIndx_2 = np.random.randint(0, N, 2*N)
+    for kk, comp in enumerate(compArr):
+        while (rndIndx_1[kk] == rndIndx_2[kk]):
+            rndIndx_1[kk] = np.random.randint(0, N)
+        compArr[kk] = np.mean(bitSimBetweenIndv(Spec[rndIndx_1[kk]],
+                              Spec[rndIndx_2[kk]], simm))
+    return compArr
+
+
+def bitSimInterSpec(Popul, simm):
+    """ """
+    CMP = []
+    for ii, spp1 in enumerate(Popul):
+        for jj in np.arange(ii+1, len(Popul)):
+            compArr = np.zeros(2*len(spp1))
+            rndIndx_1 = np.random.randint(0, len(spp1), 2*len(spp1))
+            rndIndx_2 = np.random.randint(0, len(Popul[jj]), 2*len(spp1))
+            for kk, comp in enumerate(compArr):
+                compArr[kk] = np.mean(bitSimBetweenIndv(spp1[rndIndx_1[kk]],
+                                      Popul[jj][rndIndx_2[kk]]))
+            CMP.append(compArr)
+    return CMP
+
+
+def hamDisthistAll(Popul):
     """Mean Hamming distances for all individuals (mean is calculated for
     a single Pathogen."""
     DD = []
-    for sp in LL:
+    for sp in Popul:
         for indv in sp:
             DD.append(np.mean(hamDistWhinIndiv(indv)))
     return np.array(DD)
+
+
+def hamDistInsideSpec(Spec):
+    """ """
+    N = len(Spec)
+    compArr = np.zeros(2*len(Spec))
+    rndIndx_1 = np.random.randint(0, N, 2*N)
+    rndIndx_2 = np.random.randint(0, N, 2*N)
+    for kk, comp in enumerate(compArr):
+        while (rndIndx_1[kk] == rndIndx_2[kk]):
+            rndIndx_1[kk] = np.random.randint(0, N)
+        compArr[kk] = np.mean(hamDistBetweenIndv(Spec[rndIndx_1[kk]],
+                              Spec[rndIndx_2[kk]]))
+    return compArr
+
+
+def hamDistInterSpecies(Popul):
+    """ """
+    CMP = []
+    for ii, spp1 in enumerate(Popul):
+        for jj in np.arange(ii+1, len(Popul)):
+            compArr = np.zeros(2*len(spp1))
+            rndIndx_1 = np.random.randint(0, len(spp1), 2*len(spp1))
+            rndIndx_2 = np.random.randint(0, len(Popul[jj]), 2*len(spp1))
+            for kk, comp in enumerate(compArr):
+                compArr[kk] = np.mean(hamDistBetweenIndv(spp1[rndIndx_1[kk]],
+                                      Popul[jj][rndIndx_2[kk]]))
+            CMP.append(compArr)
+    return CMP
 
 
 def main():

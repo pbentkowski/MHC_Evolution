@@ -1,4 +1,5 @@
 *.o
+*.pyc
 dist
 build
 SCBuild
