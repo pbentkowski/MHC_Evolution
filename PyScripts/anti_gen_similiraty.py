@@ -1,7 +1,10 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Doc string here...
+Checks the similarities in all the antigens in hole pathogen population.
+Function loadThePopulation(FILE) loads the file created by the modelling
+framework into a handy data structure and the rest calculates various
+statistics.
 
 Created on Fri Oct 23 17:05:28 2015
 for Evolutionary Biology Group, Faculty of Biology
@@ -41,7 +44,8 @@ def bitSimInRow(s1, s2, sim_measure):
 
 
 def bitSimWhinIndiv(BitLyst, sim_measure=7):
-    """ """
+    """Calculates similarity between antigens within individual by comparing
+    each antigen pairwise with all the others."""
     try:
         N = len(BitLyst)
         compArr = np.ones((N*(N-1))/2)
