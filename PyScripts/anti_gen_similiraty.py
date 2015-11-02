@@ -15,6 +15,7 @@ import sys
 import re
 import linecache as ln
 import numpy as np
+import matplotlib.pyplot as plt
 #from bitstring import BitArray
 
 
@@ -163,7 +164,8 @@ def loadThePopulation(FILE):
 
 
 def bitSimAll(Popul, simmes=7):
-    """ """
+    """Calculates bit string similarity for all individuals (mean is calculated
+    for a single Pathogen. """
     DD = []
     for sp in Popul:
         for indv in sp:
@@ -172,7 +174,9 @@ def bitSimAll(Popul, simmes=7):
 
 
 def bitSimInsideSpec(Spec, simm):
-    """ """
+    """Calculates bit string similarity between individuals within the species
+    for a single species. Returns an array of individual-to-individual
+    comparisons."""
     N = len(Spec)
     compArr = np.zeros(2*len(Spec))
     rndIndx_1 = np.random.randint(0, N, 2*N)
@@ -186,7 +190,9 @@ def bitSimInsideSpec(Spec, simm):
 
 
 def bitSimInterSpec(Popul, simm):
-    """ """
+    """Calculates bit string similarity between individuals within the species
+    for each species in the population. Return an NumPy array of mean
+    similarities for species individually."""
     CMP = []
     for ii, spp1 in enumerate(Popul):
         for jj in np.arange(ii+1, len(Popul)):
@@ -211,7 +217,9 @@ def hamDisthistAll(Popul):
 
 
 def hamDistInsideSpec(Spec):
-    """ """
+    """Calculates mean Hamming distances for individuals within the species.
+    Returns a NumPy array of mean Hamming distances for number of pairwise
+    comparisons between individuals."""
     N = len(Spec)
     compArr = np.zeros(2*len(Spec))
     rndIndx_1 = np.random.randint(0, N, 2*N)
@@ -225,7 +233,10 @@ def hamDistInsideSpec(Spec):
 
 
 def hamDistInterSpecies(Popul):
-    """ """
+    """Calculates mean Hamming distances for individuals between different
+    species. Returns a list of NumPy arrays with comparison of each two species
+    (makes a number of comparisons between a pair of randomly selected
+    individuals from two species)."""
     CMP = []
     for ii, spp1 in enumerate(Popul):
         for jj in np.arange(ii+1, len(Popul)):
@@ -240,10 +251,87 @@ def hamDistInterSpecies(Popul):
 
 
 def main():
-    if len(sys.argv) <= 1:
-        print "Give the name of the file with data."
+    if len(sys.argv) <= 2:
+        print "Give the names of two files with data. One at the begging of",
+        print "simulation and the second at the end."
         sys.exit()
-    loadThePopulation(sys.argv[1])
+    try:
+        l = re.split(" ", ln.getline("InputParameters.csv", 9))
+        print "No. of pathogen species =", int(l[2])
+    except:
+        print "Can't find parameter file! You may be in a wrong directory."
+        sys.exit()
+    try:
+        L_init = loadThePopulation(sys.argv[1])
+        print "First file loaded!"
+    except:
+        print "Can't load file named", sys.argv[1], ". Check if it exists."
+        sys.exit()
+    try:
+        L_endd = loadThePopulation(sys.argv[2])
+        print "Second file loaded!"
+    except:
+        print "Can't load file named", sys.argv[2], ". Check if it exists."
+        sys.exit()
+    F_init = bitSimInterSpec(L_init, 7)
+    print "Similarities in the First file have been calculated!"
+    F_endd = bitSimInterSpec(L_endd, 7)
+    print "Similarities in the Second file have been calculated!"
+    # === More generic plot ===
+    ax_label = 20
+    T_label = 24
+    TicksFS = 18
+    transs = 0.8
+    plt.figure(1, figsize=(16, 8))
+    plt.subplot(121)
+    xx = np.zeros(len(F_init))
+    for ii, itm in enumerate(F_init):
+        xx[ii] = np.mean(itm)
+    plt.hist(xx, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
+    plt.title("Start of simulation", fontsize=T_label)
+    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.ylabel("Frequency of occurrence", fontsize=ax_label)
+    plt.xticks(fontsize=TicksFS)
+    plt.yticks(fontsize=TicksFS)
+    plt.grid(True)
+    plt.xlim(0., 1.)
+    plt.subplot(122)
+    xx = np.zeros(len(F_endd))
+    for ii, itm in enumerate(F_endd):
+        xx[ii] = np.mean(itm)
+    plt.hist(xx, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
+    plt.title("End of simulation", fontsize=T_label)
+    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.xticks(fontsize=TicksFS)
+    plt.yticks(fontsize=TicksFS)
+    plt.grid(True)
+    plt.xlim(0., 1.)
+    plt.savefig("SPP_sim_one.png")
+    #  === Now the detailed plot! ===
+    plt.figure(2, figsize=(16, 8))
+    plt.subplot(121)
+    plt.hist(F_init, edgecolor="none")
+    plt.title("Start of simulation", fontsize=T_label)
+    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.ylabel("Frequency of occurrence", fontsize=ax_label)
+    plt.xticks(fontsize=TicksFS)
+    plt.yticks(fontsize=TicksFS)
+    plt.grid(True)
+    plt.xlim(0., 1.)
+#    plt.ylim(ymax=200)
+    plt.subplot(122)
+    plt.hist(F_endd, edgecolor="none")
+    plt.title("End of simulation", fontsize=T_label)
+    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.xticks(fontsize=TicksFS)
+    plt.yticks(fontsize=TicksFS)
+    plt.grid(True)
+    plt.xlim(0., 1.)
+#    plt.ylim(ymax=200)
+    plt.savefig("SPP_sim_two.png")
+
+    plt.show()
+
     print "DONE!"
 
 
