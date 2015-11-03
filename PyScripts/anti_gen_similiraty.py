@@ -117,7 +117,9 @@ def hamDistBetweenIndv(indOne, indTwo):
 
 def loadThePopulation(FILE):
     '''Takes the file with all the pathogen data loads it to a list dividing
-    the population into species and individuals.'''
+    the population into species and individuals. Each individual is loaded as
+    a list of bit strings. Each species is a list of individuals. And the
+    population is a list of species lists.'''
     LL = []
     spp_list = []
     nextPatho = False
