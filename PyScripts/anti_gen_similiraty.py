@@ -161,8 +161,8 @@ def loadThePopulation(FILE):
 #        print j + 1
         return LL
     except IOError as e:
-        print "I/O error({0}) in loadThePopulation(): {1}".format(e.errno,
-                                                                  e.strerror)
+        print "I/O error({0}) in".format(e.errno),
+        print "loadTheHostPopulation(): {0}".format(e.strerror)
 
 
 def bitSimAll(Popul, simmes=7):

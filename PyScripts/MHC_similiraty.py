@@ -112,140 +112,63 @@ def hamDistBetweenIndv(indOne, indTwo):
         return np.NaN
 
 
-def loadThePopulation(FILE):
+def loadHostPopulation(FILE):
     '''Takes the file with all the hosts data loads it to a list. Each
     individual is loaded as a list of bit strings.And the population is a list
     of individuals.'''
     LL = []
-    spp_list = []
-    nextPatho = False
     ll = []
-    l = re.split(" ", ln.getline(FILE, 3))
-    old_spec = int(l[5])
+    nextHost = False
     try:
         with open(FILE) as infile:
-            for j, line in enumerate(infile):
+            for line in infile:
                 if re.search(r"#", line):
                     continue
                 elif re.search(r"===", line):
-                    try:
-                        new_spec = int(line.split()[4])
-                    except:
-                        pass
-                    if nextPatho:
-                        if new_spec == old_spec:
-                            spp_list.append(ll)
-                            ll = []
-                            endOfSpp = False
-                        else:
-                            if endOfSpp:
-                                LL.append(spp_list)
-                                spp_list = []
-                                spp_list.append(ll)
-                                ll = []
-                                old_spec = new_spec
-#                                print j + 1
-                            else:
-                                spp_list.append(ll)
-                                ll = []
-                            endOfSpp = True
-                    nextPatho = True
+                    if nextHost:
+                        LL.append(ll)
+                        ll = []
                 else:
+                    nextHost = True
                     ll.append(line.split()[0])
-        spp_list.append(ll)
-        LL.append(spp_list)
+        LL.append(ll)
 #        print j + 1
         return LL
     except IOError as e:
-        print "I/O error({0}) in loadThePopulation(): {1}".format(e.errno,
-                                                                  e.strerror)
+        print "I/O error({0}) in".format(e.errno),
+        print "loadTheHostPopulation(): {0}".format(e.strerror)
 
 
 def bitSimAll(Popul, simmes=7):
     """Calculates bit string similarity for all individuals (mean is calculated
     for a single Pathogen. """
     DD = []
-    for sp in Popul:
-        for indv in sp:
-            DD.append(np.mean(bitSimWhinIndiv(indv, simmes)))
+    for indv in Popul:
+        DD.append(np.mean(bitSimWhinIndiv(indv, simmes)))
     return np.array(DD)
 
 
-def bitSimInsideSpec(Spec, simm):
-    """Calculates bit string similarity between individuals within the species
-    for a single species. Returns an array of individual-to-individual
-    comparisons."""
-    N = len(Spec)
-    compArr = np.zeros(2*len(Spec))
+def bitSimInterIndv(Popul, simms):
+    """ """
+    N = len(Popul)
+    compArr = np.zeros(2*N)
     rndIndx_1 = np.random.randint(0, N, 2*N)
     rndIndx_2 = np.random.randint(0, N, 2*N)
     for kk, comp in enumerate(compArr):
         while (rndIndx_1[kk] == rndIndx_2[kk]):
             rndIndx_1[kk] = np.random.randint(0, N)
-        compArr[kk] = np.mean(bitSimBetweenIndv(Spec[rndIndx_1[kk]],
-                              Spec[rndIndx_2[kk]], simm))
+        compArr[kk] = np.mean(bitSimBetweenIndv(Popul[rndIndx_1[kk]],
+                              Popul[rndIndx_2[kk]], simms))
     return compArr
-
-
-def bitSimInterSpec(Popul, simm):
-    """Calculates bit string similarity between individuals within the species
-    for each species in the population. Return an NumPy array of mean
-    similarities for species individually."""
-    CMP = []
-    for ii, spp1 in enumerate(Popul):
-        for jj in np.arange(ii+1, len(Popul)):
-            compArr = np.zeros(2*len(spp1))
-            rndIndx_1 = np.random.randint(0, len(spp1), 2*len(spp1))
-            rndIndx_2 = np.random.randint(0, len(Popul[jj]), 2*len(spp1))
-            for kk, comp in enumerate(compArr):
-                compArr[kk] = np.mean(bitSimBetweenIndv(spp1[rndIndx_1[kk]],
-                                      Popul[jj][rndIndx_2[kk]]))
-            CMP.append(compArr)
-    return CMP
 
 
 def hamDisthistAll(Popul):
     """Mean Hamming distances for all individuals (mean is calculated for
     a single Pathogen."""
     DD = []
-    for sp in Popul:
-        for indv in sp:
-            DD.append(np.mean(hamDistWhinIndiv(indv)))
+    for indv in Popul:
+        DD.append(np.mean(hamDistWhinIndiv(indv)))
     return np.array(DD)
-
-
-def hamDistInsideSpec(Spec):
-    """Calculates mean Hamming distances for individuals within the species.
-    Returns a NumPy array of mean Hamming distances for number of pairwise
-    comparisons between individuals."""
-    N = len(Spec)
-    compArr = np.zeros(2*len(Spec))
-    rndIndx_1 = np.random.randint(0, N, 2*N)
-    rndIndx_2 = np.random.randint(0, N, 2*N)
-    for kk, comp in enumerate(compArr):
-        while (rndIndx_1[kk] == rndIndx_2[kk]):
-            rndIndx_1[kk] = np.random.randint(0, N)
-        compArr[kk] = np.mean(hamDistBetweenIndv(Spec[rndIndx_1[kk]],
-                              Spec[rndIndx_2[kk]]))
-    return compArr
-
-
-def hamDistInterSpecies(Popul):
-    """Calculates mean Hamming distances for individuals between different
-    species. Returns a list of NumPy arrays with comparison of each two species
-    (makes a number of comparisons between a pair of randomly selected
-    individuals from two species)."""
-    CMP = []
-    for ii, spp1 in enumerate(Popul):
-        for jj in np.arange(ii+1, len(Popul)):
-            compArr = np.zeros(2*len(spp1))
-            rndIndx_1 = np.random.randint(0, len(spp1), 2*len(spp1))
-            rndIndx_2 = np.random.randint(0, len(Popul[jj]), 2*len(spp1))
-            for kk, comp in enumerate(compArr):
-                compArr[kk] = np.mean(hamDistBetweenIndv(spp1[rndIndx_1[kk]],
-                                      Popul[jj][rndIndx_2[kk]]))
-            CMP.append(compArr)
-    return CMP
 
 
 def main():
@@ -260,21 +183,31 @@ def main():
         print "Can't find parameter file! You may be in a wrong directory."
         sys.exit()
     try:
-        L_init = loadThePopulation(sys.argv[1])
+        L_init = loadHostPopulation(sys.argv[1])
         print "First file loaded!"
     except:
         print "Can't load file named", sys.argv[1], ". Check if it exists."
         sys.exit()
     try:
-        L_endd = loadThePopulation(sys.argv[2])
+        L_endd = loadHostPopulation(sys.argv[2])
         print "Second file loaded!"
     except:
         print "Can't load file named", sys.argv[2], ". Check if it exists."
         sys.exit()
-    F_init = bitSimInterSpec(L_init, 7)
-    print "Similarities in the First file have been calculated!"
-    F_endd = bitSimInterSpec(L_endd, 7)
-    print "Similarities in the Second file have been calculated!"
+    F_init = bitSimAll(L_init, 7)
+    F_init = F_init[~np.isnan(F_init)]
+    print "Within genome similarities in the First file have been calculated!"
+    F_endd = bitSimAll(L_endd, 7)
+    F_endd = F_endd[~np.isnan(F_endd)]
+    print "Within genome similarities in the Second file have been calculated!"
+    E_init = bitSimInterIndv(L_init, 7)
+    E_init = E_init[~np.isnan(E_init)]
+    print "Between individual similarities in the First file have",
+    print "been calculated!"
+    E_endd = bitSimInterIndv(L_endd, 7)
+    E_endd = E_endd[~np.isnan(E_endd)]
+    print "Between individual similarities in the Second file have",
+    print "been calculated!"
     # === More generic plot ===
     ax_label = 20
     T_label = 24
@@ -282,35 +215,29 @@ def main():
     transs = 0.8
     plt.figure(1, figsize=(16, 8))
     plt.subplot(121)
-    xx = np.zeros(len(F_init))
-    for ii, itm in enumerate(F_init):
-        xx[ii] = np.mean(itm)
-    plt.hist(xx, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
+    plt.hist(F_init, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
     plt.title("Start of simulation", fontsize=T_label)
-    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.xlabel("Within genome similarity measure", fontsize=ax_label)
     plt.ylabel("Frequency of occurrence", fontsize=ax_label)
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
     plt.xlim(0., 1.)
     plt.subplot(122)
-    xx = np.zeros(len(F_endd))
-    for ii, itm in enumerate(F_endd):
-        xx[ii] = np.mean(itm)
-    plt.hist(xx, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
+    plt.hist(F_endd, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
     plt.title("End of simulation", fontsize=T_label)
-    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.xlabel("Within genome similarity measure", fontsize=ax_label)
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
     plt.xlim(0., 1.)
-    plt.savefig("SPP_sim_one.png")
+    plt.savefig("HOST_sim_one.png")
     #  === Now the detailed plot! ===
     plt.figure(2, figsize=(16, 8))
     plt.subplot(121)
-    plt.hist(F_init, edgecolor="none")
+    plt.hist(E_init, edgecolor="none")
     plt.title("Start of simulation", fontsize=T_label)
-    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.xlabel("Inter-individual similarity measure", fontsize=ax_label)
     plt.ylabel("Frequency of occurrence", fontsize=ax_label)
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
@@ -318,15 +245,15 @@ def main():
     plt.xlim(0., 1.)
 #    plt.ylim(ymax=200)
     plt.subplot(122)
-    plt.hist(F_endd, edgecolor="none")
+    plt.hist(E_endd, edgecolor="none")
     plt.title("End of simulation", fontsize=T_label)
-    plt.xlabel("Inter-species similarity measure", fontsize=ax_label)
+    plt.xlabel("Inter-individual similarity measure", fontsize=ax_label)
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
     plt.xlim(0., 1.)
 #    plt.ylim(ymax=200)
-    plt.savefig("SPP_sim_two.png")
+    plt.savefig("HOST_sim_two.png")
 
     plt.show()
 
