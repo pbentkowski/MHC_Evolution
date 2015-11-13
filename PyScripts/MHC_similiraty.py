@@ -178,7 +178,12 @@ def main():
         sys.exit()
     try:
         l = re.split(" ", ln.getline("InputParameters.csv", 9))
+        l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
+        bitfit = int(l2[2])
         print "No. of pathogen species =", int(l[2])
+        print "Length of the bit string =",
+        print int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
+        print "Length of bit string fit =", bitfit
     except:
         print "Can't find parameter file! You may be in a wrong directory."
         sys.exit()
@@ -194,17 +199,17 @@ def main():
     except:
         print "Can't load file named", sys.argv[2], ". Check if it exists."
         sys.exit()
-    F_init = bitSimAll(L_init, 7)
+    F_init = bitSimAll(L_init, bitfit)
     F_init = F_init[~np.isnan(F_init)]
     print "Within genome similarities in the First file have been calculated!"
-    F_endd = bitSimAll(L_endd, 7)
+    F_endd = bitSimAll(L_endd, bitfit)
     F_endd = F_endd[~np.isnan(F_endd)]
     print "Within genome similarities in the Second file have been calculated!"
-    E_init = bitSimInterIndv(L_init, 7)
+    E_init = bitSimInterIndv(L_init, bitfit)
     E_init = E_init[~np.isnan(E_init)]
     print "Between individual similarities in the First file have",
     print "been calculated!"
-    E_endd = bitSimInterIndv(L_endd, 7)
+    E_endd = bitSimInterIndv(L_endd, bitfit)
     E_endd = E_endd[~np.isnan(E_endd)]
     print "Between individual similarities in the Second file have",
     print "been calculated!"

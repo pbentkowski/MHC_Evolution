@@ -259,9 +259,14 @@ def main():
         sys.exit()
     try:
         l = re.split(" ", ln.getline("InputParameters.csv", 9))
+        l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
+        bitfit = int(l2[2])
         print "No. of pathogen species =", int(l[2])
+        print "Length of the bit string =",
+        print int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
+        print "Length of bit string fit =", bitfit
     except:
-        print "Can't find parameter file! You may be in a wrong directory."
+        print "Can't load the parameter file! You may be in a wrong directory."
         sys.exit()
     try:
         L_init = loadThePopulation(sys.argv[1])
@@ -275,9 +280,9 @@ def main():
     except:
         print "Can't load file named", sys.argv[2], ". Check if it exists."
         sys.exit()
-    F_init = bitSimInterSpec(L_init, 7)
+    F_init = bitSimInterSpec(L_init, bitfit)
     print "Similarities in the First file have been calculated!"
-    F_endd = bitSimInterSpec(L_endd, 7)
+    F_endd = bitSimInterSpec(L_endd, bitfit)
     print "Similarities in the Second file have been calculated!"
     # === More generic plot ===
     ax_label = 20

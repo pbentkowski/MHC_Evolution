@@ -7,21 +7,21 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Release configuration
-CND_PLATFORM_Release=GNU-Linux
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
+CND_PLATFORM_Release=GNU-Linux-x86
+CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
 CND_ARTIFACT_NAME_Release=mhc_code
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/mhc_code
-CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/mhc_code
+CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Release=mhccode.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/mhccode.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/mhccode.tar
 # Debug configuration
-CND_PLATFORM_Debug=GNU-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
+CND_PLATFORM_Debug=GNU-Linux-x86
+CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
 CND_ARTIFACT_NAME_Debug=mhc_code
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/mhc_code
-CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/mhc_code
+CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Debug=mhccode.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/mhccode.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/mhccode.tar
 #
 # include compiler specific variables
 #
