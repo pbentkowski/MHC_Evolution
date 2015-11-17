@@ -18,6 +18,9 @@
  *    along with this program; if not, write to the Free Software
  *    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  *    MA 02110-1301, USA.
+ * 
+ * TEST PUSH.
+ * 
  */
 
 #include <iostream>
@@ -57,7 +60,6 @@ void Gene::setNewGene(int length, int timeStamp) {
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     TheGene = p_RandomNumbs->NextInt(0, std::pow(2, BitStringLength)-1);
 }
-
 
 /**
  * @brief Core method. Sets a new gene filling it with a random bit-string of
