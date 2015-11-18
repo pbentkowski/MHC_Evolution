@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Antigen.h</itemPath>
       <itemPath>DataHarvester.h</itemPath>
       <itemPath>Environment.h</itemPath>
       <itemPath>Gene.h</itemPath>
@@ -20,6 +21,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Antigen.cpp</itemPath>
       <itemPath>DataHarvester.cpp</itemPath>
       <itemPath>Environment.cpp</itemPath>
       <itemPath>Gene.cpp</itemPath>
@@ -76,6 +78,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Antigen.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Antigen.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataHarvester.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataHarvester.h" ex="false" tool="3" flavor2="0">
@@ -124,6 +130,10 @@
           <commandlineTool>g++</commandlineTool>
         </ccTool>
       </compileType>
+      <item path="Antigen.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Antigen.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DataHarvester.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DataHarvester.h" ex="false" tool="3" flavor2="0">

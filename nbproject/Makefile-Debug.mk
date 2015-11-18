@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Antigen.o \
 	${OBJECTDIR}/DataHarvester.o \
 	${OBJECTDIR}/Environment.o \
 	${OBJECTDIR}/Gene.o \
@@ -69,6 +70,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhc_code_oba: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhc_code_oba ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Antigen.o: Antigen.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Antigen.o Antigen.cpp
 
 ${OBJECTDIR}/DataHarvester.o: DataHarvester.cpp 
 	${MKDIR} -p ${OBJECTDIR}
