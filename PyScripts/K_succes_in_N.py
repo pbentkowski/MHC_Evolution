@@ -10,7 +10,8 @@ sys.setrecursionlimit(20000)
 
 
 def probOfStreak(numBits, minFits, succProb=0.5, saved=None):
-    """ """
+    """Recursive function calculating the probability that a define K-long
+    bit string will fit into a N-long random bitstring."""
     if saved is None:
         saved = {}
     ID = (numBits, minFits, succProb)

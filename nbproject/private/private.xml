@@ -10,12 +10,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/piotr/MHC_code_OBA/Gene.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Pathogen.h</file>
-            <file>file:/home/piotr/MHC_code_OBA/Pathogen.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Gene.h</file>
-            <file>file:/home/piotr/MHC_code_OBA/Antigen.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Antigen.h</file>
+            <file>file:/home/piotr/Documents/MHC_UAM/Projects/mhcevolution/Gene.h</file>
+            <file>file:/home/piotr/Documents/MHC_UAM/Projects/mhcevolution/Gene.cpp</file>
+            <file>file:/home/piotr/Documents/MHC_UAM/Projects/mhcevolution/Antigen.h</file>
+            <file>file:/home/piotr/Documents/MHC_UAM/Projects/mhcevolution/Antigen.cpp</file>
         </group>
     </open-files>
 </project-private>
