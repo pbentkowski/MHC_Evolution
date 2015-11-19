@@ -27,8 +27,23 @@ class Antigen {
 public:
     Antigen();
     virtual ~Antigen();
+    void setNewAntigen(int lenght, int timeStamp);
+    void setNewFixedAntigen(int lenght, int timeStamp, int fixedGene,
+                            unsigned long int fixedTag);
+    void mutateAntigenBitByBit(double pm_mut_probabl, int timeStamp);
+    void mutateAntgBitByBitWithRes(double pm_mut_probabl, int timeStamp,
+                                   std::set<int>& noMutts);
+    
+    // === Data harvesting ===
+    int timeOfOrigin;
+    int TheParentWas;
+    std::vector<unsigned long int> ParentTags;
+    std::vector<int> MutationTime;
+    unsigned long int GenesTag;
+    void printAntigenToScreen();
 private:
-
+    genestring Antigen;
+    std::vector<int> Epitopes;
 };
 
 #endif /* ANTIGEN_H */
