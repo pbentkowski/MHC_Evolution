@@ -36,10 +36,11 @@ class Antigen {
 public:
     Antigen();
     virtual ~Antigen();
-    void setNewAntigen(int lenght, int timeStamp);
-    void setNewFixedAntigen(int lenght, int timeStamp, int fixedGene,
+    void calculateEpitopes(int mhcSize);
+    void setNewAntigen(int length, int mhcSize, int timeStamp);
+    void setNewFixedAntigen(int length, int timeStamp, int fixedGene,
                             unsigned long int fixedTag);
-    void mutateAntigenBitByBit(double pm_mut_probabl, int timeStamp);
+    void mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int timeStamp);
     void mutateAntgBitByBitWithRes(double pm_mut_probabl, int timeStamp,
                                    std::set<int>& noMutts);
     
@@ -51,8 +52,9 @@ public:
     unsigned long int GenesTag;
     void printAntigenToScreen();
 private:
-    genestring Antigen;
-    std::vector<int> Epitopes;
+    genestring TheAntigen;
+    std::vector<long int> Epitopes;
+    int BitStringLength;
 };
 
 #endif /* ANTIGEN_H */
