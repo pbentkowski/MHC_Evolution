@@ -30,7 +30,7 @@
 #include "boost/dynamic_bitset.hpp"
 #include "RandomNumbs.h"
 
-typedef boost::dynamic_bitset<> genestring;
+typedef boost::dynamic_bitset<> antigentring;
 
 class Antigen {
 public:
@@ -41,19 +41,19 @@ public:
     void setNewFixedAntigen(int length, int timeStamp, int fixedGene,
                             unsigned long int fixedTag);
     void mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int timeStamp);
-    void mutateAntgBitByBitWithRes(double pm_mut_probabl, int timeStamp,
-                                   std::set<int>& noMutts);
-    
+    void mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
+                                   int timeStamp, std::set<int>& noMutts);
+    antigentring getBitAntigen();
     // === Data harvesting ===
     int timeOfOrigin;
     int TheParentWas;
     std::vector<unsigned long int> ParentTags;
     std::vector<int> MutationTime;
-    unsigned long int GenesTag;
+    unsigned long int AntigenTag;
     void printAntigenToScreen();
 private:
-    genestring TheAntigen;
-    std::vector<long int> Epitopes;
+    antigentring TheAntigen;
+    std::vector<unsigned long int> Epitopes;
     int BitStringLength;
 };
 

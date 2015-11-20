@@ -166,7 +166,7 @@ void Gene::mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim,
  * @brief Core method. Iterates through a gene sequence and (if selected so)
  * flips the value of a single bit to an opposite one.
  *
- * @param mut_probabl - probability of mutating a single bit.
+ * @param pm_mut_probabl - probability of mutating a single bit.
  * @param timeStamp - current time (current number of the model iteration).
  */
 void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {

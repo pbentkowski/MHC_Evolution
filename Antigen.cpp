@@ -25,6 +25,8 @@
 #include "Tagging_system.h"
 #include "RandomNumbs.h"
 
+typedef boost::dynamic_bitset<> antigentring;
+
 Antigen::Antigen() {
 }
 
@@ -32,19 +34,32 @@ Antigen::~Antigen() {
 }
 
 
+/**
+ * @brief Core method. Translates a raw bit string representing the antigen into
+ * series of epitopes.
+ * 
+ * Takes a frame of length equal to length of a bit string representing MHC 
+ * protein and moves it along the antigen transforming bit strings inside the
+ * frame into unsigned long integers useful for fast looking up if a pathogen
+ * gets presented by its host, as MHC are also bit strings transformed into 
+ * u_long int. Comparing the content of u_long int vectors is faster then 
+ * matching bit strings.
+ * 
+ * @param mhcSize - length of a bit string representing the MHC protein.
+ */
 void Antigen::calculateEpitopes(int mhcSize){
     int vecSize =  TheAntigen.size() - mhcSize;
     boost::dynamic_bitset<> bitEpitope(mhcSize);
-    std::vector<long int> tmpEpis(vecSize);
+    std::vector<unsigned long int> tmpEpis(vecSize);
     for(int i = 0; i < tmpEpis.size(); ++i){
-        bitEpitope.clear();
         for(int j = i; j < (i + mhcSize); ++j){
-           bitEpitope[j-i] = TheAntigen[j];
+            bitEpitope[j-i] = TheAntigen[j];
         }
         tmpEpis[i] = bitEpitope.to_ulong();
     }
     Epitopes = tmpEpis;
 }
+
 
 /**
  * @brief Core method. Sets a new antigen filling it with a random bits. 
@@ -53,6 +68,7 @@ void Antigen::calculateEpitopes(int mhcSize){
  * of bits. 
  * 
  * @param lenght - number of bits in the antigen (usually a lot)
+ * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
@@ -60,7 +76,7 @@ void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
     TheParentWas = -1;
     BitStringLength = length;
     Tagging_system* pTagging_system = Tagging_system::getInstance();
-    GenesTag = pTagging_system->getTag();
+    AntigenTag = pTagging_system->getTag();
     TheAntigen.clear();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<> tmpAntig(length);
@@ -76,6 +92,13 @@ void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
 }
 
 
+/**
+ * @brief Core method. Mutates antigen one bit by one bit.
+ * 
+ * @param pm_mut_probabl - probability of mutating a single bit.
+ * @param mhcSize - length of a bit string representing the MHC protein.
+ * @param timeStamp - current time (current number of the model iteration).
+ */
 void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int timeStamp){
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
@@ -86,12 +109,68 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int time
         }
     }
     if(TheAntigen != bitgene){
-        ParentTags.push_back(GenesTag);
+        ParentTags.push_back(AntigenTag);
         MutationTime.push_back(timeOfOrigin);
         Tagging_system* pTagging_system = Tagging_system::getInstance();
-        GenesTag = pTagging_system->getTag();
+        AntigenTag = pTagging_system->getTag();
         timeOfOrigin = timeStamp;
         TheAntigen = bitgene;
         calculateEpitopes(mhcSize);
     }
+}
+
+
+/**
+ * @brief Core method. Mutates antigen one bit by one bit but leaves predefined
+ * positions on the antigen intact to make pathogen species a bit different.
+ * 
+ * @param pm_mut_probabl - probability of mutating a single bit.
+ * @param mhcSize - length of a bit string representing the MHC protein.
+ * @param timeStamp - current time (current number of the model iteration).
+ * @param noMutts - a STL set of positions that should remain intact during
+ * the mutation process, a way to define a species.  
+ */
+void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
+        int timeStamp, std::set<int>& noMutts){
+    boost::dynamic_bitset<> bitgene;
+    bool exists;
+    bitgene = TheAntigen;
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgene.size(); ++i) {
+        exists = noMutts.find(i) != noMutts.end();
+        if(exists == false and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+            bitgene[i].flip();
+        }
+    }
+    if(TheAntigen != bitgene){
+        ParentTags.push_back(AntigenTag);
+        MutationTime.push_back(timeOfOrigin);
+        Tagging_system* pTagging_system = Tagging_system::getInstance();
+        AntigenTag = pTagging_system->getTag();
+        timeOfOrigin = timeStamp;
+        TheAntigen = bitgene;
+        calculateEpitopes(mhcSize);
+    }
+}
+
+
+/**
+ * @brief Core method. Returns the antigen so other methods can use it.
+ * 
+ * @return The antigen in it's native bit format
+ */
+antigentring Antigen::getBitAntigen(){
+    return TheAntigen;
+}
+
+
+/**
+ * @brief Auxiliary method. Prints antigens to screen. Useful when debugging.
+ */
+void Antigen::printAntigenToScreen(){
+    std::cout << TheAntigen << std::endl;
+    for(int i = 0; i < Epitopes.size(); ++i){
+      std::cout <<  Epitopes[i] << " ";
+    }
+    std::cout << std::endl;
 }

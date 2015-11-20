@@ -27,15 +27,15 @@
 #include <string>
 #include "boost/dynamic_bitset.hpp"
 
-#include "Gene.h"
+#include "Antigen.h"
 
 typedef boost::dynamic_bitset<> genestring;
-typedef std::vector<Gene> chromovector;
+typedef std::vector<Antigen> antigenvector;
 
 /**
  * @brief Core class. Stores and handles a single pathogen object. Each pathogen
- * has multiple instances of Gene class objects and stores them in a vector called
- * ChromosomePat.
+ * can have multiple instances of Antigen class objects and stores them in a 
+ * vector called PathogenProts.
  */
 class Pathogen {
 public:
@@ -46,16 +46,13 @@ public:
 //    std::vector<unsigned long> HostsInfected; // which host are infected
     unsigned NumOfHostsInfected;  // how many host are infected
     int SelectedToReproduct;
-    void setNewPathogen(int num_of_loci, int gene_size, int species, int timeStamp);
-    void setNewPathoFixedGene(int num_of_loci, int gene_size, int species, int timeStamp,
-                              int fixedGene, unsigned long int fixedTag);
-    void setNewPathogen(int num_of_loci, int gene_size, int species,
-                        int low_lim, int up_lim, int timeStamp);
-    chromovector getChomosome();
-    void chromoMutProcess(double mut_probabl, int timeStamp);
-    void chromoMutProcessWithRestric(double mut_probabl, int timeStamp,
+    void setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
+                        int species, int timeStamp);
+    antigenvector getChomosome();
+    void chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp);
+    void chromoMutProcessWithRestric(double mut_probabl, int mhcSize, int timeStamp,
                                      std::set<int>& noMutts);
-    genestring getSingleGene(int indx);
+    genestring getSingleAntigen(int indx);
     int getSpeciesTag();
     void clearInfections();
     // === Data harvesting methods ===
@@ -63,10 +60,8 @@ public:
     // === Auxiliary methods ===
     void printGenesFromGenome();
 private:
-    std::vector<Gene> ChromosomePat;
+    std::vector<Antigen> PathogenProts;
     int Species;
-    int LowerGeneValue;
-    int UpperGeneValue;
 };
 
 #endif	/* PATHOGEN_H */

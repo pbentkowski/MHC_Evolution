@@ -38,11 +38,7 @@ public:
     H2Pinteraction();
 //    H2Pinteraction(const H2Pinteraction& orig);
     virtual ~H2Pinteraction();
-    bool presentGeneAny(genestring hostgene, genestring pathogene, int simil_mesure);
     bool presentGeneRow(genestring hostgene, genestring pathogene, int simil_mesure);
-    void doesInfectedHeteroBetter(Host &host, Pathogen &patho, int simil_mesure);
-    void doesInfectedHomoBetter(Host &host, Pathogen &patho, int simil_mesure);
-    void doesInfectedAllToAll(Host &host, Pathogen &patho, int simil_mesure);
     void doesInfectedHeteroOnePerSpec(Host &host, Pathogen &patho, int simil_mesure);
 };
 
