@@ -243,7 +243,7 @@ void Host::chromoRecombination(double recomb_prob, int timeStamp){
  * @param indx - index of the gene you wanna get.
  * @return an integer representation of a gene with a given index.
  */
-int Host::getOneGeneFromOne(int indx){
+unsigned long int Host::getOneGeneFromOne(int indx){
     if(ChromosomeOne.size()){
         if(indx < ChromosomeOne.size()){
             return ChromosomeOne[indx].getTheRealGene();
@@ -267,7 +267,7 @@ int Host::getOneGeneFromOne(int indx){
  * @param indx - index of the gene you wanna get.
  * @return an integer representation of a gene with a given index.
  */
-int Host::getOneGeneFromTwo(int indx){
+unsigned long int Host::getOneGeneFromTwo(int indx){
     if(ChromosomeTwo.size()){
         if(indx < ChromosomeTwo.size()){
             return ChromosomeTwo[indx].getTheRealGene();

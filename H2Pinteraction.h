@@ -28,7 +28,7 @@
 #include "Pathogen.h"
 #include "RandomNumbs.h"
 
-typedef boost::dynamic_bitset<> genestring;
+typedef std::vector<unsigned long int> longIntVec;
 
 /**
  * @brief Core class. Handles interactions between the hosts and the pathogens.
@@ -38,7 +38,7 @@ public:
     H2Pinteraction();
 //    H2Pinteraction(const H2Pinteraction& orig);
     virtual ~H2Pinteraction();
-    bool presentGeneRow(genestring hostgene, genestring pathogene, int simil_mesure);
+    bool presentGeneRow(unsigned long int hostgen, longIntVec antigen);
     void doesInfectedHeteroOnePerSpec(Host &host, Pathogen &patho, int simil_mesure);
 };
 

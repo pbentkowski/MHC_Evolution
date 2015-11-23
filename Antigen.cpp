@@ -26,6 +26,7 @@
 #include "RandomNumbs.h"
 
 typedef boost::dynamic_bitset<> antigentring;
+typedef std::vector<unsigned long int> longIntVec;
 
 Antigen::Antigen() {
 }
@@ -161,6 +162,19 @@ void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize,
  */
 antigentring Antigen::getBitAntigen(){
     return TheAntigen;
+}
+
+
+unsigned long int Antigen::getOneEpitope(int idx){
+    if(Epitopes.size()){
+        return Epitopes[idx];
+    } else {
+        return -1;
+    }
+}
+
+longIntVec Antigen::getEpitopes(){
+    return Epitopes;
 }
 
 

@@ -28,9 +28,9 @@
 #include "Pathogen.h"
 #include "RandomNumbs.h"
 
-typedef boost::dynamic_bitset<> genestring;
-typedef std::vector<Gene>  chromovector;
-
+typedef std::vector<unsigned long int> longIntVec;
+typedef std::vector<Gene> chromovector;
+typedef std::vector<Antigen>  antigenvector;
 
 H2Pinteraction::H2Pinteraction() {
 }
@@ -51,27 +51,15 @@ H2Pinteraction::~H2Pinteraction() {
  * @param simil_mesure - how many bits need to be similar (N)
  * @return 'true' if gene is presented, 'false' if it's not
  */
-bool H2Pinteraction::presentGeneRow(genestring hostgene, genestring pathogene,
-        int simil_mesure){
-    if(hostgene.size() == pathogene.size()){
-        int counter = 0;
-        for(int i = 0; i < hostgene.size(); ++i){
-            if(hostgene[i] == pathogene[i]){
-                counter = counter + 1;
-            }else{
-                counter = 0;
-            }
-            if(counter >= simil_mesure){return true;}
+bool H2Pinteraction::presentGeneRow(unsigned long int hostgen, longIntVec antigen){
+    if(antigen.size()){
+        for(int i = 0; i < antigen.size(); ++i){
+            if(antigen[i] == hostgen){ return true; }
         }
-        if(counter >= simil_mesure){
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     } else {
-        std::cout << "Error in H2Pinteraction::presentGeneRow(): genes are of"\
-                  << " different lengths. Can\'t compare genes of different"\
-                  << " lengths." << std::endl;
+        std::cout << "Error in H2Pinteraction::presentGeneRow(): antigen "\
+                  << "vector is empty." << std::endl;
         return false;
     }
 }

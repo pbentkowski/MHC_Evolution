@@ -237,7 +237,7 @@ genestring Gene::getBitGene(){
  *
  * @return integer representation of a gene.
  */
-int Gene::getTheRealGene(){
+unsigned long int Gene::getTheRealGene(){
     return TheGene;
 }
 

@@ -93,49 +93,6 @@ void Environment::setHostPopulation(int pop_size, int gene_size,
     }
 }
 
-/**
- * @brief Core method. Initializes the pathogen population.
- *
- * Given the number of individuals, number of bit per gene, desired number of
- * genes in a genome and desired number of pathogen species it generates
- * random population of pathogens. Number of individuals will be evenly
- * distributed between species and their genes will be selected randomly from
- * different pools of bit strings.
- *
- * @param pop_size - total number of individuals
- * @param gene_size - number of bits per gene
- * @param chrom_size - number of genes per genome
- * @param numb_of_species - number of species
- * @param timeStamp - current time (number of the model iteration)
- */
-void Environment::setPathoPopulationSeparateGenePools(int pop_size, int gene_size,
-        int chrom_size, int numb_of_species, int timeStamp){
-    if (numb_of_species > pop_size) numb_of_species = pop_size;
-    int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
-    int indiv_per_species = pop_size / numb_of_species;
-    int indiv_left = pop_size % numb_of_species;
-    std::vector<Pathogen> OneSpeciesVector;
-    for (int i = 0; i < numb_of_species; ++i){
-        for(int j = 0; j < indiv_per_species; ++j){
-            OneSpeciesVector.push_back(Pathogen());
-            if(i+1 != indiv_per_species){
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size, i,
-                        i*step_of_gene, (i+1)*step_of_gene - 1, timeStamp);
-            } else {
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size, i,
-                        i*step_of_gene, (int) (std::pow(2, gene_size) - 1), timeStamp);
-            }
-            if(indiv_left){
-                OneSpeciesVector.push_back(Pathogen());
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size, i,
-                        i*step_of_gene, (i+1)*step_of_gene - 1, timeStamp);
-                indiv_left--;
-            }
-        }
-        PathPopulation.push_back(OneSpeciesVector);
-        OneSpeciesVector.clear();
-    }
-}
 
 /**
  * @brief Core method. Initializes the pathogen population.
@@ -153,7 +110,7 @@ void Environment::setPathoPopulationSeparateGenePools(int pop_size, int gene_siz
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
-        int chrom_size, int numb_of_species, int timeStamp){
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
     int indiv_per_species = pop_size / numb_of_species;
@@ -163,13 +120,16 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
         for(int j = 0; j < indiv_per_species; ++j){
             OneSpeciesVector.push_back(Pathogen());
             if(i+1 != indiv_per_species){
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size, i, timeStamp);
+                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size,
+                        mhcSize, i, timeStamp);
             } else {
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size, i, timeStamp);
+                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size,
+                        mhcSize,  i, timeStamp);
             }
             if(indiv_left){
                 OneSpeciesVector.push_back(Pathogen());
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size, i, timeStamp);
+                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size,
+                        mhcSize,  i, timeStamp);
                 indiv_left--;
             }
         }
@@ -181,9 +141,9 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
 /** 
  * New shit !!! Needs description.
  * 
- */
+ *
 void Environment::setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
-        int chrom_size, int numb_of_species, int timeStamp){
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
     int indiv_per_species = pop_size / numb_of_species;
@@ -221,7 +181,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int gene_size,
         OneSpeciesVector.clear();
     }
 }
-
+*/
 
 /**
   * @brief Core method. Iterates through the host population and the parasite
@@ -695,10 +655,10 @@ double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::mutatePathogens(double mut_probabl, int timeStamp){
+void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp){
     for (int i = 0; i < PathPopulation.size(); ++i){
         for (int j = 0; j < PathPopulation[i].size(); ++j){
-            PathPopulation[i][j].chromoMutProcess(mut_probabl, timeStamp);
+            PathPopulation[i][j].chromoMutProcess(mut_probabl, mhcSize, timeStamp);
         }
     }
 }
@@ -712,12 +672,12 @@ void Environment::mutatePathogens(double mut_probabl, int timeStamp){
  * @param timeStamp - current time (number of the model iteration)
  * @param noMutts
  */
-void Environment::mutatePathogensWithRestric(double mut_probabl, int timeStamp,
-        std::set<int>& noMutts){
+void Environment::mutatePathogensWithRestric(double mut_probabl, int mhcSize,
+        int timeStamp, std::set<int>& noMutts){
     for (int i = 0; i < PathPopulation.size(); ++i){
         for (int j = 0; j < PathPopulation[i].size(); ++j){
-            PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl, 
-                    timeStamp, noMutts);
+            PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
+                    mhcSize, timeStamp, noMutts);
         }
     }
 }

@@ -31,6 +31,7 @@
 #include "RandomNumbs.h"
 
 typedef boost::dynamic_bitset<> antigentring;
+typedef std::vector<unsigned long int> longIntVec;
 
 class Antigen {
 public:
@@ -44,6 +45,8 @@ public:
     void mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
                                    int timeStamp, std::set<int>& noMutts);
     antigentring getBitAntigen();
+    unsigned long int getOneEpitope(int idx);
+    longIntVec getEpitopes();
     // === Data harvesting ===
     int timeOfOrigin;
     int TheParentWas;

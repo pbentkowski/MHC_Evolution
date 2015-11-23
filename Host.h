@@ -85,8 +85,8 @@ public:
     double getFitness();
     // === Data harvesting methods ===
     std::string stringChromosomes();
-    int getOneGeneFromOne(int indx);
-    int getOneGeneFromTwo(int indx);
+    unsigned long int getOneGeneFromOne(int indx);
+    unsigned long int getOneGeneFromTwo(int indx);
 private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;

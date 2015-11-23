@@ -50,7 +50,7 @@ public:
     void mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
                                    std::set<int>& noMutts);
     genestring getBitGene();
-    int getTheRealGene();
+    unsigned long int getTheRealGene();
     // === Data harvesting ===
     int timeOfOrigin;
     int TheParentWas;
@@ -59,7 +59,7 @@ public:
     unsigned long int GenesTag;
     void printGeneToScreen();
 private:
-    int TheGene;
+    unsigned long int TheGene;
     int BitStringLength;
 };
 

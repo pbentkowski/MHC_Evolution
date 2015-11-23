@@ -46,14 +46,10 @@ public:
     void setHostPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
     void setHostPopulation(int pop_size, int gene_size, int chrom_size_lower,
         int chrom_size_uper, int timeStamp);
-    void setPathoPopulationSeparateGenePools(int pop_size, int gene_size,
-        int chrom_size, int numb_of_species, int timeStamp);
     void setPathoPopulatioUniformGenome(int pop_size, int gene_size, 
-        int chrom_size, int numb_of_species, int timeStamp);
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
     void setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
-        int chrom_size, int numb_of_species, int timeStamp);
-    void setPathoPopulation(int pop_size, int gene_size, int chrom_size_lower,
-        int chrom_size_uper, int numb_of_species, int timeStamp);
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
     void infectOneFromOneSpecHetero(int simil_mesure);
     void infectEveryOne(int simil_mesure);
     void calculateHostsFitnessPerGene();
@@ -68,8 +64,8 @@ public:
     void selectAndReproducePathoFixedPopSizes();
     void clearHostInfectionsData();
     void clearPathoInfectionData();
-    void mutatePathogens(double mut_probabl, int timeStamp);
-    void mutatePathogensWithRestric(double mut_probabl, int timeStamp,
+    void mutatePathogens(double mut_probabl, int mhcSize, int timeStamp);
+    void mutatePathogensWithRestric(double mut_probabl,  int mhcSize, int timeStamp,
                                     std::set<int>& noMutts);
     void mutateHosts(double mut_probabl, int timeStamp);
     void mutateHostsWithDelDupl(double mut_probabl, double del, double dupl, 
