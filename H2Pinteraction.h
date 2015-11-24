@@ -31,15 +31,15 @@
 typedef std::vector<unsigned long int> longIntVec;
 
 /**
- * @brief Core class. Handles interactions between the hosts and the pathogens.
+ * @brief Core class. Handles interactions between hosts and pathogens.
  */
 class H2Pinteraction {
 public:
     H2Pinteraction();
 //    H2Pinteraction(const H2Pinteraction& orig);
     virtual ~H2Pinteraction();
-    bool presentGeneRow(unsigned long int hostgen, longIntVec antigen);
-    void doesInfectedHeteroOnePerSpec(Host &host, Pathogen &patho, int simil_mesure);
+    bool presentAntigen(unsigned long int hostgen, longIntVec antigen);
+    void doesInfectedHeteroOnePerSpec(Host &host, Pathogen &patho);
 };
 
 #endif	/* H2PINTERACTION_H */

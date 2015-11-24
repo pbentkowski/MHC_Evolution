@@ -56,7 +56,7 @@ public:
     void printAntigenToScreen();
 private:
     antigentring TheAntigen;
-    std::vector<unsigned long int> Epitopes;
+    longIntVec Epitopes;
     int BitStringLength;
 };
 

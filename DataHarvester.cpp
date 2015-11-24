@@ -118,56 +118,63 @@ const std::string currentDateTime(){
  * @param maxGene
  * @return 'true' if something is wrong, 'false' if no errors were found.
  */
-bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int exposedMatch,
+bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, int maxGene, double alpha){
     bool ifError = false;
     if (rndSeed < 0){
-        std::cout<< "\nError in RNG seed. It has to be a positive integer!." << std::endl;
+        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
         ifError = true;
     }
     if (geneLength > 31){
-        std::cout<< "\nError in number of bits per gene. ";
+        std::cout << "\nError in number of bits per gene. ";
         std::cout << geneLength << " bits in genes is bit too much. ";
         std::cout << "Try something less radical, e.g. smaller than 31."  << std::endl;
         ifError =  true;
     } 
+    if (geneLength > antigenLength){
+        std::cout << "\nError in size of an antigen. ";
+        std::cout << " Number of bits in antigen cannot be smaller";
+        std::cout << " than the number of bits in MHC gene." << std::endl;
+        ifError =  true;
+    }
+    
     if (hostMutationProb < 0.0 or hostMutationProb > 1.0){
-        std::cout<< "\nError in the hosts' mutation probability. It has to be " <<
+        std::cout << "\nError in the hosts' mutation probability. It has to be " <<
                 "within the range [0, 1]." << std::endl;
         ifError = true;
     }
     if (pathoMutationProb < 0.0 or pathoMutationProb > 1.0){
-        std::cout<< "\nError in the pathogens' mutation probability. It has " <<
+        std::cout << "\nError in the pathogens' mutation probability. It has " <<
                 "to be within the range [0, 1]." << std::endl;
         ifError = true;
     }
     if (hostDeletion < 0.0 or hostDeletion > 1.0){
-        std::cout<< "\nError in the hosts' probability of deletion of a gene. " <<
+        std::cout << "\nError in the hosts' probability of deletion of a gene. " <<
                 "It has to be within the range [0, 1]." << std::endl;
         ifError = true;
     }
     if (hostDuplication < 0.0 or hostDuplication > 1.0){
-        std::cout<< "\nError in the hosts' duplication of a gene probability. " <<
+        std::cout << "\nError in the hosts' duplication of a gene probability. " <<
                 "It has to be within the range [0, 1]." << std::endl;
         ifError = true;
     }
     if (HeteroHomo != 10 and HeteroHomo != 11){
-        std::cout<< "\nError in the heterozygote advantage / lack of advantage " <<
+        std::cout << "\nError in the heterozygote advantage / lack of advantage " <<
                 "mode. It has to be 10 for heterozygote advantage or 11 for " <<
                 "lack of thereof." << std::endl;
         ifError = true;
     }
     if (maxGene < 1.0 or maxGene < hostGeneNumbb){
-        std::cout<< "\nError in the hosts' maximal number of genes per " <<
+        std::cout << "\nError in the hosts' maximal number of genes per " <<
                 "chromosome. It has to be at least one, but not less then the " <<
                 "number used to initialize the system. "<< std::endl;
         ifError = true;
     }
     if (alpha < 0.0 or alpha > 1.0){
-        std::cout<< "\nError in the hosts' alpha factor for the host fitness function. " <<
+        std::cout << "\nError in the hosts' alpha factor for the host fitness function. " <<
                 "It has to be within the range [0, 1]." << std::endl;
         ifError = true;
     }
@@ -196,7 +203,7 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int exposedM
  * @param HeteroHomo
  * @param maxGene
  */
-void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int exposedMatch,
+void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
@@ -209,7 +216,7 @@ void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int exposedMa
     InputParams << "# Model's core parameters:" << std::endl;
     InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
     InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
-    InputParams << "\tnumber_of_matching_bits_to_expose = " << exposedMatch << std::endl;
+    InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
     InputParams << "\thost_population_size = " << hostPopSize << std::endl;
     InputParams << "\tpathogen_population_size = " << pathoPopSize << std::endl;
     InputParams << "\tnumber_of_pathogen_species = " << patho_sp << std::endl;

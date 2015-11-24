@@ -51,7 +51,7 @@ Antigen::~Antigen() {
 void Antigen::calculateEpitopes(int mhcSize){
     int vecSize =  TheAntigen.size() - mhcSize;
     boost::dynamic_bitset<> bitEpitope(mhcSize);
-    std::vector<unsigned long int> tmpEpis(vecSize);
+    longIntVec tmpEpis(vecSize);
     for(int i = 0; i < tmpEpis.size(); ++i){
         for(int j = i; j < (i + mhcSize); ++j){
             bitEpitope[j-i] = TheAntigen[j];

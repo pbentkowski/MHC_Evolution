@@ -5,7 +5,7 @@ This is SCons script to compile MHC evolution simulation model.
 The main idea behind it is, that in directory 'Scenarios' one
 creates a main_sth_sth.cpp file which is build from blocks coded
 in the source files. This script compiles the 'scenario' and
-writes the executable to SCBuild directory. 
+writes the executable to SCBuild directory.
 One retrieves the executable from there and runs the show. Be sure
 you complied the model on the architecture you gonna run in at.
 
@@ -21,12 +21,12 @@ cxxflaggs = "-std=c++1y"
 
 # normal compilation
 env = Environment(CCFLAGS='-O3',
-		  CPPPATH='/usr/include/boost/', 
+		  CPPPATH='/usr/include/boost/',
 		  CXXFLAGS=cxxflaggs)
 
 # debugging compilation
 env_dbg = Environment(CCFLAGS='-g',
-		  CPPPATH='/usr/include/boost/', 
+		  CPPPATH='/usr/include/boost/',
 		  CXXFLAGS=cxxflaggs)
 
 scenario = ARGUMENTS.get('scenario', 0)
@@ -43,9 +43,9 @@ except:
 
 OUTprog = "SCBuild/" + mainn.split("/")[-1].split(".")[0]
 SRS = ['DataHarvester.cpp', 'Environment.cpp', 'Gene.cpp',
-       'H2Pinteraction.cpp', 'Host.cpp', 'Pathogen.cpp',
-       'RandomNumbs.cpp', 'Tagging_system.cpp', local_main]
+       'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
+       'Pathogen.cpp','RandomNumbs.cpp', 'Tagging_system.cpp',
+       local_main]
 t = env.Program(target=OUTprog, source=SRS)
 #t_dbg = env_dbg.Program(target=OUTprog, source=SRS)
 Default(t)
-

@@ -109,10 +109,9 @@ void Environment::setHostPopulation(int pop_size, int gene_size,
  * @param numb_of_species - number of species
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
+void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
-    int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
     std::vector<Pathogen> OneSpeciesVector;
@@ -120,15 +119,15 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int gene_size,
         for(int j = 0; j < indiv_per_species; ++j){
             OneSpeciesVector.push_back(Pathogen());
             if(i+1 != indiv_per_species){
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size,
+                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
                         mhcSize, i, timeStamp);
             } else {
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size,
+                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
                         mhcSize,  i, timeStamp);
             }
             if(indiv_left){
                 OneSpeciesVector.push_back(Pathogen());
-                OneSpeciesVector.back().setNewPathogen(chrom_size, gene_size,
+                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
                         mhcSize,  i, timeStamp);
                 indiv_left--;
             }
@@ -198,7 +197,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int gene_size,
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
  */
-void Environment::infectOneFromOneSpecHetero(int simil_mesure){
+void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
     int j;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
@@ -206,8 +205,7 @@ void Environment::infectOneFromOneSpecHetero(int simil_mesure){
         for(int sp = 0; sp < PathPopulation.size(); ++sp){
             if(PathPopulation[sp].size()){
                 j = p_RandomNumbs->NextInt(0, PathPopulation[sp].size()-1);
-                H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i],
-                        PathPopulation[sp][j], simil_mesure);
+                H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
     }

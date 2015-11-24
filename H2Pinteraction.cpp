@@ -30,7 +30,7 @@
 
 typedef std::vector<unsigned long int> longIntVec;
 typedef std::vector<Gene> chromovector;
-typedef std::vector<Antigen>  antigenvector;
+typedef std::vector<Antigen> antigenvector;
 
 H2Pinteraction::H2Pinteraction() {
 }
@@ -43,22 +43,26 @@ H2Pinteraction::~H2Pinteraction() {
 
 
 /**
- * @brief Compares two genes if they have a span of length of N bits similar 
- * to each other.
+ * @brief Core method. Checks if the antigen is presented by a given MHC.
  * 
- * @param hostgene - first gene
- * @param pathogene - second gene
- * @param simil_mesure - how many bits need to be similar (N)
+ * Takes the the vector with epitopes (series of long unsigned integers) and
+ * checks if any of them is the same as the MHC gene (also presented as long
+ * unsigned integer). See function Antigen::calculateEpitopes(int mhcSize) that
+ * generates epitopes from a bit-string shaped antigen.
+ * 
+ * @param hostgen - a MHC gene
+ * @param antigen - vector of epitopes in a form of long unsigned integers
  * @return 'true' if gene is presented, 'false' if it's not
  */
-bool H2Pinteraction::presentGeneRow(unsigned long int hostgen, longIntVec antigen){
-    if(antigen.size()){
+bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antigen){
+    if(antigen.size() > 0){
         for(int i = 0; i < antigen.size(); ++i){
             if(antigen[i] == hostgen){ return true; }
+            std::cout << antigen[i] << std::endl;
         }
         return false;
     } else {
-        std::cout << "Error in H2Pinteraction::presentGeneRow(): antigen "\
+        std::cout << "Error in H2Pinteraction::presentAntigen(): antigen "\
                   << "vector is empty." << std::endl;
         return false;
     }
@@ -70,30 +74,27 @@ bool H2Pinteraction::presentGeneRow(unsigned long int hostgen, longIntVec antige
  * Heterozygote has an advantage here over homozygote and each species is 
  * allowed to infect a host only ONES.
  * 
- * Iterates through the host genome and trough the pathogen genome checking 
- * are there any genes which are being presented. If they are, then strike one
+ * Iterates through the host genome and trough the pathogen antigens checking 
+ * are there any antigens which are being presented. If they are, then strike one
  * for the host and pathogen gets rejected, if there are not, then the host gets
  * infected and a point for the pathogen. If a species is already found in the 
  * host then the procedure is abandoned.
  * 
  * @param host - a Host-class object
  * @param patho - a Pathogen-class object
- * @param simil_mesure - how many similar bits in a row two genes need to have
  */
-void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho,
-        int simil_mesure){
-    H2Pinteraction H2P;
-    chromovector tmppatho = patho.getChomosome();
+void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
+    antigenvector tmppatho = patho.getAllAntigens();
     chromovector tmphost = host.getChromosomeOne();
     if (host.PathoSpecInfecting.size()){
+        // Making sure a pathogen species infects only ones
         for (int w = 0; w < host.PathoSpecInfecting.size(); ++w){
             if(host.PathoSpecInfecting[w] == patho.getSpeciesTag()) return;
         }
     }
     for(int i = 0; i < tmphost.size(); ++i){
         for(int j = 0; j < tmppatho.size(); ++j){
-            if(H2P.presentGeneRow(tmphost[i].getBitGene(),
-                    tmppatho[j].getBitGene(), simil_mesure)){
+            if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
                 // the pathogen gets presented, the host evades infection:
 //                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
@@ -104,8 +105,7 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho,
     tmphost = host.getChromosomeTwo();
     for(int i = 0; i < tmphost.size(); ++i){
         for(int j = 0; j < tmppatho.size(); ++j){
-            if(presentGeneRow(tmphost[i].getBitGene(),
-                    tmppatho[j].getBitGene(), simil_mesure)){
+            if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
                 // the pathogen gets presented, the host evades infection:
 //                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;

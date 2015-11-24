@@ -48,7 +48,7 @@ public:
     int SelectedToReproduct;
     void setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
                         int species, int timeStamp);
-    antigenvector getChomosome();
+    antigenvector getAllAntigens();
     void chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp);
     void chromoMutProcessWithRestric(double mut_probabl, int mhcSize, int timeStamp,
                                      std::set<int>& noMutts);

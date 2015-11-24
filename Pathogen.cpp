@@ -28,7 +28,7 @@
 #include "Pathogen.h"
 
 typedef boost::dynamic_bitset<> antigentring;
-typedef std::vector<Antigen> proteinvector;
+typedef std::vector<Antigen> antigenvector;
 typedef std::string sttr;
 
 Pathogen::Pathogen() {
@@ -120,11 +120,11 @@ antigentring Pathogen::getSingleAntigen(int indx){
 }
 
 /**
- * @brief Core method. Fetches the pathogene's chromosome.
+ * @brief Core method. Fetches the pathogene's antigens.
  *
  * @return - vector of genes object (a chromosome).
  */
-proteinvector Pathogen::getChomosome(){
+antigenvector Pathogen::getAllAntigens(){
     return PathogenProts;
 }
 
@@ -148,7 +148,7 @@ void Pathogen::clearInfections(){
 }
 
 /**
- * @brief Data harvesting method. Returns a sting containing the whole pathogen
+ * @brief Data harvesting method. Returns a string containing the whole pathogen
  * genome in a human-readable format.
  *
  * @return STD string being in human readable format.

@@ -50,7 +50,7 @@ public:
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
     void setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
-    void infectOneFromOneSpecHetero(int simil_mesure);
+    void infectOneFromOneSpecHetero();
     void infectEveryOne(int simil_mesure);
     void calculateHostsFitnessPerGene();
     void calculateHostsFitnessPlainPresent();
