@@ -1,5 +1,5 @@
 <map id="Pathogen::getSpeciesTag" name="Pathogen::getSpeciesTag">
-<area shape="rect" id="node2" href="$class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="227,5,418,46"/>
-<area shape="rect" id="node3" href="$class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="467,5,656,46"/>
+<area shape="rect" id="node2" href="$class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="227,5,418,46"/>
+<area shape="rect" id="node3" href="$class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="467,5,656,46"/>
 <area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="704,12,755,39"/>
 </map>

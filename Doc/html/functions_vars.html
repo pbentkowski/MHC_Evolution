@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -100,7 +101,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,11 +112,15 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 <div class="contents">
 &#160;<ul>
+<li>AntigenTag
+: <a class="el" href="class_antigen.html#af84937fdc6af7fb222566b62bb5199d9">Antigen</a>
+</li>
 <li>GenesTag
 : <a class="el" href="class_gene.html#a0ca1205d9bb7895e2d33310dbf07e208">Gene</a>
 </li>
 <li>MutationTime
-: <a class="el" href="class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b">Gene</a>
+: <a class="el" href="class_antigen.html#a1e98b3215bc5b76d298c7457d1eaea09">Antigen</a>
+, <a class="el" href="class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b">Gene</a>
 </li>
 <li>NumOfHostsInfected
 : <a class="el" href="class_pathogen.html#a84c8ddaee9c9a5a96ab6d183d4f781a5">Pathogen</a>
@@ -130,7 +135,8 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="class_host.html#ad0411c059e63ed72507b0c370880b5ab">Host</a>
 </li>
 <li>ParentTags
-: <a class="el" href="class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b">Gene</a>
+: <a class="el" href="class_antigen.html#a6a0987eb093f450f52dadc74fc70ad2c">Antigen</a>
+, <a class="el" href="class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b">Gene</a>
 </li>
 <li>PathoSpecInfecting
 : <a class="el" href="class_host.html#a0d79bd02d6147f8e94ae975dc42ae026">Host</a>
@@ -142,10 +148,12 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="class_pathogen.html#a4b9ae991d5bb856a9a1a5211ca92cbd0">Pathogen</a>
 </li>
 <li>TheParentWas
-: <a class="el" href="class_gene.html#a5462b63a3fbcce8412386d49e09babc6">Gene</a>
+: <a class="el" href="class_antigen.html#a1d0f4cc39322541348ab9544ada385d0">Antigen</a>
+, <a class="el" href="class_gene.html#a5462b63a3fbcce8412386d49e09babc6">Gene</a>
 </li>
 <li>timeOfOrigin
-: <a class="el" href="class_gene.html#ac94d480860ec3e10326d9906eb3359c2">Gene</a>
+: <a class="el" href="class_antigen.html#a34d644c2c6cb99dc4b5573bed2f1a4ce">Antigen</a>
+, <a class="el" href="class_gene.html#ac94d480860ec3e10326d9906eb3359c2">Gene</a>
 </li>
 <li>TimeOfRecombin
 : <a class="el" href="class_host.html#a4ac8f1f9b0c989efbade931db22e236d">Host</a>
@@ -156,7 +164,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

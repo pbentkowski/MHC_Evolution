@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randomnumbs',['RandomNumbs',['../class_random_numbs.html',1,'']]]
+  ['pathogen',['Pathogen',['../class_pathogen.html',1,'']]]
 ];

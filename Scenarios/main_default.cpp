@@ -46,8 +46,7 @@ void printTipsToRun(){
     std::cout << " 6. Number of pathogen species." << std::endl;
     std::cout << " 7. Number of genes in one host chromosome (they have " << 
             "two chromosomes)." << std::endl;
-    std::cout << " 8. Number of genes in pathogen chromosome (they have " << 
-            "just one chromosome). " << std::endl;
+    std::cout << " 8. Number of antigens in a pathogen." << std::endl;
     std::cout << " 9. Number of pathogen generations per one host generation. " <<
             std::endl;
     std::cout << "10. Number of host generations (effective length of model run)." <<
@@ -74,7 +73,7 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here. 
  * 
  * Compile this program with:
- * $ g++ -g -O0 -o mem_test_MHC main.cpp Gene.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++11
+ * $ g++ -g -O0 -o mem_test_MHC main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++1y
  * Run Valgrind with:
  * valgrind --leak-check=yes --log-file="valgr.log" ./mem_test_MHC 12 > /home/piotr/Tempy/MHC_test/test.txt
  * 

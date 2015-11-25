@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -118,7 +119,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -131,6 +132,12 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>Antigen()
+: <a class="el" href="class_antigen.html#af245b9a3640a57d0e058d39571c1c872">Antigen</a>
+</li>
+<li>AntigenTag
+: <a class="el" href="class_antigen.html#af84937fdc6af7fb222566b62bb5199d9">Antigen</a>
+</li>
 <li>assignChromOne()
 : <a class="el" href="class_host.html#ac6ecd452f531bbcaf469d5d9d42b8028">Host</a>
 </li>
@@ -141,6 +148,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>calculateEpitopes()
+: <a class="el" href="class_antigen.html#a9c7caba41de5e44c9a0459cbbcc8421a">Antigen</a>
+</li>
 <li>calculateFitnessAccChromSize()
 : <a class="el" href="class_host.html#a6079285b3b8bb5280d52500e6b7fc7ef">Host</a>
 </li>
@@ -182,13 +192,16 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>chromoMutProcess()
 : <a class="el" href="class_host.html#a5911792258205cae25a2a4796061fe49">Host</a>
-, <a class="el" href="class_pathogen.html#a35dc3bcc890cb0d04481954c3741da48">Pathogen</a>
+, <a class="el" href="class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54">Pathogen</a>
 </li>
 <li>chromoMutProcessWithDelDupl()
 : <a class="el" href="class_host.html#a48c01d4345818b873ceed7597588bd6d">Host</a>
 </li>
 <li>chromoMutProcessWithDelDuplPointMuts()
 : <a class="el" href="class_host.html#a303c0d61ab48aaa709fccfcdd14a156e">Host</a>
+</li>
+<li>chromoMutProcessWithRestric()
+: <a class="el" href="class_pathogen.html#ab300396d0ea6a948be427461a88d1128">Pathogen</a>
 </li>
 <li>chromoRecombination()
 : <a class="el" href="class_host.html#ada5564c9d57e18ce046e131a5968e08f">Host</a>
@@ -213,17 +226,8 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>doCrossAndMeiosis()
 : <a class="el" href="class_host.html#a505527db337d87670e5ab37eb9818fa3">Host</a>
 </li>
-<li>doesInfectedAllToAll()
-: <a class="el" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198">H2Pinteraction</a>
-</li>
-<li>doesInfectedHeteroBetter()
-: <a class="el" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48">H2Pinteraction</a>
-</li>
 <li>doesInfectedHeteroOnePerSpec()
-: <a class="el" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536">H2Pinteraction</a>
-</li>
-<li>doesInfectedHomoBetter()
-: <a class="el" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b">H2Pinteraction</a>
+: <a class="el" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8">H2Pinteraction</a>
 </li>
 </ul>
 
@@ -242,11 +246,14 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>GenesTag
 : <a class="el" href="class_gene.html#a0ca1205d9bb7895e2d33310dbf07e208">Gene</a>
 </li>
+<li>getAllAntigens()
+: <a class="el" href="class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c">Pathogen</a>
+</li>
+<li>getBitAntigen()
+: <a class="el" href="class_antigen.html#a4acef29446bf39ad6685ac7f3e63c82f">Antigen</a>
+</li>
 <li>getBitGene()
 : <a class="el" href="class_gene.html#a3e0fc6e3368eb622a651223344940424">Gene</a>
-</li>
-<li>getChomosome()
-: <a class="el" href="class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076">Pathogen</a>
 </li>
 <li>getChromoOneSize()
 : <a class="el" href="class_host.html#aec728ae16d7c1186739730510a2c7e2e">Host</a>
@@ -265,6 +272,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>getChromoTwoUniqAlleles()
 : <a class="el" href="class_host.html#ad05b417630dd1095b967de411bdb350a">Host</a>
+</li>
+<li>getEpitopes()
+: <a class="el" href="class_antigen.html#aeebf005aeee7ea02f135550d127603dd">Antigen</a>
 </li>
 <li>getFitness()
 : <a class="el" href="class_host.html#a87d357c93783916037446bf8096ed45d">Host</a>
@@ -294,11 +304,14 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64">RandomNumbs</a>
 , <a class="el" href="class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba">Tagging_system</a>
 </li>
+<li>getOneEpitope()
+: <a class="el" href="class_antigen.html#ad103cc98588fa742d1eeccd9a578dcc6">Antigen</a>
+</li>
 <li>getOneGeneFromOne()
-: <a class="el" href="class_host.html#a4ed23268bef0abe7eed1221230469e83">Host</a>
+: <a class="el" href="class_host.html#a6d1d5bf85ae82cc62c7f693a575b2990">Host</a>
 </li>
 <li>getOneGeneFromTwo()
-: <a class="el" href="class_host.html#a27a4d3b2a6a5d804ad9726ebfb1e4562">Host</a>
+: <a class="el" href="class_host.html#a787c36f60a723e1567dd1a596ecec33e">Host</a>
 </li>
 <li>getPathoGenesToString()
 : <a class="el" href="class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c">Environment</a>
@@ -309,8 +322,8 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>getPathoSpeciesPopSize()
 : <a class="el" href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">Environment</a>
 </li>
-<li>getSingleGene()
-: <a class="el" href="class_pathogen.html#aeff0f129fde53b31b3c06750f595e509">Pathogen</a>
+<li>getSingleAntigen()
+: <a class="el" href="class_pathogen.html#a506c616d9766a7f0599b4070cb5a6981">Pathogen</a>
 </li>
 <li>getSingleGeneFromOne()
 : <a class="el" href="class_host.html#a8b8d1bb28ee49fcd337a0a5656595497">Host</a>
@@ -340,7 +353,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_tagging__system.html#af57001cb7fe7d78d05076231552d1911">Tagging_system</a>
 </li>
 <li>getTheRealGene()
-: <a class="el" href="class_gene.html#a3a42d7f7e61eeeb780c49e1622186256">Gene</a>
+: <a class="el" href="class_gene.html#a5053ceb89a7370e642555e3a392b6228">Gene</a>
 </li>
 </ul>
 
@@ -360,13 +373,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_environment.html#a670a9eaf38f556ab8ca096bc9a1433a5">Environment</a>
 </li>
 <li>infectOneFromOneSpecHetero()
-: <a class="el" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67">Environment</a>
-</li>
-<li>infectOneFromSpecHetero()
-: <a class="el" href="class_environment.html#a0a661773ff9876feb309fef46d112791">Environment</a>
-</li>
-<li>infectOneFromSpecHomo()
-: <a class="el" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2">Environment</a>
+: <a class="el" href="class_environment.html#aecd592b734359557235bb0a6980f77f9">Environment</a>
 </li>
 <li>inputParamsToFile()
 : <a class="el" href="class_data_harvester.html#a7c5c9707887a994ff450b0fcbb9fb806">DataHarvester</a>
@@ -380,6 +387,15 @@ $(document).ready(function(){initNavTree('functions.html','');});
 </li>
 <li>MMtoPMscaling()
 : <a class="el" href="class_environment.html#a13b07a4255b87d29541d0f78af6f49f7">Environment</a>
+</li>
+<li>mutateAntgBitByBitWithRes()
+: <a class="el" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f">Antigen</a>
+</li>
+<li>mutateAntigenBitByBit()
+: <a class="el" href="class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438">Antigen</a>
+</li>
+<li>mutateBitByBitWithRestric()
+: <a class="el" href="class_gene.html#ad4963d64c6b4b577809eda633e1221ef">Gene</a>
 </li>
 <li>mutateGeneBitByBit()
 : <a class="el" href="class_gene.html#a9179fd84199c114a1e8bcea73ae22c36">Gene</a>
@@ -397,10 +413,14 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_environment.html#a11ca1135314c732332eaf55b5890b57e">Environment</a>
 </li>
 <li>mutatePathogens()
-: <a class="el" href="class_environment.html#aca4e6ca55f909cd1f5e00e01daa1ac54">Environment</a>
+: <a class="el" href="class_environment.html#a54bc672882bea05101d65942b35cdc63">Environment</a>
+</li>
+<li>mutatePathogensWithRestric()
+: <a class="el" href="class_environment.html#abdeef3572f1c78873c14a5719f318fb5">Environment</a>
 </li>
 <li>MutationTime
-: <a class="el" href="class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b">Gene</a>
+: <a class="el" href="class_antigen.html#a1e98b3215bc5b76d298c7457d1eaea09">Antigen</a>
+, <a class="el" href="class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b">Gene</a>
 </li>
 </ul>
 
@@ -429,7 +449,8 @@ $(document).ready(function(){initNavTree('functions.html','');});
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>ParentTags
-: <a class="el" href="class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b">Gene</a>
+: <a class="el" href="class_antigen.html#a6a0987eb093f450f52dadc74fc70ad2c">Antigen</a>
+, <a class="el" href="class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b">Gene</a>
 </li>
 <li>Pathogen()
 : <a class="el" href="class_pathogen.html#adea224ac2875e8cc141ed3ee02534f6c">Pathogen</a>
@@ -437,11 +458,11 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>PathoSpecInfecting
 : <a class="el" href="class_host.html#a0d79bd02d6147f8e94ae975dc42ae026">Host</a>
 </li>
-<li>presentGeneAny()
-: <a class="el" href="class_h2_pinteraction.html#a11b71a877785721eafd397d82602e6bc">H2Pinteraction</a>
+<li>presentAntigen()
+: <a class="el" href="class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53">H2Pinteraction</a>
 </li>
-<li>presentGeneRow()
-: <a class="el" href="class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc">H2Pinteraction</a>
+<li>printAntigenToScreen()
+: <a class="el" href="class_antigen.html#a08ecd5321a466090806e0b5a100c394a">Antigen</a>
 </li>
 <li>printGenesFromGenome()
 : <a class="el" href="class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea">Pathogen</a>
@@ -508,6 +529,15 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <li>setHostPopulation()
 : <a class="el" href="class_environment.html#aaab3cda2672dc62d90497cdfb44fce48">Environment</a>
 </li>
+<li>setNewAntigen()
+: <a class="el" href="class_antigen.html#a91e70bf2cd04f672230167dda902e328">Antigen</a>
+</li>
+<li>setNewFixedAntigen()
+: <a class="el" href="class_antigen.html#ac3f3347b00ea3c2ea92f157825dc51e3">Antigen</a>
+</li>
+<li>setNewFixedGene()
+: <a class="el" href="class_gene.html#a2d8fbefc035bdbb42ad929b9acdbb608">Gene</a>
+</li>
 <li>setNewGene()
 : <a class="el" href="class_gene.html#adc0af7621bf0619648408824a495399e">Gene</a>
 </li>
@@ -515,16 +545,13 @@ $(document).ready(function(){initNavTree('functions.html','');});
 : <a class="el" href="class_host.html#aafa1539a8942e3e99dc6b49110a618c1">Host</a>
 </li>
 <li>setNewPathogen()
-: <a class="el" href="class_pathogen.html#a452b031ef4560a4797b2185b012cdafe">Pathogen</a>
+: <a class="el" href="class_pathogen.html#a92f9c25d79aeee5cffc482bcfca52c25">Pathogen</a>
 </li>
-<li>setPathoPopulation()
-: <a class="el" href="class_environment.html#ab40a47bf96f284336cb7b084535a76a6">Environment</a>
-</li>
-<li>setPathoPopulationSeparateGenePools()
-: <a class="el" href="class_environment.html#a173e43a134312fe68c53ca90a0cd23ca">Environment</a>
+<li>setPathoPopulatioDivSpecies()
+: <a class="el" href="class_environment.html#a62e2290459799b4a1cd0654339323a2b">Environment</a>
 </li>
 <li>setPathoPopulatioUniformGenome()
-: <a class="el" href="class_environment.html#a11a74223d880cdf45c8648c3d7ccb7fa">Environment</a>
+: <a class="el" href="class_environment.html#ac67b8e594e2cbd00d47f4c0745ef487f">Environment</a>
 </li>
 <li>SetSeed()
 : <a class="el" href="class_random_numbs.html#a8d886d9174fe7e5621638941af204ccd">RandomNumbs</a>
@@ -546,10 +573,12 @@ $(document).ready(function(){initNavTree('functions.html','');});
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>TheParentWas
-: <a class="el" href="class_gene.html#a5462b63a3fbcce8412386d49e09babc6">Gene</a>
+: <a class="el" href="class_antigen.html#a1d0f4cc39322541348ab9544ada385d0">Antigen</a>
+, <a class="el" href="class_gene.html#a5462b63a3fbcce8412386d49e09babc6">Gene</a>
 </li>
 <li>timeOfOrigin
-: <a class="el" href="class_gene.html#ac94d480860ec3e10326d9906eb3359c2">Gene</a>
+: <a class="el" href="class_antigen.html#a34d644c2c6cb99dc4b5573bed2f1a4ce">Antigen</a>
+, <a class="el" href="class_gene.html#ac94d480860ec3e10326d9906eb3359c2">Gene</a>
 </li>
 <li>TimeOfRecombin
 : <a class="el" href="class_host.html#a4ac8f1f9b0c989efbade931db22e236d">Host</a>
@@ -558,6 +587,9 @@ $(document).ready(function(){initNavTree('functions.html','');});
 
 
 <h3><a class="anchor" id="index_~"></a>- ~ -</h3><ul>
+<li>~Antigen()
+: <a class="el" href="class_antigen.html#afbe0268530144fdb70aabd52c94b55c6">Antigen</a>
+</li>
 <li>~DataHarvester()
 : <a class="el" href="class_data_harvester.html#ae535356b011f331d3031d5aff54b05c9">DataHarvester</a>
 </li>
@@ -582,7 +614,7 @@ $(document).ready(function(){initNavTree('functions.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

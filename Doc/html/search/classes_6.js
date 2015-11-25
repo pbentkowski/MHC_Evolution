@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tagging_5fsystem',['Tagging_system',['../class_tagging__system.html',1,'']]]
+  ['randomnumbs',['RandomNumbs',['../class_random_numbs.html',1,'']]]
 ];

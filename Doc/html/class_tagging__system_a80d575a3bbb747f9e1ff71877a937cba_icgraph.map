@@ -1,6 +1,10 @@
 <map id="Tagging_system::getInstance" name="Tagging_system::getInstance">
-<area shape="rect" id="node2" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="270,5,407,32"/>
-<area shape="rect" id="node3" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="254,56,423,83"/>
-<area shape="rect" id="node4" href="$class_gene.html#a9179fd84199c114a1e8bcea73ae22c36" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="249,107,429,133"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="313,157,364,184"/>
+<area shape="rect" id="node2" href="$class_antigen.html#a91e70bf2cd04f672230167dda902e328" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="257,5,420,32"/>
+<area shape="rect" id="node3" href="$class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="251,57,426,98"/>
+<area shape="rect" id="node4" href="$class_antigen.html#a6edb2d08312947e1c01d28cf659a564f" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="252,122,425,163"/>
+<area shape="rect" id="node5" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="270,188,407,215"/>
+<area shape="rect" id="node6" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="254,239,423,265"/>
+<area shape="rect" id="node7" href="$class_gene.html#a9179fd84199c114a1e8bcea73ae22c36" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="249,289,429,316"/>
+<area shape="rect" id="node8" href="$class_gene.html#ad4963d64c6b4b577809eda633e1221ef" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="251,341,427,382"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="313,407,364,433"/>
 </map>

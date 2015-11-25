@@ -14,7 +14,7 @@
  * Poland \n
  * 
  * 
- * @version 1.0
+ * @version 1.1
  * 
  * @section intro Introduction
  * This program is an implementation of the evolution dynamics of MHC described 
@@ -38,7 +38,7 @@
  * installed by running the command: \n 
  * \n 
  * $<b>
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++1y
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++1y
  * </b>\n \n
  * It should also compile with flag -std=c++11 only with minor warnings. \n
  * The code here can be also used like a toolbox for your research. You can stitch your own <i>main_yourown.cpp</i> file 
@@ -57,13 +57,13 @@
  * <b> 01 </b>- Seed for the RNG (when set to < 0 the program will seed the RNG engine itself with
  * a truly random number). \n
  * <b> 02 </b>- Number of bits in a gene. \n
- * <b> 03 </b>- Number of matching bits to expose a pathogen. \n
+ * <b> 03 </b>- Number of bits in an antigen. \n
  * <b> 04 </b>- Host population size. \n
  * <b> 05 </b>- Pathogen population size.\n
  * <b> 06 </b>- Number of pathogen species.\n
  * <b> 07 </b>- Number of genes in one host chromosome (they have two chromosomes) when the model
  * is being initialised. \n
- * <b> 08 </b>- Number of genes in pathogen chromosome (they have just one chromosome). \n
+ * <b> 08 </b>- Number of antigens in a pathogen. \n
  * <b> 09 </b>- Number of pathogen generations per one host generation. \n
  * <b> 10 </b>- Number of host generations (effective length of model run). \n
  * <b> 11 </b>- Probability of mutation in hosts ([0,1] range). \n

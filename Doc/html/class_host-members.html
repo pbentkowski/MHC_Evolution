@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_host.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -133,8 +134,8 @@ $(document).ready(function(){initNavTree('class_host.html','');});
   <tr><td class="entry"><a class="el" href="class_host.html#a10ec4eb6494084cbc99a4c28164b0761">getGenomeSize</a>()</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_host.html#a88a454efb7a483985eea815e2b285809">getHostIndvTag</a>()</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_host.html#a44931bdccc9732456a67db776b5e69c4">getHostMotherTag</a>()</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_host.html#a4ed23268bef0abe7eed1221230469e83">getOneGeneFromOne</a>(int indx)</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_host.html#a27a4d3b2a6a5d804ad9726ebfb1e4562">getOneGeneFromTwo</a>(int indx)</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_host.html#a6d1d5bf85ae82cc62c7f693a575b2990">getOneGeneFromOne</a>(int indx)</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_host.html#a787c36f60a723e1567dd1a596ecec33e">getOneGeneFromTwo</a>(int indx)</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_host.html#a8b8d1bb28ee49fcd337a0a5656595497">getSingleGeneFromOne</a>(int indx)</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_host.html#a8e57071a6138a8a975dba81be1d39e44">getSingleGeneFromTwo</a>(int indx)</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_host.html#a369c12e7425c030528bab0784da40e4b">Host</a>()</td><td class="entry"><a class="el" href="class_host.html">Host</a></td><td class="entry"></td></tr>
@@ -156,7 +157,7 @@ $(document).ready(function(){initNavTree('class_host.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

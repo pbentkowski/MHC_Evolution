@@ -1,0 +1,7 @@
+<map id="Antigen::setNewAntigen" name="Antigen::setNewAntigen">
+<area shape="rect" id="node2" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="216,5,411,32"/>
+<area shape="rect" id="node3" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="230,56,397,83"/>
+<area shape="rect" id="node4" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="219,107,408,133"/>
+<area shape="rect" id="node5" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="225,157,401,184"/>
+<area shape="rect" id="node6" href="$class_antigen.html#a9c7caba41de5e44c9a0459cbbcc8421a" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="225,208,402,235"/>
+</map>

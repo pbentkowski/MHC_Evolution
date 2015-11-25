@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['calculateepitopes',['calculateEpitopes',['../class_antigen.html#a9c7caba41de5e44c9a0459cbbcc8421a',1,'Antigen']]],
   ['calculatefitnessaccchromsize',['calculateFitnessAccChromSize',['../class_host.html#a6079285b3b8bb5280d52500e6b7fc7ef',1,'Host']]],
   ['calculatefitnessalphaxsqr',['calculateFitnessAlphaXSqr',['../class_host.html#aca12c9829c01995669e842876478c7fb',1,'Host']]],
   ['calculatefitnessexpfunc',['calculateFitnessExpFunc',['../class_host.html#a9134661842de046453acc0342ef74eb6',1,'Host']]],
@@ -13,9 +14,10 @@ var searchData=
   ['calculatehostsfitnesspergene',['calculateHostsFitnessPerGene',['../class_environment.html#ae63fad9a51f8700cf96cd3019f5a3bec',1,'Environment']]],
   ['calculatehostsfitnessplainpresent',['calculateHostsFitnessPlainPresent',['../class_environment.html#a2d11b6356c2d62e7ebf4c97115118c5c',1,'Environment']]],
   ['checkparamsifwrong',['checkParamsIfWrong',['../class_data_harvester.html#a329f51d0d5cf66a2e537f0ecf7f1a4be',1,'DataHarvester']]],
-  ['chromomutprocess',['chromoMutProcess',['../class_host.html#a5911792258205cae25a2a4796061fe49',1,'Host::chromoMutProcess()'],['../class_pathogen.html#a35dc3bcc890cb0d04481954c3741da48',1,'Pathogen::chromoMutProcess()']]],
+  ['chromomutprocess',['chromoMutProcess',['../class_host.html#a5911792258205cae25a2a4796061fe49',1,'Host::chromoMutProcess()'],['../class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54',1,'Pathogen::chromoMutProcess()']]],
   ['chromomutprocesswithdeldupl',['chromoMutProcessWithDelDupl',['../class_host.html#a48c01d4345818b873ceed7597588bd6d',1,'Host']]],
   ['chromomutprocesswithdelduplpointmuts',['chromoMutProcessWithDelDuplPointMuts',['../class_host.html#a303c0d61ab48aaa709fccfcdd14a156e',1,'Host']]],
+  ['chromomutprocesswithrestric',['chromoMutProcessWithRestric',['../class_pathogen.html#ab300396d0ea6a948be427461a88d1128',1,'Pathogen']]],
   ['chromorecombination',['chromoRecombination',['../class_host.html#ada5564c9d57e18ce046e131a5968e08f',1,'Host']]],
   ['clearhostinfectionsdata',['clearHostInfectionsData',['../class_environment.html#adff3e1c9799ef7a3bc8d7b988bda3381',1,'Environment']]],
   ['clearinfections',['clearInfections',['../class_host.html#a7c21e1938c61966dc2657a437aeec9b9',1,'Host::clearInfections()'],['../class_pathogen.html#a4a59ff7b7bb309ee22f1cc1503518f59',1,'Pathogen::clearInfections()']]],

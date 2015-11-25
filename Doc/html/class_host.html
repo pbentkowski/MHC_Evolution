@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_host.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -214,12 +215,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a481373a4981aad450aa666962f0c8252"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a481373a4981aad450aa666962f0c8252">stringChromosomes</a> ()</td></tr>
 <tr class="memdesc:a481373a4981aad450aa666962f0c8252"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Gives a host's genome in a human-readable format. With all the gene specs.  <a href="#a481373a4981aad450aa666962f0c8252">More...</a><br /></td></tr>
 <tr class="separator:a481373a4981aad450aa666962f0c8252"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ed23268bef0abe7eed1221230469e83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a4ed23268bef0abe7eed1221230469e83">getOneGeneFromOne</a> (int indx)</td></tr>
-<tr class="memdesc:a4ed23268bef0abe7eed1221230469e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a gene (as integer) with a given position on the Chromosome One.  <a href="#a4ed23268bef0abe7eed1221230469e83">More...</a><br /></td></tr>
-<tr class="separator:a4ed23268bef0abe7eed1221230469e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27a4d3b2a6a5d804ad9726ebfb1e4562"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a27a4d3b2a6a5d804ad9726ebfb1e4562">getOneGeneFromTwo</a> (int indx)</td></tr>
-<tr class="memdesc:a27a4d3b2a6a5d804ad9726ebfb1e4562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a gene (as integer) with a given position on the Chromosome Two.  <a href="#a27a4d3b2a6a5d804ad9726ebfb1e4562">More...</a><br /></td></tr>
-<tr class="separator:a27a4d3b2a6a5d804ad9726ebfb1e4562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1d5bf85ae82cc62c7f693a575b2990"><td class="memItemLeft" align="right" valign="top">unsigned long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a6d1d5bf85ae82cc62c7f693a575b2990">getOneGeneFromOne</a> (int indx)</td></tr>
+<tr class="memdesc:a6d1d5bf85ae82cc62c7f693a575b2990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a gene (as integer) with a given position on the Chromosome One.  <a href="#a6d1d5bf85ae82cc62c7f693a575b2990">More...</a><br /></td></tr>
+<tr class="separator:a6d1d5bf85ae82cc62c7f693a575b2990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a787c36f60a723e1567dd1a596ecec33e"><td class="memItemLeft" align="right" valign="top">unsigned long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a787c36f60a723e1567dd1a596ecec33e">getOneGeneFromTwo</a> (int indx)</td></tr>
+<tr class="memdesc:a787c36f60a723e1567dd1a596ecec33e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a gene (as integer) with a given position on the Chromosome Two.  <a href="#a787c36f60a723e1567dd1a596ecec33e">More...</a><br /></td></tr>
+<tr class="separator:a787c36f60a723e1567dd1a596ecec33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -834,7 +835,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_host_ac387176ba203f6aa1f20610f5679385a_icgraph.png" border="0" usemap="#class_host_ac387176ba203f6aa1f20610f5679385a_icgraph" alt=""/></div>
 <map name="class_host_ac387176ba203f6aa1f20610f5679385a_icgraph" id="class_host_ac387176ba203f6aa1f20610f5679385a_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node8" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,201,423,242"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node5" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,86,661,127"/><area shape="rect" id="node6" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,143,760,169"/><area shape="rect" id="node9" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,183,661,225"/></map>
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node3" href="class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,12,760,39"/></map>
 </div>
 </p>
 
@@ -863,7 +864,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_host_aa5afa38408ebba644f56667364213f0d_icgraph.png" border="0" usemap="#class_host_aa5afa38408ebba644f56667364213f0d_icgraph" alt=""/></div>
 <map name="class_host_aa5afa38408ebba644f56667364213f0d_icgraph" id="class_host_aa5afa38408ebba644f56667364213f0d_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node8" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,201,423,242"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node5" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,86,661,127"/><area shape="rect" id="node6" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,143,760,169"/><area shape="rect" id="node9" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,183,661,225"/></map>
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node3" href="class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,12,760,39"/></map>
 </div>
 </p>
 
@@ -988,12 +989,12 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a4ed23268bef0abe7eed1221230469e83"></a>
+<a class="anchor" id="a6d1d5bf85ae82cc62c7f693a575b2990"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Host::getOneGeneFromOne </td>
+          <td class="memname">unsigned long int Host::getOneGeneFromOne </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>indx</em></td><td>)</td>
@@ -1015,12 +1016,12 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a27a4d3b2a6a5d804ad9726ebfb1e4562"></a>
+<a class="anchor" id="a787c36f60a723e1567dd1a596ecec33e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Host::getOneGeneFromTwo </td>
+          <td class="memname">unsigned long int Host::getOneGeneFromTwo </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>indx</em></td><td>)</td>
@@ -1336,7 +1337,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_host.html">Host</a></li>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_h2_pinteraction.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,7 +111,7 @@ $(document).ready(function(){initNavTree('class_h2_pinteraction.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Core class. Handles interactions between the hosts and the pathogens.  
+<p>Core class. Handles interactions between hosts and pathogens.  
  <a href="class_h2_pinteraction.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_h2_pinteraction_8h_source.html">H2Pinteraction.h</a>&gt;</code></p>
@@ -121,26 +122,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4ea9649d7d2da587f072082e471604c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8477c9e2330f90bbd620ac29d5041180"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#a8477c9e2330f90bbd620ac29d5041180">~H2Pinteraction</a> ()</td></tr>
 <tr class="separator:a8477c9e2330f90bbd620ac29d5041180"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11b71a877785721eafd397d82602e6bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#a11b71a877785721eafd397d82602e6bc">presentGeneAny</a> (<a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> hostgene, <a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> pathogene, int simil_mesure)</td></tr>
-<tr class="memdesc:a11b71a877785721eafd397d82602e6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two genes if they have any N bits similar to each other in coresponding positions.  <a href="#a11b71a877785721eafd397d82602e6bc">More...</a><br /></td></tr>
-<tr class="separator:a11b71a877785721eafd397d82602e6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab637d7bd65852a9010815ea0371af6fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc">presentGeneRow</a> (<a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> hostgene, <a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> pathogene, int simil_mesure)</td></tr>
-<tr class="memdesc:ab637d7bd65852a9010815ea0371af6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two genes if they have a span of length of N bits similar to each other.  <a href="#ab637d7bd65852a9010815ea0371af6fc">More...</a><br /></td></tr>
-<tr class="separator:ab637d7bd65852a9010815ea0371af6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f7bf1e8ddca1ec044e16b12250c0c48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48">doesInfectedHeteroBetter</a> (<a class="el" href="class_host.html">Host</a> &amp;host, <a class="el" href="class_pathogen.html">Pathogen</a> &amp;patho, int simil_mesure)</td></tr>
-<tr class="memdesc:a9f7bf1e8ddca1ec044e16b12250c0c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over homozygote.  <a href="#a9f7bf1e8ddca1ec044e16b12250c0c48">More...</a><br /></td></tr>
-<tr class="separator:a9f7bf1e8ddca1ec044e16b12250c0c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c97c7853bd3fd598e8b9ede78bb137b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b">doesInfectedHomoBetter</a> (<a class="el" href="class_host.html">Host</a> &amp;host, <a class="el" href="class_pathogen.html">Pathogen</a> &amp;patho, int simil_mesure)</td></tr>
-<tr class="memdesc:a5c97c7853bd3fd598e8b9ede78bb137b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over homozygote.  <a href="#a5c97c7853bd3fd598e8b9ede78bb137b">More...</a><br /></td></tr>
-<tr class="separator:a5c97c7853bd3fd598e8b9ede78bb137b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfc3d116ed9d383ac3f2c50507684198"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198">doesInfectedAllToAll</a> (<a class="el" href="class_host.html">Host</a> &amp;host, <a class="el" href="class_pathogen.html">Pathogen</a> &amp;patho, int simil_mesure)</td></tr>
-<tr class="separator:adfc3d116ed9d383ac3f2c50507684198"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb100d698e9e11d50d06c49e436ea536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536">doesInfectedHeteroOnePerSpec</a> (<a class="el" href="class_host.html">Host</a> &amp;host, <a class="el" href="class_pathogen.html">Pathogen</a> &amp;patho, int simil_mesure)</td></tr>
-<tr class="memdesc:adb100d698e9e11d50d06c49e436ea536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over homozygote and each species is allowed to infect a host only ONES.  <a href="#adb100d698e9e11d50d06c49e436ea536">More...</a><br /></td></tr>
-<tr class="separator:adb100d698e9e11d50d06c49e436ea536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63bc3afa414686c4c7d9a500f3d4a53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53">presentAntigen</a> (unsigned long int hostgen, <a class="el" href="_antigen_8cpp.html#af96d678c365026888775071990bfb736">longIntVec</a> antigen)</td></tr>
+<tr class="memdesc:ae63bc3afa414686c4c7d9a500f3d4a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Checks if the antigen is presented by a given MHC.  <a href="#ae63bc3afa414686c4c7d9a500f3d4a53">More...</a><br /></td></tr>
+<tr class="separator:ae63bc3afa414686c4c7d9a500f3d4a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46703648dcef05c6478d6249aeadd2c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8">doesInfectedHeteroOnePerSpec</a> (<a class="el" href="class_host.html">Host</a> &amp;host, <a class="el" href="class_pathogen.html">Pathogen</a> &amp;patho)</td></tr>
+<tr class="memdesc:a46703648dcef05c6478d6249aeadd2c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over homozygote and each species is allowed to infect a host only ONES.  <a href="#a46703648dcef05c6478d6249aeadd2c8">More...</a><br /></td></tr>
+<tr class="separator:a46703648dcef05c6478d6249aeadd2c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Core class. Handles interactions between the hosts and the pathogens. </p>
+<div class="textblock"><p>Core class. Handles interactions between hosts and pathogens. </p>
 
 <p>Definition at line <a class="el" href="_h2_pinteraction_8h_source.html#l00036">36</a> of file <a class="el" href="_h2_pinteraction_8h_source.html">H2Pinteraction.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -187,113 +177,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adfc3d116ed9d383ac3f2c50507684198"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void H2Pinteraction::doesInfectedAllToAll </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_host.html">Host</a> &amp;&#160;</td>
-          <td class="paramname"><em>host</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_pathogen.html">Pathogen</a> &amp;&#160;</td>
-          <td class="paramname"><em>patho</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simil_mesure</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00213">213</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_adfc3d116ed9d383ac3f2c50507684198_cgraph.png" border="0" usemap="#class_h2_pinteraction_adfc3d116ed9d383ac3f2c50507684198_cgraph" alt=""/></div>
-<map name="class_h2_pinteraction_adfc3d116ed9d383ac3f2c50507684198_cgraph" id="class_h2_pinteraction_adfc3d116ed9d383ac3f2c50507684198_cgraph">
-<area shape="rect" id="node2" href="class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076" title="Core method. Fetches the pathogene&#39;s chromosome. " alt="" coords="266,5,443,32"/><area shape="rect" id="node3" href="class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="265,56,444,83"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc" title="Compares two genes if they have a span of length of N bits similar to each other. ..." alt="" coords="246,107,463,133"/><area shape="rect" id="node5" href="class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="265,157,444,184"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a9f7bf1e8ddca1ec044e16b12250c0c48"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void H2Pinteraction::doesInfectedHeteroBetter </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_host.html">Host</a> &amp;&#160;</td>
-          <td class="paramname"><em>host</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_pathogen.html">Pathogen</a> &amp;&#160;</td>
-          <td class="paramname"><em>patho</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simil_mesure</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over homozygote. </p>
-<p>Iterates through the host genome and trough the pathogen genome checking are there any genes which are being presented. If they are, then strike one for the host and pathogen gets rejected, if there are not, then the host gets infected and a point for the pathogen.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">host</td><td>- a Host-class object </td></tr>
-    <tr><td class="paramname">patho</td><td>- a Pathogen-class object </td></tr>
-    <tr><td class="paramname">simil_mesure</td><td>- how many similar bits in a row two genes need to have </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00121">121</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_cgraph.png" border="0" usemap="#class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_cgraph" alt=""/></div>
-<map name="class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_cgraph" id="class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_cgraph">
-<area shape="rect" id="node2" href="class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076" title="Core method. Fetches the pathogene&#39;s chromosome. " alt="" coords="266,5,443,32"/><area shape="rect" id="node3" href="class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="265,56,444,83"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc" title="Compares two genes if they have a span of length of N bits similar to each other. ..." alt="" coords="246,107,463,133"/><area shape="rect" id="node5" href="class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="265,157,444,184"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_icgraph.png" border="0" usemap="#class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_icgraph" alt=""/></div>
-<map name="class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_icgraph" id="class_h2_pinteraction_a9f7bf1e8ddca1ec044e16b12250c0c48_icgraph">
-<area shape="rect" id="node2" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="245,5,435,46"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="adb100d698e9e11d50d06c49e436ea536"></a>
+<a class="anchor" id="a46703648dcef05c6478d6249aeadd2c8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -307,13 +191,7 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_pathogen.html">Pathogen</a> &amp;&#160;</td>
-          <td class="paramname"><em>patho</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simil_mesure</em>&#160;</td>
+          <td class="paramname"><em>patho</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -324,59 +202,52 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over homozygote and each species is allowed to infect a host only ONES. </p>
-<p>Iterates through the host genome and trough the pathogen genome checking are there any genes which are being presented. If they are, then strike one for the host and pathogen gets rejected, if there are not, then the host gets infected and a point for the pathogen. If a species is already found in the host then the procedure is abandoned.</p>
+<p>Iterates through the host genome and trough the pathogen antigens checking are there any antigens which are being presented. If they are, then strike one for the host and pathogen gets rejected, if there are not, then the host gets infected and a point for the pathogen. If a species is already found in the host then the procedure is abandoned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">host</td><td>- a Host-class object </td></tr>
     <tr><td class="paramname">patho</td><td>- a Pathogen-class object </td></tr>
-    <tr><td class="paramname">simil_mesure</td><td>- how many similar bits in a row two genes need to have </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00267">267</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00085">85</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_cgraph.png" border="0" usemap="#class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_cgraph" alt=""/></div>
-<map name="class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_cgraph" id="class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_cgraph">
-<area shape="rect" id="node2" href="class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076" title="Core method. Fetches the pathogene&#39;s chromosome. " alt="" coords="266,5,443,32"/><area shape="rect" id="node3" href="class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="265,56,444,83"/><area shape="rect" id="node4" href="class_pathogen.html#ada9e5929d6736f63377f0625153b224b" title="Core method. Fetches a species tag. " alt="" coords="269,107,441,133"/><area shape="rect" id="node5" href="class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc" title="Compares two genes if they have a span of length of N bits similar to each other. ..." alt="" coords="246,157,463,184"/><area shape="rect" id="node6" href="class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="265,208,444,235"/></map>
+<div class="center"><img src="class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_cgraph.png" border="0" usemap="#class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_cgraph" alt=""/></div>
+<map name="class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_cgraph" id="class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_cgraph">
+<area shape="rect" id="node2" href="class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c" title="Core method. Fetches the pathogene&#39;s antigens. " alt="" coords="262,5,431,32"/><area shape="rect" id="node3" href="class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="257,56,436,83"/><area shape="rect" id="node4" href="class_pathogen.html#ada9e5929d6736f63377f0625153b224b" title="Core method. Fetches a species tag. " alt="" coords="261,107,433,133"/><area shape="rect" id="node5" href="class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53" title="Core method. Checks if the antigen is presented by a given MHC. " alt="" coords="245,157,448,184"/><area shape="rect" id="node6" href="class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="257,208,436,235"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_icgraph.png" border="0" usemap="#class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_icgraph" alt=""/></div>
-<map name="class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_icgraph" id="class_h2_pinteraction_adb100d698e9e11d50d06c49e436ea536_icgraph">
-<area shape="rect" id="node2" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="245,5,435,46"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="483,12,533,39"/></map>
+<div class="center"><img src="class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_icgraph.png" border="0" usemap="#class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_icgraph" alt=""/></div>
+<map name="class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_icgraph" id="class_h2_pinteraction_a46703648dcef05c6478d6249aeadd2c8_icgraph">
+<area shape="rect" id="node2" href="class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="245,5,435,46"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="483,12,533,39"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a5c97c7853bd3fd598e8b9ede78bb137b"></a>
+<a class="anchor" id="ae63bc3afa414686c4c7d9a500f3d4a53"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void H2Pinteraction::doesInfectedHomoBetter </td>
+          <td class="memname">bool H2Pinteraction::presentAntigen </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_host.html">Host</a> &amp;&#160;</td>
-          <td class="paramname"><em>host</em>, </td>
+          <td class="paramtype">unsigned long int&#160;</td>
+          <td class="paramname"><em>hostgen</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_pathogen.html">Pathogen</a> &amp;&#160;</td>
-          <td class="paramname"><em>patho</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simil_mesure</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="_antigen_8cpp.html#af96d678c365026888775071990bfb736">longIntVec</a>&#160;</td>
+          <td class="paramname"><em>antigen</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -386,133 +257,25 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over homozygote. </p>
-<p>Iterates through the host genome and trough the pathogen genome checking are there any genes which are being presented. If they are, then good for the host and pathogen gets rejected, if there are not, then the host gets infected and a point for the pathogen. If the host is a homozygote, then it scores double on the fitness scale then a homozygote.</p>
+<p>Core method. Checks if the antigen is presented by a given MHC. </p>
+<p>Takes the the vector with epitopes (series of long unsigned integers) and checks if any of them is the same as the MHC gene (also presented as long unsigned integer). See function <a class="el" href="class_antigen.html#a9c7caba41de5e44c9a0459cbbcc8421a" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. ">Antigen::calculateEpitopes(int mhcSize)</a> that generates epitopes from a bit-string shaped antigen.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">host</td><td>- a Host-class object </td></tr>
-    <tr><td class="paramname">patho</td><td>- a Pathogen-class object </td></tr>
-    <tr><td class="paramname">simil_mesure</td><td>- how many similar bits in a row two genes need to have </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00171">171</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_cgraph.png" border="0" usemap="#class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_cgraph" alt=""/></div>
-<map name="class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_cgraph" id="class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_cgraph">
-<area shape="rect" id="node2" href="class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076" title="Core method. Fetches the pathogene&#39;s chromosome. " alt="" coords="266,5,443,32"/><area shape="rect" id="node3" href="class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="265,56,444,83"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc" title="Compares two genes if they have a span of length of N bits similar to each other. ..." alt="" coords="246,107,463,133"/><area shape="rect" id="node5" href="class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="265,157,444,184"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_icgraph.png" border="0" usemap="#class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_icgraph" alt=""/></div>
-<map name="class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_icgraph" id="class_h2_pinteraction_a5c97c7853bd3fd598e8b9ede78bb137b_icgraph">
-<area shape="rect" id="node2" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="245,5,435,46"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="483,12,533,39"/></map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a11b71a877785721eafd397d82602e6bc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool H2Pinteraction::presentGeneAny </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td>
-          <td class="paramname"><em>hostgene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td>
-          <td class="paramname"><em>pathogene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simil_mesure</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Compares two genes if they have any N bits similar to each other in coresponding positions. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hostgene</td><td>- first gene </td></tr>
-    <tr><td class="paramname">pathogene</td><td>- second gene </td></tr>
-    <tr><td class="paramname">simil_mesure</td><td>- how many bits need to be similar (N) </td></tr>
+    <tr><td class="paramname">hostgen</td><td>- a MHC gene </td></tr>
+    <tr><td class="paramname">antigen</td><td>- vector of epitopes in a form of long unsigned integers </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>'true' if gene is presented, 'false' if it's not </dd></dl>
 
-<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00053">53</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab637d7bd65852a9010815ea0371af6fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool H2Pinteraction::presentGeneRow </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td>
-          <td class="paramname"><em>hostgene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td>
-          <td class="paramname"><em>pathogene</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simil_mesure</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Compares two genes if they have a span of length of N bits similar to each other. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">hostgene</td><td>- first gene </td></tr>
-    <tr><td class="paramname">pathogene</td><td>- second gene </td></tr>
-    <tr><td class="paramname">simil_mesure</td><td>- how many bits need to be similar (N) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>'true' if gene is presented, 'false' if it's not </dd></dl>
-
-<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00082">82</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_h2_pinteraction_8cpp_source.html#l00057">57</a> of file <a class="el" href="_h2_pinteraction_8cpp_source.html">H2Pinteraction.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_h2_pinteraction_ab637d7bd65852a9010815ea0371af6fc_icgraph.png" border="0" usemap="#class_h2_pinteraction_ab637d7bd65852a9010815ea0371af6fc_icgraph" alt=""/></div>
-<map name="class_h2_pinteraction_ab637d7bd65852a9010815ea0371af6fc_icgraph" id="class_h2_pinteraction_ab637d7bd65852a9010815ea0371af6fc_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="273,5,463,46"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="273,70,463,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="273,135,463,177"/><area shape="rect" id="node8" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="273,201,463,242"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="512,5,701,46"/><area shape="rect" id="node5" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="512,86,701,127"/><area shape="rect" id="node6" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="749,143,800,169"/><area shape="rect" id="node9" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="512,183,701,225"/></map>
+<div class="center"><img src="class_h2_pinteraction_ae63bc3afa414686c4c7d9a500f3d4a53_icgraph.png" border="0" usemap="#class_h2_pinteraction_ae63bc3afa414686c4c7d9a500f3d4a53_icgraph" alt=""/></div>
+<map name="class_h2_pinteraction_ae63bc3afa414686c4c7d9a500f3d4a53_icgraph" id="class_h2_pinteraction_ae63bc3afa414686c4c7d9a500f3d4a53_icgraph">
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="257,5,447,46"/><area shape="rect" id="node3" href="class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="496,5,685,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="733,12,784,39"/></map>
 </div>
 </p>
 
@@ -528,7 +291,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_h2_pinteraction.html">H2Pinteraction</a></li>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

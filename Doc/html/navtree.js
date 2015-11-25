@@ -7,6 +7,7 @@ var NAVTREE =
       [ "Parameters", "index.html#Parameters", null ],
       [ "Output and data visualisation", "index.html#The", null ]
     ] ],
+    [ "Evolution of MHC repertoire and number of copies:", "md__r_e_a_d_m_e.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],

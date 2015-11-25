@@ -1,5 +1,6 @@
 var annotated =
 [
+    [ "Antigen", "class_antigen.html", "class_antigen" ],
     [ "DataHarvester", "class_data_harvester.html", "class_data_harvester" ],
     [ "Environment", "class_environment.html", "class_environment" ],
     [ "Gene", "class_gene.html", "class_gene" ],

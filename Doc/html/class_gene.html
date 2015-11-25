@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_gene.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -128,6 +129,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4528d6cfa148c0df540b412e263611d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a4528d6cfa148c0df540b412e263611d2">setNewGene</a> (int lenght, int low_lim, int up_lim, int timeStamp)</td></tr>
 <tr class="memdesc:a4528d6cfa148c0df540b412e263611d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new gene filling it with a random bit-string of a given length selected from an interval within given values.  <a href="#a4528d6cfa148c0df540b412e263611d2">More...</a><br /></td></tr>
 <tr class="separator:a4528d6cfa148c0df540b412e263611d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8fbefc035bdbb42ad929b9acdbb608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a2d8fbefc035bdbb42ad929b9acdbb608">setNewFixedGene</a> (int lenght, int timeStamp, int fixedGene, unsigned long int fixedTag)</td></tr>
+<tr class="memdesc:a2d8fbefc035bdbb42ad929b9acdbb608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new gene filling it with a random bit-string of a given length.  <a href="#a2d8fbefc035bdbb42ad929b9acdbb608">More...</a><br /></td></tr>
+<tr class="separator:a2d8fbefc035bdbb42ad929b9acdbb608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a625cc7e2a230d7e9594da553aed60c17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a625cc7e2a230d7e9594da553aed60c17">mutateGeneWhole</a> (double mut_prob_whole, int timeStamp)</td></tr>
 <tr class="memdesc:a625cc7e2a230d7e9594da553aed60c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Mutates a gene by overwriting a whole new bit-string.  <a href="#a625cc7e2a230d7e9594da553aed60c17">More...</a><br /></td></tr>
 <tr class="separator:a625cc7e2a230d7e9594da553aed60c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,12 +141,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9179fd84199c114a1e8bcea73ae22c36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a9179fd84199c114a1e8bcea73ae22c36">mutateGeneBitByBit</a> (double pm_mut_probabl, int timeStamp)</td></tr>
 <tr class="memdesc:a9179fd84199c114a1e8bcea73ae22c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one.  <a href="#a9179fd84199c114a1e8bcea73ae22c36">More...</a><br /></td></tr>
 <tr class="separator:a9179fd84199c114a1e8bcea73ae22c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4963d64c6b4b577809eda633e1221ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#ad4963d64c6b4b577809eda633e1221ef">mutateBitByBitWithRestric</a> (double pm_mut_probabl, int timeStamp, std::set&lt; int &gt; &amp;noMutts)</td></tr>
+<tr class="memdesc:ad4963d64c6b4b577809eda633e1221ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one. But certain bits are not permitted to mutate - these are specified in a global std::set.  <a href="#ad4963d64c6b4b577809eda633e1221ef">More...</a><br /></td></tr>
+<tr class="separator:ad4963d64c6b4b577809eda633e1221ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e0fc6e3368eb622a651223344940424"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a3e0fc6e3368eb622a651223344940424">getBitGene</a> ()</td></tr>
 <tr class="memdesc:a3e0fc6e3368eb622a651223344940424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the gene in a bit-string format, can be used to pass the gene string to an another method.  <a href="#a3e0fc6e3368eb622a651223344940424">More...</a><br /></td></tr>
 <tr class="separator:a3e0fc6e3368eb622a651223344940424"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a42d7f7e61eeeb780c49e1622186256"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a3a42d7f7e61eeeb780c49e1622186256">getTheRealGene</a> ()</td></tr>
-<tr class="memdesc:a3a42d7f7e61eeeb780c49e1622186256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the gene it it integer form. The gene is a private data field to prevent it from being changed accidently.  <a href="#a3a42d7f7e61eeeb780c49e1622186256">More...</a><br /></td></tr>
-<tr class="separator:a3a42d7f7e61eeeb780c49e1622186256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5053ceb89a7370e642555e3a392b6228"><td class="memItemLeft" align="right" valign="top">unsigned long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#a5053ceb89a7370e642555e3a392b6228">getTheRealGene</a> ()</td></tr>
+<tr class="memdesc:a5053ceb89a7370e642555e3a392b6228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the gene it it integer form. The gene is a private data field to prevent it from being changed accidently.  <a href="#a5053ceb89a7370e642555e3a392b6228">More...</a><br /></td></tr>
+<tr class="separator:a5053ceb89a7370e642555e3a392b6228"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac0df5c1d80054e7191bad9bfb325c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gene.html#aac0df5c1d80054e7191bad9bfb325c00">printGeneToScreen</a> ()</td></tr>
 <tr class="memdesc:aac0df5c1d80054e7191bad9bfb325c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary method useful for debugging. Prints a gene to the screen.  <a href="#aac0df5c1d80054e7191bad9bfb325c00">More...</a><br /></td></tr>
 <tr class="separator:aac0df5c1d80054e7191bad9bfb325c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,7 +170,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Core class. Stores and handles a single gene object. Has methods to access and to mutate a gene. </p>
 
-<p>Definition at line <a class="el" href="_gene_8h_source.html#l00036">36</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8h_source.html#l00037">37</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad69dbc920dfb0678c5ff23f0d905d1b6"></a>
 <div class="memitem">
@@ -178,7 +185,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00032">32</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00033">33</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
@@ -203,7 +210,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00038">38</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00039">39</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
@@ -224,16 +231,16 @@ Public Attributes</h2></td></tr>
 <p>Core method. Returns the gene in a bit-string format, can be used to pass the gene string to an another method. </p>
 <dl class="section return"><dt>Returns</dt><dd>bitgene - a gene in a bit-string format, a boost::dynamic_bitset object. </dd></dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00175">175</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00229">229</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3a42d7f7e61eeeb780c49e1622186256"></a>
+<a class="anchor" id="a5053ceb89a7370e642555e3a392b6228"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Gene::getTheRealGene </td>
+          <td class="memname">unsigned long int Gene::getTheRealGene </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -244,7 +251,60 @@ Public Attributes</h2></td></tr>
 <p>Core method. Returns the gene it it integer form. The gene is a private data field to prevent it from being changed accidently. </p>
 <dl class="section return"><dt>Returns</dt><dd>integer representation of a gene. </dd></dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00186">186</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00240">240</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad4963d64c6b4b577809eda633e1221ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gene::mutateBitByBitWithRestric </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>pm_mut_probabl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>noMutts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one. But certain bits are not permitted to mutate - these are specified in a global std::set. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mut_probabl</td><td>- probability of mutating a single bit. </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration). </td></tr>
+    <tr><td class="paramname">noMutts</td><td>- a std::set containing indices of residues of the bit-string that are not allowed to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00201">201</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_gene_ad4963d64c6b4b577809eda633e1221ef_cgraph.png" border="0" usemap="#class_gene_ad4963d64c6b4b577809eda633e1221ef_cgraph" alt=""/></div>
+<map name="class_gene_ad4963d64c6b4b577809eda633e1221ef_cgraph" id="class_gene_ad4963d64c6b4b577809eda633e1221ef_cgraph">
+<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="232,5,421,32"/><area shape="rect" id="node3" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="239,56,415,83"/><area shape="rect" id="node4" href="class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="229,107,424,133"/><area shape="rect" id="node5" href="class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="243,157,410,184"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -275,13 +335,13 @@ Public Attributes</h2></td></tr>
 <p>Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to an opposite one. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mut_probabl</td><td>- probability of mutating a single bit. </td></tr>
+    <tr><td class="paramname">pm_mut_probabl</td><td>- probability of mutating a single bit. </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00150">150</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00172">172</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -327,7 +387,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00100">100</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00122">122</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -387,7 +447,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00122">122</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00144">144</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -415,7 +475,59 @@ Here is the call graph for this function:</div>
 
 <p>Auxiliary method useful for debugging. Prints a gene to the screen. </p>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00193">193</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00247">247</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d8fbefc035bdbb42ad929b9acdbb608"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Gene::setNewFixedGene </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fixedGene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long int&#160;</td>
+          <td class="paramname"><em>fixedTag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Sets a new gene filling it with a random bit-string of a given length. </p>
+<p>The value of the gene is given here by the user.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">length</td><td>- number of bits in a gene. </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration) </td></tr>
+    <tr><td class="paramname">fixedGene</td><td>- the gene value </td></tr>
+    <tr><td class="paramname">fixedTag</td><td>- tag value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00074">74</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 </div>
 </div>
@@ -453,7 +565,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00051">51</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00052">52</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -514,7 +626,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00073">73</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8cpp_source.html#l00095">95</a> of file <a class="el" href="_gene_8cpp_source.html">Gene.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -538,7 +650,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8h_source.html#l00054">54</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8h_source.html#l00059">59</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
 
 </div>
 </div>
@@ -552,7 +664,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8h_source.html#l00053">53</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8h_source.html#l00058">58</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
 
 </div>
 </div>
@@ -566,7 +678,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8h_source.html#l00052">52</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8h_source.html#l00057">57</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
 
 </div>
 </div>
@@ -580,7 +692,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8h_source.html#l00051">51</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8h_source.html#l00056">56</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
 
 </div>
 </div>
@@ -594,7 +706,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_gene_8h_source.html#l00050">50</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
+<p>Definition at line <a class="el" href="_gene_8h_source.html#l00055">55</a> of file <a class="el" href="_gene_8h_source.html">Gene.h</a>.</p>
 
 </div>
 </div>
@@ -608,7 +720,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_gene.html">Gene</a></li>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

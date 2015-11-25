@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mutationtime',['MutationTime',['../class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b',1,'Gene']]]
+  ['genestag',['GenesTag',['../class_gene.html#a0ca1205d9bb7895e2d33310dbf07e208',1,'Gene']]]
 ];

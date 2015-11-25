@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['_7edataharvester',['~DataHarvester',['../class_data_harvester.html#ae535356b011f331d3031d5aff54b05c9',1,'DataHarvester']]],
-  ['_7eenvironment',['~Environment',['../class_environment.html#a8e294735187880dd3d59be10c425b29d',1,'Environment']]],
-  ['_7egene',['~Gene',['../class_gene.html#a484db8c57339433d3555475ef4ad2a61',1,'Gene']]],
-  ['_7eh2pinteraction',['~H2Pinteraction',['../class_h2_pinteraction.html#a8477c9e2330f90bbd620ac29d5041180',1,'H2Pinteraction']]],
-  ['_7ehost',['~Host',['../class_host.html#a6c14f16c39ae6bc5db2672e0141adccd',1,'Host']]],
-  ['_7epathogen',['~Pathogen',['../class_pathogen.html#a3732c4d3e828dc368f85106768a643c1',1,'Pathogen']]]
+  ['tagging_5fsystem',['Tagging_system',['../class_tagging__system.html',1,'']]],
+  ['tagging_5fsystem_2ecpp',['Tagging_system.cpp',['../_tagging__system_8cpp.html',1,'']]],
+  ['tagging_5fsystem_2eh',['Tagging_system.h',['../_tagging__system_8h.html',1,'']]],
+  ['theparentwas',['TheParentWas',['../class_antigen.html#a1d0f4cc39322541348ab9544ada385d0',1,'Antigen::TheParentWas()'],['../class_gene.html#a5462b63a3fbcce8412386d49e09babc6',1,'Gene::TheParentWas()']]],
+  ['timeoforigin',['timeOfOrigin',['../class_antigen.html#a34d644c2c6cb99dc4b5573bed2f1a4ce',1,'Antigen::timeOfOrigin()'],['../class_gene.html#ac94d480860ec3e10326d9906eb3359c2',1,'Gene::timeOfOrigin()']]],
+  ['timeofrecombin',['TimeOfRecombin',['../class_host.html#a4ac8f1f9b0c989efbade931db22e236d',1,'Host']]]
 ];

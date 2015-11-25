@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,7 +93,7 @@ $(document).ready(function(){initNavTree('class_pathogen.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,7 +112,7 @@ $(document).ready(function(){initNavTree('class_pathogen.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of <a class="el" href="class_gene.html" title="Core class. Stores and handles a single gene object. Has methods to access and to mutate a gene...">Gene</a> class objects and stores them in a vector called ChromosomePat.  
+<p>Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of <a class="el" href="class_antigen.html">Antigen</a> class objects and stores them in a vector called PathogenProts.  
  <a href="class_pathogen.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pathogen_8h_source.html">Pathogen.h</a>&gt;</code></p>
@@ -122,21 +123,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adea224ac2875e8cc141ed3ee02534f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3732c4d3e828dc368f85106768a643c1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a3732c4d3e828dc368f85106768a643c1">~Pathogen</a> ()</td></tr>
 <tr class="separator:a3732c4d3e828dc368f85106768a643c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a452b031ef4560a4797b2185b012cdafe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a452b031ef4560a4797b2185b012cdafe">setNewPathogen</a> (int num_of_loci, int gene_size, int species, int timeStamp)</td></tr>
-<tr class="memdesc:a452b031ef4560a4797b2185b012cdafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> object.  <a href="#a452b031ef4560a4797b2185b012cdafe">More...</a><br /></td></tr>
-<tr class="separator:a452b031ef4560a4797b2185b012cdafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc045e6c64dc2a6e997d819b7470f18b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#afc045e6c64dc2a6e997d819b7470f18b">setNewPathogen</a> (int num_of_loci, int gene_size, int species, int low_lim, int up_lim, int timeStamp)</td></tr>
-<tr class="memdesc:afc045e6c64dc2a6e997d819b7470f18b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> object.  <a href="#afc045e6c64dc2a6e997d819b7470f18b">More...</a><br /></td></tr>
-<tr class="separator:afc045e6c64dc2a6e997d819b7470f18b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af721c6841459cb8e6e1d39d89d4ce076"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_h2_pinteraction_8cpp.html#adcfab8f2ed9ed0c694cb95d35c91aa78">chromovector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076">getChomosome</a> ()</td></tr>
-<tr class="memdesc:af721c6841459cb8e6e1d39d89d4ce076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches the pathogene's chromosome.  <a href="#af721c6841459cb8e6e1d39d89d4ce076">More...</a><br /></td></tr>
-<tr class="separator:af721c6841459cb8e6e1d39d89d4ce076"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35dc3bcc890cb0d04481954c3741da48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a35dc3bcc890cb0d04481954c3741da48">chromoMutProcess</a> (double mut_probabl, int timeStamp)</td></tr>
-<tr class="memdesc:a35dc3bcc890cb0d04481954c3741da48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Decides (on a random basis) if there will be any mutations in the genome.  <a href="#a35dc3bcc890cb0d04481954c3741da48">More...</a><br /></td></tr>
-<tr class="separator:a35dc3bcc890cb0d04481954c3741da48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeff0f129fde53b31b3c06750f595e509"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#aeff0f129fde53b31b3c06750f595e509">getSingleGene</a> (int indx)</td></tr>
-<tr class="memdesc:aeff0f129fde53b31b3c06750f595e509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a single gene from a genome in a bit-string format.  <a href="#aeff0f129fde53b31b3c06750f595e509">More...</a><br /></td></tr>
-<tr class="separator:aeff0f129fde53b31b3c06750f595e509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92f9c25d79aeee5cffc482bcfca52c25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a92f9c25d79aeee5cffc482bcfca52c25">setNewPathogen</a> (int num_of_loci, int antigen_size, int mhcSize, int species, int timeStamp)</td></tr>
+<tr class="memdesc:a92f9c25d79aeee5cffc482bcfca52c25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object.  <a href="#a92f9c25d79aeee5cffc482bcfca52c25">More...</a><br /></td></tr>
+<tr class="separator:a92f9c25d79aeee5cffc482bcfca52c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ddcd5dc3951338533cc35b5b2d059c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_h2_pinteraction_8cpp.html#a78bd532ea5641f9e5e33e0c9b28ed71b">antigenvector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c">getAllAntigens</a> ()</td></tr>
+<tr class="memdesc:a87ddcd5dc3951338533cc35b5b2d059c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches the pathogene's antigens.  <a href="#a87ddcd5dc3951338533cc35b5b2d059c">More...</a><br /></td></tr>
+<tr class="separator:a87ddcd5dc3951338533cc35b5b2d059c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ff2de42802d4c4649295a500fa9b54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54">chromoMutProcess</a> (double mut_probabl, int mhcSize, int timeStamp)</td></tr>
+<tr class="memdesc:a03ff2de42802d4c4649295a500fa9b54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Decides (on a random basis) if there will be any mutations in the genome.  <a href="#a03ff2de42802d4c4649295a500fa9b54">More...</a><br /></td></tr>
+<tr class="separator:a03ff2de42802d4c4649295a500fa9b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab300396d0ea6a948be427461a88d1128"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#ab300396d0ea6a948be427461a88d1128">chromoMutProcessWithRestric</a> (double mut_probabl, int mhcSize, int timeStamp, std::set&lt; int &gt; &amp;noMutts)</td></tr>
+<tr class="memdesc:ab300396d0ea6a948be427461a88d1128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Decides (on a random basis) if there will be any mutations in the genome. But some positions in the bit-string are not allowed to change.  <a href="#ab300396d0ea6a948be427461a88d1128">More...</a><br /></td></tr>
+<tr class="separator:ab300396d0ea6a948be427461a88d1128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a506c616d9766a7f0599b4070cb5a6981"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a506c616d9766a7f0599b4070cb5a6981">getSingleAntigen</a> (int indx)</td></tr>
+<tr class="memdesc:a506c616d9766a7f0599b4070cb5a6981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a single antigen from a genome in a bit-string format.  <a href="#a506c616d9766a7f0599b4070cb5a6981">More...</a><br /></td></tr>
+<tr class="separator:a506c616d9766a7f0599b4070cb5a6981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada9e5929d6736f63377f0625153b224b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#ada9e5929d6736f63377f0625153b224b">getSpeciesTag</a> ()</td></tr>
 <tr class="memdesc:ada9e5929d6736f63377f0625153b224b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches a species tag.  <a href="#ada9e5929d6736f63377f0625153b224b">More...</a><br /></td></tr>
 <tr class="separator:ada9e5929d6736f63377f0625153b224b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4a59ff7b7bb309ee22f1cc1503518f59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Zeroing infection and reproduction flags.  <a href="#a4a59ff7b7bb309ee22f1cc1503518f59">More...</a><br /></td></tr>
 <tr class="separator:a4a59ff7b7bb309ee22f1cc1503518f59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad879ba5dc9ca0fe3fa68eb800b3446f3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#ad879ba5dc9ca0fe3fa68eb800b3446f3">stringGenesFromGenome</a> ()</td></tr>
-<tr class="memdesc:ad879ba5dc9ca0fe3fa68eb800b3446f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Returns a sting containing the whole pathogen genome in a human-readable format.  <a href="#ad879ba5dc9ca0fe3fa68eb800b3446f3">More...</a><br /></td></tr>
+<tr class="memdesc:ad879ba5dc9ca0fe3fa68eb800b3446f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Returns a string containing the whole pathogen genome in a human-readable format.  <a href="#ad879ba5dc9ca0fe3fa68eb800b3446f3">More...</a><br /></td></tr>
 <tr class="separator:ad879ba5dc9ca0fe3fa68eb800b3446f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7146f4adc796ff8f71e8828930a563ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea">printGenesFromGenome</a> ()</td></tr>
 <tr class="memdesc:a7146f4adc796ff8f71e8828930a563ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary method useful for debugging. Prints genome to screen.  <a href="#a7146f4adc796ff8f71e8828930a563ea">More...</a><br /></td></tr>
@@ -158,7 +159,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4b9ae991d5bb856a9a1a5211ca92cbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of <a class="el" href="class_gene.html" title="Core class. Stores and handles a single gene object. Has methods to access and to mutate a gene...">Gene</a> class objects and stores them in a vector called ChromosomePat. </p>
+<div class="textblock"><p>Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of <a class="el" href="class_antigen.html">Antigen</a> class objects and stores them in a vector called PathogenProts. </p>
 
 <p>Definition at line <a class="el" href="_pathogen_8h_source.html#l00040">40</a> of file <a class="el" href="_pathogen_8h_source.html">Pathogen.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -205,7 +206,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a35dc3bcc890cb0d04481954c3741da48"></a>
+<a class="anchor" id="a03ff2de42802d4c4649295a500fa9b54"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -214,6 +215,12 @@ Public Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>mut_probabl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mhcSize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -239,7 +246,57 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00108">108</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00079">79</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab300396d0ea6a948be427461a88d1128"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Pathogen::chromoMutProcessWithRestric </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mut_probabl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mhcSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::set&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>noMutts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Decides (on a random basis) if there will be any mutations in the genome. But some positions in the bit-string are not allowed to change. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mut_probabl</td><td>- mutation probability, a probability a gene will be replaced by a new one </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration) </td></tr>
+    <tr><td class="paramname">noMutts</td><td>- a std::set containing indices of residues of the bit-string that are not allowed to change </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00098">98</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 </div>
 </div>
@@ -258,16 +315,16 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Zeroing infection and reproduction flags. </p>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00155">155</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00144">144</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af721c6841459cb8e6e1d39d89d4ce076"></a>
+<a class="anchor" id="a87ddcd5dc3951338533cc35b5b2d059c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_h2_pinteraction_8cpp.html#adcfab8f2ed9ed0c694cb95d35c91aa78">chromovector</a> Pathogen::getChomosome </td>
+          <td class="memname"><a class="el" href="_h2_pinteraction_8cpp.html#a78bd532ea5641f9e5e33e0c9b28ed71b">antigenvector</a> Pathogen::getAllAntigens </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -275,28 +332,28 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Fetches the pathogene's chromosome. </p>
+<p>Core method. Fetches the pathogene's antigens. </p>
 <dl class="section return"><dt>Returns</dt><dd>- vector of genes object (a chromosome). </dd></dl>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00138">138</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00127">127</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_pathogen_af721c6841459cb8e6e1d39d89d4ce076_icgraph.png" border="0" usemap="#class_pathogen_af721c6841459cb8e6e1d39d89d4ce076_icgraph" alt=""/></div>
-<map name="class_pathogen_af721c6841459cb8e6e1d39d89d4ce076_icgraph" id="class_pathogen_af721c6841459cb8e6e1d39d89d4ce076_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#a9f7bf1e8ddca1ec044e16b12250c0c48" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,5,423,46"/><area shape="rect" id="node4" href="class_h2_pinteraction.html#a5c97c7853bd3fd598e8b9ede78bb137b" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has NO advantage here over ..." alt="" coords="233,70,423,111"/><area shape="rect" id="node7" href="class_h2_pinteraction.html#adfc3d116ed9d383ac3f2c50507684198" title="H2Pinteraction::doesInfected\lAllToAll" alt="" coords="233,135,423,177"/><area shape="rect" id="node8" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="233,201,423,242"/><area shape="rect" id="node3" href="class_environment.html#a0a661773ff9876feb309fef46d112791" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,5,661,46"/><area shape="rect" id="node5" href="class_environment.html#aee43093857db6e5fe74f9f8e4647a5f2" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,86,661,127"/><area shape="rect" id="node6" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="709,143,760,169"/><area shape="rect" id="node9" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="472,183,661,225"/></map>
+<div class="center"><img src="class_pathogen_a87ddcd5dc3951338533cc35b5b2d059c_icgraph.png" border="0" usemap="#class_pathogen_a87ddcd5dc3951338533cc35b5b2d059c_icgraph" alt=""/></div>
+<map name="class_pathogen_a87ddcd5dc3951338533cc35b5b2d059c_icgraph" id="class_pathogen_a87ddcd5dc3951338533cc35b5b2d059c_icgraph">
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="225,5,415,46"/><area shape="rect" id="node3" href="class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="464,5,653,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="701,12,752,39"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aeff0f129fde53b31b3c06750f595e509"></a>
+<a class="anchor" id="a506c616d9766a7f0599b4070cb5a6981"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> Pathogen::getSingleGene </td>
+          <td class="memname"><a class="el" href="_antigen_8cpp.html#ad97c7c1f29eace3e06910fa49ae6d3a8">antigentring</a> Pathogen::getSingleAntigen </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>indx</em></td><td>)</td>
@@ -305,7 +362,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Fetches a single gene from a genome in a bit-string format. </p>
+<p>Core method. Fetches a single antigen from a genome in a bit-string format. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">indx</td><td>- index number of gene in a chromosome </td></tr>
@@ -314,7 +371,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>- a Boost's dynamic bit string object </dd></dl>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00123">123</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00112">112</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 </div>
 </div>
@@ -334,14 +391,14 @@ Here is the caller graph for this function:</div>
 <p>Core method. Fetches a species tag. </p>
 <dl class="section return"><dt>Returns</dt><dd>- integer being the species tag. </dd></dl>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00148">148</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00137">137</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_pathogen_ada9e5929d6736f63377f0625153b224b_icgraph.png" border="0" usemap="#class_pathogen_ada9e5929d6736f63377f0625153b224b_icgraph" alt=""/></div>
 <map name="class_pathogen_ada9e5929d6736f63377f0625153b224b_icgraph" id="class_pathogen_ada9e5929d6736f63377f0625153b224b_icgraph">
-<area shape="rect" id="node2" href="class_h2_pinteraction.html#adb100d698e9e11d50d06c49e436ea536" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="227,5,418,46"/><area shape="rect" id="node3" href="class_environment.html#a49b1a9a74a608f8adbeb8fa1ec67fa67" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="467,5,656,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="704,12,755,39"/></map>
+<area shape="rect" id="node2" href="class_h2_pinteraction.html#a46703648dcef05c6478d6249aeadd2c8" title="Core method. Checks if a host gets infected with a pathogen. Heterozygote has an advantage here over ..." alt="" coords="227,5,418,46"/><area shape="rect" id="node3" href="class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="467,5,656,46"/><area shape="rect" id="node4" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="704,12,755,39"/></map>
 </div>
 </p>
 
@@ -362,11 +419,11 @@ Here is the caller graph for this function:</div>
 
 <p>Auxiliary method useful for debugging. Prints genome to screen. </p>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00189">189</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00178">178</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a452b031ef4560a4797b2185b012cdafe"></a>
+<a class="anchor" id="a92f9c25d79aeee5cffc482bcfca52c25"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -380,7 +437,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gene_size</em>, </td>
+          <td class="paramname"><em>antigen_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mhcSize</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -402,8 +465,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> object. </p>
-<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings). Value of a gene is randomly assigned from an interval between 0 and 2^N-1, where N is the number of bits in a gene.</p>
+<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object. </p>
+<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings). Value of a gene is randomly assigned from an interval between 0 and 2^N-1, where N is the number of bits in a gene.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num_of_loci</td><td>- number of gene loci in a chromosome </td></tr>
@@ -415,72 +478,6 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00056">56</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afc045e6c64dc2a6e997d819b7470f18b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Pathogen::setNewPathogen </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>num_of_loci</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gene_size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>species</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>low_lim</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>up_lim</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>timeStamp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> object. </p>
-<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen has multiple instances of Gene...">Pathogen</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings). Value of a gene is randomly assigned from a user-specified interval.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">num_of_loci</td><td>- number of gene loci in a chromosome </td></tr>
-    <tr><td class="paramname">gene_size</td><td>- the length of the bit-string representing a gene </td></tr>
-    <tr><td class="paramname">species</td><td>- user-defined number of species </td></tr>
-    <tr><td class="paramname">low_lim</td><td>- lower limit of the range of permitted bit-string values </td></tr>
-    <tr><td class="paramname">up_lim</td><td>- upper limit of the range of permitted bit-string values </td></tr>
-    <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00082">82</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 </div>
 </div>
@@ -497,10 +494,10 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Data harvesting method. Returns a sting containing the whole pathogen genome in a human-readable format. </p>
+<p>Data harvesting method. Returns a string containing the whole pathogen genome in a human-readable format. </p>
 <dl class="section return"><dt>Returns</dt><dd>STD string being in human readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00167">167</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_pathogen_8cpp_source.html#l00156">156</a> of file <a class="el" href="_pathogen_8cpp_source.html">Pathogen.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +540,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_pathogen.html">Pathogen</a></li>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

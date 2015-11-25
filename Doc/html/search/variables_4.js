@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['selectedforreproduction',['SelectedForReproduction',['../class_host.html#a50bc219031501dd2c19a69d4e3f19533',1,'Host']]],
-  ['selectedtoreproduct',['SelectedToReproduct',['../class_pathogen.html#a4b9ae991d5bb856a9a1a5211ca92cbd0',1,'Pathogen']]]
+  ['parenttags',['ParentTags',['../class_antigen.html#a6a0987eb093f450f52dadc74fc70ad2c',1,'Antigen::ParentTags()'],['../class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b',1,'Gene::ParentTags()']]],
+  ['pathospecinfecting',['PathoSpecInfecting',['../class_host.html#a0d79bd02d6147f8e94ae975dc42ae026',1,'Host']]]
 ];

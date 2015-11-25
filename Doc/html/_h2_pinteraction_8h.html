@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +92,7 @@ $(document).ready(function(){initNavTree('_h2_pinteraction_8h.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,7 +118,7 @@ Include dependency graph for H2Pinteraction.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_h2_pinteraction_8h__incl.png" border="0" usemap="#_h2_pinteraction_8h" alt=""/></div>
 <map name="_h2_pinteraction_8h" id="_h2_pinteraction_8h">
-<area shape="rect" id="node3" href="_host_8h.html" title="Host.h" alt="" coords="97,80,158,107"/><area shape="rect" id="node9" href="_random_numbs_8h.html" title="RandomNumbs.h" alt="" coords="401,229,525,256"/><area shape="rect" id="node11" href="_pathogen_8h.html" title="Pathogen.h" alt="" coords="194,80,282,107"/><area shape="rect" id="node7" href="_gene_8h.html" title="Gene.h" alt="" coords="339,155,403,181"/></map>
+<area shape="rect" id="node3" href="_host_8h.html" title="Host.h" alt="" coords="146,80,208,107"/><area shape="rect" id="node10" href="_random_numbs_8h.html" title="RandomNumbs.h" alt="" coords="483,229,606,256"/><area shape="rect" id="node12" href="_pathogen_8h.html" title="Pathogen.h" alt="" coords="266,80,354,107"/><area shape="rect" id="node7" href="_gene_8h.html" title="Gene.h" alt="" coords="128,155,192,181"/><area shape="rect" id="node13" href="_antigen_8h.html" title="Antigen.h" alt="" coords="430,155,506,181"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -132,21 +133,22 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_h2_pinteraction.html">H2Pinteraction</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core class. Handles interactions between the hosts and the pathogens.  <a href="class_h2_pinteraction.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core class. Handles interactions between hosts and pathogens.  <a href="class_h2_pinteraction.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a108efa7670466d15a5ecafb60bbc9c37"><td class="memItemLeft" align="right" valign="top">typedef boost::dynamic_bitset&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_h2_pinteraction_8h.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a></td></tr>
-<tr class="separator:a108efa7670466d15a5ecafb60bbc9c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af96d678c365026888775071990bfb736"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; unsigned <br class="typebreak" />
+long int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_h2_pinteraction_8h.html#af96d678c365026888775071990bfb736">longIntVec</a></td></tr>
+<tr class="separator:af96d678c365026888775071990bfb736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="a108efa7670466d15a5ecafb60bbc9c37"></a>
+<a class="anchor" id="af96d678c365026888775071990bfb736"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef boost::dynamic_bitset <a class="el" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a></td>
+          <td class="memname">typedef std::vector&lt;unsigned long int&gt; <a class="el" href="_antigen_8cpp.html#af96d678c365026888775071990bfb736">longIntVec</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -161,7 +163,7 @@ Typedefs</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_h2_pinteraction_8h.html">H2Pinteraction.h</a></li>
-    <li class="footer">Generated on Tue Sep 15 2015 17:53:00 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
