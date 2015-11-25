@@ -57,12 +57,11 @@ H2Pinteraction::~H2Pinteraction() {
 bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antigen){
     if(antigen.size() > 0){
         for(int i = 0; i < antigen.size(); ++i){
-            if(antigen[i] == hostgen){ return true; }
-            std::cout << antigen[i] << std::endl;
+            if(antigen[i] == hostgen){ return true; }            
         }
         return false;
     } else {
-        std::cout << "Error in H2Pinteraction::presentAntigen(): antigen "\
+        std::cout << "Error in H2Pinteraction::presentAntigen(): epitope "\
                   << "vector is empty." << std::endl;
         return false;
     }

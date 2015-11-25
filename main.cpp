@@ -101,14 +101,14 @@ int main(int argc, char** argv) {
         printTipsToRun();
         return 0;
     }
-    int rndSeed, geneLength, antigenLength, hostPopSize, pathoPopSize, patho_sp,
+    int rndSeed, mhcGeneLength, antigenLength, hostPopSize, pathoPopSize, patho_sp,
         hostGeneNumbb, pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations,
         HeteroHomo, maxGene;
     double hostMutationProb, pathoMutationProb, deletion, duplication, alpha;
     // Check if input params are numbers
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
-        geneLength = boost::lexical_cast<int>(argv[2]);
+        mhcGeneLength = boost::lexical_cast<int>(argv[2]);
         antigenLength = boost::lexical_cast<int>(argv[3]);
         hostPopSize = boost::lexical_cast<int>(argv[4]);
         pathoPopSize = boost::lexical_cast<int>(argv[5]);
@@ -134,7 +134,7 @@ int main(int argc, char** argv) {
     }
     // Load the input params
     rndSeed = atoi(argv[1]);
-    geneLength = atoi(argv[2]);
+    mhcGeneLength = atoi(argv[2]);
     antigenLength = atoi(argv[3]);
     hostPopSize = atoi(argv[4]);
     pathoPopSize = atoi(argv[5]);
@@ -161,7 +161,7 @@ int main(int argc, char** argv) {
     DataHarvester Data2file;  // Initialize the data harvesting mechanism
     
     // Check if input params are of any sense
-    if (Data2file.checkParamsIfWrong(rndSeed, geneLength, antigenLength, hostPopSize, 
+    if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, antigenLength, hostPopSize, 
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations,
             hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
@@ -175,7 +175,7 @@ int main(int argc, char** argv) {
     std::cout << "Everything seems fine. Running the model." << std::endl;
     
     // Save input parameters to file
-    Data2file.inputParamsToFile(rndSeed, geneLength, antigenLength, hostPopSize, 
+    Data2file.inputParamsToFile(rndSeed, mhcGeneLength, antigenLength, hostPopSize, 
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
             pathoMutationProb, HeteroHomo, deletion, duplication, maxGene, alpha);
@@ -190,17 +190,17 @@ int main(int argc, char** argv) {
 
 // ======================================
 
-    Environment ENV;
+    Environment ENV; // Initialize the simulation environment 
     Data2file.setAllFilesAsFirtsTimers();
     // mutation exclusion set
     // TODO: make that a function which generates this sets. Consider moving it
     //       to Pathogen class
     std::set<int> noMutss = {17};
     
-    ENV.setHostPopulation(hostPopSize, geneLength, hostGeneNumbb, 0);
+    ENV.setHostPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     ENV.setPathoPopulatioUniformGenome(pathoPopSize, antigenLength, pathoGeneNumb,
-                                       patho_sp, geneLength, 0);
-    hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, geneLength);
+                                       patho_sp, mhcGeneLength, 0);
+    hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv", std::ios::out | std::ios::ate | std::ios::app);
     InputParams << "# Other_information:" << std::endl;
@@ -220,7 +220,7 @@ int main(int argc, char** argv) {
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
                 ENV.selectAndReproducePathoFixedPopSizes();
-                ENV.mutatePathogens(pathoMutationProb, antigenLength, i);
+                ENV.mutatePathogens(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
             ENV.calculateHostsFitnessPlainPresent();
@@ -240,7 +240,7 @@ int main(int argc, char** argv) {
     }
 
     ENV.selectAndReproducePathoFixedPopSizes();
-    ENV.mutatePathogens(pathoMutationProb, antigenLength, numOfHostGenerations);
+    ENV.mutatePathogens(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
     ENV.calculateHostsFitnessPlainPresent();
     ENV.selectAndReprodHostsReplace();
     ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 
