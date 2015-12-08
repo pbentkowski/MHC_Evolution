@@ -33,6 +33,10 @@
 typedef boost::dynamic_bitset<> antigentring;
 typedef std::vector<unsigned long int> longIntVec;
 
+/**
+ * @brief Core class. Stores and handles a single antigen object. Has methods to 
+ * access and to mutate antigen. It is used by the pathogen class objects.
+ */
 class Antigen {
 public:
     Antigen();

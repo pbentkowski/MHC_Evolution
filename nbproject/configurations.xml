@@ -55,6 +55,7 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <standard>10</standard>
           <commandlineTool>g++</commandlineTool>
           <incDir>
             <pElem>../build/include</pElem>

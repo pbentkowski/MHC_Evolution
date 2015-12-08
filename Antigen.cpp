@@ -164,15 +164,30 @@ antigentring Antigen::getBitAntigen(){
     return TheAntigen;
 }
 
-
+/**
+ * @brief Core method. Returns the epitope with the given index.
+ * 
+ * @param idx - index of the interesitng epitope
+ * @return the epitope (as a number)
+ */
 unsigned long int Antigen::getOneEpitope(int idx){
-    if(Epitopes.size()){
+    if(idx < Epitopes.size() and idx >= 0){
         return Epitopes[idx];
     } else {
         return -1;
     }
 }
 
+/**
+ * @brief Core method. Returns the epitopes that can be generated from one
+ * antigen. 
+ * 
+ * It is a vector containing epitopes created by a sliding frame of a size equal
+ * to the size of MHC bit string. Epitopes are represented by long unsigned 
+ * integers.
+ * 
+ * @return a vector of long unsigned int numbers.
+ */
 longIntVec Antigen::getEpitopes(){
     return Epitopes;
 }

@@ -32,7 +32,7 @@
 #include "DataHarvester.h"
 
 /**
- * @brief A handful of tips about the input parameters.
+ * @brief A handful of tips about the input parameters printed to screen.
  */
 void printTipsToRun(){
     std::cout << std::endl;
