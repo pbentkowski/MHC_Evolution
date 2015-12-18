@@ -99,7 +99,7 @@ def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
 
 
 def hamDistBetweenIndv(indOne, indTwo):
-    """Takes two sets of antigens (tow individual pathogens) and compares them
+    """Takes two sets of antigens (two individual pathogens) and compares them
     (antigen by antigen) according to Hamming distance."""
     try:
         compArr = np.zeros(len(indOne) * len(indTwo))
@@ -280,9 +280,9 @@ def main():
     except:
         print "Can't load file named", sys.argv[2], ". Check if it exists."
         sys.exit()
-    F_init = bitSimInterSpec(L_init, bitfit)
+    F_init = hamDistInterSpecies(L_init)
     print "Similarities in the First file have been calculated!"
-    F_endd = bitSimInterSpec(L_endd, bitfit)
+    F_endd = hamDistInterSpecies(L_endd)
     print "Similarities in the Second file have been calculated!"
     # === More generic plot ===
     ax_label = 20
@@ -301,7 +301,7 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+#    plt.xlim(0., 1.)
     plt.subplot(122)
     xx = np.zeros(len(F_endd))
     for ii, itm in enumerate(F_endd):
@@ -312,7 +312,7 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+#    plt.xlim(0., 1.)
     plt.savefig("SPP_sim_one.png")
     #  === Now the detailed plot! ===
     plt.figure(2, figsize=(16, 8))
@@ -324,7 +324,7 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+#    plt.xlim(0., 1.)
 #    plt.ylim(ymax=200)
     plt.subplot(122)
     plt.hist(F_endd, edgecolor="none")
@@ -333,7 +333,7 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+#    plt.xlim(0., 1.)
 #    plt.ylim(ymax=200)
     plt.savefig("SPP_sim_two.png")
 

@@ -50,9 +50,9 @@ def main():
     Ymax = 200
     textXlocal = 1500
 
-    pathoGenSize = 20  # change to select a different set of data
+    pathoGenSize = 1  # change to select a different set of data
     pathoNumSpec = int(sys.argv[1])  # change to select a different set of data
-    saveFiggs = True  # True to save figures to disk, False to not save
+    saveFiggs = False  # True to save figures to disk, False to not save
 
     nnn = "antigens: " + str(pathoGenSize) + "   species: " + str(pathoNumSpec)
 

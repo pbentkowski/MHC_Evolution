@@ -45,6 +45,7 @@ def main():
     print "Probability that a random bit string of length", minFits, "will",
     print "fit into a larger random bit string of length", numBits, "is:"
     print " p =", probOfStreak(numBits, minFits)
+    print "\nDONE!"
 
 if __name__ == "__main__":
     main()
