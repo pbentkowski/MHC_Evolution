@@ -1,7 +1,8 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Doc string here...
+Plots generic statistics referring to time evolution of MHCs in hosts. These
+are the number of MHC types, diversity of MHC types, host fitness etc.
 
 Created on Mon May 18 17:03:31 2015
 for Evolutionary Biology Group, Faculty of Biology
@@ -150,7 +151,7 @@ def main():
             i = i + 1
             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 30.0])
+            p.axis([0, Xmax, 0, 10.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
     ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',
