@@ -48,7 +48,7 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 200
+    Ymax = 100
     textXlocal = 1500
 
     pathoGenSize = 1  # change to select a different set of data
@@ -59,28 +59,31 @@ def main():
 
     dec_places = '%1.0f'
 
-    p.figure(1, figsize=(14, 7))
+    p.figure(1, figsize=(16, 14))
     i = 1
     for item in TheData:
         if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[4][annotShift + i*annotScale])
-    #        print XX, YY
-            if item[2] == "YES":
-                ax = p.plot(item[3], item[4], 'r-')
-            else:
-                ax = p.plot(item[3], item[4], 'b-')
+            p.subplot(211)
+            p.plot(item[3], item[7], 'b-')
+            p.ylabel("total number of genes", fontsize=AxLabelFontSize)
+            p.xticks(size=AxisTickFontSize)
+            p.yticks(size=AxisTickFontSize)
+            p.grid()
+            p.subplot(212)
+            p.plot(item[3], item[4], 'r-')
 #            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
 #                            xycoords='data', fontsize=AnnotateFontSize)
             i = i + 1
-            p.ylabel('number of alles', fontsize=AxLabelFontSize)
+            p.ylabel('number of  MHCs alles', fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
             p.axis([0, Xmax, 0, Ymax])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
+            p.grid()
     ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
-    p.grid()
     if saveFiggs:
         p.savefig("g_" + str(pathoGenSize) + ".s_" +
                   str(pathoNumSpec) + "_allel_num.png")
@@ -151,11 +154,11 @@ def main():
             i = i + 1
             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 10.0])
+            p.axis([0, Xmax, 0, 30.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',
-                    fontsize=AnnotateFontSize)
+#    ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',
+#                    fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
         p.savefig("g_" + str(pathoGenSize) + ".s_" +

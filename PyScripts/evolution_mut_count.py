@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 def loadHostPopulation(FILE):
     '''Takes the file with all the hosts data loads it to a list. Each
-    individual is loaded as a list of bit strings.And the population is a list
+    individual is loaded as a list of bit strings. And the population is a list
     of individuals.'''
     B_list = []
     Mut_list = []
