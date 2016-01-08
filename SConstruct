@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 This is SCons script to compile MHC evolution simulation model.
-The main idea behind it is, that in directory 'Scenarios' one
+The main idea behind it is that in directory 'Scenarios' one
 creates a main_sth_sth.cpp file which is build from blocks coded
 in the source files. This script compiles the 'scenario' and
 writes the executable to SCBuild directory.
