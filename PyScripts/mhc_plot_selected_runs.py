@@ -18,6 +18,7 @@ import linecache as ln
 
 
 def LoadTheData(arg, dirname, files):
+    """ """
     for file in files:
         filepath = os.path.join(dirname, file)
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
@@ -36,6 +37,16 @@ def LoadTheData(arg, dirname, files):
                         genes[:, 2], genes[:, 6]))
 
 
+def meanMhcTypeNumber(DATA):
+    """ """
+    ii = 0.
+    mm = 0.
+    for item in DATA:
+        ii += 1.
+        mm += p.mean(item[4][500::])
+    return mm / ii
+
+
 def main():
     TheData = []
     os.path.walk(os.getcwd(), LoadTheData, TheData)
@@ -48,33 +59,40 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 100
+    Ymax = 20
     textXlocal = 1500
 
     pathoGenSize = 1  # change to select a different set of data
     pathoNumSpec = int(sys.argv[1])  # change to select a different set of data
-    saveFiggs = False  # True to save figures to disk, False to not save
+    saveFiggs = True  # True to save figures to disk, False to not save
 
     nnn = "antigens: " + str(pathoGenSize) + "   species: " + str(pathoNumSpec)
 
     dec_places = '%1.0f'
 
-    p.figure(1, figsize=(16, 14))
+#    p.figure(1, figsize=(16, 14))
+    p.figure(1, figsize=(14, 7))
     i = 1
+    mm = 0.
+    ii = 0.
     for item in TheData:
         if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[4][annotShift + i*annotScale])
-            p.subplot(211)
-            p.plot(item[3], item[7], 'b-')
-            p.ylabel("total number of genes", fontsize=AxLabelFontSize)
-            p.xticks(size=AxisTickFontSize)
-            p.yticks(size=AxisTickFontSize)
-            p.grid()
-            p.subplot(212)
+#            p.subplot(211)
+#            p.plot(item[3], item[7], 'b-')
+#            p.ylabel("total number of genes", fontsize=AxLabelFontSize)
+#            p.xticks(size=AxisTickFontSize)
+#            p.yticks(size=AxisTickFontSize)
+#            p.xlim((0, Xmax))
+#            p.grid()
+#            p.subplot(212)
             p.plot(item[3], item[4], 'r-')
 #            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
 #                            xycoords='data', fontsize=AnnotateFontSize)
+            print p.mean(item[4][500::])
+            mm += p.mean(item[4][500::])
+            ii += 1.
             i = i + 1
             p.ylabel('number of  MHCs alles', fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
@@ -82,6 +100,8 @@ def main():
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
             p.grid()
+    print ii
+    p.hlines(mm / ii, 500, Xmax, colors='k', linestyles='solid', lw=2)
     ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
     if saveFiggs:

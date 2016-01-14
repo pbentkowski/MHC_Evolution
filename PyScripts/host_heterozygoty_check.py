@@ -1,8 +1,13 @@
+#!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jan 14 01:50:53 2016
+Checks what percentage of host population has no MHC gene repetitions in
+their genomes.
 
-@author: piotr
+Created on Thu Jan 14 01:50:53 2016
+for Evolutionary Biology Group, Faculty of Biology
+    Adam Mickiewicz University, Poznan, Poland
+@author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
 import re
 import sys
@@ -23,7 +28,7 @@ def loadHostPopulation(FILE):
                 elif (re.search(r"===", line) and contin):
                     Gene_list.append(B_list)
                     B_list = []
-                elif (re.search(r"===", line) and contin == False):
+                elif (re.search(r"===", line) and contin is False):
                     continue
                 else:
                     contin = True
@@ -41,15 +46,23 @@ def checkHeteroZyg(HH):
     Returns a fraction of population."""
     ii = 0
     for itm in HH:
-        if len(itm)==len(set(itm)):
+        if len(itm) == len(set(itm)):
             ii += 1
     return float(ii) / float(len(HH))
 
 
 def main():
     """The main function."""
-    hh = loadHostPopulation(sys.argv[1])
-    print "No reapets in", checkHeteroZyg(hh), "of genomes."
+    try:
+        hh = loadHostPopulation(sys.argv[1])
+    except:
+        print "Can't load the data file. Make sure it exists."
+        sys.exit()
+    try:
+        print "No reapets in", checkHeteroZyg(hh), "of genomes."
+    except:
+        print "Can't load the data."
+        sys.exit()
 
 
 if __name__ == "__main__":
