@@ -259,9 +259,10 @@ def main():
         sys.exit()
     try:
         l = re.split(" ", ln.getline("InputParameters.csv", 9))
+        spp_num = int(l[2])
         l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
         bitfit = int(l2[2])
-        print "No. of pathogen species =", int(l[2])
+        print "No. of pathogen species =", spp_num
         print "Length of the bit string =",
         print int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
         print "Length of bit string fit =", bitfit
@@ -314,6 +315,7 @@ def main():
     plt.grid(True)
 #    plt.xlim(0., 1.)
     plt.savefig("SPP_sim_one.png")
+
     #  === Now the detailed plot! ===
     plt.figure(2, figsize=(16, 8))
     plt.subplot(121)
@@ -336,6 +338,35 @@ def main():
 #    plt.xlim(0., 1.)
 #    plt.ylim(ymax=200)
     plt.savefig("SPP_sim_two.png")
+
+    #  === Now the detailed plot! ===
+    divv = int(np.ceil(np.sqrt(spp_num)))
+    plt.figure(3, figsize=(24, 20))
+#    ax_label_2 = 10
+    TicksFS_2 = 11
+    for ii in xrange(spp_num):
+        plt.subplot(divv, divv, ii)
+        plt.hist(hamDistInsideSpec(L_endd[ii]), color=(0.3, 0.3, 0.3, transs),
+                 edgecolor="none")
+#        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
+#        plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
+        plt.xticks(fontsize=TicksFS_2)
+        plt.yticks(fontsize=TicksFS_2)
+        plt.grid(True)
+    plt.savefig("SPP_sin_within_stop.png")
+
+    plt.figure(4, figsize=(24, 20))
+#    ax_label_2 = 10
+    for ii in xrange(spp_num):
+        plt.subplot(divv, divv, ii)
+        plt.hist(hamDistInsideSpec(L_init[ii]), color=(0.3, 0.3, 0.3, transs),
+                 edgecolor="none")
+#        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
+#        plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
+        plt.xticks(fontsize=TicksFS_2)
+        plt.yticks(fontsize=TicksFS_2)
+        plt.grid(True)
+    plt.savefig("SPP_sin_within_init.png")
 
     plt.show()
 
