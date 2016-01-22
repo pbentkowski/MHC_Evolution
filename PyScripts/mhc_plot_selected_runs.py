@@ -24,15 +24,15 @@ def LoadTheData(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 9))   # change here
-            InterestigThing = float(l[2])
+            l = re.split(" ", ln.getline(paramsFile, 14))   # change here
+            interestingOne = float(l[2])
+            l = re.split(" ", ln.getline(paramsFile, 15))    # change here
+            interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 11))
-            geneNumb = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 16))
-            hh = l[2].split()[0]
-            print "antigens:", geneNumb, "| thing:", InterestigThing, " | ",
-            print hh, "| dir:", dirname.split("/")[-1]
-            arg.append((InterestigThing, geneNumb, hh, genes[:, 0],
+            antign = l[2].split()[0]
+            print "antigens:", antign, "| things:",  interestingOne, " ; ",
+            print interestingTwo, "| dir:", dirname.split("/")[-1]
+            arg.append((interestingOne, interestingTwo, antign, genes[:, 0],
                         genes[:, 3], genes[:, 4], genes[:, 5],
                         genes[:, 2], genes[:, 6]))
 
@@ -62,11 +62,11 @@ def main():
     Ymax = 20
     textXlocal = 1500
 
-    pathoGenSize = 1  # change to select a different set of data
-    pathoNumSpec = int(sys.argv[1])  # change to select a different set of data
+    interestTwo = float(sys.argv[2])  # change to select a different data
+    interestOne = float(sys.argv[1])  # change to select a different data
     saveFiggs = True  # True to save figures to disk, False to not save
 
-    nnn = "antigens: " + str(pathoGenSize) + "   species: " + str(pathoNumSpec)
+    nnn = "One thing: " + str(interestTwo) + " Two thing: " + str(interestOne)
 
     dec_places = '%1.0f'
 
@@ -76,7 +76,7 @@ def main():
     mm = 0.
     ii = 0.
     for item in TheData:
-        if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
+        if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[4][annotShift + i*annotScale])
 #            p.subplot(211)
@@ -105,13 +105,13 @@ def main():
     ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
     if saveFiggs:
-        p.savefig("g_" + str(pathoGenSize) + ".s_" +
-                  str(pathoNumSpec) + "_allel_num.png")
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "_allel_num.png")
 
     p.figure(2, figsize=(14, 7))
     i = 1
     for item in TheData:
-        if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
+        if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[5][annotShift + i*annotScale])
     #        print XX, YY
@@ -131,13 +131,13 @@ def main():
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
-        p.savefig("g_" + str(pathoGenSize) + ".s_" +
-                  str(pathoNumSpec) + "_Shann.png")
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "_Shann.png")
 
     p.figure(3, figsize=(14, 7))
     i = 1
     for item in TheData:
-        if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
+        if (item[1] == interestTwo and item[0] == interestOne):
     #        print XX, YY
             if item[2] == "NO":
                 ax = p.plot(item[3], item[8]/item[6], 'r-')
@@ -155,13 +155,13 @@ def main():
                     fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
-        p.savefig("g_" + str(pathoGenSize) + ".s_" +
-                  str(pathoNumSpec) + "_H_CV_fitt.png")
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "_H_CV_fitt.png")
 
     p.figure(4, figsize=(14, 7))
     i = 1
     for item in TheData:
-        if (item[1] == pathoGenSize and item[0] == pathoNumSpec):
+        if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[6][annotShift + i*annotScale])
     #        print XX, YY
@@ -181,8 +181,8 @@ def main():
 #                    fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
-        p.savefig("g_" + str(pathoGenSize) + ".s_" +
-                  str(pathoNumSpec) + "_H_fitt.png")
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "_H_fitt.png")
 
     p.show()
 

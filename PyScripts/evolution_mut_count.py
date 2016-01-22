@@ -59,6 +59,7 @@ def main():
     except:
         print "Can't load file named", sys.argv[1], ". Check if it exists."
         sys.exit()
+    print "Mean mutation number per gene:", L_endd.mean(), "+/-", L_endd.std()
     # === More generic plot ===
     ax_label = 20
     T_label = 24
@@ -71,7 +72,7 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 20.)
+#    plt.xlim(0., 20.)
     plt.savefig("HOST_muts_end.png")
 
     plt.show()
