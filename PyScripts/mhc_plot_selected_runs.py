@@ -24,9 +24,9 @@ def LoadTheData(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 14))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 5))   # change here
             interestingOne = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 15))    # change here
+            l = re.split(" ", ln.getline(paramsFile, 15))   # change here
             interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 11))
             antign = l[2].split()[0]
@@ -59,7 +59,7 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 20
+    Ymax = 100
     textXlocal = 1500
 
     interestTwo = float(sys.argv[2])  # change to select a different data
@@ -90,7 +90,6 @@ def main():
             p.plot(item[3], item[4], 'r-')
 #            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
 #                            xycoords='data', fontsize=AnnotateFontSize)
-            print p.mean(item[4][500::])
             mm += p.mean(item[4][500::])
             ii += 1.
             i = i + 1
@@ -99,9 +98,8 @@ def main():
             p.axis([0, Xmax, 0, Ymax])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-            p.grid()
-    print ii
-    p.hlines(mm / ii, 500, Xmax, colors='k', linestyles='solid', lw=2)
+            p.grid(True)
+#    p.hlines(mm / ii, 500, Xmax, colors='k', linestyles='solid', lw=2)
     ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
     if saveFiggs:

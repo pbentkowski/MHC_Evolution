@@ -38,7 +38,7 @@
  * installed by running the command: \n 
  * \n 
  * $<b>
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++1y
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
  * </b>\n \n
  * It should also compile with flag -std=c++11 only with minor warnings. \n
  * The code here can be also used like a toolbox for your research. You can stitch your own <i>main_yourown.cpp</i> file 
