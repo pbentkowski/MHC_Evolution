@@ -112,6 +112,9 @@ $(document).ready(function(){initNavTree('class_antigen.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Core class. Stores and handles a single antigen object. Has methods to access and to mutate antigen. It is used by the pathogen class objects.  
+ <a href="class_antigen.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_antigen_8h_source.html">Antigen.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -138,8 +141,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4acef29446bf39ad6685ac7f3e63c82f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the antigen so other methods can use it.  <a href="#a4acef29446bf39ad6685ac7f3e63c82f">More...</a><br /></td></tr>
 <tr class="separator:a4acef29446bf39ad6685ac7f3e63c82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad103cc98588fa742d1eeccd9a578dcc6"><td class="memItemLeft" align="right" valign="top">unsigned long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#ad103cc98588fa742d1eeccd9a578dcc6">getOneEpitope</a> (int idx)</td></tr>
+<tr class="memdesc:ad103cc98588fa742d1eeccd9a578dcc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the epitope with the given index.  <a href="#ad103cc98588fa742d1eeccd9a578dcc6">More...</a><br /></td></tr>
 <tr class="separator:ad103cc98588fa742d1eeccd9a578dcc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeebf005aeee7ea02f135550d127603dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_antigen_8cpp.html#af96d678c365026888775071990bfb736">longIntVec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#aeebf005aeee7ea02f135550d127603dd">getEpitopes</a> ()</td></tr>
+<tr class="memdesc:aeebf005aeee7ea02f135550d127603dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the epitopes that can be generated from one antigen.  <a href="#aeebf005aeee7ea02f135550d127603dd">More...</a><br /></td></tr>
 <tr class="separator:aeebf005aeee7ea02f135550d127603dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08ecd5321a466090806e0b5a100c394a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#a08ecd5321a466090806e0b5a100c394a">printAntigenToScreen</a> ()</td></tr>
 <tr class="memdesc:a08ecd5321a466090806e0b5a100c394a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary method. Prints antigens to screen. Useful when debugging.  <a href="#a08ecd5321a466090806e0b5a100c394a">More...</a><br /></td></tr>
@@ -159,8 +164,9 @@ Public Attributes</h2></td></tr>
 <tr class="separator:af84937fdc6af7fb222566b62bb5199d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00036">36</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<div class="textblock"><p>Core class. Stores and handles a single antigen object. Has methods to access and to mutate antigen. It is used by the pathogen class objects. </p>
+
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00040">40</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af245b9a3640a57d0e058d39571c1c872"></a>
 <div class="memitem">
@@ -274,7 +280,11 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00176">176</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Core method. Returns the epitopes that can be generated from one antigen. </p>
+<p>It is a vector containing epitopes created by a sliding frame of a size equal to the size of MHC bit string. Epitopes are represented by long unsigned integers.</p>
+<dl class="section return"><dt>Returns</dt><dd>a vector of long unsigned int numbers. </dd></dl>
+
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00191">191</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +302,16 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00168">168</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Core method. Returns the epitope with the given index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>- index of the interesitng epitope </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the epitope (as a number) </dd></dl>
+
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00173">173</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 </div>
 </div>
@@ -424,7 +443,7 @@ Here is the call graph for this function:</div>
 
 <p>Auxiliary method. Prints antigens to screen. Useful when debugging. </p>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00184">184</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00199">199</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +550,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00055">55</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00059">59</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -545,7 +564,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00054">54</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00058">58</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -559,7 +578,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00053">53</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00057">57</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -573,7 +592,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00052">52</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00056">56</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -587,7 +606,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00051">51</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00055">55</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -601,7 +620,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_antigen.html">Antigen</a></li>
-    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Thu Jan 28 2016 16:26:32 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

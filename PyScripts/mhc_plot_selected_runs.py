@@ -59,7 +59,7 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 100
+    Ymax = 50
     textXlocal = 1500
 
     interestTwo = float(sys.argv[2])  # change to select a different data
@@ -172,7 +172,7 @@ def main():
             i = i + 1
             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 30.0])
+            p.axis([0, Xmax, 0, 20.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
 #    ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',

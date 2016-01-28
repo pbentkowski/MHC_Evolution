@@ -37,12 +37,14 @@
 class Environment {
 private:
     std::vector<Host> HostPopulation;
-    std::vector< std::vector<Pathogen> > PathPopulation;
+    std::vector<std::vector<Pathogen> > PathPopulation;
+    std::vector<std::set<int>> NoMutsVec;
 public:
     // === Core methods ===
     Environment();
 //    Environment(const Environment& orig);
     virtual ~Environment();
+    void setNoMutsVector(int numb_of_species, int antigen_size, double fixedAntigenFrac);
     void setHostPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
     void setHostPopulation(int pop_size, int gene_size, int chrom_size_lower,
         int chrom_size_uper, int timeStamp);
@@ -65,8 +67,7 @@ public:
     void clearHostInfectionsData();
     void clearPathoInfectionData();
     void mutatePathogens(double mut_probabl, int mhcSize, int timeStamp);
-    void mutatePathogensWithRestric(double mut_probabl,  int mhcSize, int timeStamp,
-                                    std::set<int>& noMutts);
+    void mutatePathogensWithRestric(double mut_probabl,  int mhcSize, int timeStamp);
     void mutateHosts(double mut_probabl, int timeStamp);
     void mutateHostsWithDelDupl(double mut_probabl, double del, double dupl, 
         unsigned int maxGene, int timeStamp);

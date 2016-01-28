@@ -124,14 +124,16 @@ Introduction</h1>
 <li>Ejsmond, M. J., &amp; Radwan, J. (2009). <em>MHC diversity in bottlenecked populations: a simulation model.</em> Conservation Genetics, 12(1), 129–137. <a href="http://doi.org/10.1007/s10592-009-9998-6">http://doi.org/10.1007/s10592-009-9998-6</a> <br />
 </li>
 <li>Ejsmond, M. J., Radwan, J., &amp; Wilson, A. B. (2014). <em>Sexual selection and the evolutionary dynamics of the major histocompatibility complex.</em> Proceedings of the Royal Society B: Biological Sciences, 281, 20141662. <a href="http://dx.doi.org/10.1098/rspb.2014.1662">http://dx.doi.org/10.1098/rspb.2014.1662</a> <br />
+</li>
+<li>Ejsmond, M. J., &amp; Radwan, J. (2015). <em>Red Queen Processes Drive Positive Selection on Major Histocompatibility Complex (MHC) Genes.</em> PLOS Comput. Biol. 11:e1004627. <a href="http://doi.org/10.1371/journal.pcbi.1004627">http://doi.org/10.1371/journal.pcbi.1004627</a> <br />
  <br />
  <b>Read them before you start tweaking anything on your own.</b></li>
 </ol>
 <h1><a class="anchor" id="Compilation"></a>
 Compilation</h1>
-<p>The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++1y standard</a> and has some dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile smoothly on most GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons build tool</a> might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS with mentioned packages installed by running the command: <br />
+<p>The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> and has some dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile smoothly on most GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons build tool</a> might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS with mentioned packages installed by running the command: <br />
  <br />
- $<b> g++ -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> -std=c++1y </b><br />
+ $<b> g++ -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_harvester_8cpp.html">DataHarvester.cpp</a> -std=c++1y </b><br />
  <br />
 It should also compile with flag -std=c++11 only with minor warnings. <br />
 The code here can be also used like a toolbox for your research. You can stitch your own <em>main_yourown.cpp</em> file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:<br />
@@ -181,7 +183,7 @@ Output and data visualisation</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Nov 25 2015 17:11:16 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Thu Jan 28 2016 16:26:32 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

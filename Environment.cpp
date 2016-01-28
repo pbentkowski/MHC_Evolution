@@ -42,6 +42,37 @@ Environment::~Environment() {
 }
 
 /**
+ * @brief Core method. It defines "no mutation sites" of the antigen for all 
+ * individual pathogen species in the simulation. It should be run only ones per
+ * simulation.
+ * 
+ * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
+ * STD sets</a> containing indices of antigen bits in which  mutations are not 
+ * allowed. The length of the vector equals the number of pathogen species. Each
+ * species has its own vector. Number of fixed sites is a user-defined parameter.
+ * 
+ * @param numb_of_species - number of pathogen species
+ * @param antigen_size - number of bits per antigen
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ */
+void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
+        double fixedAntigenFrac){
+    std::set<int> NoMutSet;
+    NoMutsVec.clear();
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    for(int i = 0; i < numb_of_species; ++i){
+        NoMutSet.clear();
+        for(int j = 0; j < antigen_size; ++j){
+            if(p_RandomNumbs->NextReal(0.0, 1.0) < fixedAntigenFrac){
+                NoMutSet.insert(j);
+            }
+        NoMutsVec.push_back(NoMutSet);
+        }
+    }
+}
+
+
+/**
  * @brief Core method. Initializes a vector containing host population.
  *
  * Sets and fills a vector containing the host population. Parameters like size
@@ -106,7 +137,7 @@ void Environment::setHostPopulation(int pop_size, int gene_size,
  * @param pop_size - total number of individuals
  * @param gene_size - number of bits per gene
  * @param chrom_size - number of genes per genome
- * @param numb_of_species - number of species
+ * @param numb_of_species - number of pathogen species
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
@@ -671,12 +702,18 @@ void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp
  * @param noMutts
  */
 void Environment::mutatePathogensWithRestric(double mut_probabl, int mhcSize,
-        int timeStamp, std::set<int>& noMutts){
-    for (int i = 0; i < PathPopulation.size(); ++i){
-        for (int j = 0; j < PathPopulation[i].size(); ++j){
-            PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
-                    mhcSize, timeStamp, noMutts);
+        int timeStamp){
+    if (PathPopulation.size() == NoMutsVec.size()){
+        for (int i = 0; i < PathPopulation.size(); ++i){
+            for (int j = 0; j < PathPopulation[i].size(); ++j){
+                PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
+                        mhcSize, timeStamp, NoMutsVec[i]);
+            }
         }
+    } else {
+        std::cout << "Error in Environment::mutatePathogensWithRestric(): " <<
+                "unequal number of species between PathPopulation and " <<
+                "NoMutsVec" << std::endl;
     }
 }
 

@@ -27,11 +27,12 @@
  * Conservation Genetics, 12(1), 129–137. http://doi.org/10.1007/s10592-009-9998-6 \n
  * 4. Ejsmond, M. J., Radwan, J., & Wilson, A. B. (2014). <i>Sexual selection and the evolutionary dynamics of 
  * the major histocompatibility complex.</i> Proceedings of the Royal Society B: Biological Sciences, 281, 20141662.
- * http://dx.doi.org/10.1098/rspb.2014.1662 \n \n 
+ * http://dx.doi.org/10.1098/rspb.2014.1662 \n
+ * 5. Ejsmond, M. J., & Radwan, J. (2015). <i>Red Queen Processes Drive Positive Selection on Major Histocompatibility Complex (MHC) Genes.</i> PLOS Comput. Biol. 11:e1004627. http://doi.org/10.1371/journal.pcbi.1004627 \n \n 
  * <b>Read them before you start tweaking anything on your own.</b>
  * 
  * @section Compilation
- * The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++1y standard</a> and has 
+ * The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> and has 
  * some dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile
  * smoothly on most GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons
  * build tool</a> might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS with mentioned packages
