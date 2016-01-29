@@ -43,6 +43,15 @@ DataHarvester::DataHarvester() {
 DataHarvester::~DataHarvester() {
 }
 
+/**
+ * @brief Data harvesting method. Calculates some stats of population genetics:
+ * Shannon's index, number of MHC/antigen types, total number of MHC copies. 
+ * Runs internally within DataHarvester class.
+ * 
+ * @return <a href="http://en.cppreference.com/w/cpp/utility/tuple/make_tuple">
+ * STD Touple object</a> with 3 numbers: Shannon's index, number of MHC/antigen 
+ * types, total number of MHC copies
+ */
 auto getShannonIndx(std::vector<int> GeneVals){
     int Types = 0;
     double Summ = 0.0;
@@ -76,12 +85,16 @@ auto getShannonIndx(std::vector<int> GeneVals){
     return RTRN;
 }
 
+/**
+ * @brief Data harvesting method. Sets status of all data files as "brand new".
+ */
 void DataHarvester::setAllFilesAsFirtsTimers(){
     ifFirstSpecToFileRun = true;
     ifFirstHostClonesRun = true;
     ifFirstHostGeneDivRun = true;
     ifFirstGeneNumbersTotal = true;
     ifFirstGeneNumbersUnique = true;
+    ifNoMuttPathoListUnique = true;
 }
 
 /** 
@@ -107,7 +120,7 @@ const std::string currentDateTime(){
  * 
  * @param rndSeed
  * @param geneLength
- * @param exposedMatch
+ * @param antigenLength
  * @param hostPopSize
  * @param pathoPopSize
  * @param patho_sp
@@ -115,14 +128,22 @@ const std::string currentDateTime(){
  * @param pathoGeneNumb
  * @param patoPerHostGeneration
  * @param numOfHostGenerations
+ * @param hostMutationProb
+ * @param pathoMutationProb
+ * @param HeteroHomo
+ * @param hostDeletion
+ * @param hostDuplication
  * @param maxGene
+ * @param alpha
+ * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
  */
 bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha){
+        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double fixedAntigPosit){
     bool ifError = false;
     if (rndSeed < 0){
         std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
@@ -178,6 +199,11 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenL
                 "It has to be within the range [0, 1]." << std::endl;
         ifError = true;
     }
+    if (fixedAntigPosit < 0.0 or fixedAntigPosit > 1.0){
+        std::cout << "\nError in the parameter for fraction of antigen bits " <<
+                "being fixed. It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
     return ifError;
 }
 
@@ -190,7 +216,7 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenL
  * 
  * @param rndSeed
  * @param geneLength
- * @param exposedMatch
+ * @param antigenLength
  * @param hostPopSize
  * @param pathoPopSize
  * @param patho_sp
@@ -201,13 +227,18 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenL
  * @param hostMutationProb
  * @param pathoMutationProb
  * @param HeteroHomo
+ * @param hostDeletion
+ * @param hostDuplication
  * @param maxGene
+ * @param alpha
+ * @param fixedAntigPosit
  */
 void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha){
+        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double fixedAntigPosit){
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv");
 
@@ -245,6 +276,8 @@ void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int antigenLe
             maxGene << std::endl;
     InputParams << "\tAlpha_factor_for_the_host_fitness_function = " <<
             alpha << std::endl;
+    InputParams << "\tFraction_of_antigen_bits_getting_fixed = " <<
+            fixedAntigPosit << std::endl;
     InputParams.close();
 }
     
@@ -356,7 +389,7 @@ void DataHarvester::saveHostGeneticDivers(Environment& EnvObj, int tayme){
             AllTheGeneVals.push_back(EnvObj.getSingleHostRealGeneTwo(i, m));
         }
     }
-    // Calculating the Shannon index et al. plus extracting it from tuple
+    // Calculating the Shannon index et al. plus extracting it from the tuple
     auto ShOut = getShannonIndx(AllTheGeneVals);
     double Summ = std::get < 0 >( ShOut );
     int mhcTypes = std::get < 1 >( ShOut );
@@ -387,7 +420,7 @@ void DataHarvester::saveHostGeneticDivers(Environment& EnvObj, int tayme){
  *  in the first file. All together you get two files witch data sync to each
  * other.
  * 
- * @param EnvObj - the Environment object
+ * @param EnvObj - the Environment class object
  * @param tayme - time stamp
  */
 void DataHarvester::saveHostGeneNumbers(Environment& EnvObj, int tayme){
@@ -444,4 +477,21 @@ void DataHarvester::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     }
     HostMHCNumbUnique << std::endl;
     HostMHCNumbUnique.close();
+}
+
+
+void DataHarvester::savePathoNoMuttList(Environment& EnvObj){
+    if(ifNoMuttPathoListUnique){
+        std::ofstream NoMuttPathoList;
+        NoMuttPathoList.open("NoMutationInPathoList.csv");
+        NoMuttPathoList << "#list_of_bits_excluded_from_mutating_Each_line_is_a_spp"
+                << std::endl;
+        NoMuttPathoList.close();
+        ifNoMuttPathoListUnique = false;
+    }
+    std::ofstream NoMuttPathoList;
+    NoMuttPathoList.open("HostGeneNumbTotal_ChrOne.csv",
+                            std::ios::out | std::ios::ate | std::ios::app);
+    NoMuttPathoList << EnvObj.getFixedBitsInAntigens();
+    NoMuttPathoList.close();
 }

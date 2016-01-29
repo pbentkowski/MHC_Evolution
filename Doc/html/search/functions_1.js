@@ -13,7 +13,7 @@ var searchData=
   ['calculatehostsfitnessfordrift',['calculateHostsFitnessForDrift',['../class_environment.html#a596cf4db11a6e6356211a45540e04c7d',1,'Environment']]],
   ['calculatehostsfitnesspergene',['calculateHostsFitnessPerGene',['../class_environment.html#ae63fad9a51f8700cf96cd3019f5a3bec',1,'Environment']]],
   ['calculatehostsfitnessplainpresent',['calculateHostsFitnessPlainPresent',['../class_environment.html#a2d11b6356c2d62e7ebf4c97115118c5c',1,'Environment']]],
-  ['checkparamsifwrong',['checkParamsIfWrong',['../class_data_harvester.html#a329f51d0d5cf66a2e537f0ecf7f1a4be',1,'DataHarvester']]],
+  ['checkparamsifwrong',['checkParamsIfWrong',['../class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c',1,'DataHarvester']]],
   ['chromomutprocess',['chromoMutProcess',['../class_host.html#a5911792258205cae25a2a4796061fe49',1,'Host::chromoMutProcess()'],['../class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54',1,'Pathogen::chromoMutProcess()']]],
   ['chromomutprocesswithdeldupl',['chromoMutProcessWithDelDupl',['../class_host.html#a48c01d4345818b873ceed7597588bd6d',1,'Host']]],
   ['chromomutprocesswithdelduplpointmuts',['chromoMutProcessWithDelDuplPointMuts',['../class_host.html#a303c0d61ab48aaa709fccfcdd14a156e',1,'Host']]],

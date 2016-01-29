@@ -169,7 +169,7 @@ int main(int argc, char** argv) {
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations,
             hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
-            maxGene, alpha)){
+            maxGene, alpha, fixedAntigPosit)){
         std::cout << std::endl;
         std::cout << "Error in parameters on input. Check them." << std::endl;
         printTipsToRun();
@@ -182,7 +182,8 @@ int main(int argc, char** argv) {
     Data2file.inputParamsToFile(rndSeed, mhcGeneLength, antigenLength, hostPopSize, 
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
-            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene, alpha);
+            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene, 
+            alpha, fixedAntigPosit);
     
 // === And now doing the calculations! ===
     
@@ -197,10 +198,10 @@ int main(int argc, char** argv) {
     Environment ENV; // Initialize the simulation environment 
     Data2file.setAllFilesAsFirtsTimers();
     // mutation exclusion sets
-    ENV.setNoMutsVector(antigenLength, patho_sp, fixedAntigPosit);
-    
+    ENV.setNoMutsVector(patho_sp, antigenLength, fixedAntigPosit);
+    Data2file.savePathoNoMuttList(ENV);
     ENV.setHostPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
-    ENV.setPathoPopulatioUniformGenome(pathoPopSize, antigenLength, pathoGeneNumb,
+    ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0);
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     std::ofstream InputParams;
@@ -222,7 +223,7 @@ int main(int argc, char** argv) {
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
                 ENV.selectAndReproducePathoFixedPopSizes();
-                ENV.mutatePathogens(pathoMutationProb, mhcGeneLength, i);
+                ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
@@ -242,7 +243,7 @@ int main(int argc, char** argv) {
     }
 
     ENV.selectAndReproducePathoFixedPopSizes();
-    ENV.mutatePathogens(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
+    ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
     ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
     ENV.selectAndReprodHostsReplace();
     ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 

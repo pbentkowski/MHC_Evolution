@@ -82,13 +82,14 @@ public:
     std::string getHostsTags();
     std::string getPathoGenesToString(int i, int j);
     std::string getHostGenesToString(int i);
+    std::string getFixedBitsInAntigens();
     int getSingleHostGenomeSize(int indx);
     int getSingleHostChromoOneSize(int indx);
     int getSingleHostChromoTwoSize(int indx);
     int getSingleHostRealGeneOne(int i, int j);
     int getSingleHostRealGeneTwo(int i, int j);
     double getHostFitness(int indx);
-
+    
 };
 
 #endif	/* ENVIRONMENT_H */

@@ -5,5 +5,5 @@
 <area shape="rect" id="node5" href="$class_environment.html#a86d8f067f5576f39047e360dd717b1fe" title="Environment::getSingleHost\lRealGeneOne" alt="" coords="279,173,465,214"/>
 <area shape="rect" id="node6" href="$class_environment.html#ac98907c5bc18780a611a743fb4afa479" title="Environment::getSingleHost\lChromoTwoSize" alt="" coords="279,238,465,279"/>
 <area shape="rect" id="node7" href="$class_environment.html#a20b1bdddb432ef84ee08fd1cd77d5fd9" title="Environment::getSingleHost\lRealGeneTwo" alt="" coords="279,303,465,345"/>
-<area shape="rect" id="node8" href="$_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff" title="getShannonIndx" alt="" coords="314,369,430,396"/>
+<area shape="rect" id="node8" href="$_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff" title="Data harvesting method. Calculates some stats of population genetics: Shannon&#39;s index, number of MHC/antigen types, total number of MHC copies. Runs internally within DataHarvester class. " alt="" coords="314,369,430,396"/>
 </map>

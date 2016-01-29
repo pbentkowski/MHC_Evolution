@@ -32,9 +32,10 @@
  * <b>Read them before you start tweaking anything on your own.</b>
  * 
  * @section Compilation
- * The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> and has 
- * some dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile
- * smoothly on most GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons
+ * The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> so if 
+ * you are using GCC then version gcc 4.8 seems to be the minimum requirement. This program has 
+ * some serious dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile
+ * smoothly on most modern GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons
  * build tool</a> might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS with mentioned packages
  * installed by running the command: \n 
  * \n 
@@ -56,7 +57,7 @@
  * <b>Program takes exactly 17 parameters. These are:</b> \n
  * <b> 00 </b>- Program's name \n
  * <b> 01 </b>- Seed for the RNG (when set to < 0 the program will seed the RNG engine itself with
- * a truly random number). \n
+ * a <a href="http://en.cppreference.com/w/cpp/numeric/random/random_device">truly random number using preferably /dev/random</a>). \n
  * <b> 02 </b>- Number of bits in a gene. \n
  * <b> 03 </b>- Number of bits in an antigen. \n
  * <b> 04 </b>- Host population size. \n
@@ -75,9 +76,10 @@
  * <b> 15 </b>- Probability of duplicating a gene in the host ([0,1] range). \n
  * <b> 16 </b>- Maximal number of genes permitted in one host chromosome. \n
  * <b> 17 </b>- Parameter \f$\alpha\f$ in the fitness function. \n
+ * <b> 18 </b>- Fraction of the antigen's bits which are forbidden from changing (a.k.a. "No Mutation Bits"). \n
  * \n
- * This program can recognise simple errors in the argument list (a value out of
- * range, negative values when positive are needed etc.), but will not recognise
+ * This program can recognise simple errors in the argument list (a probability value out of
+ * [0,1] range, negative values when positive are needed etc.), but will not recognise
  * when they don't make a 'biological' sense.
  * 
  * @section The Output and data visualisation

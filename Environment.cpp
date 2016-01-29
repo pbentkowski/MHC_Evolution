@@ -32,6 +32,8 @@
 #include "Gene.h"
 #include "H2Pinteraction.h"
 
+typedef std::string sttr;
+
 Environment::Environment() {
 }
 
@@ -57,18 +59,19 @@ Environment::~Environment() {
  */
 void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
         double fixedAntigenFrac){
+    std::cout << "Number of species: " << numb_of_species << std::endl;
     std::set<int> NoMutSet;
-    NoMutsVec.clear();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < numb_of_species; ++i){
         NoMutSet.clear();
-        for(int j = 0; j < antigen_size; ++j){
-            if(p_RandomNumbs->NextReal(0.0, 1.0) < fixedAntigenFrac){
-                NoMutSet.insert(j);
-            }
         NoMutsVec.push_back(NoMutSet);
+        for(int j = 0; j < antigen_size; ++j){
+            if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
+                NoMutsVec.back().insert(j);
+            }
         }
     }
+    std::cout << "Size of the no Mutt: " << NoMutsVec.size() << std::endl;
 }
 
 
@@ -171,7 +174,7 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
 /** 
  * New shit !!! Needs description.
  * 
- *
+ */
 void Environment::setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
@@ -211,7 +214,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int gene_size,
         OneSpeciesVector.clear();
     }
 }
-*/
+
 
 /**
   * @brief Core method. Iterates through the host population and the parasite
@@ -769,6 +772,25 @@ std::string Environment::getPathoGenesToString(int i, int j){
  */
 std::string Environment::getHostGenesToString(int i){
     return HostPopulation[i].stringChromosomes();
+}
+
+/**
+ * @brief Data harvesting method. Prepares a string with the list of fixed 
+ * "no mutation sites" in antigens used by the DataHarvester to write these data
+ * to file. 
+ * 
+ * @return a string listing all the fixed sites in all pathogen species
+ */
+std::string Environment::getFixedBitsInAntigens(){
+    sttr fixedMutStr;
+    for(int i = 0; i < NoMutsVec.size(); ++i){
+        for (int const& possit : NoMutsVec[i]){
+            fixedMutStr += std::to_string(possit) + sttr(" ");
+        }
+        fixedMutStr += sttr("\n");
+    }
+    std::cout << fixedMutStr;
+    return fixedMutStr;
 }
 
 int Environment::getSingleHostGenomeSize(int indx){

@@ -43,24 +43,28 @@ public:
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha);
+        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double fixedAntigPosit);
     void inputParamsToFile(int rndSeed, int geneLength, int exposedMatch,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha);
+        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double fixedAntigPosit);
     void setAllFilesAsFirtsTimers();
     void saveNumOfPathoSpeciesToFile(Environment &EnvObj, int tayme);
     void savePathoPopulToFile(Environment &EnvObj, int tayme);
     void saveHostPopulToFile(Environment &EnvObj, int tayme);
     void saveHostGeneticDivers(Environment &EnvObj, int tayme);
     void saveHostGeneNumbers(Environment &EnvObj, int tayme);
+    void savePathoNoMuttList(Environment &EnvObj);
 private:
     bool ifFirstSpecToFileRun;
     bool ifFirstHostClonesRun;
     bool ifFirstHostGeneDivRun;
     bool ifFirstGeneNumbersTotal;
     bool ifFirstGeneNumbersUnique;
+    bool ifNoMuttPathoListUnique;
 };
 
 #endif	/* DATAHARVESTER_H */

@@ -14,6 +14,6 @@ var searchData=
   ['mutatehostswithdeldupl',['mutateHostsWithDelDupl',['../class_environment.html#af7fc9c6750f847a8260df37927646583',1,'Environment']]],
   ['mutatehostswithdelduplpointmuts',['mutateHostsWithDelDuplPointMuts',['../class_environment.html#a11ca1135314c732332eaf55b5890b57e',1,'Environment']]],
   ['mutatepathogens',['mutatePathogens',['../class_environment.html#a54bc672882bea05101d65942b35cdc63',1,'Environment']]],
-  ['mutatepathogenswithrestric',['mutatePathogensWithRestric',['../class_environment.html#abdeef3572f1c78873c14a5719f318fb5',1,'Environment']]],
+  ['mutatepathogenswithrestric',['mutatePathogensWithRestric',['../class_environment.html#af56f92817b21be862325edb48f291037',1,'Environment']]],
   ['mutationtime',['MutationTime',['../class_antigen.html#a1e98b3215bc5b76d298c7457d1eaea09',1,'Antigen::MutationTime()'],['../class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b',1,'Gene::MutationTime()']]]
 ];

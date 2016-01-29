@@ -16,6 +16,7 @@ var searchData=
   ['getchromotwouniqalleles',['getChromoTwoUniqAlleles',['../class_host.html#ad05b417630dd1095b967de411bdb350a',1,'Host']]],
   ['getepitopes',['getEpitopes',['../class_antigen.html#aeebf005aeee7ea02f135550d127603dd',1,'Antigen']]],
   ['getfitness',['getFitness',['../class_host.html#a87d357c93783916037446bf8096ed45d',1,'Host']]],
+  ['getfixedbitsinantigens',['getFixedBitsInAntigens',['../class_environment.html#a7ca87db3a1ceb9e27670538fce828675',1,'Environment']]],
   ['getgenomesize',['getGenomeSize',['../class_host.html#a10ec4eb6494084cbc99a4c28164b0761',1,'Host']]],
   ['gethostfitness',['getHostFitness',['../class_environment.html#ab70e6fda860c35a3ac222cfdef2dff44',1,'Environment']]],
   ['gethostgenestostring',['getHostGenesToString',['../class_environment.html#a71dc8a1828a2830ffefa901d0974b2c1',1,'Environment']]],

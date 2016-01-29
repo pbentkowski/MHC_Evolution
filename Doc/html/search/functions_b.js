@@ -19,6 +19,7 @@ var searchData=
   ['setnewgene',['setNewGene',['../class_gene.html#adc0af7621bf0619648408824a495399e',1,'Gene::setNewGene(int lenght, int timeStamp)'],['../class_gene.html#a4528d6cfa148c0df540b412e263611d2',1,'Gene::setNewGene(int lenght, int low_lim, int up_lim, int timeStamp)']]],
   ['setnewhost',['setNewHost',['../class_host.html#aafa1539a8942e3e99dc6b49110a618c1',1,'Host']]],
   ['setnewpathogen',['setNewPathogen',['../class_pathogen.html#a92f9c25d79aeee5cffc482bcfca52c25',1,'Pathogen']]],
+  ['setnomutsvector',['setNoMutsVector',['../class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89',1,'Environment']]],
   ['setpathopopulatiodivspecies',['setPathoPopulatioDivSpecies',['../class_environment.html#a62e2290459799b4a1cd0654339323a2b',1,'Environment']]],
   ['setpathopopulatiouniformgenome',['setPathoPopulatioUniformGenome',['../class_environment.html#ac67b8e594e2cbd00d47f4c0745ef487f',1,'Environment']]],
   ['setseed',['SetSeed',['../class_random_numbs.html#a8d886d9174fe7e5621638941af204ccd',1,'RandomNumbs']]],

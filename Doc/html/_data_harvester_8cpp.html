@@ -137,6 +137,7 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a83136cc074426bc3310d6e855252beff"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff">getShannonIndx</a> (std::vector&lt; int &gt; GeneVals)</td></tr>
+<tr class="memdesc:a83136cc074426bc3310d6e855252beff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Calculates some stats of population genetics: Shannon's index, number of MHC/antigen types, total number of MHC copies. Runs internally within <a class="el" href="class_data_harvester.html" title="Data harvesting class. A class that has methods to collect data and writes them to files...">DataHarvester</a> class.  <a href="#a83136cc074426bc3310d6e855252beff">More...</a><br /></td></tr>
 <tr class="separator:a83136cc074426bc3310d6e855252beff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa46369f3c8adbff876c82270346fffa2"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a> ()</td></tr>
 <tr class="memdesc:aa46369f3c8adbff876c82270346fffa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Gets current date/time, format is YYYY-MM-DD.HH:mm:ss.  <a href="#aa46369f3c8adbff876c82270346fffa2">More...</a><br /></td></tr>
@@ -175,14 +176,14 @@ Functions</h2></td></tr>
 <p>Visit <a href="http://en.cppreference.com/w/cpp/chrono/c/strftime">http://en.cppreference.com/w/cpp/chrono/c/strftime</a> for more information about date/time format.</p>
 <dl class="section return"><dt>Returns</dt><dd>date and time in a string format ready to print out. </dd></dl>
 
-<p>Definition at line <a class="el" href="_data_harvester_8cpp_source.html#l00095">95</a> of file <a class="el" href="_data_harvester_8cpp_source.html">DataHarvester.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_harvester_8cpp_source.html#l00107">107</a> of file <a class="el" href="_data_harvester_8cpp_source.html">DataHarvester.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="_data_harvester_8cpp_aa46369f3c8adbff876c82270346fffa2_icgraph.png" border="0" usemap="#_data_harvester_8cpp_aa46369f3c8adbff876c82270346fffa2_icgraph" alt=""/></div>
 <map name="_data_harvester_8cpp_aa46369f3c8adbff876c82270346fffa2_icgraph" id="_data_harvester_8cpp_aa46369f3c8adbff876c82270346fffa2_icgraph">
-<area shape="rect" id="node2" href="class_data_harvester.html#a7c5c9707887a994ff450b0fcbb9fb806" title="Data harvesting method. Writes all the input params and some run stats to a file. Must be run only on..." alt="" coords="174,5,362,46"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="411,12,461,39"/></map>
+<area shape="rect" id="node2" href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573" title="Data harvesting method. Writes all the input params and some run stats to a file. Must be run only on..." alt="" coords="174,5,362,46"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="411,12,461,39"/></map>
 </div>
 </p>
 
@@ -202,7 +203,10 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_data_harvester_8cpp_source.html#l00046">46</a> of file <a class="el" href="_data_harvester_8cpp_source.html">DataHarvester.cpp</a>.</p>
+<p>Data harvesting method. Calculates some stats of population genetics: Shannon's index, number of MHC/antigen types, total number of MHC copies. Runs internally within <a class="el" href="class_data_harvester.html" title="Data harvesting class. A class that has methods to collect data and writes them to files...">DataHarvester</a> class. </p>
+<dl class="section return"><dt>Returns</dt><dd><a href="http://en.cppreference.com/w/cpp/utility/tuple/make_tuple">STD Touple object</a> with 3 numbers: Shannon's index, number of MHC/antigen types, total number of MHC copies </dd></dl>
+
+<p>Definition at line <a class="el" href="_data_harvester_8cpp_source.html#l00055">55</a> of file <a class="el" href="_data_harvester_8cpp_source.html">DataHarvester.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -221,7 +225,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_data_harvester_8cpp.html">DataHarvester.cpp</a></li>
-    <li class="footer">Generated on Thu Jan 28 2016 16:26:32 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Fri Jan 29 2016 17:09:15 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
