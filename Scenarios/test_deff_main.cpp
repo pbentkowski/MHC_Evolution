@@ -201,18 +201,21 @@ int main(int argc, char** argv) {
     ENV.setNoMutsVector(patho_sp, antigenLength, fixedAntigPosit);
     Data2file.savePathoNoMuttList(ENV);
     ENV.setHostPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    std::cout << "Host population all set!" << std::endl;
     ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0);
+    std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv", std::ios::out | std::ios::ate | std::ios::app);
     InputParams << "# Other_information:" << std::endl;
-//    InputParams << "\tseparated_species_genomes = YES" << std::endl;
+    InputParams << "\tseparated_species_genomes = YES" << std::endl;
     // set "NO" when using ENV.setPathoPopulatioUniformGenome()
-    InputParams << "\tseparated_species_genomes = NO" << std::endl;
+//    InputParams << "\tseparated_species_genomes = NO" << std::endl;
     InputParams << "\tpoint_mutation_in_host_is_used = " << hostMutationProb << std::endl;
     InputParams << std::endl;
     InputParams.close();
+    std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
         Data2file.savePathoPopulToFile(ENV, 0);

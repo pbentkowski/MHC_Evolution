@@ -55,6 +55,7 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <stripSymbols>true</stripSymbols>
           <standard>10</standard>
           <commandlineTool>g++</commandlineTool>
           <incDir>
@@ -65,11 +66,11 @@
         <ccTool>
           <developmentMode>5</developmentMode>
           <architecture>2</architecture>
-          <standard>8</standard>
+          <standard>11</standard>
           <incDir>
             <pElem>../build/include</pElem>
           </incDir>
-          <commandLine>-O3 -std=c++1y</commandLine>
+          <commandLine>-O3 -std=c++14</commandLine>
           <warningLevel>0</warningLevel>
         </ccTool>
         <fortranCompilerTool>

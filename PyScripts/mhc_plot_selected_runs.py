@@ -58,12 +58,12 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 2500
+    Xmax = 500
     Ymax = 50
     textXlocal = 1500
 
+    interestOne = float(sys.argv[1])  # change to select a different data    
     interestTwo = float(sys.argv[2])  # change to select a different data
-    interestOne = float(sys.argv[1])  # change to select a different data
     saveFiggs = True  # True to save figures to disk, False to not save
 
     nnn = "One thing: " + str(interestTwo) + " Two thing: " + str(interestOne)

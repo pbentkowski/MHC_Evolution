@@ -59,7 +59,7 @@ Environment::~Environment() {
  */
 void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
         double fixedAntigenFrac){
-    std::cout << "Number of species: " << numb_of_species << std::endl;
+//    std::cout << "Number of species: " << numb_of_species << std::endl;
     std::set<int> NoMutSet;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < numb_of_species; ++i){
@@ -71,7 +71,7 @@ void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
             }
         }
     }
-    std::cout << "Size of the no Mutt: " << NoMutsVec.size() << std::endl;
+//    std::cout << "Size of the no Mutt: " << NoMutsVec.size() << std::endl;
 }
 
 
@@ -138,9 +138,10 @@ void Environment::setHostPopulation(int pop_size, int gene_size,
  * pool of possible bit strings.
  *
  * @param pop_size - total number of individuals
- * @param gene_size - number of bits per gene
+ * @param antigenSize - number of bits per gene
  * @param chrom_size - number of genes per genome
  * @param numb_of_species - number of pathogen species
+ * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
@@ -171,42 +172,46 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
     }
 }
 
-/** 
- * New shit !!! Needs description.
+/**
+ * @brief Core method. Initializes the pathogen population.
  * 
+ * Given the number of individuals, number of bit per gene, desired number of
+ * genes in a genome and desired number of pathogen species it generates
+ * random population of pathogens. Number of individuals will be evenly
+ * distributed between species and each species consists of identical clones.
+ * 
+ * 
+ * @param pop_size - total number of individuals
+ * @param antigenSize - number of bits per gene
+ * @param chrom_size - number of genes per genome
+ * @param numb_of_species - number of pathogen species
+ * @param mhcSize - number of bits in MHC protein
+ * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
+void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
     if (numb_of_species > pop_size) numb_of_species = pop_size;
-    int step_of_gene = ((int) std::pow(2, gene_size) -1 ) / numb_of_species;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
+    std::vector<Pathogen> PathoSppTemplateVector;
+    for(int kk = 0; kk < numb_of_species; ++kk){
+        PathoSppTemplateVector.push_back(Pathogen());
+        PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
+                        mhcSize, kk, timeStamp);
+    }
     std::vector<Pathogen> OneSpeciesVector;
-    Tagging_system* pTagging_system = Tagging_system::getInstance();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    
-    unsigned long intGeneTag;
-    int theGene;
-    
-    p_RandomNumbs->NextInt(0, std::pow(2, gene_size)-1);
-    pTagging_system->getTag();
-    
     for (int i = 0; i < numb_of_species; ++i){
-        theGene = p_RandomNumbs->NextInt(0, std::pow(2, gene_size)-1);
-        intGeneTag = pTagging_system->getTag();
         for(int j = 0; j < indiv_per_species; ++j){
-            OneSpeciesVector.push_back(Pathogen());
-            if(i+1 != indiv_per_species){
-                OneSpeciesVector.back().setNewPathoFixedGene(chrom_size, gene_size,
-                        i, timeStamp, theGene, intGeneTag);
-            } else {
-                OneSpeciesVector.back().setNewPathoFixedGene(chrom_size, gene_size,
-                        i, timeStamp, theGene, intGeneTag);
-            }
+            OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
+//            if(i+1 != indiv_per_species){
+//                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
+//                        mhcSize, i, timeStamp);
+//            } else {
+//                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
+//                        mhcSize,  i, timeStamp);
+//            }
             if(indiv_left){
-                OneSpeciesVector.push_back(Pathogen());
-                OneSpeciesVector.back().setNewPathoFixedGene(chrom_size, gene_size,
-                        i, timeStamp, theGene, intGeneTag);
+                OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
                 indiv_left--;
             }
         }
@@ -789,7 +794,7 @@ std::string Environment::getFixedBitsInAntigens(){
         }
         fixedMutStr += sttr("\n");
     }
-    std::cout << fixedMutStr;
+//    std::cout << fixedMutStr;
     return fixedMutStr;
 }
 
