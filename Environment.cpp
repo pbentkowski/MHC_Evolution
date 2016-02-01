@@ -794,7 +794,6 @@ std::string Environment::getFixedBitsInAntigens(){
         }
         fixedMutStr += sttr("\n");
     }
-//    std::cout << fixedMutStr;
     return fixedMutStr;
 }
 

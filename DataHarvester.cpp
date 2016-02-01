@@ -479,7 +479,12 @@ void DataHarvester::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     HostMHCNumbUnique.close();
 }
 
-
+/**
+ * @brief Data harvesting method. Record the indices of fixed bits in all
+ * pathogen species. Run just ones. 
+ * 
+ * @param EnvObj - the Environment class object
+ */
 void DataHarvester::savePathoNoMuttList(Environment& EnvObj){
     if(ifNoMuttPathoListUnique){
         std::ofstream NoMuttPathoList;
@@ -490,7 +495,7 @@ void DataHarvester::savePathoNoMuttList(Environment& EnvObj){
         ifNoMuttPathoListUnique = false;
     }
     std::ofstream NoMuttPathoList;
-    NoMuttPathoList.open("HostGeneNumbTotal_ChrOne.csv",
+    NoMuttPathoList.open("NoMutationInPathoList.csv",
                             std::ios::out | std::ios::ate | std::ios::app);
     NoMuttPathoList << EnvObj.getFixedBitsInAntigens();
     NoMuttPathoList.close();
