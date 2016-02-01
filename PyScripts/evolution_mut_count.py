@@ -1,7 +1,9 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Doc string here...
+Loads the file HostGeneNumbTotal_ChrOne.csv (final snapshot of the host 
+population) and calculates how many mutation got fixated during the MHCs'
+evolution. Plots the histogram.
 
 Created on Thu Nov  5 14:30:59 2015
 for Evolutionary Biology Group, Faculty of Biology
@@ -17,7 +19,7 @@ import matplotlib.pyplot as plt
 
 
 def loadHostPopulation(FILE):
-    '''Takes the file with all the hosts data loads it to a list. Each
+    '''Takes the file with all the hosts data and loads it to a list. Each
     individual is loaded as a list of bit strings. And the population is a list
     of individuals.'''
     B_list = []

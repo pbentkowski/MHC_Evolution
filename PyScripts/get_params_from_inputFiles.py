@@ -11,7 +11,7 @@ for Evolutionary Biology Group, Faculty of Biology
 """
 
 import os
-#import re
+import re
 #import pylab as p
 #import linecache as ln
 
@@ -24,8 +24,18 @@ def LoadTheData(arg, dirname, files):
             with open(filepath, 'r') as f:
                 for ii, line in enumerate(f):
                     l = line.split()
-                    if ii > 2 and len(l) > 1:
-                        strr += l[2] + " "
+                    if re.search("#", line):
+                        if re.search("# Other_information:", line):
+                            break
+                        else:
+                            continue
+                    elif ii > 2 and len(l) > 1:
+                        if l[2] == "YES":
+                            strr += "10 "
+                        elif l[2] == "NO":
+                            strr += "11 "
+                        else:
+                            strr += l[2] + " "
             print strr
 
 

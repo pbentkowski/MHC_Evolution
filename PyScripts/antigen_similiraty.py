@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Checks the similarities in all the antigens in hole pathogen population.
+Checks the similarities in all the antigens in the hole pathogen population.
 Function loadThePopulation(FILE) loads the file created by the modelling
 framework into a handy data structure and the rest calculates various
 statistics.

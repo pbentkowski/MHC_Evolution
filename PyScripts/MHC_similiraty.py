@@ -1,7 +1,8 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Doc string here...
+Calculates and plots similarities between antigens and genes in pathogen and
+host populations. Does it separately for hosts and for pathogens.
 
 Created on Tue Nov  3 16:10:58 2015
 for Evolutionary Biology Group, Faculty of Biology

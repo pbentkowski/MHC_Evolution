@@ -1,6 +1,11 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
+Calculates the theoretical probability of getting a run of K or more successes
+(heads) in a row in N Bernoulli trials (coin flips)?
+
+http://www.askamathematician.com/2010/07/q-whats-the-chance-of-getting-a-run-of-k-successes-in-n-bernoulli-trials-why-use-approximations-when-the-exact-answer-is-known/
+
 Created on Fri Nov 13 18:08:10 2015
 
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com

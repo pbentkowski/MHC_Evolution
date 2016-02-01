@@ -1,7 +1,8 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Doc string here...
+Filther the file with Pathogen population data to leave off only the bit string
+representation of the antigen removing the mutation history data.
 
 Created on Thu Oct 29 17:47:26 2015
 for Evolutionary Biology Group, Faculty of Biology

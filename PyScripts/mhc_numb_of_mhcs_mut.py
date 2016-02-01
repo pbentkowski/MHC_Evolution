@@ -1,7 +1,8 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Doc string here...
+Calculates the fraction of homozygotes in the populations of hosts and
+pathogens. 
 
 Created on Tue Apr 28 13:32:49 2015
 for Evolutionary Biology Group, Faculty of Biology
