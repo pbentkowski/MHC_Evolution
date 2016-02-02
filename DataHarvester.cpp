@@ -481,7 +481,7 @@ void DataHarvester::saveHostGeneNumbers(Environment& EnvObj, int tayme){
 
 /**
  * @brief Data harvesting method. Record the indices of fixed bits in all
- * pathogen species. Run just ones. 
+ * pathogen species. Run this just ones. 
  * 
  * @param EnvObj - the Environment class object
  */

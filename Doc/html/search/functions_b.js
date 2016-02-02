@@ -4,6 +4,7 @@ var searchData=
   ['savehostgeneticdivers',['saveHostGeneticDivers',['../class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33',1,'DataHarvester']]],
   ['savehostpopultofile',['saveHostPopulToFile',['../class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736',1,'DataHarvester']]],
   ['savenumofpathospeciestofile',['saveNumOfPathoSpeciesToFile',['../class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a',1,'DataHarvester']]],
+  ['savepathonomuttlist',['savePathoNoMuttList',['../class_data_harvester.html#afb1ac736a2e1334d5818d4685c674412',1,'DataHarvester']]],
   ['savepathopopultofile',['savePathoPopulToFile',['../class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87',1,'DataHarvester']]],
   ['selectandreprodhostsaddoffspring',['selectAndReprodHostsAddOffspring',['../class_environment.html#a56c39a47a881880bd36c3b8c5f0dbe8a',1,'Environment']]],
   ['selectandreprodhostsreplace',['selectAndReprodHostsReplace',['../class_environment.html#a09af2890db9eb1a02069adfb8836aa47',1,'Environment']]],

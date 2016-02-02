@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Modelling MHC Evolutionary Dynamics
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">0.9</span>
    </div>
   </td>
  </tr>
@@ -151,24 +151,25 @@ $(document).ready(function(){initNavTree('_pathogen_8h_source.html','');});
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_pathogen.html#a4b9ae991d5bb856a9a1a5211ca92cbd0">   48</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_pathogen.html#a4b9ae991d5bb856a9a1a5211ca92cbd0">SelectedToReproduct</a>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a92f9c25d79aeee5cffc482bcfca52c25">setNewPathogen</a>(<span class="keywordtype">int</span> num_of_loci, <span class="keywordtype">int</span> antigen_size, <span class="keywordtype">int</span> mhcSize,</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                        <span class="keywordtype">int</span> species, <span class="keywordtype">int</span> timeStamp);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="_h2_pinteraction_8cpp.html#a78bd532ea5641f9e5e33e0c9b28ed71b">antigenvector</a> <a class="code" href="class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c">getAllAntigens</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54">chromoMutProcess</a>(<span class="keywordtype">double</span> mut_probabl, <span class="keywordtype">int</span> mhcSize, <span class="keywordtype">int</span> timeStamp);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#ab300396d0ea6a948be427461a88d1128">chromoMutProcessWithRestric</a>(<span class="keywordtype">double</span> mut_probabl, <span class="keywordtype">int</span> mhcSize, <span class="keywordtype">int</span> timeStamp,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                     std::set&lt;int&gt;&amp; noMutts);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> <a class="code" href="class_pathogen.html#a506c616d9766a7f0599b4070cb5a6981">getSingleAntigen</a>(<span class="keywordtype">int</span> indx);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_pathogen.html#ada9e5929d6736f63377f0625153b224b">getSpeciesTag</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a4a59ff7b7bb309ee22f1cc1503518f59">clearInfections</a>();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// === Data harvesting methods ===</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::string <a class="code" href="class_pathogen.html#ad879ba5dc9ca0fe3fa68eb800b3446f3">stringGenesFromGenome</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// === Auxiliary methods ===</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea">printGenesFromGenome</a>();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::vector&lt;Antigen&gt; PathogenProts;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> Species;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* PATHOGEN_H */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="_h2_pinteraction_8cpp.html#a78bd532ea5641f9e5e33e0c9b28ed71b">antigenvector</a> <a class="code" href="class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c">getAllAntigens</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54">chromoMutProcess</a>(<span class="keywordtype">double</span> mut_probabl, <span class="keywordtype">int</span> mhcSize, <span class="keywordtype">int</span> timeStamp);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#ab300396d0ea6a948be427461a88d1128">chromoMutProcessWithRestric</a>(<span class="keywordtype">double</span> mut_probabl, <span class="keywordtype">int</span> mhcSize, <span class="keywordtype">int</span> timeStamp,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                     std::set&lt;int&gt;&amp; noMutts);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="_gene_8cpp.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a> <a class="code" href="class_pathogen.html#a506c616d9766a7f0599b4070cb5a6981">getSingleAntigen</a>(<span class="keywordtype">int</span> indx);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_pathogen.html#ada9e5929d6736f63377f0625153b224b">getSpeciesTag</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a4a59ff7b7bb309ee22f1cc1503518f59">clearInfections</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// === Data harvesting methods ===</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    std::string <a class="code" href="class_pathogen.html#ad879ba5dc9ca0fe3fa68eb800b3446f3">stringGenesFromGenome</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// === Auxiliary methods ===</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea">printGenesFromGenome</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::vector&lt;Antigen&gt; PathogenProts;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span> Species;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* PATHOGEN_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="ttc" id="_pathogen_8h_html_a108efa7670466d15a5ecafb60bbc9c37"><div class="ttname"><a href="_pathogen_8h.html#a108efa7670466d15a5ecafb60bbc9c37">genestring</a></div><div class="ttdeci">boost::dynamic_bitset genestring</div><div class="ttdef"><b>Definition:</b> <a href="_pathogen_8h_source.html#l00032">Pathogen.h:32</a></div></div>
 <div class="ttc" id="class_pathogen_html_a4a59ff7b7bb309ee22f1cc1503518f59"><div class="ttname"><a href="class_pathogen.html#a4a59ff7b7bb309ee22f1cc1503518f59">Pathogen::clearInfections</a></div><div class="ttdeci">void clearInfections()</div><div class="ttdoc">Core method. Zeroing infection and reproduction flags. </div><div class="ttdef"><b>Definition:</b> <a href="_pathogen_8cpp_source.html#l00144">Pathogen.cpp:144</a></div></div>
 <div class="ttc" id="_h2_pinteraction_8cpp_html_a78bd532ea5641f9e5e33e0c9b28ed71b"><div class="ttname"><a href="_h2_pinteraction_8cpp.html#a78bd532ea5641f9e5e33e0c9b28ed71b">antigenvector</a></div><div class="ttdeci">std::vector&lt; Antigen &gt; antigenvector</div><div class="ttdef"><b>Definition:</b> <a href="_h2_pinteraction_8cpp_source.html#l00033">H2Pinteraction.cpp:33</a></div></div>
@@ -194,7 +195,7 @@ $(document).ready(function(){initNavTree('_pathogen_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_pathogen_8h.html">Pathogen.h</a></li>
-    <li class="footer">Generated on Fri Jan 29 2016 17:09:15 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Feb 2 2016 20:36:21 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

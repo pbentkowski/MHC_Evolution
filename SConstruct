@@ -21,13 +21,18 @@ cxxflaggs = "-std=c++1y"
 
 # normal compilation
 env = Environment(CCFLAGS='-O3',
-		  CPPPATH='/usr/include/boost/',
-		  CXXFLAGS=cxxflaggs)
+          CPPPATH='/usr/include/boost/',
+          CXXFLAGS=cxxflaggs)
 
 # debugging compilation
 env_dbg = Environment(CCFLAGS='-g',
-		  CPPPATH='/usr/include/boost/',
-		  CXXFLAGS=cxxflaggs)
+          CPPPATH='/usr/include/boost/',
+          CXXFLAGS=cxxflaggs)
+
+# static compilation
+env_static = Environment(CCFLAGS='-static -O3',
+             CPPPATH='/usr/include/boost/',
+             CXXFLAGS=cxxflaggs)
 
 scenario = ARGUMENTS.get('scenario', 0)
 try:

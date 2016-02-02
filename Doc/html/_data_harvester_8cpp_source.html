@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">Modelling MHC Evolutionary Dynamics
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">0.9</span>
    </div>
   </td>
  </tr>
@@ -190,311 +190,330 @@ $(document).ready(function(){initNavTree('_data_harvester_8cpp_source.html','');
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    ifFirstHostGeneDivRun = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    ifFirstGeneNumbersTotal = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    ifFirstGeneNumbersUnique = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">  107</a></span>&#160;<span class="keyword">const</span> std::string <a class="code" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a>(){</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    time_t now = time(0);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">struct </span>tm tstruct;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">char</span> buf[80];</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    tstruct = *localtime(&amp;now);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    strftime(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%Y-%m-%d.%X&quot;</span>, &amp;tstruct);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> buf;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c">  140</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c">DataHarvester::checkParamsIfWrong</a>(<span class="keywordtype">int</span> rndSeed, <span class="keywordtype">int</span> geneLength, <span class="keywordtype">int</span> antigenLength,</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordtype">int</span> hostPopSize, <span class="keywordtype">int</span> pathoPopSize, <span class="keywordtype">int</span> patho_sp, <span class="keywordtype">int</span> hostGeneNumbb,</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">int</span> pathoGeneNumb, <span class="keywordtype">int</span> patoPerHostGeneration, <span class="keywordtype">int</span> numOfHostGenerations,</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordtype">double</span> hostMutationProb, <span class="keywordtype">double</span> pathoMutationProb, <span class="keywordtype">int</span> HeteroHomo,</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordtype">double</span> hostDeletion, <span class="keywordtype">double</span> hostDuplication, <span class="keywordtype">int</span> maxGene, <span class="keywordtype">double</span> alpha,</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordtype">double</span> fixedAntigPosit){</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">bool</span> ifError = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">if</span> (rndSeed &lt; 0){</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in RNG seed. It has to be a positive integer!.&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keywordflow">if</span> (geneLength &gt; 31){</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in number of bits per gene. &quot;</span>;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        std::cout &lt;&lt; geneLength &lt;&lt; <span class="stringliteral">&quot; bits in genes is bit too much. &quot;</span>;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Try something less radical, e.g. smaller than 31.&quot;</span>  &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        ifError =  <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    } </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">if</span> (geneLength &gt; antigenLength){</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in size of an antigen. &quot;</span>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot; Number of bits in antigen cannot be smaller&quot;</span>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot; than the number of bits in MHC gene.&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        ifError =  <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">if</span> (hostMutationProb &lt; 0.0 or hostMutationProb &gt; 1.0){</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; mutation probability. It has to be &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                <span class="stringliteral">&quot;within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keywordflow">if</span> (pathoMutationProb &lt; 0.0 or pathoMutationProb &gt; 1.0){</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the pathogens&#39; mutation probability. It has &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                <span class="stringliteral">&quot;to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    }</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">if</span> (hostDeletion &lt; 0.0 or hostDeletion &gt; 1.0){</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; probability of deletion of a gene. &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                <span class="stringliteral">&quot;It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keywordflow">if</span> (hostDuplication &lt; 0.0 or hostDuplication &gt; 1.0){</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; duplication of a gene probability. &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                <span class="stringliteral">&quot;It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordflow">if</span> (HeteroHomo != 10 and HeteroHomo != 11){</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the heterozygote advantage / lack of advantage &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="stringliteral">&quot;mode. It has to be 10 for heterozygote advantage or 11 for &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                <span class="stringliteral">&quot;lack of thereof.&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">if</span> (maxGene &lt; 1.0 or maxGene &lt; hostGeneNumbb){</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; maximal number of genes per &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                <span class="stringliteral">&quot;chromosome. It has to be at least one, but not less then the &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <span class="stringliteral">&quot;number used to initialize the system. &quot;</span>&lt;&lt; std::endl;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keywordflow">if</span> (alpha &lt; 0.0 or alpha &gt; 1.0){</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; alpha factor for the host fitness function. &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="stringliteral">&quot;It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <span class="keywordflow">if</span> (fixedAntigPosit &lt; 0.0 or fixedAntigPosit &gt; 1.0){</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the parameter for fraction of antigen bits &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="stringliteral">&quot;being fixed. It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        ifError = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">return</span> ifError;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573">  235</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573">DataHarvester::inputParamsToFile</a>(<span class="keywordtype">int</span> rndSeed, <span class="keywordtype">int</span> geneLength, <span class="keywordtype">int</span> antigenLength,</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keywordtype">int</span> hostPopSize, <span class="keywordtype">int</span> pathoPopSize, <span class="keywordtype">int</span> patho_sp, <span class="keywordtype">int</span> hostGeneNumbb,</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordtype">int</span> pathoGeneNumb, <span class="keywordtype">int</span> patoPerHostGeneration, <span class="keywordtype">int</span> numOfHostGenerations,</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordtype">double</span> hostMutationProb, <span class="keywordtype">double</span> pathoMutationProb, <span class="keywordtype">int</span> HeteroHomo,</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordtype">double</span> hostDeletion, <span class="keywordtype">double</span> hostDuplication, <span class="keywordtype">int</span> maxGene, <span class="keywordtype">double</span> alpha,</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordtype">double</span> fixedAntigPosit){</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    std::ofstream InputParams;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    InputParams.open(<span class="stringliteral">&quot;InputParameters.csv&quot;</span>);</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;# Runtime properties:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\trun_start_date_and_time = &quot;</span> &lt;&lt; <a class="code" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a>() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;# Model&#39;s core parameters:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\trandom_number_seed = &quot;</span> &lt;&lt; rndSeed &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_bits_per_gene = &quot;</span> &lt;&lt; geneLength &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_bits_per_antigen = &quot;</span> &lt;&lt; antigenLength &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_population_size = &quot;</span> &lt;&lt; hostPopSize &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tpathogen_population_size = &quot;</span> &lt;&lt; pathoPopSize &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_pathogen_species = &quot;</span> &lt;&lt; patho_sp &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_genes_per_host_one_chromosome = &quot;</span> &lt;&lt; </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        hostGeneNumbb &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_antigens_per_pathogen = &quot;</span> &lt;&lt; pathoGeneNumb &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_pathogen_generation_per_one_host_generation = &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        patoPerHostGeneration &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_host_generations = &quot;</span> &lt;&lt; numOfHostGenerations &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tmutation_probability_in_host = &quot;</span> &lt;&lt; </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            hostMutationProb &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tmutation_probability_in_pathogen = &quot;</span> &lt;&lt; </div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;            pathoMutationProb &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">if</span> (HeteroHomo == 10){</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        InputParams &lt;&lt; <span class="stringliteral">&quot;\theterozygote_advantage = YES&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    }<span class="keywordflow">else</span> <span class="keywordflow">if</span> (HeteroHomo == 11){</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        InputParams &lt;&lt; <span class="stringliteral">&quot;\theterozygote_advantage = NO&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        InputParams &lt;&lt; <span class="stringliteral">&quot;\theterozygote_advantage = ERROR&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_gene_deletion_probability = &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            hostDeletion &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_gene_duplication_probability = &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;            hostDuplication &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_maximal_number_of_genes_in_chromosome = &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            maxGene &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tAlpha_factor_for_the_host_fitness_function = &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            alpha &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tFraction_of_antigen_bits_getting_fixed = &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            fixedAntigPosit &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    InputParams.close();</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;}</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    </div>
-<div class="line"><a name="l00290"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a">  290</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a">DataHarvester::saveNumOfPathoSpeciesToFile</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordflow">if</span>(ifFirstSpecToFileRun){</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        std::ofstream PathoPopulFile;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        PathoPopulFile.open(<span class="stringliteral">&quot;PathoPopSizes.csv&quot;</span>);</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        PathoPopulFile &lt;&lt; <span class="stringliteral">&quot;#time subsequent_species_pop_size&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        PathoPopulFile.close();</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        ifFirstSpecToFileRun = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    }</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    std::ofstream PathoPopulFile;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    PathoPopulFile.open(<span class="stringliteral">&quot;PathoPopSizes.csv&quot;</span>,</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            std::ios::out | std::ios::ate | std::ios::app);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    PathoPopulFile &lt;&lt; tayme;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">getPathoNumOfSpecies</a>(); ++j){</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        PathoPopulFile &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; EnvObj.<a class="code" href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">getPathoSpeciesPopSize</a>(j);      </div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    }</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    PathoPopulFile &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    PathoPopulFile.close();</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;}</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87">  316</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87">DataHarvester::savePathoPopulToFile</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a> theFilename = <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;PathoGenomesFile.&quot;</span>) + std::to_string(tayme) + <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;.csv&quot;</span>);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    std::ofstream PathogGenomeFile;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    PathogGenomeFile.open(theFilename);</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    PathogGenomeFile &lt;&lt; <span class="stringliteral">&quot;#Genomes_of_all_pathogens_at_time = &quot;</span> &lt;&lt; tayme &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    PathogGenomeFile &lt;&lt; <span class="stringliteral">&quot;#bit-gene\tchromosome\ttime_of_origin\tgene_own_tag\tAll_parental_tags&quot;</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">getPathoNumOfSpecies</a>(); ++i){</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">getPathoSpeciesPopSize</a>(i); ++j){</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            PathogGenomeFile &lt;&lt; EnvObj.<a class="code" href="class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c">getPathoGenesToString</a>(i, j);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    }</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    PathogGenomeFile.close();</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;}</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno"><a class="line" href="class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736">  338</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736">DataHarvester::saveHostPopulToFile</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a> theFilename = <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;HostGenomesFile.&quot;</span>) + std::to_string(tayme) + <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;.csv&quot;</span>);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    std::ofstream HostGenomesFile;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    HostGenomesFile.open(theFilename);</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    HostGenomesFile &lt;&lt; <span class="stringliteral">&quot;#Genomes_of_all_host_at_time = &quot;</span> &lt;&lt; tayme &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    HostGenomesFile &lt;&lt; <span class="stringliteral">&quot;#bit-gene\tchromosome\ttime_of_origin\tgene_own_tag&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="stringliteral">&quot;\tTime_of_parental_mutation\tAll_parental_tags etc.&quot;</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>(); ++i){</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        HostGenomesFile &lt;&lt; EnvObj.<a class="code" href="class_environment.html#a71dc8a1828a2830ffefa901d0974b2c1">getHostGenesToString</a>(i);</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    }</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    HostGenomesFile.close();</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;}</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00364"></a><span class="lineno"><a class="line" href="class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33">  364</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33">DataHarvester::saveHostGeneticDivers</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="keywordflow">if</span>(ifFirstHostGeneDivRun){</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        std::ofstream HostGeneDivFile;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        HostGeneDivFile.open(<span class="stringliteral">&quot;HostsGeneDivers.csv&quot;</span>);</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        HostGeneDivFile &lt;&lt; <span class="stringliteral">&quot;#time pop_size tot_num_of_genes num_of_MHC_types&quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                <span class="stringliteral">&quot; Shannon_indx mean_fitness std_fitness&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        HostGeneDivFile.close();</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        ifFirstHostGeneDivRun = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    }</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    std::vector&lt;int&gt; AllTheGeneVals;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    std::vector&lt;double&gt; Fitness;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordtype">double</span> popSize = (double) EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>();</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordtype">int</span> homoLociNum = -1; <span class="comment">// not applicable at the moment!</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">//    double tot_gene_numb = 0;</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    Fitness.clear();</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>(); ++i){</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment">//        tot_gene_numb += EnvObj.getSingleHostGenomeSize(i);</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;        Fitness.push_back(EnvObj.<a class="code" href="class_environment.html#ab70e6fda860c35a3ac222cfdef2dff44">getHostFitness</a>(i));</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="comment">// Harvesting genes from Chromosome One in all hosts</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#a7d23e5f51b1c1feed367da44852b2dba">getSingleHostChromoOneSize</a>(i); ++j){</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            AllTheGeneVals.push_back(EnvObj.<a class="code" href="class_environment.html#a86d8f067f5576f39047e360dd717b1fe">getSingleHostRealGeneOne</a>(i, j));</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;        }</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        <span class="comment">// Harvesting genes from Chromosome Two in all hosts</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> m = 0; m &lt; EnvObj.<a class="code" href="class_environment.html#ac98907c5bc18780a611a743fb4afa479">getSingleHostChromoTwoSize</a>(i); ++m){</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;            AllTheGeneVals.push_back(EnvObj.<a class="code" href="class_environment.html#a20b1bdddb432ef84ee08fd1cd77d5fd9">getSingleHostRealGeneTwo</a>(i, m));</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        }</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    }</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="comment">// Calculating the Shannon index et al. plus extracting it from the tuple</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keyword">auto</span> ShOut = <a class="code" href="_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff">getShannonIndx</a>(AllTheGeneVals);</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keywordtype">double</span> Summ = std::get &lt; 0 &gt;( ShOut );</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordtype">int</span> mhcTypes = std::get &lt; 1 &gt;( ShOut );</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keywordtype">double</span> tot_gene_numb = std::get &lt; 2 &gt;( ShOut );</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    </div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="comment">// calculating coefficient of variation of hosts fitness</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordtype">double</span> cv_sum = std::accumulate(Fitness.begin(), Fitness.end(), 0.0);</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">double</span> cv_mean = cv_sum / Fitness.size();</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordtype">double</span> sq_sum = std::inner_product(Fitness.begin(), Fitness.end(), </div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;                                       Fitness.begin(), 0.0);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="keywordtype">double</span> stdev = std::sqrt(sq_sum / Fitness.size() - cv_mean * cv_mean);</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    </div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    std::ofstream HostGenomesFile;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    HostGenomesFile.open(<span class="stringliteral">&quot;HostsGeneDivers.csv&quot;</span>,</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            std::ios::out | std::ios::ate | std::ios::app);</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    HostGenomesFile &lt;&lt; tayme &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; popSize &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; tot_gene_numb &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            mhcTypes &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; Summ &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; cv_mean &lt;&lt;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            <span class="stringliteral">&quot; &quot;</span> &lt;&lt; stdev &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    HostGenomesFile.close();</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;}</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
-<div class="line"><a name="l00425"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf">  425</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf">DataHarvester::saveHostGeneNumbers</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <span class="keywordflow">if</span>(ifFirstGeneNumbersTotal){</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        std::ofstream HostGeneNumbTotal;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        HostGeneNumbTotal.open(<span class="stringliteral">&quot;HostGeneNumbTotal_ChrOne.csv&quot;</span>);</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        HostGeneNumbTotal &lt;&lt; <span class="stringliteral">&quot;#time total_number_of_genes_in_all_host_cells&quot;</span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;        HostGeneNumbTotal.close();</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        ifFirstGeneNumbersTotal = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    }</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    <span class="keywordflow">if</span>(ifFirstGeneNumbersUnique){</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        std::ofstream HostMHCNumbUnique;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        HostMHCNumbUnique.open(<span class="stringliteral">&quot;HostMHCsNumbUniq_ChrOne.csv&quot;</span>);</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        HostMHCNumbUnique &lt;&lt; <span class="stringliteral">&quot;#time number_of_unique_MHCs_in_all_host_cells&quot;</span> </div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;                &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        HostMHCNumbUnique.close();</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        ifFirstGeneNumbersUnique = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    }</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    std::vector&lt;unsigned int&gt; AllGenomesSize;</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    std::vector&lt;int&gt; UniqueMHCs;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    std::vector&lt;int&gt; TheGeneVals;</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>(); ++i){</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        TheGeneVals.clear();</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        <span class="comment">// Harvesting genes from Chromosome One in all hosts</span></div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#a7d23e5f51b1c1feed367da44852b2dba">getSingleHostChromoOneSize</a>(i); ++j){</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;            TheGeneVals.push_back(EnvObj.<a class="code" href="class_environment.html#a86d8f067f5576f39047e360dd717b1fe">getSingleHostRealGeneOne</a>(i, j));</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;        }</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        <span class="comment">// Harvesting genes from Chromosome Two in all hosts</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">//        for(int m = 0; m &lt; EnvObj.getSingleHostChromoTwoSize(i); ++m){</span></div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">//            TheGeneVals.push_back(EnvObj.getSingleHostRealGeneTwo(i, m));</span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">//        }</span></div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        AllGenomesSize.push_back(TheGeneVals.size());</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        <span class="keyword">auto</span> ShOut = <a class="code" href="_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff">getShannonIndx</a>(TheGeneVals);</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        <span class="keywordtype">int</span> mhcTypes = std::get &lt; 1 &gt;( ShOut );</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        UniqueMHCs.push_back(mhcTypes);</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    }</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    std::ofstream HostGeneNumbTotal;</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    HostGeneNumbTotal.open(<span class="stringliteral">&quot;HostGeneNumbTotal_ChrOne.csv&quot;</span>,</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;                            std::ios::out | std::ios::ate | std::ios::app);</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    HostGeneNumbTotal &lt;&lt; tayme;</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ii = 0; ii &lt; AllGenomesSize.size(); ++ii){</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        HostGeneNumbTotal &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; AllGenomesSize[ii];</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    HostGeneNumbTotal &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    HostGeneNumbTotal.close();</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    </div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    std::ofstream HostMHCNumbUnique;</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    HostMHCNumbUnique.open(<span class="stringliteral">&quot;HostMHCsNumbUniq_ChrOne.csv&quot;</span>,</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;                            std::ios::out | std::ios::ate | std::ios::app);</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    HostMHCNumbUnique &lt;&lt; tayme;</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> jj = 0; jj &lt; UniqueMHCs.size(); ++jj){</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;        HostMHCNumbUnique &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; UniqueMHCs[jj];</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    }</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    HostMHCNumbUnique &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    HostMHCNumbUnique.close();</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;}</div>
-<div class="ttc" id="class_environment_html_a20b1bdddb432ef84ee08fd1cd77d5fd9"><div class="ttname"><a href="class_environment.html#a20b1bdddb432ef84ee08fd1cd77d5fd9">Environment::getSingleHostRealGeneTwo</a></div><div class="ttdeci">int getSingleHostRealGeneTwo(int i, int j)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00814">Environment.cpp:814</a></div></div>
-<div class="ttc" id="class_environment_html_a86d8f067f5576f39047e360dd717b1fe"><div class="ttname"><a href="class_environment.html#a86d8f067f5576f39047e360dd717b1fe">Environment::getSingleHostRealGeneOne</a></div><div class="ttdeci">int getSingleHostRealGeneOne(int i, int j)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00810">Environment.cpp:810</a></div></div>
-<div class="ttc" id="class_environment_html_a71dc8a1828a2830ffefa901d0974b2c1"><div class="ttname"><a href="class_environment.html#a71dc8a1828a2830ffefa901d0974b2c1">Environment::getHostGenesToString</a></div><div class="ttdeci">std::string getHostGenesToString(int i)</div><div class="ttdoc">Data harvesting method. Gets the genome of selected host in human-readable format. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00773">Environment.cpp:773</a></div></div>
-<div class="ttc" id="class_data_harvester_html_a740d163f794d5432a048ff15b25d4bcf"><div class="ttname"><a href="class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf">DataHarvester::saveHostGeneNumbers</a></div><div class="ttdeci">void saveHostGeneNumbers(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! </div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00425">DataHarvester.cpp:425</a></div></div>
-<div class="ttc" id="class_environment_html_a7d23e5f51b1c1feed367da44852b2dba"><div class="ttname"><a href="class_environment.html#a7d23e5f51b1c1feed367da44852b2dba">Environment::getSingleHostChromoOneSize</a></div><div class="ttdeci">int getSingleHostChromoOneSize(int indx)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00800">Environment.cpp:800</a></div></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    ifNoMuttPathoListUnique = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">  108</a></span>&#160;<span class="keyword">const</span> std::string <a class="code" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a>(){</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    time_t now = time(0);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">struct </span>tm tstruct;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">char</span> buf[80];</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    tstruct = *localtime(&amp;now);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    strftime(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%Y-%m-%d.%X&quot;</span>, &amp;tstruct);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">return</span> buf;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c">  141</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c">DataHarvester::checkParamsIfWrong</a>(<span class="keywordtype">int</span> rndSeed, <span class="keywordtype">int</span> geneLength, <span class="keywordtype">int</span> antigenLength,</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">int</span> hostPopSize, <span class="keywordtype">int</span> pathoPopSize, <span class="keywordtype">int</span> patho_sp, <span class="keywordtype">int</span> hostGeneNumbb,</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordtype">int</span> pathoGeneNumb, <span class="keywordtype">int</span> patoPerHostGeneration, <span class="keywordtype">int</span> numOfHostGenerations,</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordtype">double</span> hostMutationProb, <span class="keywordtype">double</span> pathoMutationProb, <span class="keywordtype">int</span> HeteroHomo,</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordtype">double</span> hostDeletion, <span class="keywordtype">double</span> hostDuplication, <span class="keywordtype">int</span> maxGene, <span class="keywordtype">double</span> alpha,</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordtype">double</span> fixedAntigPosit){</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">bool</span> ifError = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">if</span> (rndSeed &lt; 0){</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in RNG seed. It has to be a positive integer!.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">if</span> (geneLength &gt; 31){</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in number of bits per gene. &quot;</span>;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        std::cout &lt;&lt; geneLength &lt;&lt; <span class="stringliteral">&quot; bits in genes is bit too much. &quot;</span>;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Try something less radical, e.g. smaller than 31.&quot;</span>  &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        ifError =  <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    } </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">if</span> (geneLength &gt; antigenLength){</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in size of an antigen. &quot;</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot; Number of bits in antigen cannot be smaller&quot;</span>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot; than the number of bits in MHC gene.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        ifError =  <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">if</span> (hostMutationProb &lt; 0.0 or hostMutationProb &gt; 1.0){</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; mutation probability. It has to be &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="stringliteral">&quot;within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">if</span> (pathoMutationProb &lt; 0.0 or pathoMutationProb &gt; 1.0){</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the pathogens&#39; mutation probability. It has &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="stringliteral">&quot;to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordflow">if</span> (hostDeletion &lt; 0.0 or hostDeletion &gt; 1.0){</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; probability of deletion of a gene. &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="stringliteral">&quot;It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (hostDuplication &lt; 0.0 or hostDuplication &gt; 1.0){</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; duplication of a gene probability. &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                <span class="stringliteral">&quot;It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordflow">if</span> (HeteroHomo != 10 and HeteroHomo != 11){</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the heterozygote advantage / lack of advantage &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                <span class="stringliteral">&quot;mode. It has to be 10 for heterozygote advantage or 11 for &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                <span class="stringliteral">&quot;lack of thereof.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordflow">if</span> (maxGene &lt; 1.0 or maxGene &lt; hostGeneNumbb){</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; maximal number of genes per &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <span class="stringliteral">&quot;chromosome. It has to be at least one, but not less then the &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="stringliteral">&quot;number used to initialize the system. &quot;</span>&lt;&lt; std::endl;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">if</span> (alpha &lt; 0.0 or alpha &gt; 1.0){</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the hosts&#39; alpha factor for the host fitness function. &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="stringliteral">&quot;It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">if</span> (fixedAntigPosit &lt; 0.0 or fixedAntigPosit &gt; 1.0){</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;\nError in the parameter for fraction of antigen bits &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                <span class="stringliteral">&quot;being fixed. It has to be within the range [0, 1].&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        ifError = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">return</span> ifError;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573">  236</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573">DataHarvester::inputParamsToFile</a>(<span class="keywordtype">int</span> rndSeed, <span class="keywordtype">int</span> geneLength, <span class="keywordtype">int</span> antigenLength,</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordtype">int</span> hostPopSize, <span class="keywordtype">int</span> pathoPopSize, <span class="keywordtype">int</span> patho_sp, <span class="keywordtype">int</span> hostGeneNumbb,</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordtype">int</span> pathoGeneNumb, <span class="keywordtype">int</span> patoPerHostGeneration, <span class="keywordtype">int</span> numOfHostGenerations,</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordtype">double</span> hostMutationProb, <span class="keywordtype">double</span> pathoMutationProb, <span class="keywordtype">int</span> HeteroHomo,</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordtype">double</span> hostDeletion, <span class="keywordtype">double</span> hostDuplication, <span class="keywordtype">int</span> maxGene, <span class="keywordtype">double</span> alpha,</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordtype">double</span> fixedAntigPosit){</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    std::ofstream InputParams;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    InputParams.open(<span class="stringliteral">&quot;InputParameters.csv&quot;</span>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;# Runtime properties:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\trun_start_date_and_time = &quot;</span> &lt;&lt; <a class="code" href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a>() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;# Model&#39;s core parameters:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\trandom_number_seed = &quot;</span> &lt;&lt; rndSeed &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_bits_per_gene = &quot;</span> &lt;&lt; geneLength &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_bits_per_antigen = &quot;</span> &lt;&lt; antigenLength &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_population_size = &quot;</span> &lt;&lt; hostPopSize &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tpathogen_population_size = &quot;</span> &lt;&lt; pathoPopSize &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_pathogen_species = &quot;</span> &lt;&lt; patho_sp &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_genes_per_host_one_chromosome = &quot;</span> &lt;&lt; </div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        hostGeneNumbb &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_antigens_per_pathogen = &quot;</span> &lt;&lt; pathoGeneNumb &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_pathogen_generation_per_one_host_generation = &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        patoPerHostGeneration &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tnumber_of_host_generations = &quot;</span> &lt;&lt; numOfHostGenerations &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tmutation_probability_in_host = &quot;</span> &lt;&lt; </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            hostMutationProb &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tmutation_probability_in_pathogen = &quot;</span> &lt;&lt; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            pathoMutationProb &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordflow">if</span> (HeteroHomo == 10){</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        InputParams &lt;&lt; <span class="stringliteral">&quot;\theterozygote_advantage = YES&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    }<span class="keywordflow">else</span> <span class="keywordflow">if</span> (HeteroHomo == 11){</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        InputParams &lt;&lt; <span class="stringliteral">&quot;\theterozygote_advantage = NO&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        InputParams &lt;&lt; <span class="stringliteral">&quot;\theterozygote_advantage = ERROR&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_gene_deletion_probability = &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;            hostDeletion &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_gene_duplication_probability = &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            hostDuplication &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\thost_maximal_number_of_genes_in_chromosome = &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            maxGene &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tAlpha_factor_for_the_host_fitness_function = &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            alpha &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    InputParams &lt;&lt; <span class="stringliteral">&quot;\tFraction_of_antigen_bits_getting_fixed = &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            fixedAntigPosit &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    InputParams.close();</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    </div>
+<div class="line"><a name="l00291"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a">  291</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a">DataHarvester::saveNumOfPathoSpeciesToFile</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">if</span>(ifFirstSpecToFileRun){</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        std::ofstream PathoPopulFile;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        PathoPopulFile.open(<span class="stringliteral">&quot;PathoPopSizes.csv&quot;</span>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        PathoPopulFile &lt;&lt; <span class="stringliteral">&quot;#time subsequent_species_pop_size&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        PathoPopulFile.close();</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        ifFirstSpecToFileRun = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    }</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    std::ofstream PathoPopulFile;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    PathoPopulFile.open(<span class="stringliteral">&quot;PathoPopSizes.csv&quot;</span>,</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            std::ios::out | std::ios::ate | std::ios::app);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    PathoPopulFile &lt;&lt; tayme;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">getPathoNumOfSpecies</a>(); ++j){</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        PathoPopulFile &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; EnvObj.<a class="code" href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">getPathoSpeciesPopSize</a>(j);      </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    PathoPopulFile &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    PathoPopulFile.close();</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;}</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87">  317</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87">DataHarvester::savePathoPopulToFile</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a> theFilename = <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;PathoGenomesFile.&quot;</span>) + std::to_string(tayme) + <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;.csv&quot;</span>);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    std::ofstream PathogGenomeFile;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    PathogGenomeFile.open(theFilename);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    PathogGenomeFile &lt;&lt; <span class="stringliteral">&quot;#Genomes_of_all_pathogens_at_time = &quot;</span> &lt;&lt; tayme &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    PathogGenomeFile &lt;&lt; <span class="stringliteral">&quot;#bit-gene\tchromosome\ttime_of_origin\tgene_own_tag\tAll_parental_tags&quot;</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">getPathoNumOfSpecies</a>(); ++i){</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">getPathoSpeciesPopSize</a>(i); ++j){</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            PathogGenomeFile &lt;&lt; EnvObj.<a class="code" href="class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c">getPathoGenesToString</a>(i, j);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    }</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    PathogGenomeFile.close();</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;}</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00339"></a><span class="lineno"><a class="line" href="class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736">  339</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736">DataHarvester::saveHostPopulToFile</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a> theFilename = <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;HostGenomesFile.&quot;</span>) + std::to_string(tayme) + <a class="code" href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a>(<span class="stringliteral">&quot;.csv&quot;</span>);</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    std::ofstream HostGenomesFile;</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    HostGenomesFile.open(theFilename);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    HostGenomesFile &lt;&lt; <span class="stringliteral">&quot;#Genomes_of_all_host_at_time = &quot;</span> &lt;&lt; tayme &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    HostGenomesFile &lt;&lt; <span class="stringliteral">&quot;#bit-gene\tchromosome\ttime_of_origin\tgene_own_tag&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            <span class="stringliteral">&quot;\tTime_of_parental_mutation\tAll_parental_tags etc.&quot;</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>(); ++i){</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        HostGenomesFile &lt;&lt; EnvObj.<a class="code" href="class_environment.html#a71dc8a1828a2830ffefa901d0974b2c1">getHostGenesToString</a>(i);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    }</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    HostGenomesFile.close();</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00365"></a><span class="lineno"><a class="line" href="class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33">  365</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33">DataHarvester::saveHostGeneticDivers</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="keywordflow">if</span>(ifFirstHostGeneDivRun){</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        std::ofstream HostGeneDivFile;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        HostGeneDivFile.open(<span class="stringliteral">&quot;HostsGeneDivers.csv&quot;</span>);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        HostGeneDivFile &lt;&lt; <span class="stringliteral">&quot;#time pop_size tot_num_of_genes num_of_MHC_types&quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                <span class="stringliteral">&quot; Shannon_indx mean_fitness std_fitness&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        HostGeneDivFile.close();</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        ifFirstHostGeneDivRun = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    }</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    std::vector&lt;int&gt; AllTheGeneVals;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    std::vector&lt;double&gt; Fitness;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="keywordtype">double</span> popSize = (double) EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>();</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="keywordtype">int</span> homoLociNum = -1; <span class="comment">// not applicable at the moment!</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="comment">//    double tot_gene_numb = 0;</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    Fitness.clear();</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>(); ++i){</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">//        tot_gene_numb += EnvObj.getSingleHostGenomeSize(i);</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        Fitness.push_back(EnvObj.<a class="code" href="class_environment.html#ab70e6fda860c35a3ac222cfdef2dff44">getHostFitness</a>(i));</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        <span class="comment">// Harvesting genes from Chromosome One in all hosts</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#a7d23e5f51b1c1feed367da44852b2dba">getSingleHostChromoOneSize</a>(i); ++j){</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;            AllTheGeneVals.push_back(EnvObj.<a class="code" href="class_environment.html#a86d8f067f5576f39047e360dd717b1fe">getSingleHostRealGeneOne</a>(i, j));</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;        }</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="comment">// Harvesting genes from Chromosome Two in all hosts</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> m = 0; m &lt; EnvObj.<a class="code" href="class_environment.html#ac98907c5bc18780a611a743fb4afa479">getSingleHostChromoTwoSize</a>(i); ++m){</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            AllTheGeneVals.push_back(EnvObj.<a class="code" href="class_environment.html#a20b1bdddb432ef84ee08fd1cd77d5fd9">getSingleHostRealGeneTwo</a>(i, m));</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        }</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    }</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="comment">// Calculating the Shannon index et al. plus extracting it from the tuple</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keyword">auto</span> ShOut = <a class="code" href="_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff">getShannonIndx</a>(AllTheGeneVals);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordtype">double</span> Summ = std::get &lt; 0 &gt;( ShOut );</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="keywordtype">int</span> mhcTypes = std::get &lt; 1 &gt;( ShOut );</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordtype">double</span> tot_gene_numb = std::get &lt; 2 &gt;( ShOut );</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="comment">// calculating coefficient of variation of hosts fitness</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="keywordtype">double</span> cv_sum = std::accumulate(Fitness.begin(), Fitness.end(), 0.0);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="keywordtype">double</span> cv_mean = cv_sum / Fitness.size();</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="keywordtype">double</span> sq_sum = std::inner_product(Fitness.begin(), Fitness.end(), </div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                                       Fitness.begin(), 0.0);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordtype">double</span> stdev = std::sqrt(sq_sum / Fitness.size() - cv_mean * cv_mean);</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    </div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    std::ofstream HostGenomesFile;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    HostGenomesFile.open(<span class="stringliteral">&quot;HostsGeneDivers.csv&quot;</span>,</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            std::ios::out | std::ios::ate | std::ios::app);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    HostGenomesFile &lt;&lt; tayme &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; popSize &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; tot_gene_numb &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            mhcTypes &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; Summ &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; cv_mean &lt;&lt;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            <span class="stringliteral">&quot; &quot;</span> &lt;&lt; stdev &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    HostGenomesFile.close();</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;}</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
+<div class="line"><a name="l00426"></a><span class="lineno"><a class="line" href="class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf">  426</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf">DataHarvester::saveHostGeneNumbers</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj, <span class="keywordtype">int</span> tayme){</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="keywordflow">if</span>(ifFirstGeneNumbersTotal){</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;        std::ofstream HostGeneNumbTotal;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        HostGeneNumbTotal.open(<span class="stringliteral">&quot;HostGeneNumbTotal_ChrOne.csv&quot;</span>);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        HostGeneNumbTotal &lt;&lt; <span class="stringliteral">&quot;#time total_number_of_genes_in_all_host_cells&quot;</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;        HostGeneNumbTotal.close();</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;        ifFirstGeneNumbersTotal = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;    }</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="keywordflow">if</span>(ifFirstGeneNumbersUnique){</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;        std::ofstream HostMHCNumbUnique;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        HostMHCNumbUnique.open(<span class="stringliteral">&quot;HostMHCsNumbUniq_ChrOne.csv&quot;</span>);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        HostMHCNumbUnique &lt;&lt; <span class="stringliteral">&quot;#time number_of_unique_MHCs_in_all_host_cells&quot;</span> </div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        HostMHCNumbUnique.close();</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        ifFirstGeneNumbersUnique = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    std::vector&lt;unsigned int&gt; AllGenomesSize;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    std::vector&lt;int&gt; UniqueMHCs;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    std::vector&lt;int&gt; TheGeneVals;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; EnvObj.<a class="code" href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">getHostsPopSize</a>(); ++i){</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        TheGeneVals.clear();</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        <span class="comment">// Harvesting genes from Chromosome One in all hosts</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> j = 0; j &lt; EnvObj.<a class="code" href="class_environment.html#a7d23e5f51b1c1feed367da44852b2dba">getSingleHostChromoOneSize</a>(i); ++j){</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            TheGeneVals.push_back(EnvObj.<a class="code" href="class_environment.html#a86d8f067f5576f39047e360dd717b1fe">getSingleHostRealGeneOne</a>(i, j));</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        }</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        <span class="comment">// Harvesting genes from Chromosome Two in all hosts</span></div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">//        for(int m = 0; m &lt; EnvObj.getSingleHostChromoTwoSize(i); ++m){</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">//            TheGeneVals.push_back(EnvObj.getSingleHostRealGeneTwo(i, m));</span></div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">//        }</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        AllGenomesSize.push_back(TheGeneVals.size());</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;        <span class="keyword">auto</span> ShOut = <a class="code" href="_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff">getShannonIndx</a>(TheGeneVals);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        <span class="keywordtype">int</span> mhcTypes = std::get &lt; 1 &gt;( ShOut );</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        UniqueMHCs.push_back(mhcTypes);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    }</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    std::ofstream HostGeneNumbTotal;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    HostGeneNumbTotal.open(<span class="stringliteral">&quot;HostGeneNumbTotal_ChrOne.csv&quot;</span>,</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;                            std::ios::out | std::ios::ate | std::ios::app);</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    HostGeneNumbTotal &lt;&lt; tayme;</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ii = 0; ii &lt; AllGenomesSize.size(); ++ii){</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        HostGeneNumbTotal &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; AllGenomesSize[ii];</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    }</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    HostGeneNumbTotal &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    HostGeneNumbTotal.close();</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    </div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    std::ofstream HostMHCNumbUnique;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    HostMHCNumbUnique.open(<span class="stringliteral">&quot;HostMHCsNumbUniq_ChrOne.csv&quot;</span>,</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;                            std::ios::out | std::ios::ate | std::ios::app);</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    HostMHCNumbUnique &lt;&lt; tayme;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> jj = 0; jj &lt; UniqueMHCs.size(); ++jj){</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;        HostMHCNumbUnique &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; UniqueMHCs[jj];</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;    }</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;    HostMHCNumbUnique &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;    HostMHCNumbUnique.close();</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;}</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;</div>
+<div class="line"><a name="l00488"></a><span class="lineno"><a class="line" href="class_data_harvester.html#afb1ac736a2e1334d5818d4685c674412">  488</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_data_harvester.html#afb1ac736a2e1334d5818d4685c674412">DataHarvester::savePathoNoMuttList</a>(<a class="code" href="class_environment.html">Environment</a>&amp; EnvObj){</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;    <span class="keywordflow">if</span>(ifNoMuttPathoListUnique){</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;        std::ofstream NoMuttPathoList;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;        NoMuttPathoList.open(<span class="stringliteral">&quot;NoMutationInPathoList.csv&quot;</span>);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;        NoMuttPathoList &lt;&lt; <span class="stringliteral">&quot;#list_of_bits_excluded_from_mutating_Each_line_is_a_spp&quot;</span></div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;                &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        NoMuttPathoList.close();</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        ifNoMuttPathoListUnique = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    }</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    std::ofstream NoMuttPathoList;</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;    NoMuttPathoList.open(<span class="stringliteral">&quot;NoMutationInPathoList.csv&quot;</span>,</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;                            std::ios::out | std::ios::ate | std::ios::app);</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    NoMuttPathoList &lt;&lt; EnvObj.<a class="code" href="class_environment.html#a7ca87db3a1ceb9e27670538fce828675">getFixedBitsInAntigens</a>();</div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    NoMuttPathoList.close();</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;}</div>
+<div class="ttc" id="class_data_harvester_html_afb1ac736a2e1334d5818d4685c674412"><div class="ttname"><a href="class_data_harvester.html#afb1ac736a2e1334d5818d4685c674412">DataHarvester::savePathoNoMuttList</a></div><div class="ttdeci">void savePathoNoMuttList(Environment &amp;EnvObj)</div><div class="ttdoc">Data harvesting method. Record the indices of fixed bits in all pathogen species. Run this just ones...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00488">DataHarvester.cpp:488</a></div></div>
+<div class="ttc" id="class_environment_html_a20b1bdddb432ef84ee08fd1cd77d5fd9"><div class="ttname"><a href="class_environment.html#a20b1bdddb432ef84ee08fd1cd77d5fd9">Environment::getSingleHostRealGeneTwo</a></div><div class="ttdeci">int getSingleHostRealGeneTwo(int i, int j)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00819">Environment.cpp:819</a></div></div>
+<div class="ttc" id="class_environment_html_a86d8f067f5576f39047e360dd717b1fe"><div class="ttname"><a href="class_environment.html#a86d8f067f5576f39047e360dd717b1fe">Environment::getSingleHostRealGeneOne</a></div><div class="ttdeci">int getSingleHostRealGeneOne(int i, int j)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00815">Environment.cpp:815</a></div></div>
+<div class="ttc" id="class_environment_html_a71dc8a1828a2830ffefa901d0974b2c1"><div class="ttname"><a href="class_environment.html#a71dc8a1828a2830ffefa901d0974b2c1">Environment::getHostGenesToString</a></div><div class="ttdeci">std::string getHostGenesToString(int i)</div><div class="ttdoc">Data harvesting method. Gets the genome of selected host in human-readable format. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00778">Environment.cpp:778</a></div></div>
+<div class="ttc" id="class_data_harvester_html_a740d163f794d5432a048ff15b25d4bcf"><div class="ttname"><a href="class_data_harvester.html#a740d163f794d5432a048ff15b25d4bcf">DataHarvester::saveHostGeneNumbers</a></div><div class="ttdeci">void saveHostGeneNumbers(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! </div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00426">DataHarvester.cpp:426</a></div></div>
+<div class="ttc" id="class_environment_html_a7d23e5f51b1c1feed367da44852b2dba"><div class="ttname"><a href="class_environment.html#a7d23e5f51b1c1feed367da44852b2dba">Environment::getSingleHostChromoOneSize</a></div><div class="ttdeci">int getSingleHostChromoOneSize(int indx)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00805">Environment.cpp:805</a></div></div>
 <div class="ttc" id="_gene_8h_html"><div class="ttname"><a href="_gene_8h.html">Gene.h</a></div></div>
-<div class="ttc" id="_data_harvester_8cpp_html_aa46369f3c8adbff876c82270346fffa2"><div class="ttname"><a href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a></div><div class="ttdeci">const std::string currentDateTime()</div><div class="ttdoc">Data harvesting method. Gets current date/time, format is YYYY-MM-DD.HH:mm:ss. </div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00107">DataHarvester.cpp:107</a></div></div>
+<div class="ttc" id="_data_harvester_8cpp_html_aa46369f3c8adbff876c82270346fffa2"><div class="ttname"><a href="_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2">currentDateTime</a></div><div class="ttdeci">const std::string currentDateTime()</div><div class="ttdoc">Data harvesting method. Gets current date/time, format is YYYY-MM-DD.HH:mm:ss. </div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00108">DataHarvester.cpp:108</a></div></div>
 <div class="ttc" id="class_data_harvester_html_a47b5eea08463735a7d2fb7948aa7dbed"><div class="ttname"><a href="class_data_harvester.html#a47b5eea08463735a7d2fb7948aa7dbed">DataHarvester::setAllFilesAsFirtsTimers</a></div><div class="ttdeci">void setAllFilesAsFirtsTimers()</div><div class="ttdoc">Data harvesting method. Sets status of all data files as "brand new". </div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00091">DataHarvester.cpp:91</a></div></div>
-<div class="ttc" id="class_environment_html_a09b16d159ccf1ff7210c339e7c2b9408"><div class="ttname"><a href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">Environment::getHostsPopSize</a></div><div class="ttdeci">unsigned getHostsPopSize()</div><div class="ttdoc">Core method. Gets the host population size. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00748">Environment.cpp:748</a></div></div>
+<div class="ttc" id="class_environment_html_a09b16d159ccf1ff7210c339e7c2b9408"><div class="ttname"><a href="class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408">Environment::getHostsPopSize</a></div><div class="ttdeci">unsigned getHostsPopSize()</div><div class="ttdoc">Core method. Gets the host population size. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00753">Environment.cpp:753</a></div></div>
 <div class="ttc" id="class_environment_html"><div class="ttname"><a href="class_environment.html">Environment</a></div><div class="ttdoc">Core class. Stores and handles the environment object that is the place where all the things are happ...</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8h_source.html#l00037">Environment.h:37</a></div></div>
-<div class="ttc" id="class_data_harvester_html_a4d34bbda86805717524117d2b90a9d8c"><div class="ttname"><a href="class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c">DataHarvester::checkParamsIfWrong</a></div><div class="ttdeci">bool checkParamsIfWrong(int rndSeed, int geneLength, int exposedMatch, int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha, double fixedAntigPosit)</div><div class="ttdoc">Input params validation method. Does the basic check if the entered parameters are free of total nons...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00140">DataHarvester.cpp:140</a></div></div>
-<div class="ttc" id="class_data_harvester_html_ad69c5c3eea01f1ceb85de1fa93129e33"><div class="ttname"><a href="class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33">DataHarvester::saveHostGeneticDivers</a></div><div class="ttdeci">void saveHostGeneticDivers(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00364">DataHarvester.cpp:364</a></div></div>
+<div class="ttc" id="class_data_harvester_html_a4d34bbda86805717524117d2b90a9d8c"><div class="ttname"><a href="class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c">DataHarvester::checkParamsIfWrong</a></div><div class="ttdeci">bool checkParamsIfWrong(int rndSeed, int geneLength, int exposedMatch, int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha, double fixedAntigPosit)</div><div class="ttdoc">Input params validation method. Does the basic check if the entered parameters are free of total nons...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00141">DataHarvester.cpp:141</a></div></div>
+<div class="ttc" id="class_data_harvester_html_ad69c5c3eea01f1ceb85de1fa93129e33"><div class="ttname"><a href="class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33">DataHarvester::saveHostGeneticDivers</a></div><div class="ttdeci">void saveHostGeneticDivers(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00365">DataHarvester.cpp:365</a></div></div>
 <div class="ttc" id="class_data_harvester_html_abb8f857a23b368ab87d6cb5db7fa0ab5"><div class="ttname"><a href="class_data_harvester.html#abb8f857a23b368ab87d6cb5db7fa0ab5">DataHarvester::DataHarvester</a></div><div class="ttdeci">DataHarvester()</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00037">DataHarvester.cpp:37</a></div></div>
-<div class="ttc" id="class_environment_html_ab70e6fda860c35a3ac222cfdef2dff44"><div class="ttname"><a href="class_environment.html#ab70e6fda860c35a3ac222cfdef2dff44">Environment::getHostFitness</a></div><div class="ttdeci">double getHostFitness(int indx)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00818">Environment.cpp:818</a></div></div>
-<div class="ttc" id="class_data_harvester_html_a0dfa912687e5d09bfaee509a0204d31a"><div class="ttname"><a href="class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a">DataHarvester::saveNumOfPathoSpeciesToFile</a></div><div class="ttdeci">void saveNumOfPathoSpeciesToFile(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Writes to a file population sizes of all pathogen species in a given time...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00290">DataHarvester.cpp:290</a></div></div>
-<div class="ttc" id="class_environment_html_aefe3e9cb58d92c0247cb56dda5eb57ac"><div class="ttname"><a href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">Environment::getPathoSpeciesPopSize</a></div><div class="ttdeci">unsigned getPathoSpeciesPopSize(unsigned spec_numb)</div><div class="ttdoc">Core method. Gets a number of individuals in a selected species of pathogen. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00739">Environment.cpp:739</a></div></div>
-<div class="ttc" id="class_data_harvester_html_a6dda4ee1ed20023cdcb250d44439ef87"><div class="ttname"><a href="class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87">DataHarvester::savePathoPopulToFile</a></div><div class="ttdeci">void savePathoPopulToFile(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Writes to a file all pathogens with their genomes in a human-readable format...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00316">DataHarvester.cpp:316</a></div></div>
-<div class="ttc" id="class_data_harvester_html_af773b7d544eef9b2a12421c0864d3573"><div class="ttname"><a href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573">DataHarvester::inputParamsToFile</a></div><div class="ttdeci">void inputParamsToFile(int rndSeed, int geneLength, int exposedMatch, int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha, double fixedAntigPosit)</div><div class="ttdoc">Data harvesting method. Writes all the input params and some run stats to a file. Must be run only on...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00235">DataHarvester.cpp:235</a></div></div>
-<div class="ttc" id="class_data_harvester_html_ab14d0029f34ba28b6b1010d2cd6c8736"><div class="ttname"><a href="class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736">DataHarvester::saveHostPopulToFile</a></div><div class="ttdeci">void saveHostPopulToFile(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Writes to a file all hosts with their genomes in a human-readable format...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00338">DataHarvester.cpp:338</a></div></div>
+<div class="ttc" id="class_environment_html_ab70e6fda860c35a3ac222cfdef2dff44"><div class="ttname"><a href="class_environment.html#ab70e6fda860c35a3ac222cfdef2dff44">Environment::getHostFitness</a></div><div class="ttdeci">double getHostFitness(int indx)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00823">Environment.cpp:823</a></div></div>
+<div class="ttc" id="class_data_harvester_html_a0dfa912687e5d09bfaee509a0204d31a"><div class="ttname"><a href="class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a">DataHarvester::saveNumOfPathoSpeciesToFile</a></div><div class="ttdeci">void saveNumOfPathoSpeciesToFile(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Writes to a file population sizes of all pathogen species in a given time...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00291">DataHarvester.cpp:291</a></div></div>
+<div class="ttc" id="class_environment_html_a7ca87db3a1ceb9e27670538fce828675"><div class="ttname"><a href="class_environment.html#a7ca87db3a1ceb9e27670538fce828675">Environment::getFixedBitsInAntigens</a></div><div class="ttdeci">std::string getFixedBitsInAntigens()</div><div class="ttdoc">Data harvesting method. Prepares a string with the list of fixed "no mutation sites" in antigens used...</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00789">Environment.cpp:789</a></div></div>
+<div class="ttc" id="class_environment_html_aefe3e9cb58d92c0247cb56dda5eb57ac"><div class="ttname"><a href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac">Environment::getPathoSpeciesPopSize</a></div><div class="ttdeci">unsigned getPathoSpeciesPopSize(unsigned spec_numb)</div><div class="ttdoc">Core method. Gets a number of individuals in a selected species of pathogen. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00744">Environment.cpp:744</a></div></div>
+<div class="ttc" id="class_data_harvester_html_a6dda4ee1ed20023cdcb250d44439ef87"><div class="ttname"><a href="class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87">DataHarvester::savePathoPopulToFile</a></div><div class="ttdeci">void savePathoPopulToFile(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Writes to a file all pathogens with their genomes in a human-readable format...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00317">DataHarvester.cpp:317</a></div></div>
+<div class="ttc" id="class_data_harvester_html_af773b7d544eef9b2a12421c0864d3573"><div class="ttname"><a href="class_data_harvester.html#af773b7d544eef9b2a12421c0864d3573">DataHarvester::inputParamsToFile</a></div><div class="ttdeci">void inputParamsToFile(int rndSeed, int geneLength, int exposedMatch, int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha, double fixedAntigPosit)</div><div class="ttdoc">Data harvesting method. Writes all the input params and some run stats to a file. Must be run only on...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00236">DataHarvester.cpp:236</a></div></div>
+<div class="ttc" id="class_data_harvester_html_ab14d0029f34ba28b6b1010d2cd6c8736"><div class="ttname"><a href="class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736">DataHarvester::saveHostPopulToFile</a></div><div class="ttdeci">void saveHostPopulToFile(Environment &amp;EnvObj, int tayme)</div><div class="ttdoc">Data harvesting method. Writes to a file all hosts with their genomes in a human-readable format...</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00339">DataHarvester.cpp:339</a></div></div>
 <div class="ttc" id="_data_harvester_8h_html"><div class="ttname"><a href="_data_harvester_8h.html">DataHarvester.h</a></div></div>
-<div class="ttc" id="class_environment_html_ae2adc5e02f72005d7854a4d597c4c294"><div class="ttname"><a href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">Environment::getPathoNumOfSpecies</a></div><div class="ttdeci">unsigned getPathoNumOfSpecies()</div><div class="ttdoc">Core method. Gets the number of species of pathogens. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00728">Environment.cpp:728</a></div></div>
-<div class="ttc" id="class_environment_html_a9bbb94fdf32fa836c5b76b350bb2df4c"><div class="ttname"><a href="class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c">Environment::getPathoGenesToString</a></div><div class="ttdeci">std::string getPathoGenesToString(int i, int j)</div><div class="ttdoc">Data harvesting method. Gets the genome of selected pathogen in human-readable format. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00762">Environment.cpp:762</a></div></div>
+<div class="ttc" id="class_environment_html_ae2adc5e02f72005d7854a4d597c4c294"><div class="ttname"><a href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">Environment::getPathoNumOfSpecies</a></div><div class="ttdeci">unsigned getPathoNumOfSpecies()</div><div class="ttdoc">Core method. Gets the number of species of pathogens. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00733">Environment.cpp:733</a></div></div>
+<div class="ttc" id="class_environment_html_a9bbb94fdf32fa836c5b76b350bb2df4c"><div class="ttname"><a href="class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c">Environment::getPathoGenesToString</a></div><div class="ttdeci">std::string getPathoGenesToString(int i, int j)</div><div class="ttdoc">Data harvesting method. Gets the genome of selected pathogen in human-readable format. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00767">Environment.cpp:767</a></div></div>
 <div class="ttc" id="_data_harvester_8cpp_html_a83136cc074426bc3310d6e855252beff"><div class="ttname"><a href="_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff">getShannonIndx</a></div><div class="ttdeci">auto getShannonIndx(std::vector&lt; int &gt; GeneVals)</div><div class="ttdoc">Data harvesting method. Calculates some stats of population genetics: Shannon&#39;s index, number of MHC/antigen types, total number of MHC copies. Runs internally within DataHarvester class. </div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00055">DataHarvester.cpp:55</a></div></div>
 <div class="ttc" id="class_data_harvester_html_ae535356b011f331d3031d5aff54b05c9"><div class="ttname"><a href="class_data_harvester.html#ae535356b011f331d3031d5aff54b05c9">DataHarvester::~DataHarvester</a></div><div class="ttdeci">virtual ~DataHarvester()</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00043">DataHarvester.cpp:43</a></div></div>
-<div class="ttc" id="class_environment_html_ac98907c5bc18780a611a743fb4afa479"><div class="ttname"><a href="class_environment.html#ac98907c5bc18780a611a743fb4afa479">Environment::getSingleHostChromoTwoSize</a></div><div class="ttdeci">int getSingleHostChromoTwoSize(int indx)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00805">Environment.cpp:805</a></div></div>
+<div class="ttc" id="class_environment_html_ac98907c5bc18780a611a743fb4afa479"><div class="ttname"><a href="class_environment.html#ac98907c5bc18780a611a743fb4afa479">Environment::getSingleHostChromoTwoSize</a></div><div class="ttdeci">int getSingleHostChromoTwoSize(int indx)</div><div class="ttdef"><b>Definition:</b> <a href="_environment_8cpp_source.html#l00810">Environment.cpp:810</a></div></div>
 <div class="ttc" id="_data_harvester_8cpp_html_aab270eafeb1e2da69143bc4d4c144a99"><div class="ttname"><a href="_data_harvester_8cpp.html#aab270eafeb1e2da69143bc4d4c144a99">sttr</a></div><div class="ttdeci">std::string sttr</div><div class="ttdef"><b>Definition:</b> <a href="_data_harvester_8cpp_source.html#l00035">DataHarvester.cpp:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -502,7 +521,7 @@ $(document).ready(function(){initNavTree('_data_harvester_8cpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_data_harvester_8cpp.html">DataHarvester.cpp</a></li>
-    <li class="footer">Generated on Fri Jan 29 2016 17:09:15 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Feb 2 2016 20:36:21 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

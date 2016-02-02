@@ -26,7 +26,7 @@ def LoadTheData(arg, dirname, files):
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
             l = re.split(" ", ln.getline(paramsFile, 5))   # change here
             interestingOne = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 15))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 21))   # change here
             interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 11))
             antign = l[2].split()[0]
@@ -58,11 +58,11 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 500
+    Xmax = 2500
     Ymax = 50
     textXlocal = 1500
 
-    interestOne = float(sys.argv[1])  # change to select a different data    
+    interestOne = float(sys.argv[1])  # change to select a different data
     interestTwo = float(sys.argv[2])  # change to select a different data
     saveFiggs = True  # True to save figures to disk, False to not save
 

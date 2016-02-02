@@ -8,6 +8,7 @@ var class_data_harvester =
     [ "saveHostGeneticDivers", "class_data_harvester.html#ad69c5c3eea01f1ceb85de1fa93129e33", null ],
     [ "saveHostPopulToFile", "class_data_harvester.html#ab14d0029f34ba28b6b1010d2cd6c8736", null ],
     [ "saveNumOfPathoSpeciesToFile", "class_data_harvester.html#a0dfa912687e5d09bfaee509a0204d31a", null ],
+    [ "savePathoNoMuttList", "class_data_harvester.html#afb1ac736a2e1334d5818d4685c674412", null ],
     [ "savePathoPopulToFile", "class_data_harvester.html#a6dda4ee1ed20023cdcb250d44439ef87", null ],
     [ "setAllFilesAsFirtsTimers", "class_data_harvester.html#a47b5eea08463735a7d2fb7948aa7dbed", null ]
 ];
