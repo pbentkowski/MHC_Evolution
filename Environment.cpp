@@ -21,7 +21,7 @@
  */
 #include <complex>
 #include <vector>
-#include <string>
+#include <string> 
 #include <math.h>
 
 #include "RandomNumbs.h"
@@ -71,7 +71,6 @@ void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
             }
         }
     }
-//    std::cout << "Size of the no Mutt: " << NoMutsVec.size() << std::endl;
 }
 
 
