@@ -368,7 +368,7 @@ def main():
         plt.grid(True)
     plt.savefig("SPP_sin_within_init.png")
 
-    plt.show()
+#    plt.show()
 
     print "DONE!"
 

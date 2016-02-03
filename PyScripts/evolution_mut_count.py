@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """
-Loads the file HostGeneNumbTotal_ChrOne.csv (final snapshot of the host 
+Loads the file HostGeneNumbTotal_ChrOne.csv (final snapshot of the host
 population) and calculates how many mutation got fixated during the MHCs'
 evolution. Plots the histogram.
 
