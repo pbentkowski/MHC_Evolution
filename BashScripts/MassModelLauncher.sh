@@ -9,13 +9,13 @@
 
 
 IFS=$'\n'
-procc=6
+procc=6  # number of cores/processors used for calculations
 j=0 # numbering of directories will start from j+1
 for line in $(< ParamParam.csv);
   do
       while true
       do
-	modNo=$(($((`ps -x | grep mhcevolution | wc -l`))-1))
+	       modNo=$(($((`ps -x | grep mhcevolution | wc -l`))-1))
 	if (( $modNo < $procc )) ; then
 	  j=$(($j+1))
 	  mkdir MHC.$j
@@ -31,4 +31,4 @@ for line in $(< ParamParam.csv);
 	fi
       done
   done;
-echo -e "All models launched!"
+echo -e "All modells launched!"

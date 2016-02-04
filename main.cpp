@@ -75,9 +75,7 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here. 
  * 
  * Compile this program with:
- * $ g++ -g -O0 -o mem_test_MHC main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++1y
- * Run Valgrind with:
- * valgrind --leak-check=yes --log-file="valgr.log" ./mem_test_MHC 12 > /home/piotr/Tempy/MHC_test/test.txt
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
  * 
  * @param argc - number of arguments
  * @param argv - list of arguments

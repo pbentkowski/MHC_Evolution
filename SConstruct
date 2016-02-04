@@ -18,11 +18,12 @@ from shutil import copyfile
 from os import getcwd
 
 cxxflaggs = "-std=c++1y"
+cppath = '/usr/include/boost/'
 
 # normal compilation
-env = Environment(CCFLAGS='-O3',
-          CPPPATH='/usr/include/boost/',
-          CXXFLAGS=cxxflaggs)
+env_dynamic = Environment(CCFLAGS='-O3',
+              CPPPATH=cppath,
+              CXXFLAGS=cxxflaggs)
 
 # debugging compilation
 env_dbg = Environment(CCFLAGS='-g',
@@ -31,7 +32,7 @@ env_dbg = Environment(CCFLAGS='-g',
 
 # static compilation
 env_static = Environment(CCFLAGS='-static -O3',
-             CPPPATH='/usr/include/boost/',
+             CPPPATH=cppath,
              CXXFLAGS=cxxflaggs)
 
 scenario = ARGUMENTS.get('scenario', 0)
@@ -51,6 +52,8 @@ SRS = ['DataHarvester.cpp', 'Environment.cpp', 'Gene.cpp',
        'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
        'Pathogen.cpp','RandomNumbs.cpp', 'Tagging_system.cpp',
        local_main]
-t = env.Program(target=OUTprog, source=SRS)
-#t_dbg = env_dbg.Program(target=OUTprog, source=SRS)
+if True:
+    t = env_static.Program(target=OUTprog, source=SRS)
+else:
+    t = env_dynamic.Program(target=OUTprog, source=SRS)
 Default(t)
