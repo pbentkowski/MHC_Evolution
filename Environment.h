@@ -45,6 +45,7 @@ public:
 //    Environment(const Environment& orig);
     virtual ~Environment();
     void setNoMutsVector(int numb_of_species, int antigen_size, double fixedAntigenFrac);
+    void setNoMutsVecInFours(int numb_of_species, int antigen_size, double fixedAntigenFrac);
     void setHostPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
     void setHostPopulation(int pop_size, int gene_size, int chrom_size_lower,
         int chrom_size_uper, int timeStamp);

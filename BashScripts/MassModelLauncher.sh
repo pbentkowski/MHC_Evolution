@@ -22,7 +22,7 @@ for line in $(< ParamParam.csv);
 	  cd MHC.$j
 	  echo -e "Run No. $j launched! Params are set to: $line"
 	  IFS=$' '
-	  /home/piotr/Documents/Projects/mhcEvolution/dist/Release/GNU-Linux-x86/mhcevolution $line &
+	  nohup /home/piotr/RunMHC/mhcevolution $line &
 	  IFS=$'\n'
 	  cd ..
 	  break

@@ -31,7 +31,7 @@ env_dbg = Environment(CCFLAGS='-g',
           CXXFLAGS=cxxflaggs)
 
 # static compilation
-env_static = Environment(CCFLAGS='-static -O3',
+env_static = Environment(CCFLAGS='-O3 -static',
              CPPPATH=cppath,
              CXXFLAGS=cxxflaggs)
 

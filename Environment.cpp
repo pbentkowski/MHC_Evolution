@@ -59,7 +59,6 @@ Environment::~Environment() {
  */
 void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
         double fixedAntigenFrac){
-//    std::cout << "Number of species: " << numb_of_species << std::endl;
     std::set<int> NoMutSet;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < numb_of_species; ++i){
@@ -73,6 +72,42 @@ void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
     }
 }
 
+/**
+ * @brief Core method. It defines "no mutation sites" in 4-bit-long packages of 
+ * the antigen for all  individual pathogen species in the simulation. It should
+ * be run only ones per simulation.
+ * 
+ * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
+ * STD sets</a> containing indices of antigen bits in which  mutations are not 
+ * allowed. The length of the vector equals the number of pathogen species. Each
+ * species has its own vector. Number of fixed sites is a user-defined parameter.
+ * 
+ * @param numb_of_species - number of pathogen species
+ * @param antigen_size - number of bits per antigen
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ */
+void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
+        double fixedAntigenFrac){
+    std::set<int> NoMutSet;
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    fixedAntigenFrac = fixedAntigenFrac / 4.0;
+    for(int i = 0; i < numb_of_species; ++i){
+        NoMutSet.clear();
+        NoMutsVec.push_back(NoMutSet);
+        int indexCounter = 0;
+        while (indexCounter < antigen_size) {
+            if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
+                NoMutsVec.back().insert(indexCounter);
+                NoMutsVec.back().insert(indexCounter + 1);
+                NoMutsVec.back().insert(indexCounter + 2);
+                NoMutsVec.back().insert(indexCounter + 3);
+                indexCounter = indexCounter + 3;
+            } else {
+                indexCounter++;
+            }
+        }
+    }
+}
 
 /**
  * @brief Core method. Initializes a vector containing host population.

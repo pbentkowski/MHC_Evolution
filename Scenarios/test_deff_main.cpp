@@ -196,7 +196,7 @@ int main(int argc, char** argv) {
     Environment ENV; // Initialize the simulation environment 
     Data2file.setAllFilesAsFirtsTimers();
     // mutation exclusion sets
-    ENV.setNoMutsVector(patho_sp, antigenLength, fixedAntigPosit);
+    ENV.setNoMutsVecInFours(patho_sp, antigenLength, fixedAntigPosit);
     Data2file.savePathoNoMuttList(ENV);
     ENV.setHostPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
