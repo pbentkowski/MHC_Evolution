@@ -31,9 +31,10 @@ env_dbg = Environment(CCFLAGS='-g',
           CXXFLAGS=cxxflaggs)
 
 # static compilation
-env_static = Environment(CCFLAGS='-O3 -static',
+env_static = Environment(CCFLAGS='-O3',
              CPPPATH=cppath,
-             CXXFLAGS=cxxflaggs)
+             CXXFLAGS=cxxflaggs,
+             LINKFLAGS = "-static")
 
 scenario = ARGUMENTS.get('scenario', 0)
 try:
@@ -52,8 +53,21 @@ SRS = ['DataHarvester.cpp', 'Environment.cpp', 'Gene.cpp',
        'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
        'Pathogen.cpp','RandomNumbs.cpp', 'Tagging_system.cpp',
        local_main]
-if True:
-    t = env_static.Program(target=OUTprog, source=SRS)
-else:
+
+linking = ARGUMENTS.get('linking', 1)
+try:
+    linkk = str(linking)
+    if linkk=="static":
+        print "Performing static linking of libraries."
+        t = env_static.Program(target=OUTprog, source=SRS)
+    elif linkk=="dynamic":
+        print "Performing dynamic linking of libraries."
+        t = env_dynamic.Program(target=OUTprog, source=SRS)
+    else:
+        print "Wrong mode of linking was selected. Running compiler's default.",
+        print "Options are: 'static' or 'dynamic'"
+        t = env_dynamic.Program(target=OUTprog, source=SRS)
+except:
+    print "No mode of linking was selected. Running compiler's default."
     t = env_dynamic.Program(target=OUTprog, source=SRS)
 Default(t)
