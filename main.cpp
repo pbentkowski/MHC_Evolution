@@ -1,9 +1,9 @@
-/* 
+/*
  * File:   main.cpp
  * Author: Piotr Bentkowski : bentkowski.piotr@gmail.com
  *
  * Created on 12 February 2015, 17:33
- * 
+ *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation; either version 2 of the License, or
@@ -44,7 +44,7 @@ void printTipsToRun(){
     std::cout << " 4. Host population size." << std::endl;
     std::cout << " 5. Pathogen population size." << std::endl;
     std::cout << " 6. Number of pathogen species." << std::endl;
-    std::cout << " 7. Number of genes in one host chromosome (they have " << 
+    std::cout << " 7. Number of genes in one host chromosome (they have " <<
             "two chromosomes)." << std::endl;
     std::cout << " 8. Number of antigens in a pathogen." << std::endl;
     std::cout << " 9. Number of pathogen generations per one host generation. " <<
@@ -56,7 +56,7 @@ void printTipsToRun(){
     std::cout << "13. The heterozygote advantage / lack of advantage " <<
                 "mode. It has to be 10 for heterozygote advantage or 11 for " <<
                 "lack of thereof." << std::endl;
-    std::cout << "14. Probability of deleting a gene in the host ([0,1] range)." << 
+    std::cout << "14. Probability of deleting a gene in the host ([0,1] range)." <<
             std::endl;
     std::cout << "15. Probability of duplicating a gene in the host" <<
                 " ([0,1] range)" << std::endl;
@@ -67,16 +67,16 @@ void printTipsToRun(){
     std::cout << "18. Fraction of antigen bits which get fixed and cannot" <<
             " mutate ([0,1] range)." << std::endl;
     std::cout << std::endl;
-    
+
 }
 
 
 /**
- * @brief The main function. Things are happening here. 
- * 
+ * @brief The main function. Things are happening here.
+ *
  * Compile this program with:
  * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
- * 
+ *
  * @param argc - number of arguments
  * @param argv - list of arguments
  * @return 0
@@ -152,18 +152,18 @@ int main(int argc, char** argv) {
     maxGene = atoi(argv[16]);
     alpha = atof(argv[17]);
     fixedAntigPosit = atof(argv[18]);
-    
+
     // When told so, fetching a truly random number to seed the RNG engine
     if (rndSeed < 0){
         std::random_device rd;
         std::uniform_int_distribution<int> dist(0, 99999);
         rndSeed = dist(rd);
     }
-            
+
     DataHarvester Data2file;  // Initialize the data harvesting mechanism
-    
+
     // Check if input params are of any sense
-    if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, antigenLength, hostPopSize, 
+    if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, antigenLength, hostPopSize,
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations,
             hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
@@ -175,16 +175,16 @@ int main(int argc, char** argv) {
     }
     std::cout << std::endl;
     std::cout << "Everything seems fine. Running the model." << std::endl;
-    
+
     // Save input parameters to file
-    Data2file.inputParamsToFile(rndSeed, mhcGeneLength, antigenLength, hostPopSize, 
+    Data2file.inputParamsToFile(rndSeed, mhcGeneLength, antigenLength, hostPopSize,
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
-            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene, 
+            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene,
             alpha, fixedAntigPosit);
-    
+
 // === And now doing the calculations! ===
-    
+
     // Initializing the random number generator engine and tagging system
     RandomNumbs* p_RandomNumbs = RandomNumbs::getInstance();
     p_RandomNumbs->SetSeed(rndSeed);
@@ -193,7 +193,7 @@ int main(int argc, char** argv) {
 
 // ======================================
 
-    Environment ENV; // Initialize the simulation environment 
+    Environment ENV; // Initialize the simulation environment
     Data2file.setAllFilesAsFirtsTimers();
     // mutation exclusion sets
     ENV.setNoMutsVecInFours(patho_sp, antigenLength, fixedAntigPosit);
@@ -239,7 +239,7 @@ int main(int argc, char** argv) {
         ENV.infectOneFromOneSpecHetero();
     } else {
        std::cout << "This instance of the model allows only heterozygote";
-       std::cout << " advantage. Sorry :-(" << std::endl; 
+       std::cout << " advantage. Sorry :-(" << std::endl;
        return 0;
     }
 
@@ -247,16 +247,16 @@ int main(int argc, char** argv) {
     ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
     ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
     ENV.selectAndReprodHostsReplace();
-    ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 
+    ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication,
             maxGene, numOfHostGenerations);
     Data2file.saveHostGeneticDivers(ENV, numOfHostGenerations);
     Data2file.saveHostGeneNumbers(ENV, numOfHostGenerations);
     Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
-       
+
     std::cout << "Run finished. Check the output files for results." << std::endl;
-    
+
     std::cout << std::endl;
-    
+
     return 0;
 }
