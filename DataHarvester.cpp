@@ -67,7 +67,7 @@ auto getShannonIndx(std::vector<int> GeneVals){
             if (IfCountedLyst[i] == false) {
                 Types += 1;
                 abundance = 1.0;
-                for (int j = i + 1; j < GeneCounter - 1; ++j) {
+                for (int j = i + 1; j < GeneCounter; ++j) {
                     if (i != j && IfCountedLyst[j] == false 
                                && GeneVals[i] == GeneVals[j]){
                         abundance += 1.0;

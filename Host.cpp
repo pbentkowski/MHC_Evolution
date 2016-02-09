@@ -48,7 +48,8 @@ Host::~Host() {
  * @brief Core method. Sets a new Host object and assigns a user-defined
  * number of genes of user-defined number of bits (as genes are bit-strings).
  * 
- * A host has two chromosome of equal length. 
+ * A host has two chromosome of equal length. Each gene is set at random and loci
+ * are most likely to be heterozygous.
  * 
  * @param num_of_loci - number of gene loci in a chromosome
  * @param gene_size - the length of the bit-string representing a gene
@@ -64,6 +65,33 @@ void Host::setNewHost(int num_of_loci, int gene_size, int timeStamp){
         ChromosomeOne.back().setNewGene(gene_size, timeStamp);
         ChromosomeTwo.push_back(Gene());
         ChromosomeTwo.back().setNewGene(gene_size, timeStamp);
+    }
+}
+
+/**
+ * @brief Core method. Sets a new Host object and assigns a user-defined
+ * number of genes of user-defined number of bits (as genes are bit-strings).
+ * 
+ * A host has two chromosome of equal length. Each corresponding pair of loci 
+ * is homozygous.
+ * 
+ * @param num_of_loci - number of gene loci in a chromosome
+ * @param gene_size - the length of the bit-string representing a gene
+ * @param timeStamp - current time (number of the model iteration)
+ */
+void Host::setNewHomozygHost(int num_of_loci, int gene_size, int timeStamp){
+    NumOfPathogesInfecting = 0;
+    NumOfPathogesPresented = 0;
+    SelectedForReproduction = 0;
+    Fitness = 0.0;
+    chromovector tempChromo;
+    for(int k = 0; k < num_of_loci; ++k){
+        tempChromo.push_back(Gene());
+        tempChromo.back().setNewGene(gene_size, timeStamp);
+    }
+    for(int i = 0; i < tempChromo.size(); ++i){
+        ChromosomeOne.push_back(tempChromo[i]);
+        ChromosomeTwo.push_back(tempChromo[i]);
     }
 }
 

@@ -198,7 +198,7 @@ int main(int argc, char** argv) {
     // mutation exclusion sets
     ENV.setNoMutsVecInFours(patho_sp, antigenLength, fixedAntigPosit);
     Data2file.savePathoNoMuttList(ENV);
-    ENV.setHostPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
     ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0);

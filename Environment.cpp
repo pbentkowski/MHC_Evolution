@@ -122,8 +122,8 @@ void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
  * @param chrom_size - number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostPopulation(int pop_size, int gene_size, int chrom_size,
-        int timeStamp){
+void Environment::setHostRandomPopulation(int pop_size, int gene_size, 
+        int chrom_size, int timeStamp){
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(Host());
         HostPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
@@ -146,7 +146,7 @@ void Environment::setHostPopulation(int pop_size, int gene_size, int chrom_size,
  * @param chrom_size_uper - upper limit of the number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostPopulation(int pop_size, int gene_size,
+void Environment::setHostRandomPopulation(int pop_size, int gene_size,
         int chrom_size_lower, int chrom_size_uper, int timeStamp){
     if(chrom_size_lower > chrom_size_uper){
         int tmp_size = chrom_size_lower;
@@ -161,6 +161,31 @@ void Environment::setHostPopulation(int pop_size, int gene_size,
     }
 }
 
+
+/**
+ * @brief Core method. Initializes a vector containing clonal host population.
+ *
+ * Sets and fills a vector containing the host population consisting of a single
+ * homozygous clone. Parameters like size of the population, length of genes 
+ * represented by bit-strings, number of genes in a chromosome (remember that 
+ * there are two chromosomes) are user-defined, the rest is set at random 
+ * (e.g. actual gene values).
+ *
+ * @param pop_size - number of host individuals in a simulation
+ * @param gene_size - number of bits in bit-represented genes
+ * @param chrom_size - number of genes in a chromosome
+ * @param timeStamp - current time (number of the model iteration)
+ */
+void Environment::setHostClonalPopulation(int pop_size, int gene_size,
+        int chrom_size, int timeStamp){
+    std::vector<Host> tmpPopulation;
+    tmpPopulation.push_back(Host());
+    tmpPopulation.back().setNewHomozygHost(chrom_size, gene_size, timeStamp);
+    //tmpPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
+    for(int i = 0; i < pop_size; ++i){
+        HostPopulation.push_back(tmpPopulation.back());
+    }
+}
 
 /**
  * @brief Core method. Initializes the pathogen population.

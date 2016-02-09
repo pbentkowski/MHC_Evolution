@@ -46,9 +46,10 @@ public:
     virtual ~Environment();
     void setNoMutsVector(int numb_of_species, int antigen_size, double fixedAntigenFrac);
     void setNoMutsVecInFours(int numb_of_species, int antigen_size, double fixedAntigenFrac);
-    void setHostPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
-    void setHostPopulation(int pop_size, int gene_size, int chrom_size_lower,
+    void setHostRandomPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
+    void setHostRandomPopulation(int pop_size, int gene_size, int chrom_size_lower,
         int chrom_size_uper, int timeStamp);
+    void setHostClonalPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
     void setPathoPopulatioUniformGenome(int pop_size, int gene_size, 
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
     void setPathoPopulatioDivSpecies(int pop_size, int gene_size, 

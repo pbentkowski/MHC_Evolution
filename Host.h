@@ -51,6 +51,7 @@ public:
     int SelectedForReproduction;
     int TimeOfRecombin;
     void setNewHost(int num_of_loci, int gene_size, int timeStamp);
+    void setNewHomozygHost(int num_of_loci, int gene_size, int timeStamp);
     void chromoMutProcess(double mut_probabl, int timeStamp);
     void chromoMutProcessWithDelDupl(double mut_probabl, double del,
         double dupli, int maxGene, int timeStamp);
