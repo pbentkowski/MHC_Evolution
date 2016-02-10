@@ -15,7 +15,7 @@ import sys
 import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
-#import bitstring as bts
+import bitstring as bts
 
 
 def loadHostPopulation(FILE):
@@ -33,7 +33,8 @@ def loadHostPopulation(FILE):
                     continue
                 else:
                     LL = line.split()
-                    bb = int(LL[3])
+#                    bb = int(LL[3])
+                    bb = bts.BitString(bin=LL[0]).int
                     if bb in B_list:
                         pass
                     else:

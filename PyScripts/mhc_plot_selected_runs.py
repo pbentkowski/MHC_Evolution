@@ -61,10 +61,13 @@ def main():
     Xmax = 2500
     Ymax = 50
     textXlocal = 1500
-
-    interestOne = float(sys.argv[1])  # change to select a different data
-    interestTwo = float(sys.argv[2])  # change to select a different data
-    saveFiggs = True  # True to save figures to disk, False to not save
+    try:
+        interestOne = float(sys.argv[1])  # change to select a different data
+        interestTwo = float(sys.argv[2])  # change to select a different data
+    except:
+        print "Can't recognise the parameters. Two are required."
+        sys.exit()
+    saveFiggs = False  # True to save figures to disk, False to not save
 
     nnn = "One thing: " + str(interestTwo) + " Two thing: " + str(interestOne)
 
