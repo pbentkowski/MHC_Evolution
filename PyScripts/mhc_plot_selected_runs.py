@@ -18,7 +18,9 @@ import linecache as ln
 
 
 def LoadTheData(arg, dirname, files):
-    """ """
+    """Iterates trough directories and look for HostsGeneDivers.csv file and
+    corresponding InputParameters.csv then copies the necessary data to
+    a Python list to be analysed and plotted later on in the program. """
     for file in files:
         filepath = os.path.join(dirname, file)
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
@@ -26,7 +28,7 @@ def LoadTheData(arg, dirname, files):
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
             l = re.split(" ", ln.getline(paramsFile, 5))   # change here
             interestingOne = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 21))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 15))   # change here
             interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 11))
             antign = l[2].split()[0]
@@ -38,7 +40,8 @@ def LoadTheData(arg, dirname, files):
 
 
 def meanMhcTypeNumber(DATA):
-    """ """
+    """Calculates the mean number of MHC types (alleles) in the run after the
+    500th time step."""
     ii = 0.
     mm = 0.
     for item in DATA:
@@ -62,8 +65,8 @@ def main():
     Ymax = 50
     textXlocal = 1500
     try:
-        interestOne = float(sys.argv[1])  # change to select a different data
-        interestTwo = float(sys.argv[2])  # change to select a different data
+        interestOne = float(sys.argv[1])
+        interestTwo = float(sys.argv[2])
     except:
         print "Can't recognise the parameters. Two are required."
         sys.exit()

@@ -48,6 +48,8 @@ public:
     void mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int timeStamp);
     void mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
                                    int timeStamp, std::set<int>& noMutts);
+    void setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
+                                   int Nth, int mhcSize, int timeStamp);
     antigentring getBitAntigen();
     unsigned long int getOneEpitope(int idx);
     longIntVec getEpitopes();

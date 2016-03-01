@@ -25,7 +25,7 @@
 #include "Tagging_system.h"
 #include "RandomNumbs.h"
 
-typedef boost::dynamic_bitset<> antigentring;
+typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<unsigned long int> longIntVec;
 
 Antigen::Antigen() {
@@ -121,6 +121,20 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int time
 }
 
 
+void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
+        int Nth, int mhcSize, int timeStamp){
+    TheAntigen = bitgene;
+    for(antigenstring::size_type i = 0; i < TheAntigen.size(); i += Nth){
+        TheAntigen[i].flip();
+    }
+    timeOfOrigin = timeStamp;
+    TheParentWas = -1;
+    BitStringLength = bitgene.size();
+    AntigenTag = Tag;
+    calculateEpitopes(mhcSize);
+    
+}
+
 /**
  * @brief Core method. Mutates antigen one bit by one bit but leaves predefined
  * positions on the antigen intact to make pathogen species a bit different.
@@ -160,7 +174,7 @@ void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize,
  * 
  * @return The antigen in it's native bit format
  */
-antigentring Antigen::getBitAntigen(){
+antigenstring Antigen::getBitAntigen(){
     return TheAntigen;
 }
 

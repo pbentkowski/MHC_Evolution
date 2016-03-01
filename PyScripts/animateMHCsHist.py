@@ -25,7 +25,7 @@ everyOtherRow = 5
 MAXX = 40
 XX_tikz = 5.0
 MAYY = 3500
-MHC_all = 100
+MHC_all = 200
 scale = 10**5
 
 FontSize = 20

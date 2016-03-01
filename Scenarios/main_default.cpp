@@ -64,6 +64,8 @@ void printTipsToRun(){
             std::endl;
     std::cout << "17. Alpha factor for the host fitness function ([0,1] range)." <<
             std::endl;
+    std::cout << "18. Fraction of antigen bits which get fixed and cannot" <<
+            " mutate ([0,1] range)." << std::endl;
     std::cout << std::endl;
     
 }
@@ -73,9 +75,7 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here. 
  * 
  * Compile this program with:
- * $ g++ -g -O0 -o mem_test_MHC main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp -std=c++1y
- * Run Valgrind with:
- * valgrind --leak-check=yes --log-file="valgr.log" ./mem_test_MHC 12 > /home/piotr/Tempy/MHC_test/test.txt
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
  * 
  * @param argc - number of arguments
  * @param argv - list of arguments
@@ -83,7 +83,7 @@ void printTipsToRun(){
  */
 int main(int argc, char** argv) {
 // === Check if the entered parameters make sense ===
-    int numbOfArgs = 18; // how many arguments we need to run this model
+    int numbOfArgs = 19; // how many arguments we need to run this model
     if (argc < numbOfArgs) {
         std::cout << std::endl;
         std::cout << "Not enough arguments. It has to be " <<
@@ -103,7 +103,8 @@ int main(int argc, char** argv) {
     int rndSeed, mhcGeneLength, antigenLength, hostPopSize, pathoPopSize, patho_sp,
         hostGeneNumbb, pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations,
         HeteroHomo, maxGene;
-    double hostMutationProb, pathoMutationProb, deletion, duplication, alpha;
+    double hostMutationProb, pathoMutationProb, deletion, duplication, alpha,
+            fixedAntigPosit;
     // Check if input params are numbers
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
@@ -123,6 +124,7 @@ int main(int argc, char** argv) {
         duplication = boost::lexical_cast<double>(argv[15]);
         maxGene = boost::lexical_cast<int>(argv[16]);
         alpha = boost::lexical_cast<double>(argv[17]);
+        fixedAntigPosit = boost::lexical_cast<double>(argv[18]);
     }
     catch(boost::bad_lexical_cast& e) {
         std::cout << std::endl;
@@ -149,6 +151,7 @@ int main(int argc, char** argv) {
     duplication = atof(argv[15]);
     maxGene = atoi(argv[16]);
     alpha = atof(argv[17]);
+    fixedAntigPosit = atof(argv[18]);
     
     // When told so, fetching a truly random number to seed the RNG engine
     if (rndSeed < 0){
@@ -164,7 +167,7 @@ int main(int argc, char** argv) {
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations,
             hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
-            maxGene, alpha)){
+            maxGene, alpha, fixedAntigPosit)){
         std::cout << std::endl;
         std::cout << "Error in parameters on input. Check them." << std::endl;
         printTipsToRun();
@@ -177,7 +180,8 @@ int main(int argc, char** argv) {
     Data2file.inputParamsToFile(rndSeed, mhcGeneLength, antigenLength, hostPopSize, 
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
-            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene, alpha);
+            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene, 
+            alpha, fixedAntigPosit);
     
 // === And now doing the calculations! ===
     
@@ -191,24 +195,25 @@ int main(int argc, char** argv) {
 
     Environment ENV; // Initialize the simulation environment 
     Data2file.setAllFilesAsFirtsTimers();
-    // mutation exclusion set
-    // TODO: make that a function which generates this sets. Consider moving it
-    //       to Pathogen class
-    std::set<int> noMutss = {17};
-    
-    ENV.setHostPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
-    ENV.setPathoPopulatioUniformGenome(pathoPopSize, antigenLength, pathoGeneNumb,
+    // mutation exclusion sets
+    ENV.setNoMutsVecInFours(patho_sp, antigenLength, fixedAntigPosit);
+    Data2file.savePathoNoMuttList(ENV);
+    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    std::cout << "Host population all set!" << std::endl;
+    ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0);
+    std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv", std::ios::out | std::ios::ate | std::ios::app);
     InputParams << "# Other_information:" << std::endl;
-//    InputParams << "\tseparated_species_genomes = YES" << std::endl;
+    InputParams << "\tseparated_species_genomes = YES" << std::endl;
     // set "NO" when using ENV.setPathoPopulatioUniformGenome()
-    InputParams << "\tseparated_species_genomes = NO" << std::endl;
+//    InputParams << "\tseparated_species_genomes = NO" << std::endl;
     InputParams << "\tpoint_mutation_in_host_is_used = " << hostMutationProb << std::endl;
     InputParams << std::endl;
     InputParams.close();
+    std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
         Data2file.savePathoPopulToFile(ENV, 0);
@@ -219,7 +224,7 @@ int main(int argc, char** argv) {
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
                 ENV.selectAndReproducePathoFixedPopSizes();
-                ENV.mutatePathogens(pathoMutationProb, mhcGeneLength, i);
+                ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
@@ -239,7 +244,7 @@ int main(int argc, char** argv) {
     }
 
     ENV.selectAndReproducePathoFixedPopSizes();
-    ENV.mutatePathogens(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
+    ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
     ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
     ENV.selectAndReprodHostsReplace();
     ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 

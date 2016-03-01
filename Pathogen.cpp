@@ -64,6 +64,17 @@ void Pathogen::setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
     }
 }
 
+void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigenn, 
+        int mhcSize, int species, int timeStamp, int Nth){
+    Species = species;
+    NumOfHostsInfected = 0;
+    SelectedToReproduct = 0;
+    for(int i = 0; i < num_of_loci; ++i){
+        PathogenProts.push_back(Antigen());
+        PathogenProts.back().setAntigenFlipedPositions(antigenn, Nth, mhcSize, timeStamp);
+    }
+}
+
 
 /**
  * @brief Core method. Decides (on a random basis) if there will be any mutations
