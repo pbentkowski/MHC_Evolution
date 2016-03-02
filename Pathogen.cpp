@@ -28,7 +28,7 @@
 #include "Pathogen.h"
 #include "Tagging_system.h"
 
-typedef boost::dynamic_bitset<> antigentring;
+typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<Antigen> antigenvector;
 typedef std::string sttr;
 
@@ -122,7 +122,7 @@ void Pathogen::chromoMutProcessWithRestric(double mut_probabl, int mhcSize,
  * @param indx - index number of gene in a chromosome
  * @return - a Boost's dynamic bit string object
  */
-antigentring Pathogen::getSingleAntigen(int indx){
+antigenstring Pathogen::getSingleAntigen(int indx){
     if(indx < PathogenProts.size()){
         return PathogenProts[indx].getBitAntigen();
     }else{

@@ -65,61 +65,61 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhcevolution
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhc_code_oba
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhcevolution: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhc_code_oba: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhcevolution ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhc_code_oba ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Antigen.o: Antigen.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Antigen.o Antigen.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Antigen.o Antigen.cpp
 
 ${OBJECTDIR}/DataHarvester.o: DataHarvester.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataHarvester.o DataHarvester.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataHarvester.o DataHarvester.cpp
 
 ${OBJECTDIR}/Environment.o: Environment.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Environment.o Environment.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Environment.o Environment.cpp
 
 ${OBJECTDIR}/Gene.o: Gene.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Gene.o Gene.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Gene.o Gene.cpp
 
 ${OBJECTDIR}/H2Pinteraction.o: H2Pinteraction.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/H2Pinteraction.o H2Pinteraction.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/H2Pinteraction.o H2Pinteraction.cpp
 
 ${OBJECTDIR}/Host.o: Host.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Host.o Host.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Host.o Host.cpp
 
 ${OBJECTDIR}/Pathogen.o: Pathogen.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pathogen.o Pathogen.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pathogen.o Pathogen.cpp
 
 ${OBJECTDIR}/RandomNumbs.o: RandomNumbs.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomNumbs.o RandomNumbs.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RandomNumbs.o RandomNumbs.cpp
 
 ${OBJECTDIR}/Tagging_system.o: Tagging_system.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Tagging_system.o Tagging_system.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Tagging_system.o Tagging_system.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -w -I../build/include -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -w -I../build/include -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
@@ -127,7 +127,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhcevolution
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mhc_code_oba
 
 # Subprojects
 .clean-subprojects:

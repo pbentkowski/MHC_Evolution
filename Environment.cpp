@@ -33,6 +33,7 @@
 #include "H2Pinteraction.h"
 
 typedef std::string sttr;
+typedef boost::dynamic_bitset<> antigenstring;
 
 Environment::Environment() {
 }
@@ -229,6 +230,44 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
         PathPopulation.push_back(OneSpeciesVector);
         OneSpeciesVector.clear();
     }
+}
+
+
+void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize, 
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
+    if (numb_of_species > pop_size) numb_of_species = pop_size;
+    int indiv_per_species = pop_size / numb_of_species;
+    int indiv_left = pop_size % numb_of_species;
+    std::vector<Pathogen> PathoSppTemplateVector;
+    PathoSppTemplateVector.push_back(Pathogen());
+    antigenstring atniStrr;
+    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize, 
+                                                 mhcSize, 0, timeStamp);
+    for(int kk = 1; kk < numb_of_species; ++kk){
+        if(kk % 2){
+            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
+            PathoSppTemplateVector.push_back(Pathogen());
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            mhcSize, kk, timeStamp, kk);
+        } else {
+            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
+            PathoSppTemplateVector.push_back(Pathogen());
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            mhcSize, kk, timeStamp, 1);
+        }
+    }
+    std::vector<Pathogen> OneSpeciesVector;
+    for (int i = 0; i < numb_of_species; ++i){
+        for(int j = 0; j < indiv_per_species; ++j){
+            OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
+            if(indiv_left){
+                OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
+                indiv_left--;
+            }
+        }
+        PathPopulation.push_back(OneSpeciesVector);
+        OneSpeciesVector.clear();
+    }                                     
 }
 
 /**
