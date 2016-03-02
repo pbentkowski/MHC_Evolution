@@ -26,6 +26,7 @@
 #include "boost/dynamic_bitset.hpp"
 
 #include "Pathogen.h"
+#include "Tagging_system.h"
 
 typedef boost::dynamic_bitset<> antigentring;
 typedef std::vector<Antigen> antigenvector;
@@ -69,12 +70,13 @@ void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigenn,
     Species = species;
     NumOfHostsInfected = 0;
     SelectedToReproduct = 0;
+    Tagging_system* pTagging_system = Tagging_system::getInstance();
+    unsigned long int Tag = pTagging_system->getTag();
     for(int i = 0; i < num_of_loci; ++i){
         PathogenProts.push_back(Antigen());
-        PathogenProts.back().setAntigenFlipedPositions(antigenn, Nth, mhcSize, timeStamp);
+        PathogenProts.back().setAntigenFlipedPositions(antigenn, Tag, Nth, mhcSize, timeStamp);
     }
 }
-
 
 /**
  * @brief Core method. Decides (on a random basis) if there will be any mutations

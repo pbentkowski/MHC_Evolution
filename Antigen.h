@@ -30,7 +30,7 @@
 #include "boost/dynamic_bitset.hpp"
 #include "RandomNumbs.h"
 
-typedef boost::dynamic_bitset<> antigentring;
+typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<unsigned long int> longIntVec;
 
 /**
@@ -50,7 +50,7 @@ public:
                                    int timeStamp, std::set<int>& noMutts);
     void setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
                                    int Nth, int mhcSize, int timeStamp);
-    antigentring getBitAntigen();
+    antigenstring getBitAntigen();
     unsigned long int getOneEpitope(int idx);
     longIntVec getEpitopes();
     // === Data harvesting ===
@@ -61,7 +61,7 @@ public:
     unsigned long int AntigenTag;
     void printAntigenToScreen();
 private:
-    antigentring TheAntigen;
+    antigenstring TheAntigen;
     longIntVec Epitopes;
     int BitStringLength;
 };
