@@ -97,6 +97,7 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
                 // the pathogen gets presented, the host evades infection:
 //                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
+                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 return;
             }
         }
@@ -108,6 +109,7 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
                 // the pathogen gets presented, the host evades infection:
 //                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
+                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 return;
             }
         }

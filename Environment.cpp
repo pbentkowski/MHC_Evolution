@@ -328,8 +328,8 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
  * species. Exposition procedure for a single host is repeated for all
  * pathogen species. Maximum number of pathogens a host can contract in one go
  * equals to the number of pathogen species. Fitness is calculated with heterozygote
- * advantage added (antigen recognition just by allele give a full advantage). One
- * species can infect a host only ONES.
+ * advantage added (antigen recognition just by one allele gives a full advantage).
+ * One species can infect a host only ONES.
  *
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.

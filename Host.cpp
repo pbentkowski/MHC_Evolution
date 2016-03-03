@@ -612,7 +612,7 @@ double Host::getFitness(){
  */
 void Host::clearInfections(){
     PathoSpecInfecting.clear();
-//    PathogesPresented.clear();
+    PathogesPresented.clear();
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
@@ -627,10 +627,14 @@ void Host::clearInfections(){
  *  a human-readable format.
  */
  std::string Host::stringChromosomes(){
+    std::string pathoSppString = sttr(" ");
+    for(int ll = 0; ll < PathogesPresented.size(); ++ll){
+        pathoSppString = pathoSppString + std::to_string(PathogesPresented[ll]) + sttr(" ");
+    }
     std::string outString;
     outString = sttr(" === Host has ") +  std::to_string(NumOfPathogesInfecting) +
         sttr(" parasites and presented ") + std::to_string(NumOfPathogesPresented) +
-        sttr(" of them ===\n");
+        sttr(" - these are:") + pathoSppString + sttr("===\n");
     sttr g1;
     sttr g2;
     for(int i = 0; i < ChromosomeOne.size(); ++i){

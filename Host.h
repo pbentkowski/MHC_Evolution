@@ -44,7 +44,7 @@ public:
     virtual ~Host();
     // === Core methods ===
     std::vector<int> PathoSpecInfecting;
-//    std::vector<int> PathogesPresented;
+    std::vector<int> PathogesPresented;
     unsigned NumOfPathogesInfecting;
     unsigned NumOfPathogesPresented;
     unsigned NumOfMhcAlleles;
