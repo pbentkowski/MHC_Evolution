@@ -92,6 +92,30 @@ void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
     calculateEpitopes(mhcSize);
 }
 
+/**
+ * @brief Core method. Sets a new antigen filling it with a given bit strings. 
+ * 
+ * Sets a antigen object filling it with a user-defined bit string.
+ * 
+ * @param bitgene - a bit string representing an antigen
+ * @param Tag - antigen's individual ID tag
+ * @param Nth - step at each a bit should be flipped
+ * @param mhcSize - length of a bit string representing the MHC protein.
+ * @param timeStamp - current time (current number of the model iteration)
+ */
+void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
+        int Nth, int mhcSize, int timeStamp){
+    TheAntigen = bitgene;
+    for(antigenstring::size_type i = 0; i < TheAntigen.size(); i += Nth){
+        TheAntigen[i].flip();
+    }
+    timeOfOrigin = timeStamp;
+    TheParentWas = -1;
+    BitStringLength = bitgene.size();
+    AntigenTag = Tag;
+    calculateEpitopes(mhcSize);
+}
+
 
 /**
  * @brief Core method. Mutates antigen one bit by one bit.
@@ -120,20 +144,6 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int time
     }
 }
 
-
-void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
-        int Nth, int mhcSize, int timeStamp){
-    TheAntigen = bitgene;
-    for(antigenstring::size_type i = 0; i < TheAntigen.size(); i += Nth){
-        TheAntigen[i].flip();
-    }
-    timeOfOrigin = timeStamp;
-    TheParentWas = -1;
-    BitStringLength = bitgene.size();
-    AntigenTag = Tag;
-    calculateEpitopes(mhcSize);
-    
-}
 
 /**
  * @brief Core method. Mutates antigen one bit by one bit but leaves predefined

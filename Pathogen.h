@@ -48,7 +48,7 @@ public:
     int SelectedToReproduct;
     void setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
                         int species, int timeStamp);
-    void setNewPathogenNthSwap(int num_of_loci, anigenstring antigenn, int mhcSize, 
+    void setNewPathogenNthSwap(int num_of_loci, anigenstring antigen, int mhcSize, 
                                int species, int timeStamp, int Nth);
     antigenvector getAllAntigens();
     void chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp);

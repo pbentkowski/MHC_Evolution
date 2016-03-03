@@ -45,7 +45,7 @@ Pathogen::~Pathogen() {
  * @brief Core method. Sets a new Pathogen object.
  *
  * Sets a new Pathogen object and assigns a user-defined number of genes of
- * user-defined number of bits (as genes are bit-strings). Value of a gene
+ * user-defined number of bits (as antigens are bit-strings). Value of a antigens
  * is randomly assigned from an interval between 0 and 2^N-1, where N is the
  * number of bits in a gene.
  *
@@ -65,7 +65,23 @@ void Pathogen::setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
     }
 }
 
-void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigenn, 
+
+/**
+ * @brief Core method. Sets a new Pathogen object with pre-defined antigen.
+ * 
+ * Sets a new Pathogen object and assigns a user-defined number of antigens of
+ * user-defined number of bits (as antigens are bit-strings). Value of an 
+ * antigen is loaded as a bit-string. Later on every N-th bit in the antigen
+ * is flipped to the opposite value.
+ * 
+ * @param num_of_loci - number of gene loci in a chromosome
+ * @param antigen - bit string containing pre-defined antigen 
+ * @param mhcSize - number of bits in MHC protein
+ * @param species- user-defined number of species
+ * @param timeStamp - current time (current number of the model iteration)
+ * @param Nth - step at each a bit should be flipped
+ */
+void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigen, 
         int mhcSize, int species, int timeStamp, int Nth){
     Species = species;
     NumOfHostsInfected = 0;
@@ -74,7 +90,7 @@ void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigenn,
     unsigned long int Tag = pTagging_system->getTag();
     for(int i = 0; i < num_of_loci; ++i){
         PathogenProts.push_back(Antigen());
-        PathogenProts.back().setAntigenFlipedPositions(antigenn, Tag, Nth, mhcSize, timeStamp);
+        PathogenProts.back().setAntigenFlipedPositions(antigen, Tag, Nth, mhcSize, timeStamp);
     }
 }
 
