@@ -15,9 +15,13 @@
             <file>file:/home/piotr/MHC_code_OBA/Pathogen.cpp</file>
             <file>file:/home/piotr/MHC_code_OBA/Environment.h</file>
             <file>file:/home/piotr/MHC_code_OBA/Tagging_system.cpp</file>
+            <file>file:/home/piotr/MHC_code_OBA/H2Pinteraction.cpp</file>
+            <file>file:/home/piotr/MHC_code_OBA/DataHarvester.cpp</file>
             <file>file:/home/piotr/MHC_code_OBA/main.cpp</file>
+            <file>file:/home/piotr/MHC_code_OBA/Host.cpp</file>
             <file>file:/home/piotr/MHC_code_OBA/Antigen.cpp</file>
             <file>file:/home/piotr/MHC_code_OBA/Antigen.h</file>
+            <file>file:/home/piotr/MHC_code_OBA/Host.h</file>
         </group>
     </open-files>
 </project-private>

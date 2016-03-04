@@ -172,6 +172,20 @@ def hamDisthistAll(Popul):
     return np.array(DD)
 
 
+def hamDistInterIndv(Popul):
+    """ """
+    N = len(Popul)
+    compArr = np.zeros(2*N)
+    rndIndx_1 = np.random.randint(0, N, 2*N)
+    rndIndx_2 = np.random.randint(0, N, 2*N)
+    for kk, comp in enumerate(compArr):
+        while (rndIndx_1[kk] == rndIndx_2[kk]):
+            rndIndx_1[kk] = np.random.randint(0, N)
+        compArr[kk] = np.mean(hamDistBetweenIndv(Popul[rndIndx_1[kk]],
+                              Popul[rndIndx_2[kk]]))
+    return compArr
+
+
 def main():
     if len(sys.argv) <= 2:
         print "Give the names of two files with data. One at the begging of",
@@ -182,8 +196,8 @@ def main():
         l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
         bitfit = int(l2[2])
         print "No. of pathogen species =", int(l[2])
-        print "Length of the bit string =",
-        print int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
+        MHC_len = int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
+        print "Length of the bit string =", MHC_len
         print "Length of bit string fit =", bitfit
     except:
         print "Can't find parameter file! You may be in a wrong directory."
@@ -200,17 +214,21 @@ def main():
     except:
         print "Can't load file named", sys.argv[2], ". Check if it exists."
         sys.exit()
-    F_init = bitSimAll(L_init, bitfit)
+#    F_init = bitSimAll(L_init, bitfit)
+    F_init = hamDisthistAll(L_init)
     F_init = F_init[~np.isnan(F_init)]
     print "Within genome similarities in the First file have been calculated!"
-    F_endd = bitSimAll(L_endd, bitfit)
+#    F_endd = bitSimAll(L_endd, bitfit)
+    F_endd = hamDisthistAll(L_endd)
     F_endd = F_endd[~np.isnan(F_endd)]
     print "Within genome similarities in the Second file have been calculated!"
-    E_init = bitSimInterIndv(L_init, bitfit)
+#    E_init = bitSimInterIndv(L_init, bitfit)
+    E_init = hamDistInterIndv(L_init)
     E_init = E_init[~np.isnan(E_init)]
     print "Between individual similarities in the First file have",
     print "been calculated!"
-    E_endd = bitSimInterIndv(L_endd, bitfit)
+#    E_endd = bitSimInterIndv(L_endd, bitfit)
+    E_endd = hamDistInterIndv(L_endd)
     E_endd = E_endd[~np.isnan(E_endd)]
     print "Between individual similarities in the Second file have",
     print "been calculated!"
@@ -228,7 +246,7 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+    plt.xlim(0, MHC_len)
     plt.subplot(122)
     plt.hist(F_endd, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
     plt.title("End of simulation", fontsize=T_label)
@@ -236,28 +254,28 @@ def main():
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+    plt.xlim(0, MHC_len)
     plt.savefig("HOST_sim_one.png")
     #  === Now the detailed plot! ===
     plt.figure(2, figsize=(16, 8))
     plt.subplot(121)
-    plt.hist(E_init, edgecolor="none")
+    plt.hist(E_init, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
     plt.title("Start of simulation", fontsize=T_label)
     plt.xlabel("Inter-individual similarity measure", fontsize=ax_label)
     plt.ylabel("Frequency of occurrence", fontsize=ax_label)
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+    plt.xlim(0, MHC_len)
 #    plt.ylim(ymax=200)
     plt.subplot(122)
-    plt.hist(E_endd, edgecolor="none")
+    plt.hist(E_endd, color=(0.3, 0.3, 0.3, transs), edgecolor="none")
     plt.title("End of simulation", fontsize=T_label)
     plt.xlabel("Inter-individual similarity measure", fontsize=ax_label)
     plt.xticks(fontsize=TicksFS)
     plt.yticks(fontsize=TicksFS)
     plt.grid(True)
-    plt.xlim(0., 1.)
+    plt.xlim(0, MHC_len)
 #    plt.ylim(ymax=200)
     plt.savefig("HOST_sim_two.png")
 
