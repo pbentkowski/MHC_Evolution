@@ -110,6 +110,44 @@ void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
     }
 }
 
+
+/**
+ *  @brief Core method. It defines "no mutation sites" of the antigen for all 
+ * individual pathogen species in the simulation. It should be run only ones per
+ * simulation.
+ * 
+ * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
+ * STD sets</a> containing indices of antigen bits in which  mutations are not 
+ * allowed. The length of the vector equals the number of pathogen species. Each
+ * species has its own vector. Number of fixed sites is a user-defined parameter.
+ * This version generates only four unique "no-mutation" vectors (all vectors are
+ * just copies of one of the four) to differentiate "clads" of pathogen species.
+ * 
+ * @param numb_of_species - number of pathogen species
+ * @param antigen_size - number of bits per antigen
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ */
+void Environment::setNoMutsVecFourClads(int numb_of_species, int antigen_size,
+        double fixedAntigenFrac){
+    std::set<int> NoMutSet;
+    std::vector<std::set<int>> TmpNoMutsVec;
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    for(int i = 0; i < 4; ++i){
+        NoMutSet.clear();
+        TmpNoMutsVec.push_back(NoMutSet);
+        for(int j = 0; j < antigen_size; ++j){
+            if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
+                TmpNoMutsVec.back().insert(j);
+            }
+        }
+    }
+    int spp_count;
+    for(int i = 0; i < numb_of_species; ++i){
+        spp_count = i % 4;
+        NoMutsVec.push_back(TmpNoMutsVec[spp_count]);
+    }
+}
+
 /**
  * @brief Core method. Initializes a vector containing host population.
  *
@@ -203,9 +241,12 @@ void Environment::setHostClonalPopulation(int pop_size, int gene_size,
  * @param numb_of_species - number of pathogen species
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+        double fixedAntigenFrac){
+    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
@@ -232,9 +273,28 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
     }
 }
 
-
+/**
+ * @brief Core method. Initializes the pathogen population.
+ * 
+ * Given the number of individuals, number of bit per gene, desired number of
+ * genes in a genome and desired number of pathogen species it generates
+ * random population of pathogens. Number of individuals will be evenly
+ * distributed between species and each species consists of identical clones.
+ * Antigens in species are not assigned at random, but are spread evenly in all
+ * possible bit strings space.
+ * 
+ * @@param pop_size - total number of individuals
+ * @param antigenSize - number of bits per gene
+ * @param chrom_size - number of genes per genome
+ * @param numb_of_species - number of pathogen species
+ * @param mhcSize - number of bits in MHC protein
+ * @param timeStamp - current time (number of the model iteration)
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ */
 void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize, 
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+        double fixedAntigenFrac){
+    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
@@ -267,7 +327,7 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
         }
         PathPopulation.push_back(OneSpeciesVector);
         OneSpeciesVector.clear();
-    }                                     
+    }
 }
 
 /**
@@ -278,16 +338,18 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
  * random population of pathogens. Number of individuals will be evenly
  * distributed between species and each species consists of identical clones.
  * 
- * 
  * @param pop_size - total number of individuals
  * @param antigenSize - number of bits per gene
  * @param chrom_size - number of genes per genome
  * @param numb_of_species - number of pathogen species
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp){
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+        double fixedAntigenFrac){
+    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
@@ -301,13 +363,6 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
     for (int i = 0; i < numb_of_species; ++i){
         for(int j = 0; j < indiv_per_species; ++j){
             OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
-//            if(i+1 != indiv_per_species){
-//                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
-//                        mhcSize, i, timeStamp);
-//            } else {
-//                OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
-//                        mhcSize,  i, timeStamp);
-//            }
             if(indiv_left){
                 OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
                 indiv_left--;
@@ -318,6 +373,66 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
     }
 }
 
+/**
+ * @brief Core method. Initializes the pathogen population.
+ *
+ * Given the number of individuals, number of bit per gene, desired number of
+ * genes in a genome and desired number of pathogen species it generates
+ * random population of pathogens. Number of individuals will be evenly
+ * distributed between species, each species draws its genes from the same
+ * pool of possible bit strings and there are only 4 possible "clads" - groups
+ * of species initialized with the same antigens and same mutations restrictions.
+ * 
+ * @param pop_size - total number of individuals
+ * @param antigenSize - number of bits per gene
+ * @param chrom_size - number of genes per genome
+ * @param numb_of_species - number of pathogen species
+ * @param mhcSize - number of bits in MHC protein
+ * @param timeStamp - current time (number of the model iteration)
+ * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ */
+void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize, 
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+        double fixedAntigenFrac){
+    Environment::setNoMutsVecFourClads(numb_of_species, antigenSize, fixedAntigenFrac);
+    if (numb_of_species > pop_size) numb_of_species = pop_size;
+    int indiv_per_species = pop_size / numb_of_species;
+    int indiv_left = pop_size % numb_of_species;
+    std::vector<Pathogen> PathoSppTemplateVector;
+    PathoSppTemplateVector.push_back(Pathogen());
+    antigenstring atniStrr;
+    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize, 
+                                                 mhcSize, 0, timeStamp);
+    for(int kk = 1; kk < 4; ++kk){
+        if(kk % 2){
+            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
+            PathoSppTemplateVector.push_back(Pathogen());
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            mhcSize, kk, timeStamp, 2);
+        } else {
+            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
+            PathoSppTemplateVector.push_back(Pathogen());
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            mhcSize, kk, timeStamp, 1);
+        }
+    }
+    int spp_count;
+    std::vector<Pathogen> OneSpeciesVector;
+    for (int i = 0; i < numb_of_species; ++i){
+        spp_count = i % 4;
+        for(int j = 0; j < indiv_per_species; ++j){
+            OneSpeciesVector.push_back(PathoSppTemplateVector[spp_count]);
+            OneSpeciesVector.back().setNewSpeciesNumber(i);
+            if(indiv_left){
+                OneSpeciesVector.push_back(PathoSppTemplateVector[spp_count]);
+                OneSpeciesVector.back().setNewSpeciesNumber(i);
+                indiv_left--;
+            }
+        }
+        PathPopulation.push_back(OneSpeciesVector);
+        OneSpeciesVector.clear();
+    }
+}
 
 /**
   * @brief Core method. Iterates through the host population and the parasite

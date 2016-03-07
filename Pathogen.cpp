@@ -149,6 +149,16 @@ antigenstring Pathogen::getSingleAntigen(int indx){
 }
 
 /**
+ * @brief Changes pathogen's species tag. Don't over use it. 
+ * 
+ * @param new_spp_num
+ */
+void Pathogen::setNewSpeciesNumber(int new_spp_num){
+   Species = new_spp_num;
+}
+
+
+/**
  * @brief Core method. Fetches the pathogene's antigens.
  *
  * @return - vector of genes object (a chromosome).

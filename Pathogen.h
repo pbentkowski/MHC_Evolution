@@ -54,6 +54,7 @@ public:
     void chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp);
     void chromoMutProcessWithRestric(double mut_probabl, int mhcSize, int timeStamp,
                                      std::set<int>& noMutts);
+    void setNewSpeciesNumber(int new_spp_num);
     anigenstring getSingleAntigen(int indx);
     int getSpeciesTag();
     void clearInfections();

@@ -46,16 +46,20 @@ public:
     virtual ~Environment();
     void setNoMutsVector(int numb_of_species, int antigen_size, double fixedAntigenFrac);
     void setNoMutsVecInFours(int numb_of_species, int antigen_size, double fixedAntigenFrac);
+    void setNoMutsVecFourClads(int numb_of_species, int antigen_size, double fixedAntigenFrac);
     void setHostRandomPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
     void setHostRandomPopulation(int pop_size, int gene_size, int chrom_size_lower,
         int chrom_size_uper, int timeStamp);
     void setHostClonalPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
     void setPathoPopulatioUniformGenome(int pop_size, int gene_size, 
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
-    void setPathoPopulatioDivSpecies(int pop_size, int gene_size, 
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
-    void setPathoPopulatioDistincSpp(int pop_size, int antigenSize, 
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp);
+        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+        double fixedAntigenFrac);
+    void setPathoPopulatioDivSpecies(int pop_size, int gene_size, int chrom_size,
+        int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac);
+    void setPathoPopulatioDistincSpp(int pop_size, int antigenSize, int chrom_size,
+        int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac);
+    void setPathoPopulationFourClades(int pop_size, int antigenSize, int chrom_size,
+        int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac);
     void infectOneFromOneSpecHetero();
     void infectEveryOne(int simil_mesure);
     void calculateHostsFitnessPerGene();

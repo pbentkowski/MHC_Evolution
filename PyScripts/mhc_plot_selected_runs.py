@@ -26,9 +26,9 @@ def LoadTheData(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 5))   # change here
-            interestingOne = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 15))   # change here
+            interestingOne = float(l[2])
+            l = re.split(" ", ln.getline(paramsFile, 9))   # change here
             interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 11))
             antign = l[2].split()[0]
@@ -62,7 +62,7 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 50
+    Ymax = 200
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
@@ -70,7 +70,7 @@ def main():
     except:
         print "Can't recognise the parameters. Two are required."
         sys.exit()
-    saveFiggs = False  # True to save figures to disk, False to not save
+    saveFiggs = True  # True to save figures to disk, False to not save
 
     nnn = "One thing: " + str(interestTwo) + " Two thing: " + str(interestOne)
 
@@ -118,7 +118,7 @@ def main():
         if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[5][annotShift + i*annotScale])
-    #        print XX, YY
+#            print XX, YY
             if item[2] == "NO":
                 ax = p.plot(item[3], item[5], 'r-')
             else:
@@ -178,7 +178,7 @@ def main():
             i = i + 1
             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 20.0])
+            p.axis([0, Xmax, 0, 50.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
 #    ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',
