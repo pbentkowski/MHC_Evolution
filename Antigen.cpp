@@ -161,8 +161,8 @@ void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize,
     bool exists;
     bitgene = TheAntigen;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgene.size(); ++i) {
-        exists = noMutts.find(i) != noMutts.end();
+    for(int i = 0; i < bitgene.size(); ++i) {
+        exists = (noMutts.find(i) != noMutts.end());
         if(exists == false and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
             bitgene[i].flip();
         }
