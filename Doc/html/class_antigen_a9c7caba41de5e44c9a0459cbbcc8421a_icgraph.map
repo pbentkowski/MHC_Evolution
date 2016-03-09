@@ -1,5 +1,6 @@
 <map id="Antigen::calculateEpitopes" name="Antigen::calculateEpitopes">
 <area shape="rect" id="node2" href="$class_antigen.html#a91e70bf2cd04f672230167dda902e328" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="239,5,401,32"/>
-<area shape="rect" id="node3" href="$class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="233,57,407,98"/>
-<area shape="rect" id="node4" href="$class_antigen.html#a6edb2d08312947e1c01d28cf659a564f" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="233,122,407,163"/>
+<area shape="rect" id="node3" href="$class_antigen.html#ad560e8651870e53dd9f500b42fdeb740" title="Core method. Sets a new antigen filling it with a given bit strings. " alt="" coords="235,57,405,98"/>
+<area shape="rect" id="node4" href="$class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="233,122,407,163"/>
+<area shape="rect" id="node5" href="$class_antigen.html#a6edb2d08312947e1c01d28cf659a564f" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="233,187,407,229"/>
 </map>

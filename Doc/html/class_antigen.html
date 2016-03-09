@@ -137,9 +137,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6edb2d08312947e1c01d28cf659a564f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f">mutateAntgBitByBitWithRes</a> (double pm_mut_probabl, int mhcSize, int timeStamp, std::set&lt; int &gt; &amp;noMutts)</td></tr>
 <tr class="memdesc:a6edb2d08312947e1c01d28cf659a564f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact to make pathogen species a bit different.  <a href="#a6edb2d08312947e1c01d28cf659a564f">More...</a><br /></td></tr>
 <tr class="separator:a6edb2d08312947e1c01d28cf659a564f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4acef29446bf39ad6685ac7f3e63c82f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_antigen_8cpp.html#ad97c7c1f29eace3e06910fa49ae6d3a8">antigentring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#a4acef29446bf39ad6685ac7f3e63c82f">getBitAntigen</a> ()</td></tr>
-<tr class="memdesc:a4acef29446bf39ad6685ac7f3e63c82f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the antigen so other methods can use it.  <a href="#a4acef29446bf39ad6685ac7f3e63c82f">More...</a><br /></td></tr>
-<tr class="separator:a4acef29446bf39ad6685ac7f3e63c82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad560e8651870e53dd9f500b42fdeb740"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#ad560e8651870e53dd9f500b42fdeb740">setAntigenFlipedPositions</a> (<a class="el" href="_antigen_8cpp.html#a4255cbd0af7483411e6b4764e9c57ae2">antigenstring</a> bitgene, unsigned long int Tag, int Nth, int mhcSize, int timeStamp)</td></tr>
+<tr class="memdesc:ad560e8651870e53dd9f500b42fdeb740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new antigen filling it with a given bit strings.  <a href="#ad560e8651870e53dd9f500b42fdeb740">More...</a><br /></td></tr>
+<tr class="separator:ad560e8651870e53dd9f500b42fdeb740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373c681510bd2f5bd80f801c9fad55fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_antigen_8cpp.html#a4255cbd0af7483411e6b4764e9c57ae2">antigenstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#a373c681510bd2f5bd80f801c9fad55fc">getBitAntigen</a> ()</td></tr>
+<tr class="memdesc:a373c681510bd2f5bd80f801c9fad55fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the antigen so other methods can use it.  <a href="#a373c681510bd2f5bd80f801c9fad55fc">More...</a><br /></td></tr>
+<tr class="separator:a373c681510bd2f5bd80f801c9fad55fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad103cc98588fa742d1eeccd9a578dcc6"><td class="memItemLeft" align="right" valign="top">unsigned long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_antigen.html#ad103cc98588fa742d1eeccd9a578dcc6">getOneEpitope</a> (int idx)</td></tr>
 <tr class="memdesc:ad103cc98588fa742d1eeccd9a578dcc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Returns the epitope with the given index.  <a href="#ad103cc98588fa742d1eeccd9a578dcc6">More...</a><br /></td></tr>
 <tr class="separator:ad103cc98588fa742d1eeccd9a578dcc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -241,18 +244,18 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_antigen_a9c7caba41de5e44c9a0459cbbcc8421a_icgraph.png" border="0" usemap="#class_antigen_a9c7caba41de5e44c9a0459cbbcc8421a_icgraph" alt=""/></div>
 <map name="class_antigen_a9c7caba41de5e44c9a0459cbbcc8421a_icgraph" id="class_antigen_a9c7caba41de5e44c9a0459cbbcc8421a_icgraph">
-<area shape="rect" id="node2" href="class_antigen.html#a91e70bf2cd04f672230167dda902e328" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="239,5,401,32"/><area shape="rect" id="node3" href="class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="233,57,407,98"/><area shape="rect" id="node4" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="233,122,407,163"/></map>
+<area shape="rect" id="node2" href="class_antigen.html#a91e70bf2cd04f672230167dda902e328" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="239,5,401,32"/><area shape="rect" id="node3" href="class_antigen.html#ad560e8651870e53dd9f500b42fdeb740" title="Core method. Sets a new antigen filling it with a given bit strings. " alt="" coords="235,57,405,98"/><area shape="rect" id="node4" href="class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="233,122,407,163"/><area shape="rect" id="node5" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="233,187,407,229"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a4acef29446bf39ad6685ac7f3e63c82f"></a>
+<a class="anchor" id="a373c681510bd2f5bd80f801c9fad55fc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_antigen_8cpp.html#ad97c7c1f29eace3e06910fa49ae6d3a8">antigentring</a> Antigen::getBitAntigen </td>
+          <td class="memname"><a class="el" href="_antigen_8cpp.html#a4255cbd0af7483411e6b4764e9c57ae2">antigenstring</a> Antigen::getBitAntigen </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -263,7 +266,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns the antigen so other methods can use it. </p>
 <dl class="section return"><dt>Returns</dt><dd>The antigen in it's native bit format </dd></dl>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00163">163</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00187">187</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,7 +287,7 @@ Here is the caller graph for this function:</div>
 <p>It is a vector containing epitopes created by a sliding frame of a size equal to the size of MHC bit string. Epitopes are represented by long unsigned integers.</p>
 <dl class="section return"><dt>Returns</dt><dd>a vector of long unsigned int numbers. </dd></dl>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00191">191</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00215">215</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 </div>
 </div>
@@ -311,7 +314,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the epitope (as a number) </dd></dl>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00173">173</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00197">197</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,7 +365,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00134">134</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00158">158</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -415,7 +418,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00103">103</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00127">127</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -443,7 +446,75 @@ Here is the call graph for this function:</div>
 
 <p>Auxiliary method. Prints antigens to screen. Useful when debugging. </p>
 
-<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00199">199</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00223">223</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad560e8651870e53dd9f500b42fdeb740"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Antigen::setAntigenFlipedPositions </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_antigen_8cpp.html#a4255cbd0af7483411e6b4764e9c57ae2">antigenstring</a>&#160;</td>
+          <td class="paramname"><em>bitgene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long int&#160;</td>
+          <td class="paramname"><em>Tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Nth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mhcSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Sets a new antigen filling it with a given bit strings. </p>
+<p>Sets a antigen object filling it with a user-defined bit string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bitgene</td><td>- a bit string representing an antigen </td></tr>
+    <tr><td class="paramname">Tag</td><td>- antigen's individual ID tag </td></tr>
+    <tr><td class="paramname">Nth</td><td>- step at each a bit should be flipped </td></tr>
+    <tr><td class="paramname">mhcSize</td><td>- length of a bit string representing the MHC protein. </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (current number of the model iteration) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_antigen_8cpp_source.html#l00106">106</a> of file <a class="el" href="_antigen_8cpp_source.html">Antigen.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_antigen_ad560e8651870e53dd9f500b42fdeb740_cgraph.png" border="0" usemap="#class_antigen_ad560e8651870e53dd9f500b42fdeb740_cgraph" alt=""/></div>
+<map name="class_antigen_ad560e8651870e53dd9f500b42fdeb740_cgraph" id="class_antigen_ad560e8651870e53dd9f500b42fdeb740_cgraph">
+<area shape="rect" id="node2" href="class_antigen.html#a9c7caba41de5e44c9a0459cbbcc8421a" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="225,12,402,39"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -550,7 +621,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00059">59</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00061">61</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -564,7 +635,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00058">58</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00060">60</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -578,7 +649,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00057">57</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00059">59</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -592,7 +663,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00056">56</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00058">58</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -606,7 +677,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00055">55</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
+<p>Definition at line <a class="el" href="_antigen_8h_source.html#l00057">57</a> of file <a class="el" href="_antigen_8h_source.html">Antigen.h</a>.</p>
 
 </div>
 </div>
@@ -620,7 +691,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_antigen.html">Antigen</a></li>
-    <li class="footer">Generated on Tue Feb 2 2016 20:36:21 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Mar 9 2016 17:19:54 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

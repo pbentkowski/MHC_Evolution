@@ -125,18 +125,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a559d186796a3f21fcaccce6cbbc6fe89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89">setNoMutsVector</a> (int numb_of_species, int antigen_size, double fixedAntigenFrac)</td></tr>
 <tr class="memdesc:a559d186796a3f21fcaccce6cbbc6fe89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. It defines "no mutation sites" of the antigen for all individual pathogen species in the simulation. It should be run only ones per simulation.  <a href="#a559d186796a3f21fcaccce6cbbc6fe89">More...</a><br /></td></tr>
 <tr class="separator:a559d186796a3f21fcaccce6cbbc6fe89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaab3cda2672dc62d90497cdfb44fce48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#aaab3cda2672dc62d90497cdfb44fce48">setHostPopulation</a> (int pop_size, int gene_size, int chrom_size, int timeStamp)</td></tr>
-<tr class="memdesc:aaab3cda2672dc62d90497cdfb44fce48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes a vector containing host population.  <a href="#aaab3cda2672dc62d90497cdfb44fce48">More...</a><br /></td></tr>
-<tr class="separator:aaab3cda2672dc62d90497cdfb44fce48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ab859e426f7ccfb0ce35169a7f7e7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a39ab859e426f7ccfb0ce35169a7f7e7f">setHostPopulation</a> (int pop_size, int gene_size, int chrom_size_lower, int chrom_size_uper, int timeStamp)</td></tr>
-<tr class="memdesc:a39ab859e426f7ccfb0ce35169a7f7e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes a vector containing host population.  <a href="#a39ab859e426f7ccfb0ce35169a7f7e7f">More...</a><br /></td></tr>
-<tr class="separator:a39ab859e426f7ccfb0ce35169a7f7e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac67b8e594e2cbd00d47f4c0745ef487f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#ac67b8e594e2cbd00d47f4c0745ef487f">setPathoPopulatioUniformGenome</a> (int pop_size, int gene_size, int chrom_size, int numb_of_species, int mhcSize, int timeStamp)</td></tr>
-<tr class="memdesc:ac67b8e594e2cbd00d47f4c0745ef487f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes the pathogen population.  <a href="#ac67b8e594e2cbd00d47f4c0745ef487f">More...</a><br /></td></tr>
-<tr class="separator:ac67b8e594e2cbd00d47f4c0745ef487f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62e2290459799b4a1cd0654339323a2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a62e2290459799b4a1cd0654339323a2b">setPathoPopulatioDivSpecies</a> (int pop_size, int gene_size, int chrom_size, int numb_of_species, int mhcSize, int timeStamp)</td></tr>
-<tr class="memdesc:a62e2290459799b4a1cd0654339323a2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes the pathogen population.  <a href="#a62e2290459799b4a1cd0654339323a2b">More...</a><br /></td></tr>
-<tr class="separator:a62e2290459799b4a1cd0654339323a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95cc0c7ecaa8fad54c2d62328134c73e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a95cc0c7ecaa8fad54c2d62328134c73e">setNoMutsVecInFours</a> (int numb_of_species, int antigen_size, double fixedAntigenFrac)</td></tr>
+<tr class="memdesc:a95cc0c7ecaa8fad54c2d62328134c73e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. It defines "no mutation sites" in 4-bit-long packages of the antigen for all individual pathogen species in the simulation. It should be run only ones per simulation.  <a href="#a95cc0c7ecaa8fad54c2d62328134c73e">More...</a><br /></td></tr>
+<tr class="separator:a95cc0c7ecaa8fad54c2d62328134c73e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558656ec1b4948fbbfee1358c79c67d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a558656ec1b4948fbbfee1358c79c67d0">setNoMutsVecFourClads</a> (int numb_of_species, int antigen_size, double fixedAntigenFrac)</td></tr>
+<tr class="memdesc:a558656ec1b4948fbbfee1358c79c67d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. It defines "no mutation sites" of the antigen for all individual pathogen species in the simulation. It should be run only ones per simulation.  <a href="#a558656ec1b4948fbbfee1358c79c67d0">More...</a><br /></td></tr>
+<tr class="separator:a558656ec1b4948fbbfee1358c79c67d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6c1788a9b69c76b657d02e38548e5ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#ae6c1788a9b69c76b657d02e38548e5ce">setHostRandomPopulation</a> (int pop_size, int gene_size, int chrom_size, int timeStamp)</td></tr>
+<tr class="memdesc:ae6c1788a9b69c76b657d02e38548e5ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes a vector containing host population.  <a href="#ae6c1788a9b69c76b657d02e38548e5ce">More...</a><br /></td></tr>
+<tr class="separator:ae6c1788a9b69c76b657d02e38548e5ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b828fcd48c6ef8b0d8d7ea61de3817b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a3b828fcd48c6ef8b0d8d7ea61de3817b">setHostRandomPopulation</a> (int pop_size, int gene_size, int chrom_size_lower, int chrom_size_uper, int timeStamp)</td></tr>
+<tr class="memdesc:a3b828fcd48c6ef8b0d8d7ea61de3817b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes a vector containing host population.  <a href="#a3b828fcd48c6ef8b0d8d7ea61de3817b">More...</a><br /></td></tr>
+<tr class="separator:a3b828fcd48c6ef8b0d8d7ea61de3817b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeadba01513bfdaef3f247558a6e5ce1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#aeadba01513bfdaef3f247558a6e5ce1d">setHostClonalPopulation</a> (int pop_size, int gene_size, int chrom_size, int timeStamp)</td></tr>
+<tr class="memdesc:aeadba01513bfdaef3f247558a6e5ce1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes a vector containing clonal host population.  <a href="#aeadba01513bfdaef3f247558a6e5ce1d">More...</a><br /></td></tr>
+<tr class="separator:aeadba01513bfdaef3f247558a6e5ce1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d6f594caf898481ef784aafa9b6ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a03d6f594caf898481ef784aafa9b6ed8">setPathoPopulatioUniformGenome</a> (int pop_size, int gene_size, int chrom_size, int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac)</td></tr>
+<tr class="memdesc:a03d6f594caf898481ef784aafa9b6ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes the pathogen population.  <a href="#a03d6f594caf898481ef784aafa9b6ed8">More...</a><br /></td></tr>
+<tr class="separator:a03d6f594caf898481ef784aafa9b6ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34b326e2e2880881e48ddf9312ff0bc0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a34b326e2e2880881e48ddf9312ff0bc0">setPathoPopulatioDivSpecies</a> (int pop_size, int gene_size, int chrom_size, int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac)</td></tr>
+<tr class="memdesc:a34b326e2e2880881e48ddf9312ff0bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes the pathogen population.  <a href="#a34b326e2e2880881e48ddf9312ff0bc0">More...</a><br /></td></tr>
+<tr class="separator:a34b326e2e2880881e48ddf9312ff0bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa96a77a7b6544503d61e26149c0d4cca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#aa96a77a7b6544503d61e26149c0d4cca">setPathoPopulatioDistincSpp</a> (int pop_size, int antigenSize, int chrom_size, int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac)</td></tr>
+<tr class="memdesc:aa96a77a7b6544503d61e26149c0d4cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes the pathogen population.  <a href="#aa96a77a7b6544503d61e26149c0d4cca">More...</a><br /></td></tr>
+<tr class="separator:aa96a77a7b6544503d61e26149c0d4cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8e36a6f12db407caf9a63cbeae62a16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16">setPathoPopulationFourClades</a> (int pop_size, int antigenSize, int chrom_size, int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac)</td></tr>
+<tr class="memdesc:ab8e36a6f12db407caf9a63cbeae62a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Initializes the pathogen population.  <a href="#ab8e36a6f12db407caf9a63cbeae62a16">More...</a><br /></td></tr>
+<tr class="separator:ab8e36a6f12db407caf9a63cbeae62a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecd592b734359557235bb0a6980f77f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#aecd592b734359557235bb0a6980f77f9">infectOneFromOneSpecHetero</a> ()</td></tr>
 <tr class="memdesc:aecd592b734359557235bb0a6980f77f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Iterates through the host population and the parasite population to "infect" the hosts with parasites. With heterozygote advantage and it permits a pathogen species to infect a host only ONES.  <a href="#aecd592b734359557235bb0a6980f77f9">More...</a><br /></td></tr>
 <tr class="separator:aecd592b734359557235bb0a6980f77f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,7 +262,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00037">37</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00038">38</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -272,7 +287,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00043">43</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00044">44</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -293,7 +308,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Core method. Iterates through the host population and calculates the Fitness for each single individual by calling Host::calculateHostsFitnessAlphaXsqr(), which uses one over the square on number of genes as a fitness cost. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00295">295</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00508">508</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -313,7 +328,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Core method. Iterates through the host population and calculates the Fitness for each single individual by calling <a class="el" href="class_host.html#a9134661842de046453acc0342ef74eb6" title="Core method. Calculates host individual fitness in proportion to the Gaussian function of the number ...">Host::calculateFitnessExpFunc()</a>, which uses a Gaussian function to accommodate the costs of having lots of genes. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00307">307</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00520">520</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -333,7 +348,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Core method. Iterates through the host population and calculates the Fitness for each single individual by calling <a class="el" href="class_host.html#ad185a5e02c8ed0930e4d400e9c0e6a9a" title="Core method. Calculates host individual fitness in proportion to the Gaussian function of the number ...">Host::calculateFitnessExpFuncUniqAlleles()</a>, which uses a Gaussian function to accommodate the costs of having lots of unique MHC alleles in chromosomes. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00319">319</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00532">532</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -361,7 +376,7 @@ Here is the caller graph for this function:</div>
 
 <p>Core method. Iterates through the host population and calculates the Fitness for each single individual by calling <a class="el" href="class_host.html#a614430aea49534f29b63232414cf4fcd" title="Core method. Sets fitness as 1, a fixed value to simulate genetic drift. ">Host::calculateFitnessForDrift()</a>, which assigns "1" for each cell to make the genetic driff work. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00283">283</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00496">496</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +395,7 @@ Here is the caller graph for this function:</div>
 
 <p>Core method. Iterates through the host population and calculates the Fitness for each single individual by calling <a class="el" href="class_host.html#a6079285b3b8bb5280d52500e6b7fc7ef" title="Core method. Calculates host individual fitness as the number of exposed pathogens divided by the gen...">Host::calculateFitnessAccChromSize()</a>, which takes the number of MHC genes under account. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00259">259</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00472">472</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -399,7 +414,7 @@ Here is the caller graph for this function:</div>
 
 <p>Core method. Iterates through the host population and calculates the Fitness for each single individual by calling Host::calculateHostsFitnessPlainInfect(), which is the plain-and-lame sum of presented pathogens. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00271">271</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00484">484</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +433,7 @@ Here is the caller graph for this function:</div>
 
 <p>. Core method. Clears information about infection and fitness in the whole host population. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00601">601</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00814">814</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -446,7 +461,7 @@ Here is the caller graph for this function:</div>
 
 <p>. Core method. Clears information about infection and fitness in the whole pathogen population. </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00588">588</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00801">801</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -475,7 +490,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Prepares a string with the list of fixed "no mutation sites" in antigens used by the <a class="el" href="class_data_harvester.html" title="Data harvesting class. A class that has methods to collect data and writes them to files...">DataHarvester</a> to write these data to file. </p>
 <dl class="section return"><dt>Returns</dt><dd>a string listing all the fixed sites in all pathogen species </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00789">789</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01004">1004</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -502,7 +517,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00823">823</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01038">1038</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -538,7 +553,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string of the host's chromosome in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00778">778</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00993">993</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -567,7 +582,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Gets the host population size. </p>
 <dl class="section return"><dt>Returns</dt><dd>host population size </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00753">753</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00968">968</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -629,7 +644,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string of the pathogen's chromosome in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00767">767</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00982">982</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -658,7 +673,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Gets the number of species of pathogens. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of pathogen species </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00733">733</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00948">948</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -694,7 +709,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of individuals of a selected species. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00744">744</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00959">959</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -721,7 +736,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00805">805</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01020">1020</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -748,7 +763,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00810">810</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01025">1025</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -775,7 +790,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00800">800</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01015">1015</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -803,7 +818,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00815">815</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01030">1030</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -840,7 +855,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00819">819</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01034">1034</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -883,7 +898,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Core method. Iterates through the host population and the parasite population to "infect" the hosts with parasites. With heterozygote advantage and it permits a pathogen species to infect a host only ONES. </p>
-<p>Each host is exposed to one, randomly selected individual from a pathogen species. Exposition procedure for a single host is repeated for all pathogen species. Maximum number of pathogens a host can contract in one go equals to the number of pathogen species. Fitness is calculated with heterozygote advantage added (antigen recognition just by allele give a full advantage). One species can infect a host only ONES.</p>
+<p>Each host is exposed to one, randomly selected individual from a pathogen species. Exposition procedure for a single host is repeated for all pathogen species. Maximum number of pathogens a host can contract in one go equals to the number of pathogen species. Fitness is calculated with heterozygote advantage added (antigen recognition just by one allele gives a full advantage). One species can infect a host only ONES.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">simil_mesure</td><td>- number of bits which have to be similar, to expose a pathogen. It's passed to H2Pinteraction::doesInfected() method. </td></tr>
@@ -891,7 +906,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00239">239</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00452">452</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -951,7 +966,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>- calculated corresponding point mutation </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00682">682</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00896">896</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -997,7 +1012,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00615">615</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00828">828</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -1049,12 +1064,13 @@ Here is the caller graph for this function:</div>
     <tr><td class="paramname">mut_probabl</td><td>- probability of a mutation in a single gene. </td></tr>
     <tr><td class="paramname">del</td><td>- mutation probability, probability a gene will be deleted </td></tr>
     <tr><td class="paramname">dupli</td><td>- mutation probability, probability a gene will be duplicated (and added at the end of the Chromosome vector) </td></tr>
+    <tr><td class="paramname">maxGene</td><td>- maximal allowed number of genes in a chromosome </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00632">632</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00846">846</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1120,7 +1136,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00651">651</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00865">865</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -1158,12 +1174,13 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mut_probabl</td><td>- probability of a mutation in a single gene. </td></tr>
+    <tr><td class="paramname">mhcSize</td><td>- number of bits in MHC protein </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00695">695</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00910">910</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -1201,13 +1218,13 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mut_probabl</td><td>- probability of a mutation in a single gene. </td></tr>
+    <tr><td class="paramname">mhcSize</td><td>- number of bits in MHC protein </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
-    <tr><td class="paramname">noMutts</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00712">712</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00927">927</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1237,7 +1254,7 @@ Here is the caller graph for this function:</div>
 <p>The new generation takes place of individuals which got removed from population due to too low fitness.</p>
 <p>Iterates through the host population selecting the next generation for reproduction using <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">fitness proportionate selection method</a> (also known as the roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00338">338</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00551">551</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1266,7 +1283,7 @@ Here is the call graph for this function:</div>
 <p>Core method. Forms the next generation of hosts using the fitness proportionate selection method. Replaces the old population with a new one. </p>
 <p>Iterates through the host population selecting the next generation for reproduction using <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">fitness proportionate selection method</a> (also known as the roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00406">406</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00619">619</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1304,7 +1321,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Forms the next generation of hosts using the fitness proportionate selection method. It keeps population sizes of different pathogens species at a fixed number. </p>
 <p>Iterates through the pathogen population selecting the next generation for reproduction using fitness proportionate selection method (roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00538">538</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00751">751</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1342,7 +1359,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Forms the next generation of hosts using the fitness proportionate selection method. It can adjust species population sizes in proportion to its individuals fitness values keeping the total number of pathogens fixed. </p>
 <p>Iterates through the pathogen population selecting the next generation for reproduction using fitness proportionate selection method (roulette wheel selection). </p>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00470">470</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00683">683</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1355,12 +1372,64 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aaab3cda2672dc62d90497cdfb44fce48"></a>
+<a class="anchor" id="aeadba01513bfdaef3f247558a6e5ce1d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Environment::setHostPopulation </td>
+          <td class="memname">void Environment::setHostClonalPopulation </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pop_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gene_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>chrom_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Initializes a vector containing clonal host population. </p>
+<p>Sets and fills a vector containing the host population consisting of a single homozygous clone. Parameters like size of the population, length of genes represented by bit-strings, number of genes in a chromosome (remember that there are two chromosomes) are user-defined, the rest is set at random (e.g. actual gene values).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pop_size</td><td>- number of host individuals in a simulation </td></tr>
+    <tr><td class="paramname">gene_size</td><td>- number of bits in bit-represented genes </td></tr>
+    <tr><td class="paramname">chrom_size</td><td>- number of genes in a chromosome </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00218">218</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae6c1788a9b69c76b657d02e38548e5ce"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::setHostRandomPopulation </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>pop_size</em>, </td>
@@ -1403,25 +1472,25 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00091">91</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00164">164</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_environment_aaab3cda2672dc62d90497cdfb44fce48_icgraph.png" border="0" usemap="#class_environment_aaab3cda2672dc62d90497cdfb44fce48_icgraph" alt=""/></div>
-<map name="class_environment_aaab3cda2672dc62d90497cdfb44fce48_icgraph" id="class_environment_aaab3cda2672dc62d90497cdfb44fce48_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="264,5,315,32"/></map>
+<div class="center"><img src="class_environment_ae6c1788a9b69c76b657d02e38548e5ce_icgraph.png" border="0" usemap="#class_environment_ae6c1788a9b69c76b657d02e38548e5ce_icgraph" alt=""/></div>
+<map name="class_environment_ae6c1788a9b69c76b657d02e38548e5ce_icgraph" id="class_environment_ae6c1788a9b69c76b657d02e38548e5ce_icgraph">
+<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="253,12,304,39"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a39ab859e426f7ccfb0ce35169a7f7e7f"></a>
+<a class="anchor" id="a3b828fcd48c6ef8b0d8d7ea61de3817b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Environment::setHostPopulation </td>
+          <td class="memname">void Environment::setHostRandomPopulation </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>pop_size</em>, </td>
@@ -1471,14 +1540,131 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00115">115</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00188">188</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_environment_a39ab859e426f7ccfb0ce35169a7f7e7f_cgraph.png" border="0" usemap="#class_environment_a39ab859e426f7ccfb0ce35169a7f7e7f_cgraph" alt=""/></div>
-<map name="class_environment_a39ab859e426f7ccfb0ce35169a7f7e7f_cgraph" id="class_environment_a39ab859e426f7ccfb0ce35169a7f7e7f_cgraph">
-<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="264,5,453,32"/><area shape="rect" id="node3" href="class_random_numbs.html#a301ebb1a7c447763903f925a634da605" title="Core method. Generates one integer random number from a given interval with an uniform distribution..." alt="" coords="277,56,441,83"/></map>
+<div class="center"><img src="class_environment_a3b828fcd48c6ef8b0d8d7ea61de3817b_cgraph.png" border="0" usemap="#class_environment_a3b828fcd48c6ef8b0d8d7ea61de3817b_cgraph" alt=""/></div>
+<map name="class_environment_a3b828fcd48c6ef8b0d8d7ea61de3817b_cgraph" id="class_environment_a3b828fcd48c6ef8b0d8d7ea61de3817b_cgraph">
+<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="253,5,443,32"/><area shape="rect" id="node3" href="class_random_numbs.html#a301ebb1a7c447763903f925a634da605" title="Core method. Generates one integer random number from a given interval with an uniform distribution..." alt="" coords="266,56,430,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a558656ec1b4948fbbfee1358c79c67d0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::setNoMutsVecFourClads </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numb_of_species</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>antigen_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fixedAntigenFrac</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. It defines "no mutation sites" of the antigen for all individual pathogen species in the simulation. It should be run only ones per simulation. </p>
+<p>Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">STD sets</a> containing indices of antigen bits in which mutations are not allowed. The length of the vector equals the number of pathogen species. Each species has its own vector. Number of fixed sites is a user-defined parameter. This version generates only four unique "no-mutation" vectors (all vectors are just copies of one of the four) to differentiate "clads" of pathogen species.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numb_of_species</td><td>- number of pathogen species </td></tr>
+    <tr><td class="paramname">antigen_size</td><td>- number of bits per antigen </td></tr>
+    <tr><td class="paramname">fixedAntigenFrac</td><td>- fraction of bits in antigens which need to be fixed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00130">130</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_a558656ec1b4948fbbfee1358c79c67d0_cgraph.png" border="0" usemap="#class_environment_a558656ec1b4948fbbfee1358c79c67d0_cgraph" alt=""/></div>
+<map name="class_environment_a558656ec1b4948fbbfee1358c79c67d0_cgraph" id="class_environment_a558656ec1b4948fbbfee1358c79c67d0_cgraph">
+<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="245,5,435,32"/><area shape="rect" id="node3" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="252,56,428,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_a558656ec1b4948fbbfee1358c79c67d0_icgraph.png" border="0" usemap="#class_environment_a558656ec1b4948fbbfee1358c79c67d0_icgraph" alt=""/></div>
+<map name="class_environment_a558656ec1b4948fbbfee1358c79c67d0_icgraph" id="class_environment_a558656ec1b4948fbbfee1358c79c67d0_icgraph">
+<area shape="rect" id="node2" href="class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16" title="Core method. Initializes the pathogen population. " alt="" coords="245,5,461,46"/><area shape="rect" id="node3" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="509,12,560,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a95cc0c7ecaa8fad54c2d62328134c73e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::setNoMutsVecInFours </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numb_of_species</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>antigen_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fixedAntigenFrac</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. It defines "no mutation sites" in 4-bit-long packages of the antigen for all individual pathogen species in the simulation. It should be run only ones per simulation. </p>
+<p>Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">STD sets</a> containing indices of antigen bits in which mutations are not allowed. The length of the vector equals the number of pathogen species. Each species has its own vector. Number of fixed sites is a user-defined parameter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numb_of_species</td><td>- number of pathogen species </td></tr>
+    <tr><td class="paramname">antigen_size</td><td>- number of bits per antigen </td></tr>
+    <tr><td class="paramname">fixedAntigenFrac</td><td>- fraction of bits in antigens which need to be fixed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00090">90</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_a95cc0c7ecaa8fad54c2d62328134c73e_cgraph.png" border="0" usemap="#class_environment_a95cc0c7ecaa8fad54c2d62328134c73e_cgraph" alt=""/></div>
+<map name="class_environment_a95cc0c7ecaa8fad54c2d62328134c73e_cgraph" id="class_environment_a95cc0c7ecaa8fad54c2d62328134c73e_cgraph">
+<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="245,5,435,32"/><area shape="rect" id="node3" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="252,56,428,83"/></map>
 </div>
 </p>
 
@@ -1525,7 +1711,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00060">60</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00061">61</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1541,13 +1727,94 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_environment_a559d186796a3f21fcaccce6cbbc6fe89_icgraph.png" border="0" usemap="#class_environment_a559d186796a3f21fcaccce6cbbc6fe89_icgraph" alt=""/></div>
 <map name="class_environment_a559d186796a3f21fcaccce6cbbc6fe89_icgraph" id="class_environment_a559d186796a3f21fcaccce6cbbc6fe89_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="259,5,309,32"/></map>
+<area shape="rect" id="node2" href="class_environment.html#a03d6f594caf898481ef784aafa9b6ed8" title="Core method. Initializes the pathogen population. " alt="" coords="259,5,469,46"/><area shape="rect" id="node3" href="class_environment.html#aa96a77a7b6544503d61e26149c0d4cca" title="Core method. Initializes the pathogen population. " alt="" coords="259,70,469,111"/><area shape="rect" id="node4" href="class_environment.html#a34b326e2e2880881e48ddf9312ff0bc0" title="Core method. Initializes the pathogen population. " alt="" coords="259,135,469,177"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a62e2290459799b4a1cd0654339323a2b"></a>
+<a class="anchor" id="aa96a77a7b6544503d61e26149c0d4cca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::setPathoPopulatioDistincSpp </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pop_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>antigenSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>chrom_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numb_of_species</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mhcSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fixedAntigenFrac</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Initializes the pathogen population. </p>
+<p>Given the number of individuals, number of bit per gene, desired number of genes in a genome and desired number of pathogen species it generates random population of pathogens. Number of individuals will be evenly distributed between species and each species consists of identical clones. Antigens in species are not assigned at random, but are spread evenly in all possible bit strings space.</p>
+<p>@param pop_size - total number of individuals </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">antigenSize</td><td>- number of bits per gene </td></tr>
+    <tr><td class="paramname">chrom_size</td><td>- number of genes per genome </td></tr>
+    <tr><td class="paramname">numb_of_species</td><td>- number of pathogen species </td></tr>
+    <tr><td class="paramname">mhcSize</td><td>- number of bits in MHC protein </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
+    <tr><td class="paramname">fixedAntigenFrac</td><td>- fraction of bits in antigens which need to be fixed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00294">294</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_aa96a77a7b6544503d61e26149c0d4cca_cgraph.png" border="0" usemap="#class_environment_aa96a77a7b6544503d61e26149c0d4cca_cgraph" alt=""/></div>
+<map name="class_environment_aa96a77a7b6544503d61e26149c0d4cca_cgraph" id="class_environment_aa96a77a7b6544503d61e26149c0d4cca_cgraph">
+<area shape="rect" id="node2" href="class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89" title="Core method. It defines &quot;no mutation sites&quot; of the antigen for all individual pathogen species in the..." alt="" coords="264,31,469,57"/><area shape="rect" id="node3" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="517,5,707,32"/><area shape="rect" id="node4" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="524,56,700,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a34b326e2e2880881e48ddf9312ff0bc0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1585,7 +1852,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>timeStamp</em>&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fixedAntigenFrac</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1605,24 +1878,116 @@ Here is the caller graph for this function:</div>
     <tr><td class="paramname">numb_of_species</td><td>- number of pathogen species </td></tr>
     <tr><td class="paramname">mhcSize</td><td>- number of bits in MHC protein </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
+    <tr><td class="paramname">fixedAntigenFrac</td><td>- fraction of bits in antigens which need to be fixed </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00191">191</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00349">349</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
-Here is the caller graph for this function:</div>
+Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_environment_a62e2290459799b4a1cd0654339323a2b_icgraph.png" border="0" usemap="#class_environment_a62e2290459799b4a1cd0654339323a2b_icgraph" alt=""/></div>
-<map name="class_environment_a62e2290459799b4a1cd0654339323a2b_icgraph" id="class_environment_a62e2290459799b4a1cd0654339323a2b_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="264,12,315,39"/></map>
+<div class="center"><img src="class_environment_a34b326e2e2880881e48ddf9312ff0bc0_cgraph.png" border="0" usemap="#class_environment_a34b326e2e2880881e48ddf9312ff0bc0_cgraph" alt=""/></div>
+<map name="class_environment_a34b326e2e2880881e48ddf9312ff0bc0_cgraph" id="class_environment_a34b326e2e2880881e48ddf9312ff0bc0_cgraph">
+<area shape="rect" id="node2" href="class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89" title="Core method. It defines &quot;no mutation sites&quot; of the antigen for all individual pathogen species in the..." alt="" coords="264,31,469,57"/><area shape="rect" id="node3" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="517,5,707,32"/><area shape="rect" id="node4" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="524,56,700,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="ac67b8e594e2cbd00d47f4c0745ef487f"></a>
+<a class="anchor" id="ab8e36a6f12db407caf9a63cbeae62a16"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::setPathoPopulationFourClades </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pop_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>antigenSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>chrom_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numb_of_species</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mhcSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fixedAntigenFrac</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Initializes the pathogen population. </p>
+<p>Given the number of individuals, number of bit per gene, desired number of genes in a genome and desired number of pathogen species it generates random population of pathogens. Number of individuals will be evenly distributed between species, each species draws its genes from the same pool of possible bit strings and there are only 4 possible "clads" - groups of species initialized with the same antigens and same mutations restrictions.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pop_size</td><td>- total number of individuals </td></tr>
+    <tr><td class="paramname">antigenSize</td><td>- number of bits per gene </td></tr>
+    <tr><td class="paramname">chrom_size</td><td>- number of genes per genome </td></tr>
+    <tr><td class="paramname">numb_of_species</td><td>- number of pathogen species </td></tr>
+    <tr><td class="paramname">mhcSize</td><td>- number of bits in MHC protein </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
+    <tr><td class="paramname">fixedAntigenFrac</td><td>- fraction of bits in antigens which need to be fixed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00394">394</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_ab8e36a6f12db407caf9a63cbeae62a16_cgraph.png" border="0" usemap="#class_environment_ab8e36a6f12db407caf9a63cbeae62a16_cgraph" alt=""/></div>
+<map name="class_environment_ab8e36a6f12db407caf9a63cbeae62a16_cgraph" id="class_environment_ab8e36a6f12db407caf9a63cbeae62a16_cgraph">
+<area shape="rect" id="node2" href="class_environment.html#a558656ec1b4948fbbfee1358c79c67d0" title="Core method. It defines &quot;no mutation sites&quot; of the antigen for all individual pathogen species in the..." alt="" coords="270,23,461,65"/><area shape="rect" id="node3" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="509,5,699,32"/><area shape="rect" id="node4" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="516,56,692,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_ab8e36a6f12db407caf9a63cbeae62a16_icgraph.png" border="0" usemap="#class_environment_ab8e36a6f12db407caf9a63cbeae62a16_icgraph" alt=""/></div>
+<map name="class_environment_ab8e36a6f12db407caf9a63cbeae62a16_icgraph" id="class_environment_ab8e36a6f12db407caf9a63cbeae62a16_icgraph">
+<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="269,12,320,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a03d6f594caf898481ef784aafa9b6ed8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1660,7 +2025,13 @@ Here is the caller graph for this function:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>timeStamp</em>&#160;</td>
+          <td class="paramname"><em>timeStamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>fixedAntigenFrac</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1680,11 +2051,21 @@ Here is the caller graph for this function:</div>
     <tr><td class="paramname">numb_of_species</td><td>- number of pathogen species </td></tr>
     <tr><td class="paramname">mhcSize</td><td>- number of bits in MHC protein </td></tr>
     <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
+    <tr><td class="paramname">fixedAntigenFrac</td><td>- fraction of bits in antigens which need to be fixed </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00147">147</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l00246">246</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_a03d6f594caf898481ef784aafa9b6ed8_cgraph.png" border="0" usemap="#class_environment_a03d6f594caf898481ef784aafa9b6ed8_cgraph" alt=""/></div>
+<map name="class_environment_a03d6f594caf898481ef784aafa9b6ed8_cgraph" id="class_environment_a03d6f594caf898481ef784aafa9b6ed8_cgraph">
+<area shape="rect" id="node2" href="class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89" title="Core method. It defines &quot;no mutation sites&quot; of the antigen for all individual pathogen species in the..." alt="" coords="264,31,469,57"/><area shape="rect" id="node3" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="517,5,707,32"/><area shape="rect" id="node4" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="524,56,700,83"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -1698,7 +2079,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_environment.html">Environment</a></li>
-    <li class="footer">Generated on Tue Feb 2 2016 20:36:22 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Mar 9 2016 17:19:54 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

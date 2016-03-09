@@ -126,6 +126,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aafa1539a8942e3e99dc6b49110a618c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#aafa1539a8942e3e99dc6b49110a618c1">setNewHost</a> (int num_of_loci, int gene_size, int timeStamp)</td></tr>
 <tr class="memdesc:aafa1539a8942e3e99dc6b49110a618c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_host.html" title="Core class. Stores and handles a single host object. Each host has multiple instances of Gene class o...">Host</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings).  <a href="#aafa1539a8942e3e99dc6b49110a618c1">More...</a><br /></td></tr>
 <tr class="separator:aafa1539a8942e3e99dc6b49110a618c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acea27ac91fb04a2d711d5af25200c557"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#acea27ac91fb04a2d711d5af25200c557">setNewHomozygHost</a> (int num_of_loci, int gene_size, int timeStamp)</td></tr>
+<tr class="memdesc:acea27ac91fb04a2d711d5af25200c557"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_host.html" title="Core class. Stores and handles a single host object. Each host has multiple instances of Gene class o...">Host</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings).  <a href="#acea27ac91fb04a2d711d5af25200c557">More...</a><br /></td></tr>
+<tr class="separator:acea27ac91fb04a2d711d5af25200c557"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5911792258205cae25a2a4796061fe49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a5911792258205cae25a2a4796061fe49">chromoMutProcess</a> (double mut_probabl, int timeStamp)</td></tr>
 <tr class="memdesc:a5911792258205cae25a2a4796061fe49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Decides (on a random basis) if there will be any mutations in the genome.  <a href="#a5911792258205cae25a2a4796061fe49">More...</a><br /></td></tr>
 <tr class="separator:a5911792258205cae25a2a4796061fe49"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,6 +229,8 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a0d79bd02d6147f8e94ae975dc42ae026"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#a0d79bd02d6147f8e94ae975dc42ae026">PathoSpecInfecting</a></td></tr>
 <tr class="separator:a0d79bd02d6147f8e94ae975dc42ae026"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b084352039979629a7896e2aaefb45"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ac8b084352039979629a7896e2aaefb45">PathogesPresented</a></td></tr>
+<tr class="separator:ac8b084352039979629a7896e2aaefb45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac173100d13da6dfeb93387f0d689c349"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ac173100d13da6dfeb93387f0d689c349">NumOfPathogesInfecting</a></td></tr>
 <tr class="separator:ac173100d13da6dfeb93387f0d689c349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0411c059e63ed72507b0c370880b5ab"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_host.html#ad0411c059e63ed72507b0c370880b5ab">NumOfPathogesPresented</a></td></tr>
@@ -307,7 +312,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00450">450</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00478">478</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -333,7 +338,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00459">459</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00487">487</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,7 +357,7 @@ Public Attributes</h2></td></tr>
 
 <p>Core method. Calculates host individual fitness as the number of exposed pathogens divided by the genome size. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00482">482</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00510">510</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +385,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00519">519</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00547">547</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -408,7 +413,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00540">540</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00568">568</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +441,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00563">563</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00591">591</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -464,7 +469,7 @@ Here is the call graph for this function:</div>
 
 <p>Core method. Sets fitness as 1, a fixed value to simulate genetic drift. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00504">504</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00532">532</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -483,7 +488,7 @@ Here is the call graph for this function:</div>
 
 <p>Core method. Calculates host individual fitness simply as the number of exposed pathogens. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00496">496</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00524">524</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +526,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00081">81</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00109">109</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -580,7 +585,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00107">107</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00135">135</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -648,7 +653,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00153">153</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00181">181</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -694,7 +699,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00190">190</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00218">218</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -722,7 +727,7 @@ Here is the call graph for this function:</div>
 
 <p>Core method. Clears data regarding infections and fitness. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00585">585</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00613">613</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -750,7 +755,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a Chromosome vector. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00212">212</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00240">240</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -779,7 +784,7 @@ Here is the call graph for this function:</div>
 <p>Returns the number of genes in the Chromosome One. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of MHC genes in the Chromosome One. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00301">301</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00329">329</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -799,7 +804,7 @@ Here is the call graph for this function:</div>
 <p>Returns the number of unique MHC alleles in the Chromosome One. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of unique MHC alleles in the Chromosome One. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00321">321</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00349">349</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -828,7 +833,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns the first chromosome. </p>
 <dl class="section return"><dt>Returns</dt><dd>Chromosome One </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00418">418</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00446">446</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -857,7 +862,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns the first chromosome. </p>
 <dl class="section return"><dt>Returns</dt><dd>Chromosome Two </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00427">427</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00455">455</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -886,7 +891,7 @@ Here is the caller graph for this function:</div>
 <p>Returns the number of genes in the Chromosome Two. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of MHC genes in the Chromosome Two. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00310">310</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00338">338</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -906,7 +911,7 @@ Here is the caller graph for this function:</div>
 <p>Returns the number of unique MHC alleles in the Chromosome Two. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of unique MHC alleles in the Chromosome Two. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00353">353</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00381">381</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -935,7 +940,7 @@ Here is the caller graph for this function:</div>
 <p>Core method. Returns current value of host's fitness. </p>
 <dl class="section return"><dt>Returns</dt><dd>current value of host's fitness </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00578">578</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00606">606</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -955,7 +960,7 @@ Here is the caller graph for this function:</div>
 <p>Returns the total number of genes in the genome. </p>
 <dl class="section return"><dt>Returns</dt><dd>number of all MHC genes in the host </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00292">292</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00320">320</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1012,7 +1017,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an integer representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00246">246</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00274">274</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1044,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an integer representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00270">270</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00298">298</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1071,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a bit-string representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00386">386</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00414">414</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1093,7 +1098,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a bitstring representation of a gene with a given index. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00403">403</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00431">431</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1113,7 +1118,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Merges both chromosomes to create an object easier to handle is some situations. </p>
 <dl class="section return"><dt>Returns</dt><dd>Chromosome vector containing genes from both, Chromosome One and Two </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00437">437</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00465">465</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1149,6 +1154,51 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="acea27ac91fb04a2d711d5af25200c557"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Host::setNewHomozygHost </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_of_loci</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gene_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeStamp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Sets a new <a class="el" href="class_host.html" title="Core class. Stores and handles a single host object. Each host has multiple instances of Gene class o...">Host</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings). </p>
+<p>A host has two chromosome of equal length. Each corresponding pair of loci is homozygous.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num_of_loci</td><td>- number of gene loci in a chromosome </td></tr>
+    <tr><td class="paramname">gene_size</td><td>- the length of the bit-string representing a gene </td></tr>
+    <tr><td class="paramname">timeStamp</td><td>- current time (number of the model iteration) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00082">82</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aafa1539a8942e3e99dc6b49110a618c1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1180,7 +1230,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Core method. Sets a new <a class="el" href="class_host.html" title="Core class. Stores and handles a single host object. Each host has multiple instances of Gene class o...">Host</a> object and assigns a user-defined number of genes of user-defined number of bits (as genes are bit-strings). </p>
-<p>A host has two chromosome of equal length.</p>
+<p>A host has two chromosome of equal length. Each gene is set at random and loci are most likely to be heterozygous.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num_of_loci</td><td>- number of gene loci in a chromosome </td></tr>
@@ -1190,7 +1240,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00057">57</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00058">58</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1210,7 +1260,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Gives a host's genome in a human-readable format. With all the gene specs. </p>
 <dl class="section return"><dt>Returns</dt><dd>a STL string containing the host's genome and its annotations in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00601">601</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00629">629</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1279,7 @@ Here is the caller graph for this function:</div>
 
 <p>Core method. Randomly swaps places of Chromosome One and Chromosome Two to avoid situation when they effectively become two separate populations. </p>
 
-<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00467">467</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_host_8cpp_source.html#l00495">495</a> of file <a class="el" href="_host_8cpp_source.html">Host.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1285,6 +1335,20 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="ac8b084352039979629a7896e2aaefb45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;int&gt; Host::PathogesPresented</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_host_8h_source.html#l00047">47</a> of file <a class="el" href="_host_8h_source.html">Host.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a0d79bd02d6147f8e94ae975dc42ae026"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1337,7 +1401,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_host.html">Host</a></li>
-    <li class="footer">Generated on Tue Feb 2 2016 20:36:22 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Mar 9 2016 17:19:54 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -2,7 +2,7 @@ var searchData=
 [
   ['gene',['Gene',['../class_gene.html#ad69dbc920dfb0678c5ff23f0d905d1b6',1,'Gene']]],
   ['getallantigens',['getAllAntigens',['../class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c',1,'Pathogen']]],
-  ['getbitantigen',['getBitAntigen',['../class_antigen.html#a4acef29446bf39ad6685ac7f3e63c82f',1,'Antigen']]],
+  ['getbitantigen',['getBitAntigen',['../class_antigen.html#a373c681510bd2f5bd80f801c9fad55fc',1,'Antigen']]],
   ['getbitgene',['getBitGene',['../class_gene.html#a3e0fc6e3368eb622a651223344940424',1,'Gene']]],
   ['getchromoonesize',['getChromoOneSize',['../class_host.html#aec728ae16d7c1186739730510a2c7e2e',1,'Host']]],
   ['getchromooneuniqalleles',['getChromoOneUniqAlleles',['../class_host.html#ad84a6fab9904782aa633deab0ad5e506',1,'Host']]],
@@ -28,7 +28,7 @@ var searchData=
   ['getpathonumofspecies',['getPathoNumOfSpecies',['../class_environment.html#ae2adc5e02f72005d7854a4d597c4c294',1,'Environment']]],
   ['getpathospeciespopsize',['getPathoSpeciesPopSize',['../class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac',1,'Environment']]],
   ['getshannonindx',['getShannonIndx',['../_data_harvester_8cpp.html#a83136cc074426bc3310d6e855252beff',1,'DataHarvester.cpp']]],
-  ['getsingleantigen',['getSingleAntigen',['../class_pathogen.html#a506c616d9766a7f0599b4070cb5a6981',1,'Pathogen']]],
+  ['getsingleantigen',['getSingleAntigen',['../class_pathogen.html#a1e3fb0bebb25e56acd3ed0a1cec734d2',1,'Pathogen']]],
   ['getsinglegenefromone',['getSingleGeneFromOne',['../class_host.html#a8b8d1bb28ee49fcd337a0a5656595497',1,'Host']]],
   ['getsinglegenefromtwo',['getSingleGeneFromTwo',['../class_host.html#a8e57071a6138a8a975dba81be1d39e44',1,'Host']]],
   ['getsinglehostchromoonesize',['getSingleHostChromoOneSize',['../class_environment.html#a7d23e5f51b1c1feed367da44852b2dba',1,'Environment']]],

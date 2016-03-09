@@ -142,10 +142,15 @@ The code here can be also used like a toolbox for your research. You can stitch 
  <br />
 replacing "Scenarios/main_default.cpp" with the path to your own custom <em>main_xyz.cpp</em>. Use our <em>main_core.cpp</em> file as the base to develop your own scenarios of MHC evolution dynamics. WARNING! Using our Scons script overwrites the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file in the main source directory - always store your scenarios somewhere else then the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file!<br />
  <br />
- Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc &lt; 4.8). Then you can statistically link the libraries on your fancy brand new PC running "The Awesome Linux 3000" distro and send the no-dependencies executable to cluster. Compile like this: <br />
+ Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc &lt; 4.8). Then you can statically link the libraries on your fancy brand new PC running "The Awesome Linux 3000" distro and send the no-dependencies executable to cluster. Compile like this: <br />
  <br />
- $<b> g++ -static -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_harvester_8cpp.html">DataHarvester.cpp</a> -std=c++1y <br />
- </b></p>
+ $<b> g++ -static -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_harvester_8cpp.html">DataHarvester.cpp</a> -std=c++1y </b><br />
+ <br />
+Or run the Scons script:<br />
+ <br />
+ $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="static" </b><br />
+ <br />
+ </p>
 <h1><a class="anchor" id="Parameters"></a>
 Parameters</h1>
 <p><b>Program takes exactly 17 parameters. These are:</b> <br />
@@ -189,7 +194,7 @@ Output and data visualisation</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Feb 2 2016 20:36:22 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Mar 9 2016 17:19:54 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

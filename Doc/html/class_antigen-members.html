@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('class_antigen.html','');});
   <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#af245b9a3640a57d0e058d39571c1c872">Antigen</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_antigen.html#af84937fdc6af7fb222566b62bb5199d9">AntigenTag</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a9c7caba41de5e44c9a0459cbbcc8421a">calculateEpitopes</a>(int mhcSize)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_antigen.html#a4acef29446bf39ad6685ac7f3e63c82f">getBitAntigen</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_antigen.html#a373c681510bd2f5bd80f801c9fad55fc">getBitAntigen</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#aeebf005aeee7ea02f135550d127603dd">getEpitopes</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_antigen.html#ad103cc98588fa742d1eeccd9a578dcc6">getOneEpitope</a>(int idx)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f">mutateAntgBitByBitWithRes</a>(double pm_mut_probabl, int mhcSize, int timeStamp, std::set&lt; int &gt; &amp;noMutts)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
@@ -121,17 +121,18 @@ $(document).ready(function(){initNavTree('class_antigen.html','');});
   <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a1e98b3215bc5b76d298c7457d1eaea09">MutationTime</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_antigen.html#a6a0987eb093f450f52dadc74fc70ad2c">ParentTags</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a08ecd5321a466090806e0b5a100c394a">printAntigenToScreen</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_antigen.html#a91e70bf2cd04f672230167dda902e328">setNewAntigen</a>(int length, int mhcSize, int timeStamp)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#ac3f3347b00ea3c2ea92f157825dc51e3">setNewFixedAntigen</a>(int length, int timeStamp, int fixedGene, unsigned long int fixedTag)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_antigen.html#a1d0f4cc39322541348ab9544ada385d0">TheParentWas</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a34d644c2c6cb99dc4b5573bed2f1a4ce">timeOfOrigin</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_antigen.html#afbe0268530144fdb70aabd52c94b55c6">~Antigen</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_antigen.html#ad560e8651870e53dd9f500b42fdeb740">setAntigenFlipedPositions</a>(antigenstring bitgene, unsigned long int Tag, int Nth, int mhcSize, int timeStamp)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a91e70bf2cd04f672230167dda902e328">setNewAntigen</a>(int length, int mhcSize, int timeStamp)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_antigen.html#ac3f3347b00ea3c2ea92f157825dc51e3">setNewFixedAntigen</a>(int length, int timeStamp, int fixedGene, unsigned long int fixedTag)</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#a1d0f4cc39322541348ab9544ada385d0">TheParentWas</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_antigen.html#a34d644c2c6cb99dc4b5573bed2f1a4ce">timeOfOrigin</a></td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_antigen.html#afbe0268530144fdb70aabd52c94b55c6">~Antigen</a>()</td><td class="entry"><a class="el" href="class_antigen.html">Antigen</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Feb 2 2016 20:36:21 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Wed Mar 9 2016 17:19:54 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -225,7 +225,7 @@ int main(int argc, char** argv) {
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveHostGeneNumbers(ENV, 0);
-        for(int i = 1; i < numOfHostGenerations; ++i){
+        for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
                 ENV.selectAndReproducePathoFixedPopSizes();
@@ -248,14 +248,14 @@ int main(int argc, char** argv) {
        return 0;
     }
 
-    ENV.selectAndReproducePathoFixedPopSizes();
-    ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
-    ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
-    ENV.selectAndReprodHostsReplace();
-    ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 
-            maxGene, numOfHostGenerations);
-    Data2file.saveHostGeneticDivers(ENV, numOfHostGenerations);
-    Data2file.saveHostGeneNumbers(ENV, numOfHostGenerations);
+//    ENV.selectAndReproducePathoFixedPopSizes();
+//    ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
+//    ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
+//    ENV.selectAndReprodHostsReplace();
+//    ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 
+//            maxGene, numOfHostGenerations);
+//    Data2file.saveHostGeneticDivers(ENV, numOfHostGenerations);
+//    Data2file.saveHostGeneNumbers(ENV, numOfHostGenerations);
     Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
        

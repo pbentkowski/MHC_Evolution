@@ -35,9 +35,14 @@ var class_environment =
     [ "selectAndReprodHostsReplace", "class_environment.html#a09af2890db9eb1a02069adfb8836aa47", null ],
     [ "selectAndReproducePathoFixedPopSizes", "class_environment.html#a90177792fb03087e1fc64dca78f7e312", null ],
     [ "selectAndReproducePathoFlexPopSizes", "class_environment.html#ad7f96a8620fa9df1601c613130b275e0", null ],
-    [ "setHostPopulation", "class_environment.html#aaab3cda2672dc62d90497cdfb44fce48", null ],
-    [ "setHostPopulation", "class_environment.html#a39ab859e426f7ccfb0ce35169a7f7e7f", null ],
+    [ "setHostClonalPopulation", "class_environment.html#aeadba01513bfdaef3f247558a6e5ce1d", null ],
+    [ "setHostRandomPopulation", "class_environment.html#ae6c1788a9b69c76b657d02e38548e5ce", null ],
+    [ "setHostRandomPopulation", "class_environment.html#a3b828fcd48c6ef8b0d8d7ea61de3817b", null ],
+    [ "setNoMutsVecFourClads", "class_environment.html#a558656ec1b4948fbbfee1358c79c67d0", null ],
+    [ "setNoMutsVecInFours", "class_environment.html#a95cc0c7ecaa8fad54c2d62328134c73e", null ],
     [ "setNoMutsVector", "class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89", null ],
-    [ "setPathoPopulatioDivSpecies", "class_environment.html#a62e2290459799b4a1cd0654339323a2b", null ],
-    [ "setPathoPopulatioUniformGenome", "class_environment.html#ac67b8e594e2cbd00d47f4c0745ef487f", null ]
+    [ "setPathoPopulatioDistincSpp", "class_environment.html#aa96a77a7b6544503d61e26149c0d4cca", null ],
+    [ "setPathoPopulatioDivSpecies", "class_environment.html#a34b326e2e2880881e48ddf9312ff0bc0", null ],
+    [ "setPathoPopulationFourClades", "class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16", null ],
+    [ "setPathoPopulatioUniformGenome", "class_environment.html#a03d6f594caf898481ef784aafa9b6ed8", null ]
 ];

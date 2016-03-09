@@ -53,10 +53,13 @@
  * Using our Scons script overwrites the <i>main.cpp</i> file in the main source directory - always
  * store your scenarios somewhere else then the <i>main.cpp</i> file!\n 
  * \n 
- * Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc < 4.8). Then you can statistically link the libraries on your fancy brand new PC running "The Awesome Linux 3000" distro and send the no-dependencies executable to cluster. Compile like this: \n \n 
+ * Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc < 4.8). Then you can statically link the libraries on your fancy brand new PC running "The Awesome Linux 3000" distro and send the no-dependencies executable to cluster. Compile like this: \n \n 
  * $<b>
- * g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y \n  
- * </b>
+ * g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y </b>\n 
+ * \n
+ * Or run the Scons script:\n 
+ * \n 
+ * $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="static" </b>\n \n
  * 
  * @section Parameters
  * <b>Program takes exactly 17 parameters. These are:</b> \n

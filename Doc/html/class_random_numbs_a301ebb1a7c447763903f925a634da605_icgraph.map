@@ -1,10 +1,10 @@
 <map id="RandomNumbs::NextInt" name="RandomNumbs::NextInt">
-<area shape="rect" id="node2" href="$class_environment.html#a39ab859e426f7ccfb0ce35169a7f7e7f" title="Core method. Initializes a vector containing host population. " alt="" coords="225,5,436,32"/>
-<area shape="rect" id="node3" href="$class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="236,57,425,98"/>
-<area shape="rect" id="node5" href="$class_environment.html#a56c39a47a881880bd36c3b8c5f0dbe8a" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="229,122,432,163"/>
-<area shape="rect" id="node6" href="$class_environment.html#ad7f96a8620fa9df1601c613130b275e0" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,187,443,229"/>
-<area shape="rect" id="node7" href="$class_environment.html#a90177792fb03087e1fc64dca78f7e312" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,253,443,294"/>
-<area shape="rect" id="node8" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="262,319,399,345"/>
-<area shape="rect" id="node9" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="246,369,415,396"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="491,163,541,189"/>
+<area shape="rect" id="node2" href="$class_environment.html#a3b828fcd48c6ef8b0d8d7ea61de3817b" title="Core method. Initializes a vector containing host population. " alt="" coords="231,5,430,46"/>
+<area shape="rect" id="node3" href="$class_environment.html#aecd592b734359557235bb0a6980f77f9" title="Core method. Iterates through the host population and the parasite population to &quot;infect&quot; the hosts w..." alt="" coords="236,70,425,111"/>
+<area shape="rect" id="node5" href="$class_environment.html#a56c39a47a881880bd36c3b8c5f0dbe8a" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="229,135,432,177"/>
+<area shape="rect" id="node6" href="$class_environment.html#ad7f96a8620fa9df1601c613130b275e0" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,201,443,242"/>
+<area shape="rect" id="node7" href="$class_environment.html#a90177792fb03087e1fc64dca78f7e312" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,266,443,307"/>
+<area shape="rect" id="node8" href="$class_gene.html#adc0af7621bf0619648408824a495399e" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="262,332,399,359"/>
+<area shape="rect" id="node9" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="246,383,415,409"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="491,176,541,203"/>
 </map>

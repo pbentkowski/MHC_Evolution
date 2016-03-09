@@ -840,6 +840,7 @@ void Environment::mutateHosts(double mut_probabl, int timeStamp){
  * @param del - mutation probability, probability a gene will be deleted
  * @param dupli - mutation probability, probability a gene will be duplicated
  * (and added at the end of the Chromosome vector)
+ * @param maxGene - maximal allowed number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
@@ -903,6 +904,7 @@ double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
  * and performs mutations in genes with a given probability.
  *
  * @param mut_probabl - probability of a mutation in a single gene.
+ * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp){
@@ -918,9 +920,11 @@ void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp
  * and performs mutations in genes with a given probability. But some positions
  * in the bit-string (gene) are not allowed to change.
  * 
+ * The "No-Mutation Vector" is defined within the Environment object.
+ * 
  * @param mut_probabl - probability of a mutation in a single gene.
+ * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
- * @param noMutts
  */
 void Environment::mutatePathogensWithRestric(double mut_probabl, int mhcSize,
         int timeStamp){

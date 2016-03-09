@@ -1,0 +1,5 @@
+<map id="Environment::setPathoPopulatioUniformGenome" name="Environment::setPathoPopulatioUniformGenome">
+<area shape="rect" id="node2" href="$class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89" title="Core method. It defines &quot;no mutation sites&quot; of the antigen for all individual pathogen species in the..." alt="" coords="264,31,469,57"/>
+<area shape="rect" id="node3" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="517,5,707,32"/>
+<area shape="rect" id="node4" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="524,56,700,83"/>
+</map>
