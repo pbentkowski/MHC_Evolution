@@ -155,7 +155,7 @@ def loadThePopulation(FILE):
                             endOfSpp = True
                     nextPatho = True
                 else:
-                    ll.append(line.split()[0])
+                    ll.append(line.split()[0][::-1])
         spp_list.append(ll)
         LL.append(spp_list)
 #        print j + 1

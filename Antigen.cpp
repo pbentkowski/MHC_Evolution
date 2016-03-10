@@ -158,22 +158,15 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int time
 void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
         int timeStamp, std::set<int>& noMutts){
     boost::dynamic_bitset<> bitgene;
-//    bool exists;
     bitgene = TheAntigen;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    std::cout << "NO-mut pos.: ";
     for(int i = 0; i < bitgene.size(); ++i) {
-//        exists = (noMutts.find(i) != noMutts.end());
         if(noMutts.count(i) == 0){
             if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
-               bitgene[i].flip(); 
-             std::cout << "[" << i << "]" << " ";  
+                bitgene[i].flip(); 
            }
-        }else{
-           std::cout << i << " ";
         }
     }
-    std::cout << std::endl;
     if(TheAntigen != bitgene){
         ParentTags.push_back(AntigenTag);
         MutationTime.push_back(timeOfOrigin);

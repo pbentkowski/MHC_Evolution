@@ -241,26 +241,15 @@ int main(int argc, char** argv) {
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }
-        ENV.infectOneFromOneSpecHetero();
     } else {
        std::cout << "This instance of the model allows only heterozygote";
        std::cout << " advantage. Sorry :-(" << std::endl; 
        return 0;
     }
-
-//    ENV.selectAndReproducePathoFixedPopSizes();
-//    ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, numOfHostGenerations);
-//    ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
-//    ENV.selectAndReprodHostsReplace();
-//    ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication, 
-//            maxGene, numOfHostGenerations);
-//    Data2file.saveHostGeneticDivers(ENV, numOfHostGenerations);
-//    Data2file.saveHostGeneNumbers(ENV, numOfHostGenerations);
     Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
        
     std::cout << "Run finished. Check the output files for results." << std::endl;
-    
     std::cout << std::endl;
     
     return 0;
