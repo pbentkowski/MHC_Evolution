@@ -215,13 +215,13 @@ $(document).ready(function(){initNavTree('_antigen_8cpp_source.html','');});
 <div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f">  158</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_antigen.html#a6edb2d08312947e1c01d28cf659a564f">Antigen::mutateAntgBitByBitWithRes</a>(<span class="keywordtype">double</span> pm_mut_probabl, <span class="keywordtype">int</span> mhcSize, </div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordtype">int</span> timeStamp, std::set&lt;int&gt;&amp; noMutts){</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    boost::dynamic_bitset&lt;&gt; bitgene;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordtype">bool</span> exists;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    bitgene = TheAntigen;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="class_random_numbs.html">RandomNumbs</a> * p_RandomNumbs = <a class="code" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64">RandomNumbs::getInstance</a>();</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; bitgene.size(); ++i) {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        exists = (noMutts.find(i) != noMutts.end());</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="keywordflow">if</span>(exists == <span class="keyword">false</span> and p_RandomNumbs-&gt;<a class="code" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6">NextReal</a>(0.0, 1.0) &lt; pm_mut_probabl) {</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            bitgene[i].flip();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    bitgene = TheAntigen;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="class_random_numbs.html">RandomNumbs</a> * p_RandomNumbs = <a class="code" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64">RandomNumbs::getInstance</a>();</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; bitgene.size(); ++i) {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">if</span>(noMutts.count(i) == 0){</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <span class="keywordflow">if</span>(p_RandomNumbs-&gt;<a class="code" href="class_random_numbs.html#aaae77654579060738e55b46c8caba9a6">NextReal</a>(0.0, 1.0) &lt; pm_mut_probabl) {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                bitgene[i].flip(); </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;           }</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        }</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordflow">if</span>(TheAntigen != bitgene){</div>
@@ -293,7 +293,7 @@ $(document).ready(function(){initNavTree('_antigen_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_antigen_8cpp.html">Antigen.cpp</a></li>
-    <li class="footer">Generated on Wed Mar 9 2016 17:19:54 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Thu Mar 10 2016 21:13:45 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
