@@ -10,18 +10,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/piotr/MHC_code_OBA/Pathogen.h</file>
-            <file>file:/home/piotr/MHC_code_OBA/Environment.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Pathogen.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Environment.h</file>
-            <file>file:/home/piotr/MHC_code_OBA/Tagging_system.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/H2Pinteraction.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/DataHarvester.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/main.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Host.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Antigen.cpp</file>
-            <file>file:/home/piotr/MHC_code_OBA/Antigen.h</file>
-            <file>file:/home/piotr/MHC_code_OBA/Host.h</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Environment.h</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Pathogen.h</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Environment.cpp</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Antigen.cpp</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Antigen.h</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Pathogen.cpp</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/Host.cpp</file>
+            <file>file:/home/piotr/Documents/UAM/mhcevolution/main.cpp</file>
         </group>
     </open-files>
 </project-private>
