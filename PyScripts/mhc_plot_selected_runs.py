@@ -62,11 +62,7 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-<<<<<<< HEAD
-    Ymax = 50
-=======
     Ymax = 20
->>>>>>> 67b9d49c34ce93ac6ede9add8c0b432366675bd1
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
