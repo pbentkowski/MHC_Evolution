@@ -26,15 +26,15 @@ def LoadTheData(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 15))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 21))   # change here
             interestingOne = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 9))   # change here
             interestingTwo = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 11))
-            antign = l[2].split()[0]
-            print "antigens:", antign, "| things:",  interestingOne, " ; ",
-            print interestingTwo, "| dir:", dirname.split("/")[-1]
-            arg.append((interestingOne, interestingTwo, antign, genes[:, 0],
+            l = re.split(" ", ln.getline(paramsFile, 9))
+            path_spp = l[2].split()[0]
+            print "patho species:", path_spp, "| things:",  interestingOne,
+            print " ; ", interestingTwo, "| dir:", dirname.split("/")[-1]
+            arg.append((interestingOne, interestingTwo, path_spp, genes[:, 0],
                         genes[:, 3], genes[:, 4], genes[:, 5],
                         genes[:, 2], genes[:, 6]))
 
@@ -62,7 +62,7 @@ def main():
     annotShift = 200
 
     Xmax = 2500
-    Ymax = 200
+    Ymax = 20
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
@@ -76,7 +76,6 @@ def main():
 
     dec_places = '%1.0f'
 
-#    p.figure(1, figsize=(16, 14))
     p.figure(1, figsize=(14, 7))
     i = 1
     mm = 0.
@@ -85,17 +84,7 @@ def main():
         if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[4][annotShift + i*annotScale])
-#            p.subplot(211)
-#            p.plot(item[3], item[7], 'b-')
-#            p.ylabel("total number of genes", fontsize=AxLabelFontSize)
-#            p.xticks(size=AxisTickFontSize)
-#            p.yticks(size=AxisTickFontSize)
-#            p.xlim((0, Xmax))
-#            p.grid()
-#            p.subplot(212)
             p.plot(item[3], item[4], 'r-')
-#            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
-#                            xycoords='data', fontsize=AnnotateFontSize)
             mm += p.mean(item[4][500::])
             ii += 1.
             i = i + 1
@@ -118,7 +107,6 @@ def main():
         if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[5][annotShift + i*annotScale])
-#            print XX, YY
             if item[2] == "NO":
                 ax = p.plot(item[3], item[5], 'r-')
             else:
@@ -142,13 +130,10 @@ def main():
     i = 1
     for item in TheData:
         if (item[1] == interestTwo and item[0] == interestOne):
-    #        print XX, YY
             if item[2] == "NO":
                 ax = p.plot(item[3], item[8]/item[6], 'r-')
             else:
                 ax = p.plot(item[3], item[8]/item[6], 'b-')
-#            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
-#                            xycoords='data', fontsize=AnnotateFontSize)
             i = i + 1
             p.ylabel("CV fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
@@ -168,21 +153,16 @@ def main():
         if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[6][annotShift + i*annotScale])
-    #        print XX, YY
             if item[2] == "NO":
-                ax = p.plot(item[3], item[8], 'r-')
+                ax = p.plot(item[3], item[8]/float(item[2]), 'r-')
             else:
-                ax = p.plot(item[3], item[8], 'b-')
-#            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
-#                            xycoords='data', fontsize=AnnotateFontSize)
+                ax = p.plot(item[3], item[8]/float(item[2]), 'b-')
             i = i + 1
             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 50.0])
+            p.axis([0, Xmax, 0, 3.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-#    ax = p.annotate(nnn, xy=(textXlocal, 25), xycoords='data',
-#                    fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
