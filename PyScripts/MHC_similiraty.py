@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
 Calculates and plots similarities between antigens and genes in pathogen and

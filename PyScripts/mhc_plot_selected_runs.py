@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
 Plots generic statistics referring to time evolution of MHCs in hosts. These

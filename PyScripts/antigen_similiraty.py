@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
 Checks the similarities in all the antigens in the hole pathogen population.
@@ -347,7 +347,7 @@ def main():
 #    ax_label_2 = 10
     TicksFS_2 = 11
     for ii in range(spp_num):
-        plt.subplot(divv, divv, ii)
+        plt.subplot(divv, divv, ii+1)
         plt.hist(hamDistInsideSpec(L_endd[ii]), color=(0.3, 0.3, 0.3, transs),
                  edgecolor="none")
 #        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
@@ -360,7 +360,7 @@ def main():
     plt.figure(4, figsize=(24, 20))
 #    ax_label_2 = 10
     for ii in range(spp_num):
-        plt.subplot(divv, divv, ii)
+        plt.subplot(divv, divv, ii+1)
         plt.hist(hamDistInsideSpec(L_init[ii]), color=(0.3, 0.3, 0.3, transs),
                  edgecolor="none")
 #        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)

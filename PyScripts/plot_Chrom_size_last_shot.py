@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
 Plots histogram of number of MHC alleles and all MHC genes in one chromosome
