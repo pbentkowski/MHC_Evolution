@@ -12,8 +12,6 @@ for Evolutionary Biology Group, Faculty of Biology
 
 import os
 import re
-#import pylab as p
-#import linecache as ln
 
 
 def LoadTheData(arg, dirname, files):
@@ -36,7 +34,7 @@ def LoadTheData(arg, dirname, files):
                             strr += "11 "
                         else:
                             strr += l[2] + " "
-            print strr
+            print(strr)
 
 
 def main():

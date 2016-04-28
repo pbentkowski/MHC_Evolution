@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;complex&gt;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span> </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_random_numbs_8h.html">RandomNumbs.h</a>&quot;</span></div>
@@ -212,7 +212,7 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="class_environment.html#ae6c1788a9b69c76b657d02e38548e5ce">  164</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_environment.html#ae6c1788a9b69c76b657d02e38548e5ce">Environment::setHostRandomPopulation</a>(<span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> gene_size, </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="class_environment.html#ae6c1788a9b69c76b657d02e38548e5ce">  164</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_environment.html#ae6c1788a9b69c76b657d02e38548e5ce">Environment::setHostRandomPopulation</a>(<span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> gene_size,</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordtype">int</span> chrom_size, <span class="keywordtype">int</span> timeStamp){</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; pop_size; ++i){</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        HostPopulation.push_back(<a class="code" href="class_host.html">Host</a>());</div>
@@ -277,7 +277,7 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    }</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;}</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="class_environment.html#aa96a77a7b6544503d61e26149c0d4cca">  294</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_environment.html#aa96a77a7b6544503d61e26149c0d4cca">Environment::setPathoPopulatioDistincSpp</a>(<span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> antigenSize, </div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="class_environment.html#aa96a77a7b6544503d61e26149c0d4cca">  294</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_environment.html#aa96a77a7b6544503d61e26149c0d4cca">Environment::setPathoPopulatioDistincSpp</a>(<span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> antigenSize,</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <span class="keywordtype">int</span> chrom_size, <span class="keywordtype">int</span> numb_of_species, <span class="keywordtype">int</span> mhcSize, <span class="keywordtype">int</span> timeStamp,</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <span class="keywordtype">double</span> fixedAntigenFrac){</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <a class="code" href="class_environment.html#a559d186796a3f21fcaccce6cbbc6fe89">Environment::setNoMutsVector</a>(numb_of_species, antigenSize, fixedAntigenFrac);</div>
@@ -287,18 +287,18 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    std::vector&lt;Pathogen&gt; PathoSppTemplateVector;</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    PathoSppTemplateVector.push_back(<a class="code" href="class_pathogen.html">Pathogen</a>());</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <a class="code" href="_antigen_8cpp.html#a4255cbd0af7483411e6b4764e9c57ae2">antigenstring</a> atniStrr;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize, </div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                                                 mhcSize, 0, timeStamp);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> kk = 1; kk &lt; numb_of_species; ++kk){</div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="keywordflow">if</span>(kk % 2){</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            PathoSppTemplateVector.push_back(<a class="code" href="class_pathogen.html">Pathogen</a>());</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            mhcSize, kk, timeStamp, kk);</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            PathoSppTemplateVector.push_back(<a class="code" href="class_pathogen.html">Pathogen</a>());</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, </div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            mhcSize, kk, timeStamp, 1);</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        }</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    }</div>
@@ -343,7 +343,7 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    }</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;}</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16">  394</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16">Environment::setPathoPopulationFourClades</a>(<span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> antigenSize, </div>
+<div class="line"><a name="l00394"></a><span class="lineno"><a class="line" href="class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16">  394</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_environment.html#ab8e36a6f12db407caf9a63cbeae62a16">Environment::setPathoPopulationFourClades</a>(<span class="keywordtype">int</span> pop_size, <span class="keywordtype">int</span> antigenSize,</div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordtype">int</span> chrom_size, <span class="keywordtype">int</span> numb_of_species, <span class="keywordtype">int</span> mhcSize, <span class="keywordtype">int</span> timeStamp,</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        <span class="keywordtype">double</span> fixedAntigenFrac){</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <a class="code" href="class_environment.html#a558656ec1b4948fbbfee1358c79c67d0">Environment::setNoMutsVecFourClads</a>(numb_of_species, antigenSize, fixedAntigenFrac);</div>
@@ -353,18 +353,18 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    std::vector&lt;Pathogen&gt; PathoSppTemplateVector;</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    PathoSppTemplateVector.push_back(<a class="code" href="class_pathogen.html">Pathogen</a>());</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <a class="code" href="_antigen_8cpp.html#a4255cbd0af7483411e6b4764e9c57ae2">antigenstring</a> atniStrr;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize, </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                                                 mhcSize, 0, timeStamp);</div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> kk = 1; kk &lt; 4; ++kk){</div>
 <div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        <span class="keywordflow">if</span>(kk % 2){</div>
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            PathoSppTemplateVector.push_back(<a class="code" href="class_pathogen.html">Pathogen</a>());</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, </div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            mhcSize, kk, timeStamp, 2);</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            PathoSppTemplateVector.push_back(<a class="code" href="class_pathogen.html">Pathogen</a>());</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,</div>
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;            mhcSize, kk, timeStamp, 1);</div>
 <div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        }</div>
 <div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
@@ -847,7 +847,7 @@ $(document).ready(function(){initNavTree('_environment_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="_environment_8cpp.html">Environment.cpp</a></li>
-    <li class="footer">Generated on Thu Mar 10 2016 21:13:45 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Mon Apr 25 2016 13:55:20 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

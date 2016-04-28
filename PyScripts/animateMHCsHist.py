@@ -39,7 +39,7 @@ plt.rc('ytick', labelsize=TickSize)
 genMeans = np.genfromtxt("HostGeneNumbTotal_ChrOne.csv")
 mhcMeans = np.genfromtxt("HostMHCsNumbUniq_ChrOne.csv")
 GenerData = np.genfromtxt("HostsGeneDivers.csv")
-print "Done loading data files!"
+print("Done loading data files!")
 
 # -- trimming rows
 lastRow = genMeans[-1, :]

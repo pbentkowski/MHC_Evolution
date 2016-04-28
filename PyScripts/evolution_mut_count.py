@@ -15,7 +15,7 @@ import sys
 import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
-import bitstring as bts
+#import bitstring as bts
 
 
 def loadHostPopulation(FILE):
@@ -42,27 +42,29 @@ def loadHostPopulation(FILE):
                         Mut_list.append((len(LL) - 4) // 2)
         return np.array(Mut_list)
     except IOError as e:
-        print "I/O error({0}) in".format(e.errno),
-        print "loadTheHostPopulation(): {0}".format(e.strerror)
+        print("I/O error({0}) in".format(e.errno) +
+              " loadTheHostPopulation(): {0}".format(e.strerror))
 
 
 def main():
     if len(sys.argv) <= 1:
-        print "Give the name of the file with data at the end of simulation."
+        print("Give the name of the file with data at the end of simulation.")
         sys.exit()
     try:
         l = re.split(" ", ln.getline("InputParameters.csv", 9))
-        print "No. of pathogen species =", int(l[2])
+        print("No. of pathogen species =", int(l[2]))
     except:
-        print "Can't find parameter file! You may be in a wrong directory."
+        print("Can't find parameter file! You may be in a wrong directory.")
         sys.exit()
     try:
         L_endd = loadHostPopulation(sys.argv[1])
-        print "File loaded!"
+        print("File loaded!")
     except:
-        print "Can't load file named", sys.argv[1], ". Check if it exists."
+        print("Can't load file named" + str(sys.argv[1]) +
+              ". Check if it exists.")
         sys.exit()
-    print "Mean mutation number per gene:", L_endd.mean(), "+/-", L_endd.std()
+    print("Mean mutation number per gene: " + str(L_endd.mean()) +
+          " +/- " + str(L_endd.std()))
     # === More generic plot ===
     ax_label = 20
     T_label = 24
@@ -80,7 +82,7 @@ def main():
 
     plt.show()
 
-    print "DONE!"
+    print("DONE!")
 
 
 if __name__ == "__main__":

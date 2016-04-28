@@ -21,7 +21,7 @@
  */
 #include <complex>
 #include <vector>
-#include <string> 
+#include <string>
 #include <math.h>
 
 #include "RandomNumbs.h"
@@ -45,15 +45,15 @@ Environment::~Environment() {
 }
 
 /**
- * @brief Core method. It defines "no mutation sites" of the antigen for all 
+ * @brief Core method. It defines "no mutation sites" of the antigen for all
  * individual pathogen species in the simulation. It should be run only ones per
  * simulation.
- * 
+ *
  * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
- * STD sets</a> containing indices of antigen bits in which  mutations are not 
+ * STD sets</a> containing indices of antigen bits in which  mutations are not
  * allowed. The length of the vector equals the number of pathogen species. Each
  * species has its own vector. Number of fixed sites is a user-defined parameter.
- * 
+ *
  * @param numb_of_species - number of pathogen species
  * @param antigen_size - number of bits per antigen
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
@@ -74,15 +74,15 @@ void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
 }
 
 /**
- * @brief Core method. It defines "no mutation sites" in 4-bit-long packages of 
+ * @brief Core method. It defines "no mutation sites" in 4-bit-long packages of
  * the antigen for all  individual pathogen species in the simulation. It should
  * be run only ones per simulation.
- * 
+ *
  * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
- * STD sets</a> containing indices of antigen bits in which  mutations are not 
+ * STD sets</a> containing indices of antigen bits in which  mutations are not
  * allowed. The length of the vector equals the number of pathogen species. Each
  * species has its own vector. Number of fixed sites is a user-defined parameter.
- * 
+ *
  * @param numb_of_species - number of pathogen species
  * @param antigen_size - number of bits per antigen
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
@@ -112,17 +112,17 @@ void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
 
 
 /**
- *  @brief Core method. It defines "no mutation sites" of the antigen for all 
+ *  @brief Core method. It defines "no mutation sites" of the antigen for all
  * individual pathogen species in the simulation. It should be run only ones per
  * simulation.
- * 
+ *
  * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
- * STD sets</a> containing indices of antigen bits in which  mutations are not 
+ * STD sets</a> containing indices of antigen bits in which  mutations are not
  * allowed. The length of the vector equals the number of pathogen species. Each
  * species has its own vector. Number of fixed sites is a user-defined parameter.
  * This version generates only four unique "no-mutation" vectors (all vectors are
  * just copies of one of the four) to differentiate "clads" of pathogen species.
- * 
+ *
  * @param numb_of_species - number of pathogen species
  * @param antigen_size - number of bits per antigen
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
@@ -161,7 +161,7 @@ void Environment::setNoMutsVecFourClads(int numb_of_species, int antigen_size,
  * @param chrom_size - number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostRandomPopulation(int pop_size, int gene_size, 
+void Environment::setHostRandomPopulation(int pop_size, int gene_size,
         int chrom_size, int timeStamp){
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(Host());
@@ -205,9 +205,9 @@ void Environment::setHostRandomPopulation(int pop_size, int gene_size,
  * @brief Core method. Initializes a vector containing clonal host population.
  *
  * Sets and fills a vector containing the host population consisting of a single
- * homozygous clone. Parameters like size of the population, length of genes 
- * represented by bit-strings, number of genes in a chromosome (remember that 
- * there are two chromosomes) are user-defined, the rest is set at random 
+ * homozygous clone. Parameters like size of the population, length of genes
+ * represented by bit-strings, number of genes in a chromosome (remember that
+ * there are two chromosomes) are user-defined, the rest is set at random
  * (e.g. actual gene values).
  *
  * @param pop_size - number of host individuals in a simulation
@@ -275,14 +275,14 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
 
 /**
  * @brief Core method. Initializes the pathogen population.
- * 
+ *
  * Given the number of individuals, number of bit per gene, desired number of
  * genes in a genome and desired number of pathogen species it generates
  * random population of pathogens. Number of individuals will be evenly
  * distributed between species and each species consists of identical clones.
  * Antigens in species are not assigned at random, but are spread evenly in all
  * possible bit strings space.
- * 
+ *
  * @@param pop_size - total number of individuals
  * @param antigenSize - number of bits per gene
  * @param chrom_size - number of genes per genome
@@ -291,7 +291,7 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize, 
+void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
         double fixedAntigenFrac){
     Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
@@ -301,18 +301,18 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
     std::vector<Pathogen> PathoSppTemplateVector;
     PathoSppTemplateVector.push_back(Pathogen());
     antigenstring atniStrr;
-    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize, 
+    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
                                                  mhcSize, 0, timeStamp);
     for(int kk = 1; kk < numb_of_species; ++kk){
         if(kk % 2){
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
             mhcSize, kk, timeStamp, kk);
         } else {
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
             mhcSize, kk, timeStamp, 1);
         }
     }
@@ -332,12 +332,12 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
 
 /**
  * @brief Core method. Initializes the pathogen population.
- * 
+ *
  * Given the number of individuals, number of bit per gene, desired number of
  * genes in a genome and desired number of pathogen species it generates
  * random population of pathogens. Number of individuals will be evenly
  * distributed between species and each species consists of identical clones.
- * 
+ *
  * @param pop_size - total number of individuals
  * @param antigenSize - number of bits per gene
  * @param chrom_size - number of genes per genome
@@ -382,7 +382,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
  * distributed between species, each species draws its genes from the same
  * pool of possible bit strings and there are only 4 possible "clads" - groups
  * of species initialized with the same antigens and same mutations restrictions.
- * 
+ *
  * @param pop_size - total number of individuals
  * @param antigenSize - number of bits per gene
  * @param chrom_size - number of genes per genome
@@ -391,7 +391,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize, 
+void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize,
         int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
         double fixedAntigenFrac){
     Environment::setNoMutsVecFourClads(numb_of_species, antigenSize, fixedAntigenFrac);
@@ -401,18 +401,18 @@ void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize,
     std::vector<Pathogen> PathoSppTemplateVector;
     PathoSppTemplateVector.push_back(Pathogen());
     antigenstring atniStrr;
-    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize, 
+    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
                                                  mhcSize, 0, timeStamp);
     for(int kk = 1; kk < 4; ++kk){
         if(kk % 2){
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
             mhcSize, kk, timeStamp, 2);
         } else {
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr, 
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
             mhcSize, kk, timeStamp, 1);
         }
     }
@@ -435,7 +435,7 @@ void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize,
 }
 
 /**
-  * @brief Core method. Iterates through the host population and the parasite
+ * @brief Core method. Iterates through the host population and the parasite
  * population to "infect" the hosts with parasites. With heterozygote advantage
  * and it permits a pathogen species to infect a host only ONES.
  *
@@ -919,9 +919,9 @@ void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp
  * @brief Core method. Iterates through the all genes of the pathogen population
  * and performs mutations in genes with a given probability. But some positions
  * in the bit-string (gene) are not allowed to change.
- * 
+ *
  * The "No-Mutation Vector" is defined within the Environment object.
- * 
+ *
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
@@ -997,10 +997,10 @@ std::string Environment::getHostGenesToString(int i){
 }
 
 /**
- * @brief Data harvesting method. Prepares a string with the list of fixed 
+ * @brief Data harvesting method. Prepares a string with the list of fixed
  * "no mutation sites" in antigens used by the DataHarvester to write these data
- * to file. 
- * 
+ * to file.
+ *
  * @return a string listing all the fixed sites in all pathogen species
  */
 std::string Environment::getFixedBitsInAntigens(){

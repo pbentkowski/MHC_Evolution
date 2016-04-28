@@ -37,8 +37,8 @@ def loadHostPopulation(FILE):
         Gene_list.append(B_list)
         return Gene_list
     except IOError as e:
-        print "I/O error({0}) in".format(e.errno),
-        print "loadTheHostPopulation(): {0}".format(e.strerror)
+        print("I/O error({0}) in".format(e.errno) +
+              " loadTheHostPopulation(): {0}".format(e.strerror))
 
 
 def checkHeteroZyg(HH):
@@ -56,12 +56,12 @@ def main():
     try:
         hh = loadHostPopulation(sys.argv[1])
     except:
-        print "Can't load the data file. Make sure it exists."
+        print("Can't load the data file. Make sure it exists.")
         sys.exit()
     try:
-        print "No reapets in", checkHeteroZyg(hh), "of genomes."
+        print("No reapets in", str(checkHeteroZyg(hh)), "of genomes.")
     except:
-        print "Can't load the data."
+        print("Can't load the data.")
         sys.exit()
 
 

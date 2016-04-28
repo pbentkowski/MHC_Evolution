@@ -64,8 +64,8 @@ try:
         print "Performing dynamic linking of libraries."
         t = env_dynamic.Program(target=OUTprog, source=SRS)
     else:
-        print "Wrong mode or no linking was selected. Running compiler's default.",
-        print "Options are: 'static' or 'dynamic'"
+        print "Wrong mode or no linking was selected. Running compiler's",
+        print " default. Options are: 'static' or 'dynamic'"
         t = env_dynamic.Program(target=OUTprog, source=SRS)
 except:
     print "No mode of linking was selected. Running compiler's default."

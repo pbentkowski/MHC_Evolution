@@ -14,7 +14,6 @@ import re
 import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
-#from bitstring import BitArray
 
 
 def hamming_distance(s1, s2):
@@ -58,8 +57,8 @@ def bitSimWhinIndiv(BitLyst, sim_measure=7):
                 k += 1
         return np.mean(compArr)
     except:
-        print "ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
-        print "Can't load the data!"
+        print("ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
+              "Can't load the data!")
         return np.NaN
 
 
@@ -75,8 +74,8 @@ def hamDistWhinIndiv(BitLyst):
                 k += 1
         return compArr
     except:
-        print "ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
-        print "Can't load the data!"
+        print("ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
+              "Can't load the data!")
         return np.NaN
 
 
@@ -91,8 +90,8 @@ def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
                     compArr[k] = 1.
         return compArr
     except:
-        print "ERROR in anti_gen_similiraty.bitSimBetweenIndv():",
-        print "Can't proccess the data!"
+        print("ERROR in anti_gen_similiraty.bitSimBetweenIndv():",
+              "Can't proccess the data!")
         return np.NaN
 
 
@@ -108,8 +107,8 @@ def hamDistBetweenIndv(indOne, indTwo):
                 k += 1
         return compArr
     except:
-        print "ERROR in anti_gen_similiraty.hamDistBetweenIndv():",
-        print "Can't proccess the data!"
+        print("ERROR in anti_gen_similiraty.hamDistBetweenIndv():",
+              "Can't proccess the data!")
         return np.NaN
 
 
@@ -136,8 +135,8 @@ def loadHostPopulation(FILE):
 #        print j + 1
         return LL
     except IOError as e:
-        print "I/O error({0}) in".format(e.errno),
-        print "loadTheHostPopulation(): {0}".format(e.strerror)
+        print("I/O error({0}) in".format(e.errno),
+              "loadTheHostPopulation(): {0}".format(e.strerror))
 
 
 def bitSimAll(Popul, simmes=7):
@@ -188,50 +187,51 @@ def hamDistInterIndv(Popul):
 
 def main():
     if len(sys.argv) <= 2:
-        print "Give the names of two files with data. One at the begging of",
-        print "simulation and the second at the end."
+        print("Give the names of two files with data. One at the begging of",
+              "simulation and the second at the end.")
         sys.exit()
     try:
         l = re.split(" ", ln.getline("InputParameters.csv", 9))
         l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
         bitfit = int(l2[2])
-        print "No. of pathogen species =", int(l[2])
+        print("No. of pathogen species =", int(l[2]))
         MHC_len = int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
-        print "Length of the bit string =", MHC_len
-        print "Length of bit string fit =", bitfit
+        print("Length of the bit string =", MHC_len)
+        print("Length of bit string fit =", bitfit)
     except:
-        print "Can't find parameter file! You may be in a wrong directory."
+        print("Can't find parameter file! You may be in a wrong directory.")
         sys.exit()
     try:
         L_init = loadHostPopulation(sys.argv[1])
-        print "First file loaded!"
+        print("First file loaded!")
     except:
-        print "Can't load file named", sys.argv[1], ". Check if it exists."
+        print("Can't load file named", sys.argv[1], ". Check if it exists.")
         sys.exit()
     try:
         L_endd = loadHostPopulation(sys.argv[2])
-        print "Second file loaded!"
+        print("Second file loaded!")
     except:
-        print "Can't load file named", sys.argv[2], ". Check if it exists."
+        print("Can't load file named", sys.argv[2], ". Check if it exists.")
         sys.exit()
 #    F_init = bitSimAll(L_init, bitfit)
     F_init = hamDisthistAll(L_init)
     F_init = F_init[~np.isnan(F_init)]
-    print "Within genome similarities in the First file have been calculated!"
+    print("Within genome similarities in the First file have been calculated!")
 #    F_endd = bitSimAll(L_endd, bitfit)
     F_endd = hamDisthistAll(L_endd)
     F_endd = F_endd[~np.isnan(F_endd)]
-    print "Within genome similarities in the Second file have been calculated!"
+    print("Within genome similarities in the Second file have been" +
+          " calculated!")
 #    E_init = bitSimInterIndv(L_init, bitfit)
     E_init = hamDistInterIndv(L_init)
     E_init = E_init[~np.isnan(E_init)]
-    print "Between individual similarities in the First file have",
-    print "been calculated!"
+    print("Between individual similarities in the First file have",
+          "been calculated!")
 #    E_endd = bitSimInterIndv(L_endd, bitfit)
     E_endd = hamDistInterIndv(L_endd)
     E_endd = E_endd[~np.isnan(E_endd)]
-    print "Between individual similarities in the Second file have",
-    print "been calculated!"
+    print("Between individual similarities in the Second file have",
+          "been calculated!")
     # === More generic plot ===
     ax_label = 20
     T_label = 24
@@ -281,7 +281,7 @@ def main():
 
     plt.show()
 
-    print "DONE!"
+    print("DONE!")
 
 
 if __name__ == "__main__":

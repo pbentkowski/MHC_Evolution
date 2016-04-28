@@ -17,10 +17,11 @@ import pylab as p
 import linecache as ln
 
 
-def LoadTheData(arg, dirname, files):
+def LoadTheData2(arg, dirname, files):
     """Iterates trough directories and look for HostsGeneDivers.csv file and
     corresponding InputParameters.csv then copies the necessary data to
-    a Python list to be analysed and plotted later on in the program. """
+    a Python list to be analysed and plotted later on in the program. Version
+    for Python 2.7 to use with os.path.walk() mechanism"""
     for file in files:
         filepath = os.path.join(dirname, file)
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
@@ -32,8 +33,8 @@ def LoadTheData(arg, dirname, files):
             interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 9))
             path_spp = l[2].split()[0]
-            print "patho species:", path_spp, "| things:",  interestingOne,
-            print " ; ", interestingTwo, "| dir:", dirname.split("/")[-1]
+            print("patho species:", path_spp, "| things:",  interestingOne,
+                  " ; ", interestingTwo, "| dir:", dirname.split("/")[-1])
             arg.append((interestingOne, interestingTwo, path_spp, genes[:, 0],
                         genes[:, 3], genes[:, 4], genes[:, 5],
                         genes[:, 2], genes[:, 6]))
@@ -50,9 +51,39 @@ def meanMhcTypeNumber(DATA):
     return mm / ii
 
 
-def main():
+def loadTheData3(DIRR=os.getcwd()):
+    """Iterates trough directories and look for HostsGeneDivers.csv file and
+    corresponding InputParameters.csv then copies the necessary data to
+    a Python list to be analysed and plotted later on in the program. Version
+    for Python 3.5 utilazing os.walk() function"""
     TheData = []
-    os.path.walk(os.getcwd(), LoadTheData, TheData)
+    for dirName, subdirList, fileList in os.walk(DIRR):
+        for file in fileList:
+            filepath = os.path.join(dirName, file)
+            if filepath == os.path.join(dirName, 'HostsGeneDivers.csv'):
+                genes = p.genfromtxt(filepath)
+                paramsFile = os.path.join(dirName, 'InputParameters.csv')
+                l = re.split(" ", ln.getline(paramsFile, 21))   # change here
+                interestingOne = float(l[2])
+                l = re.split(" ", ln.getline(paramsFile, 9))   # change here
+                interestingTwo = float(l[2])
+                l = re.split(" ", ln.getline(paramsFile, 9))
+                path_spp = l[2].split()[0]
+                print("patho species:", path_spp, "| things:",  interestingOne,
+                      " ; ", interestingTwo, "| dir:", dirName.split("/")[-1])
+                TheData.append((interestingOne, interestingTwo, path_spp,
+                                genes[:, 0], genes[:, 3], genes[:, 4],
+                                genes[:, 5], genes[:, 2], genes[:, 6]))
+    return TheData
+
+
+def main():
+    """ """
+#    TheData = []
+#    os.path.walk(os.getcwd(), LoadTheData, TheData)
+#    print(os.getcwd())
+
+    TheData = loadTheData3()
 
     AxLabelFontSize = 22
     AxisTickFontSize = 22
@@ -68,7 +99,7 @@ def main():
         interestOne = float(sys.argv[1])
         interestTwo = float(sys.argv[2])
     except:
-        print "Can't recognise the parameters. Two are required."
+        print("Can't recognise the parameters. Two are required.")
         sys.exit()
     saveFiggs = True  # True to save figures to disk, False to not save
 
