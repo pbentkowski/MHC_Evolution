@@ -41,7 +41,7 @@ mhcMeans = np.genfromtxt("HostMHCsNumbUniq_ChrOne.csv")
 GenerData = np.genfromtxt("HostsGeneDivers.csv")
 print("Done loading data files!")
 
-# -- trimming rows
+# --- trimming rows ---
 lastRow = genMeans[-1, :]
 genMeans = genMeans[::everyOtherRow]
 genMeans = np.vstack([genMeans, lastRow])
@@ -94,7 +94,14 @@ def animate(i):
     plt.tight_layout(h_pad=Hpad)
     return line1,
 
-ani = animation.FuncAnimation(fig, animate, frames=len(GenerData),
-                              interval=200, blit=False)
-ani.save('MHC_evol.mp4', fps=30)
-#plt.show()
+
+def main():
+    """ """
+    ani = animation.FuncAnimation(fig, animate, frames=len(GenerData),
+                                  interval=200, blit=False)
+    ani.save('MHC_evol.mp4', fps=30)
+#    plt.show()
+
+
+if __name__ == "__main__":
+    main()
