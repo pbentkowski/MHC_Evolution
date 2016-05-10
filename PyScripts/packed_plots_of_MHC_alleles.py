@@ -1,10 +1,9 @@
 #!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
-Searches for 'InputParameters.csv' files, pulls out parameters from them and
-renders them in one line which can be feed as input to the model's program.
+Your doc string goes here...
 
-Created on Fri Jun 19 20:04:08 2015
+Created on Tue May 10 18:53:47 2016
 for Evolutionary Biology Group, Faculty of Biology
     Adam Mickiewicz University, Poznan, Poland
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
@@ -14,7 +13,6 @@ import re
 import sys
 import datetime as dt
 import linecache as ln
-
 
 def readDate(string):
     """Takes a string and tries to convert it into a date. String has to have
