@@ -14,6 +14,40 @@ import sys
 import datetime as dt
 import linecache as ln
 
+
+def loadParamSettings(filepath):
+    """ """
+    try:
+        paramzList = []
+        with open(filepath, 'r') as f:
+            for ii, line in enumerate(f):
+                if re.search("#", line) or line == "":
+                    pass
+                else:
+                    try:
+                        paramzList.append(line.split()[2])
+                    except:
+                        pass
+        return paramzList
+    except:
+        print("ERROR in loadParamSettings(): Cannot load params into a list.")
+        return None
+
+
+def compareParams(template, paramz):
+    """ """
+    same = True
+    for itm in zip(template, paramz):
+        if itm[1] == "VARX" or itm[1] == "VAR":
+            pass
+        elif itm[1] == itm[2]:
+            pass
+        else:
+            same = False
+            break
+        return same
+
+
 def readDate(string):
     """Takes a string and tries to convert it into a date. String has to have
     the ISO yyyy-mm-dd format"""
