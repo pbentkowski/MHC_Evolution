@@ -36,16 +36,22 @@ def loadParamSettings(filepath):
 
 def compareParams(template, paramz):
     """ """
-    same = True
-    for itm in zip(template, paramz):
-        if itm[1] == "VARX" or itm[1] == "VAR":
-            pass
-        elif itm[1] == itm[2]:
-            pass
+    same = False
+    for ii, itm in enumerate(zip(template, paramz)):
+        try:
+            ITM_0 = float(itm[0])
+            ITM_1 = float(itm[1])
+        except:
+            ITM_0 = str(itm[0])
+            ITM_1 = str(itm[1])
+        if itm[0] == "VARX" or itm[0] == "VAR" or ii == 0:
+            print(itm)
+        elif ITM_0 == ITM_1:
+            same = True
         else:
             same = False
             break
-        return same
+    return same
 
 
 def readDate(string):
