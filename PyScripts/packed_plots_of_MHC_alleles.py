@@ -1,7 +1,9 @@
 #!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
-Your doc string goes here...
+Walks the directory tree looking for model runs which are characterized by same
+parametrisation as the template file provided by the user. Then process these
+results by fancy stats and plot that processed output on a nice plot.
 
 Created on Tue May 10 18:53:47 2016
 for Evolutionary Biology Group, Faculty of Biology
@@ -13,10 +15,20 @@ import re
 import sys
 import datetime as dt
 import linecache as ln
+import numpy as np
+import numpy.polynomial.polynomial as poly
+
+
+# """Data type for loading data from files HostsGeneDivers.csv"""
+datType = np.dtype([('time', np.int), ('pop_size', np.int),
+                    ('tot_num_of_genes', np.int), ('num_of_MHC_types', np.int),
+                    ('Shannon_indx', np.float), ('mean_fitness', np.float),
+                    ('std_fitness', np.float)])
 
 
 def loadParamSettings(filepath):
-    """ """
+    """Loads model's parametrisation from i.g. InputParameters.csv file into
+    a handy list. """
     try:
         paramzList = []
         with open(filepath, 'r') as f:
@@ -35,23 +47,45 @@ def loadParamSettings(filepath):
 
 
 def compareParams(template, paramz):
-    """ """
-    same = False
-    for ii, itm in enumerate(zip(template, paramz)):
-        try:
-            ITM_0 = float(itm[0])
-            ITM_1 = float(itm[1])
-        except:
-            ITM_0 = str(itm[0])
-            ITM_1 = str(itm[1])
-        if itm[0] == "VARX" or itm[0] == "VAR" or ii == 0:
-            print(itm)
-        elif ITM_0 == ITM_1:
-            same = True
-        else:
-            same = False
-            break
+    """Compares parameters of two runs. They have to be loaded into a list
+    first, i.g. with loadParamSettings() function."""
+    same = None
+    if len(template) == len(paramz):
+        for ii, itm in enumerate(zip(template, paramz)):
+            try:
+                ITM_0 = float(itm[0])
+                ITM_1 = float(itm[1])
+            except:
+                ITM_0 = str(itm[0])
+                ITM_1 = str(itm[1])
+            if itm[0] == "VARX" or itm[0] == "VAR" or ii == 0:
+                pass
+            elif ITM_0 == ITM_1:
+                same = True
+            else:
+                same = False
+                break
+    else:
+        print("ERROR in compareParams(): Params lists have different length.")
+        return same
+    if same is None:
+        print("ERROR in compareParams(): Comparison failed to commence.")
     return same
+
+
+def lookForVAR(template):
+    """Checks which parameters are designated to be investigated as independent
+    variables. Gets their line numbers in the file with parameter
+    description."""
+    varrs = {"VAR": 0, "VARX": 0}
+    for ii, itm in enumerate(template):
+        if itm == "VAR":
+            varrs["VAR"] = ii
+        elif itm == "VARX":
+            varrs["VARX"] = ii
+        else:
+            pass
+    return varrs
 
 
 def readDate(string):
@@ -85,48 +119,57 @@ def loadTheDateFromParamFile(filePar):
         return None
 
 
-def printTheParams3(theStartDate, dirr=os.getcwd()):
+def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
     """Walking the dir using Python 3.5. Variable theStartDate has to be
     a datetime.date() data type."""
+    vv = lookForVAR(template)
+    datOut = []
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
             if(filepath == os.path.join(dirName, 'InputParameters.csv') and
                loadTheDateFromParamFile(filepath) >= theStartDate):
-                strr = ""
-                with open(filepath, 'r') as f:
-                    for ii, line in enumerate(f):
-                        l = line.split()
-                        if re.search("#", line):
-                            if re.search("# Other_information:", line):
-                                break
-                            else:
-                                continue
-                        elif ii > 2 and len(l) > 1:
-                            if l[2] == "YES":
-                                strr += "10 "
-                            elif l[2] == "NO":
-                                strr += "11 "
-                            else:
-                                strr += l[2] + " "
-                print(strr)
+                paramzList = loadParamSettings(filepath)
+                if compareParams(template, paramzList):
+                    var = float(paramzList[vv['VAR']])
+                    varx = float(paramzList[vv['VARX']])
+                    dataFilePath = os.path.join(dirName, "HostsGeneDivers.csv")
+                    data = np.genfromtxt(dataFilePath, dtype=datType)
+                    c0, c1 = poly.polyfit(data['time'][EqPt::],
+                                          data['num_of_MHC_types'][EqPt::], 1)
+                    meanAlle = data['num_of_MHC_types'][EqPt::].mean()
+                    stdAlle = data['num_of_MHC_types'][EqPt::].std()
+#                    print(filepath)
+#                    print(np.array([var, varx, meanAlle, stdAlle, c1]))
+                    datOut.append(np.array([var, varx, meanAlle, stdAlle, c1]))
+    return datOut
 
 
 def main():
     """ """
-    if len(sys.argv) <= 1:
-        print("Give a starting date. It has to be in yyyy-mm-dd format.")
+    if len(sys.argv) <= 2:
+        print("Two arguments are needed:")
+        print("  1. Give a starting date. It has to be in yyyy-mm-dd format.")
+        print("  2. Give the path to template file.")
         sys.exit()
     try:
         startDate = readDate(sys.argv[1])
     except ValueError:
-        print("Cannot convert the input do a date format.")
+        print("Cannot convert argument #1 to a date format.")
         sys.exit()
     if startDate:
-        printTheParams3(startDate)
+        try:
+            template = loadParamSettings(sys.argv[2])
+        except:
+            print("Cannot load the template file. Exiting.")
+            sys.exit()
+        theData = getTheData(startDate, template)
+        for itm in theData:
+            print(itm)
     else:
         print("Wrong date format.")
         sys.exit()
+
 
 if __name__ == "__main__":
     main()
