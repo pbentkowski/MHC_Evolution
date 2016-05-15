@@ -24,6 +24,8 @@ datType = np.dtype([('time', np.int), ('pop_size', np.int),
                     ('tot_num_of_genes', np.int), ('num_of_MHC_types', np.int),
                     ('Shannon_indx', np.float), ('mean_fitness', np.float),
                     ('std_fitness', np.float)])
+outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
+                    ('stdAllel', 'f8'), ('slope', 'f8')])
 
 
 def loadParamSettings(filepath):
@@ -51,14 +53,14 @@ def compareParams(template, paramz):
     first, i.g. with loadParamSettings() function."""
     same = None
     if len(template) == len(paramz):
-        for ii, itm in enumerate(zip(template, paramz)):
+        for ii, itm in enumerate(zip(template[::-3], paramz[::-3])):
             try:
                 ITM_0 = float(itm[0])
                 ITM_1 = float(itm[1])
             except:
                 ITM_0 = str(itm[0])
                 ITM_1 = str(itm[1])
-            if itm[0] == "VARX" or itm[0] == "VAR" or ii == 0:
+            if itm[0] == "VARX" or itm[0] == "VAR" or ii <= 1:
                 pass
             elif ITM_0 == ITM_1:
                 same = True
@@ -139,10 +141,10 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                                           data['num_of_MHC_types'][EqPt::], 1)
                     meanAlle = data['num_of_MHC_types'][EqPt::].mean()
                     stdAlle = data['num_of_MHC_types'][EqPt::].std()
-#                    print(filepath)
-#                    print(np.array([var, varx, meanAlle, stdAlle, c1]))
-                    datOut.append(np.array([var, varx, meanAlle, stdAlle, c1]))
-    return datOut
+                    datOut.append((var, varx, meanAlle, stdAlle, c1))
+    datOut = np.array(datOut, dtype=outType)
+    return np.sort(datOut,
+                   order=['VAR', 'VARX','meanAllel', 'stdAllel', 'slope'])
 
 
 def main():
@@ -165,7 +167,9 @@ def main():
             sys.exit()
         theData = getTheData(startDate, template)
         for itm in theData:
-            print(itm)
+            for ii in itm:
+                print(ii, "\t", end=" ")
+            print()
     else:
         print("Wrong date format.")
         sys.exit()
