@@ -209,30 +209,28 @@ def plotAllAllesInPop(meanResult, x_label):
     plt.figure(1, figsize=(12, 8))
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
-#        plt.plot(ww[:, 1], ww[:, 2], 'o', lw=2, ms=10)
         plt.errorbar(ww[:, 1], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 2]), size=int(0.85*FS))
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of unique MHC\nalleles in population",
                fontsize=FS)
     plt.xlim(xmin=0)
-#    plt.xlim((0., 0.00012))
-    plt.ylim(ymin=0)
+    plt.xlim((0., 0.00012))
+#    plt.ylim(ymin=0)
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
     # Second plot - unique MHC alleles in one chromosome
     plt.figure(2, figsize=(12, 8))
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
-#        plt.plot(ww[:, 1], ww[:, 2], 'o', lw=2, ms=10)
         plt.errorbar(ww[:, 1], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 4]), size=int(0.85*FS))
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("average number of unique MHC\nalleles in one chromosome",
                fontsize=FS)
     plt.xlim(xmin=0)
-#    plt.xlim((0., 0.00012))
-    plt.ylim(ymin=0)
+    plt.xlim((0., 0.00012))
+#    plt.ylim(ymin=0)
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
 #    plt.show()
