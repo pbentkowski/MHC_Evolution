@@ -215,8 +215,8 @@ def plotAllAllesInPop(meanResult, x_label):
     plt.ylabel("mean number of unique MHC\nalleles in population",
                fontsize=FS)
     plt.xlim(xmin=0)
-    plt.xlim((0., 0.00012))
-#    plt.ylim(ymin=0)
+#    plt.xlim((0., 0.00012))
+    plt.ylim(ymin=0)
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
     # Second plot - unique MHC alleles in one chromosome
@@ -229,8 +229,8 @@ def plotAllAllesInPop(meanResult, x_label):
     plt.ylabel("average number of unique MHC\nalleles in one chromosome",
                fontsize=FS)
     plt.xlim(xmin=0)
-    plt.xlim((0., 0.00012))
-#    plt.ylim(ymin=0)
+#    plt.xlim((0., 0.00012))
+    plt.ylim(ymin=0)
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
 #    plt.show()
@@ -239,8 +239,8 @@ def plotAllAllesInPop(meanResult, x_label):
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
-    clrs += clrs
+    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo', 'ko', 'wo']
+    clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     FS = 18
     ll = []
     for itm in theData:
@@ -253,9 +253,11 @@ def plotDotMeans(theData):
     for var in ll:
         ww = theData[theData['VAR'] == var[0]]
         ww = ww[ww['VARX'] == var[1]]
-        plt.plot(ww['meanAllel'], ww['indvMean'], clrs[k], ms=8)
+        lbl = str(var[0]) + " ; " + str(var[1])
+        plt.plot(ww['meanAllel'], ww['indvMean'], clrs[k], ms=8, label=lbl)
         k += 1
     print("There are", k, "sets of values")
+    plt.legend(loc='lower right', numpoints=1, ncol=2, fontsize=10)
     plt.xlabel("mean number of unique MHC alleles in population",
                fontsize=FS)
     plt.ylabel("average number of unique MHC\nalleles in one chromosome",
@@ -269,13 +271,13 @@ def plotDotMeans(theData):
 
 def main():
     """Main function - the script's main body."""
-    startDate = None
-    headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD sourceDir'
     if len(sys.argv) <= 2:
         print("Two arguments are needed:")
         print("  1. Give a starting date. It has to be in yyyy-mm-dd format.")
         print("  2. Give the path to template file.")
         sys.exit()
+    startDate = None
+    headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD sourceDir'
     try:
         startDate = readDate(sys.argv[1])
     except ValueError:
