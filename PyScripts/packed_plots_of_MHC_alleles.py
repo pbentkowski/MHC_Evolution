@@ -28,7 +28,8 @@ inType = np.dtype([('time', np.int), ('pop_size', np.int),
 # """Data type for storing processed data"""
 outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
                     ('stdAllel', 'f8'), ('slope', 'f8'), ('indvMean', 'f8'),
-                    ('indvSTD', 'f8'), ('sourceDir', 'S99')])
+                    ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('stdFitt', 'f8'),
+                    ('sourceDir', 'S99')])
 
 
 def getVarxLabel(filepath):
@@ -162,13 +163,16 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                                           data['num_of_MHC_types'][EqPt::], 1)
                     meanAlle = data['num_of_MHC_types'][EqPt::].mean()
                     stdAlle = data['num_of_MHC_types'][EqPt::].std()
+                    meanFitt = data['mean_fitness'][EqPt::].mean()
+                    stdFitt = data['mean_fitness'][EqPt::].std()
                     dataFilePath = os.path.join(dirName,
                                                 "HostMHCsNumbUniq_ChrOne.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
                     indvSTD = np.std(hgsUNIQ[EqPt:, 1:])
                     datOut.append((var, varx, meanAlle, stdAlle, c1,
-                                   indvMean, indvSTD, dirName))
+                                   indvMean, indvSTD, meanFitt, stdFitt,
+                                   dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
 
@@ -191,7 +195,10 @@ def buildStats(theData):
         stdAll = np.sqrt(np.sum(ww['stdAllel']**2) / float(len(ww)))
         meanIndv = np.mean(ww['indvMean'])
         stdIndv = np.sqrt(np.sum(ww['indvSTD']**2) / float(len(ww)))
-        meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdIndv))
+        meanFitt = np.mean(ww['meanFitt'])
+        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / float(len(ww)))
+        meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdIndv,
+                           meanFitt, stdFitt))
     return np.array(meanResult)
 
 
@@ -200,13 +207,15 @@ def plotAllAllesInPop(meanResult, x_label):
     of averaged data."""
     FS = 18
     ll = []
+    limitz = (0., 12)
+    figSize = (12, 8)
     for itm in meanResult:
         if itm[0] in ll:
             pass
         else:
             ll.append(itm[0])
     # First plot - unique MHC alleles in population
-    plt.figure(1, figsize=(12, 8))
+    plt.figure(1, figsize=figSize)
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
         plt.errorbar(ww[:, 1], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
@@ -215,12 +224,12 @@ def plotAllAllesInPop(meanResult, x_label):
     plt.ylabel("mean number of unique MHC\nalleles in population",
                fontsize=FS)
     plt.xlim(xmin=0)
-#    plt.xlim((0., 0.00012))
-    plt.ylim(ymin=0)
+    plt.xlim(limitz)
+#    plt.ylim(ymin=0)
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
     # Second plot - unique MHC alleles in one chromosome
-    plt.figure(2, figsize=(12, 8))
+    plt.figure(2, figsize=figSize)
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
         plt.errorbar(ww[:, 1], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
@@ -229,17 +238,30 @@ def plotAllAllesInPop(meanResult, x_label):
     plt.ylabel("average number of unique MHC\nalleles in one chromosome",
                fontsize=FS)
     plt.xlim(xmin=0)
-#    plt.xlim((0., 0.00012))
-    plt.ylim(ymin=0)
+    plt.xlim(limitz)
+#    plt.ylim(ymin=0)
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
+    plt.figure(3, figsize=figSize)
+    for var in ll:
+        ww = meanResult[meanResult[:, 0] == var]
+        plt.errorbar(ww[:, 1], ww[:, 6], ww[:, 7], lw=2, marker="o", ms=8)
+        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 6]), size=int(0.85*FS))
+    plt.xlabel(str(x_label), fontsize=FS)
+    plt.ylabel("hosts average fitness", fontsize=FS)
+    plt.xlim(xmin=0)
+    plt.xlim(limitz)
+#    plt.ylim(ymin=0)
+    plt.tick_params(axis='both', labelsize=int(0.85*FS))
+    plt.grid(True)
+
 #    plt.show()
 
 
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo', 'ko', 'wo']
+    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     FS = 18
     ll = []
@@ -267,6 +289,22 @@ def plotDotMeans(theData):
     plt.tick_params(axis='both', labelsize=int(0.85*FS))
     plt.grid(True)
 #    plt.show()
+
+
+def loadTheStuuff(dataSlice, specFile):
+    """Loads the data from post-processed files.
+     . dataSlice - path to DataSlice.csv type of file
+     . specFile - path to parameter file type of file"""
+    try:
+        dd = np.genfromtxt(dataSlice, dtype=outType)
+        for itm in dd:
+            itm[-1] = itm[-1][2:-1]
+        meanResult = buildStats(dd)
+        x_Label = getVarxLabel(specFile)
+        return dd, meanResult, x_Label
+    except:
+        print("Bump... Nope...")
+        return None
 
 
 def main():
@@ -298,7 +336,7 @@ def main():
         if len(theData):
             open("DataSlice.csv", 'w').close()
             np.savetxt("DataSlice.csv", theData,
-                       fmt='%.4e %.4e %.4e %.4e %.4e %.4e %.4e %s',
+                       fmt='%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %s',
                        header=headerr, comments='#')
             for itm in theData:
                 for ii in range(len(itm) - 1):
