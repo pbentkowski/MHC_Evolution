@@ -267,7 +267,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co']  # , 'mo', 'yo', 'ko', 'wo']
+    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     FS = 18
     annoSize = int(0.85*FS)
@@ -323,7 +323,8 @@ def main():
         print("  2. Give the path to template file.")
         sys.exit()
     startDate = None
-    headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD sourceDir'
+    headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
+        + 'stdFitt sourceDir'
     try:
         startDate = readDate(sys.argv[1])
     except ValueError:
@@ -353,7 +354,7 @@ def main():
             print("Check the output file:", str(os.getcwd()) +
                   "/DataSlice.csv for details.")
             meanResult = buildStats(theData)
-            plotAllAllesInPop(meanResult, x_Label)
+            plotAllAllesInPop(meanResult, x_Label, 'log')
             plotDotMeans(theData)
             plt.show()
         else:

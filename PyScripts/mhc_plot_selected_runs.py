@@ -171,8 +171,8 @@ def main():
             p.axis([0, Xmax, 0, 2.5])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
-                    fontsize=AnnotateFontSize)
+#    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
+#                    fontsize=AnnotateFontSize)
     p.grid()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
