@@ -65,7 +65,6 @@ void Pathogen::setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
     }
 }
 
-
 /**
  * @brief Core method. Sets a new Pathogen object with pre-defined antigen.
  * 
@@ -106,7 +105,8 @@ void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigen,
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Pathogen::chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp){
-    for(int i = 0; i < PathogenProts.size(); ++i){
+    int PathogenProtsSize = PathogenProts.size();
+    for(int i = 0; i < PathogenProtsSize; ++i){
 //        ChromosomePat[i].mutateGeneWhole(mut_probabl);
 //        ChromosomePat[i].mutateGeneWhole(mut_probabl, LowerGeneValue,
 //                UpperGeneValue, timeStamp);
@@ -126,7 +126,8 @@ void Pathogen::chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp){
  */
 void Pathogen::chromoMutProcessWithRestric(double mut_probabl, int mhcSize, 
         int timeStamp, std::set<int>& noMutts){
-    for(int i = 0; i < PathogenProts.size(); ++i){
+    int PathogenProtsSize = PathogenProts.size();
+    for(int i = 0; i < PathogenProtsSize; ++i){
         PathogenProts[i].mutateAntgBitByBitWithRes(mut_probabl, mhcSize, 
                                                    timeStamp, noMutts);
     }
@@ -157,7 +158,6 @@ void Pathogen::setNewSpeciesNumber(int new_spp_num){
    Species = new_spp_num;
 }
 
-
 /**
  * @brief Core method. Fetches the pathogene's antigens.
  *
@@ -166,7 +166,6 @@ void Pathogen::setNewSpeciesNumber(int new_spp_num){
 antigenvector Pathogen::getAllAntigens(){
     return PathogenProts;
 }
-
 
 /**
  * @brief Core method. Fetches a species tag.
@@ -198,12 +197,14 @@ std::string Pathogen::stringGenesFromGenome(){
             sttr(" has infected ") + std::to_string(NumOfHostsInfected) +
             sttr(" hosts ===\n");
     sttr bitAntigen;
-    for(int i = 0; i < PathogenProts.size(); i++){
+    int PathogenProtsSize = PathogenProts.size();
+    for(int i = 0; i < PathogenProtsSize; i++){
         boost::to_string(PathogenProts[i].getBitAntigen(), bitAntigen);
         genomeString += sttr(bitAntigen) + sttr("\tch_pat\t")
                    + std::to_string(PathogenProts[i].timeOfOrigin) + sttr("\t")
                    + std::to_string(PathogenProts[i].AntigenTag);
-        for (int j = 0; j < PathogenProts[i].ParentTags.size(); ++j){
+        int PathoProtsIthParentTagsSize = PathogenProts[i].ParentTags.size();
+        for (int j = 0; j < PathoProtsIthParentTagsSize; ++j){
             genomeString += sttr("\t") + std::to_string(PathogenProts[i].ParentTags[j]);
         }
         genomeString += sttr("\n");
@@ -217,7 +218,8 @@ std::string Pathogen::stringGenesFromGenome(){
 void Pathogen::printGenesFromGenome(){
     std::cout << " === Patho. sp. No. " <<  Species << " has infected " \
               << NumOfHostsInfected << " hosts ===" << std::endl;
-    for(int i = 0; i < PathogenProts.size(); i++){
+    int PathogenProtsSize = PathogenProts.size();
+    for(int i = 0; i < PathogenProtsSize; i++){
         std::cout << PathogenProts[i].getBitAntigen() << std::endl;
     }
 }

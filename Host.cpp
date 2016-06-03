@@ -107,10 +107,12 @@ void Host::setNewHomozygHost(int num_of_loci, int gene_size, int timeStamp){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Host::chromoMutProcess(double mut_probabl, int timeStamp){
-    for(int i = 0; i < ChromosomeOne.size(); ++i){
+    int ChromosomeOneSize = ChromosomeOne.size();
+    for(int i = 0; i < ChromosomeOneSize; ++i){
         ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp);
     }
-    for(int i = 0; i < ChromosomeTwo.size(); ++i){
+    int ChromosomeTwoSize = ChromosomeTwo.size();
+    for(int i = 0; i < ChromosomeTwoSize; ++i){
         ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp);
     }
 }
@@ -628,7 +630,8 @@ void Host::clearInfections(){
  */
  std::string Host::stringChromosomes(){
     std::string pathoSppString = sttr(" ");
-    for(int ll = 0; ll < PathogesPresented.size(); ++ll){
+    int PathogesPresentedSize = PathogesPresented.size();
+    for(int ll = 0; ll < PathogesPresentedSize; ++ll){
         pathoSppString = pathoSppString + std::to_string(PathogesPresented[ll]) + sttr(" ");
     }
     std::string outString;
@@ -637,7 +640,8 @@ void Host::clearInfections(){
         sttr(" - these are:") + pathoSppString + sttr("===\n");
     sttr g1;
     sttr g2;
-    for(int i = 0; i < ChromosomeOne.size(); ++i){
+    int ChromosomeOneSize = ChromosomeOne.size();
+    for(int i = 0; i < ChromosomeOneSize; ++i){
         boost::to_string(ChromosomeOne[i].getBitGene(), g1);
         outString += sttr(g1) + sttr("\tch_one\t") 
                    + std::to_string(ChromosomeOne[i].timeOfOrigin) + sttr("\t")
@@ -653,7 +657,8 @@ void Host::clearInfections(){
         }
     }
 //    outString += sttr("-----\n");
-    for(int k = 0; k < ChromosomeTwo.size(); ++k){
+    int ChromosomeTwoSize = ChromosomeTwo.size();
+    for(int k = 0; k < ChromosomeTwoSize; ++k){
         boost::to_string(ChromosomeTwo[k].getBitGene(), g2);
         outString += sttr(g2) + sttr("\tch_two\t") 
                    + std::to_string(ChromosomeTwo[k].timeOfOrigin) + sttr("\t")

@@ -453,8 +453,10 @@ void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
     int j;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for(int i = 0; i < HostPopulation.size(); ++i){
-        for(int sp = 0; sp < PathPopulation.size(); ++sp){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
+        int PathPopulationSize = PathPopulation.size();
+        for(int sp = 0; sp < PathPopulationSize; ++sp){
             if(PathPopulation[sp].size()){
                 j = p_RandomNumbs->NextInt(0, PathPopulation[sp].size()-1);
                 H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
@@ -470,7 +472,8 @@ void Environment::infectOneFromOneSpecHetero(){
  * under account.
  */
 void Environment::calculateHostsFitnessPerGene(){
-    for(int i = 0; i < HostPopulation.size(); ++i){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessAccChromSize();
     }
 }
@@ -482,7 +485,8 @@ void Environment::calculateHostsFitnessPerGene(){
  * of presented pathogens.
  */
 void Environment::calculateHostsFitnessPlainPresent(){
-    for(int i = 0; i < HostPopulation.size(); ++i){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessJustInfection();
     }
 }
@@ -494,7 +498,8 @@ void Environment::calculateHostsFitnessPlainPresent(){
  * the genetic driff work.
  */
 void Environment::calculateHostsFitnessForDrift(){
-    for(int i = 0; i < HostPopulation.size(); ++i){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessForDrift();
     }
 }
@@ -506,7 +511,8 @@ void Environment::calculateHostsFitnessForDrift(){
  * number of genes as a fitness cost.
  */
 void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
-    for(int i = 0; i < HostPopulation.size(); ++i){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessAlphaXSqr(alpha);
     }
 }
@@ -518,7 +524,8 @@ void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
  * the costs of having lots of genes.
  */
 void Environment::calculateHostsFitnessExpScaling(double alpha){
-    for(int i = 0; i < HostPopulation.size(); ++i){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessExpFunc(alpha);
     }
 }
@@ -530,7 +537,8 @@ void Environment::calculateHostsFitnessExpScaling(double alpha){
  * to accommodate the costs of having lots of unique MHC alleles in chromosomes.
  */
 void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
-    for(int i = 0; i < HostPopulation.size(); ++i){
+    int HostPopulationSize = HostPopulation.size();
+    for(int i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessExpFuncUniqAlleles(alpha);
     }
 }
@@ -636,7 +644,8 @@ void Environment::selectAndReprodHostsReplace(){
     aley_oop:
     while(n < pop_size){
         rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
-        for(int k = 0; k < HostPopulation.size(); ++k) {
+        int HostPopulationSize = HostPopulation.size();
+        for(int k = 0; k < HostPopulationSize; ++k) {
             rnd = rnd - HostPopulation[k].getFitness();
             if(rnd <= 0){
                HostPopulation[k].SelectedForReproduction += 1;
@@ -647,7 +656,8 @@ void Environment::selectAndReprodHostsReplace(){
         }
         second_parent:
         rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
-        for(int p = 0; p < HostPopulation.size(); ++p) {
+        HostPopulationSize = HostPopulation.size();
+        for(int p = 0; p < HostPopulationSize; ++p) {
             rnd = rnd - HostPopulation[p].getFitness();
             if(rnd <= 0){
                HostPopulation[p].SelectedForReproduction += 1;
@@ -685,7 +695,8 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
     int tot_patho_pop_size = 0;
     int total_ifected = 0;
     int sum_of_fit = 0;
-    for (int i = 0; i < PathPopulation.size(); ++i){
+    int PathPopulationSize = PathPopulation.size();
+    for (int i = 0; i < PathPopulationSize; ++i){
         tot_patho_pop_size = tot_patho_pop_size + (int) PathPopulation[i].size();
         for (int j = 0; j < PathPopulation[i].size(); ++j){
             total_ifected += PathPopulation[i][j].NumOfHostsInfected;
@@ -703,8 +714,10 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
     aley_oop:
     while(n < tot_patho_pop_size){
         rnd = p_RandomNumbs->NextInt(0, sum_of_fit);
-        for (int i = 0; i < PathPopulation.size(); ++i){
-            for (int j = 0; j < PathPopulation[i].size(); ++j){
+        int PathPopulationSize = PathPopulation.size();
+        for (int i = 0; i < PathPopulationSize; ++i){
+            int PathPopulationIthSize = PathPopulation[i].size();
+            for (int j = 0; j < PathPopulationIthSize; ++j){
                 rnd = rnd - PathPopulation[i][j].NumOfHostsInfected;
                 if(rnd <= 0){
                     PathPopulation[i][j].SelectedToReproduct += 1;
@@ -754,7 +767,8 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
     int PopSizes[(int) PathPopulation.size()];
     int SpecTotInfected[(int) PathPopulation.size()];
     int total_ifected = 0;
-    for (int i = 0; i < PathPopulation.size(); ++i){
+    int PathPopulationSize = PathPopulation.size();
+    for (int i = 0; i < PathPopulationSize; ++i){
         PopSizes[i] = PathPopulation[i].size();
         SpecTotInfected[i] = 0;
         for (int j = 0; j < PathPopulation[i].size(); ++j){
@@ -765,13 +779,15 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
     if(total_ifected == 0)
         return;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for (int k = 0; k < PathPopulation.size(); ++k){
+    PathPopulationSize = PathPopulation.size();
+    for (int k = 0; k < PathPopulationSize; ++k){
         TmpPathVec.clear();
         int n = 0;
         aley_oop:
         while(n < PopSizes[k]){
            rnd = p_RandomNumbs->NextInt(0, SpecTotInfected[k]);
-           for(int l = 0; l < PathPopulation[k].size(); ++l){
+           int PathPopulationKthSize = PathPopulation[k].size();
+           for(int l = 0; l < PathPopulationKthSize; ++l){
                rnd = rnd - PathPopulation[k][l].NumOfHostsInfected;
                if(rnd <= 0){
                   PathPopulation[k][l].SelectedToReproduct += 1;
@@ -800,8 +816,10 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
  */
 void Environment::clearPathoInfectionData(){
     // Clear pathogens infection data
-    for (int i = 0; i < PathPopulation.size(); ++i){
-        for (int j = 0; j < PathPopulation[i].size(); ++j){
+    int PathPopulationSize = PathPopulation.size();
+    for (int i = 0; i < PathPopulationSize; ++i){
+        int PathPopulationIthSize = PathPopulation[i].size();
+        for (int j = 0; j < PathPopulationIthSize; ++j){
                 PathPopulation[i][j].clearInfections();
             }
     }
@@ -813,7 +831,8 @@ void Environment::clearPathoInfectionData(){
  */
 void Environment::clearHostInfectionsData(){
     // Clear hosts infection data
-    for(int k = 0; k < HostPopulation.size(); ++k){
+    int HostPopulationSzie = HostPopulation.size();
+    for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].clearInfections();
     }
 }
@@ -826,7 +845,8 @@ void Environment::clearHostInfectionsData(){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHosts(double mut_probabl, int timeStamp){
-    for(int k = 0; k < HostPopulation.size(); ++k){
+    int HostPopulationSzie = HostPopulation.size();
+    for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcess(mut_probabl, timeStamp);
     }
 }
@@ -845,7 +865,8 @@ void Environment::mutateHosts(double mut_probabl, int timeStamp){
  */
 void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
         double dupl, unsigned int maxGene, int timeStamp){
-    for(int k = 0; k < HostPopulation.size(); ++k){
+    int HostPopulationSzie = HostPopulation.size();
+    for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl,
                 maxGene, timeStamp);
     }
@@ -864,7 +885,8 @@ void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
  */
 void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
         double del, double dupl, unsigned int maxGene, int timeStamp){
-    for(int k = 0; k < HostPopulation.size(); ++k){
+    int HostPopulationSzie = HostPopulation.size();
+    for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDuplPointMuts(pm_mut_probabl,
                 del, dupl, maxGene, timeStamp);
     }
@@ -908,8 +930,10 @@ double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp){
-    for (int i = 0; i < PathPopulation.size(); ++i){
-        for (int j = 0; j < PathPopulation[i].size(); ++j){
+    int PathPopulationSize = PathPopulation.size();
+    for (int i = 0; i < PathPopulationSize; ++i){
+        int PathPopulationIthSize = PathPopulation[i].size();
+        for (int j = 0; j < PathPopulationIthSize; ++j){
             PathPopulation[i][j].chromoMutProcess(mut_probabl, mhcSize, timeStamp);
         }
     }
@@ -929,8 +953,10 @@ void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp
 void Environment::mutatePathogensWithRestric(double mut_probabl, int mhcSize,
         int timeStamp){
     if (PathPopulation.size() == NoMutsVec.size()){
-        for (int i = 0; i < PathPopulation.size(); ++i){
-            for (int j = 0; j < PathPopulation[i].size(); ++j){
+        int PathPopulationSize = PathPopulation.size();
+        for (int i = 0; i < PathPopulationSize; ++i){
+            int PathPopulationIthSize = PathPopulation[i].size();
+            for (int j = 0; j < PathPopulationIthSize; ++j){
                 PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
                         mhcSize, timeStamp, NoMutsVec[i]);
             }

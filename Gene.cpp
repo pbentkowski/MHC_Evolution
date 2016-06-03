@@ -173,7 +173,8 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
     int currentGene = TheGene;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgene.size(); ++i) {
+    boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
+    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) {
         if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
             bitgene[i].flip();
         }
@@ -204,7 +205,8 @@ void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
     bool exists;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgene.size(); ++i) { 
+    boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
+    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) { 
         exists = noMutts.find(i) != noMutts.end();
         if(exists == false and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
             bitgene[i].flip();

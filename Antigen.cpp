@@ -52,7 +52,8 @@ void Antigen::calculateEpitopes(int mhcSize){
     int vecSize =  TheAntigen.size() - mhcSize;
     boost::dynamic_bitset<> bitEpitope(mhcSize);
     longIntVec tmpEpis(vecSize);
-    for(int i = 0; i < tmpEpis.size(); ++i){
+    int tmpEpisSize = tmpEpis.size();
+    for(int i = 0; i < tmpEpisSize; ++i){
         for(int j = i; j < (i + mhcSize); ++j){
             bitEpitope[j-i] = TheAntigen[j];
         }
@@ -81,7 +82,8 @@ void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
     TheAntigen.clear();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<> tmpAntig(length);
-    for(boost::dynamic_bitset<>::size_type i = 0; i < tmpAntig.size(); ++i){
+    boost::dynamic_bitset<>::size_type tmpAntigSize = tmpAntig.size();
+    for(boost::dynamic_bitset<>::size_type i = 0; i < tmpAntigSize; ++i){
         if(p_RandomNumbs->NextReal(0.0, 1.0) < 0.5){
             tmpAntig[i] = true;
         } else {
@@ -106,7 +108,8 @@ void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
 void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
         int Nth, int mhcSize, int timeStamp){
     TheAntigen = bitgene;
-    for(antigenstring::size_type i = 0; i < TheAntigen.size(); i += Nth){
+    antigenstring::size_type TheAntigenSize = TheAntigen.size();
+    for(antigenstring::size_type i = 0; i < TheAntigenSize; i += Nth){
         TheAntigen[i].flip();
     }
     timeOfOrigin = timeStamp;
@@ -128,7 +131,8 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int time
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgene.size(); ++i) {
+    boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
+    for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) {
         if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
             bitgene[i].flip();
         }
@@ -160,7 +164,8 @@ void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize,
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    for(int i = 0; i < bitgene.size(); ++i) {
+    int bitgeneSize = bitgene.size();
+    for(int i = 0; i < bitgeneSize; ++i) {
         if(noMutts.count(i) == 0){
             if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
                 bitgene[i].flip(); 
@@ -222,7 +227,8 @@ longIntVec Antigen::getEpitopes(){
  */
 void Antigen::printAntigenToScreen(){
     std::cout << TheAntigen << std::endl;
-    for(int i = 0; i < Epitopes.size(); ++i){
+    int EpitopesSize = Epitopes.size();
+    for(int i = 0; i < EpitopesSize; ++i){
       std::cout <<  Epitopes[i] << " ";
     }
     std::cout << std::endl;
