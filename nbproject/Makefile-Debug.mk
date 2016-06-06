@@ -36,7 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Antigen.o \
-	${OBJECTDIR}/DataHarvester.o \
+	${OBJECTDIR}/DataHandler.o \
 	${OBJECTDIR}/Environment.o \
 	${OBJECTDIR}/Gene.o \
 	${OBJECTDIR}/H2Pinteraction.o \
@@ -76,10 +76,10 @@ ${OBJECTDIR}/Antigen.o: Antigen.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Antigen.o Antigen.cpp
 
-${OBJECTDIR}/DataHarvester.o: DataHarvester.cpp 
+${OBJECTDIR}/DataHandler.o: DataHandler.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataHarvester.o DataHarvester.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DataHandler.o DataHandler.cpp
 
 ${OBJECTDIR}/Environment.o: Environment.cpp 
 	${MKDIR} -p ${OBJECTDIR}

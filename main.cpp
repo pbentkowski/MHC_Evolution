@@ -29,7 +29,7 @@
 #include "RandomNumbs.h"
 #include "Tagging_system.h"
 #include "Environment.h"
-#include "DataHarvester.h"
+#include "DataHandler.h"
 
 /**
  * @brief A handful of tips about the input parameters.
@@ -160,7 +160,7 @@ int main(int argc, char** argv) {
         rndSeed = dist(rd);
     }
 
-    DataHarvester Data2file;  // Initialize the data harvesting mechanism
+    DataHandler Data2file;  // Initialize the data harvesting mechanism
 
     // Check if input params are of any sense
     if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, antigenLength, hostPopSize,

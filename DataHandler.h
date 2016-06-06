@@ -34,11 +34,11 @@
  * @brief Data harvesting class. A class that has methods to collect data and
  * writes them to files.
  */
-class DataHarvester {
+class DataHandler {
 public:
-    DataHarvester();
+    DataHandler();
 //    DataHarvester(const DataHarvester& orig);
-    virtual ~DataHarvester();
+    virtual ~DataHandler();
     bool checkParamsIfWrong(int rndSeed, int geneLength, int exposedMatch,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,

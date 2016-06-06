@@ -5,7 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Antigen.h</itemPath>
-      <itemPath>DataHarvester.h</itemPath>
+      <itemPath>DataHandler.h</itemPath>
       <itemPath>Environment.h</itemPath>
       <itemPath>Gene.h</itemPath>
       <itemPath>H2Pinteraction.h</itemPath>
@@ -22,7 +22,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Antigen.cpp</itemPath>
-      <itemPath>DataHarvester.cpp</itemPath>
+      <itemPath>DataHandler.cpp</itemPath>
       <itemPath>Environment.cpp</itemPath>
       <itemPath>Gene.cpp</itemPath>
       <itemPath>H2Pinteraction.cpp</itemPath>
@@ -85,9 +85,9 @@
       </item>
       <item path="Antigen.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DataHarvester.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DataHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DataHarvester.h" ex="false" tool="3" flavor2="0">
+      <item path="DataHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Environment.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -137,9 +137,9 @@
       </item>
       <item path="Antigen.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DataHarvester.cpp" ex="false" tool="1" flavor2="0">
+      <item path="DataHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DataHarvester.h" ex="false" tool="3" flavor2="0">
+      <item path="DataHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Environment.cpp" ex="false" tool="1" flavor2="0">
       </item>

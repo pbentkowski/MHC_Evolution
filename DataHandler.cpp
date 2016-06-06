@@ -29,18 +29,18 @@
 #include <vector>
 #include <tuple>
 
-#include "DataHarvester.h"
+#include "DataHandler.h"
 #include"Gene.h"
 
 typedef std::string sttr;
 
-DataHarvester::DataHarvester() {
+DataHandler::DataHandler() {
 }
 
 //DataHarvester::DataHarvester(const DataHarvester& orig) {
 //}
 
-DataHarvester::~DataHarvester() {
+DataHandler::~DataHandler() {
 }
 
 /**
@@ -88,7 +88,7 @@ auto getShannonIndx(std::vector<int> GeneVals){
 /**
  * @brief Data harvesting method. Sets status of all data files as "brand new".
  */
-void DataHarvester::setAllFilesAsFirtsTimers(){
+void DataHandler::setAllFilesAsFirtsTimers(){
     ifFirstSpecToFileRun = true;
     ifFirstHostClonesRun = true;
     ifFirstHostGeneDivRun = true;
@@ -138,7 +138,7 @@ const std::string currentDateTime(){
  * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
  */
-bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLength,
+bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
@@ -233,7 +233,7 @@ bool DataHarvester::checkParamsIfWrong(int rndSeed, int geneLength, int antigenL
  * @param alpha
  * @param fixedAntigPosit
  */
-void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int antigenLength,
+void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
@@ -288,7 +288,7 @@ void DataHarvester::inputParamsToFile(int rndSeed, int geneLength, int antigenLe
  * @param EnvObj - the Environment object
  * @param tayme - time stamp 
  */
-void DataHarvester::saveNumOfPathoSpeciesToFile(Environment& EnvObj, int tayme){
+void DataHandler::saveNumOfPathoSpeciesToFile(Environment& EnvObj, int tayme){
     if(ifFirstSpecToFileRun){
         std::ofstream PathoPopulFile;
         PathoPopulFile.open("PathoPopSizes.csv");
@@ -314,7 +314,7 @@ void DataHarvester::saveNumOfPathoSpeciesToFile(Environment& EnvObj, int tayme){
  * @param EnvObj - the Environment object
  * @param tayme - time stamp
  */
-void DataHarvester::savePathoPopulToFile(Environment& EnvObj, int tayme){
+void DataHandler::savePathoPopulToFile(Environment& EnvObj, int tayme){
     sttr theFilename = sttr("PathoGenomesFile.") + std::to_string(tayme) + sttr(".csv");
     std::ofstream PathogGenomeFile;
     PathogGenomeFile.open(theFilename);
@@ -336,7 +336,7 @@ void DataHarvester::savePathoPopulToFile(Environment& EnvObj, int tayme){
  * @param EnvObj - the Environment object
  * @param tayme - time stamp
  */
-void DataHarvester::saveHostPopulToFile(Environment& EnvObj, int tayme){
+void DataHandler::saveHostPopulToFile(Environment& EnvObj, int tayme){
     sttr theFilename = sttr("HostGenomesFile.") + std::to_string(tayme) + sttr(".csv");
     std::ofstream HostGenomesFile;
     HostGenomesFile.open(theFilename);
@@ -362,7 +362,7 @@ void DataHarvester::saveHostPopulToFile(Environment& EnvObj, int tayme){
  * @param EnvObj - the Environment object
  * @param tayme - time stamp
  */
-void DataHarvester::saveHostGeneticDivers(Environment& EnvObj, int tayme){
+void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
     if(ifFirstHostGeneDivRun){
         std::ofstream HostGeneDivFile;
         HostGeneDivFile.open("HostsGeneDivers.csv");
@@ -423,7 +423,7 @@ void DataHarvester::saveHostGeneticDivers(Environment& EnvObj, int tayme){
  * @param EnvObj - the Environment class object
  * @param tayme - time stamp
  */
-void DataHarvester::saveHostGeneNumbers(Environment& EnvObj, int tayme){
+void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     if(ifFirstGeneNumbersTotal){
         std::ofstream HostGeneNumbTotal;
         HostGeneNumbTotal.open("HostGeneNumbTotal_ChrOne.csv");
@@ -485,7 +485,7 @@ void DataHarvester::saveHostGeneNumbers(Environment& EnvObj, int tayme){
  * 
  * @param EnvObj - the Environment class object
  */
-void DataHarvester::savePathoNoMuttList(Environment& EnvObj){
+void DataHandler::savePathoNoMuttList(Environment& EnvObj){
     if(ifNoMuttPathoListUnique){
         std::ofstream NoMuttPathoList;
         NoMuttPathoList.open("NoMutationInPathoList.csv");
