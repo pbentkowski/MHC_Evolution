@@ -49,7 +49,7 @@ except:
   copyfile(mainn, local_main)
 
 OUTprog = "SCBuild/" + mainn.split("/")[-1].split(".")[0]
-SRS = ['DataHarvester.cpp', 'Environment.cpp', 'Gene.cpp',
+SRS = ['DataHandler.cpp', 'Environment.cpp', 'Gene.cpp',
        'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
        'Pathogen.cpp','RandomNumbs.cpp', 'Tagging_system.cpp',
        local_main]

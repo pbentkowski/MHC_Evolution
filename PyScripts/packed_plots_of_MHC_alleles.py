@@ -29,6 +29,7 @@ inType = np.dtype([('time', np.int), ('pop_size', np.int),
 outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
                     ('stdAllel', 'f8'), ('slope', 'f8'), ('indvMean', 'f8'),
                     ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('stdFitt', 'f8'),
+                    ('cvFitMean', 'f8'), ('cvFitSTD', 'f8'),
                     ('sourceDir', 'S99')])
 
 
@@ -169,6 +170,9 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                     stdAlle = data['num_of_MHC_types'][EqPt::].std()
                     meanFitt = data['mean_fitness'][EqPt::].mean() / pathoNorm
                     stdFitt = np.std(data['mean_fitness'][EqPt::] / pathoNorm)
+                    cvFitt = data['std_fitness']/data['mean_fitness']
+                    cvFittMean = np.mean(cvFitt[EqPt::]) / pathoNorm
+                    cvFittSTD = np.std(cvFitt[EqPt::]) / pathoNorm
                     dataFilePath = os.path.join(dirName,
                                                 "HostMHCsNumbUniq_ChrOne.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
@@ -176,7 +180,7 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                     indvSTD = np.std(hgsUNIQ[EqPt:, 1:])
                     datOut.append((var, varx, meanAlle, stdAlle, c1,
                                    indvMean, indvSTD, meanFitt, stdFitt,
-                                   dirName))
+                                   cvFittMean, cvFittSTD, dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
 
@@ -201,8 +205,10 @@ def buildStats(theData):
         stdIndv = np.sqrt(np.sum(ww['indvSTD']**2) / float(len(ww)))
         meanFitt = np.mean(ww['meanFitt'])
         stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / float(len(ww)))
+        meanCvFit = np.mean(ww['cvFitMean'])
+        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / float(len(ww)))
         meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdIndv,
-                           meanFitt, stdFitt))
+                           meanFitt, stdFitt, meanCvFit, stdCvFit))
     return np.array(meanResult)
 
 
@@ -261,6 +267,19 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
+    plt.figure(4, figsize=figSize)
+    for var in ll:
+        ww = meanResult[meanResult[:, 0] == var]
+        plt.errorbar(ww[:, 1], ww[:, 8], ww[:, 9], lw=2, marker="o", ms=8)
+        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 8]), size=annoSize)
+    plt.xlabel(str(x_label), fontsize=FS)
+    plt.ylabel("hosts average CV fitness normalized per\nnumber of " +
+               "pathogen spp. and pathogen generations", fontsize=FS)
+#    plt.xlim(limitz)
+    plt.ylim(ymin=0)
+    plt.xscale(logsc)
+    plt.tick_params(axis='both', labelsize=annoSize)
+    plt.grid(True)
 #    plt.show()
 
 
@@ -269,6 +288,7 @@ def plotDotMeans(theData):
     one chromosome."""
     clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
+    clrs += ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     FS = 18
     annoSize = int(0.85*FS)
     ll = []
@@ -277,7 +297,7 @@ def plotDotMeans(theData):
             pass
         else:
             ll.append((itm['VAR'], itm['VARX']))
-    plt.figure(4, figsize=(10, 7))
+    plt.figure(5, figsize=(10, 7))
     k = 0
     for var in ll:
         ww = theData[theData['VAR'] == var[0]]
@@ -343,10 +363,10 @@ def main():
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
         if len(theData):
+            FMT = '%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %s'
             open("DataSlice.csv", 'w').close()
-            np.savetxt("DataSlice.csv", theData,
-                       fmt='%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %s',
-                       header=headerr, comments='#')
+            np.savetxt("DataSlice.csv", theData, fmt=FMT, header=headerr,
+                       comments='#')
             for itm in theData:
                 for ii in range(len(itm) - 1):
                     print(itm[ii], "\t", end=" ")
@@ -354,7 +374,7 @@ def main():
             print("Check the output file:", str(os.getcwd()) +
                   "/DataSlice.csv for details.")
             meanResult = buildStats(theData)
-            plotAllAllesInPop(meanResult, x_Label, 'log')
+            plotAllAllesInPop(meanResult, x_Label)
             plotDotMeans(theData)
             plt.show()
         else:

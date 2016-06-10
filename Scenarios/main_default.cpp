@@ -29,7 +29,7 @@
 #include "RandomNumbs.h"
 #include "Tagging_system.h"
 #include "Environment.h"
-#include "DataHarvester.h"
+#include "DataHandler.h"
 
 /**
  * @brief A handful of tips about the input parameters.
@@ -75,7 +75,7 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here.
  *
  * Compile this program with:
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++1y
  *
  * @param argc - number of arguments
  * @param argv - list of arguments
@@ -160,7 +160,7 @@ int main(int argc, char** argv) {
         rndSeed = dist(rd);
     }
 
-    DataHarvester Data2file;  // Initialize the data harvesting mechanism
+    DataHandler Data2file;  // Initialize the data harvesting mechanism
 
     // Check if input params are of any sense
     if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, antigenLength, hostPopSize,

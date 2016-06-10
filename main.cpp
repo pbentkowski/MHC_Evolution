@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Piotr Bentkowski : bentkowski.piotr@gmail.com
  *
- * Created on 15 March 2016, 19:50
+ * Created on 12 February 2015, 17:33
  *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here.
  *
  * Compile this program with:
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++1y
  *
  * @param argc - number of arguments
  * @param argv - list of arguments
@@ -173,6 +173,13 @@ int main(int argc, char** argv) {
         printTipsToRun();
         return 0;
     }
+    if (patho_sp % 4){
+        std::cout << std::endl;
+        std::cout << "This scenario needs the number of pathogen species " <<
+                "to be multiplication of 4. Sorry." << std::endl;
+        std::cout << std::endl;
+        return 0;
+    }
     std::cout << std::endl;
     std::cout << "Everything seems fine. Running the model." << std::endl;
 
@@ -197,8 +204,8 @@ int main(int argc, char** argv) {
     Data2file.setAllFilesAsFirtsTimers();
     ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
-    ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
-                                       patho_sp, mhcGeneLength, 0, fixedAntigPosit);
+    ENV.setPathoPopulationFourClades(pathoPopSize, antigenLength, pathoGeneNumb,
+                                     patho_sp, mhcGeneLength, 0, fixedAntigPosit);
     std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     Data2file.savePathoNoMuttList(ENV);
@@ -234,7 +241,6 @@ int main(int argc, char** argv) {
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }
-        ENV.infectOneFromOneSpecHetero();
     } else {
        std::cout << "This instance of the model allows only heterozygote";
        std::cout << " advantage. Sorry :-(" << std::endl;
@@ -244,7 +250,6 @@ int main(int argc, char** argv) {
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
 
     std::cout << "Run finished. Check the output files for results." << std::endl;
-
     std::cout << std::endl;
 
     return 0;
