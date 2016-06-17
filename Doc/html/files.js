@@ -3,9 +3,9 @@ var files =
     [ ".dep.inc", "_8dep_8inc.html", null ],
     [ "Antigen.cpp", "_antigen_8cpp.html", "_antigen_8cpp" ],
     [ "Antigen.h", "_antigen_8h.html", "_antigen_8h" ],
-    [ "DataHarvester.cpp", "_data_harvester_8cpp.html", "_data_harvester_8cpp" ],
-    [ "DataHarvester.h", "_data_harvester_8h.html", [
-      [ "DataHarvester", "class_data_harvester.html", "class_data_harvester" ]
+    [ "DataHandler.cpp", "_data_handler_8cpp.html", "_data_handler_8cpp" ],
+    [ "DataHandler.h", "_data_handler_8h.html", [
+      [ "DataHandler", "class_data_handler.html", "class_data_handler" ]
     ] ],
     [ "Environment.cpp", "_environment_8cpp.html", "_environment_8cpp" ],
     [ "Environment.h", "_environment_8h.html", [

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dataharvester_2ecpp',['DataHarvester.cpp',['../_data_harvester_8cpp.html',1,'']]],
-  ['dataharvester_2eh',['DataHarvester.h',['../_data_harvester_8h.html',1,'']]]
+  ['datahandler_2ecpp',['DataHandler.cpp',['../_data_handler_8cpp.html',1,'']]],
+  ['datahandler_2eh',['DataHandler.h',['../_data_handler_8h.html',1,'']]]
 ];

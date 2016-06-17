@@ -13,7 +13,7 @@ var searchData=
   ['calculatehostsfitnessfordrift',['calculateHostsFitnessForDrift',['../class_environment.html#a596cf4db11a6e6356211a45540e04c7d',1,'Environment']]],
   ['calculatehostsfitnesspergene',['calculateHostsFitnessPerGene',['../class_environment.html#ae63fad9a51f8700cf96cd3019f5a3bec',1,'Environment']]],
   ['calculatehostsfitnessplainpresent',['calculateHostsFitnessPlainPresent',['../class_environment.html#a2d11b6356c2d62e7ebf4c97115118c5c',1,'Environment']]],
-  ['checkparamsifwrong',['checkParamsIfWrong',['../class_data_harvester.html#a4d34bbda86805717524117d2b90a9d8c',1,'DataHarvester']]],
+  ['checkparamsifwrong',['checkParamsIfWrong',['../class_data_handler.html#a8dac2873c164d487ab09f7b9f0ee70a8',1,'DataHandler']]],
   ['chromomutprocess',['chromoMutProcess',['../class_host.html#a5911792258205cae25a2a4796061fe49',1,'Host::chromoMutProcess()'],['../class_pathogen.html#a03ff2de42802d4c4649295a500fa9b54',1,'Pathogen::chromoMutProcess()']]],
   ['chromomutprocesswithdeldupl',['chromoMutProcessWithDelDupl',['../class_host.html#a48c01d4345818b873ceed7597588bd6d',1,'Host']]],
   ['chromomutprocesswithdelduplpointmuts',['chromoMutProcessWithDelDuplPointMuts',['../class_host.html#a303c0d61ab48aaa709fccfcdd14a156e',1,'Host']]],
@@ -23,5 +23,5 @@ var searchData=
   ['clearhostinfectionsdata',['clearHostInfectionsData',['../class_environment.html#adff3e1c9799ef7a3bc8d7b988bda3381',1,'Environment']]],
   ['clearinfections',['clearInfections',['../class_host.html#a7c21e1938c61966dc2657a437aeec9b9',1,'Host::clearInfections()'],['../class_pathogen.html#a4a59ff7b7bb309ee22f1cc1503518f59',1,'Pathogen::clearInfections()']]],
   ['clearpathoinfectiondata',['clearPathoInfectionData',['../class_environment.html#af43ff3d50276e23f42895c6c7ddac69c',1,'Environment']]],
-  ['currentdatetime',['currentDateTime',['../_data_harvester_8cpp.html#aa46369f3c8adbff876c82270346fffa2',1,'DataHarvester.cpp']]]
+  ['currentdatetime',['currentDateTime',['../_data_handler_8cpp.html#aa46369f3c8adbff876c82270346fffa2',1,'DataHandler.cpp']]]
 ];
