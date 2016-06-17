@@ -622,7 +622,8 @@ void Environment::selectAndReprodHostsAddOffspring(){
  * for reproduction using
  * <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">
  * fitness proportionate selection method</a> (also known as the roulette wheel
- * selection).
+ * selection). Simulates random mating of hermaphrodites with no difference 
+ * between sexes.
  */
 void Environment::selectAndReprodHostsReplace(){
     std::vector<Host> NewHostsVec;

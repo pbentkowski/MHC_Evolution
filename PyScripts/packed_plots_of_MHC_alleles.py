@@ -344,7 +344,7 @@ def main():
         sys.exit()
     startDate = None
     headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
-        + 'stdFitt sourceDir'
+        + 'stdFitt meanCvFitt stdCvFitt sourceDir'
     try:
         startDate = readDate(sys.argv[1])
     except ValueError:
