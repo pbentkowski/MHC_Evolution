@@ -116,7 +116,7 @@
 
  * \n
  * 
- * Visualisation is done using Python 2.7 scripts containing calls to Pylab library
+ * Visualisation is done using Python 3.5 scripts containing calls to Pylab library
  * (Linux distros will have it in its repos, for Windows you might check 
  * the <a href="https://store.continuum.io/cshop/anaconda/">Python Anaconda project</a>). These scripts
  * can be found in <i>PyScripts</i> directory.
