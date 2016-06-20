@@ -252,6 +252,58 @@ def hamDistInterSpecies(Popul):
     return CMP
 
 
+def loadNoMutSet(FILE):
+    """When fed with file NoMutationInPathoList.csv it loads the 'no mutation'
+    set for different pathogen species. """
+    LL = []
+    try:
+        with open(FILE) as infile:
+            for line in infile:
+                if re.search("#", line):
+                    pass
+                else:
+                    try:
+                        ll = line.split()
+                        ll = np.array(ll, dtype='int')
+                        LL.append(ll)
+                    except:
+                        print("ERROR in loadNoMutSet(): cannot convert",
+                              "data from line into numbers")
+                        return None
+        return LL
+    except:
+        print("ERROR in loadNoMutSet(): Cannot proccess the file.")
+        return None
+
+
+def checkNoMutationPositions(noMutt, antigenList, k, j):
+    """Checks if fixed position in antigens (no-mutation positions) are
+    consistent in a species. noMutt - list created by loadNoMutSet() function,
+    antigenList - list created by loadThePopulation() function, k - index on
+    a pathogen species in both lists."""
+    print("Number of no-mutation positions:", len(noMutt[k]))
+    print("Number of individuals in pathogen species:", len(antigenList[k]))
+    print("Using pathogen # 0 as template.")
+    ww = []
+    isDiff = False
+    diffCounter = 0
+    if len(noMutt[k]) == 0:
+        for itm in antigenList[j]:
+            ww.append([itm[0]])
+    else:
+        for itm in antigenList[j]:
+            ww.append([itm[0][x] for x in noMutt[k]])
+    for i, ittm in enumerate(ww):
+        if ww[0] != ittm:
+            isDiff = True
+            print("pathogen #", i, "is different!")
+            diffCounter += 1
+    if isDiff:
+        print("\n", diffCounter, "different antigens were found.")
+    else:
+        print("\nNo difference whatsoever between individuals")
+
+
 def main():
     if len(sys.argv) <= 2:
         print("Give the names of two files with data. One at the begging of" +
