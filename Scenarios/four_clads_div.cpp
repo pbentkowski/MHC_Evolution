@@ -241,6 +241,7 @@ int main(int argc, char** argv) {
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }
+        ENV.infectOneFromOneSpecHetero();
     } else {
        std::cout << "This instance of the model allows only heterozygote";
        std::cout << " advantage. Sorry :-(" << std::endl;
