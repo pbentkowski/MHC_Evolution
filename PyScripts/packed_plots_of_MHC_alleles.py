@@ -286,7 +286,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
+    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo', 'ko', 'wo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     clrs += ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     FS = 18
