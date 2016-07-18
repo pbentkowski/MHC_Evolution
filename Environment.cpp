@@ -24,6 +24,12 @@
 #include <string>
 #include <math.h>
 
+#include <iostream>     // std::cout
+#include <algorithm>    // std::shuffle
+#include <array>        // std::array
+#include <random>       // std::default_random_engine
+#include <chrono>       // std::chrono::system_clock
+
 #include "RandomNumbs.h"
 #include "Tagging_system.h"
 #include "Environment.h"
@@ -996,6 +1002,20 @@ unsigned Environment::getPathoSpeciesPopSize(unsigned spec_numb){
  */
 unsigned Environment::getHostsPopSize(){
     return HostPopulation.size();
+}
+
+void Environment::matingWithNoCommonMHC(int pop_size){
+    // Generating shuffled index array
+    std::array<int, pop_size> indxArr;
+    for (int i = 0; i < pop_size; ++i){
+        indxArr[i] = i;
+    }
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle (indxArr.begin(), indxArr.end(), std::default_random_engine(seed));
+    // proper mating
+    for (int j = 0; j < HostPopulation.size(); ++j){
+        if HostPopulation[j].getChromosomeOne().
+    }
 }
 
 //==============================================================//
