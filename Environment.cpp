@@ -1004,6 +1004,7 @@ unsigned Environment::getHostsPopSize(){
     return HostPopulation.size();
 }
 
+
 void Environment::matingWithNoCommonMHC(int pop_size){
     // Generating shuffled index array
     std::array<int, pop_size> indxArr;
@@ -1012,9 +1013,57 @@ void Environment::matingWithNoCommonMHC(int pop_size){
     }
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     shuffle (indxArr.begin(), indxArr.end(), std::default_random_engine(seed));
+    
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
     // proper mating
-    for (int j = 0; j < HostPopulation.size(); ++j){
-        if HostPopulation[j].getChromosomeOne().
+    int similCount, geneIndCount, populCount;
+    populCount = 0
+    similCount = 0;
+    while(populCount < pop_size){
+        for (int j = 0; j < HostPopulation.size(); ++j){
+            for (int k = 0; k < pop_size; ++k){
+                geneIndCount = 0;
+                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxArr[k]].getChromoOneSize(); ++m){
+                        if(HostPopulation[j].getSingleGeneFromOne(l) == 
+                           HostPopulation[indxArr[k]].getSingleGeneFromOne(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxArr[k]].getChromoTwoSize(); ++m){
+                        if(HostPopulation[j].getSingleGeneFromOne(l) == 
+                           HostPopulation[indxArr[k]].getSingleGeneFromTwo(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxArr[k]].getChromoOneSize(); ++m){
+                        if(HostPopulation[j].getSingleGeneFromTwo(l) == 
+                           HostPopulation[indxArr[k]].getSingleGeneFromOne(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxArr[k]].getChromoTwoSize(); ++m){
+                        if(HostPopulation[j].getSingleGeneFromTwo(l) == 
+                           HostPopulation[indxArr[k]].getSingleGeneFromTwo(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+                if(geneIndCount == similCount){
+                    // mate two hosts, set a new individual
+                    populCount++;
+                    break;
+                }
+            }
+
+        }
     }
 }
 
