@@ -82,7 +82,7 @@ public:
     void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
         double dupl, unsigned int maxGene, int timeStamp);
     double MMtoPMscaling(double MM_prob_mut, int geneLength);
-    void matingWithNoCommonMHC(int pop_size);
+    void matingWithNoCommonMHC();
 
     // === Data harvesting methods ===
     unsigned getPathoNumOfSpecies();
