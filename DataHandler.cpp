@@ -208,6 +208,74 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLen
 }
 
 /**
+ * @brief Input params validation method. Does the basic check if the entered 
+ * parameters are free of total nonsense
+ * 
+ * @param rndSeed
+ * @param geneLength
+ * @param hostPopSize
+ * @param hostGeneNumbb
+ * @param numOfHostGenerations
+ * @param hostMutationProb
+ * @param HeteroHomo
+ * @param hostDeletion
+ * @param hostDuplication
+ * @param maxGene
+ * @param alpha
+ * @return 
+ */
+bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int hostPopSize, 
+        int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
+        int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
+        double alpha){
+    bool ifError = false;
+    if (rndSeed < 0){
+        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
+        ifError = true;
+    }
+    if (geneLength > 31){
+        std::cout << "\nError in number of bits per gene. ";
+        std::cout << geneLength << " bits in genes is bit too much. ";
+        std::cout << "Try something less radical, e.g. smaller than 31."  << std::endl;
+        ifError =  true;
+    }   
+    if (hostMutationProb < 0.0 or hostMutationProb > 1.0){
+        std::cout << "\nError in the hosts' mutation probability. It has to be " <<
+                "within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (hostDeletion < 0.0 or hostDeletion > 1.0){
+        std::cout << "\nError in the hosts' probability of deletion of a gene. " <<
+                "It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (hostDuplication < 0.0 or hostDuplication > 1.0){
+        std::cout << "\nError in the hosts' duplication of a gene probability. " <<
+                "It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (HeteroHomo != 10 and HeteroHomo != 11){
+        std::cout << "\nError in the heterozygote advantage / lack of advantage " <<
+                "mode. It has to be 10 for heterozygote advantage or 11 for " <<
+                "lack of thereof." << std::endl;
+        ifError = true;
+    }
+    if (maxGene < 1.0 or maxGene < hostGeneNumbb){
+        std::cout << "\nError in the hosts' maximal number of genes per " <<
+                "chromosome. It has to be at least one, but not less then the " <<
+                "number used to initialize the system. "<< std::endl;
+        ifError = true;
+    }
+    if (alpha < 0.0 or alpha > 1.0){
+        std::cout << "\nError in the hosts' alpha factor for the host fitness function. " <<
+                "It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    return ifError;
+}
+
+
+/**
  * @brief Data harvesting method. Writes all the input params and some run stats
  * to a file. Must be run only ones per run of the model.
  * 
@@ -280,7 +348,73 @@ void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int antigenLeng
             fixedAntigPosit << std::endl;
     InputParams.close();
 }
-    
+
+/**
+ * @brief Data harvesting method. Writes all the input params and some run stats
+ * to a file. Must be run only ones per run of the model.
+ * 
+ * It's better to run it after running DataHarvester::checkParamsIfWrong() which
+ * will check if parameters make any sense.
+ * 
+ * @param rndSeed
+ * @param geneLength
+ * @param hostPopSize
+ * @param hostGeneNumbb
+ * @param numOfHostGenerations
+ * @param hostMutationProb
+ * @param HeteroHomo
+ * @param hostDeletion
+ * @param hostDuplication
+ * @param maxGene
+ * @param alpha
+ */
+void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int hostPopSize,
+        int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
+        int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
+        double alpha){
+    std::ofstream InputParams;
+    InputParams.open("InputParameters.csv");
+
+    InputParams << "# Runtime properties:" << std::endl;
+    InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
+    InputParams << "# Model's core parameters:" << std::endl;
+    InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
+    InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
+    InputParams << "\tnumber_of_bits_per_antigen = " << "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams << "\thost_population_size = " << hostPopSize << std::endl;
+    InputParams << "\tpathogen_population_size = " << "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams << "\tnumber_of_pathogen_species = " << "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams << "\tnumber_of_genes_per_host_one_chromosome = " << 
+        hostGeneNumbb << std::endl;
+    InputParams << "\tnumber_of_antigens_per_pathogen = " << "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams << "\tnumber_of_pathogen_generation_per_one_host_generation = " <<
+        "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams << "\tnumber_of_host_generations = " << numOfHostGenerations << std::endl;
+    InputParams << "\tmutation_probability_in_host = " << 
+            hostMutationProb << std::endl;
+    InputParams << "\tmutation_probability_in_pathogen = " << 
+            "NOT_IN_THIS_MODEL" << std::endl;
+    if (HeteroHomo == 10){
+        InputParams << "\theterozygote_advantage = YES" << std::endl;
+    }else if (HeteroHomo == 11){
+        InputParams << "\theterozygote_advantage = NO" << std::endl;
+    } else {
+        InputParams << "\theterozygote_advantage = ERROR" << std::endl;
+    }
+    InputParams << "\thost_gene_deletion_probability = " <<
+            hostDeletion << std::endl;
+    InputParams << "\thost_gene_duplication_probability = " <<
+            hostDuplication << std::endl;
+    InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
+            maxGene << std::endl;
+    InputParams << "\tAlpha_factor_for_the_host_fitness_function = " <<
+            alpha << std::endl;
+    InputParams << "\tFraction_of_antigen_bits_getting_fixed = " <<
+            "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams.close();
+}
+
+
 /**
  * @brief Data harvesting method. Writes to a file population sizes of all 
  * pathogen species in a given time.
