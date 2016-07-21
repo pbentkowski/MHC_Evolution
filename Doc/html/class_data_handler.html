@@ -125,9 +125,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8dac2873c164d487ab09f7b9f0ee70a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_handler.html#a8dac2873c164d487ab09f7b9f0ee70a8">checkParamsIfWrong</a> (int rndSeed, int geneLength, int exposedMatch, int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha, double fixedAntigPosit)</td></tr>
 <tr class="memdesc:a8dac2873c164d487ab09f7b9f0ee70a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input params validation method. Does the basic check if the entered parameters are free of total nonsense.  <a href="#a8dac2873c164d487ab09f7b9f0ee70a8">More...</a><br /></td></tr>
 <tr class="separator:a8dac2873c164d487ab09f7b9f0ee70a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc796c674797fd787b5a3a90caaf10c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_handler.html#a6dc796c674797fd787b5a3a90caaf10c">checkParamsIfWrong</a> (int rndSeed, int geneLength, int hostPopSize, int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha)</td></tr>
+<tr class="memdesc:a6dc796c674797fd787b5a3a90caaf10c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input params validation method. Does the basic check if the entered parameters are free of total nonsense.  <a href="#a6dc796c674797fd787b5a3a90caaf10c">More...</a><br /></td></tr>
+<tr class="separator:a6dc796c674797fd787b5a3a90caaf10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a2e314804a1c3550321b9d2974790cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_handler.html#a5a2e314804a1c3550321b9d2974790cb">inputParamsToFile</a> (int rndSeed, int geneLength, int exposedMatch, int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha, double fixedAntigPosit)</td></tr>
 <tr class="memdesc:a5a2e314804a1c3550321b9d2974790cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Writes all the input params and some run stats to a file. Must be run only ones per run of the model.  <a href="#a5a2e314804a1c3550321b9d2974790cb">More...</a><br /></td></tr>
 <tr class="separator:a5a2e314804a1c3550321b9d2974790cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94ac2dc148e3fce8b6041c1b650e25b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_handler.html#a94ac2dc148e3fce8b6041c1b650e25b0">inputParamsToFile</a> (int rndSeed, int geneLength, int hostPopSize, int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene, double alpha)</td></tr>
+<tr class="memdesc:a94ac2dc148e3fce8b6041c1b650e25b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Writes all the input params and some run stats to a file. Must be run only ones per run of the model.  <a href="#a94ac2dc148e3fce8b6041c1b650e25b0">More...</a><br /></td></tr>
+<tr class="separator:a94ac2dc148e3fce8b6041c1b650e25b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a049645bbd6069ad5d6a90c8469390811"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_handler.html#a049645bbd6069ad5d6a90c8469390811">setAllFilesAsFirtsTimers</a> ()</td></tr>
 <tr class="memdesc:a049645bbd6069ad5d6a90c8469390811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data harvesting method. Sets status of all data files as "brand new".  <a href="#a049645bbd6069ad5d6a90c8469390811">More...</a><br /></td></tr>
 <tr class="separator:a049645bbd6069ad5d6a90c8469390811"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -357,6 +363,107 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a6dc796c674797fd787b5a3a90caaf10c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DataHandler::checkParamsIfWrong </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rndSeed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>geneLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hostPopSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hostGeneNumbb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numOfHostGenerations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>hostMutationProb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>HeteroHomo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>hostDeletion</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>hostDuplication</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxGene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Input params validation method. Does the basic check if the entered parameters are free of total nonsense. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rndSeed</td><td></td></tr>
+    <tr><td class="paramname">geneLength</td><td></td></tr>
+    <tr><td class="paramname">hostPopSize</td><td></td></tr>
+    <tr><td class="paramname">hostGeneNumbb</td><td></td></tr>
+    <tr><td class="paramname">numOfHostGenerations</td><td></td></tr>
+    <tr><td class="paramname">hostMutationProb</td><td></td></tr>
+    <tr><td class="paramname">HeteroHomo</td><td></td></tr>
+    <tr><td class="paramname">hostDeletion</td><td></td></tr>
+    <tr><td class="paramname">hostDuplication</td><td></td></tr>
+    <tr><td class="paramname">maxGene</td><td></td></tr>
+    <tr><td class="paramname">alpha</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00227">227</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5a2e314804a1c3550321b9d2974790cb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -503,7 +610,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00236">236</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00304">304</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -520,6 +627,116 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_data_handler_a5a2e314804a1c3550321b9d2974790cb_icgraph.png" border="0" usemap="#class_data_handler_a5a2e314804a1c3550321b9d2974790cb_icgraph" alt=""/></div>
 <map name="class_data_handler_a5a2e314804a1c3550321b9d2974790cb_icgraph" id="class_data_handler_a5a2e314804a1c3550321b9d2974790cb_icgraph">
 <area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="229,12,280,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a94ac2dc148e3fce8b6041c1b650e25b0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataHandler::inputParamsToFile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rndSeed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>geneLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hostPopSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>hostGeneNumbb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numOfHostGenerations</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>hostMutationProb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>HeteroHomo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>hostDeletion</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>hostDuplication</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxGene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>alpha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Data harvesting method. Writes all the input params and some run stats to a file. Must be run only ones per run of the model. </p>
+<p>It's better to run it after running DataHarvester::checkParamsIfWrong() which will check if parameters make any sense.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rndSeed</td><td></td></tr>
+    <tr><td class="paramname">geneLength</td><td></td></tr>
+    <tr><td class="paramname">hostPopSize</td><td></td></tr>
+    <tr><td class="paramname">hostGeneNumbb</td><td></td></tr>
+    <tr><td class="paramname">numOfHostGenerations</td><td></td></tr>
+    <tr><td class="paramname">hostMutationProb</td><td></td></tr>
+    <tr><td class="paramname">HeteroHomo</td><td></td></tr>
+    <tr><td class="paramname">hostDeletion</td><td></td></tr>
+    <tr><td class="paramname">hostDuplication</td><td></td></tr>
+    <tr><td class="paramname">maxGene</td><td></td></tr>
+    <tr><td class="paramname">alpha</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00371">371</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_data_handler_a94ac2dc148e3fce8b6041c1b650e25b0_cgraph.png" border="0" usemap="#class_data_handler_a94ac2dc148e3fce8b6041c1b650e25b0_cgraph" alt=""/></div>
+<map name="class_data_handler_a94ac2dc148e3fce8b6041c1b650e25b0_cgraph" id="class_data_handler_a94ac2dc148e3fce8b6041c1b650e25b0_cgraph">
+<area shape="rect" id="node2" href="_data_handler_8cpp.html#aa46369f3c8adbff876c82270346fffa2" title="Data harvesting method. Gets current date/time, format is YYYY&#45;MM&#45;DD.HH:mm:ss. " alt="" coords="230,12,349,39"/></map>
 </div>
 </p>
 
@@ -559,7 +776,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00426">426</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00560">560</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -615,7 +832,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00365">365</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00499">499</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -670,7 +887,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00339">339</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00473">473</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -725,7 +942,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00291">291</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00425">425</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -760,7 +977,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00488">488</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00622">622</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -768,15 +985,6 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_cgraph.png" border="0" usemap="#class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_cgraph" alt=""/></div>
 <map name="class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_cgraph" id="class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_cgraph">
 <area shape="rect" id="node2" href="class_environment.html#a7ca87db3a1ceb9e27670538fce828675" title="Data harvesting method. Prepares a string with the list of fixed &quot;no mutation sites&quot; in antigens used..." alt="" coords="237,5,413,46"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_icgraph.png" border="0" usemap="#class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_icgraph" alt=""/></div>
-<map name="class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_icgraph" id="class_data_handler_a6378c36aa8e4daf8f525c0fee446897e_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="237,12,288,39"/></map>
 </div>
 </p>
 
@@ -815,7 +1023,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00317">317</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_data_handler_8cpp_source.html#l00451">451</a> of file <a class="el" href="_data_handler_8cpp_source.html">DataHandler.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -823,15 +1031,6 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_cgraph.png" border="0" usemap="#class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_cgraph" alt=""/></div>
 <map name="class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_cgraph" id="class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_cgraph">
 <area shape="rect" id="node2" href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294" title="Core method. Gets the number of species of pathogens. " alt="" coords="263,5,446,46"/><area shape="rect" id="node3" href="class_environment.html#aefe3e9cb58d92c0247cb56dda5eb57ac" title="Core method. Gets a number of individuals in a selected species of pathogen. " alt="" coords="253,70,456,111"/><area shape="rect" id="node4" href="class_environment.html#a9bbb94fdf32fa836c5b76b350bb2df4c" title="Data harvesting method. Gets the genome of selected pathogen in human&#45;readable format. " alt="" coords="258,135,451,177"/></map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_icgraph.png" border="0" usemap="#class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_icgraph" alt=""/></div>
-<map name="class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_icgraph" id="class_data_handler_a877ed5bfd00f0cbeef0413bf1d47f865_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="253,12,304,39"/></map>
 </div>
 </p>
 
@@ -875,7 +1074,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_data_handler.html">DataHandler</a></li>
-    <li class="footer">Generated on Fri Jun 17 2016 16:43:06 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Thu Jul 21 2016 16:39:08 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

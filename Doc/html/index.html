@@ -133,7 +133,7 @@ Introduction</h1>
 Compilation</h1>
 <p>The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> so if you are using GCC then version gcc 4.8 seems to be the minimum requirement. This program has some serious dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile smoothly on most modern GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons build tool</a> might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS with mentioned packages installed by running the command: <br />
  <br />
- $<b> g++ -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> DataHarvester.cpp -std=c++1y </b><br />
+ $<b> g++ -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_handler_8cpp.html">DataHandler.cpp</a> -std=c++1y </b><br />
  <br />
 It should also compile with flag -std=c++11 only with minor warnings. <br />
 The code here can be also used like a toolbox for your research. You can stitch your own <em>main_yourown.cpp</em> file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:<br />
@@ -144,7 +144,7 @@ replacing "Scenarios/main_default.cpp" with the path to your own custom <em>main
  <br />
  Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc &lt; 4.8). Then you can statically link the libraries on your fancy brand new PC running "The Awesome Linux 3000" distro and send the no-dependencies executable to cluster. Compile like this: <br />
  <br />
- $<b> g++ -static -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> DataHarvester.cpp -std=c++1y </b><br />
+ $<b> g++ -static -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_numbs_8cpp.html">RandomNumbs.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_handler_8cpp.html">DataHandler.cpp</a> -std=c++1y </b><br />
  <br />
 Or run the Scons script:<br />
  <br />
@@ -153,7 +153,7 @@ Or run the Scons script:<br />
  </p>
 <h1><a class="anchor" id="Parameters"></a>
 Parameters</h1>
-<p><b>Program takes exactly 17 parameters. These are:</b> <br />
+<p><b>In the most advanced scenario the program takes exactly 18 parameters. These are:</b> <br />
 <b> 00 </b>- Program's name <br />
 <b> 01 </b>- Seed for the RNG (when set to &lt; 0 the program will seed the RNG engine itself with a <a href="http://en.cppreference.com/w/cpp/numeric/random/random_device">truly random number using preferably /dev/random</a>). <br />
 <b> 02 </b>- Number of bits in a gene. <br />
@@ -174,7 +174,7 @@ Parameters</h1>
 <b> 17 </b>- Parameter <img class="formulaInl" alt="$\alpha$" src="form_13.png"/> in the fitness function. <br />
 <b> 18 </b>- Fraction of the antigen's bits which are forbidden from changing (a.k.a. "No Mutation Bits"). <br />
 <br />
-This program can recognise simple errors in the argument list (a probability value out of [0,1] range, negative values when positive are needed etc.), but will not recognise when they don't make a 'biological' sense.</p>
+This program can recognise simple errors in the argument list (a probability value out of [0,1] range, negative values when only positive are allowed etc.), but will not recognise when they don't make a 'biological' sense.</p>
 <h1><a class="anchor" id="The"></a>
 Output and data visualisation</h1>
 <p>Program produces a number of text files containing desired data. The file <em>InputParameters.csv</em> contains the values of parameters fed to the model. The file <em>HostsGeneDivers.csv</em> contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse simulation output. Other files are rather optional and they can be switched off by commenting out some lines in the main function (<em><a class="el" href="main_8cpp.html">main.cpp</a></em> file) what should speed up the program runtime. <br />
@@ -188,13 +188,13 @@ Output and data visualisation</h1>
 <b><em>HostMHCsNumbUniq.csv </em></b> - number of unique MHC alleles in each individual host in each time step (linked to <em>HostGeneNumbTotal.csv </em>, that each column in <em>HostGeneNumbTotal.csv </em> is represents the same cells as in <em>HostMHCsNumbUniq.csv </em>). <br />
 </p>
 <p><br />
- Visualisation is done using Python 2.7 scripts containing calls to Pylab library (Linux distros will have it in its repos, for Windows you might check the <a href="https://store.continuum.io/cshop/anaconda/">Python Anaconda project</a>). These scripts can be found in <em>PyScripts</em> directory. </p>
+ Visualisation is done using Python 3.5 scripts containing calls to Pylab library (Linux distros will have it in its repos, for Windows you might check the <a href="https://store.continuum.io/cshop/anaconda/">Python Anaconda project</a>). These scripts can be found in <em>PyScripts</em> directory. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jun 17 2016 16:43:06 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Thu Jul 21 2016 16:39:08 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -40,7 +40,7 @@
  * installed by running the command: \n 
  * \n 
  * $<b>
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++1y
  * </b>\n \n
  * It should also compile with flag -std=c++11 only with minor warnings. \n
  * The code here can be also used like a toolbox for your research. You can stitch your own <i>main_yourown.cpp</i> file 
@@ -55,14 +55,14 @@
  * \n 
  * Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc < 4.8). Then you can statically link the libraries on your fancy brand new PC running "The Awesome Linux 3000" distro and send the no-dependencies executable to cluster. Compile like this: \n \n 
  * $<b>
- * g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHarvester.cpp -std=c++1y </b>\n 
+ * g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++1y </b>\n 
  * \n
  * Or run the Scons script:\n 
  * \n 
  * $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="static" </b>\n \n
  * 
  * @section Parameters
- * <b>Program takes exactly 17 parameters. These are:</b> \n
+ * <b>In the most advanced scenario the program takes exactly 18 parameters. These are:</b> \n
  * <b> 00 </b>- Program's name \n
  * <b> 01 </b>- Seed for the RNG (when set to < 0 the program will seed the RNG engine itself with
  * a <a href="http://en.cppreference.com/w/cpp/numeric/random/random_device">truly random number using preferably /dev/random</a>). \n
@@ -87,7 +87,7 @@
  * <b> 18 </b>- Fraction of the antigen's bits which are forbidden from changing (a.k.a. "No Mutation Bits"). \n
  * \n
  * This program can recognise simple errors in the argument list (a probability value out of
- * [0,1] range, negative values when positive are needed etc.), but will not recognise
+ * [0,1] range, negative values when only positive are allowed etc.), but will not recognise
  * when they don't make a 'biological' sense.
  * 
  * @section The Output and data visualisation
