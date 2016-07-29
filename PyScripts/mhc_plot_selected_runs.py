@@ -27,9 +27,9 @@ def LoadTheData2(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 21))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 14))   # change here
             interestingOne = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 9))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 10))   # change here
             interestingTwo = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 9))
             path_spp = l[2].split()[0]
@@ -63,12 +63,14 @@ def loadTheData3(DIRR=os.getcwd()):
             if filepath == os.path.join(dirName, 'HostsGeneDivers.csv'):
                 genes = p.genfromtxt(filepath)
                 paramsFile = os.path.join(dirName, 'InputParameters.csv')
-                l = re.split(" ", ln.getline(paramsFile, 21))   # change here
+                l = re.split(" ", ln.getline(paramsFile, 14))   # change here
                 interestingOne = float(l[2])
-                l = re.split(" ", ln.getline(paramsFile, 9))   # change here
+                l = re.split(" ", ln.getline(paramsFile, 10))   # change here
                 interestingTwo = float(l[2])
                 l = re.split(" ", ln.getline(paramsFile, 9))
                 path_spp = l[2].split()[0]
+                if path_spp == "NOT_IN_THIS_MODEL":
+                    path_spp = 1
                 print("patho species:", path_spp, "| things:",  interestingOne,
                       " ; ", interestingTwo, "| dir:", dirName.split("/")[-1])
                 TheData.append((interestingOne, interestingTwo, path_spp,
@@ -92,8 +94,8 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 2500
-    Ymax = 200
+    Xmax = 100000
+    Ymax = 6000
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
@@ -147,7 +149,7 @@ def main():
             i = i + 1
             p.ylabel('Shannon\'s index', fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 6])
+            p.axis([0, Xmax, 0, 9])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
     ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
@@ -157,47 +159,49 @@ def main():
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_Shann.png")
 
-    p.figure(3, figsize=(14, 7))
-    i = 1
-    for item in TheData:
-        if (item[1] == interestTwo and item[0] == interestOne):
-            if item[2] == "NO":
-                ax = p.plot(item[3], item[8]/item[6], 'r-')
-            else:
-                ax = p.plot(item[3], item[8]/item[6], 'b-')
-            i = i + 1
-            p.ylabel("CV fitness", fontsize=AxLabelFontSize)
-            p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 2.5])
-            p.xticks(size=AxisTickFontSize)
-            p.yticks(size=AxisTickFontSize)
-#    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
-#                    fontsize=AnnotateFontSize)
-    p.grid()
-    if saveFiggs:
-        p.savefig("one_" + str(interestOne) + ".two_" +
-                  str(interestTwo) + "_H_CV_fitt.png")
-
-    p.figure(4, figsize=(14, 7))
-    i = 1
-    for item in TheData:
-        if (item[1] == interestTwo and item[0] == interestOne):
-            XX = float(item[3][annotShift + i*annotScale])
-            YY = float(item[6][annotShift + i*annotScale])
-            if item[2] == "NO":
-                ax = p.plot(item[3], item[8]/float(item[2]), 'r-')
-            else:
-                ax = p.plot(item[3], item[8]/float(item[2]), 'b-')
-            i = i + 1
-            p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
-            p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 3.0])
-            p.xticks(size=AxisTickFontSize)
-            p.yticks(size=AxisTickFontSize)
-    p.grid()
-    if saveFiggs:
-        p.savefig("one_" + str(interestOne) + ".two_" +
-                  str(interestTwo) + "_H_fitt.png")
+#==============================================================================
+#     p.figure(3, figsize=(14, 7))
+#     i = 1
+#     for item in TheData:
+#         if (item[1] == interestTwo and item[0] == interestOne):
+#             if item[2] == "NO":
+#                 ax = p.plot(item[3], item[8]/item[6], 'r-')
+#             else:
+#                 ax = p.plot(item[3], item[8]/item[6], 'b-')
+#             i = i + 1
+#             p.ylabel("CV fitness", fontsize=AxLabelFontSize)
+#             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
+#             p.axis([0, Xmax, 0, 2.5])
+#             p.xticks(size=AxisTickFontSize)
+#             p.yticks(size=AxisTickFontSize)
+# #    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
+# #                    fontsize=AnnotateFontSize)
+#     p.grid()
+#     if saveFiggs:
+#         p.savefig("one_" + str(interestOne) + ".two_" +
+#                   str(interestTwo) + "_H_CV_fitt.png")
+#
+#     p.figure(4, figsize=(14, 7))
+#     i = 1
+#     for item in TheData:
+#         if (item[1] == interestTwo and item[0] == interestOne):
+#             XX = float(item[3][annotShift + i*annotScale])
+#             YY = float(item[6][annotShift + i*annotScale])
+#             if item[2] == "NO":
+#                 ax = p.plot(item[3], item[8]/float(item[2]), 'r-')
+#             else:
+#                 ax = p.plot(item[3], item[8]/float(item[2]), 'b-')
+#             i = i + 1
+#             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
+#             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
+#             p.axis([0, Xmax, 0, 3.0])
+#             p.xticks(size=AxisTickFontSize)
+#             p.yticks(size=AxisTickFontSize)
+#     p.grid()
+#     if saveFiggs:
+#         p.savefig("one_" + str(interestOne) + ".two_" +
+#                   str(interestTwo) + "_H_fitt.png")
+#==============================================================================
 
     p.show()
 
