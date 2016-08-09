@@ -86,6 +86,22 @@
  * <b> 17 </b>- Parameter \f$\alpha\f$ in the fitness function. \n
  * <b> 18 </b>- Fraction of the antigen's bits which are forbidden from changing (a.k.a. "No Mutation Bits"). \n
  * \n
+ * <b>Less advanced version that checks sexual selection takes exactly 11 parameters. These are:</b> \n
+ * <b> 00 </b>- Program's name \n
+ * <b> 01 </b>- Seed for the RNG (when set to < 0 the program will seed the RNG engine itself with a 
+ * truly random number). \n
+ * <b> 02 </b>- Number of bits in a MHC gene.\n
+ * <b> 03 </b>- Host population size.\n                                                                                                                                                                                                                   
+ * <b> 04 </b>- Number of genes in one host chromosome (they have two chromosomes). \n                                                                                                                                                                             
+ * <b> 05 </b>- Number of host generations (effective length of model run). \n                                                                                                                                                                                   
+ * <b> 06 </b>- Probability of mutation in hosts ([0,1] range). \n                                                                                                                                                                                                
+ * <b> 07 </b>- The heterozygote advantage / lack of advantage mode. It has to be 10 for heterozygote 
+ * advantage or 11 for lack of thereof. \n                                                                                                                      
+ * <b> 08 </b>- Probability of deleting a gene in the host ([0,1] range). \n                                                                                                                                                                                       
+ * <b> 09 </b>- Probability of duplicating a gene in the host ([0,1] range).  \n                                                                                                                                                                                    
+ * <b> 10 </b>- Maximal number of genes permitted in one host chromosome.  \n                                                                                                                                                                                      
+ * <b> 11 </b>- Alpha factor for the host fitness function ([0,1] range). \n  
+ * \n
  * This program can recognise simple errors in the argument list (a probability value out of
  * [0,1] range, negative values when only positive are allowed etc.), but will not recognise
  * when they don't make a 'biological' sense.

@@ -83,6 +83,7 @@ public:
         double dupl, unsigned int maxGene, int timeStamp);
     double MMtoPMscaling(double MM_prob_mut, int geneLength);
     void matingWithNoCommonMHC();
+    void matingWithOneDifferentMHC();
 
     // === Data harvesting methods ===
     unsigned getPathoNumOfSpecies();

@@ -26,6 +26,7 @@ var class_environment =
     [ "infectEveryOne", "class_environment.html#a670a9eaf38f556ab8ca096bc9a1433a5", null ],
     [ "infectOneFromOneSpecHetero", "class_environment.html#aecd592b734359557235bb0a6980f77f9", null ],
     [ "matingWithNoCommonMHC", "class_environment.html#a00d8b158811c0fa36a3fdeccdfebea91", null ],
+    [ "matingWithOneDifferentMHC", "class_environment.html#a7d3359f2eaf7379600239d18506aafe0", null ],
     [ "MMtoPMscaling", "class_environment.html#a13b07a4255b87d29541d0f78af6f49f7", null ],
     [ "mutateHosts", "class_environment.html#ad3d9445c714e728df229eabbe425fff1", null ],
     [ "mutateHostsWithDelDupl", "class_environment.html#af7fc9c6750f847a8260df37927646583", null ],

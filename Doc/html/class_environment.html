@@ -212,8 +212,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a13b07a4255b87d29541d0f78af6f49f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. When given micro-recombination mutation probability it returns point-mutation probability calculated the way that it the average number of new MHC match in both mutation scenarios.  <a href="#a13b07a4255b87d29541d0f78af6f49f7">More...</a><br /></td></tr>
 <tr class="separator:a13b07a4255b87d29541d0f78af6f49f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00d8b158811c0fa36a3fdeccdfebea91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a00d8b158811c0fa36a3fdeccdfebea91">matingWithNoCommonMHC</a> ()</td></tr>
-<tr class="memdesc:a00d8b158811c0fa36a3fdeccdfebea91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Creates a new generation of hosts by sexual reproduction with negative preference towards MHC similarity between mates.  <a href="#a00d8b158811c0fa36a3fdeccdfebea91">More...</a><br /></td></tr>
+<tr class="memdesc:a00d8b158811c0fa36a3fdeccdfebea91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Creates a new generation of hosts by sexual reproduction with strong negative preference towards MHC similarity between mates.  <a href="#a00d8b158811c0fa36a3fdeccdfebea91">More...</a><br /></td></tr>
 <tr class="separator:a00d8b158811c0fa36a3fdeccdfebea91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3359f2eaf7379600239d18506aafe0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#a7d3359f2eaf7379600239d18506aafe0">matingWithOneDifferentMHC</a> ()</td></tr>
+<tr class="memdesc:a7d3359f2eaf7379600239d18506aafe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Creates a new generation of hosts by sexual reproduction with weak negative preference towards MHC similarity between mates.  <a href="#a7d3359f2eaf7379600239d18506aafe0">More...</a><br /></td></tr>
+<tr class="separator:a7d3359f2eaf7379600239d18506aafe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2adc5e02f72005d7854a4d597c4c294"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_environment.html#ae2adc5e02f72005d7854a4d597c4c294">getPathoNumOfSpecies</a> ()</td></tr>
 <tr class="memdesc:ae2adc5e02f72005d7854a4d597c4c294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Gets the number of species of pathogens.  <a href="#ae2adc5e02f72005d7854a4d597c4c294">More...</a><br /></td></tr>
 <tr class="separator:ae2adc5e02f72005d7854a4d597c4c294"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -475,7 +478,7 @@ Here is the caller graph for this function:</div>
 <p>Data harvesting method. Prepares a string with the list of fixed "no mutation sites" in antigens used by the DataHarvester to write these data to file. </p>
 <dl class="section return"><dt>Returns</dt><dd>a string listing all the fixed sites in all pathogen species </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01115">1115</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01203">1203</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -502,7 +505,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01149">1149</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01237">1237</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -538,7 +541,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string of the host's chromosome in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01104">1104</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01192">1192</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -629,7 +632,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a string of the pathogen's chromosome in a human-readable format. </dd></dl>
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01093">1093</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01181">1181</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -721,7 +724,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01131">1131</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01219">1219</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -748,7 +751,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01136">1136</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01224">1224</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -775,7 +778,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01126">1126</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01214">1214</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 </div>
 </div>
@@ -803,7 +806,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01141">1141</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01229">1229</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -840,7 +843,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01145">1145</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01233">1233</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -917,17 +920,46 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Creates a new generation of hosts by sexual reproduction with negative preference towards MHC similarity between mates. </p>
+<p>Core method. Creates a new generation of hosts by sexual reproduction with strong negative preference towards MHC similarity between mates. </p>
 <p>There are no sexes as the host species is assumed a hermaphrodite. Each individual checks out all other individuals in the population in a random order and mates with the first individual that has 0 same MHCs. If 0-similarity-rule will not provide enough offspring to match the old population size, then 1 same MHC is accepted, after that 2 same MHC are OK, etc. until the algorithm will recreate a population of the same size as the original one. </p>
 
 <p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01018">1018</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
 
+</div>
+</div>
+<a class="anchor" id="a7d3359f2eaf7379600239d18506aafe0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Environment::matingWithOneDifferentMHC </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core method. Creates a new generation of hosts by sexual reproduction with weak negative preference towards MHC similarity between mates. </p>
+<p>There are no sexes as the host species is assumed a hermaphrodite. Each individual checks out all other individuals in the population in a random order and mates with the first individual that has at least one different MHC. If one-similarity-rule will not provide enough offspring to match the old population size, then partners are matched at random until the algorithm will recreate a population of the same size as the original one. </p>
+
+<p>Definition at line <a class="el" href="_environment_8cpp_source.html#l01095">1095</a> of file <a class="el" href="_environment_8cpp_source.html">Environment.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_environment_a7d3359f2eaf7379600239d18506aafe0_cgraph.png" border="0" usemap="#class_environment_a7d3359f2eaf7379600239d18506aafe0_cgraph" alt=""/></div>
+<map name="class_environment_a7d3359f2eaf7379600239d18506aafe0_cgraph" id="class_environment_a7d3359f2eaf7379600239d18506aafe0_cgraph">
+<area shape="rect" id="node2" href="class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="248,12,437,39"/></map>
+</div>
+</p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_environment_a00d8b158811c0fa36a3fdeccdfebea91_icgraph.png" border="0" usemap="#class_environment_a00d8b158811c0fa36a3fdeccdfebea91_icgraph" alt=""/></div>
-<map name="class_environment_a00d8b158811c0fa36a3fdeccdfebea91_icgraph" id="class_environment_a00d8b158811c0fa36a3fdeccdfebea91_icgraph">
-<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="240,12,291,39"/></map>
+<div class="center"><img src="class_environment_a7d3359f2eaf7379600239d18506aafe0_icgraph.png" border="0" usemap="#class_environment_a7d3359f2eaf7379600239d18506aafe0_icgraph" alt=""/></div>
+<map name="class_environment_a7d3359f2eaf7379600239d18506aafe0_icgraph" id="class_environment_a7d3359f2eaf7379600239d18506aafe0_icgraph">
+<area shape="rect" id="node2" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="248,12,299,39"/></map>
 </div>
 </p>
 
@@ -2049,7 +2081,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_environment.html">Environment</a></li>
-    <li class="footer">Generated on Thu Jul 21 2016 16:39:08 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Tue Aug 9 2016 16:16:54 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

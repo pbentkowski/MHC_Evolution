@@ -94,8 +94,8 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 100000
-    Ymax = 6000
+    Xmax = 50000
+    Ymax = 11000
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])

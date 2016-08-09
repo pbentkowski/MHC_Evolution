@@ -1005,7 +1005,7 @@ unsigned Environment::getHostsPopSize(){
 
 /**
  * @brief Core method. Creates a new generation of hosts by sexual reproduction
- *  with negative preference towards MHC similarity between mates.
+ *  with strong negative preference towards MHC similarity between mates.
  * 
  * There are no sexes as the host species is assumed a hermaphrodite. Each 
  * individual checks out all other individuals in the population in a random
@@ -1077,6 +1077,94 @@ void Environment::matingWithNoCommonMHC(){
 
         }
         similCount++;
+    }
+}
+
+/**
+ * @brief Core method. Creates a new generation of hosts by sexual reproduction
+ *  with weak negative preference towards MHC similarity between mates.
+ * 
+ * There are no sexes as the host species is assumed a hermaphrodite. Each 
+ * individual checks out all other individuals in the population in a random
+ * order and mates with the first individual that has at least one different
+ * MHC. If one-similarity-rule will not provide enough offspring to match the
+ * old population size, then partners are matched at random until the algorithm
+ * will recreate a population of the same size as the original one.
+ * 
+ */
+void Environment::matingWithOneDifferentMHC(){
+    int popSize = int (HostPopulation.size());
+    // Generating a vector of shuffled indices 
+    std::vector<int> indxVec;
+    for (int i = 0; i < popSize; ++i){
+        indxVec.push_back(i);
+    }
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    shuffle (indxVec.begin(), indxVec.end(), std::default_random_engine(seed));
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
+    bool isThereMatch;
+    int spare;
+    // proper mating
+    while(int (NewHostsVec.size()) < popSize){
+        for (int j = 0; j < HostPopulation.size(); ++j){
+            for (int k = 0; k < popSize; ++k){
+                isThereMatch = false;
+                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
+                        if(HostPopulation[j].getOneGeneFromOne(l) == 
+                           HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
+                            isThereMatch = true;
+                            goto got_a_match;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
+                        if(HostPopulation[j].getOneGeneFromOne(l) == 
+                           HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
+                            isThereMatch = true;
+                            goto got_a_match;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
+                        if(HostPopulation[j].getOneGeneFromTwo(l) == 
+                           HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
+                            isThereMatch = true;
+                            goto got_a_match;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
+                        if(HostPopulation[j].getOneGeneFromTwo(l) == 
+                           HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
+                            isThereMatch = true;
+                            goto got_a_match;
+                        }
+                    }
+                }
+                got_a_match:
+                if(isThereMatch){
+                    // mate two hosts, set a new individual
+                    NewHostsVec.push_back(HostPopulation[j]);
+                    NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
+                    NewHostsVec.back().swapChromosomes();
+                    break;
+                }
+            }
+            if (isThereMatch == false){
+                NewHostsVec.push_back(HostPopulation[j]);
+                NewHostsVec.back().
+                  assignChromTwo(HostPopulation[p_RandomNumbs->NextInt(0, popSize-1)].
+                  getChromosomeTwo());
+                NewHostsVec.back().swapChromosomes();
+            }
+        }
     }
 }
 

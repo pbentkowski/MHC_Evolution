@@ -4,6 +4,7 @@ var searchData=
   ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
   ['mainpage_2eh',['mainpage.h',['../mainpage_8h.html',1,'']]],
   ['matingwithnocommonmhc',['matingWithNoCommonMHC',['../class_environment.html#a00d8b158811c0fa36a3fdeccdfebea91',1,'Environment']]],
+  ['matingwithonedifferentmhc',['matingWithOneDifferentMHC',['../class_environment.html#a7d3359f2eaf7379600239d18506aafe0',1,'Environment']]],
   ['mergechromosomes',['mergeChromosomes',['../class_host.html#a55edfefc42f7306c85983474500ef10b',1,'Host']]],
   ['mmtopmscaling',['MMtoPMscaling',['../class_environment.html#a13b07a4255b87d29541d0f78af6f49f7',1,'Environment']]],
   ['mutateantgbitbybitwithres',['mutateAntgBitByBitWithRes',['../class_antigen.html#a6edb2d08312947e1c01d28cf659a564f',1,'Antigen']]],
