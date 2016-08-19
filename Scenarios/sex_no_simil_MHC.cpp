@@ -97,10 +97,10 @@ int main(int argc, char** argv) {
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
         mhcGeneLength = boost::lexical_cast<int>(argv[2]);
-        hostPopSize = boost::lexical_cast<int>(argv[3]);  
+        hostPopSize = boost::lexical_cast<int>(argv[3]);
         hostGeneNumbb = boost::lexical_cast<int>(argv[4]);
         numOfHostGenerations = boost::lexical_cast<int>(argv[5]);
-        hostMutationProb = boost::lexical_cast<double>(argv[6]);  
+        hostMutationProb = boost::lexical_cast<double>(argv[6]);
         HeteroHomo = boost::lexical_cast<int>(argv[7]);
         deletion = boost::lexical_cast<double>(argv[8]);
         duplication = boost::lexical_cast<double>(argv[9]);
@@ -185,13 +185,14 @@ int main(int argc, char** argv) {
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveHostGeneNumbers(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
+//            std::cout << "Host loop " << i << " :";
             ENV.matingWithNoCommonMHC();
             ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication,
                                        maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
             Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
-//           std::cout << "Host loop " << i << " finished" << std::endl;
+//           std::cout << std::endl;
         }
     } else {
        std::cout << "This instance of the model allows only heterozygote";

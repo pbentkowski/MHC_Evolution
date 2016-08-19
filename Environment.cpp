@@ -1066,7 +1066,7 @@ void Environment::matingWithNoCommonMHC(){
                         }
                     }
                 }
-                if(geneIndCount == similCount){
+                if(geneIndCount == similCount and int(NewHostsVec.size()) < popSize){
                     // mate two hosts, set a new individual
                     NewHostsVec.push_back(HostPopulation[j]);
                     NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
@@ -1074,9 +1074,17 @@ void Environment::matingWithNoCommonMHC(){
                     break;
                 }
             }
-
         }
         similCount++;
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in matingWithNoCommonMHC(): Size mismatch " <<
+                "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
 
@@ -1149,7 +1157,7 @@ void Environment::matingWithOneDifferentMHC(){
                     }
                 }
                 got_a_match:
-                if(isThereMatch){
+                if(isThereMatch and int(NewHostsVec.size()) < popSize){
                     // mate two hosts, set a new individual
                     NewHostsVec.push_back(HostPopulation[j]);
                     NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
@@ -1157,7 +1165,7 @@ void Environment::matingWithOneDifferentMHC(){
                     break;
                 }
             }
-            if (isThereMatch == false){
+            if (isThereMatch == false and int(NewHostsVec.size()) < popSize){
                 NewHostsVec.push_back(HostPopulation[j]);
                 NewHostsVec.back().
                   assignChromTwo(HostPopulation[p_RandomNumbs->NextInt(0, popSize-1)].
@@ -1165,6 +1173,15 @@ void Environment::matingWithOneDifferentMHC(){
                 NewHostsVec.back().swapChromosomes();
             }
         }
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in matingWithOneDifferentMHC(): Size mismatch " <<
+                "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
 

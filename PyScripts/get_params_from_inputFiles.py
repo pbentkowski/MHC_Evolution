@@ -42,7 +42,7 @@ def loadTheDateFromParamFile(filePar):
         theDay = dt.date(int(l[0]), int(l[1]), int(l[2]))
         return theDay
     except:
-        print("ERROR in loadTheDate(): Cannot covert data into the date",
+        print("ERROR in loadTheDate(): Cannot convert data into the date",
               "format. Check if the data file has the right flavour.")
         return None
 
