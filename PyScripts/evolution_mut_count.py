@@ -15,7 +15,7 @@ import sys
 import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
-#import bitstring as bts
+import bitstring as bts
 
 
 def loadHostPopulation(FILE):
@@ -52,7 +52,11 @@ def main():
         sys.exit()
     try:
         l = re.split(" ", ln.getline("InputParameters.csv", 9))
-        print("No. of pathogen species =", int(l[2]))
+        try:
+            pathoSpp = int(l[2])
+        except:
+            pathoSpp = str(l[2])
+        print("No. of pathogen species =", pathoSpp)
     except:
         print("Can't find parameter file! You may be in a wrong directory.")
         sys.exit()
