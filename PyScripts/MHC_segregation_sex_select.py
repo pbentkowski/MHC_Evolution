@@ -17,6 +17,7 @@ import scipy.cluster.hierarchy as sch
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import matplotlib
+import random
 
 
 def loadHostPopulation(FILE):
@@ -47,11 +48,62 @@ def loadHostPopulation(FILE):
               "loadHostPopulation(): {0}".format(e.strerror))
 
 
-def calculateCooccurrMatrix(hostList):
+def createCloneList(hostList, removeConvergence="no"):
+    ''' '''
+    cloneList = []
+    cloneList.append(hostList[0])
+    for indv in hostList:
+        newOne = False
+        for indvC in cloneList:            
+            if np.array_equal(indv, indvC):
+                newOne = False
+                break   
+            else:
+                newOne = True
+        if newOne:            
+            cloneList.append(indv)
+    if removeConvergence == "no":
+        return cloneList
+    else:
+        sortedCloneList = []
+        for indvS in cloneList:
+            sortedCloneList.append(np.sort(indvS))
+        reducedCloneList = []
+        reducedCloneList.append(sortedCloneList[0])
+        for indv in sortedCloneList:
+            newOne = False
+            for indvC in reducedCloneList:            
+                if np.array_equal(indv, indvC):
+                    newOne = False
+                    break   
+                else:
+                    newOne = True
+            if newOne:            
+                reducedCloneList.append(indv)
+        return reducedCloneList
+    
+
+def calculateCloneSimMatrix(cloneList):
+    """ """
+    N = len(cloneList)
+    simMtx = np.zeros((N, N))
+    for i, indv in enumerate(cloneList):
+        for j, indv2 in enumerate(cloneList):
+            count = 0.
+            for gene in indv:
+                if gene in indv2:
+                    count += 1.
+            simMtx[i, j] = count
+    return simMtx / float(len(cloneList[0]))
+    
+        
+
+
+def calculateGeneCooccurrMatrix(hostList):
     """Takes the list of hosts and their MHC genes and calculates co-occurrence
     of genes found in the population."""
     if len(hostList) == 0:
-        print("ERROR in calculateCooccurrMatrix(): the hosts list is empty.")
+        print("ERROR in calculateGeneCooccurrMatrix(): the hosts list is empty.")
         return None
     # === fetch unique MHC genes ===
     geneList = []
@@ -86,10 +138,10 @@ def calculateCooccurrMatrix(hostList):
     return geneFreq, cooccMtx / geneFreqMtx
 
 
-def clusterAndPlotMHCgenes(mtx, low=0, high=1):
+def clusterAndPlotSimMtx(mtx, figgNum=1, low=0, high=1):
     """Does the clustering of co-occurring MHC genes using SciPy clustering
     package and plots dendrogram and co-occurrence matrix. Takes on input 
-    co-occurrence matrix calculated by calculateCooccurrMatrix()."""
+    co-occurrence matrix calculated by calculateGeneCooccurrMatrix()."""
     FontSize = 15
 #    TiitlFontSize = 12
     TickSize = 14
@@ -99,7 +151,7 @@ def clusterAndPlotMHCgenes(mtx, low=0, high=1):
     yy = sch.linkage(mtx, method='centroid')
     plt.clf()
     plt.axes().set_aspect(4.0)
-    plt.figure(1, figsize=(16, 8), frameon=False, dpi=100)
+    plt.figure(figgNum, figsize=(16, 8), frameon=False, dpi=100)
     gs = gridspec.GridSpec(1, 2, width_ratios=[1, 3])
     plt.subplot(gs[0])
     matplotlib.rcParams['lines.linewidth'] = 3.7
@@ -128,13 +180,38 @@ def plotFrequencies(geneFreq):
     FontSize = 12
 #    TitlFontSize = 12
 #    TickSize = 14
-    plt.figure(2, figsize=(10, 5), frameon=False, dpi=100)
+    plt.figure(3, figsize=(8, 5), frameon=False, dpi=100)
     plt.bar(np.arange(N)-0.5, geneFreq)
     plt.xlim((0, N))
     plt.grid(True)
     plt.xlabel("MHC gene tag", fontsize=FontSize)
-    plt.ylabel("Number of host individuals with the gene", fontsize=FontSize)
+    plt.ylabel("number of host individuals with the gene", fontsize=FontSize)
     
+    
+def countAndPlotClonalIndiv(hostList, fracOfPop=0.2):
+    """ """
+    FontSize = 11
+    TickSize = 9
+    selectIndiv = int(fracOfPop * float(len(hostList)))
+    ww =random.sample(hostList, selectIndiv)
+    ll = []
+    for i, itm in enumerate(ww):
+        count = 0
+        for j, itm2 in enumerate(ww):
+            if (np.array_equal(itm, itm2) and i != j):
+                count += 1
+        ll.append(count)
+    ll = np.array(ll, dtype=float)
+    cloneFreq = ll / float(len(ww))
+    # === plot it ===
+    plt.figure(3, figsize=(8, 5))  #, frameon=False, dpi=100)
+    plt.hist(cloneFreq, normed=True)
+    plt.grid(True)
+    plt.xlabel("fraction of population size", fontsize=FontSize)
+    plt.ylabel("frequency of occurrence", fontsize=FontSize)
+    plt.xticks(fontsize=TickSize)
+    plt.yticks(fontsize=TickSize)
+
 
 def main():
     """ """
@@ -148,8 +225,12 @@ def main():
               "format.")
         sys.exit()
     try:
-        geneFreq, cooccMtx = calculateCooccurrMatrix(hostList)
-        clusterAndPlotMHCgenes(cooccMtx)
+        geneFreq, cooccMtx = calculateGeneCooccurrMatrix(hostList)
+        cloneList = createCloneList(hostList, "yes")
+        cloneSimMtx = calculateCloneSimMatrix(cloneList)
+        clusterAndPlotSimMtx(cooccMtx, 1)
+        plt.show()
+        clusterAndPlotSimMtx(cloneSimMtx, 1)
         plotFrequencies(geneFreq)
         print("=================================")
         print("There are", geneFreq.shape[0], "MHC types in population.")
