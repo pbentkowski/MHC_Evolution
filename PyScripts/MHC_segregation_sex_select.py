@@ -230,7 +230,7 @@ def main():
         cloneList = createCloneList(hostList, "yes")
         cloneSimMtx = calculateCloneSimMatrix(cloneList)
         clusterAndPlotSimMtx(cooccMtx, "CoocurrenceMatrix_genes.png", 1)
-        plt.show()
+#        plt.show()
         clusterAndPlotSimMtx(cloneSimMtx, "SimMatrix_clones.png", 1)
         plotFrequencies(geneFreq)
         print("=================================")
