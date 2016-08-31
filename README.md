@@ -11,7 +11,7 @@ Authors:
 Coded by **Piotr Bentkowski** - bentkowski.piotr@gmail.com  
 in collaboration with **Jacek Radwan** - jradwan@amu.edu.pl 
 
-https://sites.google.com/site/evobiolab/home">Evolutionary Biology Group  
+https://sites.google.com/site/evobiolab/home Evolutionary Biology Group  
 Faculty of Biology  
 Adam Mickiewicz University  
 ul. Umultowska 89  
@@ -20,12 +20,12 @@ Poland
 
 How to compile:
 -----------
-The program was written in https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard so if you are using GCC then version gcc 4.8 seems to be the minimum requirement. This program has
-some serious dependencies on http://www.boost.org/">C++ Boost Libraries. Should compile smoothly on most modern GNU/Linux distros with Boost Libs installed. Having http://www.scons.org/">Scons build tool might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS as well as 16.04 LTS with mentioned packages installed by running the command:     
+The program was written in https://en.wikipedia.org/wiki/C%2B%2B14 C++14 standard so if you are using GCC then version gcc 4.8 seems to be the minimum requirement. This program has
+some serious dependencies on http://www.boost.org/ C++ Boost Libraries. Should compile smoothly on most modern GNU/Linux distros with Boost Libs installed. Having http://www.scons.org/ Scons build tool might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS as well as 16.04 LTS with mentioned packages installed by running the command:     
 
 $** g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++14**       
 
-It should also compile with flag -std=c++11 only with minor warnings. The code here can be also used like a toolbox for your research. You can stitch your own <i>main_yourown.cpp</i> file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:    
+It should also compile with flag -std=c++11 only with minor warnings. The code here can be also used like a toolbox for your research. You can stitch your own *main_yourown.cpp* file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:    
 
 $** scons -Q scenario="Scenarios/main_default.cpp"**       
 
