@@ -123,7 +123,8 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp){
  * 
  * Iterates through the both chromosomes and calls gene mutation function. Genes 
  * mutate at random depending on the probability which was user-defined. Also at
- * random a gene can be deleted or duplicated.
+ * random a gene can be deleted or duplicated. If there's only one single gene
+ * in the chromosome then no deletion will be carried on.
  * 
  * @param mut_probabl - mutation probability, a probability a gene will be
  * replaced by a new one
@@ -144,7 +145,7 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
                 ChromosomeOne.push_back(ChromosomeOne[i]);
             }
-            if(ChromosomeOne.size() and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeOne.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
                 ChromosomeOne.erase(ChromosomeOne.begin() + i);
             }
         }
@@ -156,7 +157,7 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
                 ChromosomeTwo.push_back(ChromosomeTwo[i]);
             }
-            if(ChromosomeTwo.size() and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeTwo.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
                 ChromosomeTwo.erase(ChromosomeTwo.begin() + i);
             }
         }
@@ -169,7 +170,8 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
  * 
  * Iterates through the both chromosomes and calls gene mutation function. Point
  * sites in genes are mutated at random depending on the probability which was 
- * user-defined. Also at random a gene can be deleted or duplicated.
+ * user-defined. Also at random a gene can be deleted or duplicated. If there's
+ * only one single gene in the chromosome then no deletion will be carried on.
  * 
  * @param pm_mut_probabl - point mutation probability, a probability a gene 
  * will be replaced by a new one
@@ -190,7 +192,7 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
                 ChromosomeOne.push_back(ChromosomeOne[i]);
             }
-            if(ChromosomeOne.size() and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeOne.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
                 ChromosomeOne.erase(ChromosomeOne.begin() + i);
             }
         }
@@ -202,7 +204,7 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
                 ChromosomeTwo.push_back(ChromosomeTwo[i]);
             }
-            if(ChromosomeTwo.size() and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeTwo.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
                 ChromosomeTwo.erase(ChromosomeTwo.begin() + i);
             }
         }

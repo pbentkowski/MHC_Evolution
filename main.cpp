@@ -97,10 +97,10 @@ int main(int argc, char** argv) {
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
         mhcGeneLength = boost::lexical_cast<int>(argv[2]);
-        hostPopSize = boost::lexical_cast<int>(argv[3]);  
+        hostPopSize = boost::lexical_cast<int>(argv[3]);
         hostGeneNumbb = boost::lexical_cast<int>(argv[4]);
         numOfHostGenerations = boost::lexical_cast<int>(argv[5]);
-        hostMutationProb = boost::lexical_cast<double>(argv[6]);  
+        hostMutationProb = boost::lexical_cast<double>(argv[6]);
         HeteroHomo = boost::lexical_cast<int>(argv[7]);
         deletion = boost::lexical_cast<double>(argv[8]);
         duplication = boost::lexical_cast<double>(argv[9]);
@@ -165,8 +165,8 @@ int main(int argc, char** argv) {
 
     Environment ENV; // Initialize the simulation environment
     Data2file.setAllFilesAsFirtsTimers();
-//    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
-    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+//    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     std::ofstream InputParams;

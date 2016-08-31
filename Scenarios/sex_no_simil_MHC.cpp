@@ -165,8 +165,8 @@ int main(int argc, char** argv) {
 
     Environment ENV; // Initialize the simulation environment
     Data2file.setAllFilesAsFirtsTimers();
-//    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
-    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+//    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     std::ofstream InputParams;
