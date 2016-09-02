@@ -1,0 +1,21 @@
+digraph "RandomNumbs::NextInt"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="RandomNumbs::NextInt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Environment::setHostRandom\lPopulation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#a3b828fcd48c6ef8b0d8d7ea61de3817b",tooltip="Core method. Initializes a vector containing host population. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Environment::infectOneFrom\lOneSpecHetero",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#aecd592b734359557235bb0a6980f77f9",tooltip="Core method. Iterates through the host population and the parasite population to \"infect\" the hosts w..."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Environment::selectAndReprod\lHostsAddOffspring",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#a56c39a47a881880bd36c3b8c5f0dbe8a",tooltip="Core method. Forms the next generation of hosts using the fitness proportionate selection method..."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Environment::selectAndReproduce\lPathoFlexPopSizes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#ad7f96a8620fa9df1601c613130b275e0",tooltip="Core method. Forms the next generation of hosts using the fitness proportionate selection method..."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Environment::selectAndReproduce\lPathoFixedPopSizes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#a90177792fb03087e1fc64dca78f7e312",tooltip="Core method. Forms the next generation of hosts using the fitness proportionate selection method..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Gene::setNewGene",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_gene.html#adc0af7621bf0619648408824a495399e",tooltip="Core method. Sets a new gene filling it with a random bit-string of a given length. "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="Gene::mutateGeneWhole",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17",tooltip="Core method. Mutates a gene by overwriting a whole new bit-string. "];
+}

@@ -232,40 +232,40 @@ void Host::chromoRecombination(double recomb_prob, int timeStamp){
  * 
  * It mixes up genes from two host chromosomes to form one child chromosome 
  * later pushed for mating. One can regulate which chromosome is preferred as
- * a source of genes by changing crossing-over probability parameter.
+ * a source of genes by changing crossing-over probability parameter. If the
+ * random selection procedure will fail to form a new chromosome, then new
+ * chromosome will have one gene from randomly selected parental chromosome.
  * 
  * @param corssing_prob -probability of a gene crossing over; p=0.5 means that 
  * each chromosome gives half of its genes to the resulting meiotic chromosome.
  * p lesser then 0.5 means ChromosomeOne will give majority of genes; p larger
- * then 0.5 will favour ChromosomeTwo as a donor.
+ * then 0.5 will favor ChromosomeTwo as a donor.
  * 
  * @return a Chromosome vector.
  */
  chromovector Host::doCrossAndMeiosis(double corssing_prob){
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    if(ChromosomeOne.size() == ChromosomeTwo.size()){
-        chromovector new_chromos;
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < 0.5){
-            corssing_prob = 1.0 - corssing_prob;
-        }
-        Gene tmpGene;
-        for(int i = 0; i < ChromosomeOne.size(); ++i){
-            if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
-                new_chromos.push_back(ChromosomeOne[i]);
-            } else {
-               new_chromos.push_back(ChromosomeTwo[i]);
-            }
-        }
-        return new_chromos;
-    } else {
-        std::cout << "Error in Host::doesItMutate(): chromosomes size"\
-                " mismatch!" << std::endl;
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < 0.5){
-            return ChromosomeTwo;
-        }else{
-            return ChromosomeOne;
+    chromovector new_chromos;
+    Gene tmpGene;
+    for(int i = 0; i < ChromosomeOne.size(); ++i){
+        if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
+            new_chromos.push_back(ChromosomeOne[i]);
         }
     }
+    corssing_prob = 1.0 - corssing_prob;
+    for(int j = 0; j < ChromosomeTwo.size(); ++j){
+        if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
+            new_chromos.push_back(ChromosomeTwo[j]);
+        }
+    }
+    if(new_chromos.size() == 0){
+        if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
+            new_chromos.push_back(ChromosomeOne[0]);
+        }else{
+            new_chromos.push_back(ChromosomeTwo[0]);
+        }
+    }
+    return new_chromos;
 }
 
 /**

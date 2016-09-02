@@ -1,0 +1,15 @@
+digraph "Antigen::calculateEpitopes"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Antigen::calculateEpitopes",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Antigen::setNewAntigen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_antigen.html#a91e70bf2cd04f672230167dda902e328",tooltip="Core method. Sets a new antigen filling it with a random bits. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Antigen::setAntigenFliped\lPositions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_antigen.html#ad560e8651870e53dd9f500b42fdeb740",tooltip="Core method. Sets a new antigen filling it with a given bit strings. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Antigen::mutateAntigenBit\lByBit",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_antigen.html#a0b79dbd3882846ca3a1d9bf23dfa6438",tooltip="Core method. Mutates antigen one bit by one bit. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Antigen::mutateAntgBitBy\lBitWithRes",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_antigen.html#a6edb2d08312947e1c01d28cf659a564f",tooltip="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..."];
+}

@@ -227,7 +227,7 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLen
 bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int hostPopSize, 
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
-        double alpha){
+        int numberOfMates){
     bool ifError = false;
     if (rndSeed < 0){
         std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
@@ -266,9 +266,9 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int hostPopSiz
                 "number used to initialize the system. "<< std::endl;
         ifError = true;
     }
-    if (alpha < 0.0 or alpha > 1.0){
-        std::cout << "\nError in the hosts' alpha factor for the host fitness function. " <<
-                "It has to be within the range [0, 1]." << std::endl;
+    if (numberOfMates < 0 or numberOfMates > hostPopSize){
+        std::cout << "\nError in the hosts' number of sexual partners. It has " <<
+                "to be larger than 0 but not more than host population size ." << std::endl;
         ifError = true;
     }
     return ifError;
@@ -371,7 +371,7 @@ void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int antigenLeng
 void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
-        double alpha){
+        int numberOfMates){
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv");
 
@@ -407,10 +407,7 @@ void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int hostPopSize
             hostDuplication << std::endl;
     InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
             maxGene << std::endl;
-    InputParams << "\tAlpha_factor_for_the_host_fitness_function = " <<
-            alpha << std::endl;
-    InputParams << "\tFraction_of_antigen_bits_getting_fixed = " <<
-            "NOT_IN_THIS_MODEL" << std::endl;
+    InputParams << "\tnumber_of_sex_mates = " << numberOfMates << std::endl;
     InputParams.close();
 }
 

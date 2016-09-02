@@ -1,0 +1,11 @@
+digraph "Environment::getPathoSpeciesPopSize"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Environment::getPathoSpecies\lPopSize",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="DataHandler::saveNumOfPatho\lSpeciesToFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_data_handler.html#a89f86a67a11f719ec282f37740663f95",tooltip="Data harvesting method. Writes to a file population sizes of all pathogen species in a given time..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="DataHandler::savePathoPopul\lToFile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_data_handler.html#a877ed5bfd00f0cbeef0413bf1d47f865",tooltip="Data harvesting method. Writes to a file all pathogens with their genomes in a human-readable format..."];
+}

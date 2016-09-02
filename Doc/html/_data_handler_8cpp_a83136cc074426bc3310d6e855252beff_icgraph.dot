@@ -1,0 +1,14 @@
+digraph "getShannonIndx"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="getShannonIndx",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="DataHandler::saveHostGenetic\lDivers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_data_handler.html#a23ad0de50b3da065674e92b150e12d9f",tooltip="Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627",tooltip="The main function. Things are happening here. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="DataHandler::saveHostGene\lNumbers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_data_handler.html#a5661a45f0a9965bcd041c5617f1a1e8b",tooltip="Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

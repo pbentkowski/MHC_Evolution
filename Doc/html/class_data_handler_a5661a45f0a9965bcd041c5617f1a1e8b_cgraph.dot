@@ -1,0 +1,15 @@
+digraph "DataHandler::saveHostGeneNumbers"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="DataHandler::saveHostGene\lNumbers",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Environment::getHostsPopSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408",tooltip="Core method. Gets the host population size. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Environment::getSingleHost\lChromoOneSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#a7d23e5f51b1c1feed367da44852b2dba"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Environment::getSingleHost\lRealGeneOne",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_environment.html#a86d8f067f5576f39047e360dd717b1fe"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="getShannonIndx",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_data_handler_8cpp.html#a83136cc074426bc3310d6e855252beff",tooltip="Data harvesting method. Calculates some stats of population genetics: Shannon&#39;s index, number of MHC/antigen types, total number of MHC copies. Runs internally within DataHarvester class. "];
+}

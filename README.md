@@ -4,19 +4,22 @@ Evolution of MHC repertoire and number of copies:
 Documentation:
 -----------
 
-Go from here to ./Doc/html/ and launch the ./Doc/html/index.html file in your web browser. The documentation of this software is in there (along with The Truth)
+Go from here to ./Doc/html/ and launch the ./Doc/html/index.html file in your web browser. The documentation was produced with Doxygen.
 
 Authors:
 --------
 Coded by **Piotr Bentkowski** - bentkowski.piotr@gmail.com  
-in collaboration with **Jacek Radwan** - jradwan@amu.edu.pl 
+in collaboration with **Jacek Radwan** - jradwan@amu.edu.pl
 
-https://sites.google.com/site/evobiolab/home Evolutionary Biology Group  
+Evolutionary Biology Group  
 Faculty of Biology  
 Adam Mickiewicz University  
 ul. Umultowska 89  
 61-614 Poznań  
 Poland  
+
+www: https://sites.google.com/site/evobiolab/home
+PI : **Jacek Radwan** - jradwan@amu.edu.pl
 
 How to compile:
 -----------

@@ -1191,36 +1191,38 @@ void Environment::matingWithOneDifferentMHC(){
 /**
  * !!! UNDER CONTRUCTION !!!
  * 
- * @param matingPartnerNumber - number of randomly selected partners individual
- * checks out 
+ * @param matingPartnerNumber - number of randomly selected partners an individual
+ * will checks out eventually selecting one to mate with.
  */
 void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
     int popSize = int (HostPopulation.size());  
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
-    int i, theBestMatch, maxGenomeSize, geneIndCount;
+    int i, theBestMatch, maxGenomeSize, geneIndCount, highScore;
     maxGenomeSize = 0;
     for(auto indvidual : HostPopulation){
         if(indvidual.getGenomeSize() > maxGenomeSize){
             maxGenomeSize = indvidual.getGenomeSize();
         }
     }
-    // First create an instance of an engine.
+    // First create an instance of an random engine.
     std::random_device rnd_device;
     // Specify the size of the mates vector
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
     while(int (NewHostsVec.size()) < popSize){
         i = p_RandomNumbs->NextInt(0, popSize-1);
-        // Specify the engine and distribution.
+        // Specify the engine and create unique vector listing mates from population
         std::mt19937 mersenne_engine(rnd_device());
         std::uniform_int_distribution<int> dist(0, popSize-1);
         auto genn = std::bind(dist, mersenne_engine);
         generate(begin(matesVec), end(matesVec), genn);
-        theBestMatch = maxGenomeSize;
+        // find the best mate out of N randomly chosen
+        highScore = maxGenomeSize;
+        theBestMatch = matesVec[0];
         for (auto mate : matesVec) {
-            std::cout << mate << " ";
+//            std::cout << mate << " ";
             geneIndCount = 0;
             for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
                 for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
@@ -1229,37 +1231,54 @@ void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
                         geneIndCount++;
                     }
                 }
-                for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
-                    for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
-                        if(HostPopulation[i].getOneGeneFromOne(l) == 
-                           HostPopulation[mate].getOneGeneFromTwo(m)){
-                            geneIndCount++;
-                        }
-                    }
-                }
-                for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
-                    for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
-                        if(HostPopulation[i].getOneGeneFromTwo(l) == 
-                           HostPopulation[mate].getOneGeneFromOne(m)){
-                            geneIndCount++;
-                        }
-                    }
-                }
-                for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
-                    for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
-                        if(HostPopulation[i].getOneGeneFromTwo(l) == 
-                           HostPopulation[mate].getOneGeneFromTwo(m)){
-                            geneIndCount++;
-                        }
+            }
+            for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
+                for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromOne(l) == 
+                       HostPopulation[mate].getOneGeneFromTwo(m)){
+                        geneIndCount++;
                     }
                 }
             }
+            for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromTwo(l) == 
+                       HostPopulation[mate].getOneGeneFromOne(m)){
+                        geneIndCount++;
+                    }
+                }
+            }
+            for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromTwo(l) == 
+                       HostPopulation[mate].getOneGeneFromTwo(m)){
+                        geneIndCount++;
+                    }
+                }
+            }
+            if(geneIndCount < highScore){
+                highScore = geneIndCount;
+                theBestMatch = mate;
+            }
         }
-        std::cout << std::endl;
+        if (int(NewHostsVec.size()) < popSize) {
+            // mate two hosts, set a new individual
+            NewHostsVec.push_back(HostPopulation[i]);
+            NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
+            NewHostsVec.back().swapChromosomes();
+        }
+//        std::cout << std::endl;
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in matingWithNoCommonMHC(): Size mismatch " <<
+                "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
-
-
 
 
 //==============================================================//

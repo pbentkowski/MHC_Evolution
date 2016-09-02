@@ -2,7 +2,9 @@ var searchData=
 [
   ['main',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
   ['matingwithnocommonmhc',['matingWithNoCommonMHC',['../class_environment.html#a00d8b158811c0fa36a3fdeccdfebea91',1,'Environment']]],
+  ['matingwithnocommonmhcsmallsubset',['matingWithNoCommonMHCsmallSubset',['../class_environment.html#a2950984f7e5ec70149e0b27dce45a8b1',1,'Environment']]],
   ['matingwithonedifferentmhc',['matingWithOneDifferentMHC',['../class_environment.html#a7d3359f2eaf7379600239d18506aafe0',1,'Environment']]],
+  ['matingwithonedifferentmhcsmallsubset',['matingWithOneDifferentMHCsmallSubset',['../class_environment.html#a20274efa19fd5d3f3d017cdf589572f3',1,'Environment']]],
   ['mergechromosomes',['mergeChromosomes',['../class_host.html#a55edfefc42f7306c85983474500ef10b',1,'Host']]],
   ['mmtopmscaling',['MMtoPMscaling',['../class_environment.html#a13b07a4255b87d29541d0f78af6f49f7',1,'Environment']]],
   ['mutateantgbitbybitwithres',['mutateAntgBitByBitWithRes',['../class_antigen.html#a6edb2d08312947e1c01d28cf659a564f',1,'Antigen']]],

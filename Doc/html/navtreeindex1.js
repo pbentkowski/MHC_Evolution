@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"index.html#Compilation":[0,1],
+"index.html#Parameters":[0,2],
 "index.html#The":[0,3],
 "index.html#intro":[0,0],
 "main_8cpp.html":[3,0,13],
@@ -8,6 +10,6 @@ var NAVTREEINDEX1 =
 "main_8cpp_source.html":[3,0,13],
 "mainpage_8h.html":[3,0,14],
 "mainpage_8h_source.html":[3,0,14],
-"md__r_e_a_d_m_e.html":[1],
+"md_README.html":[1],
 "pages.html":[]
 };

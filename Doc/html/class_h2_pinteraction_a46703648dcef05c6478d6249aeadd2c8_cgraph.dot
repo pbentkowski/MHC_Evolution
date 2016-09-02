@@ -1,0 +1,17 @@
+digraph "H2Pinteraction::doesInfectedHeteroOnePerSpec"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="H2Pinteraction::doesInfected\lHeteroOnePerSpec",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Pathogen::getAllAntigens",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c",tooltip="Core method. Fetches the pathogene&#39;s antigens. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Host::getChromosomeOne",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_host.html#ac387176ba203f6aa1f20610f5679385a",tooltip="Core method. Returns the first chromosome. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Pathogen::getSpeciesTag",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_pathogen.html#ada9e5929d6736f63377f0625153b224b",tooltip="Core method. Fetches a species tag. "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="H2Pinteraction::presentAntigen",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53",tooltip="Core method. Checks if the antigen is presented by a given MHC. "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Host::getChromosomeTwo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_host.html#aa5afa38408ebba644f56667364213f0d",tooltip="Core method. Returns the first chromosome. "];
+}

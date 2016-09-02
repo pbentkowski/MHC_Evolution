@@ -7,9 +7,9 @@ var NAVTREE =
       [ "Parameters", "index.html#Parameters", null ],
       [ "Output and data visualisation", "index.html#The", null ]
     ] ],
-    [ "Evolution of MHC repertoire and number of copies:", "md__r_e_a_d_m_e.html", null ],
-    [ "Classes", null, [
-      [ "Class List", "annotated.html", "annotated" ],
+    [ "Evolution of MHC repertoire and number of copies:", "md_README.html", null ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
@@ -31,7 +31,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_8dep_8inc.html"
+"_8dep_8inc.html",
+"index.html#Compilation"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
