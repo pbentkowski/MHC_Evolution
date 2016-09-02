@@ -28,6 +28,8 @@
 #include <algorithm>    // std::shuffle
 #include <random>       // std::default_random_engine
 #include <chrono>       // std::chrono::system_clock
+#include <iterator>
+#include <functional>
 
 #include "RandomNumbs.h"
 #include "Tagging_system.h"
@@ -1184,6 +1186,81 @@ void Environment::matingWithOneDifferentMHC(){
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
+
+
+/**
+ * !!! UNDER CONTRUCTION !!!
+ * 
+ * @param matingPartnerNumber - number of randomly selected partners individual
+ * checks out 
+ */
+void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
+    int popSize = int (HostPopulation.size());  
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
+    int i, theBestMatch, maxGenomeSize, geneIndCount;
+    maxGenomeSize = 0;
+    for(auto indvidual : HostPopulation){
+        if(indvidual.getGenomeSize() > maxGenomeSize){
+            maxGenomeSize = indvidual.getGenomeSize();
+        }
+    }
+    // First create an instance of an engine.
+    std::random_device rnd_device;
+    // Specify the size of the mates vector
+    std::vector<int> matesVec(matingPartnerNumber);
+    // the mating procedure
+    while(int (NewHostsVec.size()) < popSize){
+        i = p_RandomNumbs->NextInt(0, popSize-1);
+        // Specify the engine and distribution.
+        std::mt19937 mersenne_engine(rnd_device());
+        std::uniform_int_distribution<int> dist(0, popSize-1);
+        auto genn = std::bind(dist, mersenne_engine);
+        generate(begin(matesVec), end(matesVec), genn);
+        theBestMatch = maxGenomeSize;
+        for (auto mate : matesVec) {
+            std::cout << mate << " ";
+            geneIndCount = 0;
+            for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
+                for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromOne(l) == 
+                       HostPopulation[mate].getOneGeneFromOne(m)){
+                        geneIndCount++;
+                    }
+                }
+                for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
+                    for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
+                        if(HostPopulation[i].getOneGeneFromOne(l) == 
+                           HostPopulation[mate].getOneGeneFromTwo(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                    for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
+                        if(HostPopulation[i].getOneGeneFromTwo(l) == 
+                           HostPopulation[mate].getOneGeneFromOne(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+                for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                    for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
+                        if(HostPopulation[i].getOneGeneFromTwo(l) == 
+                           HostPopulation[mate].getOneGeneFromTwo(m)){
+                            geneIndCount++;
+                        }
+                    }
+                }
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+
+
 
 //==============================================================//
 

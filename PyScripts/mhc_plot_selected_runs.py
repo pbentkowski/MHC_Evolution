@@ -69,13 +69,16 @@ def loadTheData3(DIRR=os.getcwd()):
                 interestingTwo = float(l[2])
                 l = re.split(" ", ln.getline(paramsFile, 9))
                 path_spp = l[2].split()[0]
+                l = re.split(" ", ln.getline(paramsFile, 7))
+                pop_size = float(l[2].split()[0])
                 if path_spp == "NOT_IN_THIS_MODEL":
                     path_spp = 1
                 print("patho species:", path_spp, "| things:",  interestingOne,
                       " ; ", interestingTwo, "| dir:", dirName.split("/")[-1])
-                TheData.append((interestingOne, interestingTwo, path_spp,
+                TheData.append((interestingOne, interestingTwo, int(path_spp),
                                 genes[:, 0], genes[:, 3], genes[:, 4],
-                                genes[:, 5], genes[:, 2], genes[:, 6]))
+                                genes[:, 5], genes[:, 2], genes[:, 6],
+                                pop_size))
     return TheData
 
 
@@ -94,8 +97,8 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 2500
-    Ymax = 50
+    Xmax = 5000
+    Ymax = 1000
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
@@ -159,7 +162,7 @@ def main():
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_Shann.png")
 
-#==============================================================================
+# =============================================================================
 #     p.figure(3, figsize=(14, 7))
 #     i = 1
 #     for item in TheData:
@@ -201,7 +204,32 @@ def main():
 #     if saveFiggs:
 #         p.savefig("one_" + str(interestOne) + ".two_" +
 #                   str(interestTwo) + "_H_fitt.png")
-#==============================================================================
+# =============================================================================
+
+    p.figure(5, figsize=(14, 7))
+    i = 1
+    for item in TheData:
+        if (item[1] == interestTwo and item[0] == interestOne):
+            XX = float(item[3][annotShift + i*annotScale])
+            YY = float(item[5][annotShift + i*annotScale])
+            if item[2] == "NO":
+                ax = p.plot(item[3], item[7] / item[9], 'r-')
+            else:
+                ax = p.plot(item[3], item[7] / item[9], 'b-')
+#            ax = p.annotate(dec_places % (item[0],), xy=(XX, YY),
+#                            xycoords='data', fontsize=AnnotateFontSize)
+            i = i + 1
+            p.ylabel('number of MHC loci / indv.', fontsize=AxLabelFontSize)
+            p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
+            p.axis([0, Xmax, 0, 20])
+            p.xticks(size=AxisTickFontSize)
+            p.yticks(size=AxisTickFontSize)
+    ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
+                    fontsize=AnnotateFontSize)
+    p.grid()
+    if saveFiggs:
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "AvgGenomeSize.png")
 
     p.show()
 

@@ -84,6 +84,8 @@ public:
     double MMtoPMscaling(double MM_prob_mut, int geneLength);
     void matingWithNoCommonMHC();
     void matingWithOneDifferentMHC();
+    void matingWithNoCommonMHCsmallSubset(int matingPartnerNumber);
+    void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
 
     // === Data harvesting methods ===
     unsigned getPathoNumOfSpecies();

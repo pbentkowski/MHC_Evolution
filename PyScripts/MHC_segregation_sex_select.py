@@ -48,6 +48,20 @@ def loadHostPopulation(FILE):
               "loadHostPopulation(): {0}".format(e.strerror))
 
 
+def hostsUniqueMHCs(hostList):
+    """Removes redundancy from hosts genomes by removing repetitions of alleles
+    form genomes. Transformed population consists of individuals with their
+    genomes sorted and with unique MHC alleles only."""
+    if len(hostList):
+        uniqueHosts = []
+        for indv in hostList:
+            uniqueHosts.append(np.unique(indv))
+        return uniqueHosts
+    else:
+        print("ERROR in hostsUniqueMHCs(): the source host list is empty.")
+        return None
+
+
 def createCloneList(hostList, removeConvergence="no"):
     ''' '''
     cloneList = []
@@ -181,8 +195,8 @@ def plotFrequencies(geneFreq, figgName="geneFreq.png"):
 #    TitlFontSize = 12
 #    TickSize = 14
     plt.figure(3, figsize=(8, 5), frameon=False, dpi=100)
-    plt.bar(np.arange(N)-0.5, geneFreq)
-    plt.xlim((0, N))
+    plt.bar(np.arange(N)-0.4, geneFreq)
+    plt.xlim((-0.5, N))
     plt.grid(True)
     plt.xlabel("MHC gene tag", fontsize=FontSize)
     plt.ylabel("number of host individuals with the gene", fontsize=FontSize)
@@ -217,15 +231,18 @@ def countAndPlotClonalIndiv(hostList, fracOfPop=0.2):
 def main():
     """ """
     if(len(sys.argv) <= 1):
-        print("Give a path to the file with host population data")
+        print("Give the path to the file with host population data")
         sys.exit()
     try:
         hostList = loadHostPopulation(sys.argv[1])
     except:
-        print("ERROR when loading data. Check if the input file has the right",
-              "format.")
+        print("ERROR of loadHostPopulation() when loading data. Check if the",
+              "input file has the right format.")
         sys.exit()
     try:
+        # === remove genetic rdundancy first ===
+        hostList = hostsUniqueMHCs(hostList)
+        # === calculate the stats ===
         geneFreq, cooccMtx = calculateGeneCooccurrMatrix(hostList)
         cloneList = createCloneList(hostList, "yes")
         cloneSimMtx = calculateCloneSimMatrix(cloneList)
