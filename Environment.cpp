@@ -1017,7 +1017,7 @@ unsigned Environment::getHostsPopSize(){
  * the algorithm will recreate a population of the same size as the original one.
  * 
  */
-void Environment::matingWithNoCommonMHC(){
+void Environment::matingWithNoCommonMHCwholePop(){
     int popSize = int (HostPopulation.size());
     // Generating a vector of shuffled indices 
     std::vector<int> indxVec;
@@ -1102,7 +1102,7 @@ void Environment::matingWithNoCommonMHC(){
  * will recreate a population of the same size as the original one.
  * 
  */
-void Environment::matingWithOneDifferentMHC(){
+void Environment::matingWithOneDifferentMHCwholePop(){
     int popSize = int (HostPopulation.size());
     // Generating a vector of shuffled indices 
     std::vector<int> indxVec;
@@ -1189,10 +1189,18 @@ void Environment::matingWithOneDifferentMHC(){
 
 
 /**
- * !!! UNDER CONTRUCTION !!!
+ * @brief Core method. Creates a new generation of hosts by sexual reproduction
+ *  with strong negative preference towards MHC similarity between mates. Takes 
+ * given number of possible sexual partners.
+ * 
+ * There are no sexes as the host species is assumed a hermaphrodite. Each 
+ * individual checks out a user defined N number of random individuals from the 
+ * population and mates with the individual that has the lowest number of similar
+ * MHC genes. The process of random mating and selection is repeated until
+ * the algorithm will recreate a population of the same size as the original one.
  * 
  * @param matingPartnerNumber - number of randomly selected partners an individual
- * will checks out eventually selecting one to mate with.
+ * will checks out eventually selecting one best to mate with.
  */
 void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
     int popSize = int (HostPopulation.size());  

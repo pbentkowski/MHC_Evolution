@@ -82,8 +82,8 @@ public:
     void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
         double dupl, unsigned int maxGene, int timeStamp);
     double MMtoPMscaling(double MM_prob_mut, int geneLength);
-    void matingWithNoCommonMHC();
-    void matingWithOneDifferentMHC();
+    void matingWithNoCommonMHCwholePop();
+    void matingWithOneDifferentMHCwholePop();
     void matingWithNoCommonMHCsmallSubset(int matingPartnerNumber);
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
 
