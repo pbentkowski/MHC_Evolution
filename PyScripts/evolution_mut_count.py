@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
-Loads the file HostGeneNumbTotal_ChrOne.csv (final snapshot of the host
+Loads the file HostGenomesFile.XXXX.csv (final snapshot of the host
 population) and calculates how many mutation got fixated during the MHCs'
 evolution. Plots the histogram.
 
@@ -84,7 +84,7 @@ def main():
 #    plt.xlim(0., 20.)
     plt.savefig("HOST_muts_end.png")
 
-    plt.show()
+#    plt.show()
 
     print("DONE!")
 

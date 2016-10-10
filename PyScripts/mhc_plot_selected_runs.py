@@ -27,7 +27,7 @@ def LoadTheData2(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 14))   # change here
+            l = re.split(" ", ln.getline(paramsFile, 15))   # change here
             interestingOne = float(l[2])
             l = re.split(" ", ln.getline(paramsFile, 10))   # change here
             interestingTwo = float(l[2])
@@ -63,7 +63,7 @@ def loadTheData3(DIRR=os.getcwd()):
             if filepath == os.path.join(dirName, 'HostsGeneDivers.csv'):
                 genes = p.genfromtxt(filepath)
                 paramsFile = os.path.join(dirName, 'InputParameters.csv')
-                l = re.split(" ", ln.getline(paramsFile, 14))   # change here
+                l = re.split(" ", ln.getline(paramsFile, 15))   # change here
                 interestingOne = float(l[2])
                 l = re.split(" ", ln.getline(paramsFile, 10))   # change here
                 interestingTwo = float(l[2])
@@ -97,8 +97,8 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 5500
-    Ymax = 200
+    Xmax = 7500
+    Ymax = 500
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
@@ -162,49 +162,47 @@ def main():
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_Shann.png")
 
-# =============================================================================
-#     p.figure(3, figsize=(14, 7))
-#     i = 1
-#     for item in TheData:
-#         if (item[1] == interestTwo and item[0] == interestOne):
-#             if item[2] == "NO":
-#                 ax = p.plot(item[3], item[8]/item[6], 'r-')
-#             else:
-#                 ax = p.plot(item[3], item[8]/item[6], 'b-')
-#             i = i + 1
-#             p.ylabel("CV fitness", fontsize=AxLabelFontSize)
-#             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-#             p.axis([0, Xmax, 0, 2.5])
-#             p.xticks(size=AxisTickFontSize)
-#             p.yticks(size=AxisTickFontSize)
-# #    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
-# #                    fontsize=AnnotateFontSize)
-#     p.grid()
-#     if saveFiggs:
-#         p.savefig("one_" + str(interestOne) + ".two_" +
-#                   str(interestTwo) + "_H_CV_fitt.png")
-#
-#     p.figure(4, figsize=(14, 7))
-#     i = 1
-#     for item in TheData:
-#         if (item[1] == interestTwo and item[0] == interestOne):
-#             XX = float(item[3][annotShift + i*annotScale])
-#             YY = float(item[6][annotShift + i*annotScale])
-#             if item[2] == "NO":
-#                 ax = p.plot(item[3], item[8]/float(item[2]), 'r-')
-#             else:
-#                 ax = p.plot(item[3], item[8]/float(item[2]), 'b-')
-#             i = i + 1
-#             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
-#             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-#             p.axis([0, Xmax, 0, 3.0])
-#             p.xticks(size=AxisTickFontSize)
-#             p.yticks(size=AxisTickFontSize)
-#     p.grid()
-#     if saveFiggs:
-#         p.savefig("one_" + str(interestOne) + ".two_" +
-#                   str(interestTwo) + "_H_fitt.png")
-# =============================================================================
+    p.figure(3, figsize=(14, 7))
+    i = 1
+    for item in TheData:
+        if (item[1] == interestTwo and item[0] == interestOne):
+            if item[2] == "NO":
+                ax = p.plot(item[3], item[8]/item[6], 'r-')
+            else:
+                ax = p.plot(item[3], item[8]/item[6], 'b-')
+            i = i + 1
+            p.ylabel("CV fitness", fontsize=AxLabelFontSize)
+            p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
+            p.axis([0, Xmax, 0, 1.0])
+            p.xticks(size=AxisTickFontSize)
+            p.yticks(size=AxisTickFontSize)
+#    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
+#                    fontsize=AnnotateFontSize)
+    p.grid()
+    if saveFiggs:
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "_H_CV_fitt.png")
+
+    p.figure(4, figsize=(14, 7))
+    i = 1
+    for item in TheData:
+        if (item[1] == interestTwo and item[0] == interestOne):
+            XX = float(item[3][annotShift + i*annotScale])
+            YY = float(item[6][annotShift + i*annotScale])
+            if item[2] == "NO":
+                ax = p.plot(item[3], item[8]/float(item[2]), 'r-')
+            else:
+                ax = p.plot(item[3], item[8]/float(item[2]), 'b-')
+            i = i + 1
+            p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
+            p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
+            p.axis([0, Xmax, 0, 1.2])
+            p.xticks(size=AxisTickFontSize)
+            p.yticks(size=AxisTickFontSize)
+    p.grid()
+    if saveFiggs:
+        p.savefig("one_" + str(interestOne) + ".two_" +
+                  str(interestTwo) + "_H_fitt.png")
 
     p.figure(5, figsize=(14, 7))
     i = 1
@@ -221,7 +219,7 @@ def main():
             i = i + 1
             p.ylabel('number of MHC loci / indv.', fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 20])
+            p.axis([0, Xmax, 0, 100])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
     ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
