@@ -65,7 +65,7 @@ def loadTheData3(DIRR=os.getcwd()):
                 paramsFile = os.path.join(dirName, 'InputParameters.csv')
                 l = re.split(" ", ln.getline(paramsFile, 15))   # change here
                 interestingOne = float(l[2])
-                l = re.split(" ", ln.getline(paramsFile, 10))   # change here
+                l = re.split(" ", ln.getline(paramsFile, 9))   # change here
                 interestingTwo = float(l[2])
                 l = re.split(" ", ln.getline(paramsFile, 9))
                 path_spp = l[2].split()[0]
@@ -129,10 +129,11 @@ def main():
             p.axis([0, Xmax, 0, Ymax])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-            p.grid(True)
 #    p.hlines(mm / ii, 500, Xmax, colors='k', linestyles='solid', lw=2)
     ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
+    p.grid(True)
+    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_allel_num.png")
@@ -158,6 +159,7 @@ def main():
     ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
+    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_Shann.png")
@@ -173,12 +175,13 @@ def main():
             i = i + 1
             p.ylabel("CV fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 1.0])
+            p.axis([0, Xmax, 0, 3.5])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
 #    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
 #                    fontsize=AnnotateFontSize)
     p.grid()
+    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_H_CV_fitt.png")
@@ -196,10 +199,11 @@ def main():
             i = i + 1
             p.ylabel("hosts fitness", fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 1.2])
+            p.axis([0, Xmax, 0, 4.0])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
     p.grid()
+    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_H_fitt.png")
@@ -225,6 +229,7 @@ def main():
     ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
+    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "AvgGenomeSize.png")

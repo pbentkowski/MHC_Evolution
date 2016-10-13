@@ -231,7 +231,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
         plt.errorbar(ww[:, 1], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
-#        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 2]), size=annoSize)
+        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 2]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population",
                fontsize=FS)
@@ -245,7 +245,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
         plt.errorbar(ww[:, 1], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
-#        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 4]), size=annoSize)
+        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 4]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("average number of MHCs",
                fontsize=FS)
