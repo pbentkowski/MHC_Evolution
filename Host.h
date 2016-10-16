@@ -66,8 +66,8 @@ public:
     unsigned getGenomeSize();
     unsigned getChromoOneSize();
     unsigned getChromoTwoSize();
-    double getChromoOneUniqAlleles();
-    double getChromoTwoUniqAlleles();
+    double getNumbOfChromoOneUniqAlleles();
+    double getNumbOfChromoTwoUniqAlleles();
     void assignChromOne(chromovector One);
     void assignChromTwo(chromovector Two);
     genestring getSingleGeneFromOne(int indx);

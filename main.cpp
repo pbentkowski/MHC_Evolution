@@ -40,25 +40,34 @@ void printTipsToRun(){
     std::cout << " 1. Seed for the RNG (when set to < 0 the program will " <<
             "seed the RNG engine itself with a truly random number)." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
-    std::cout << " 3. Host population size." << std::endl;
-    std::cout << " 4. Number of genes in one host chromosome (they have " <<
+    std::cout << " 3. Number of bits in an antigen." << std::endl;
+    std::cout << " 4. Host population size." << std::endl;
+    std::cout << " 5. Pathogen population size." << std::endl;
+    std::cout << " 6. Number of pathogen species." << std::endl;
+    std::cout << " 7. Number of genes in one host chromosome (they have " <<
             "two chromosomes)." << std::endl;
-    std::cout << " 5. Number of host generations (effective length of model run)." <<
+    std::cout << " 8. Number of antigens in a pathogen." << std::endl;
+    std::cout << " 9. Number of pathogen generations per one host generation. " <<
             std::endl;
-    std::cout << " 6. Probability of mutation in hosts ([0,1] range)." << std::endl;
-    std::cout << " 7. The heterozygote advantage / lack of advantage " <<
+    std::cout << "10. Number of host generations (effective length of model run)." <<
+            std::endl;
+    std::cout << "11. Probability of mutation in hosts ([0,1] range)." << std::endl;
+    std::cout << "12. Probability of mutation in pathogens ([0,1] range)." << std::endl;
+    std::cout << "13. The heterozygote advantage / lack of advantage " <<
                 "mode. It has to be 10 for heterozygote advantage or 11 for " <<
                 "lack of thereof." << std::endl;
-    std::cout << " 8. Probability of deleting a gene in the host ([0,1] range)." <<
+    std::cout << "14. Probability of deleting a gene in the host ([0,1] range)." <<
             std::endl;
-    std::cout << " 9. Probability of duplicating a gene in the host" <<
+    std::cout << "15. Probability of duplicating a gene in the host" <<
                 " ([0,1] range)" << std::endl;
-    std::cout << "10. Maximal number of genes permitted in one host chromosome." <<
+    std::cout << "16. Maximal number of genes permitted in one host chromosome." <<
             std::endl;
-    std::cout << "11. Number of potential sexual partners an individual courts " <<
-            "before picking one to mate with." <<
+    std::cout << "17. Alpha factor for the host fitness function ([0,1] range)." <<
             std::endl;
+    std::cout << "18. Fraction of antigen bits which get fixed and cannot" <<
+            " mutate ([0,1] range)." << std::endl;
     std::cout << std::endl;
+
 }
 
 
@@ -74,7 +83,7 @@ void printTipsToRun(){
  */
 int main(int argc, char** argv) {
 // === Check if the entered parameters make sense ===
-    int numbOfArgs = 12; // how many arguments we need to run this model
+    int numbOfArgs = 19; // how many arguments we need to run this model
     if (argc < numbOfArgs) {
         std::cout << std::endl;
         std::cout << "Not enough arguments. It has to be " <<
@@ -91,22 +100,31 @@ int main(int argc, char** argv) {
         printTipsToRun();
         return 0;
     }
-    int rndSeed, mhcGeneLength, hostPopSize,  hostGeneNumbb,  numOfHostGenerations,
-        HeteroHomo, maxGene, numOfMates;
-    double hostMutationProb, deletion, duplication;
+    int rndSeed, mhcGeneLength, antigenLength, hostPopSize, pathoPopSize, patho_sp,
+        hostGeneNumbb, pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations,
+        HeteroHomo, maxGene;
+    double hostMutationProb, pathoMutationProb, deletion, duplication, alpha,
+            fixedAntigPosit;
     // Check if input params are numbers
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
         mhcGeneLength = boost::lexical_cast<int>(argv[2]);
-        hostPopSize = boost::lexical_cast<int>(argv[3]);
-        hostGeneNumbb = boost::lexical_cast<int>(argv[4]);
-        numOfHostGenerations = boost::lexical_cast<int>(argv[5]);
-        hostMutationProb = boost::lexical_cast<double>(argv[6]);
-        HeteroHomo = boost::lexical_cast<int>(argv[7]);
-        deletion = boost::lexical_cast<double>(argv[8]);
-        duplication = boost::lexical_cast<double>(argv[9]);
-        maxGene = boost::lexical_cast<int>(argv[10]);
-        numOfMates = boost::lexical_cast<int>(argv[11]);
+        antigenLength = boost::lexical_cast<int>(argv[3]);
+        hostPopSize = boost::lexical_cast<int>(argv[4]);
+        pathoPopSize = boost::lexical_cast<int>(argv[5]);
+        patho_sp = boost::lexical_cast<int>(argv[6]);
+        hostGeneNumbb = boost::lexical_cast<int>(argv[7]);
+        pathoGeneNumb = boost::lexical_cast<int>(argv[8]);
+        patoPerHostGeneration = boost::lexical_cast<int>(argv[9]);
+        numOfHostGenerations = boost::lexical_cast<int>(argv[10]);
+        hostMutationProb = boost::lexical_cast<double>(argv[11]);
+        pathoMutationProb = boost::lexical_cast<double>(argv[12]);
+        HeteroHomo = boost::lexical_cast<int>(argv[13]);
+        deletion = boost::lexical_cast<double>(argv[14]);
+        duplication = boost::lexical_cast<double>(argv[15]);
+        maxGene = boost::lexical_cast<int>(argv[16]);
+        alpha = boost::lexical_cast<double>(argv[17]);
+        fixedAntigPosit = boost::lexical_cast<double>(argv[18]);
     }
     catch(boost::bad_lexical_cast& e) {
         std::cout << std::endl;
@@ -118,15 +136,22 @@ int main(int argc, char** argv) {
     // Load the input params
     rndSeed = atoi(argv[1]);
     mhcGeneLength = atoi(argv[2]);
-    hostPopSize = atoi(argv[3]);
-    hostGeneNumbb = atoi(argv[4]);
-    numOfHostGenerations = atoi(argv[5]);
-    hostMutationProb = atof(argv[6]);
-    HeteroHomo = atoi(argv[7]);
-    deletion = atof(argv[8]);
-    duplication = atof(argv[9]);
-    maxGene = atoi(argv[10]);
-    numOfMates = atoi(argv[11]);
+    antigenLength = atoi(argv[3]);
+    hostPopSize = atoi(argv[4]);
+    pathoPopSize = atoi(argv[5]);
+    patho_sp = atoi(argv[6]);
+    hostGeneNumbb = atoi(argv[7]);
+    pathoGeneNumb = atoi(argv[8]);
+    patoPerHostGeneration = atoi(argv[9]);
+    numOfHostGenerations = atoi(argv[10]);
+    hostMutationProb = atof(argv[11]);
+    pathoMutationProb = atof(argv[12]);
+    HeteroHomo = atoi(argv[13]);
+    deletion = atof(argv[14]);
+    duplication = atof(argv[15]);
+    maxGene = atoi(argv[16]);
+    alpha = atof(argv[17]);
+    fixedAntigPosit = atof(argv[18]);
 
     // When told so, fetching a truly random number to seed the RNG engine
     if (rndSeed < 0){
@@ -138,9 +163,11 @@ int main(int argc, char** argv) {
     DataHandler Data2file;  // Initialize the data harvesting mechanism
 
     // Check if input params are of any sense
-    if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, hostPopSize,
-            hostGeneNumbb, numOfHostGenerations, hostMutationProb,
-            HeteroHomo, deletion, duplication, maxGene, numOfMates)){
+    if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, antigenLength, hostPopSize,
+            pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
+            patoPerHostGeneration, numOfHostGenerations,
+            hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
+            maxGene, alpha, fixedAntigPosit)){
         std::cout << std::endl;
         std::cout << "Error in parameters on input. Check them." << std::endl;
         printTipsToRun();
@@ -150,9 +177,11 @@ int main(int argc, char** argv) {
     std::cout << "Everything seems fine. Running the model." << std::endl;
 
     // Save input parameters to file
-    Data2file.inputParamsToFile(rndSeed, mhcGeneLength, hostPopSize,
-            hostGeneNumbb, numOfHostGenerations, hostMutationProb,
-            HeteroHomo, deletion, duplication, maxGene, numOfMates);
+    Data2file.inputParamsToFile(rndSeed, mhcGeneLength, antigenLength, hostPopSize,
+            pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
+            patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
+            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene,
+            alpha, fixedAntigPosit);
 
 // === And now doing the calculations! ===
 
@@ -167,9 +196,12 @@ int main(int argc, char** argv) {
     Environment ENV; // Initialize the simulation environment
     Data2file.setAllFilesAsFirtsTimers();
     ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
-//    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
+    ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
+                                       patho_sp, mhcGeneLength, 0, fixedAntigPosit);
+    std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
+    Data2file.savePathoNoMuttList(ENV);
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv", std::ios::out | std::ios::ate | std::ios::app);
     InputParams << "# Other_information:" << std::endl;
@@ -182,24 +214,33 @@ int main(int argc, char** argv) {
     std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
+        Data2file.savePathoPopulToFile(ENV, 0);
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveHostGeneNumbers(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
-//            ENV.matingWithOneDifferentMHC();
-            ENV.matingWithNoCommonMHCsmallSubset(numOfMates);
+            for(int j = 0; j < patoPerHostGeneration; ++j){
+                ENV.infectOneFromOneSpecHetero();
+                ENV.selectAndReproducePathoFixedPopSizes();
+                ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
+                ENV.clearPathoInfectionData();
+            }
+            ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
+            ENV.selectAndReprodHostsReplace();
             ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication,
-                                       maxGene, i);
+                    maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
             Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }
+        ENV.infectOneFromOneSpecHetero();
     } else {
        std::cout << "This instance of the model allows only heterozygote";
        std::cout << " advantage. Sorry :-(" << std::endl;
        return 0;
     }
+    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
 
     std::cout << "Run finished. Check the output files for results." << std::endl;

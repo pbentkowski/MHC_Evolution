@@ -350,7 +350,7 @@ unsigned Host::getChromoTwoSize(){
  * @return number of unique MHC alleles in the Chromosome One. 
  * 
  */
-double Host::getChromoOneUniqAlleles(){
+double Host::getNumbOfChromoOneUniqAlleles(){
     int GeneCounter = ChromosomeOne.size();
     if(GeneCounter){
         bool IfCountedLyst[GeneCounter];
@@ -382,7 +382,7 @@ double Host::getChromoOneUniqAlleles(){
  * @return number of unique MHC alleles in the Chromosome Two. 
  * 
  */
-double Host::getChromoTwoUniqAlleles(){
+double Host::getNumbOfChromoTwoUniqAlleles(){
     int GeneCounter = ChromosomeTwo.size();
     if(GeneCounter){
         bool IfCountedLyst[GeneCounter];
@@ -593,7 +593,7 @@ void Host::calculateFitnessExpFunc(double alpha){
  * @param alpha - scaling parameter for F() shape
  */
 void Host::calculateFitnessExpFuncUniqAlleles(double alpha){
-    double NN = getChromoOneUniqAlleles() + getChromoTwoUniqAlleles();
+    double NN = getNumbOfChromoOneUniqAlleles() + getNumbOfChromoTwoUniqAlleles();
     if (NN) {
         Fitness = (double) NumOfPathogesPresented
                             * std::exp( - std::pow(alpha * NN, 2.0));
