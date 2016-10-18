@@ -1,0 +1,6 @@
+<map id="Gene::setNewGene" name="Gene::setNewGene">
+<area shape="rect" id="node2" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="192,5,387,32"/>
+<area shape="rect" id="node3" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="206,56,373,83"/>
+<area shape="rect" id="node4" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="195,107,384,133"/>
+<area shape="rect" id="node5" href="$class_random_numbs.html#ad1d47bddda7a3050959bd757de39e57a" title="RandomNumbs::NextLongInt" alt="" coords="193,157,385,184"/>
+</map>

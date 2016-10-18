@@ -1,9 +1,9 @@
 <map id="DataHandler::saveHostGeneticDivers" name="DataHandler::saveHostGeneticDivers">
-<area shape="rect" id="node2" href="$class_environment.html#a09b16d159ccf1ff7210c339e7c2b9408" title="Core method. Gets the host population size. " alt="" coords="259,5,464,32"/>
-<area shape="rect" id="node3" href="$class_environment.html#ab70e6fda860c35a3ac222cfdef2dff44" title="Environment::getHostFitness" alt="" coords="265,56,457,83"/>
-<area shape="rect" id="node4" href="$class_environment.html#a7d23e5f51b1c1feed367da44852b2dba" title="Environment::getSingleHost\lChromoOneSize" alt="" coords="269,107,454,149"/>
-<area shape="rect" id="node5" href="$class_environment.html#a86d8f067f5576f39047e360dd717b1fe" title="Environment::getSingleHost\lRealGeneOne" alt="" coords="269,173,454,214"/>
-<area shape="rect" id="node6" href="$class_environment.html#ac98907c5bc18780a611a743fb4afa479" title="Environment::getSingleHost\lChromoTwoSize" alt="" coords="269,238,454,279"/>
-<area shape="rect" id="node7" href="$class_environment.html#a20b1bdddb432ef84ee08fd1cd77d5fd9" title="Environment::getSingleHost\lRealGeneTwo" alt="" coords="269,303,454,345"/>
-<area shape="rect" id="node8" href="$_data_handler_8cpp.html#a83136cc074426bc3310d6e855252beff" title="Data harvesting method. Calculates some stats of population genetics: Shannon&#39;s index, number of MHC/antigen types, total number of MHC copies. Runs internally within DataHarvester class. " alt="" coords="303,369,419,396"/>
+<area shape="rect" id="node2" href="$class_environment.html#a45aeebf99b44c9b1e66ca16b923605ae" title="Core method. Gets the host population size. " alt="" coords="259,5,464,32"/>
+<area shape="rect" id="node3" href="$class_environment.html#ab34c398994fe34c54bdb4239ac624ac0" title="Environment::getHostFitness" alt="" coords="265,56,457,83"/>
+<area shape="rect" id="node4" href="$class_environment.html#af7fee696722912338dd1b540adf3dc02" title="Environment::getSingleHost\lChromoOneSize" alt="" coords="269,107,454,149"/>
+<area shape="rect" id="node5" href="$class_environment.html#ad5a2510424df27c93774fe0fde37e08b" title="Environment::getSingleHost\lRealGeneOne" alt="" coords="269,173,454,214"/>
+<area shape="rect" id="node6" href="$class_environment.html#a15990da9399f9c49b7e4bcb84ccace45" title="Environment::getSingleHost\lChromoTwoSize" alt="" coords="269,238,454,279"/>
+<area shape="rect" id="node7" href="$class_environment.html#af838d055fa650935798fe466e19809e4" title="Environment::getSingleHost\lRealGeneTwo" alt="" coords="269,303,454,345"/>
+<area shape="rect" id="node8" href="$_data_handler_8cpp.html#a99feb0968fda949e69c4ff4aa9dd0a16" title="Data harvesting method. Calculates some stats of population genetics: Shannon&#39;s index, number of MHC/antigen types, total number of MHC copies. Runs internally within DataHarvester class. " alt="" coords="303,369,419,396"/>
 </map>

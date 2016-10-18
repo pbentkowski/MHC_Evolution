@@ -63,6 +63,7 @@ void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int ti
         ChromosomeTwo.push_back(Gene());
         ChromosomeTwo.back().setNewGene(gene_size, timeStamp);
     }
+    evalUniqueMHCs();
 }
 
 /**
@@ -90,6 +91,7 @@ void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size,
         ChromosomeOne.push_back(tempChromo[i]);
         ChromosomeTwo.push_back(tempChromo[i]);
     }
+    evalUniqueMHCs();
 }
 
 /**
@@ -112,6 +114,7 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp){
     for(unsigned long i = 0; i < ChromosomeTwoSize; ++i){
         ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp);
     }
+    evalUniqueMHCs();
 }
 
 /**
@@ -159,6 +162,7 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
             }
         }
     }
+    evalUniqueMHCs();
 }
 
 /**
@@ -206,6 +210,7 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
             }
         }
     }
+    evalUniqueMHCs();
 }
 
 /**
@@ -366,7 +371,7 @@ double Host::getNumbOfChromoOneUniqAlleles(){
                 }
             }
         }
-        return Types;
+            return Types;
     }else{
         return 0.0;
     }
@@ -503,6 +508,34 @@ void Host::swapChromosomes(){
 }
 
 /**
+ * @brief Core method. Creates a chromosome-like vector containing only the
+ * unique MHC genes from two chromosomes. This vector is useful when interacting
+ * with pathogens or evaluating fitness.
+ */
+void Host::evalUniqueMHCs() {
+    chromovector tmpChrome;
+    int tmpSize;
+    tmpChrome.clear();
+    tmpChrome.reserve(ChromosomeOne.size() + ChromosomeTwo.size());
+    tmpChrome.insert(tmpChrome.end(), ChromosomeOne.begin(), ChromosomeOne.end());
+    tmpChrome.insert(tmpChrome.end(), ChromosomeTwo.begin(), ChromosomeTwo.end());
+    int notUniqCount = (int) tmpChrome.size();
+    int k = 0;
+    while(notUniqCount > 0) {
+        notUniqCount = 0;
+        tmpSize = (int) tmpChrome.size();
+        for(int i = tmpSize; i > k; --i){
+            if(tmpChrome[k].getTheRealGene() == tmpChrome[i].getTheRealGene()){
+                tmpChrome.erase(tmpChrome.begin() + i);
+                notUniqCount++;
+            }
+        }
+        k++;
+    }
+    UniqueAlleles = tmpChrome;
+}
+
+/**
  * @brief Core method. Calculates host individual fitness as the number 
  * of exposed pathogens divided by the genome size.
  * 
@@ -589,7 +622,8 @@ void Host::calculateFitnessExpFunc(double alpha){
  * @param alpha - scaling parameter for F() shape
  */
 void Host::calculateFitnessExpFuncUniqAlleles(double alpha){
-    double NN = getNumbOfChromoOneUniqAlleles() + getNumbOfChromoTwoUniqAlleles();
+//    double NN = getNumbOfChromoOneUniqAlleles() + getNumbOfChromoTwoUniqAlleles();
+    double NN = (double) UniqueAlleles.size();
     if (NN) {
         Fitness = (double) NumOfPathogesPresented
                             * std::exp( - std::pow(alpha * NN, 2.0));
@@ -608,7 +642,7 @@ double Host::getFitness(){
 }
 
 /**
- * @brief Core method. Clears data regarding infections and fitness.
+ * @brief Core method. Zeroes all data regarding infections and fitness.
  */
 void Host::clearInfections(){
     PathoSpecInfecting.clear();
@@ -673,4 +707,50 @@ void Host::clearInfections(){
     } 
     return outString;
 }
- 
+
+/**
+ * @brief Data harvesting method. Returns the number (double) of unique MHC in genome.
+ *
+ * @return number of unique MHC genes in individual host's genome.
+ */
+double Host::getNumbOfUniqMHCgenes() {
+    return (double) UniqueAlleles.size();
+}
+
+
+/**
+ * @brief Data harvesting method. Gives a host's unique MHC genes in a human-readable
+ * format. With all the gene specs.
+ *
+ * @return a STL string containing the host's unique MHC genes and its annotations in
+ * a human-readable format.
+ */
+std::string Host::stringUniqMHCs() {
+    std::string pathoSppString = sttr(" ");
+    unsigned long PathogesPresentedSize = PathogesPresented.size();
+    for(unsigned long ll = 0; ll < PathogesPresentedSize; ++ll){
+        pathoSppString = pathoSppString + std::to_string(PathogesPresented[ll]) + sttr(" ");
+    }
+    std::string outString;
+    outString = sttr(" === Host has ") +  std::to_string(NumOfPathogesInfecting) +
+                sttr(" parasites and presented ") + std::to_string(NumOfPathogesPresented) +
+                sttr(" - these are:") + pathoSppString + sttr("===\n");
+    sttr g1;
+    unsigned long uniqMHCsize = UniqueAlleles.size();
+    for(unsigned long i = 0; i < uniqMHCsize; ++i){
+        boost::to_string(UniqueAlleles[i].getBitGene(), g1);
+        outString += sttr(g1) + sttr("\tunique\t")
+                     + std::to_string(UniqueAlleles[i].timeOfOrigin) + sttr("\t")
+                     + std::to_string(UniqueAlleles[i].GenesTag);
+        if (UniqueAlleles[i].ParentTags.size()){
+            for (int j = 0; j < UniqueAlleles[i].ParentTags.size(); ++j){
+                outString += sttr("\t") + std::to_string(UniqueAlleles[i].MutationTime[j])
+                             + sttr("\t") + std::to_string(UniqueAlleles[i].ParentTags[j]);
+            }
+            outString += sttr("\n");
+        } else {
+            outString += sttr("\t-1\n");
+        }
+    }
+    return outString;
+}

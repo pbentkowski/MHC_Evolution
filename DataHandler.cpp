@@ -470,7 +470,8 @@ void DataHandler::saveHostPopulToFile(Environment& EnvObj, int tayme){
             "\tTime_of_parental_mutation\tAll_parental_tags etc."
             << std::endl;
     for(int i = 0; i < EnvObj.getHostsPopSize(); ++i){
-        HostGenomesFile << EnvObj.getHostGenesToString(i);
+//        HostGenomesFile << EnvObj.getHostGenesToString(i);
+        HostGenomesFile << EnvObj.getHostUniqMHCtoString(i);
     }
     HostGenomesFile.close();
 }

@@ -66,17 +66,19 @@ public:
     unsigned long getGenomeSize();
     unsigned long getChromoOneSize();
     unsigned long getChromoTwoSize();
+    double getNumbOfUniqMHCgenes();
     double getNumbOfChromoOneUniqAlleles();
     double getNumbOfChromoTwoUniqAlleles();
     void assignChromOne(chromovector One);
     void assignChromTwo(chromovector Two);
     genestring getSingleGeneFromOne(unsigned long indx);
     genestring getSingleGeneFromTwo(unsigned long indx);
-    unsigned long getHostIndvTag();
-    unsigned long getHostMotherTag();
-    void setHostIndvTag(unsigned long theTag);
-    void setHostMotherTag(unsigned long theTag);
+//    unsigned long getHostIndvTag();
+//    unsigned long getHostMotherTag();
+//    void setHostIndvTag(unsigned long theTag);
+//    void setHostMotherTag(unsigned long theTag);
     void swapChromosomes();
+    void evalUniqueMHCs();
     void calculateFitnessJustInfection();
     void calculateFitnessAccChromSize();
     void calculateFitnessForDrift();
@@ -86,12 +88,14 @@ public:
     double getFitness();
     // === Data harvesting methods ===
     std::string stringChromosomes();
+    std::string stringUniqMHCs();
     unsigned long int getOneGeneFromOne(unsigned long indx);
     unsigned long int getOneGeneFromTwo(unsigned long indx);
 private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;
     std::vector<Gene> ChromosomeTwo;
+    std::vector<Gene> UniqueAlleles;
     double Fitness;
 };
 

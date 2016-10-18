@@ -1,0 +1,6 @@
+<map id="Antigen::calculateEpitopes" name="Antigen::calculateEpitopes">
+<area shape="rect" id="node2" href="$class_antigen.html#ab52432ee37e632004979251ee56a015a" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="239,5,401,32"/>
+<area shape="rect" id="node3" href="$class_antigen.html#a882a06ec1bdc878c2a24f64a76f8f410" title="Core method. Sets a new antigen filling it with a given bit strings. " alt="" coords="235,57,405,98"/>
+<area shape="rect" id="node4" href="$class_antigen.html#a623b615ff9bce45937f8913e9491fb20" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="233,122,407,163"/>
+<area shape="rect" id="node5" href="$class_antigen.html#ae1664f59e709564f99de614f0a142f32" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="233,187,407,229"/>
+</map>

@@ -1307,6 +1307,11 @@ std::string Environment::getHostGenesToString(int i){
     return HostPopulation[i].stringChromosomes();
 }
 
+
+std::string Environment::getHostUniqMHCtoString(int i) {
+    return HostPopulation[i].stringUniqMHCs();
+}
+
 /**
  * @brief Data harvesting method. Prepares a string with the list of fixed
  * "no mutation sites" in antigens used by the DataHarvester to write these data

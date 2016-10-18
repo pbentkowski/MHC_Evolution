@@ -1,5 +1,5 @@
 <map id="Environment::selectAndReprodHostsAddOffspring" name="Environment::selectAndReprodHostsAddOffspring">
-<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="256,5,445,32"/>
-<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="263,56,439,83"/>
-<area shape="rect" id="node4" href="$class_random_numbs.html#a301ebb1a7c447763903f925a634da605" title="Core method. Generates one integer random number from a given interval with an uniform distribution..." alt="" coords="269,107,433,133"/>
+<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="257,5,447,32"/>
+<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="264,56,440,83"/>
+<area shape="rect" id="node4" href="$class_random_numbs.html#ad1d47bddda7a3050959bd757de39e57a" title="RandomNumbs::NextLongInt" alt="" coords="256,107,448,133"/>
 </map>
