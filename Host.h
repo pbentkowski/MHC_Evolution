@@ -50,28 +50,28 @@ public:
     unsigned NumOfMhcAlleles;
     int SelectedForReproduction;
     int TimeOfRecombin;
-    void setNewHost(int num_of_loci, int gene_size, int timeStamp);
-    void setNewHomozygHost(int num_of_loci, int gene_size, int timeStamp);
+    void setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp);
+    void setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp);
     void chromoMutProcess(double mut_probabl, int timeStamp);
     void chromoMutProcessWithDelDupl(double mut_probabl, double del,
-        double dupli, int maxGene, int timeStamp);
+        double dupli, unsigned long maxGene, int timeStamp);
     void chromoMutProcessWithDelDuplPointMuts(double mut_probabl, double del,
-        double dupli, int maxGene, int timeStamp);
-    void chromoRecombination(double recomb_prob, int timeStamp);
+        double dupli, unsigned long maxGene, int timeStamp);
+    void chromoRecombination(double recomb_prob);
     void clearInfections();
     chromovector doCrossAndMeiosis(double corssing_prob);
     chromovector getChromosomeOne();
     chromovector getChromosomeTwo();
     chromovector mergeChromosomes();
-    unsigned getGenomeSize();
-    unsigned getChromoOneSize();
-    unsigned getChromoTwoSize();
+    unsigned long getGenomeSize();
+    unsigned long getChromoOneSize();
+    unsigned long getChromoTwoSize();
     double getNumbOfChromoOneUniqAlleles();
     double getNumbOfChromoTwoUniqAlleles();
     void assignChromOne(chromovector One);
     void assignChromTwo(chromovector Two);
-    genestring getSingleGeneFromOne(int indx);
-    genestring getSingleGeneFromTwo(int indx);
+    genestring getSingleGeneFromOne(unsigned long indx);
+    genestring getSingleGeneFromTwo(unsigned long indx);
     unsigned long getHostIndvTag();
     unsigned long getHostMotherTag();
     void setHostIndvTag(unsigned long theTag);
@@ -86,8 +86,8 @@ public:
     double getFitness();
     // === Data harvesting methods ===
     std::string stringChromosomes();
-    unsigned long int getOneGeneFromOne(int indx);
-    unsigned long int getOneGeneFromTwo(int indx);
+    unsigned long int getOneGeneFromOne(unsigned long indx);
+    unsigned long int getOneGeneFromTwo(unsigned long indx);
 private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;

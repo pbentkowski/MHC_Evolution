@@ -1,6 +1,7 @@
 *.o
 *.pyc
 .sconsign.dblite
+.idea
 dist
 build
 SCBuild

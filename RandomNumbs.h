@@ -56,6 +56,7 @@ public:
     static RandomNumbs *getInstance();
     // the proper functions which throw random numbers:
     int NextInt(int lowerLim, int upperLim);
+    unsigned long NextLongInt(unsigned long lowerLim,  unsigned long upperLim);
     double NextReal(double lowerLim, double upperLim);
 private:
     RandomGeneratorType rg;

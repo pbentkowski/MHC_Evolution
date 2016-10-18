@@ -23,7 +23,6 @@
 
 #include "Antigen.h"
 #include "Tagging_system.h"
-#include "RandomNumbs.h"
 
 typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<unsigned long int> longIntVec;
@@ -48,13 +47,13 @@ Antigen::~Antigen() {
  * 
  * @param mhcSize - length of a bit string representing the MHC protein.
  */
-void Antigen::calculateEpitopes(int mhcSize){
-    int vecSize =  TheAntigen.size() - mhcSize;
+void Antigen::calculateEpitopes(unsigned long mhcSize){
+    unsigned long vecSize =  TheAntigen.size() - mhcSize;
     boost::dynamic_bitset<> bitEpitope(mhcSize);
     longIntVec tmpEpis(vecSize);
-    int tmpEpisSize = tmpEpis.size();
-    for(int i = 0; i < tmpEpisSize; ++i){
-        for(int j = i; j < (i + mhcSize); ++j){
+    unsigned long tmpEpisSize = tmpEpis.size();
+    for(unsigned long i = 0; i < tmpEpisSize; ++i){
+        for(unsigned long j = i; j < (i + mhcSize); ++j){
             bitEpitope[j-i] = TheAntigen[j];
         }
         tmpEpis[i] = bitEpitope.to_ulong();
@@ -73,7 +72,7 @@ void Antigen::calculateEpitopes(int mhcSize){
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
+void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp){
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     BitStringLength = length;
@@ -106,7 +105,7 @@ void Antigen::setNewAntigen(int length, int mhcSize, int timeStamp){
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
-        int Nth, int mhcSize, int timeStamp){
+        int Nth, unsigned long mhcSize, int timeStamp){
     TheAntigen = bitgene;
     antigenstring::size_type TheAntigenSize = TheAntigen.size();
     for(antigenstring::size_type i = 0; i < TheAntigenSize; i += Nth){
@@ -127,7 +126,7 @@ void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int timeStamp){
+void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp){
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
@@ -159,13 +158,13 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int time
  * @param noMutts - a STL set of positions that should remain intact during
  * the mutation process, a way to define a species.  
  */
-void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
-        int timeStamp, std::set<int>& noMutts){
+void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhcSize,
+        int timeStamp, std::set<unsigned long>& noMutts){
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    int bitgeneSize = bitgene.size();
-    for(int i = 0; i < bitgeneSize; ++i) {
+    unsigned long bitgeneSize = bitgene.size();
+    for(unsigned long i = 0; i < bitgeneSize; ++i) {
         if(noMutts.count(i) == 0){
             if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
                 bitgene[i].flip(); 
@@ -199,11 +198,11 @@ antigenstring Antigen::getBitAntigen(){
  * @param idx - index of the interesitng epitope
  * @return the epitope (as a number)
  */
-unsigned long int Antigen::getOneEpitope(int idx){
+unsigned long int Antigen::getOneEpitope(unsigned long idx){
     if(idx < Epitopes.size() and idx >= 0){
         return Epitopes[idx];
     } else {
-        return -1;
+        return 0;
     }
 }
 
@@ -227,8 +226,8 @@ longIntVec Antigen::getEpitopes(){
  */
 void Antigen::printAntigenToScreen(){
     std::cout << TheAntigen << std::endl;
-    int EpitopesSize = Epitopes.size();
-    for(int i = 0; i < EpitopesSize; ++i){
+    unsigned long EpitopesSize = Epitopes.size();
+    for(unsigned long i = 0; i < EpitopesSize; ++i){
       std::cout <<  Epitopes[i] << " ";
     }
     std::cout << std::endl;

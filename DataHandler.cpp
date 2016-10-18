@@ -21,16 +21,11 @@
  */
 
 #include <fstream>
-#include <cstdlib>
 #include <iostream>
-#include <string>
-#include <stdio.h>
-#include <time.h>
 #include <vector>
 #include <tuple>
 
 #include "DataHandler.h"
-#include"Gene.h"
 
 typedef std::string sttr;
 
@@ -52,24 +47,23 @@ DataHandler::~DataHandler() {
  * STD Touple object</a> with 3 numbers: Shannon's index, number of MHC/antigen 
  * types, total number of MHC copies
  */
-auto getShannonIndx(std::vector<int> GeneVals){
+auto getShannonIndx(std::vector<unsigned long> GeneVals){
     int Types = 0;
     double Summ = 0.0;
     double tot_gene_numb = (double) GeneVals.size();
     if(GeneVals.size()){
-        int GeneCounter = GeneVals.size();
+        unsigned long GeneCounter = GeneVals.size();
         bool IfCountedLyst[GeneCounter];
-        for (int w = 0; w < GeneCounter; ++w) {
+        for (unsigned long w = 0; w < GeneCounter; ++w) {
             IfCountedLyst[w] = false;
         }
         double abundance;
-        for (int i = 0; i < GeneCounter; ++i) {
-            if (IfCountedLyst[i] == false) {
+        for (unsigned long i = 0; i < GeneCounter; ++i) {
+            if (!IfCountedLyst[i]) {
                 Types += 1;
                 abundance = 1.0;
-                for (int j = i + 1; j < GeneCounter; ++j) {
-                    if (i != j && IfCountedLyst[j] == false 
-                               && GeneVals[i] == GeneVals[j]){
+                for (unsigned long j = i + 1; j < GeneCounter; ++j) {
+                    if (i != j && !IfCountedLyst[j] && GeneVals[i] == GeneVals[j]){
                         abundance += 1.0;
                         IfCountedLyst[j] = true;
                     }
@@ -138,11 +132,11 @@ const std::string currentDateTime(){
  * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
  */
-bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLength,
-        int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
+bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit){
     bool ifError = false;
     if (rndSeed < 0){
@@ -188,7 +182,7 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLen
                 "lack of thereof." << std::endl;
         ifError = true;
     }
-    if (maxGene < 1.0 or maxGene < hostGeneNumbb){
+    if (maxGene < 1 or maxGene < hostGeneNumbb){
         std::cout << "\nError in the hosts' maximal number of genes per " <<
                 "chromosome. It has to be at least one, but not less then the " <<
                 "number used to initialize the system. "<< std::endl;
@@ -224,7 +218,7 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int antigenLen
  * @param alpha
  * @return 
  */
-bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int hostPopSize, 
+bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
         int numberOfMates){
@@ -301,11 +295,11 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, int geneLength, int hostPopSiz
  * @param alpha
  * @param fixedAntigPosit
  */
-void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int antigenLength,
-        int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
+void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit){
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv");
@@ -368,9 +362,9 @@ void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int antigenLeng
  * @param maxGene
  * @param alpha
  */
-void DataHandler::inputParamsToFile(int rndSeed, int geneLength, int hostPopSize,
+void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
-        int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
+        int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
         int numberOfMates){
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv");
@@ -452,8 +446,8 @@ void DataHandler::savePathoPopulToFile(Environment& EnvObj, int tayme){
     PathogGenomeFile << "#Genomes_of_all_pathogens_at_time = " << tayme << std::endl;
     PathogGenomeFile << "#bit-gene\tchromosome\ttime_of_origin\tgene_own_tag\tAll_parental_tags"
             << std::endl;
-    for(int i = 0; i < EnvObj.getPathoNumOfSpecies(); ++i){
-        for(int j = 0; j < EnvObj.getPathoSpeciesPopSize(i); ++j){
+    for(unsigned long i = 0; i < EnvObj.getPathoNumOfSpecies(); ++i){
+        for(unsigned long j = 0; j < EnvObj.getPathoSpeciesPopSize(i); ++j){
             PathogGenomeFile << EnvObj.getPathoGenesToString(i, j);
         }
     }
@@ -502,21 +496,21 @@ void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
         HostGeneDivFile.close();
         ifFirstHostGeneDivRun = false;
     }
-    std::vector<int> AllTheGeneVals;
+    std::vector<unsigned long> AllTheGeneVals;
     std::vector<double> Fitness;
     double popSize = (double) EnvObj.getHostsPopSize();
-    int homoLociNum = -1; // not applicable at the moment!
+//    int homoLociNum = -1; // not applicable at the moment!
 //    double tot_gene_numb = 0;
     Fitness.clear();
-    for(int i = 0; i < EnvObj.getHostsPopSize(); ++i){
+    for(unsigned long i = 0; i < EnvObj.getHostsPopSize(); ++i){
 //        tot_gene_numb += EnvObj.getSingleHostGenomeSize(i);
         Fitness.push_back(EnvObj.getHostFitness(i));
         // Harvesting genes from Chromosome One in all hosts
-        for(int j = 0; j < EnvObj.getSingleHostChromoOneSize(i); ++j){
+        for(unsigned long j = 0; j < EnvObj.getSingleHostChromoOneSize(i); ++j){
             AllTheGeneVals.push_back(EnvObj.getSingleHostRealGeneOne(i, j));
         }
         // Harvesting genes from Chromosome Two in all hosts
-        for(int m = 0; m < EnvObj.getSingleHostChromoTwoSize(i); ++m){
+        for(unsigned long m = 0; m < EnvObj.getSingleHostChromoTwoSize(i); ++m){
             AllTheGeneVals.push_back(EnvObj.getSingleHostRealGeneTwo(i, m));
         }
     }
@@ -573,18 +567,18 @@ void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     }
     std::vector<unsigned int> AllGenomesSize;
     std::vector<int> UniqueMHCs;
-    std::vector<int> TheGeneVals;
-    for(int i = 0; i < EnvObj.getHostsPopSize(); ++i){
+    std::vector<unsigned long> TheGeneVals;
+    for(unsigned long i = 0; i < EnvObj.getHostsPopSize(); ++i){
         TheGeneVals.clear();
         // Harvesting genes from Chromosome One in all hosts
-        for(int j = 0; j < EnvObj.getSingleHostChromoOneSize(i); ++j){
+        for(unsigned long j = 0; j < EnvObj.getSingleHostChromoOneSize(i); ++j){
             TheGeneVals.push_back(EnvObj.getSingleHostRealGeneOne(i, j));
         }
         // Harvesting genes from Chromosome Two in all hosts
 //        for(int m = 0; m < EnvObj.getSingleHostChromoTwoSize(i); ++m){
 //            TheGeneVals.push_back(EnvObj.getSingleHostRealGeneTwo(i, m));
 //        }
-        AllGenomesSize.push_back(TheGeneVals.size());
+        AllGenomesSize.push_back((int) TheGeneVals.size());
         auto ShOut = getShannonIndx(TheGeneVals);
         int mhcTypes = std::get < 1 >( ShOut );
         UniqueMHCs.push_back(mhcTypes);
@@ -593,7 +587,7 @@ void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     HostGeneNumbTotal.open("HostGeneNumbTotal_ChrOne.csv",
                             std::ios::out | std::ios::ate | std::ios::app);
     HostGeneNumbTotal << tayme;
-    for(unsigned int ii = 0; ii < AllGenomesSize.size(); ++ii){
+    for(unsigned long ii = 0; ii < AllGenomesSize.size(); ++ii){
         HostGeneNumbTotal << " " << AllGenomesSize[ii];
     }
     HostGeneNumbTotal << std::endl;
@@ -603,7 +597,7 @@ void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     HostMHCNumbUnique.open("HostMHCsNumbUniq_ChrOne.csv",
                             std::ios::out | std::ios::ate | std::ios::app);
     HostMHCNumbUnique << tayme;
-    for(unsigned int jj = 0; jj < UniqueMHCs.size(); ++jj){
+    for(unsigned long jj = 0; jj < UniqueMHCs.size(); ++jj){
         HostMHCNumbUnique << " " << UniqueMHCs[jj];
     }
     HostMHCNumbUnique << std::endl;

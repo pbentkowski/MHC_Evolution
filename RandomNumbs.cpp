@@ -53,6 +53,11 @@ int RandomNumbs::NextInt(int lowerLim, int upperLim) {
     return distrib(rg);
 }
 
+unsigned long RandomNumbs::NextLongInt(unsigned long lowerLim, unsigned long upperLim) {
+    std::uniform_int_distribution<unsigned long> distrib(lowerLim, upperLim);
+    return distrib(rg);
+}
+
 /**
  * @brief Core method. Generates one real random number from a given interval
  * with an uniform distribution.

@@ -24,9 +24,6 @@
 #include <iostream>
 
 #include "H2Pinteraction.h"
-#include "Host.h"
-#include "Pathogen.h"
-#include "RandomNumbs.h"
 
 typedef std::vector<unsigned long int> longIntVec;
 typedef std::vector<Gene> chromovector;
@@ -56,7 +53,7 @@ H2Pinteraction::~H2Pinteraction() {
  */
 bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antigen){
     if(antigen.size() > 0){
-        for(int i = 0; i < antigen.size(); ++i){
+        for(unsigned long i = 0; i < antigen.size(); ++i){
             if(antigen[i] == hostgen){ return true; }            
         }
         return false;
@@ -87,7 +84,7 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     chromovector tmphost = host.getChromosomeOne();
     if (host.PathoSpecInfecting.size()){
         // Making sure a pathogen species infects only ones
-        for (int w = 0; w < host.PathoSpecInfecting.size(); ++w){
+        for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
             if(host.PathoSpecInfecting[w] == patho.getSpeciesTag()) return;
         }
     }
@@ -103,8 +100,8 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
         }
     }
     tmphost = host.getChromosomeTwo();
-    for(int i = 0; i < tmphost.size(); ++i){
-        for(int j = 0; j < tmppatho.size(); ++j){
+    for(unsigned long i = 0; i < tmphost.size(); ++i){
+        for(unsigned long j = 0; j < tmppatho.size(); ++j){
             if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
                 // the pathogen gets presented, the host evades infection:
 //                host.PathogesPresented.push_back(patho.getSpeciesTag());

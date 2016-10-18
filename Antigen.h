@@ -41,17 +41,17 @@ class Antigen {
 public:
     Antigen();
     virtual ~Antigen();
-    void calculateEpitopes(int mhcSize);
-    void setNewAntigen(int length, int mhcSize, int timeStamp);
-    void setNewFixedAntigen(int length, int timeStamp, int fixedGene,
+    void calculateEpitopes(unsigned long mhcSize);
+    void setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp);
+    void setNewFixedAntigen(unsigned long length, int timeStamp, int fixedGene,
                             unsigned long int fixedTag);
-    void mutateAntigenBitByBit(double pm_mut_probabl, int mhcSize, int timeStamp);
-    void mutateAntgBitByBitWithRes(double pm_mut_probabl, int mhcSize, 
-                                   int timeStamp, std::set<int>& noMutts);
+    void mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp);
+    void mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhcSize,
+                                   int timeStamp, std::set<unsigned long>& noMutts);
     void setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
-                                   int Nth, int mhcSize, int timeStamp);
+                                   int Nth, unsigned long mhcSize, int timeStamp);
     antigenstring getBitAntigen();
-    unsigned long int getOneEpitope(int idx);
+    unsigned long int getOneEpitope(unsigned long idx);
     longIntVec getEpitopes();
     // === Data harvesting ===
     int timeOfOrigin;
@@ -63,7 +63,7 @@ public:
 private:
     antigenstring TheAntigen;
     longIntVec Epitopes;
-    int BitStringLength;
+    unsigned long BitStringLength;
 };
 
 #endif /* ANTIGEN_H */

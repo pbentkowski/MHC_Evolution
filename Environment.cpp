@@ -21,22 +21,14 @@
  */
 #include <complex>
 #include <vector>
-#include <string>
-#include <math.h>
 
 #include <iostream>     // std::cout
 #include <algorithm>    // std::shuffle
-#include <random>       // std::default_random_engine
 #include <chrono>       // std::chrono::system_clock
 #include <iterator>
-#include <functional>
 
 #include "RandomNumbs.h"
-#include "Tagging_system.h"
 #include "Environment.h"
-#include "Host.h"
-#include "Pathogen.h"
-#include "Gene.h"
 #include "H2Pinteraction.h"
 
 typedef std::string sttr;
@@ -65,14 +57,14 @@ Environment::~Environment() {
  * @param antigen_size - number of bits per antigen
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
+void Environment::setNoMutsVector(int numb_of_species, unsigned long antigen_size,
         double fixedAntigenFrac){
-    std::set<int> NoMutSet;
+    std::set<unsigned long> NoMutSet;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < numb_of_species; ++i){
         NoMutSet.clear();
         NoMutsVec.push_back(NoMutSet);
-        for(int j = 0; j < antigen_size; ++j){
+        for(unsigned long j = 0; j < antigen_size; ++j){
             if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
                 NoMutsVec.back().insert(j);
             }
@@ -96,13 +88,13 @@ void Environment::setNoMutsVector(int numb_of_species, int antigen_size,
  */
 void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
         double fixedAntigenFrac){
-    std::set<int> NoMutSet;
+    std::set<unsigned long> NoMutSet;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     fixedAntigenFrac = fixedAntigenFrac / 4.0;
     for(int i = 0; i < numb_of_species; ++i){
         NoMutSet.clear();
         NoMutsVec.push_back(NoMutSet);
-        int indexCounter = 0;
+        unsigned long indexCounter = 0;
         while (indexCounter < antigen_size) {
             if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
                 NoMutsVec.back().insert(indexCounter);
@@ -134,15 +126,15 @@ void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
  * @param antigen_size - number of bits per antigen
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setNoMutsVecFourClads(int numb_of_species, int antigen_size,
+void Environment::setNoMutsVecFourClads(int numb_of_species, unsigned long antigen_size,
         double fixedAntigenFrac){
-    std::set<int> NoMutSet;
-    std::vector<std::set<int>> TmpNoMutsVec;
+    std::set<unsigned long> NoMutSet;
+    std::vector<std::set<unsigned long>> TmpNoMutsVec;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < 4; ++i){
         NoMutSet.clear();
         TmpNoMutsVec.push_back(NoMutSet);
-        for(int j = 0; j < antigen_size; ++j){
+        for(unsigned long j = 0; j < antigen_size; ++j){
             if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
                 TmpNoMutsVec.back().insert(j);
             }
@@ -168,8 +160,8 @@ void Environment::setNoMutsVecFourClads(int numb_of_species, int antigen_size,
  * @param chrom_size - number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostRandomPopulation(int pop_size, int gene_size,
-        int chrom_size, int timeStamp){
+void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
+                                          unsigned long chrom_size, int timeStamp){
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(Host());
         HostPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
@@ -192,17 +184,18 @@ void Environment::setHostRandomPopulation(int pop_size, int gene_size,
  * @param chrom_size_uper - upper limit of the number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostRandomPopulation(int pop_size, int gene_size,
-        int chrom_size_lower, int chrom_size_uper, int timeStamp){
+void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
+                                          unsigned long chrom_size_lower,
+                                          unsigned long chrom_size_uper, int timeStamp){
     if(chrom_size_lower > chrom_size_uper){
-        int tmp_size = chrom_size_lower;
+        unsigned long tmp_size = chrom_size_lower;
         chrom_size_lower = chrom_size_uper;
         chrom_size_uper = tmp_size;
     }
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(Host());
-        HostPopulation.back().setNewHost(p_RandomNumbs->NextInt(chrom_size_lower,
+        HostPopulation.back().setNewHost(p_RandomNumbs->NextLongInt(chrom_size_lower,
                 chrom_size_uper), gene_size, timeStamp);
     }
 }
@@ -222,8 +215,8 @@ void Environment::setHostRandomPopulation(int pop_size, int gene_size,
  * @param chrom_size - number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostClonalPopulation(int pop_size, int gene_size,
-        int chrom_size, int timeStamp){
+void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
+                                          unsigned long chrom_size, int timeStamp){
     std::vector<Host> tmpPopulation;
     tmpPopulation.push_back(Host());
     tmpPopulation.back().setNewHomozygHost(chrom_size, gene_size, timeStamp);
@@ -250,8 +243,8 @@ void Environment::setHostClonalPopulation(int pop_size, int gene_size,
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long antigenSize,
+        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac){
     Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
@@ -266,7 +259,7 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
                         mhcSize, i, timeStamp);
             } else {
                 OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
-                        mhcSize,  i, timeStamp);
+                        mhcSize, i, timeStamp);
             }
             if(indiv_left){
                 OneSpeciesVector.push_back(Pathogen());
@@ -298,8 +291,8 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, int antigenSize,
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antigenSize,
+        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac){
     Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
@@ -353,8 +346,8 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, int antigenSize,
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antigenSize,
+        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac){
     Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
@@ -398,8 +391,8 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, int antigenSize,
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
-void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize,
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antigenSize,
+        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac){
     Environment::setNoMutsVecFourClads(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
@@ -458,14 +451,14 @@ void Environment::setPathoPopulationFourClades(int pop_size, int antigenSize,
  */
 void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
-    int j;
+    unsigned long j;
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
-        int PathPopulationSize = PathPopulation.size();
-        for(int sp = 0; sp < PathPopulationSize; ++sp){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
+        unsigned long PathPopulationSize = PathPopulation.size();
+        for(unsigned long sp = 0; sp < PathPopulationSize; ++sp){
             if(PathPopulation[sp].size()){
-                j = p_RandomNumbs->NextInt(0, PathPopulation[sp].size()-1);
+                j = p_RandomNumbs->NextLongInt(0, PathPopulation[sp].size()-1);
                 H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
@@ -479,8 +472,8 @@ void Environment::infectOneFromOneSpecHetero(){
  * under account.
  */
 void Environment::calculateHostsFitnessPerGene(){
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessAccChromSize();
     }
 }
@@ -492,8 +485,8 @@ void Environment::calculateHostsFitnessPerGene(){
  * of presented pathogens.
  */
 void Environment::calculateHostsFitnessPlainPresent(){
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessJustInfection();
     }
 }
@@ -505,8 +498,8 @@ void Environment::calculateHostsFitnessPlainPresent(){
  * the genetic driff work.
  */
 void Environment::calculateHostsFitnessForDrift(){
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessForDrift();
     }
 }
@@ -518,8 +511,8 @@ void Environment::calculateHostsFitnessForDrift(){
  * number of genes as a fitness cost.
  */
 void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessAlphaXSqr(alpha);
     }
 }
@@ -531,8 +524,8 @@ void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
  * the costs of having lots of genes.
  */
 void Environment::calculateHostsFitnessExpScaling(double alpha){
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessExpFunc(alpha);
     }
 }
@@ -544,8 +537,8 @@ void Environment::calculateHostsFitnessExpScaling(double alpha){
  * to accommodate the costs of having lots of unique MHC alleles in chromosomes.
  */
 void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
-    int HostPopulationSize = HostPopulation.size();
-    for(int i = 0; i < HostPopulationSize; ++i){
+    unsigned long HostPopulationSize = HostPopulation.size();
+    for(unsigned long i = 0; i < HostPopulationSize; ++i){
         HostPopulation[i].calculateFitnessExpFuncUniqAlleles(alpha);
     }
 }
@@ -564,7 +557,7 @@ void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
  * selection).
  */
 void Environment::selectAndReprodHostsAddOffspring(){
-    unsigned pop_size = HostPopulation.size();
+    unsigned long pop_size = HostPopulation.size();
     double sum_of_fit = 0;
     double rnd;
     for(unsigned i = 0; i < pop_size; ++i){
@@ -588,8 +581,8 @@ void Environment::selectAndReprodHostsAddOffspring(){
         }
     }
     // Remove the unfit ones
-    int PopSize = HostPopulation.size();
-    for (int i = PopSize - 1; i >= 0; --i){
+    unsigned long PopSize = HostPopulation.size();
+    for (unsigned long i = PopSize - 1; i >= 0; --i){
         if (HostPopulation[i].SelectedForReproduction == 0){
             HostPopulation.erase(HostPopulation.begin() + i);
         }
@@ -605,13 +598,13 @@ void Environment::selectAndReprodHostsAddOffspring(){
 //    }
     // Random mating
     PopSize = HostPopulation.size();
-    int emptySlots = pop_size - PopSize;
-    int indx_father, indx_mother;
-    for (int p = 0; p < emptySlots; ++p){
-        indx_father = p_RandomNumbs->NextInt(0, PopSize);
-        indx_mother = p_RandomNumbs->NextInt(0, PopSize);
+    unsigned long emptySlots = pop_size - PopSize;
+    unsigned long indx_father, indx_mother;
+    for (unsigned long p = 0; p < emptySlots; ++p){
+        indx_father = p_RandomNumbs->NextLongInt(0, PopSize);
+        indx_mother = p_RandomNumbs->NextLongInt(0, PopSize);
         while (indx_father == indx_mother){
-            indx_mother = p_RandomNumbs->NextInt(0, PopSize);
+            indx_mother = p_RandomNumbs->NextLongInt(0, PopSize);
         }
         HostPopulation.push_back(HostPopulation[indx_mother]);
         HostPopulation.back().assignChromTwo(HostPopulation[indx_father].getChromosomeTwo());
@@ -635,11 +628,11 @@ void Environment::selectAndReprodHostsAddOffspring(){
 void Environment::selectAndReprodHostsReplace(){
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
-    unsigned pop_size = HostPopulation.size();
+    unsigned long pop_size = HostPopulation.size();
 //    int tot_exposed = 0;
     double sum_of_fit = 0;
     double rnd;
-    for(unsigned i = 0; i < pop_size; ++i){
+    for(unsigned long i = 0; i < pop_size; ++i){
 //        tot_exposed += HostPopulation[i].NumOfPathogesPresented;
 //        HostPopulation[i].NumOfPathogesPresented += 1;
         sum_of_fit += HostPopulation[i].getFitness();
@@ -652,8 +645,8 @@ void Environment::selectAndReprodHostsReplace(){
     aley_oop:
     while(n < pop_size){
         rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
-        int HostPopulationSize = HostPopulation.size();
-        for(int k = 0; k < HostPopulationSize; ++k) {
+        unsigned long HostPopulationSize = HostPopulation.size();
+        for(unsigned long k = 0; k < HostPopulationSize; ++k) {
             rnd = rnd - HostPopulation[k].getFitness();
             if(rnd <= 0){
                HostPopulation[k].SelectedForReproduction += 1;
@@ -665,7 +658,7 @@ void Environment::selectAndReprodHostsReplace(){
         second_parent:
         rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
         HostPopulationSize = HostPopulation.size();
-        for(int p = 0; p < HostPopulationSize; ++p) {
+        for(unsigned long p = 0; p < HostPopulationSize; ++p) {
             rnd = rnd - HostPopulation[p].getFitness();
             if(rnd <= 0){
                HostPopulation[p].SelectedForReproduction += 1;
@@ -703,8 +696,8 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
     int tot_patho_pop_size = 0;
     int total_ifected = 0;
     int sum_of_fit = 0;
-    int PathPopulationSize = PathPopulation.size();
-    for (int i = 0; i < PathPopulationSize; ++i){
+    unsigned long PathPopulationSize = PathPopulation.size();
+    for (unsigned long i = 0; i < PathPopulationSize; ++i){
         tot_patho_pop_size = tot_patho_pop_size + (int) PathPopulation[i].size();
         for (int j = 0; j < PathPopulation[i].size(); ++j){
             total_ifected += PathPopulation[i][j].NumOfHostsInfected;
@@ -722,9 +715,9 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
     aley_oop:
     while(n < tot_patho_pop_size){
         rnd = p_RandomNumbs->NextInt(0, sum_of_fit);
-        int PathPopulationSize = PathPopulation.size();
+        PathPopulationSize = PathPopulation.size();
         for (int i = 0; i < PathPopulationSize; ++i){
-            int PathPopulationIthSize = PathPopulation[i].size();
+            unsigned long PathPopulationIthSize = PathPopulation[i].size();
             for (int j = 0; j < PathPopulationIthSize; ++j){
                 rnd = rnd - PathPopulation[i][j].NumOfHostsInfected;
                 if(rnd <= 0){
@@ -735,12 +728,12 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
             }
         }
     }
-    int PopSize;
+    unsigned long PopSize;
     // Elimination of the unfit
-    int PopOfPopsSize = PathPopulation.size();
-    for (int i = PopOfPopsSize - 1; i >= 0; --i){
+    unsigned long PopOfPopsSize = PathPopulation.size();
+    for (unsigned long i = PopOfPopsSize - 1; i >= 0; --i){
         PopSize = PathPopulation[i].size();
-        for (int j = PopSize - 1; j >= 0; --j){
+        for (unsigned long j = PopSize - 1; j >= 0; --j){
             if(PathPopulation[i][j].SelectedToReproduct  == 0){
                 PathPopulation[i].erase(PathPopulation[i].begin() + j);
             }
@@ -748,9 +741,9 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
     }
     // Reproduction of the fit ones
     PopOfPopsSize = PathPopulation.size();
-    for (int i = PopOfPopsSize - 1; i >= 0; --i){
+    for (unsigned long i = PopOfPopsSize - 1; i >= 0; --i){
         PopSize = PathPopulation[i].size();
-        for (int j = PopSize - 1; j >= 0; j--){
+        for (unsigned long j = PopSize - 1; j >= 0; j--){
             if(PathPopulation[i][j].SelectedToReproduct){
                 for(int k = 1; k < PathPopulation[i][j].SelectedToReproduct; ++k){
                     PathPopulation[i].push_back(PathPopulation[i][j]);
@@ -772,11 +765,11 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
 void Environment::selectAndReproducePathoFixedPopSizes(){
     std::vector<Pathogen> TmpPathVec;
     int rnd;
-    int PopSizes[(int) PathPopulation.size()];
+    unsigned long PopSizes[(int) PathPopulation.size()];
     int SpecTotInfected[(int) PathPopulation.size()];
     int total_ifected = 0;
-    int PathPopulationSize = PathPopulation.size();
-    for (int i = 0; i < PathPopulationSize; ++i){
+    unsigned long PathPopulationSize = PathPopulation.size();
+    for (unsigned long i = 0; i < PathPopulationSize; ++i){
         PopSizes[i] = PathPopulation[i].size();
         SpecTotInfected[i] = 0;
         for (int j = 0; j < PathPopulation[i].size(); ++j){
@@ -794,8 +787,8 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
         aley_oop:
         while(n < PopSizes[k]){
            rnd = p_RandomNumbs->NextInt(0, SpecTotInfected[k]);
-           int PathPopulationKthSize = PathPopulation[k].size();
-           for(int l = 0; l < PathPopulationKthSize; ++l){
+            unsigned long PathPopulationKthSize = PathPopulation[k].size();
+           for(unsigned long l = 0; l < PathPopulationKthSize; ++l){
                rnd = rnd - PathPopulation[k][l].NumOfHostsInfected;
                if(rnd <= 0){
                   PathPopulation[k][l].SelectedToReproduct += 1;
@@ -824,9 +817,9 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
  */
 void Environment::clearPathoInfectionData(){
     // Clear pathogens infection data
-    int PathPopulationSize = PathPopulation.size();
+    unsigned long PathPopulationSize = PathPopulation.size();
     for (int i = 0; i < PathPopulationSize; ++i){
-        int PathPopulationIthSize = PathPopulation[i].size();
+        unsigned long PathPopulationIthSize = PathPopulation[i].size();
         for (int j = 0; j < PathPopulationIthSize; ++j){
                 PathPopulation[i][j].clearInfections();
             }
@@ -839,8 +832,8 @@ void Environment::clearPathoInfectionData(){
  */
 void Environment::clearHostInfectionsData(){
     // Clear hosts infection data
-    int HostPopulationSzie = HostPopulation.size();
-    for(int k = 0; k < HostPopulationSzie; ++k){
+    unsigned long HostPopulationSzie = HostPopulation.size();
+    for(unsigned long k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].clearInfections();
     }
 }
@@ -853,8 +846,8 @@ void Environment::clearHostInfectionsData(){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHosts(double mut_probabl, int timeStamp){
-    int HostPopulationSzie = HostPopulation.size();
-    for(int k = 0; k < HostPopulationSzie; ++k){
+    unsigned long HostPopulationSzie = HostPopulation.size();
+    for(unsigned long k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcess(mut_probabl, timeStamp);
     }
 }
@@ -872,9 +865,9 @@ void Environment::mutateHosts(double mut_probabl, int timeStamp){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
-        double dupl, unsigned int maxGene, int timeStamp){
-    int HostPopulationSzie = HostPopulation.size();
-    for(int k = 0; k < HostPopulationSzie; ++k){
+        double dupl, unsigned long maxGene, int timeStamp){
+    unsigned long HostPopulationSzie = HostPopulation.size();
+    for(unsigned long k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl,
                 maxGene, timeStamp);
     }
@@ -892,8 +885,8 @@ void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
-        double del, double dupl, unsigned int maxGene, int timeStamp){
-    int HostPopulationSzie = HostPopulation.size();
+        double del, double dupl, unsigned long maxGene, int timeStamp){
+    unsigned long HostPopulationSzie = HostPopulation.size();
     for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDuplPointMuts(pm_mut_probabl,
                 del, dupl, maxGene, timeStamp);
@@ -923,7 +916,7 @@ void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
  * @param geneLength - number of bits in a gene representation
  * @return - calculated corresponding point mutation
  */
-double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
+double Environment::MMtoPMscaling(double MM_prob_mut, unsigned long geneLength){
     double bitt = (double) geneLength;
     return 1.0 - std::exp((1.0 / bitt) * std::log(1.0 -  MM_prob_mut
             * (1.0 - std::pow(0.5, bitt))));
@@ -937,10 +930,10 @@ double Environment::MMtoPMscaling(double MM_prob_mut, int geneLength){
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp){
-    int PathPopulationSize = PathPopulation.size();
+void Environment::mutatePathogens(double mut_probabl, unsigned long mhcSize, int timeStamp){
+    unsigned long PathPopulationSize = PathPopulation.size();
     for (int i = 0; i < PathPopulationSize; ++i){
-        int PathPopulationIthSize = PathPopulation[i].size();
+        unsigned long PathPopulationIthSize = PathPopulation[i].size();
         for (int j = 0; j < PathPopulationIthSize; ++j){
             PathPopulation[i][j].chromoMutProcess(mut_probabl, mhcSize, timeStamp);
         }
@@ -958,13 +951,13 @@ void Environment::mutatePathogens(double mut_probabl, int mhcSize, int timeStamp
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::mutatePathogensWithRestric(double mut_probabl, int mhcSize,
+void Environment::mutatePathogensWithRestric(double mut_probabl, unsigned long mhcSize,
         int timeStamp){
     if (PathPopulation.size() == NoMutsVec.size()){
-        int PathPopulationSize = PathPopulation.size();
-        for (int i = 0; i < PathPopulationSize; ++i){
-            int PathPopulationIthSize = PathPopulation[i].size();
-            for (int j = 0; j < PathPopulationIthSize; ++j){
+        unsigned long PathPopulationSize = PathPopulation.size();
+        for(unsigned long i = 0; i < PathPopulationSize; ++i){
+            unsigned long PathPopulationIthSize = PathPopulation[i].size();
+            for(unsigned long j = 0; j < PathPopulationIthSize; ++j){
                 PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
                         mhcSize, timeStamp, NoMutsVec[i]);
             }
@@ -981,7 +974,7 @@ void Environment::mutatePathogensWithRestric(double mut_probabl, int mhcSize,
  *
  * @return number of pathogen species
  */
-unsigned Environment::getPathoNumOfSpecies(){
+unsigned long Environment::getPathoNumOfSpecies(){
     return PathPopulation.size();
 }
 
@@ -992,7 +985,7 @@ unsigned Environment::getPathoNumOfSpecies(){
  * @param spec_numb - number of selected species.
  * @return number of individuals of a selected species.
  */
-unsigned Environment::getPathoSpeciesPopSize(unsigned spec_numb){
+unsigned long Environment::getPathoSpeciesPopSize(unsigned long spec_numb){
     return PathPopulation[spec_numb].size();
 }
 
@@ -1001,7 +994,7 @@ unsigned Environment::getPathoSpeciesPopSize(unsigned spec_numb){
  *
  * @return host population size
  */
-unsigned Environment::getHostsPopSize(){
+unsigned long Environment::getHostsPopSize(){
     return HostPopulation.size();
 }
 
@@ -1018,13 +1011,13 @@ unsigned Environment::getHostsPopSize(){
  * 
  */
 void Environment::matingWithNoCommonMHCwholePop(){
-    int popSize = int (HostPopulation.size());
+    unsigned long popSize = HostPopulation.size();
     // Generating a vector of shuffled indices 
     std::vector<int> indxVec;
-    for (int i = 0; i < popSize; ++i){
-        indxVec.push_back(i);
+    for (unsigned long i = 0; i < popSize; ++i){
+        indxVec.push_back((int) i);
     }
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    long seed = std::chrono::system_clock::now().time_since_epoch().count();
     shuffle (indxVec.begin(), indxVec.end(), std::default_random_engine(seed));
     
     std::vector<Host> NewHostsVec;
@@ -1032,43 +1025,43 @@ void Environment::matingWithNoCommonMHCwholePop(){
     // proper mating
     int similCount, geneIndCount;
     similCount = 0;
-    while(int (NewHostsVec.size()) < popSize){
-        for (int j = 0; j < HostPopulation.size(); ++j){
-            for (int k = 0; k < popSize; ++k){
+    while(NewHostsVec.size() < popSize){
+        for (unsigned long j = 0; j < HostPopulation.size(); ++j){
+            for (unsigned long k = 0; k < popSize; ++k){
                 geneIndCount = 0;
-                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromOne(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
                             geneIndCount++;
                         }
                     }
                 }
-                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromOne(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
                             geneIndCount++;
                         }
                     }
                 }
-                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromTwo(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
                             geneIndCount++;
                         }
                     }
                 }
-                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromTwo(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
                             geneIndCount++;
                         }
                     }
                 }
-                if(geneIndCount == similCount and int(NewHostsVec.size()) < popSize){
+                if(geneIndCount == similCount and NewHostsVec.size() < popSize){
                     // mate two hosts, set a new individual
                     NewHostsVec.push_back(HostPopulation[j]);
                     NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
@@ -1103,27 +1096,26 @@ void Environment::matingWithNoCommonMHCwholePop(){
  * 
  */
 void Environment::matingWithOneDifferentMHCwholePop(){
-    int popSize = int (HostPopulation.size());
+    unsigned long popSize = HostPopulation.size();
     // Generating a vector of shuffled indices 
     std::vector<int> indxVec;
-    for (int i = 0; i < popSize; ++i){
-        indxVec.push_back(i);
+    for (unsigned long i = 0; i < popSize; ++i){
+        indxVec.push_back((int) i);
     }
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    long seed = std::chrono::system_clock::now().time_since_epoch().count();
     shuffle (indxVec.begin(), indxVec.end(), std::default_random_engine(seed));
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     bool isThereMatch;
-    int spare;
     // proper mating
-    while(int (NewHostsVec.size()) < popSize){
-        for (int j = 0; j < HostPopulation.size(); ++j){
-            for (int k = 0; k < popSize; ++k){
+    while(NewHostsVec.size() < popSize){
+        for (unsigned long j = 0; j < HostPopulation.size(); ++j){
+            for (unsigned long k = 0; k < popSize; ++k){
                 isThereMatch = false;
-                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromOne(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
                             isThereMatch = true;
@@ -1131,8 +1123,8 @@ void Environment::matingWithOneDifferentMHCwholePop(){
                         }
                     }
                 }
-                for (int l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromOne(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
                             isThereMatch = true;
@@ -1140,8 +1132,8 @@ void Environment::matingWithOneDifferentMHCwholePop(){
                         }
                     }
                 }
-                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromTwo(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
                             isThereMatch = true;
@@ -1149,8 +1141,8 @@ void Environment::matingWithOneDifferentMHCwholePop(){
                         }
                     }
                 }
-                for (int l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (int m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
+                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
+                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
                         if(HostPopulation[j].getOneGeneFromTwo(l) == 
                            HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
                             isThereMatch = true;
@@ -1159,7 +1151,7 @@ void Environment::matingWithOneDifferentMHCwholePop(){
                     }
                 }
                 got_a_match:
-                if(isThereMatch and int(NewHostsVec.size()) < popSize){
+                if(isThereMatch and NewHostsVec.size() < popSize){
                     // mate two hosts, set a new individual
                     NewHostsVec.push_back(HostPopulation[j]);
                     NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
@@ -1167,10 +1159,10 @@ void Environment::matingWithOneDifferentMHCwholePop(){
                     break;
                 }
             }
-            if (isThereMatch == false and int(NewHostsVec.size()) < popSize){
+            if (!isThereMatch and NewHostsVec.size() < popSize){
                 NewHostsVec.push_back(HostPopulation[j]);
                 NewHostsVec.back().
-                  assignChromTwo(HostPopulation[p_RandomNumbs->NextInt(0, popSize-1)].
+                  assignChromTwo(HostPopulation[p_RandomNumbs->NextLongInt(0, popSize-1)].
                   getChromosomeTwo());
                 NewHostsVec.back().swapChromosomes();
             }
@@ -1202,12 +1194,13 @@ void Environment::matingWithOneDifferentMHCwholePop(){
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
  */
-void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
-    int popSize = int (HostPopulation.size());  
+void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber){
+    unsigned long popSize = HostPopulation.size();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
-    int i, theBestMatch, maxGenomeSize, geneIndCount, highScore;
+    unsigned long i, maxGenomeSize, highScore, geneIndCount;
+    int theBestMatch;
     maxGenomeSize = 0;
     for(auto indvidual : HostPopulation){
         if(indvidual.getGenomeSize() > maxGenomeSize){
@@ -1219,11 +1212,11 @@ void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
     // Specify the size of the mates vector
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
-    while(int (NewHostsVec.size()) < popSize){
-        i = p_RandomNumbs->NextInt(0, popSize-1);
+    while(NewHostsVec.size() < popSize){
+        i = p_RandomNumbs->NextLongInt(0, popSize-1);
         // Specify the engine and create unique vector listing mates from population
         std::mt19937 mersenne_engine(rnd_device());
-        std::uniform_int_distribution<int> dist(0, popSize-1);
+        std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
         auto genn = std::bind(dist, mersenne_engine);
         generate(begin(matesVec), end(matesVec), genn);
         // find the best mate out of N randomly chosen
@@ -1232,32 +1225,32 @@ void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
         for (auto mate : matesVec) {
 //            std::cout << mate << " ";
             geneIndCount = 0;
-            for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
-                for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
+            for (unsigned long l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
                     if(HostPopulation[i].getOneGeneFromOne(l) == 
                        HostPopulation[mate].getOneGeneFromOne(m)){
                         geneIndCount++;
                     }
                 }
             }
-            for (int l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
-                for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
+            for (unsigned long l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
                     if(HostPopulation[i].getOneGeneFromOne(l) == 
                        HostPopulation[mate].getOneGeneFromTwo(m)){
                         geneIndCount++;
                     }
                 }
             }
-            for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
-                for (int m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
+            for (unsigned long l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
                     if(HostPopulation[i].getOneGeneFromTwo(l) == 
                        HostPopulation[mate].getOneGeneFromOne(m)){
                         geneIndCount++;
                     }
                 }
             }
-            for (int l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
-                for (int m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
+            for (unsigned long l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
                     if(HostPopulation[i].getOneGeneFromTwo(l) == 
                        HostPopulation[mate].getOneGeneFromTwo(m)){
                         geneIndCount++;
@@ -1299,7 +1292,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(int matingPartnerNumber){
  * @param j individual's index within the pathogen species vector
  * @return a string of the pathogen's chromosome in a human-readable format.
  */
-std::string Environment::getPathoGenesToString(int i, int j){
+std::string Environment::getPathoGenesToString(unsigned long i, unsigned long j){
     return PathPopulation[i][j].stringGenesFromGenome();
 }
 
@@ -1324,7 +1317,7 @@ std::string Environment::getHostGenesToString(int i){
 std::string Environment::getFixedBitsInAntigens(){
     sttr fixedMutStr;
     for(int i = 0; i < NoMutsVec.size(); ++i){
-        for (int const& possit : NoMutsVec[i]){
+        for (unsigned long const& possit : NoMutsVec[i]){
             fixedMutStr += std::to_string(possit) + sttr(" ");
         }
         fixedMutStr += sttr("\n");
@@ -1332,29 +1325,29 @@ std::string Environment::getFixedBitsInAntigens(){
     return fixedMutStr;
 }
 
-int Environment::getSingleHostGenomeSize(int indx){
+unsigned long Environment::getSingleHostGenomeSize(unsigned long indx){
     return HostPopulation[indx].getGenomeSize();
 }
 
 
-int Environment::getSingleHostChromoOneSize(int indx){
+unsigned long Environment::getSingleHostChromoOneSize(unsigned long indx){
     return HostPopulation[indx].getChromoOneSize();
 }
 
 
-int Environment::getSingleHostChromoTwoSize(int indx){
+unsigned long Environment::getSingleHostChromoTwoSize(unsigned long indx){
     return HostPopulation[indx].getChromoTwoSize();
 }
 
 
-int Environment::getSingleHostRealGeneOne(int i, int j){
+unsigned long Environment::getSingleHostRealGeneOne(unsigned long i, unsigned long j){
     return HostPopulation[i].getOneGeneFromOne(j);
 }
 
-int Environment::getSingleHostRealGeneTwo(int i, int j){
+unsigned long Environment::getSingleHostRealGeneTwo(unsigned long i, unsigned long j){
     return HostPopulation[i].getOneGeneFromTwo(j);
 }
 
-double Environment::getHostFitness(int indx){
+double Environment::getHostFitness(unsigned long indx){
     return (double) HostPopulation[indx].NumOfPathogesPresented;
 }

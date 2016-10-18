@@ -39,25 +39,25 @@ public:
     DataHandler();
 //    DataHarvester(const DataHarvester& orig);
     virtual ~DataHandler();
-    bool checkParamsIfWrong(int rndSeed, int geneLength, int exposedMatch,
-        int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
+    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit);
-    bool checkParamsIfWrong(int rndSeed, int geneLength, int hostPopSize, 
+    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
         int numberOfMates);
-    void inputParamsToFile(int rndSeed, int geneLength, int exposedMatch,
-        int hostPopSize, int pathoPopSize, int patho_sp, int hostGeneNumbb,
+    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, int maxGene, double alpha,
+        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit);
-    void inputParamsToFile(int rndSeed, int geneLength, int hostPopSize,
+    void inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
-        int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
+        int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
         int numberOfMates);
     void setAllFilesAsFirtsTimers();
     void saveNumOfPathoSpeciesToFile(Environment &EnvObj, int tayme);

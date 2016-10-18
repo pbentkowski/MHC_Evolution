@@ -42,15 +42,17 @@ public:
 //    Gene(const Gene& orig);
     // === Core stuff ===
     virtual ~Gene();
-    void setNewGene(int lenght, int timeStamp); 
-    void setNewGene(int lenght, int low_lim, int up_lim, int timeStamp);
-    void setNewFixedGene(int lenght, int timeStamp, int fixedGene,
+    void setNewGene(unsigned long lenght, int timeStamp);
+    void setNewGene(unsigned long  lenght, unsigned long low_lim,
+                    unsigned long up_lim, int timeStamp);
+    void setNewFixedGene(unsigned long lenght, int timeStamp, unsigned long fixedGene,
                          unsigned long int fixedTag);
     void mutateGeneWhole(double mut_prob_whole, int timeStamp);
-    void mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim, int timeStamp);
+    void mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
+                         unsigned long up_lim, int timeStamp);
     void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);
     void mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
-                                   std::set<int>& noMutts);
+                                   std::set<unsigned long>& noMutts);
     genestring getBitGene();
     unsigned long int getTheRealGene();
     // === Data harvesting ===
@@ -61,8 +63,8 @@ public:
     unsigned long int GenesTag;
     void printGeneToScreen();
 private:
-    unsigned long int TheGene;
-    int BitStringLength;
+    unsigned long TheGene;
+    unsigned long BitStringLength;
 };
 
 #endif	/* GENE_H */

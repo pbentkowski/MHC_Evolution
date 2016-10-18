@@ -22,7 +22,6 @@
 
 #include <complex>
 #include <vector>
-#include <string>
 #include "boost/dynamic_bitset.hpp"
 
 #include "Pathogen.h"
@@ -54,8 +53,8 @@ Pathogen::~Pathogen() {
  * @param species - user-defined number of species
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Pathogen::setNewPathogen(int num_of_loci, int antigen_size, int mhcSize, 
-        int species, int timeStamp){
+void Pathogen::setNewPathogen(int num_of_loci, unsigned long antigen_size,
+                              unsigned long mhcSize, int species, int timeStamp){
     Species = species;
     NumOfHostsInfected = 0;
     SelectedToReproduct = 0;
@@ -80,8 +79,9 @@ void Pathogen::setNewPathogen(int num_of_loci, int antigen_size, int mhcSize,
  * @param timeStamp - current time (current number of the model iteration)
  * @param Nth - step at each a bit should be flipped
  */
-void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigen, 
-        int mhcSize, int species, int timeStamp, int Nth){
+void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigen,
+                                     unsigned long mhcSize, int species,
+                                     int timeStamp, int Nth){
     Species = species;
     NumOfHostsInfected = 0;
     SelectedToReproduct = 0;
@@ -104,9 +104,9 @@ void Pathogen::setNewPathogenNthSwap(int num_of_loci, anigenstring antigen,
  * replaced by a new one
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Pathogen::chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp){
-    int PathogenProtsSize = PathogenProts.size();
-    for(int i = 0; i < PathogenProtsSize; ++i){
+void Pathogen::chromoMutProcess(double mut_probabl, unsigned long mhcSize, int timeStamp){
+    unsigned long PathogenProtsSize = PathogenProts.size();
+    for(unsigned long i = 0; i < PathogenProtsSize; ++i){
 //        ChromosomePat[i].mutateGeneWhole(mut_probabl);
 //        ChromosomePat[i].mutateGeneWhole(mut_probabl, LowerGeneValue,
 //                UpperGeneValue, timeStamp);
@@ -124,10 +124,10 @@ void Pathogen::chromoMutProcess(double mut_probabl, int mhcSize, int timeStamp){
  * @param noMutts - a std::set containing indices of residues of the bit-string 
  * that are not allowed to change
  */
-void Pathogen::chromoMutProcessWithRestric(double mut_probabl, int mhcSize, 
-        int timeStamp, std::set<int>& noMutts){
-    int PathogenProtsSize = PathogenProts.size();
-    for(int i = 0; i < PathogenProtsSize; ++i){
+void Pathogen::chromoMutProcessWithRestric(double mut_probabl, unsigned long mhcSize,
+        int timeStamp, std::set<unsigned long>& noMutts){
+    unsigned long PathogenProtsSize = PathogenProts.size();
+    for(unsigned long i = 0; i < PathogenProtsSize; ++i){
         PathogenProts[i].mutateAntgBitByBitWithRes(mut_probabl, mhcSize, 
                                                    timeStamp, noMutts);
     }
@@ -197,14 +197,14 @@ std::string Pathogen::stringGenesFromGenome(){
             sttr(" has infected ") + std::to_string(NumOfHostsInfected) +
             sttr(" hosts ===\n");
     sttr bitAntigen;
-    int PathogenProtsSize = PathogenProts.size();
-    for(int i = 0; i < PathogenProtsSize; i++){
+    unsigned long PathogenProtsSize = PathogenProts.size();
+    for(unsigned long i = 0; i < PathogenProtsSize; i++){
         boost::to_string(PathogenProts[i].getBitAntigen(), bitAntigen);
         genomeString += sttr(bitAntigen) + sttr("\tch_pat\t")
                    + std::to_string(PathogenProts[i].timeOfOrigin) + sttr("\t")
                    + std::to_string(PathogenProts[i].AntigenTag);
-        int PathoProtsIthParentTagsSize = PathogenProts[i].ParentTags.size();
-        for (int j = 0; j < PathoProtsIthParentTagsSize; ++j){
+        unsigned long PathoProtsIthParentTagsSize = PathogenProts[i].ParentTags.size();
+        for (unsigned long j = 0; j < PathoProtsIthParentTagsSize; ++j){
             genomeString += sttr("\t") + std::to_string(PathogenProts[i].ParentTags[j]);
         }
         genomeString += sttr("\n");
@@ -218,8 +218,8 @@ std::string Pathogen::stringGenesFromGenome(){
 void Pathogen::printGenesFromGenome(){
     std::cout << " === Patho. sp. No. " <<  Species << " has infected " \
               << NumOfHostsInfected << " hosts ===" << std::endl;
-    int PathogenProtsSize = PathogenProts.size();
-    for(int i = 0; i < PathogenProtsSize; i++){
+    unsigned long PathogenProtsSize = PathogenProts.size();
+    for(unsigned long i = 0; i < PathogenProtsSize; i++){
         std::cout << PathogenProts[i].getBitAntigen() << std::endl;
     }
 }

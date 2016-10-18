@@ -25,7 +25,6 @@
 #include "boost/dynamic_bitset.hpp"
 
 #include "Gene.h"
-#include "RandomNumbs.h"
 #include "Tagging_system.h"
 
 typedef boost::dynamic_bitset<> genestring;
@@ -49,14 +48,14 @@ Gene::~Gene() {
  * @param length - number of bits in a gene.
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Gene::setNewGene(int length, int timeStamp) {
+void Gene::setNewGene(unsigned long length, int timeStamp) {
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     BitStringLength = length;
     Tagging_system* pTagging_system = Tagging_system::getInstance();
     GenesTag = pTagging_system->getTag();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    TheGene = p_RandomNumbs->NextInt(0, std::pow(2, BitStringLength)-1);
+    TheGene = p_RandomNumbs->NextLongInt(0, std::pow(2, BitStringLength)-1);
 }
 
 /**
@@ -71,8 +70,8 @@ void Gene::setNewGene(int length, int timeStamp) {
  * @param fixedGene - the gene value
  * @param fixedTag - tag value
  */
-void Gene::setNewFixedGene(int length, int timeStamp, int fixedGene,
-        unsigned long int fixedTag){
+void Gene::setNewFixedGene(unsigned long length, int timeStamp, unsigned long fixedGene,
+        unsigned long fixedTag){
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     BitStringLength = length;
@@ -92,13 +91,13 @@ void Gene::setNewFixedGene(int length, int timeStamp, int fixedGene,
  * @param up_lim - upper limit of the range of permitted bit-string values
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Gene::setNewGene(int length, int low_lim, int up_lim, int timeStamp) {
+void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long up_lim, int timeStamp) {
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     Tagging_system* pTagging_system = Tagging_system::getInstance();
     GenesTag = pTagging_system->getTag();
     BitStringLength = length;
-    int possible_max = std::pow(2, length)-1;
+    unsigned long possible_max = std::pow(2, length)-1;
     if(possible_max < up_lim){
         std::cout << "Error in Gene::setNewGene(): Demanded upper limit"\
                   " is out of possible boundaries for a bit string of this"\
@@ -107,7 +106,7 @@ void Gene::setNewGene(int length, int low_lim, int up_lim, int timeStamp) {
     }
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     // assigned a random string of ones and zeros of given length
-    TheGene = p_RandomNumbs->NextInt(low_lim, up_lim);
+    TheGene = p_RandomNumbs->NextLongInt(low_lim, up_lim);
 //    // below is a added line -remove
 //    std::cout << "low: " << low_lim << ", high: " << up_lim \
 //              << ", gene: "<< TheGene << std::endl;
@@ -122,12 +121,12 @@ void Gene::setNewGene(int length, int low_lim, int up_lim, int timeStamp) {
 void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp) {
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     if(p_RandomNumbs->NextReal(0.0, 1.0) < mut_prob_whole){
-        TheParentWas = TheGene;
+        TheParentWas = (int) TheGene;
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
         Tagging_system* pTagging_system = Tagging_system::getInstance();
         GenesTag = pTagging_system->getTag();
-        TheGene = p_RandomNumbs->NextInt(0, std::pow(2, BitStringLength)-1);
+        TheGene = p_RandomNumbs->NextLongInt(0, (unsigned long) std::pow(2, BitStringLength)-1);
         timeOfOrigin = timeStamp;
     }
 }
@@ -141,23 +140,23 @@ void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp) {
  * @param up_lim - upper limit of possible gene value.
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Gene::mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim,
-        int timeStamp) {
+void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
+                           unsigned long up_lim, int timeStamp) {
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     if(p_RandomNumbs->NextReal(0.0, 1.0) < mut_prob_whole){
-        int possible_max = std::pow(2, BitStringLength)-1;
+        unsigned long possible_max = (unsigned long) std::pow(2, BitStringLength)-1;
         if(possible_max < up_lim){
             std::cout << "Error in Gene::mutateGeneWhole(): Demanded upper limit"\
                     " is out of possible boundaries for a bit string of this"\
                     " length." << std::endl;
             up_lim = possible_max;
         }
-        TheParentWas = TheGene;
+        TheParentWas = (int) TheGene;
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
         Tagging_system* pTagging_system = Tagging_system::getInstance();
         GenesTag = pTagging_system->getTag();
-        TheGene = p_RandomNumbs->NextInt(low_lim, up_lim);
+        TheGene = p_RandomNumbs->NextLongInt(low_lim, up_lim);
         timeOfOrigin = timeStamp;
     }
 }
@@ -170,7 +169,7 @@ void Gene::mutateGeneWhole(double mut_prob_whole, int low_lim, int up_lim,
  * @param timeStamp - current time (current number of the model iteration).
  */
 void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
-    int currentGene = TheGene;
+    unsigned long currentGene = TheGene;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
@@ -178,7 +177,7 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
         if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
             bitgene[i].flip();
         }
-    TheGene = (int) bitgene.to_ulong();
+    TheGene = bitgene.to_ulong();
     }
     if(currentGene != TheGene){
         ParentTags.push_back(GenesTag);
@@ -200,18 +199,18 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
  * that are not allowed to change.
  */
 void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp, 
-        std::set<int>& noMutts){
-    int currentGene = TheGene;
+        std::set<unsigned long >& noMutts){
+    unsigned long currentGene = TheGene;
     bool exists;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) { 
-        exists = noMutts.find(i) != noMutts.end();
-        if(exists == false and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+        exists = noMutts.find((int) i) != noMutts.end();
+        if(!exists and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
             bitgene[i].flip();
         }
-    TheGene = (int) bitgene.to_ulong();
+    TheGene = bitgene.to_ulong();
     }
     if(currentGene != TheGene){
         ParentTags.push_back(GenesTag);

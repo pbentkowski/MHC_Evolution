@@ -38,30 +38,30 @@ class Environment {
 private:
     std::vector<Host> HostPopulation;
     std::vector<std::vector<Pathogen> > PathPopulation;
-    std::vector<std::set<int>> NoMutsVec;
+    std::vector<std::set<unsigned long>> NoMutsVec;
 public:
     // === Core methods ===
     Environment();
 //    Environment(const Environment& orig);
     virtual ~Environment();
-    void setNoMutsVector(int numb_of_species, int antigen_size, double fixedAntigenFrac);
+    void setNoMutsVector(int numb_of_species, unsigned long antigen_size, double fixedAntigenFrac);
     void setNoMutsVecInFours(int numb_of_species, int antigen_size, double fixedAntigenFrac);
-    void setNoMutsVecFourClads(int numb_of_species, int antigen_size, double fixedAntigenFrac);
-    void setHostRandomPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
-    void setHostRandomPopulation(int pop_size, int gene_size, int chrom_size_lower,
-        int chrom_size_uper, int timeStamp);
-    void setHostClonalPopulation(int pop_size, int gene_size, int chrom_size, int timeStamp);
-    void setPathoPopulatioUniformGenome(int pop_size, int gene_size, 
-        int chrom_size, int numb_of_species, int mhcSize, int timeStamp,
+    void setNoMutsVecFourClads(int numb_of_species, unsigned long antigen_size, double fixedAntigenFrac);
+    void setHostRandomPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size, int timeStamp);
+    void setHostRandomPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size_lower,
+                                 unsigned long chrom_size_uper, int timeStamp);
+    void setHostClonalPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size, int timeStamp);
+    void setPathoPopulatioUniformGenome(int pop_size, unsigned long gene_size,
+        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac);
-    void setPathoPopulatioDivSpecies(int pop_size, int gene_size, int chrom_size,
-        int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac);
-    void setPathoPopulatioDistincSpp(int pop_size, int antigenSize, int chrom_size,
-        int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac);
-    void setPathoPopulationFourClades(int pop_size, int antigenSize, int chrom_size,
-        int numb_of_species, int mhcSize, int timeStamp, double fixedAntigenFrac);
+    void setPathoPopulatioDivSpecies(int pop_size, unsigned long gene_size, int chrom_size,
+        int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac);
+    void setPathoPopulatioDistincSpp(int pop_size, unsigned long antigenSize, int chrom_size,
+        int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac);
+    void setPathoPopulationFourClades(int pop_size, unsigned long antigenSize, int chrom_size,
+        int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac);
     void infectOneFromOneSpecHetero();
-    void infectEveryOne(int simil_mesure);
+    //void infectEveryOne(int simil_mesure);
     void calculateHostsFitnessPerGene();
     void calculateHostsFitnessPlainPresent();
     void calculateHostsFitnessForDrift();
@@ -74,33 +74,33 @@ public:
     void selectAndReproducePathoFixedPopSizes();
     void clearHostInfectionsData();
     void clearPathoInfectionData();
-    void mutatePathogens(double mut_probabl, int mhcSize, int timeStamp);
-    void mutatePathogensWithRestric(double mut_probabl,  int mhcSize, int timeStamp);
+    void mutatePathogens(double mut_probabl, unsigned long mhcSize, int timeStamp);
+    void mutatePathogensWithRestric(double mut_probabl,  unsigned long mhcSize, int timeStamp);
     void mutateHosts(double mut_probabl, int timeStamp);
     void mutateHostsWithDelDupl(double mut_probabl, double del, double dupl, 
-        unsigned int maxGene, int timeStamp);
+        unsigned long maxGene, int timeStamp);
     void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
-        double dupl, unsigned int maxGene, int timeStamp);
-    double MMtoPMscaling(double MM_prob_mut, int geneLength);
+        double dupl, unsigned long maxGene, int timeStamp);
+    double MMtoPMscaling(double MM_prob_mut, unsigned long geneLength);
     void matingWithNoCommonMHCwholePop();
     void matingWithOneDifferentMHCwholePop();
-    void matingWithNoCommonMHCsmallSubset(int matingPartnerNumber);
+    void matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber);
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
 
     // === Data harvesting methods ===
-    unsigned getPathoNumOfSpecies();
-    unsigned getPathoSpeciesPopSize(unsigned spec_numb);
-    unsigned getHostsPopSize();
+    unsigned long getPathoNumOfSpecies();
+    unsigned long getPathoSpeciesPopSize(unsigned long spec_numb);
+    unsigned long getHostsPopSize();
     std::string getHostsTags();
-    std::string getPathoGenesToString(int i, int j);
+    std::string getPathoGenesToString(unsigned long i, unsigned long j);
     std::string getHostGenesToString(int i);
     std::string getFixedBitsInAntigens();
-    int getSingleHostGenomeSize(int indx);
-    int getSingleHostChromoOneSize(int indx);
-    int getSingleHostChromoTwoSize(int indx);
-    int getSingleHostRealGeneOne(int i, int j);
-    int getSingleHostRealGeneTwo(int i, int j);
-    double getHostFitness(int indx);
+    unsigned long getSingleHostGenomeSize(unsigned long indx);
+    unsigned long getSingleHostChromoOneSize(unsigned long indx);
+    unsigned long getSingleHostChromoTwoSize(unsigned long indx);
+    unsigned long getSingleHostRealGeneOne(unsigned long i, unsigned long j);
+    unsigned long getSingleHostRealGeneTwo(unsigned long i, unsigned long j);
+    double getHostFitness(unsigned long indx);
     
 };
 

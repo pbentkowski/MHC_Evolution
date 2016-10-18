@@ -23,13 +23,10 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <string>
 #include <vector>
 #include "boost/dynamic_bitset.hpp"
 
 #include "Host.h"
-#include "Gene.h"
-#include "RandomNumbs.h"
 
 typedef boost::dynamic_bitset<> genestring;
 typedef std::vector<Gene> chromovector;
@@ -55,12 +52,12 @@ Host::~Host() {
  * @param gene_size - the length of the bit-string representing a gene
  * @param timeStamp - current time (number of the model iteration)
  */
-void Host::setNewHost(int num_of_loci, int gene_size, int timeStamp){
+void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp){
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
     Fitness = 0.0;
-    for(int i = 0; i < num_of_loci; ++i){
+    for(unsigned long i = 0; i < num_of_loci; ++i){
         ChromosomeOne.push_back(Gene());
         ChromosomeOne.back().setNewGene(gene_size, timeStamp);
         ChromosomeTwo.push_back(Gene());
@@ -79,13 +76,13 @@ void Host::setNewHost(int num_of_loci, int gene_size, int timeStamp){
  * @param gene_size - the length of the bit-string representing a gene
  * @param timeStamp - current time (number of the model iteration)
  */
-void Host::setNewHomozygHost(int num_of_loci, int gene_size, int timeStamp){
+void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp){
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
     Fitness = 0.0;
     chromovector tempChromo;
-    for(int k = 0; k < num_of_loci; ++k){
+    for(unsigned long k = 0; k < num_of_loci; ++k){
         tempChromo.push_back(Gene());
         tempChromo.back().setNewGene(gene_size, timeStamp);
     }
@@ -107,12 +104,12 @@ void Host::setNewHomozygHost(int num_of_loci, int gene_size, int timeStamp){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Host::chromoMutProcess(double mut_probabl, int timeStamp){
-    int ChromosomeOneSize = ChromosomeOne.size();
-    for(int i = 0; i < ChromosomeOneSize; ++i){
+    unsigned long ChromosomeOneSize = ChromosomeOne.size();
+    for(unsigned long i = 0; i < ChromosomeOneSize; ++i){
         ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp);
     }
-    int ChromosomeTwoSize = ChromosomeTwo.size();
-    for(int i = 0; i < ChromosomeTwoSize; ++i){
+    unsigned long ChromosomeTwoSize = ChromosomeTwo.size();
+    for(unsigned long i = 0; i < ChromosomeTwoSize; ++i){
         ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp);
     }
 }
@@ -136,10 +133,10 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp){
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del, 
-        double dupli, int maxGene, int timeStamp){
+        double dupli, unsigned long maxGene, int timeStamp){
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     if(ChromosomeOne.size()){
-        for(int i = ChromosomeOne.size() - 1; i >= 0; --i){
+        for(int i = (int) (ChromosomeOne.size() - 1); i >= 0; --i){
             ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp);
             if(ChromosomeOne.size() and ChromosomeOne.size() < maxGene 
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
@@ -151,7 +148,7 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
         }
     }
     if(ChromosomeTwo.size()){
-        for(int i = ChromosomeTwo.size() - 1; i >= 0; --i){
+        for(int i = (int) (ChromosomeTwo.size() - 1); i >= 0; --i){
             ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp);
             if(ChromosomeTwo.size() and ChromosomeTwo.size() < maxGene 
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
@@ -183,10 +180,10 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
  * @param timeStamp - current time (current number of the model iteration)
  */
 void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
-        double del, double dupli, int maxGene, int timeStamp){
+        double del, double dupli, unsigned long maxGene, int timeStamp){
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     if(ChromosomeOne.size()){
-        for(int i = ChromosomeOne.size() - 1; i >= 0; --i){
+        for(int i = (int) ChromosomeOne.size() - 1; i >= 0; --i){
             ChromosomeOne[i].mutateGeneBitByBit(pm_mut_probabl, timeStamp);
             if(ChromosomeOne.size() and ChromosomeOne.size() < maxGene 
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
@@ -198,7 +195,7 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
         }
     }
     if(ChromosomeTwo.size()){
-        for(int i = ChromosomeTwo.size() - 1; i >= 0; --i){
+        for(int i = (int) ChromosomeTwo.size() - 1; i >= 0; --i){
             ChromosomeTwo[i].mutateGeneBitByBit(pm_mut_probabl, timeStamp);
             if(ChromosomeTwo.size() and ChromosomeTwo.size() < maxGene 
                     and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
@@ -219,7 +216,7 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
  * @param recomb_prob - probability of the recombination event in host's genome
  * @param timeStamp - current time (current number of the model iteration) 
  */
-void Host::chromoRecombination(double recomb_prob, int timeStamp){
+void Host::chromoRecombination(double recomb_prob){
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     if (p_RandomNumbs->NextReal(0.0, 1.0) < recomb_prob){
        // needs to be done!
@@ -246,7 +243,6 @@ void Host::chromoRecombination(double recomb_prob, int timeStamp){
  chromovector Host::doCrossAndMeiosis(double corssing_prob){
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     chromovector new_chromos;
-    Gene tmpGene;
     for(int i = 0; i < ChromosomeOne.size(); ++i){
         if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
             new_chromos.push_back(ChromosomeOne[i]);
@@ -275,7 +271,7 @@ void Host::chromoRecombination(double recomb_prob, int timeStamp){
  * @param indx - index of the gene you wanna get.
  * @return an integer representation of a gene with a given index.
  */
-unsigned long int Host::getOneGeneFromOne(int indx){
+unsigned long int Host::getOneGeneFromOne(unsigned long indx){
     if(ChromosomeOne.size()){
         if(indx < ChromosomeOne.size()){
             return ChromosomeOne[indx].getTheRealGene();
@@ -288,7 +284,7 @@ unsigned long int Host::getOneGeneFromOne(int indx){
     }else{
         std::cout << "Error in Host::getOneGeneFromOne(): Chromosome One "
                 "has no genes! Returning 0." << std::endl;
-        return -1;
+        return 0;
     }
 }
 
@@ -299,7 +295,7 @@ unsigned long int Host::getOneGeneFromOne(int indx){
  * @param indx - index of the gene you wanna get.
  * @return an integer representation of a gene with a given index.
  */
-unsigned long int Host::getOneGeneFromTwo(int indx){
+unsigned long int Host::getOneGeneFromTwo(unsigned long indx){
     if(ChromosomeTwo.size()){
         if(indx < ChromosomeTwo.size()){
             return ChromosomeTwo[indx].getTheRealGene();
@@ -312,7 +308,7 @@ unsigned long int Host::getOneGeneFromTwo(int indx){
     }else{
         std::cout << "Error in Host::getOneGeneFromTwo(): Chromosome Two "
                 "has no genes! Returning 0." << std::endl;
-        return -1;
+        return 0;
     }
 }
 
@@ -321,7 +317,7 @@ unsigned long int Host::getOneGeneFromTwo(int indx){
  * 
  * @return number of all MHC genes in the host
  */
-unsigned Host::getGenomeSize(){
+unsigned long Host::getGenomeSize(){
     return ChromosomeOne.size() + ChromosomeTwo.size();
 }
  
@@ -330,7 +326,7 @@ unsigned Host::getGenomeSize(){
  * 
  * @return number of MHC genes in the Chromosome One.
  */
-unsigned Host::getChromoOneSize(){
+unsigned long Host::getChromoOneSize(){
     return ChromosomeOne.size();
 }
 
@@ -339,7 +335,7 @@ unsigned Host::getChromoOneSize(){
  * 
  * @return number of MHC genes in the Chromosome Two.
  */
-unsigned Host::getChromoTwoSize(){
+unsigned long Host::getChromoTwoSize(){
     return ChromosomeTwo.size();
 }
 
@@ -351,19 +347,19 @@ unsigned Host::getChromoTwoSize(){
  * 
  */
 double Host::getNumbOfChromoOneUniqAlleles(){
-    int GeneCounter = ChromosomeOne.size();
+    unsigned long GeneCounter = ChromosomeOne.size();
     if(GeneCounter){
         bool IfCountedLyst[GeneCounter];
-        for (int w = 0; w < GeneCounter; ++w) {
+        for (unsigned long w = 0; w < GeneCounter; ++w) {
             IfCountedLyst[w] = false;
         }
         double Types = 0;
-        for (int i = 0; i < GeneCounter; ++i) {
-            if (IfCountedLyst[i] == false) {
+        for (unsigned long i = 0; i < GeneCounter; ++i) {
+            if (!IfCountedLyst[i]) {
                 Types += 1.0;
-                for (int j = i + 1; j < GeneCounter - 1; ++j) {
-                    if (i != j && IfCountedLyst[j] == false 
-                               && ChromosomeOne[i].getTheRealGene() == 
+                for (unsigned long j = i + 1; j < GeneCounter - 1; ++j) {
+                    if (i != j && !IfCountedLyst[j]
+                        && ChromosomeOne[i].getTheRealGene() ==
                                   ChromosomeOne[j].getTheRealGene()){
                         IfCountedLyst[j] = true;
                     }
@@ -383,19 +379,19 @@ double Host::getNumbOfChromoOneUniqAlleles(){
  * 
  */
 double Host::getNumbOfChromoTwoUniqAlleles(){
-    int GeneCounter = ChromosomeTwo.size();
+    unsigned long GeneCounter = ChromosomeTwo.size();
     if(GeneCounter){
         bool IfCountedLyst[GeneCounter];
-        for (int w = 0; w < GeneCounter; ++w) {
+        for (unsigned long w = 0; w < GeneCounter; ++w) {
             IfCountedLyst[w] = false;
         }
         double Types = 0;
         for (int i = 0; i < GeneCounter; ++i) {
-            if (IfCountedLyst[i] == false) {
+            if (!IfCountedLyst[i]) {
                 Types += 1.0;
                 for (int j = i + 1; j < GeneCounter - 1; ++j) {
-                    if (i != j && IfCountedLyst[j] == false 
-                               && ChromosomeTwo[i].getTheRealGene() == 
+                    if (i != j && !IfCountedLyst[j]
+                        && ChromosomeTwo[i].getTheRealGene() ==
                                   ChromosomeTwo[j].getTheRealGene()){
                         IfCountedLyst[j] = true;
                     }
@@ -415,7 +411,7 @@ double Host::getNumbOfChromoTwoUniqAlleles(){
  * @param indx - index of the gene you wanna get.
  * @return a bit-string representation of a gene with a given index.
  */
-genestring Host::getSingleGeneFromOne(int indx){
+genestring Host::getSingleGeneFromOne(unsigned long indx){
     if(indx < ChromosomeOne.size()){
         return ChromosomeOne[indx].getBitGene();
     }else{
@@ -432,7 +428,7 @@ genestring Host::getSingleGeneFromOne(int indx){
  * @param indx - index of the gene you wanna get.
  * @return a bitstring representation of a gene with a given index.
  */
-genestring Host::getSingleGeneFromTwo(int indx){
+genestring Host::getSingleGeneFromTwo(unsigned long indx){
     if(indx < ChromosomeTwo.size()){
         return ChromosomeTwo[indx].getBitGene();
     }else{
@@ -632,8 +628,8 @@ void Host::clearInfections(){
  */
  std::string Host::stringChromosomes(){
     std::string pathoSppString = sttr(" ");
-    int PathogesPresentedSize = PathogesPresented.size();
-    for(int ll = 0; ll < PathogesPresentedSize; ++ll){
+    unsigned long PathogesPresentedSize = PathogesPresented.size();
+    for(unsigned long ll = 0; ll < PathogesPresentedSize; ++ll){
         pathoSppString = pathoSppString + std::to_string(PathogesPresented[ll]) + sttr(" ");
     }
     std::string outString;
@@ -642,8 +638,8 @@ void Host::clearInfections(){
         sttr(" - these are:") + pathoSppString + sttr("===\n");
     sttr g1;
     sttr g2;
-    int ChromosomeOneSize = ChromosomeOne.size();
-    for(int i = 0; i < ChromosomeOneSize; ++i){
+    unsigned long ChromosomeOneSize = ChromosomeOne.size();
+    for(unsigned long i = 0; i < ChromosomeOneSize; ++i){
         boost::to_string(ChromosomeOne[i].getBitGene(), g1);
         outString += sttr(g1) + sttr("\tch_one\t") 
                    + std::to_string(ChromosomeOne[i].timeOfOrigin) + sttr("\t")
@@ -659,14 +655,14 @@ void Host::clearInfections(){
         }
     }
 //    outString += sttr("-----\n");
-    int ChromosomeTwoSize = ChromosomeTwo.size();
-    for(int k = 0; k < ChromosomeTwoSize; ++k){
+    unsigned long ChromosomeTwoSize = ChromosomeTwo.size();
+    for(unsigned long k = 0; k < ChromosomeTwoSize; ++k){
         boost::to_string(ChromosomeTwo[k].getBitGene(), g2);
         outString += sttr(g2) + sttr("\tch_two\t") 
                    + std::to_string(ChromosomeTwo[k].timeOfOrigin) + sttr("\t")
                    + std::to_string(ChromosomeTwo[k].GenesTag);
         if (ChromosomeTwo[k].ParentTags.size()){
-            for (int l = 0; l < ChromosomeTwo[k].ParentTags.size(); ++l){
+            for (unsigned long l = 0; l < ChromosomeTwo[k].ParentTags.size(); ++l){
                 outString += sttr("\t") + std::to_string(ChromosomeTwo[k].MutationTime[l])
                         + sttr("\t") + std::to_string(ChromosomeTwo[k].ParentTags[l]);
             }
