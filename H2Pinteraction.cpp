@@ -38,7 +38,6 @@ H2Pinteraction::H2Pinteraction() {
 H2Pinteraction::~H2Pinteraction() {
 }
 
-
 /**
  * @brief Core method. Checks if the antigen is presented by a given MHC.
  * 
@@ -64,7 +63,6 @@ bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antige
     }
 }
 
-
 /**
  * @brief Core method. Checks if a host gets infected with a pathogen. 
  * Heterozygote has an advantage here over homozygote and each species is 
@@ -81,7 +79,7 @@ bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antige
  */
 void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     antigenvector tmppatho = patho.getAllAntigens();
-    chromovector tmphost = host.getChromosomeOne();
+    chromovector tmphost = host.getUniqueMHCs();
     if (host.PathoSpecInfecting.size()){
         // Making sure a pathogen species infects only ones
         for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
@@ -92,19 +90,6 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
         for(int j = 0; j < tmppatho.size(); ++j){
             if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
                 // the pathogen gets presented, the host evades infection:
-//                host.PathogesPresented.push_back(patho.getSpeciesTag());
-                host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
-                host.PathogesPresented.push_back(patho.getSpeciesTag());
-                return;
-            }
-        }
-    }
-    tmphost = host.getChromosomeTwo();
-    for(unsigned long i = 0; i < tmphost.size(); ++i){
-        for(unsigned long j = 0; j < tmppatho.size(); ++j){
-            if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
-                // the pathogen gets presented, the host evades infection:
-//                host.PathogesPresented.push_back(patho.getSpeciesTag());
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
                 host.PathogesPresented.push_back(patho.getSpeciesTag());
                 return;

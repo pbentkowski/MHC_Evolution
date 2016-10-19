@@ -476,6 +476,15 @@ chromovector Host::mergeChromosomes(){
 }
 
 /**
+ * @brief Core method.  Returns unique MHC alleles from the host.
+ *
+ * @return chromosome-like vector if unique MHC alleles.
+ */
+chromovector Host::getUniqueMHCs() {
+    return UniqueAlleles;
+}
+
+/**
  * @brief Core method. Assigns a new chromosome to host's Chromosome ONE.
  * 
  * @param One - a STL vector of genes 
@@ -514,20 +523,18 @@ void Host::swapChromosomes(){
  */
 void Host::evalUniqueMHCs() {
     chromovector tmpChrome;
-    int tmpSize;
+    int tmpSize, k;
     tmpChrome.clear();
     tmpChrome.reserve(ChromosomeOne.size() + ChromosomeTwo.size());
     tmpChrome.insert(tmpChrome.end(), ChromosomeOne.begin(), ChromosomeOne.end());
     tmpChrome.insert(tmpChrome.end(), ChromosomeTwo.begin(), ChromosomeTwo.end());
-    int notUniqCount = (int) tmpChrome.size();
-    int k = 0;
-    while(notUniqCount > 0) {
-        notUniqCount = 0;
+    tmpSize = (int) tmpChrome.size();
+    k = 0;
+    while(k < tmpSize) {
         tmpSize = (int) tmpChrome.size();
-        for(int i = tmpSize; i > k; --i){
+        for(int i = tmpSize-1; i > k; --i){
             if(tmpChrome[k].getTheRealGene() == tmpChrome[i].getTheRealGene()){
                 tmpChrome.erase(tmpChrome.begin() + i);
-                notUniqCount++;
             }
         }
         k++;

@@ -63,6 +63,7 @@ public:
     chromovector getChromosomeOne();
     chromovector getChromosomeTwo();
     chromovector mergeChromosomes();
+    chromovector getUniqueMHCs();
     unsigned long getGenomeSize();
     unsigned long getChromoOneSize();
     unsigned long getChromoTwoSize();
