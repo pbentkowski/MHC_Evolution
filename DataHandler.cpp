@@ -89,6 +89,7 @@ void DataHandler::setAllFilesAsFirtsTimers(){
     ifFirstGeneNumbersTotal = true;
     ifFirstGeneNumbersUnique = true;
     ifNoMuttPathoListUnique = true;
+    ifNumberOfPresentedPatho = true;
 }
 
 /** 
@@ -625,4 +626,21 @@ void DataHandler::savePathoNoMuttList(Environment& EnvObj){
                             std::ios::out | std::ios::ate | std::ios::app);
     NoMuttPathoList << EnvObj.getFixedBitsInAntigens();
     NoMuttPathoList.close();
+}
+
+void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
+if(ifNumberOfPresentedPatho){
+        std::ofstream PresentedPathoNumb;
+        PresentedPathoNumb.open("PresentedPathogenNumbers.csv");
+        PresentedPathoNumb << "#time number_of_pathogens_presented_by_hosts"
+                << std::endl;
+        PresentedPathoNumb.close();
+    ifNumberOfPresentedPatho = false;
+    }
+    std::ofstream PresentedPathoNumb;
+    PresentedPathoNumb.open("PresentedPathogenNumbers.csv",
+                            std::ios::out | std::ios::ate | std::ios::app);
+    PresentedPathoNumb << tayme;
+    PresentedPathoNumb << EnvObj.getNumbersOfPathogensPresented();
+    PresentedPathoNumb.close();
 }

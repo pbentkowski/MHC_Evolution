@@ -47,9 +47,7 @@ public:
     std::vector<int> PathogesPresented;
     unsigned NumOfPathogesInfecting;
     unsigned NumOfPathogesPresented;
-    unsigned NumOfMhcAlleles;
     int SelectedForReproduction;
-    int TimeOfRecombin;
     void setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp);
     void setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp);
     void chromoMutProcess(double mut_probabl, int timeStamp);
@@ -67,6 +65,7 @@ public:
     unsigned long getGenomeSize();
     unsigned long getChromoOneSize();
     unsigned long getChromoTwoSize();
+    unsigned long getUniqueMhcSize();
     double getNumbOfUniqMHCgenes();
     double getNumbOfChromoOneUniqAlleles();
     double getNumbOfChromoTwoUniqAlleles();
@@ -92,6 +91,8 @@ public:
     std::string stringUniqMHCs();
     unsigned long int getOneGeneFromOne(unsigned long indx);
     unsigned long int getOneGeneFromTwo(unsigned long indx);
+    unsigned long int getOneGeneFromUniqVect(unsigned long indx);
+    unsigned getNumberOfPresentedPatho();
 private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;

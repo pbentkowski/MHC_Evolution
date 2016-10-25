@@ -96,6 +96,7 @@ public:
     std::string getHostGenesToString(int i);
     std::string getHostUniqMHCtoString(int i);
     std::string getFixedBitsInAntigens();
+    std::string getNumbersOfPathogensPresented();
     unsigned long getSingleHostGenomeSize(unsigned long indx);
     unsigned long getSingleHostChromoOneSize(unsigned long indx);
     unsigned long getSingleHostChromoTwoSize(unsigned long indx);

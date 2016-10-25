@@ -1204,7 +1204,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
     maxGenomeSize = 0;
     for(auto indvidual : HostPopulation){
         if(indvidual.getGenomeSize() > maxGenomeSize){
-            maxGenomeSize = indvidual.getGenomeSize();
+            maxGenomeSize = indvidual.getUniqueMhcSize();
         }
     }
     // First create an instance of an random engine.
@@ -1225,34 +1225,10 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
         for (auto mate : matesVec) {
 //            std::cout << mate << " ";
             geneIndCount = 0;
-            for (unsigned long l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
-                for (unsigned long m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
-                    if(HostPopulation[i].getOneGeneFromOne(l) == 
+            for (unsigned long l = 0; l < HostPopulation[i].getUniqueMhcSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getUniqueMhcSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromOne(l) ==
                        HostPopulation[mate].getOneGeneFromOne(m)){
-                        geneIndCount++;
-                    }
-                }
-            }
-            for (unsigned long l = 0; l < HostPopulation[i].getChromoOneSize(); ++l){
-                for (unsigned long m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
-                    if(HostPopulation[i].getOneGeneFromOne(l) == 
-                       HostPopulation[mate].getOneGeneFromTwo(m)){
-                        geneIndCount++;
-                    }
-                }
-            }
-            for (unsigned long l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
-                for (unsigned long m = 0; m < HostPopulation[mate].getChromoOneSize(); ++m){
-                    if(HostPopulation[i].getOneGeneFromTwo(l) == 
-                       HostPopulation[mate].getOneGeneFromOne(m)){
-                        geneIndCount++;
-                    }
-                }
-            }
-            for (unsigned long l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
-                for (unsigned long m = 0; m < HostPopulation[mate].getChromoTwoSize(); ++m){
-                    if(HostPopulation[i].getOneGeneFromTwo(l) == 
-                       HostPopulation[mate].getOneGeneFromTwo(m)){
                         geneIndCount++;
                     }
                 }
@@ -1328,6 +1304,21 @@ std::string Environment::getFixedBitsInAntigens(){
         fixedMutStr += sttr("\n");
     }
     return fixedMutStr;
+}
+
+/**
+ * @brief Data harvesting method. Prepares a string with the list of how many pathogen
+ * species each host had presented.
+ *
+ * @return a string listing how many pathogens hosts presented
+ */
+std::string Environment::getNumbersOfPathogensPresented() {
+    sttr presentedPatho;
+    for(auto indvidual : HostPopulation){
+            presentedPatho += sttr(" ") + std::to_string(indvidual.getNumberOfPresentedPatho());
+    }
+    presentedPatho +=  sttr("\n");
+    return presentedPatho;
 }
 
 unsigned long Environment::getSingleHostGenomeSize(unsigned long indx){

@@ -317,6 +317,32 @@ unsigned long int Host::getOneGeneFromTwo(unsigned long indx){
     }
 }
 
+
+/**
+ * @brief Core method. Fetches a gene (as integer) with a given position on
+ * the vector of unique MHCs.
+ *
+ * @param indx  - index of the gene you wanna get.
+ * @return an integer representation of a gene with a given index.
+ */
+unsigned long int Host::getOneGeneFromUniqVect(unsigned long indx) {
+    if(UniqueAlleles.size()){
+        if(indx < UniqueAlleles.size()){
+            return UniqueAlleles[indx].getTheRealGene();
+        }else{
+            std::cout << "Error in Host::getOneGeneFromUniqVect(): Index out of the "\
+                    "range of the gene vector size. Fetching the last gene." << std::endl;
+            std::cout << "Index: " << indx << ", Vector size: " << UniqueAlleles.size() << std::endl;
+            return UniqueAlleles.back().getTheRealGene();
+        }
+    }else{
+        std::cout << "Error in Host::getOneGeneFromUniqVect(): Unique MHCs vector "
+                "has no genes! Returning 0." << std::endl;
+        return 0;
+    }
+}
+
+
 /**
  * @brief Returns the total number of genes in the genome.
  * 
@@ -640,6 +666,16 @@ void Host::calculateFitnessExpFuncUniqAlleles(double alpha){
 }
 
 /**
+ * @brief Core method. Returns the number of pathogen species a host has presented
+ *
+ * @return number of presented pathogen species
+ */
+unsigned Host::getNumberOfPresentedPatho() {
+    return NumOfPathogesPresented;
+}
+
+
+/**
  * @brief Core method. Returns current value of host's fitness.
  * 
  * @return current value of host's fitness
@@ -722,6 +758,16 @@ void Host::clearInfections(){
  */
 double Host::getNumbOfUniqMHCgenes() {
     return (double) UniqueAlleles.size();
+}
+
+
+/**
+ * @brief Core method. Returns the size of the vector containing unique MHCs.
+ *
+ * @return number of unique MHCs in unsigned long format
+ */
+unsigned long Host::getUniqueMhcSize() {
+    return UniqueAlleles.size();
 }
 
 

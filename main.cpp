@@ -219,6 +219,7 @@ int main(int argc, char** argv) {
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveHostGeneNumbers(ENV, 0);
+        Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -226,6 +227,7 @@ int main(int argc, char** argv) {
                 ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
+            Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
             ENV.selectAndReprodHostsReplace();
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);

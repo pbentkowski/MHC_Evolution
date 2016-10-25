@@ -100,20 +100,20 @@ int main(int argc, char** argv) {
         printTipsToRun();
         return 0;
     }
-    int rndSeed, mhcGeneLength, antigenLength, hostPopSize, pathoPopSize, patho_sp,
-        hostGeneNumbb, pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations,
-        HeteroHomo, maxGene;
+    unsigned long maxGene, hostGeneNumbb, mhcGeneLength, antigenLength;
+    int rndSeed, hostPopSize, pathoPopSize, patho_sp,
+        pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
     double hostMutationProb, pathoMutationProb, deletion, duplication, alpha,
             fixedAntigPosit;
     // Check if input params are numbers
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
-        mhcGeneLength = boost::lexical_cast<int>(argv[2]);
-        antigenLength = boost::lexical_cast<int>(argv[3]);
+        mhcGeneLength = boost::lexical_cast<unsigned long>(argv[2]);
+        antigenLength = boost::lexical_cast<unsigned long>(argv[3]);
         hostPopSize = boost::lexical_cast<int>(argv[4]);
         pathoPopSize = boost::lexical_cast<int>(argv[5]);
         patho_sp = boost::lexical_cast<int>(argv[6]);
-        hostGeneNumbb = boost::lexical_cast<int>(argv[7]);
+        hostGeneNumbb = boost::lexical_cast<unsigned long>(argv[7]);
         pathoGeneNumb = boost::lexical_cast<int>(argv[8]);
         patoPerHostGeneration = boost::lexical_cast<int>(argv[9]);
         numOfHostGenerations = boost::lexical_cast<int>(argv[10]);
@@ -122,7 +122,7 @@ int main(int argc, char** argv) {
         HeteroHomo = boost::lexical_cast<int>(argv[13]);
         deletion = boost::lexical_cast<double>(argv[14]);
         duplication = boost::lexical_cast<double>(argv[15]);
-        maxGene = boost::lexical_cast<int>(argv[16]);
+        maxGene = boost::lexical_cast<unsigned long>(argv[16]);
         alpha = boost::lexical_cast<double>(argv[17]);
         fixedAntigPosit = boost::lexical_cast<double>(argv[18]);
     }
@@ -135,12 +135,12 @@ int main(int argc, char** argv) {
     }
     // Load the input params
     rndSeed = atoi(argv[1]);
-    mhcGeneLength = atoi(argv[2]);
-    antigenLength = atoi(argv[3]);
+    mhcGeneLength = (unsigned long) atoi(argv[2]);
+    antigenLength = (unsigned long) atoi(argv[3]);
     hostPopSize = atoi(argv[4]);
     pathoPopSize = atoi(argv[5]);
     patho_sp = atoi(argv[6]);
-    hostGeneNumbb = atoi(argv[7]);
+    hostGeneNumbb = (unsigned long) atoi(argv[7]);
     pathoGeneNumb = atoi(argv[8]);
     patoPerHostGeneration = atoi(argv[9]);
     numOfHostGenerations = atoi(argv[10]);
@@ -149,7 +149,7 @@ int main(int argc, char** argv) {
     HeteroHomo = atoi(argv[13]);
     deletion = atof(argv[14]);
     duplication = atof(argv[15]);
-    maxGene = atoi(argv[16]);
+    maxGene = (unsigned long) atoi(argv[16]);
     alpha = atof(argv[17]);
     fixedAntigPosit = atof(argv[18]);
 
@@ -195,7 +195,8 @@ int main(int argc, char** argv) {
 
     Environment ENV; // Initialize the simulation environment
     Data2file.setAllFilesAsFirtsTimers();
-    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+//    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
     ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0, fixedAntigPosit);
@@ -218,6 +219,7 @@ int main(int argc, char** argv) {
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveHostGeneNumbers(ENV, 0);
+        Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -225,10 +227,10 @@ int main(int argc, char** argv) {
                 ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
+            Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
             ENV.selectAndReprodHostsReplace();
-            ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication,
-                    maxGene, i);
+            ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
             Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
