@@ -55,7 +55,7 @@ void printTipsToRun(){
                 " ([0,1] range)" << std::endl;
     std::cout << "10. Maximal number of genes permitted in one host chromosome." <<
             std::endl;
-    std::cout << "11. Alpha factor for the host fitness function ([0,1] range)." <<
+    std::cout << "11. Number of partners checked during mating." <<
             std::endl;
     std::cout << std::endl;
 }
@@ -90,22 +90,22 @@ int main(int argc, char** argv) {
         printTipsToRun();
         return 0;
     }
-    int rndSeed, mhcGeneLength, hostPopSize,  hostGeneNumbb,  numOfHostGenerations,
-        HeteroHomo, maxGene;
-    double hostMutationProb, deletion, duplication, alpha;
+    unsigned long maxGene, hostGeneNumbb, mhcGeneLength, matePartnersNumb;
+    int rndSeed, hostPopSize, numOfHostGenerations, HeteroHomo;
+    double hostMutationProb, deletion, duplication;
     // Check if input params are numbers
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
-        mhcGeneLength = boost::lexical_cast<int>(argv[2]);
+        mhcGeneLength = boost::lexical_cast<unsigned long>(argv[2]);
         hostPopSize = boost::lexical_cast<int>(argv[3]);
-        hostGeneNumbb = boost::lexical_cast<int>(argv[4]);
+        hostGeneNumbb = boost::lexical_cast<unsigned long>(argv[4]);
         numOfHostGenerations = boost::lexical_cast<int>(argv[5]);
         hostMutationProb = boost::lexical_cast<double>(argv[6]);
         HeteroHomo = boost::lexical_cast<int>(argv[7]);
         deletion = boost::lexical_cast<double>(argv[8]);
         duplication = boost::lexical_cast<double>(argv[9]);
-        maxGene = boost::lexical_cast<int>(argv[10]);
-        alpha = boost::lexical_cast<double>(argv[11]);
+        maxGene = boost::lexical_cast<unsigned long>(argv[10]);
+        matePartnersNumb = boost::lexical_cast<unsigned long>(argv[11]);
     }
     catch(boost::bad_lexical_cast& e) {
         std::cout << std::endl;
@@ -116,16 +116,16 @@ int main(int argc, char** argv) {
     }
     // Load the input params
     rndSeed = atoi(argv[1]);
-    mhcGeneLength = atoi(argv[2]);
+    mhcGeneLength = (unsigned long) atoi(argv[2]);
     hostPopSize = atoi(argv[3]);
-    hostGeneNumbb = atoi(argv[4]);
+    hostGeneNumbb = (unsigned long) atoi(argv[4]);
     numOfHostGenerations = atoi(argv[5]);
     hostMutationProb = atof(argv[6]);
     HeteroHomo = atoi(argv[7]);
     deletion = atof(argv[8]);
     duplication = atof(argv[9]);
-    maxGene = atoi(argv[10]);
-    alpha = atof(argv[11]);
+    maxGene = (unsigned long) atoi(argv[10]);
+    matePartnersNumb = (unsigned long) atoi(argv[11]);
 
     // When told so, fetching a truly random number to seed the RNG engine
     if (rndSeed < 0){
@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
     // Check if input params are of any sense
     if (Data2file.checkParamsIfWrong(rndSeed, mhcGeneLength, hostPopSize,
             hostGeneNumbb, numOfHostGenerations, hostMutationProb,
-            HeteroHomo, deletion, duplication, maxGene, alpha)){
+            HeteroHomo, deletion, duplication, maxGene, matePartnersNumb)){
         std::cout << std::endl;
         std::cout << "Error in parameters on input. Check them." << std::endl;
         printTipsToRun();
@@ -151,7 +151,7 @@ int main(int argc, char** argv) {
     // Save input parameters to file
     Data2file.inputParamsToFile(rndSeed, mhcGeneLength, hostPopSize,
             hostGeneNumbb, numOfHostGenerations, hostMutationProb,
-            HeteroHomo, deletion, duplication, maxGene, alpha);
+            HeteroHomo, deletion, duplication, maxGene, matePartnersNumb);
 
 // === And now doing the calculations! ===
 
@@ -186,7 +186,7 @@ int main(int argc, char** argv) {
         Data2file.saveHostGeneNumbers(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
 //            std::cout << "Host loop " << i << " :";
-            ENV.matingWithNoCommonMHC();
+            ENV.matingWithNoCommonMHCsmallSubset(matePartnersNumb);
             ENV.mutateHostsWithDelDupl(hostMutationProb, deletion, duplication,
                                        maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);

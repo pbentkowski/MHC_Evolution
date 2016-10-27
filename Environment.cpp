@@ -1227,8 +1227,8 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
             geneIndCount = 0;
             for (unsigned long l = 0; l < HostPopulation[i].getUniqueMhcSize(); ++l){
                 for (unsigned long m = 0; m < HostPopulation[mate].getUniqueMhcSize(); ++m){
-                    if(HostPopulation[i].getOneGeneFromOne(l) ==
-                       HostPopulation[mate].getOneGeneFromOne(m)){
+                    if(HostPopulation[i].getOneGeneFromUniqVect(l) ==
+                       HostPopulation[mate].getOneGeneFromUniqVect(m)){
                         geneIndCount++;
                     }
                 }

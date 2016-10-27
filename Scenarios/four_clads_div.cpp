@@ -100,20 +100,20 @@ int main(int argc, char** argv) {
         printTipsToRun();
         return 0;
     }
-    int rndSeed, mhcGeneLength, antigenLength, hostPopSize, pathoPopSize, patho_sp,
-        hostGeneNumbb, pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations,
-        HeteroHomo, maxGene;
+    unsigned long maxGene, hostGeneNumbb, mhcGeneLength, antigenLength;
+    int rndSeed, hostPopSize, pathoPopSize, patho_sp,
+        pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
     double hostMutationProb, pathoMutationProb, deletion, duplication, alpha,
             fixedAntigPosit;
     // Check if input params are numbers
     try {
         rndSeed = boost::lexical_cast<int>(argv[1]);
-        mhcGeneLength = boost::lexical_cast<int>(argv[2]);
-        antigenLength = boost::lexical_cast<int>(argv[3]);
+        mhcGeneLength = boost::lexical_cast<unsigned long>(argv[2]);
+        antigenLength = boost::lexical_cast<unsigned long>(argv[3]);
         hostPopSize = boost::lexical_cast<int>(argv[4]);
         pathoPopSize = boost::lexical_cast<int>(argv[5]);
         patho_sp = boost::lexical_cast<int>(argv[6]);
-        hostGeneNumbb = boost::lexical_cast<int>(argv[7]);
+        hostGeneNumbb = boost::lexical_cast<unsigned long>(argv[7]);
         pathoGeneNumb = boost::lexical_cast<int>(argv[8]);
         patoPerHostGeneration = boost::lexical_cast<int>(argv[9]);
         numOfHostGenerations = boost::lexical_cast<int>(argv[10]);
@@ -122,7 +122,7 @@ int main(int argc, char** argv) {
         HeteroHomo = boost::lexical_cast<int>(argv[13]);
         deletion = boost::lexical_cast<double>(argv[14]);
         duplication = boost::lexical_cast<double>(argv[15]);
-        maxGene = boost::lexical_cast<int>(argv[16]);
+        maxGene = boost::lexical_cast<unsigned long>(argv[16]);
         alpha = boost::lexical_cast<double>(argv[17]);
         fixedAntigPosit = boost::lexical_cast<double>(argv[18]);
     }
@@ -135,12 +135,12 @@ int main(int argc, char** argv) {
     }
     // Load the input params
     rndSeed = atoi(argv[1]);
-    mhcGeneLength = atoi(argv[2]);
-    antigenLength = atoi(argv[3]);
+    mhcGeneLength = (unsigned long) atoi(argv[2]);
+    antigenLength = (unsigned long) atoi(argv[3]);
     hostPopSize = atoi(argv[4]);
     pathoPopSize = atoi(argv[5]);
     patho_sp = atoi(argv[6]);
-    hostGeneNumbb = atoi(argv[7]);
+    hostGeneNumbb = (unsigned long) atoi(argv[7]);
     pathoGeneNumb = atoi(argv[8]);
     patoPerHostGeneration = atoi(argv[9]);
     numOfHostGenerations = atoi(argv[10]);
@@ -149,10 +149,10 @@ int main(int argc, char** argv) {
     HeteroHomo = atoi(argv[13]);
     deletion = atof(argv[14]);
     duplication = atof(argv[15]);
-    maxGene = atoi(argv[16]);
+    maxGene = (unsigned long) atoi(argv[16]);
     alpha = atof(argv[17]);
     fixedAntigPosit = atof(argv[18]);
-
+    
     // When told so, fetching a truly random number to seed the RNG engine
     if (rndSeed < 0){
         std::random_device rd;

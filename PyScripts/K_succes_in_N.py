@@ -27,7 +27,7 @@ def probOfStreak(numBits, minFits, succProb=0.5, saved=None):
             result = 0
         else:
             result = succProb**minFits
-            for firsTrail in xrange(1, minFits+1):
+            for firsTrail in range(1, minFits+1):
                 pr = probOfStreak(numBits-firsTrail, minFits, succProb, saved)
                 result += (succProb**(firsTrail-1))*(1-succProb)*pr
         saved[ID] = result
@@ -37,20 +37,20 @@ def probOfStreak(numBits, minFits, succProb=0.5, saved=None):
 def main():
     """ """
     try:
-        numBits = int(raw_input("Enter length of the big bit string: "))
+        numBits = int(input("Enter length of the big bit string: "))
     except:
-        print "The length of the bit string has to an integer!"
+        print("The length of the bit string has to be an integer!")
         sys.exit()
     try:
-        minFits = int(raw_input("Enter length of the fitting string: "))
+        minFits = int(input("Enter length of the fitting string: "))
     except:
-        print "The length of the fitting string has to an integer!"
+        print("The length of the fitting string has to be an integer!")
         sys.exit()
-    print "===================="
-    print "Probability that a random bit string of length", minFits, "will",
-    print "fit into a larger random bit string of length", numBits, "is:"
-    print " p =", probOfStreak(numBits, minFits)
-    print "\nDONE!"
+    print("====================")
+    print("Probability that a random bit string of length", minFits, "will " +
+          "fit into a larger random bit string of length", numBits, "is:" +
+          " p =", probOfStreak(numBits, minFits))
+    print("\nDONE!")
 
 if __name__ == "__main__":
     main()

@@ -48,7 +48,7 @@ public:
     bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
-        int numberOfMates);
+        unsigned long numberOfMates);
     void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
@@ -58,7 +58,7 @@ public:
     void inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
-        int numberOfMates);
+        unsigned long numberOfMates);
     void setAllFilesAsFirtsTimers();
     void saveNumOfPathoSpeciesToFile(Environment &EnvObj, int tayme);
     void savePathoPopulToFile(Environment &EnvObj, int tayme);

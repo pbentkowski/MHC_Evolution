@@ -222,7 +222,7 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsi
 bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
-        int numberOfMates){
+        unsigned long numberOfMates){
     bool ifError = false;
     if (rndSeed < 0){
         std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
@@ -366,7 +366,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
 void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
-        int numberOfMates){
+        unsigned long numberOfMates){
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv");
 
