@@ -198,7 +198,7 @@ int main(int argc, char** argv) {
     ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
 //    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
-    ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
+    ENV.setPathoPopulatioUniformGenome(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0, fixedAntigPosit);
     std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);

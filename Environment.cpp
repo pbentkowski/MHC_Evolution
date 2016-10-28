@@ -434,6 +434,7 @@ void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antig
     }
 }
 
+
 /**
  * @brief Core method. Iterates through the host population and the parasite
  * population to "infect" the hosts with parasites. With heterozygote advantage
@@ -1347,3 +1348,4 @@ unsigned long Environment::getSingleHostRealGeneTwo(unsigned long i, unsigned lo
 double Environment::getHostFitness(unsigned long indx){
     return (double) HostPopulation[indx].NumOfPathogesPresented;
 }
+
