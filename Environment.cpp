@@ -336,7 +336,7 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antige
  * Given the number of individuals, number of bit per gene, desired number of
  * genes in a genome and desired number of pathogen species it generates
  * random population of pathogens. Number of individuals will be evenly
- * distributed between species and each species consists of identical clones.
+ * distributed between species and each species consists of identical conversationsclones.
  *
  * @param pop_size - total number of individuals
  * @param antigenSize - number of bits per gene
