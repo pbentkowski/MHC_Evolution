@@ -11,7 +11,6 @@ Created on Fri Nov 13 18:08:10 2015
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
 import sys
-sys.setrecursionlimit(20000)
 
 
 def probOfStreak(numBits, minFits, succProb=0.5, saved=None):
@@ -53,4 +52,5 @@ def main():
     print("\nDONE!")
 
 if __name__ == "__main__":
+    sys.setrecursionlimit(20000)
     main()
