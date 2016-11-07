@@ -52,6 +52,26 @@ def createAtingArr(howMuch, length, frameSize):
     return antiArr
 
 
+def rawBitArr(howMuch, length):
+    """ """
+    arr = []
+    for ii in range(howMuch):
+        arr.append(generateBistring(length))
+    return arr
+
+
+def finInRawBit(antigs, mhcs, frameSize):
+    """ """
+    counter = 0
+    steps = len(antigs) - frameSize + 1
+    for ant, mhc in zip(antigs, mhcs):
+        for ii in range(steps):
+            if ant.bin[ii:ii+frameSize] == mhc.bin:
+                counter += 1.
+                break
+    return counter
+
+
 def main():
     """ """
     if len(sys.argv) <= 3:
@@ -71,15 +91,17 @@ def main():
         except:
             print("Cannot convert arguments to numbers. Quit")
             sys.exit()
-
     Antig = createAtingArr(theNumber, antiSize, mhcSize)
     MHCs = createMHCsArr(theNumber, mhcSize)
     counter = 0.
     for itm in zip(MHCs, Antig):
+        ss = str(itm[1]) + "  : " + str(int(itm[0]))
         for ant in itm[1]:
             if itm[0] == ant:
                 counter += 1.
+                ss += " : Match!"
                 break
+        print(ss)
     print("MHC fitted", counter, "times")
     print("Fraction of MHC tested that fitted:",
           counter / theNumber)
