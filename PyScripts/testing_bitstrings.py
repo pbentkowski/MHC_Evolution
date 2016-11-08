@@ -60,8 +60,9 @@ def rawBitArr(howMuch, length):
     return arr
 
 
-def finInRawBit(antigs, mhcs, frameSize):
+def finInRawBit(antigs, mhcs):
     """ """
+    frameSize = len(mhcs[0])
     counter = 0
     steps = len(antigs) - frameSize + 1
     for ant, mhc in zip(antigs, mhcs):
@@ -73,6 +74,34 @@ def finInRawBit(antigs, mhcs, frameSize):
 
 
 def main():
+    """ """
+    if len(sys.argv) <= 3:
+        print("The script needs 3 arguments:")
+        antiSize = int(input("  1. Size of the antigen (big bitstrig): "))
+        mhcSize = int(input("  2. Size of the MHC (small bitstrig): "))
+        theNumber = int(input("  3. Number of MHC to test: "))
+    else:
+        try:
+            antiSize = int(sys.argv[1])
+            mhcSize = int(sys.argv[2])
+            theNumber = int(sys.argv[3])
+            if(antiSize < mhcSize):
+                print("Size of antigen cannot be smaller then size of MHC.",
+                      "Quit.")
+                sys.exit()
+        except:
+            print("Cannot convert arguments to numbers. Quit")
+            sys.exit()
+    atigens = rawBitArr(theNumber, antiSize)
+    MHCS = rawBitArr(theNumber, mhcSize)
+    counter = finInRawBit(atigens, MHCS)
+    print("MHC fitted", counter, "times")
+    print("Fraction of MHC tested that fitted:",
+          counter / theNumber)
+    print("\nDone!")
+
+
+def main2():
     """ """
     if len(sys.argv) <= 3:
         print("The script needs 3 arguments:")
