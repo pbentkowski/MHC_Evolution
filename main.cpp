@@ -198,7 +198,7 @@ int main(int argc, char** argv) {
     ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
 //    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
-    ENV.setPathoPopulatioUniformGenome(pathoPopSize, antigenLength, pathoGeneNumb,
+    ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
                                        patho_sp, mhcGeneLength, 0, fixedAntigPosit);
     std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
@@ -223,13 +223,13 @@ int main(int argc, char** argv) {
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
-//                ENV.selectAndReproducePathoFixedPopSizes();
+                ENV.selectAndReproducePathoFixedPopSizes();
                 ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
             Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
-//            ENV.selectAndReprodHostsReplace();
+            ENV.selectAndReprodHostsReplace();
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
             Data2file.saveHostGeneNumbers(ENV, i);

@@ -56,7 +56,7 @@ def rawBitArr(howMuch, length):
     """ """
     arr = []
     for ii in range(howMuch):
-        arr.append(generateBistring(length))
+        arr.append(generateBistring(length, 0.4999))
     return arr
 
 
