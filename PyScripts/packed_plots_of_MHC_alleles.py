@@ -171,8 +171,10 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                     meanFitt = data['mean_fitness'][EqPt::].mean() / pathoNorm
                     stdFitt = np.std(data['mean_fitness'][EqPt::] / pathoNorm)
                     cvFitt = data['std_fitness']/data['mean_fitness']
-                    cvFittMean = np.mean(cvFitt[EqPt::]) / pathoNorm
-                    cvFittSTD = np.std(cvFitt[EqPt::]) / pathoNorm
+                    cvFitt = cvFitt[EqPt::]
+                    cvFitt = cvFitt[~np.isnan(cvFitt)]
+                    cvFittMean = np.mean(cvFitt) / pathoNorm
+                    cvFittSTD = np.std(cvFitt) / pathoNorm
                     dataFilePath = os.path.join(dirName,
                                                 "HostMHCsNumbUniq_ChrOne.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
@@ -199,14 +201,15 @@ def buildStats(theData):
     for ii in LL:
         ww = theData[theData['VAR'] == ii[0]]
         ww = ww[ww['VARX'] == ii[1]]
+        NN = float(len(ww))
         meanAll = np.mean(ww['meanAllel'])
-        stdAll = np.sqrt(np.sum(ww['stdAllel']**2) / float(len(ww)))
+        stdAll = np.sqrt(np.sum(ww['stdAllel']**2) / NN)
         meanIndv = np.mean(ww['indvMean'])
-        stdIndv = np.sqrt(np.sum(ww['indvSTD']**2) / float(len(ww)))
+        stdIndv = np.sqrt(np.sum(ww['indvSTD']**2) / NN)
         meanFitt = np.mean(ww['meanFitt'])
-        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / float(len(ww)))
+        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / NN)
         meanCvFit = np.mean(ww['cvFitMean'])
-        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / float(len(ww)))
+        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / NN)
         meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdIndv,
                            meanFitt, stdFitt, meanCvFit, stdCvFit))
     return np.array(meanResult)
@@ -218,8 +221,8 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     FS = 22
     annoSize = int(0.85*FS)
     ll = []
-    maxX = 1.15 * float(np.max(meanResult[:, 1]))
-    limitz = (0., maxX)
+#    maxX = 1.15 * float(np.max(meanResult[:, 1]))
+#    limitz = (0., maxX)
     figSize = (10, 7)
     for itm in meanResult:
         if itm[0] in ll:
@@ -233,8 +236,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
         plt.errorbar(ww[:, 1], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 2]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
-    plt.ylabel("mean number of MHCs in population",
-               fontsize=FS)
+    plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
     plt.ylim(ymin=0)
     plt.xscale(logsc)
@@ -247,7 +249,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
         plt.errorbar(ww[:, 1], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 4]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
-    plt.ylabel("average number of MHCs",
+    plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
 #    plt.xlim(limitz)
     plt.ylim(ymin=0)
@@ -286,7 +288,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo', 'ko', 'wo']
+    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo']  # , 'ko', 'wo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     clrs += ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     FS = 18
