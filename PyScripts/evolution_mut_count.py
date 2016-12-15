@@ -84,7 +84,7 @@ def main():
 #    plt.xlim(0., 20.)
     plt.savefig("HOST_muts_end.png")
 
-#    plt.show()
+    plt.show()
 
     print("DONE!")
 

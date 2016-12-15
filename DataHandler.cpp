@@ -511,7 +511,7 @@ void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
         for(unsigned long j = 0; j < EnvObj.getSingleHostChromoOneSize(i); ++j){
             AllTheGeneVals.push_back(EnvObj.getSingleHostRealGeneOne(i, j));
         }
-        // Harvesting genes from Chromosome Two in all hosts
+        // Harvesting genes from Chromosome Two in all Phosts
         for(unsigned long m = 0; m < EnvObj.getSingleHostChromoTwoSize(i); ++m){
             AllTheGeneVals.push_back(EnvObj.getSingleHostRealGeneTwo(i, m));
         }
