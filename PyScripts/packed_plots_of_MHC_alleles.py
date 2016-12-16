@@ -360,7 +360,7 @@ def main():
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
-            theData = getTheData(startDate, template)
+            theData = getTheData(startDate, template, 3000)
         except:
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
