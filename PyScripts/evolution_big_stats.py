@@ -6,10 +6,10 @@ Created on Thu Dec  8 02:38:00 2016
 @author: piotr
 """
 import re
-import sys
-import linecache as ln
+# import sys
+# import linecache as ln
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import bitstring as bts
 
 
@@ -36,9 +36,36 @@ def loadHostPopulation(FILE):
                     else:
                         # print(LL[5::2])
                         B_list.append(bb)
-                        Mut_tags.append(LL[5::2])
-                        Mut_times.append(LL[4::2])
+                        tagz = LL[5::2]
+                        tagz.append(LL[3])
+                        Mut_tags.append(tagz)
+                        timez = LL[4::2]
+                        timez.append(LL[2])
+                        Mut_times.append(timez)
         return Mut_tags, Mut_times
+    except IOError as e:
+        print("I/O error({0}) in".format(e.errno) +
+              " loadTheHostPopulation(): {0}".format(e.strerror))
+
+
+def loadRawBitstrings(FILE):
+    """ """
+    B_list = []
+    try:
+        with open(FILE) as infile:
+            for line in infile:
+                if re.search(r"#", line):
+                    continue
+                elif re.search(r"===", line):
+                    continue
+                else:
+                    LL = line.split()
+                    bb = LL[0]
+                    if bb in B_list:
+                        pass
+                    else:
+                        B_list.append(bb)
+        return B_list
     except IOError as e:
         print("I/O error({0}) in".format(e.errno) +
               " loadTheHostPopulation(): {0}".format(e.strerror))
