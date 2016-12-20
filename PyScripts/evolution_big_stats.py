@@ -72,7 +72,7 @@ def findMRCA(Mut_tags, Mut_times):
     if len(findTheOnesAtBeginning(Mut_tags, 0)) != 1:
         print("The most recent common ancestor cannot be established.",
               "There is more than one ancestral gene at the root.")
-        return None, np.nan, np.nan
+        return None, np.nan, np.mnan
     mutNumb = numberOfMutList(Mut_tags)
     maxx = np.max(mutNumb)
     theMRCAtag = Mut_tags[0][0]
@@ -84,3 +84,12 @@ def findMRCA(Mut_tags, Mut_times):
         else:
             break
     return theMRCAtag, int(Mut_times[0][ii]), ii
+
+
+def timeOfExistence(Mut_tags, Mut_times):
+    """ """
+    times = []
+    for itm in Mut_times:
+        for ii in range(1, len(itm)):
+            times.append(int(itm[ii]) - int(itm[ii-1]))
+        return np.array(times)
