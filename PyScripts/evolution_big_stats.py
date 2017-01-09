@@ -99,7 +99,7 @@ def findMRCA(Mut_tags, Mut_times):
     if len(findTheOnesAtBeginning(Mut_tags, 0)) != 1:
         print("The most recent common ancestor cannot be established.",
               "There is more than one ancestral gene at the root.")
-        return None, np.nan, np.mnan
+        return None, np.nan, np.nan
     mutNumb = numberOfMutList(Mut_tags)
     maxx = np.max(mutNumb)
     theMRCAtag = Mut_tags[0][0]
@@ -120,3 +120,40 @@ def timeOfExistence(Mut_tags, Mut_times):
         for ii in range(1, len(itm)):
             times.append(int(itm[ii]) - int(itm[ii-1]))
         return np.array(times)
+
+
+def findLeaves(LIST):
+    """ """
+    ll = []
+    maxLen = 0
+    for itm in LIST:
+        ll.append((itm[-1], len(itm)))
+        if maxLen < len(itm):
+            maxLen = len(itm)
+    return ll, maxLen
+
+
+def transTagsToNumpyArr(tagList):
+    """ """
+    maxLen = 0
+    for itm in tagList:
+        if maxLen < len(itm):
+            maxLen = len(itm)
+    arr = -1 * np.ones((len(tagList), maxLen), dtype='i8')
+    for i, itm in enumerate(tagList):
+        for j, ii in enumerate(itm):
+            arr[i, j] = ii
+    return arr
+
+
+def transTimesToNumpyArr(timesList):
+    """ """
+    maxLen = 0
+    for itm in timesList:
+        if maxLen < len(itm):
+            maxLen = len(itm)
+    arr = -1 * np.ones((len(timesList), maxLen))
+    for i, itm in enumerate(timesList):
+        for j, ii in enumerate(itm):
+            arr[i, j] = ii
+    return arr
