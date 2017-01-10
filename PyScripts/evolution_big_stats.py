@@ -157,3 +157,21 @@ def transTimesToNumpyArr(timesList):
         for j, ii in enumerate(itm):
             arr[i, j] = ii
     return arr
+
+
+def setPairedOriginTags(tagArr):
+    """ """
+    maxLen = 0
+    for itm in tagArr:
+        if maxLen < len(itm):
+            maxLen = len(itm)
+    genePairs = []
+    for i in range(maxLen-1):
+        ll = []
+        for itm in tagArr:
+            if itm[i+1] != -1:
+                geneTpl = (itm[i], itm[i+1])
+                if geneTpl not in ll:
+                    ll.append(geneTpl)
+        genePairs.append(ll)
+    return genePairs

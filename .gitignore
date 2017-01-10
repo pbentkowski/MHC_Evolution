@@ -1,7 +1,9 @@
 *.o
 *.pyc
+*.exe
 .sconsign.dblite
 .idea
 dist
 build
 SCBuild
+cmake-build-debug
