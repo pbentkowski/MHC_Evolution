@@ -159,19 +159,32 @@ def transTimesToNumpyArr(timesList):
     return arr
 
 
-def setPairedOriginTags(tagArr):
+def setPairedOriginTags(tagArr, timeArr):
     """ """
     maxLen = 0
     for itm in tagArr:
         if maxLen < len(itm):
             maxLen = len(itm)
     genePairs = []
+    geneTimez = []
     for i in range(maxLen-1):
-        ll = []
-        for itm in tagArr:
+        tag_ll = []
+        time_ll = []
+        for j, itm in enumerate(tagArr):
             if itm[i+1] != -1:
                 geneTpl = (itm[i], itm[i+1])
-                if geneTpl not in ll:
-                    ll.append(geneTpl)
-        genePairs.append(ll)
-    return genePairs
+                if geneTpl not in tag_ll:
+                    tag_ll.append(geneTpl)
+                    time_ll.append((timeArr[j][i], timeArr[j][i+1]))
+        genePairs.append(tag_ll)
+        geneTimez.append(time_ll)
+    return genePairs, geneTimez
+
+
+def getGeneLifeSpan(geneTimez):
+    """ """
+    lifeSpans = []
+    for itm in geneTimez:
+        for ii in itm:
+            lifeSpans.append(ii[1] - ii[0])
+    return np.array(lifeSpans)
