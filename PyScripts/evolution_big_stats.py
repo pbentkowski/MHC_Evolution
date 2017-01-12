@@ -9,7 +9,7 @@ import re
 # import sys
 # import linecache as ln
 import numpy as np
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import bitstring as bts
 
 
@@ -146,16 +146,17 @@ def transTagsToNumpyArr(tagList):
     return arr
 
 
-def transTimesToNumpyArr(timesList):
+def transTimesToNumpyArr(timesList, finito):
     """ """
     maxLen = 0
     for itm in timesList:
         if maxLen < len(itm):
             maxLen = len(itm)
-    arr = -1 * np.ones((len(timesList), maxLen))
+    arr = -1 * np.ones((len(timesList), maxLen+1))
     for i, itm in enumerate(timesList):
         for j, ii in enumerate(itm):
             arr[i, j] = ii
+        arr[i, j+1] = finito
     return arr
 
 
@@ -171,11 +172,10 @@ def setPairedOriginTags(tagArr, timeArr):
         tag_ll = []
         time_ll = []
         for j, itm in enumerate(tagArr):
-            if itm[i+1] != -1:
-                geneTpl = (itm[i], itm[i+1])
-                if geneTpl not in tag_ll:
+            geneTpl = (itm[i], itm[i+1])
+            if itm[i+1] != -1 and geneTpl not in tag_ll:
                     tag_ll.append(geneTpl)
-                    time_ll.append((timeArr[j][i], timeArr[j][i+1]))
+                    time_ll.append((timeArr[j][i+1], timeArr[j][i+2]))
         genePairs.append(tag_ll)
         geneTimez.append(time_ll)
     return genePairs, geneTimez
@@ -188,3 +188,21 @@ def getGeneLifeSpan(geneTimez):
         for ii in itm:
             lifeSpans.append(ii[1] - ii[0])
     return np.array(lifeSpans)
+
+
+def plotTheTimes(tagArr, timeArr):
+    """ """
+    plt.figure(1, figsize=(20, 16))
+    lline = 0
+    checkList = [-1]
+    for i, itm in enumerate(tagArr):
+        for j, ii in enumerate(itm):
+            if ii not in checkList:
+                checkList.append(ii)
+                plt.hlines(lline, timeArr[i][j], timeArr[i][j+1],
+                           colors='b', lw=3)
+                lline += 1
+            else:
+                pass
+    plt.xlim((0, 5000))
+    plt.show()
