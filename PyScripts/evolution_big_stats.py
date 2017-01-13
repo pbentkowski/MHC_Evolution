@@ -6,7 +6,9 @@ Created on Thu Dec  8 02:38:00 2016
 @author: piotr
 """
 import re
-# import sys
+import os
+import linecache as ln
+import sys
 # import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
@@ -181,9 +183,21 @@ def setPairedOriginTags(tagArr, timeArr):
     return genePairs, geneTimez
 
 
-def plotTheTimes(tagArr, timeArr, maxTime, genePairs):
+def maxGeneLifeDict(tagArr, maxTime):
     """ """
-    lineWidth = 3
+    dd = {}
+    for item in tagArr:
+        dd[np.max(item)] = maxTime
+    return dd
+
+
+def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict,
+                 linesWdth=(2, 1, 3, 20)):
+    """ """
+    hLineWidth = linesWdth[0]
+    vLineWidth = linesWdth[1]
+    lastLineWdth = linesWdth[2]
+    FS = linesWdth[3]
     plt.figure(1, figsize=(20, 16))
     lline = 0
     checkList = [-1]
@@ -193,29 +207,75 @@ def plotTheTimes(tagArr, timeArr, maxTime, genePairs):
             if ii not in checkList:
                 checkList.append(ii)
                 plt.hlines(lline, timeArr[i][j], timeArr[i][j+1],
-                           colors='k', lw=lineWidth)
-#                plt.vlines(timeArr[i][j], lline-1, lline,
-#                           colors='k', lw=lineWidth)
-                dd[ii] = (timeArr[i][j], lline)
+                           colors='k', lw=hLineWidth)
+                dd[ii] = (timeArr[i][j], lline, timeArr[i][j+1])
                 lline += 1
             else:
                 pass
-    for item in genePairs:
-        for pair in item:
+    for k, item in enumerate(genePairs):
+        for l, pair in enumerate(item):
             y1 = dd[pair[0]][1]
             y2 = dd[pair[1]][1]
-            x = dd[pair[1]][0]
-            plt.vlines(x, y1, y2, colors='k', lw=lineWidth-2)
-#    print(dd)
+            x1 = dd[pair[1]][0]
+            x2 = dd[pair[0]][2]
+            plt.vlines(x1, y1, y2, colors='k', lw=vLineWidth)
+            plt.hlines(y1, x1, x2, colors='k', lw=hLineWidth)
+    for item in maxTimeGenDict:
+        plt.hlines(dd[item][1], dd[item][0], maxTimeGenDict[item],
+                   colors='r', lw=lastLineWdth)
     plt.xlim((0, maxTime))
     plt.ylim(ymin=0)
-    plt.xlabel("time [hosts generations]")
+    plt.xlabel("time [hosts generations]", fontsize=FS)
+    plt.xticks(size=FS-2)
     plt.yticks([])
     plt.grid(True)
+    plt.tight_layout()
+    plt.savefig("hitoryOfGenes.png")
     plt.show()
-    return dd
 
-#==============================================================================
-# mutTimes.sort(key=len, reverse=True)
-# mutTags.sort(key=len, reverse=True)
-#==============================================================================
+
+def processDataOneFile(FILE):
+    """ """
+    try:
+        filepath = os.path.join(os.getcwd(), 'InputParameters.csv')
+        l = re.split(" ", ln.getline(filepath, 13))
+        maxTime = float(l[2].split()[0])
+    except:
+        print("Can't load the data from InputParameters.csv.",
+              "Check if it exist.")
+        return None
+    try:
+        mutTags, mutTimes = loadHostPopulation(FILE)
+    except:
+        print("Can't load the host population snapshot file.")
+        return None
+    if findMRCA(mutTags, mutTimes):
+        mutTimes.sort(key=len, reverse=True)
+        mutTags.sort(key=len, reverse=True)
+        npMutTags = transTagsToNumpyArr(mutTags)
+        npMutTimes = transTimesToNumpyArr(mutTimes, maxTime)
+        genePairs, geneTimez = setPairedOriginTags(npMutTags, npMutTimes)
+        lastGeneDict = maxGeneLifeDict(npMutTags, maxTime)
+#        plotTheTimes(npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict)
+        return npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict
+    else:
+        print("Sorry... No single MRCA.")
+        return None
+
+
+def main():
+    """ """
+    try:
+        DATA = processDataOneFile(sys.argv[1])
+    except:
+        print("Cannot load the data. Script aborted.")
+        sys.exit()
+    if DATA:
+        plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4])
+    else:
+        print("ERROR in data. Script aborted.")
+        sys.exit()
+
+
+if __name__ == "__main__":
+    main()
