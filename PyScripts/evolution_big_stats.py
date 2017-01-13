@@ -181,28 +181,41 @@ def setPairedOriginTags(tagArr, timeArr):
     return genePairs, geneTimez
 
 
-def getGeneLifeSpan(geneTimez):
+def plotTheTimes(tagArr, timeArr, maxTime, genePairs):
     """ """
-    lifeSpans = []
-    for itm in geneTimez:
-        for ii in itm:
-            lifeSpans.append(ii[1] - ii[0])
-    return np.array(lifeSpans)
-
-
-def plotTheTimes(tagArr, timeArr):
-    """ """
+    lineWidth = 3
     plt.figure(1, figsize=(20, 16))
     lline = 0
     checkList = [-1]
+    dd = {}
     for i, itm in enumerate(tagArr):
         for j, ii in enumerate(itm):
             if ii not in checkList:
                 checkList.append(ii)
                 plt.hlines(lline, timeArr[i][j], timeArr[i][j+1],
-                           colors='b', lw=3)
+                           colors='k', lw=lineWidth)
+#                plt.vlines(timeArr[i][j], lline-1, lline,
+#                           colors='k', lw=lineWidth)
+                dd[ii] = (timeArr[i][j], lline)
                 lline += 1
             else:
                 pass
-    plt.xlim((0, 5000))
+    for item in genePairs:
+        for pair in item:
+            y1 = dd[pair[0]][1]
+            y2 = dd[pair[1]][1]
+            x = dd[pair[1]][0]
+            plt.vlines(x, y1, y2, colors='k', lw=lineWidth-2)
+#    print(dd)
+    plt.xlim((0, maxTime))
+    plt.ylim(ymin=0)
+    plt.xlabel("time [hosts generations]")
+    plt.yticks([])
+    plt.grid(True)
     plt.show()
+    return dd
+
+#==============================================================================
+# mutTimes.sort(key=len, reverse=True)
+# mutTags.sort(key=len, reverse=True)
+#==============================================================================
