@@ -263,6 +263,20 @@ def processDataOneFile(FILE):
         return None
 
 
+def serchTheDirs(FILE, dirr=os.getcwd()):
+    """ """
+    for dirName, subdirList, fileList in os.walk(dirr):
+        for file in fileList:
+            filepath = os.path.join(dirName, file)
+            if filepath == os.path.join(dirName, FILE):
+                try:
+                    DATA = processDataOneFile(FILE)
+                except:
+                    print("Cannot load the data. in dir", dirName)
+                    continue
+                plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4])
+
+
 def main():
     """ """
     try:
