@@ -100,7 +100,7 @@ def compareParams(template, paramz):
 def lookForVAR(template):
     """Checks which parameters are designated to be investigated as independent
     variables. Gets their line numbers in the file with parameter
-    description."""
+    description. You have to provide a template file."""
     varrs = {"VAR": 0, "VARX": 0}
     for ii, itm in enumerate(template):
         if itm == "VAR":
@@ -288,7 +288,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo']  # , 'ko', 'wo']
+    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo']  # , 'ko', 'wo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     clrs += ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     FS = 18

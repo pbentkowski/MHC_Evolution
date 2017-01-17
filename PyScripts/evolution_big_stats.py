@@ -15,6 +15,41 @@ import matplotlib.pyplot as plt
 import bitstring as bts
 
 
+def lookForVAR(template):
+    """Checks which parameters are designated to be investigated as independent
+    variables. Gets their line numbers in the file with parameter
+    description."""
+    varrs = {"VAR": 0, "VARX": 0}
+    for ii, itm in enumerate(template):
+        if itm == "VAR":
+            varrs["VAR"] = ii
+        elif itm == "VARX":
+            varrs["VARX"] = ii
+        else:
+            pass
+    return varrs
+
+
+def loadParamSettings(filepath):
+    """Loads model's parametrisation from i.g. InputParameters.csv file into
+    a handy list. """
+    try:
+        paramzList = []
+        with open(filepath, 'r') as f:
+            for ii, line in enumerate(f):
+                if re.search("#", line) or line == "":
+                    pass
+                else:
+                    try:
+                        paramzList.append(line.split()[2])
+                    except:
+                        pass
+        return paramzList
+    except:
+        print("ERROR in loadParamSettings(): Cannot load params into a list.")
+        return None
+
+
 def loadHostPopulation(FILE):
     '''Takes the file with the Host population HostGenomesFile.XXXX.csv and
     picks unique genes from it. Produces two lists: one containing ancestry of
@@ -191,6 +226,17 @@ def maxGeneLifeDict(tagArr, maxTime):
     return dd
 
 
+def lastingTimeOfGene(timeArr):
+    """ """
+    lastings = np.zeros(timeArr.shape[0])
+    for i, item in enumerate(timeArr):
+        for j, ii in enumerate(item):
+            if ii < 0 or ii == item[-1]:
+                lastings[i] = item[j-1] - item[j-2]
+                break
+    return lastings
+
+
 def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict,
                  linesWdth=(2, 1, 3, 20)):
     """ """
@@ -256,26 +302,36 @@ def processDataOneFile(FILE):
         npMutTimes = transTimesToNumpyArr(mutTimes, maxTime)
         genePairs, geneTimez = setPairedOriginTags(npMutTags, npMutTimes)
         lastGeneDict = maxGeneLifeDict(npMutTags, maxTime)
-#        plotTheTimes(npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict)
-        return npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict
+        plotTheTimes(npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict)
+        return npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict, \
+            geneTimez
     else:
         print("Sorry... No single MRCA.")
         return None
 
 
-def serchTheDirs(FILE, dirr=os.getcwd()):
+def serchTheDirs(FILE, template, dirr=os.getcwd()):
     """ """
+    vv = lookForVAR(template)
+    datOut = []
+    dataOrdering = ['VAR', 'VARX', 'timeMean', 'timeMedian', 'dirr']
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
             if filepath == os.path.join(dirName, FILE):
                 try:
                     DATA = processDataOneFile(FILE)
+                    paramzList = loadParamSettings(os.path.join(dirName,
+                                                   "HostsGeneDivers.csv"))
                 except:
                     print("Cannot load the data. in dir", dirName)
                     continue
                 plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4])
-
+                var = float(paramzList[vv['VAR']])
+                varx = float(paramzList[vv['VARX']])
+                datOut.append((var, varx, timeMean, timeMedian, dirName))
+    datOut = np.array(datOut, dtype=outType)
+    return np.sort(datOut, order=dataOrdering)
 
 def main():
     """ """
