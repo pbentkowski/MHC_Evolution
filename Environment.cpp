@@ -1015,7 +1015,7 @@ void Environment::matingWithNoCommonMHCwholePop(){
     unsigned long popSize = HostPopulation.size();
     // Generating a vector of shuffled indices 
     std::vector<int> indxVec;
-    for (unsigned long i = 0; i < popSize; ++i){
+    for (int &&i = 0; i < popSize; ++i){
         indxVec.push_back((int) i);
     }
     long seed = std::chrono::system_clock::now().time_since_epoch().count();

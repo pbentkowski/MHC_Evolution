@@ -9,17 +9,20 @@ import re
 import os
 import linecache as ln
 import sys
-# import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
 import bitstring as bts
+
+
+outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('timeMean', 'f8'),
+                    ('timeMedian', 'f8'), ('sourceDir', 'S99')])
 
 
 def lookForVAR(template):
     """Checks which parameters are designated to be investigated as independent
     variables. Gets their line numbers in the file with parameter
     description."""
-    varrs = {"VAR": 0, "VARX": 0}
+    varrs = {"VAR": np.nan, "VARX": np.nan}
     for ii, itm in enumerate(template):
         if itm == "VAR":
             varrs["VAR"] = ii
@@ -48,6 +51,33 @@ def loadParamSettings(filepath):
     except:
         print("ERROR in loadParamSettings(): Cannot load params into a list.")
         return None
+
+
+def compareParams(template, paramz):
+    """Compares parameters of two runs. They have to be loaded into a list
+    first, i.g. with loadParamSettings() function."""
+    same = None
+    if len(template) == len(paramz):
+        for ii, itm in enumerate(zip(template, paramz)):
+            try:
+                ITM_0 = float(itm[0])
+                ITM_1 = float(itm[1])
+            except:
+                ITM_0 = str(itm[0])
+                ITM_1 = str(itm[1])
+            if itm[0] == "VARX" or itm[0] == "VAR" or ii <= 1 or ii >= 19:
+                pass
+            elif ITM_0 == ITM_1:
+                same = True
+            else:
+                same = False
+                break
+    else:
+        print("ERROR in compareParams(): Params lists have different length.")
+        return same
+    if same is None:
+        print("ERROR in compareParams(): Comparison failed to commence.")
+    return same
 
 
 def loadHostPopulation(FILE):
@@ -237,7 +267,7 @@ def lastingTimeOfGene(timeArr):
     return lastings
 
 
-def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict,
+def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict, dirrName,
                  linesWdth=(2, 1, 3, 20)):
     """ """
     hLineWidth = linesWdth[0]
@@ -276,14 +306,15 @@ def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict,
     plt.yticks([])
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("hitoryOfGenes.png")
-    plt.show()
+    plt.savefig(dirrName + "/hitoryOfGenes.png")
+#    plt.show()
 
 
 def processDataOneFile(FILE):
     """ """
     try:
-        filepath = os.path.join(os.getcwd(), 'InputParameters.csv')
+        filepath = os.path.join(os.path.dirname(FILE), 'InputParameters.csv')
+        print(filepath)
         l = re.split(" ", ln.getline(filepath, 13))
         maxTime = float(l[2].split()[0])
     except:
@@ -302,7 +333,6 @@ def processDataOneFile(FILE):
         npMutTimes = transTimesToNumpyArr(mutTimes, maxTime)
         genePairs, geneTimez = setPairedOriginTags(npMutTags, npMutTimes)
         lastGeneDict = maxGeneLifeDict(npMutTags, maxTime)
-        plotTheTimes(npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict)
         return npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict, \
             geneTimez
     else:
@@ -314,36 +344,69 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
     """ """
     vv = lookForVAR(template)
     datOut = []
-    dataOrdering = ['VAR', 'VARX', 'timeMean', 'timeMedian', 'dirr']
+    dataOrdering = ['VAR', 'VARX', 'timeMean', 'timeMedian']
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
             if filepath == os.path.join(dirName, FILE):
                 try:
-                    DATA = processDataOneFile(FILE)
                     paramzList = loadParamSettings(os.path.join(dirName,
-                                                   "HostsGeneDivers.csv"))
+                                                   "InputParameters.csv"))
                 except:
-                    print("Cannot load the data. in dir", dirName)
+                    print("Cannot load the parameters. in dir", dirName)
                     continue
-                plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4])
-                var = float(paramzList[vv['VAR']])
-                varx = float(paramzList[vv['VARX']])
-                datOut.append((var, varx, timeMean, timeMedian, dirName))
+                if compareParams(template, paramzList):
+                    try:
+                        DATA = processDataOneFile(filepath)
+                    except:
+                        print("Cannot load the data. in dir", dirName)
+                        continue
+                    plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4],
+                                 dirName)
+                    var = float(paramzList[vv['VAR']])
+                    varx = float(paramzList[vv['VARX']])
+                    geneLasts = lastingTimeOfGene(DATA[1])
+                    timeMean = np.mean(geneLasts)
+                    timeMedian = np.median(geneLasts)
+                    datOut.append((var, varx, timeMean, timeMedian, dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
 
+
 def main():
     """ """
-    try:
-        DATA = processDataOneFile(sys.argv[1])
-    except:
-        print("Cannot load the data. Script aborted.")
+    """Main function - the script's main body."""
+    if len(sys.argv) <= 2:
+        print("Two arguments are needed:")
+        print("  1. Give the path to template file.")
+        print("  2. Give the name of the output file.")
         sys.exit()
-    if DATA:
-        plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4])
+    headerr = 'VAR VARX timeMean timeMedian sourceDir'
+    outputFile = str(sys.argv[2])
+    try:
+        template = loadParamSettings(sys.argv[1])
+    except:
+        print("Cannot load the template file. Exiting.")
+        sys.exit()
+    try:
+        theData = serchTheDirs("HostGenomesFile.5000.csv", template)
+    except:
+        print("Failed to process the data. Some serious issues arose.")
+        sys.exit()
+    if len(theData):
+        FMT = '%.4e %.4e %.4e %.4e %s'
+        open(outputFile, 'w').close()
+        np.savetxt(outputFile, theData, fmt=FMT, header=headerr,
+                   comments='#')
+        for itm in theData:
+            for ii in range(len(itm) - 1):
+                print(itm[ii], "\t", end=" ")
+            print()
+        print("Check the output file:", str(os.getcwd()) + "/" + outputFile +
+              " for details.")
     else:
-        print("ERROR in data. Script aborted.")
+        print("No data files matching the criterions were found.",
+              "Specify your template file.")
         sys.exit()
 
 
