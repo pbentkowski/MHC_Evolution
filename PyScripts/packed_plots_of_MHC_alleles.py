@@ -320,13 +320,13 @@ def plotDotMeans(theData):
 #    plt.show()
 
 
-def loadTheStuuff(dataSlice, specFile):
+def loadTheStuuff(dataSlice, specFile, dataType):
     """Loads the data from post-processed files. Useful when working in Ipython
     console.
      . dataSlice - path to DataSlice.csv type of file
      . specFile - path to parameter file type of file"""
     try:
-        dd = np.genfromtxt(dataSlice, dtype=outType)
+        dd = np.genfromtxt(dataSlice, dtype=dataType)
         for itm in dd:
             itm[-1] = itm[-1][2:-1]
         meanResult = buildStats(dd)

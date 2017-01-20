@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Iterates through directories and looks for the file with the Host population
+snapshot called HostGenomesFile.XXXX.csv and the InputParameters.csv file with
+the parameters used it the run. It extracts information about the genes origin
+like ancestry tree and MRCA.
+
 Created on Thu Dec  8 02:38:00 2016
 
-@author: piotr
+@author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
 import re
 import os
@@ -12,79 +17,19 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import bitstring as bts
+import packed_plots_of_MHC_alleles as ppma
 
 
-outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('timeMean', 'f8'),
-                    ('timeMedian', 'f8'), ('sourceDir', 'S99')])
-
-
-def lookForVAR(template):
-    """Checks which parameters are designated to be investigated as independent
-    variables. Gets their line numbers in the file with parameter
-    description."""
-    varrs = {"VAR": np.nan, "VARX": np.nan}
-    for ii, itm in enumerate(template):
-        if itm == "VAR":
-            varrs["VAR"] = ii
-        elif itm == "VARX":
-            varrs["VARX"] = ii
-        else:
-            pass
-    return varrs
-
-
-def loadParamSettings(filepath):
-    """Loads model's parametrisation from i.g. InputParameters.csv file into
-    a handy list. """
-    try:
-        paramzList = []
-        with open(filepath, 'r') as f:
-            for ii, line in enumerate(f):
-                if re.search("#", line) or line == "":
-                    pass
-                else:
-                    try:
-                        paramzList.append(line.split()[2])
-                    except:
-                        pass
-        return paramzList
-    except:
-        print("ERROR in loadParamSettings(): Cannot load params into a list.")
-        return None
-
-
-def compareParams(template, paramz):
-    """Compares parameters of two runs. They have to be loaded into a list
-    first, i.g. with loadParamSettings() function."""
-    same = None
-    if len(template) == len(paramz):
-        for ii, itm in enumerate(zip(template, paramz)):
-            try:
-                ITM_0 = float(itm[0])
-                ITM_1 = float(itm[1])
-            except:
-                ITM_0 = str(itm[0])
-                ITM_1 = str(itm[1])
-            if itm[0] == "VARX" or itm[0] == "VAR" or ii <= 1 or ii >= 19:
-                pass
-            elif ITM_0 == ITM_1:
-                same = True
-            else:
-                same = False
-                break
-    else:
-        print("ERROR in compareParams(): Params lists have different length.")
-        return same
-    if same is None:
-        print("ERROR in compareParams(): Comparison failed to commence.")
-    return same
+outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('MRCA_time', 'f8'),
+                    ('maxMutNumb', 'f8'), ('numOfGenes', 'f8'),
+                    ('sourceDir', 'S99')])
 
 
 def loadHostPopulation(FILE):
     '''Takes the file with the Host population HostGenomesFile.XXXX.csv and
     picks unique genes from it. Produces two lists: one containing ancestry of
-    each gene (tags of all predecessors) and times when each mutation arose in
-    the timeline.'''
+    each gene (tags of all predecessors) and the second, corresponding
+    containing times when each mutation arose in the genes time line.'''
     B_list = []
     Mut_tags = []
     Mut_times = []
@@ -116,7 +61,9 @@ def loadHostPopulation(FILE):
 
 
 def loadRawBitstrings(FILE):
-    """ """
+    """Loads just the raw bit strings to a list from the Host population
+    HostGenomesFile.XXXX.csv file. Used only for debugging.
+    """
     B_list = []
     try:
         with open(FILE) as infile:
@@ -139,7 +86,7 @@ def loadRawBitstrings(FILE):
 
 
 def findTheOnesAtBeginning(Mut_tags, jj=0):
-    """ """
+    """Finds the tag of the first gene in population’s known history."""
     ll = []
     for itm in Mut_tags:
         try:
@@ -153,7 +100,7 @@ def findTheOnesAtBeginning(Mut_tags, jj=0):
 
 
 def numberOfMutList(Mut_tags):
-    """ """
+    """Creates a list of numbers of mutations each gene had in its history"""
     ll = []
     for itm in Mut_tags:
         ll.append(len(itm))
@@ -162,11 +109,14 @@ def numberOfMutList(Mut_tags):
 
 def findMRCA(Mut_tags, Mut_times):
     """Finds the tag, time stamp and index of the most recent common ancestor
-    gene from the list of all genes at the population snapshot."""
+    gene from the list of all genes at the population snapshot.
+    Returns: MRCA gene tag, time of MRCA origin, MRCA index in Mut_tags list,
+             time of the MRCA
+    """
     if len(findTheOnesAtBeginning(Mut_tags, 0)) != 1:
         print("The most recent common ancestor cannot be established.",
               "There is more than one ancestral gene at the root.")
-        return None, np.nan, np.nan
+        return None, np.nan, np.nan, np.nan
     mutNumb = numberOfMutList(Mut_tags)
     maxx = np.max(mutNumb)
     theMRCAtag = Mut_tags[0][0]
@@ -177,31 +127,23 @@ def findMRCA(Mut_tags, Mut_times):
             ii = x
         else:
             break
-    return theMRCAtag, int(Mut_times[0][ii]), ii
-
-
-def timeOfExistence(Mut_tags, Mut_times):
-    """ """
-    times = []
-    for itm in Mut_times:
-        for ii in range(1, len(itm)):
-            times.append(int(itm[ii]) - int(itm[ii-1]))
-        return np.array(times)
-
-
-def findLeaves(LIST):
-    """ """
-    ll = []
-    maxLen = 0
-    for itm in LIST:
-        ll.append((itm[-1], len(itm)))
-        if maxLen < len(itm):
-            maxLen = len(itm)
-    return ll, maxLen
+    minn = np.inf
+    kk = ii + 1
+    for item in Mut_times:
+        try:
+            indx = int(item[kk])
+        except:
+            continue
+        if indx < minn:
+            minn = indx
+    return theMRCAtag, int(Mut_times[0][ii]), ii, minn
 
 
 def transTagsToNumpyArr(tagList):
-    """ """
+    """Takes list of tags created by loadHostPopulation() and transforms in into
+    a Numpy array where number of columns equals to the number of unique genes
+    and the number of rows equals to the number of mutation events in the
+    history of the gene that had the most of these events."""
     maxLen = 0
     for itm in tagList:
         if maxLen < len(itm):
@@ -214,7 +156,12 @@ def transTagsToNumpyArr(tagList):
 
 
 def transTimesToNumpyArr(timesList, finito):
-    """ """
+    """Takes list of mutation times created by loadHostPopulation() and
+    transforms in into a Numpy array where number of columns equals to the
+    number of unique genes and the number of rows equals to the number of
+    mutation events in the history of the gene that had the most of these
+    events, 'finito' is the maximal number of generations a.k.a. simulation
+    time. """
     maxLen = 0
     for itm in timesList:
         if maxLen < len(itm):
@@ -228,7 +175,9 @@ def transTimesToNumpyArr(timesList, finito):
 
 
 def setPairedOriginTags(tagArr, timeArr):
-    """ """
+    """Takes the Numpy-transformed tag and time arrays and creates a data
+    structure where there are only unique ancestor-descendant pairs of genes
+    and pairs of corresponding times of gene origin."""
     maxLen = 0
     for itm in tagArr:
         if maxLen < len(itm):
@@ -249,27 +198,18 @@ def setPairedOriginTags(tagArr, timeArr):
 
 
 def maxGeneLifeDict(tagArr, maxTime):
-    """ """
+    """Creates an utility data structure: a dictionary of the surviving gene
+    tags and the number of host generations (a.k.a. simulation time)"""
     dd = {}
     for item in tagArr:
         dd[np.max(item)] = maxTime
     return dd
 
 
-def lastingTimeOfGene(timeArr):
-    """ """
-    lastings = np.zeros(timeArr.shape[0])
-    for i, item in enumerate(timeArr):
-        for j, ii in enumerate(item):
-            if ii < 0 or ii == item[-1]:
-                lastings[i] = item[j-1] - item[j-2]
-                break
-    return lastings
-
-
 def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict, dirrName,
                  linesWdth=(2, 1, 3, 20)):
-    """ """
+    """Plots the history tree of the population at the snapshot. Saves it to
+    file. """
     hLineWidth = linesWdth[0]
     vLineWidth = linesWdth[1]
     lastLineWdth = linesWdth[2]
@@ -308,10 +248,14 @@ def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict, dirrName,
     plt.tight_layout()
     plt.savefig(dirrName + "/hitoryOfGenes.png")
 #    plt.show()
+    plt.clf()
 
 
 def processDataOneFile(FILE):
-    """ """
+    """A meta-function that takes the host population snapshot file
+    HostGenomesFile.XXXX.csv, also loads some parameters for the file
+    InputParameters.csv and pre-processes the population to produce more
+    useful data structures."""
     try:
         filepath = os.path.join(os.path.dirname(FILE), 'InputParameters.csv')
         print(filepath)
@@ -326,7 +270,8 @@ def processDataOneFile(FILE):
     except:
         print("Can't load the host population snapshot file.")
         return None
-    if findMRCA(mutTags, mutTimes):
+    mrcaTag, mrcaOri, mrcaIdx, mrcaTime = findMRCA(mutTags, mutTimes)
+    if mrcaTag:
         mutTimes.sort(key=len, reverse=True)
         mutTags.sort(key=len, reverse=True)
         npMutTags = transTagsToNumpyArr(mutTags)
@@ -334,15 +279,17 @@ def processDataOneFile(FILE):
         genePairs, geneTimez = setPairedOriginTags(npMutTags, npMutTimes)
         lastGeneDict = maxGeneLifeDict(npMutTags, maxTime)
         return npMutTags, npMutTimes, maxTime, genePairs, lastGeneDict, \
-            geneTimez
+            geneTimez, mrcaTime
     else:
         print("Sorry... No single MRCA.")
         return None
 
 
 def serchTheDirs(FILE, template, dirr=os.getcwd()):
-    """ """
-    vv = lookForVAR(template)
+    """Walk the directory tree in search of model runs and process each
+    simulation individually. Produces some meta-statistics regarding the
+    results geathered in Numpy structured array."""
+    vv = ppma.lookForVAR(template)
     datOut = []
     dataOrdering = ['VAR', 'VARX', 'timeMean', 'timeMedian']
     for dirName, subdirList, fileList in os.walk(dirr):
@@ -350,12 +297,12 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
             filepath = os.path.join(dirName, file)
             if filepath == os.path.join(dirName, FILE):
                 try:
-                    paramzList = loadParamSettings(os.path.join(dirName,
-                                                   "InputParameters.csv"))
+                    paramzList = ppma.loadParamSettings(os.path.join(dirName,
+                                                        "InputParameters.csv"))
                 except:
                     print("Cannot load the parameters. in dir", dirName)
                     continue
-                if compareParams(template, paramzList):
+                if ppma.compareParams(template, paramzList):
                     try:
                         DATA = processDataOneFile(filepath)
                     except:
@@ -365,26 +312,23 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
                                  dirName)
                     var = float(paramzList[vv['VAR']])
                     varx = float(paramzList[vv['VARX']])
-                    geneLasts = lastingTimeOfGene(DATA[1])
-                    timeMean = np.mean(geneLasts)
-                    timeMedian = np.median(geneLasts)
-                    datOut.append((var, varx, timeMean, timeMedian, dirName))
+                    datOut.append((var, varx, DATA[6], DATA[0].shape[1],
+                                   DATA[0].shape[0], dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
 
 
 def main():
-    """ """
     """Main function - the script's main body."""
     if len(sys.argv) <= 2:
         print("Two arguments are needed:")
         print("  1. Give the path to template file.")
         print("  2. Give the name of the output file.")
         sys.exit()
-    headerr = 'VAR VARX timeMean timeMedian sourceDir'
+    headerr = 'VAR VARX MRCA_time maxMutNumb numOfGenes sourceDir'
     outputFile = str(sys.argv[2])
     try:
-        template = loadParamSettings(sys.argv[1])
+        template = ppma.loadParamSettings(sys.argv[1])
     except:
         print("Cannot load the template file. Exiting.")
         sys.exit()
@@ -394,7 +338,7 @@ def main():
         print("Failed to process the data. Some serious issues arose.")
         sys.exit()
     if len(theData):
-        FMT = '%.4e %.4e %.4e %.4e %s'
+        FMT = '%.4e %.4e %.4e %.4e %.4e %s'
         open(outputFile, 'w').close()
         np.savetxt(outputFile, theData, fmt=FMT, header=headerr,
                    comments='#')
