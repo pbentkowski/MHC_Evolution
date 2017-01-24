@@ -453,7 +453,7 @@ void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antig
 void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
     unsigned long j;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+        RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     unsigned long HostPopulationSize = HostPopulation.size();
     for(unsigned long i = 0; i < HostPopulationSize; ++i){
         unsigned long PathPopulationSize = PathPopulation.size();

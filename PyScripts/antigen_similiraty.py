@@ -82,7 +82,7 @@ def hamDistWhinIndiv(BitLyst):
         return np.NaN
 
 
-def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
+def bitSimBetweenIndv(indOne, indTwo, sim_measure=16):
     """Takes two sets of antigens (two individual pathogens) and compares them
     (antigen by antigen) according to their fit to MHC"""
     try:
@@ -304,6 +304,24 @@ def checkNoMutationPositions(noMutt, antigenList, k, j):
         print("\nNo difference whatsoever between individuals")
 
 
+def countClonesInSpecies(oneSpeciesList):
+    """ """
+    nn = len(oneSpeciesList)
+    clones = np.zeros(nn)
+    checked = []
+    for i, indvOne in enumerate(oneSpeciesList):
+        if i not in checked:
+            clones[i] += 1
+            for j in range(i+1, nn):
+                if(j not in checked and
+                   hamDistBetweenIndv(indvOne, oneSpeciesList[j])[0] == 0):
+                    clones[i] += 1
+                    checked.append(j)
+            checked.append(i)
+    clones.sort()
+    return clones[::-1]
+
+
 def main():
     if len(sys.argv) <= 2:
         print("Give the names of two files with data. One at the begging of" +
@@ -396,27 +414,27 @@ def main():
     #  === Now the detailed plot! ===
     divv = int(np.ceil(np.sqrt(spp_num)))
     plt.figure(3, figsize=(24, 20))
-#    ax_label_2 = 10
+    ax_label_2 = 10
     TicksFS_2 = 11
     for ii in range(spp_num):
         plt.subplot(divv, divv, ii+1)
         plt.hist(hamDistInsideSpec(L_endd[ii]), color=(0.3, 0.3, 0.3, transs),
                  edgecolor="none")
-#        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
-#        plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
+        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
+        plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
         plt.xticks(fontsize=TicksFS_2)
         plt.yticks(fontsize=TicksFS_2)
         plt.grid(True)
     plt.savefig("SPP_sin_within_stop.png")
 
     plt.figure(4, figsize=(24, 20))
-#    ax_label_2 = 10
+    ax_label_2 = 10
     for ii in range(spp_num):
         plt.subplot(divv, divv, ii+1)
         plt.hist(hamDistInsideSpec(L_init[ii]), color=(0.3, 0.3, 0.3, transs),
                  edgecolor="none")
-#        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
-#        plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
+        plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
+        plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
         plt.xticks(fontsize=TicksFS_2)
         plt.yticks(fontsize=TicksFS_2)
         plt.grid(True)
