@@ -18,6 +18,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 # from bitstring import BitArray
 
+cloneType = np.dtype([("cloneTag", np.int64), ('numbOfIndv', np.float)])
+
 
 def hamming_distance(s1, s2):
     """Return the Hamming distance between equal-length sequences"""
@@ -115,7 +117,7 @@ def hamDistBetweenIndv(indOne, indTwo):
         return np.NaN
 
 
-def loadThePopulation(FILE):
+def loadThePopulationBitstrings(FILE):
     '''Takes the file with all the pathogen data loads it to a list dividing
     the population into species and individuals. Each individual is loaded as
     a list of bit strings. Each species is a list of individuals. And the
@@ -123,6 +125,7 @@ def loadThePopulation(FILE):
     LL = []
     spp_list = []
     nextPatho = False
+    endOfSpp = False
     ll = []
     l = re.split(" ", ln.getline(FILE, 3))
     old_spec = int(l[5])
@@ -156,6 +159,54 @@ def loadThePopulation(FILE):
                     nextPatho = True
                 else:
                     ll.append(line.split()[0][::-1])
+        spp_list.append(ll)
+        LL.append(spp_list)
+#        print j + 1
+        return LL
+    except IOError as e:
+        print("I/O error({0}) in".format(e.errno) +
+              " loadTheHostPopulation(): {0}".format(e.strerror))
+
+
+def loadIndvPathoTags(FILE):
+    """ """
+    LL = []
+    spp_list = []
+    nextPatho = False
+    endOfSpp = False
+    ll = []
+    l = re.split(" ", ln.getline(FILE, 3))
+    old_spec = int(l[5])
+    try:
+        with open(FILE) as infile:
+            for j, line in enumerate(infile):
+                if re.search(r"#", line):
+                    continue
+                elif re.search(r"===", line):
+                    try:
+                        new_spec = int(line.split()[4])
+                    except:
+                        pass
+                    if nextPatho:
+                        if new_spec == old_spec:
+                            spp_list.append(ll)
+                            ll = []
+                            endOfSpp = False
+                        else:
+                            if endOfSpp:
+                                LL.append(spp_list)
+                                spp_list = []
+                                spp_list.append(ll)
+                                ll = []
+                                old_spec = new_spec
+#                                print j + 1
+                            else:
+                                spp_list.append(ll)
+                                ll = []
+                            endOfSpp = True
+                    nextPatho = True
+                else:
+                    ll.append(np.int64(line.split()[3]))
         spp_list.append(ll)
         LL.append(spp_list)
 #        print j + 1
@@ -218,14 +269,21 @@ def hamDisthistAll(Popul):
     return np.array(DD)
 
 
-def hamDistInsideSpec(Spec):
+def hamDistInsideSpec(Spec, nn=-1):
     """Calculates mean Hamming distances for individuals within the species.
     Returns a NumPy array of mean Hamming distances for number of pairwise
-    comparisons between individuals."""
+    comparisons between individuals. Variable nn defines number of comparisons
+    to do within the species."""
     N = len(Spec)
-    compArr = np.zeros(2*len(Spec))
-    rndIndx_1 = np.random.randint(0, N, 2*N)
-    rndIndx_2 = np.random.randint(0, N, 2*N)
+    if nn < 0:
+        nn = 2*N
+    elif nn < N:
+        print("ERROR in hamDistInsideSpec(): number of comparisons should be",
+              "larger than population size.")
+        return None
+    compArr = np.zeros(nn)
+    rndIndx_1 = np.random.randint(0, N, nn)
+    rndIndx_2 = np.random.randint(0, N, nn)
     for kk, comp in enumerate(compArr):
         while (rndIndx_1[kk] == rndIndx_2[kk]):
             rndIndx_1[kk] = np.random.randint(0, N)
@@ -304,7 +362,7 @@ def checkNoMutationPositions(noMutt, antigenList, k, j):
         print("\nNo difference whatsoever between individuals")
 
 
-def countClonesInSpecies(oneSpeciesList):
+def countClonesInSpeciesFromBitstrings(oneSpeciesList):
     """ """
     nn = len(oneSpeciesList)
     clones = np.zeros(nn)
@@ -320,6 +378,44 @@ def countClonesInSpecies(oneSpeciesList):
             checked.append(i)
     clones.sort()
     return clones[::-1]
+
+
+def countClonesInSpeciesFromTags(oneSpListTags):
+    """ """
+    nn = len(oneSpListTags)
+    clones = np.zeros(nn, dtype=cloneType)
+    checked = []
+    for i, indvOne in enumerate(oneSpListTags):
+        if i not in checked:
+            clones["cloneTag"][i] = np.int64(indvOne[0])
+            clones['numbOfIndv'][i] += 1.
+            for j in range(i+1, nn):
+                if(j not in checked and indvOne == oneSpListTags[j]):
+                    clones['numbOfIndv'][i] += 1.
+                    checked.append(j)
+            checked.append(i)
+    clones = clones[clones["numbOfIndv"] > 0]
+    return np.sort(clones, order=['numbOfIndv'])[::-1]
+
+
+def plotCloneCount(cloneCountArr, maxRange=-1, totPopSize=-1):
+    """ """
+    lablFS = 16
+    if totPopSize < 0:
+        totPopSize = float(len(cloneCountArr))
+    if maxRange <= 0:
+        maxRange = int(len(cloneCountArr))
+    lefts = np.arange(len(cloneCountArr))
+    plt.figure(2, figsize=(8, 6))
+    plt.bar(lefts, cloneCountArr / totPopSize, width=0.8)
+    plt.grid(True)
+    plt.xlim(xmax=maxRange)
+    plt.xlabel("subsequent clones", fontsize=lablFS)
+    plt.ylabel("fraction of the population", fontsize=lablFS)
+    plt.tick_params(axis='both', labelsize=lablFS-2)
+    plt.gca().xaxis.set_major_locator(plt.NullLocator())
+    plt.savefig("pathoCloneFeq.png")
+#    plt.show()
 
 
 def main():
@@ -340,14 +436,15 @@ def main():
         print("Can't load the param file! You may be in a wrong directory.")
         sys.exit()
     try:
-        L_init = loadThePopulation(sys.argv[1])
+        L_init = loadThePopulationBitstrings(sys.argv[1])
         print("First file loaded!")
     except:
         print("Can't load file named " + str(sys.argv[1]) +
               ". Check if it exists.")
         sys.exit()
     try:
-        L_endd = loadThePopulation(sys.argv[2])
+        L_endd = loadThePopulationBitstrings(sys.argv[2])
+        cloneList = loadIndvPathoTags(sys.argv[2])
         print("Second file loaded!")
     except:
         print("Can't load file named" + str(sys.argv[2]) +
@@ -357,6 +454,10 @@ def main():
     print("Similarities in the First file have been calculated!")
     F_endd = hamDistInterSpecies(L_endd)
     print("Similarities in the Second file have been calculated!")
+    clonez = countClonesInSpeciesFromTags(cloneList[0])
+    np.savetxt("cloneFreq.csv", clonez)
+    plotCloneCount(clonez["numbOfIndv"], 25, len(cloneList[0]))
+    print("Clonal variability of first pathogen population calculated!")
     # === More generic plot ===
     ax_label = 20
     T_label = 24
@@ -418,8 +519,8 @@ def main():
     TicksFS_2 = 11
     for ii in range(spp_num):
         plt.subplot(divv, divv, ii+1)
-        plt.hist(hamDistInsideSpec(L_endd[ii]), color=(0.3, 0.3, 0.3, transs),
-                 edgecolor="none")
+        plt.hist(hamDistInsideSpec(L_endd[ii], 15000),
+                 color=(0.3, 0.3, 0.3, transs),  edgecolor="none")
         plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
         plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
         plt.xticks(fontsize=TicksFS_2)
@@ -431,8 +532,8 @@ def main():
     ax_label_2 = 10
     for ii in range(spp_num):
         plt.subplot(divv, divv, ii+1)
-        plt.hist(hamDistInsideSpec(L_init[ii]), color=(0.3, 0.3, 0.3, transs),
-                 edgecolor="none")
+        plt.hist(hamDistInsideSpec(L_init[ii], 15000),
+                 color=(0.3, 0.3, 0.3, transs), edgecolor="none")
         plt.xlabel("Within-species similarity measure", fontsize=ax_label_2)
         plt.ylabel("Frequency of occurrence", fontsize=ax_label_2)
         plt.xticks(fontsize=TicksFS_2)
