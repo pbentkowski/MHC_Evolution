@@ -402,12 +402,13 @@ def plotCloneCount(cloneCountArr, maxRange=-1, totPopSize=-1):
     """ """
     lablFS = 16
     if totPopSize < 0:
-        totPopSize = float(len(cloneCountArr))
+        totPopSize = np.float(len(cloneCountArr))
     if maxRange <= 0:
-        maxRange = int(len(cloneCountArr))
+        maxRange = len(cloneCountArr)
     lefts = np.arange(len(cloneCountArr))
+    totPopSize = np.float(totPopSize)
     plt.figure(2, figsize=(8, 6))
-    plt.bar(lefts, cloneCountArr / totPopSize, width=0.8)
+    plt.bar(lefts, cloneCountArr / totPopSize, width=0.8, linewidth=0)
     plt.grid(True)
     plt.xlim(xmax=maxRange)
     plt.xlabel("subsequent clones", fontsize=lablFS)
@@ -455,7 +456,7 @@ def main():
     F_endd = hamDistInterSpecies(L_endd)
     print("Similarities in the Second file have been calculated!")
     clonez = countClonesInSpeciesFromTags(cloneList[0])
-    np.savetxt("cloneFreq.csv", clonez)
+    np.savetxt("cloneFreq.csv", clonez, fmt='%.0e')
     plotCloneCount(clonez["numbOfIndv"], 25, len(cloneList[0]))
     print("Clonal variability of first pathogen population calculated!")
     # === More generic plot ===
