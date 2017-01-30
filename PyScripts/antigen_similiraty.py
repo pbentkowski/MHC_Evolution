@@ -456,7 +456,7 @@ def main():
     F_endd = hamDistInterSpecies(L_endd)
     print("Similarities in the Second file have been calculated!")
     clonez = countClonesInSpeciesFromTags(cloneList[0])
-    np.savetxt("cloneFreq.csv", clonez, fmt='%.0e')
+    np.savetxt("cloneFreq.csv", clonez, fmt='%i')
     plotCloneCount(clonez["numbOfIndv"], 25, len(cloneList[0]))
     print("Clonal variability of first pathogen population calculated!")
     # === More generic plot ===

@@ -238,7 +238,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 350))
+    plt.ylim((0, 100))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -252,7 +252,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 25))
+    plt.ylim((0, 20))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -360,7 +360,8 @@ def main():
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
-            theData = getTheData(startDate, template, 3000)
+            # third argument is very important
+            theData = getTheData(startDate, template, 1500)
         except:
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
