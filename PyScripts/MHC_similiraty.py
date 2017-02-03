@@ -139,6 +139,57 @@ def loadHostPopulation(FILE):
               "loadTheHostPopulation(): {0}".format(e.strerror))
 
 
+def loadPathoExposed(FILE):
+    """ """
+    LL = []
+    try:
+        with open(FILE) as infile:
+            for line in infile:
+                if re.search(r"#", line):
+                    continue
+                elif re.search(r"===", line):
+                    ll = line.split()
+                    if int(ll[7]) > 0:
+                        LL.append(ll[11:-1])
+                    else:
+                        LL.append([])
+                else:
+                    continue
+        return LL
+    except IOError as e:
+        print("I/O error({0}) in".format(e.errno),
+              "loadPathoExposed(): {0}".format(e.strerror))
+
+
+def uniqueMhcInHostOnly(hostPopList):
+    """ """
+    uniqHosts = []
+    for indv in hostPopList:
+        ll = []
+        for mhc in indv:
+            if mhc not in ll:
+                ll.append(mhc)
+        uniqHosts.append(ll)
+    return uniqHosts
+
+
+def plotMHCvsPathoPresent(hostPopList, pathoExposed):
+    """ """
+    uniq = uniqueMhcInHostOnly(hostPopList)
+    LL = []
+    for indv in uniq:
+        LL.append(len(indv))
+    uniqNumb = np.array(LL)
+    ll = []
+    for ii in pathoExposed:
+        ll.append(len(ii))
+    pathoNumb = np.array(ll)
+    plt.figure(1, figsize=(12, 8))
+    plt.plot(uniqNumb, pathoNumb, 'o')
+    plt.grid(True)
+    plt.show()
+
+
 def bitSimAll(Popul, simmes=7):
     """Calculates bit string similarity for all individuals (mean is calculated
     for a single Pathogen. """
