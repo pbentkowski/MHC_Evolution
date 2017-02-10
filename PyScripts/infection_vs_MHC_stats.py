@@ -183,7 +183,7 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
     return np.sort(datOut, order=dataOrdering)
 
 
-def plotHistograms(handyArr, yMax=0):
+def plotBoxesSlopes(handyArr, yMax=0):
     """ """
     if handyArr.dtype == handyType:
         spp = np.unique(handyArr['VARX'])
@@ -193,19 +193,26 @@ def plotHistograms(handyArr, yMax=0):
         return None
     lbls = spp.astype(int)
     ll = []
-    fs = 14
-    tkfs = 12
-    plt.figure(figsize=(12, 8))
+    fs = 16
+    tkfs = 14
+    plt.figure(figsize=(16, 12))
     for itm in spp:
         ll.append(handyArr[handyArr['VARX'] == itm]['slope'])
-    plt.boxplot(ll, labels=lbls)
+    boxprops = dict(linestyle='-', linewidth=2.5, color='k')
+    medianprops = dict(linestyle='-', linewidth=2.5)
+    whiskerprops = dict(linewidth=2.5)
+    capprops = dict(linewidth=2.5)
+    flierprops = dict(markersize=10)
+    plt.boxplot(ll, labels=lbls, boxprops=boxprops, medianprops=medianprops,
+                whiskerprops=whiskerprops, capprops=capprops,
+                flierprops=flierprops)
     plt.xlabel("number of pathogen species", fontsize=fs)
     plt.ylabel("linear regression slope value", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     if yMax > 0:
         plt.ylim(ymax=yMax)
-#    plt.grid(True)
+    plt.grid(True)
     plt.show()
 
 

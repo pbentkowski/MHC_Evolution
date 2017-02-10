@@ -339,6 +339,68 @@ def buildStats(theData):
     return np.array(meanResult)
 
 
+def plotBoxesCoalecenceTime(handyArr, maxGen, yMax=0):
+    """ """
+    if handyArr.dtype == outType:
+        spp = np.unique(handyArr['VARX'])
+    else:
+        print("ERROR in plotBoxesCoalecenceTime(): wrong numpy data type.",
+              "It should be:", outType)
+        return None
+    lbls = spp.astype(int)
+    ll = []
+    fs = 16
+    tkfs = 14
+    plt.figure(figsize=(12, 8))
+    for itm in spp:
+        ll.append(maxGen - handyArr[handyArr['VARX'] == itm]['MRCA_time'])
+    boxprops = dict(linestyle='-', linewidth=2.5, color='k')
+    medianprops = dict(linestyle='-', linewidth=2.5)
+    whiskerprops = dict(linewidth=2.5)
+    capprops = dict(linewidth=2.5)
+    flierprops = dict(markersize=10)
+    plt.boxplot(ll, labels=lbls, boxprops=boxprops, medianprops=medianprops,
+                whiskerprops=whiskerprops, capprops=capprops,
+                flierprops=flierprops)
+    plt.xlabel("number of pathogen species", fontsize=fs)
+    plt.ylabel("hosts' generations since MRCA", fontsize=fs)
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    if yMax > 0:
+        plt.ylim(ymax=yMax)
+    plt.grid(True)
+    plt.show()
+
+
+def plotScatterMHCnumbMRCA(handyArr, maxGen, yMax=0):
+    """ """
+    if handyArr.dtype == outType:
+        spp = np.unique(handyArr['VARX'])
+    else:
+        print("ERROR in plotScatterMHCnumbMRCA(): wrong numpy data type.",
+              "It should be:", outType)
+        return None
+    fs = 17
+    tkfs = 15
+    clrs = ('s', 'o', 'd', '*', 'v', '8')
+    plt.figure(figsize=(12, 8))
+    for k, itm in enumerate(spp):
+        mrca_time = maxGen - handyArr[handyArr['VARX'] == itm]['MRCA_time']
+        mhc_numb = handyArr[handyArr['VARX'] == itm]['numOfGenes']
+        lbl = str(int(itm))
+        plt.scatter(mrca_time, mhc_numb, s=50, marker=clrs[k], label=lbl)
+    plt.xlabel("hosts' generations since MRCA", fontsize=fs)
+    plt.ylabel("number of unique MHCs in population", fontsize=fs)
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    if yMax > 0:
+        plt.ylim(ymax=yMax)
+    plt.grid(True)
+    plt.legend(loc='upper left', numpoints=1, ncol=2, fontsize=12,
+               title="Number of pathogen spp.")
+    plt.show()
+
+
 def main():
     """Main function - the script's main body."""
     if len(sys.argv) <= 2:
