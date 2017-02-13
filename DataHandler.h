@@ -45,6 +45,12 @@ public:
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit);
+    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
+        int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
+        double hostMutationProb, double pathoMutationProb, int HeteroHomo,
+        double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
+        double fixedAntigPosit);
     bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
@@ -55,6 +61,12 @@ public:
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit);
+    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+                           int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
+                           int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
+                           double hostMutationProb, double pathoMutationProb, int HeteroHomo,
+                           double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
+                           double fixedAntigPosit);
     void inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,

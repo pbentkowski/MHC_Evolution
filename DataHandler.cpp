@@ -203,6 +203,99 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsi
 }
 
 /**
+ * @brief Input params validation method. Does the basic check if the entered
+ * parameters are free of total nonsense. Sex and Parasites version.
+ *
+ * @param rndSeed
+ * @param geneLength
+ * @param antigenLength
+ * @param hostPopSize
+ * @param pathoPopSize
+ * @param patho_sp
+ * @param hostGeneNumbb
+ * @param pathoGeneNumb
+ * @param patoPerHostGeneration
+ * @param numOfHostGenerations
+ * @param hostMutationProb
+ * @param pathoMutationProb
+ * @param HeteroHomo
+ * @param hostDeletion
+ * @param hostDuplication
+ * @param maxGene
+ * @param alpha
+ * @param fixedAntigPosit
+ * @return 'true' if something is wrong, 'false' if no errors were found.
+ */
+bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+                                     int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
+                                     int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
+                                     double hostMutationProb, double pathoMutationProb, int HeteroHomo,
+                                     double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
+                                     double fixedAntigPosit){
+    bool ifError = false;
+    if (rndSeed < 0){
+        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
+        ifError = true;
+    }
+    if (geneLength > 31){
+        std::cout << "\nError in number of bits per gene. ";
+        std::cout << geneLength << " bits in genes is bit too much. ";
+        std::cout << "Try something less radical, e.g. smaller than 31."  << std::endl;
+        ifError =  true;
+    }
+    if (geneLength > antigenLength){
+        std::cout << "\nError in size of an antigen. ";
+        std::cout << " Number of bits in antigen cannot be smaller";
+        std::cout << " than the number of bits in MHC gene." << std::endl;
+        ifError =  true;
+    }
+
+    if (hostMutationProb < 0.0 or hostMutationProb > 1.0){
+        std::cout << "\nError in the hosts' mutation probability. It has to be " <<
+                  "within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (pathoMutationProb < 0.0 or pathoMutationProb > 1.0){
+        std::cout << "\nError in the pathogens' mutation probability. It has " <<
+                  "to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (hostDeletion < 0.0 or hostDeletion > 1.0){
+        std::cout << "\nError in the hosts' probability of deletion of a gene. " <<
+                  "It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (hostDuplication < 0.0 or hostDuplication > 1.0){
+        std::cout << "\nError in the hosts' duplication of a gene probability. " <<
+                  "It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    if (HeteroHomo != 10 and HeteroHomo != 11){
+        std::cout << "\nError in the heterozygote advantage / lack of advantage " <<
+                  "mode. It has to be 10 for heterozygote advantage or 11 for " <<
+                  "lack of thereof." << std::endl;
+        ifError = true;
+    }
+    if (maxGene < 1 or maxGene < hostGeneNumbb){
+        std::cout << "\nError in the hosts' maximal number of genes per " <<
+                  "chromosome. It has to be at least one, but not less then the " <<
+                  "number used to initialize the system. "<< std::endl;
+        ifError = true;
+    }
+    if (numberOfMates < 1 or numberOfMates > hostPopSize){
+        std::cout << "\nError in the hosts' number of sexual partners. " <<
+                  "It has to be within the range 1 and the hosts' population size." << std::endl;
+        ifError = true;
+    }
+    if (fixedAntigPosit < 0.0 or fixedAntigPosit > 1.0){
+        std::cout << "\nError in the parameter for fraction of antigen bits " <<
+                  "being fixed. It has to be within the range [0, 1]." << std::endl;
+        ifError = true;
+    }
+    return ifError;
+}
+
+/**
  * @brief Input params validation method. Does the basic check if the entered 
  * parameters are free of total nonsense
  * 
@@ -343,6 +436,80 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
             fixedAntigPosit << std::endl;
     InputParams.close();
 }
+
+/**
+ * @brief Data harvesting method. Writes all the input params and some run stats
+ * to a file. Must be run only ones per run of the model.
+ *
+ * It's better to run it after running DataHarvester::checkParamsIfWrong() which
+ * will check if parameters make any sense.
+ *
+ * @param rndSeed
+ * @param geneLength
+ * @param antigenLength
+ * @param hostPopSize
+ * @param pathoPopSize
+ * @param patho_sp
+ * @param hostGeneNumbb
+ * @param pathoGeneNumb
+ * @param patoPerHostGeneration
+ * @param numOfHostGenerations
+ * @param hostMutationProb
+ * @param pathoMutationProb
+ * @param HeteroHomo
+ * @param hostDeletion
+ * @param hostDuplication
+ * @param maxGene
+ * @param alpha
+ * @param fixedAntigPosit
+ */
+void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+     int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
+     int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
+     double hostMutationProb, double pathoMutationProb, int HeteroHomo,
+     double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
+     double fixedAntigPosit){
+    std::ofstream InputParams;
+    InputParams.open("InputParameters.csv");
+
+    InputParams << "# Runtime properties:" << std::endl;
+    InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
+    InputParams << "# Model's core parameters:" << std::endl;
+    InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
+    InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
+    InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
+    InputParams << "\thost_population_size = " << hostPopSize << std::endl;
+    InputParams << "\tpathogen_population_size = " << pathoPopSize << std::endl;
+    InputParams << "\tnumber_of_pathogen_species = " << patho_sp << std::endl;
+    InputParams << "\tnumber_of_genes_per_host_one_chromosome = " <<
+                hostGeneNumbb << std::endl;
+    InputParams << "\tnumber_of_antigens_per_pathogen = " << pathoGeneNumb << std::endl;
+    InputParams << "\tnumber_of_pathogen_generation_per_one_host_generation = " <<
+                patoPerHostGeneration << std::endl;
+    InputParams << "\tnumber_of_host_generations = " << numOfHostGenerations << std::endl;
+    InputParams << "\tmutation_probability_in_host = " <<
+                hostMutationProb << std::endl;
+    InputParams << "\tmutation_probability_in_pathogen = " <<
+                pathoMutationProb << std::endl;
+    if (HeteroHomo == 10){
+        InputParams << "\theterozygote_advantage = YES" << std::endl;
+    }else if (HeteroHomo == 11){
+        InputParams << "\theterozygote_advantage = NO" << std::endl;
+    } else {
+        InputParams << "\theterozygote_advantage = ERROR" << std::endl;
+    }
+    InputParams << "\thost_gene_deletion_probability = " <<
+                hostDeletion << std::endl;
+    InputParams << "\thost_gene_duplication_probability = " <<
+                hostDuplication << std::endl;
+    InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
+                maxGene << std::endl;
+    InputParams << "\tnumber_of_sex_mates = " << numberOfMates << std::endl;
+    InputParams << "\tFraction_of_antigen_bits_getting_fixed = " <<
+                fixedAntigPosit << std::endl;
+    InputParams.close();
+}
+
 
 /**
  * @brief Data harvesting method. Writes all the input params and some run stats
