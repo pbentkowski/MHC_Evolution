@@ -82,7 +82,8 @@ def compareParams(template, paramz):
             except:
                 ITM_0 = str(itm[0])
                 ITM_1 = str(itm[1])
-            if itm[0] == "VARX" or itm[0] == "VAR" or ii <= 1 or ii >= 19:
+            if(itm[0] == "VARX" or itm[0] == "VAR" or itm[0] == "IRR" or
+               ii <= 1 or ii >= 19):
                 pass
             elif ITM_0 == ITM_1:
                 same = True
@@ -101,12 +102,14 @@ def lookForVAR(template):
     """Checks which parameters are designated to be investigated as independent
     variables. Gets their line numbers in the file with parameter
     description. You have to provide a template file."""
-    varrs = {"VAR": 0, "VARX": 0}
+    varrs = {"VAR": 0, "VARX": 0, "IRR": 0}
     for ii, itm in enumerate(template):
         if itm == "VAR":
             varrs["VAR"] = ii
         elif itm == "VARX":
             varrs["VARX"] = ii
+        elif itm == "IRR":
+            varrs["IRR"] = ii
         else:
             pass
     return varrs
