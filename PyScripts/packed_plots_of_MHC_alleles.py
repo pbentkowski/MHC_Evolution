@@ -364,7 +364,7 @@ def main():
             sys.exit()
         try:
             # third argument is very important
-            theData = getTheData(startDate, template, 1500)
+            theData = getTheData(startDate, template, 3000)
         except:
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
