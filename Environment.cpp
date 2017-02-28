@@ -1322,6 +1322,19 @@ std::string Environment::getNumbersOfPathogensPresented() {
     return presentedPatho;
 }
 
+
+/**
+ * @brief  Data harvesting method. Creates a vector of unique genes with all their stats.
+ */
+void Environment::setUniqueGenes() {
+    UniqueGenes.clear();
+    std::vector<Gene> AllGenes;
+    // Finding unique genes
+    if(HostPopulation.size()){
+        
+    }
+}
+
 unsigned long Environment::getSingleHostGenomeSize(unsigned long indx){
     return HostPopulation[indx].getGenomeSize();
 }

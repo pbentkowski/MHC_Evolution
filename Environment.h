@@ -28,6 +28,7 @@
 
 #include "Host.h"
 #include "Pathogen.h"
+#include "Gene.h"
 
 /**
  * @brief Core class. Stores and handles the environment object that is the 
@@ -39,6 +40,7 @@ private:
     std::vector<Host> HostPopulation;
     std::vector<std::vector<Pathogen> > PathPopulation;
     std::vector<std::set<unsigned long>> NoMutsVec;
+    std::vector<Gene> UniqueGenes;
 public:
     // === Core methods ===
     Environment();
@@ -103,6 +105,7 @@ public:
     unsigned long getSingleHostRealGeneOne(unsigned long i, unsigned long j);
     unsigned long getSingleHostRealGeneTwo(unsigned long i, unsigned long j);
     double getHostFitness(unsigned long indx);
+    void setUniqueGenes();
     
 };
 
