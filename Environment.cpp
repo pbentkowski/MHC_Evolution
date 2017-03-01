@@ -1332,11 +1332,8 @@ void Environment::setUniqueGenes() {
     // Finding unique genes
     if(HostPopulation.size()){
         for(unsigned long i = 0; i < (unsigned long) HostPopulation.size(); ++i){
-            for(unsigned long j = 0; (unsigned long) HostPopulation[i].getChromoOneSize() > j; ++j){
-                AllGenes.push_back(HostPopulation[i].getSingleGeneFromOne(j));
-            }
-            for(unsigned long j = 0; (unsigned long) HostPopulation[i].getChromoTwoSize() > j; ++j){
-                AllGenes.push_back(HostPopulation[i].getSingleGeneFromTwo(j));
+            for(unsigned long j = 0; (unsigned long) HostPopulation[i].getUniqueMhcSize() > j; ++j){
+                AllGenes.push_back(HostPopulation[i].getOneGeneFromUniqVect(j));
             }
         }
         unsigned long GeneCounter = AllGenes.size();

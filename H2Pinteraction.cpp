@@ -104,3 +104,4 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     host.PathoSpecInfecting.push_back(patho.getSpeciesTag());
     return;
 }
+// Cały mechanizm jest do wymiany, jeżeli to ma się zliczać liczbę prezentacji na gen!!! Aaagggrrrr
