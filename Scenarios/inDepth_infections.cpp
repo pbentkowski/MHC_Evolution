@@ -62,7 +62,7 @@ void printTipsToRun(){
                 " ([0,1] range)" << std::endl;
     std::cout << "16. Maximal number of genes permitted in one host chromosome." <<
             std::endl;
-    std::cout << "17. Number of sexual partners an individual checks out before selecting one for mating." <<
+    std::cout << "17. Alpha factor for the host fitness function ([0,1] range)." <<
             std::endl;
     std::cout << "18. Fraction of antigen bits which get fixed and cannot" <<
             " mutate ([0,1] range)." << std::endl;
@@ -101,9 +101,9 @@ int main(int argc, char** argv) {
         return 0;
     }
     unsigned long maxGene, hostGeneNumbb, mhcGeneLength, antigenLength;
-    int rndSeed, hostPopSize, pathoPopSize, patho_sp, NumbPartners,
+    int rndSeed, hostPopSize, pathoPopSize, patho_sp,
         pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
-    double hostMutationProb, pathoMutationProb, deletion, duplication,
+    double hostMutationProb, pathoMutationProb, deletion, duplication, alpha,
             fixedAntigPosit;
     // Check if input params are numbers
     try {
@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
         deletion = boost::lexical_cast<double>(argv[14]);
         duplication = boost::lexical_cast<double>(argv[15]);
         maxGene = boost::lexical_cast<unsigned long>(argv[16]);
-        NumbPartners = boost::lexical_cast<int>(argv[17]);
+        alpha = boost::lexical_cast<double>(argv[17]);
         fixedAntigPosit = boost::lexical_cast<double>(argv[18]);
     }
     catch(boost::bad_lexical_cast& e) {
@@ -150,7 +150,7 @@ int main(int argc, char** argv) {
     deletion = atof(argv[14]);
     duplication = atof(argv[15]);
     maxGene = (unsigned long) atoi(argv[16]);
-    NumbPartners = atoi(argv[17]);
+    alpha = atof(argv[17]);
     fixedAntigPosit = atof(argv[18]);
 
     // When told so, fetching a truly random number to seed the RNG engine
@@ -167,7 +167,7 @@ int main(int argc, char** argv) {
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations,
             hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
-            maxGene, NumbPartners, fixedAntigPosit)){
+            maxGene, alpha, fixedAntigPosit)){
         std::cout << std::endl;
         std::cout << "Error in parameters on input. Check them." << std::endl;
         printTipsToRun();
@@ -181,7 +181,7 @@ int main(int argc, char** argv) {
             pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
             patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
             pathoMutationProb, HeteroHomo, deletion, duplication, maxGene,
-            NumbPartners, fixedAntigPosit);
+            alpha, fixedAntigPosit);
 
 // === And now doing the calculations! ===
 
@@ -223,11 +223,12 @@ int main(int argc, char** argv) {
                 ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
-            ENV.calculateHostsFitnessPlainPresent();  // changed for sexual reproduction
+            ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
             ENV.selectAndReprodHostsReplace();
-            ENV.matingWithNoCommonMHCsmallSubset(NumbPartners);
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
+            ENV.setUniqueGenes();
             Data2file.saveHostGeneticDivers(ENV, i);
+            // Data2file -> gene presentation data
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }

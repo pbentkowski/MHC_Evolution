@@ -62,6 +62,7 @@ public:
     std::vector<int> MutationTime;
     unsigned long int GenesTag;
     void printGeneToScreen();
+    int presentedPathos;
 private:
     unsigned long TheGene;
     unsigned long BitStringLength;
