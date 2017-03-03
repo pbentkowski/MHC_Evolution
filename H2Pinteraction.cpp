@@ -104,4 +104,24 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     host.PathoSpecInfecting.push_back(patho.getSpeciesTag());
     return;
 }
-// Cały mechanizm jest do wymiany, jeżeli to ma się zliczać liczbę prezentacji na gen!!! Aaagggrrrr
+
+
+/**
+ * @brief Core method for checking presice infection statistics. Checks if a host gets infected with a pathogen.
+ * Heterozygote has an advantage here over homozygote and each species is
+ * allowed to infect a host only ONES.
+ *
+ * @param host - a Host-class object
+ * @param patho - a Pathogen-class object
+ */
+void H2Pinteraction::doesInfecHeteroOnePerSpecRecord(Host &host, Pathogen &patho) {
+    antigenvector tmppatho = patho.getAllAntigens();
+    chromovector tmphost = host.getUniqueMHCs();
+    if (host.PathoSpecInfecting.size()){
+        // Making sure a pathogen species infects only ones
+        for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
+            if(host.PathoSpecInfecting[w] == patho.getSpeciesTag()) return;
+        }
+    }
+
+}

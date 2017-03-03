@@ -40,6 +40,7 @@ public:
     virtual ~H2Pinteraction();
     bool presentAntigen(unsigned long int hostgen, longIntVec antigen);
     void doesInfectedHeteroOnePerSpec(Host &host, Pathogen &patho);
+    void doesInfecHeteroOnePerSpecRecord(Host &host, Pathogen &patho);
 };
 
 #endif	/* H2PINTERACTION_H */
