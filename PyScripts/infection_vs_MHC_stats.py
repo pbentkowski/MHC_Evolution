@@ -68,8 +68,9 @@ def loadHostPopulation(FILE):
 #        print j + 1
         return LL
     except IOError as e:
-        print("I/O error({0}) in".format(e.errno),
+        print("\nI/O error({0}) in".format(e.errno),
               "loadTheHostPopulation(): {0}".format(e.strerror))
+        return None
 
 
 def loadPathoExposed(FILE):
@@ -90,8 +91,9 @@ def loadPathoExposed(FILE):
                     continue
         return LL
     except IOError as e:
-        print("I/O error({0}) in".format(e.errno),
+        print("\nI/O error({0}) in".format(e.errno),
               "loadPathoExposed(): {0}".format(e.strerror))
+        return None
 
 
 def uniqueMhcInHostOnly(hostPopList):
@@ -166,8 +168,14 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                     var = float(paramzList[vv['VAR']])
                     varx = float(paramzList[vv['VARX']])
                     try:
+                        print(dirName, end=' : ')
                         pathos = loadPathoExposed(genomeFileName)
                         hosts = loadHostPopulation(genomeFileName)
+                        if hosts is None or pathos is None:
+                            print("Failed to read data")
+                            continue
+                        else:
+                            print("Done")
                     except:
                         print("ERROR in getTheData(): cant's load the host",
                               "population data")
@@ -195,7 +203,7 @@ def plotBoxesSlopes(handyArr, yMax=0):
     ll = []
     fs = 16
     tkfs = 14
-    plt.figure(figsize=(16, 12))
+    plt.figure(figsize=(12, 9))
     for itm in spp:
         ll.append(handyArr[handyArr['VARX'] == itm]['slope'])
     boxprops = dict(linestyle='-', linewidth=2.5, color='k')

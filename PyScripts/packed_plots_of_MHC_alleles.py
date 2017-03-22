@@ -241,7 +241,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 100))
+    plt.ylim((0, 200))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -255,7 +255,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 20))
+    plt.ylim((0, 25))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -291,7 +291,8 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 def plotDotMeans(theData):
     """Plots number of MHC alleles in population vs average number of MHC in
     one chromosome."""
-    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo']  # , 'ko', 'wo']
+#    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo'  , 'ko', 'wo']
+    clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
     clrs += ['bo', 'go', 'ro', 'co', 'mo', 'yo', 'ko', 'wo']
     FS = 18
