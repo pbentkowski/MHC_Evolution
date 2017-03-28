@@ -70,6 +70,7 @@ public:
     void calculateHostsFitnessExpScalingUniqAlleles(double alpha);
     void selectAndReprodHostsAddOffspring();
     void selectAndReprodHostsReplace();
+    void selectAndReprodHostsNoMating();
     void selectAndReproducePathoFlexPopSizes();
     void selectAndReproducePathoFixedPopSizes();
     void clearHostInfectionsData();

@@ -683,6 +683,54 @@ void Environment::selectAndReprodHostsReplace(){
 }
 
 /**
+ *@brief Core method. Forms the next generation of hosts using the fitness
+ * proportionate selection method. Replaces the old population with a new one.
+ *
+ * Iterates through the host population selecting the next generation
+ * for reproduction using
+ * <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">
+ * fitness proportionate selection method</a> (also known as the roulette wheel
+ * selection). Successful individuals are simply cloned replacing the weak ones.
+ */
+void Environment::selectAndReprodHostsNoMating() {
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
+    unsigned long pop_size = HostPopulation.size();
+    double sum_of_fit = 0;
+    double rnd;
+    for(unsigned long i = 0; i < pop_size; ++i){
+        sum_of_fit += HostPopulation[i].getFitness();
+    }
+    if(sum_of_fit == 0){
+        return;
+    }
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    int n = 0;
+    while(n < pop_size) {
+        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
+        unsigned long HostPopulationSize = HostPopulation.size();
+        for (unsigned long k = 0; k < HostPopulationSize; ++k) {
+            rnd = rnd - HostPopulation[k].getFitness();
+            if (rnd <= 0) {
+                HostPopulation[k].SelectedForReproduction += 1;
+                NewHostsVec.push_back(HostPopulation[k]);
+                n += 1;
+
+            }
+        }
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in selectAndReprodHostsReplace(): Size mismatch " <<
+                "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                " | new pop: " << NewHostsVec.size()  << std::endl;
+    }
+}
+
+/**
  * @brief Core method. Forms the next generation of hosts using the fitness
  * proportionate selection method. It can adjust species population sizes in
  * proportion to its individuals fitness values keeping the total number of

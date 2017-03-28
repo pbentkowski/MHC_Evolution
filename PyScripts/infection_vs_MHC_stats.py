@@ -181,6 +181,8 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                               "population data")
                         continue
                     uniqNumb, pathoNumb = calculateTheNumbers(hosts, pathos)
+                    uniqNumb = np.hstack((uniqNumb, 0))
+                    pathoNumb = np.hstack((pathoNumb, 0))
                     # slope, intercept, r_val, p_val, std_err
                     data = linregress(uniqNumb, pathoNumb)
                     plotMHCvsPathoPresent(uniqNumb, pathoNumb,

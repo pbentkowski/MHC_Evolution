@@ -241,7 +241,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 200))
+    plt.ylim((0, 10))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -255,7 +255,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 25))
+    plt.ylim((0, 5))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -343,10 +343,12 @@ def loadTheStuuff(dataSlice, specFile, dataType):
 
 def main():
     """Main function - the script's main body."""
-    if len(sys.argv) <= 2:
+    if len(sys.argv) <= 3:
         print("Two arguments are needed:")
         print("  1. Give a starting date. It has to be in yyyy-mm-dd format.")
         print("  2. Give the path to template file.")
+        print("  3. Give number of host generations after which calculate.",
+              "the statistics.")
         sys.exit()
     startDate = None
     headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
@@ -365,9 +367,11 @@ def main():
             sys.exit()
         try:
             # third argument is very important
-            theData = getTheData(startDate, template, 3000)
+            theData = getTheData(startDate, template, int(sys.argv[3]))
         except:
-            print("Failed to process the data. Some serious issues arose.")
+            print("Failed to process the data. Some serious issues arose.",
+                  "Check if the cut-off host generation for calculating stats",
+                  "is smaller than the total number of host generations.")
             sys.exit()
         if len(theData):
             FMT = '%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %s'
