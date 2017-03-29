@@ -706,6 +706,7 @@ void Environment::selectAndReprodHostsNoMating() {
     }
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     int n = 0;
+    aley_oop:
     while(n < pop_size) {
         rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
         unsigned long HostPopulationSize = HostPopulation.size();
@@ -715,7 +716,7 @@ void Environment::selectAndReprodHostsNoMating() {
                 HostPopulation[k].SelectedForReproduction += 1;
                 NewHostsVec.push_back(HostPopulation[k]);
                 n += 1;
-
+                goto aley_oop;
             }
         }
     }

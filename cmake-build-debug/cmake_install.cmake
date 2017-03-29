@@ -1,4 +1,4 @@
-# Install script for directory: /home/piotr/Documents/MHC_UAM/Projects/mhcevolution
+# Install script for directory: /home/piotr/Documents/UAM/mhcevolution
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/piotr/Documents/MHC_UAM/Projects/mhcevolution/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
