@@ -241,7 +241,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 10))
+    plt.ylim((0, 200))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -255,7 +255,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 5))
+    plt.ylim((0, 20))
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)

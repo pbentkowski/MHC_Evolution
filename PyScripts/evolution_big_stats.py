@@ -291,7 +291,7 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
     results geathered in Numpy structured array."""
     vv = ppma.lookForVAR(template)
     datOut = []
-    dataOrdering = ['VAR', 'VARX', 'timeMean', 'timeMedian']
+    dataOrdering = ['VAR', 'VARX', 'MRCA_time', 'maxMutNumb', 'numOfGenes']
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
@@ -314,8 +314,12 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
                     varx = float(paramzList[vv['VARX']])
                     datOut.append((var, varx, DATA[6], DATA[0].shape[1],
                                    DATA[0].shape[0], dirName))
-    datOut = np.array(datOut, dtype=outType)
-    return np.sort(datOut, order=dataOrdering)
+    if len(datOut) > 0:
+        datOut = np.array(datOut, dtype=outType)
+        return np.sort(datOut, order=dataOrdering)
+    else:
+        print("ERROR in serchTheDirs(): output array is empty")
+        return None
 
 
 def buildStats(theData):
