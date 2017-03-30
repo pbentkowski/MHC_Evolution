@@ -1300,13 +1300,88 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
         HostPopulation.clear();
         HostPopulation = NewHostsVec;
     }else{
-        std::cout << "Error in matingWithNoCommonMHC(): Size mismatch " <<
+        std::cout << "Error in matingWithNoCommonMHCsmallSubset(): Size mismatch " <<
                 "between the new and the old population!" << std::endl;
         std::cout << "old pop: " << HostPopulation.size() <<
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
 
+/**
+ * @brief Core method. Creates a new generation of hosts by sexual reproduction
+ * with weak negative preference towards MHC similarity between mates.
+ *
+ * There are no sexes as the host species is assumed a hermaphrodite. Each
+ * individual checks out a user defined N number of random individuals from the
+ * population and mates with the individual that has the lowest number of similar
+ * MHC genes. The process of random mating and selection is repeated until
+ * the algorithm will recreate a population of the same size as the original one.
+ *
+ * @param matingPartnerNumber - number of randomly selected partners an individual
+ * will checks out eventually selecting one best to mate with.
+ */
+void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber) {
+    unsigned long popSize = HostPopulation.size();
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
+    unsigned long i, maxGenomeSize, highScore, geneIndCount;
+    int theBestMatch;
+    maxGenomeSize = 0;
+    for(auto indvidual : HostPopulation){
+        if(indvidual.getGenomeSize() > maxGenomeSize){
+            maxGenomeSize = indvidual.getUniqueMhcSize();
+        }
+    }
+    // First create an instance of an random engine.
+    std::random_device rnd_device;
+    // Specify the size of the mates vector
+    std::vector<int> matesVec(matingPartnerNumber);
+    // the mating procedure
+    while(NewHostsVec.size() < popSize){
+        i = p_RandomNumbs->NextLongInt(0, popSize-1);
+        // Specify the engine and create unique vector listing mates from population
+        std::mt19937 mersenne_engine(rnd_device());
+        std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
+        auto genn = std::bind(dist, mersenne_engine);
+        generate(begin(matesVec), end(matesVec), genn);
+        // find the best mate out of N randomly chosen
+        highScore = maxGenomeSize;
+        theBestMatch = matesVec[0];
+        for (auto mate : matesVec) {
+//            std::cout << mate << " ";
+            geneIndCount = 0;
+            for (unsigned long l = 0; l < HostPopulation[i].getUniqueMhcSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getUniqueMhcSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromUniqVect(l) ==
+                       HostPopulation[mate].getOneGeneFromUniqVect(m)){
+                        geneIndCount++;
+                    }
+                }
+            }
+            if(geneIndCount < highScore){
+                highScore = geneIndCount;
+                theBestMatch = mate;
+            }
+        }
+        if (int(NewHostsVec.size()) < popSize) {
+            // mate two hosts, set a new individual
+            NewHostsVec.push_back(HostPopulation[i]);
+            NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
+            NewHostsVec.back().swapChromosomes();
+        }
+//        std::cout << std::endl;
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in matingWithOneDifferentMHCsmallSubset(): Size mismatch " <<
+                  "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                  " | new pop: " << NewHostsVec.size()  << std::endl;
+    }
+}
 
 //==============================================================//
 
