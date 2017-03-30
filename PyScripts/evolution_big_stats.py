@@ -343,7 +343,7 @@ def buildStats(theData):
     return np.array(meanResult)
 
 
-def plotBoxesCoalecenceTime(handyArr, maxGen, yMax=0):
+def plotBoxesCoalecenceTime(handyArr, maxGen, xlabels="The values", yMax=0):
     """ """
     if handyArr.dtype == outType:
         spp = np.unique(handyArr['VARX'])
@@ -355,7 +355,7 @@ def plotBoxesCoalecenceTime(handyArr, maxGen, yMax=0):
     ll = []
     fs = 16
     tkfs = 14
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(9, 6))
     for itm in spp:
         ll.append(maxGen - handyArr[handyArr['VARX'] == itm]['MRCA_time'])
     boxprops = dict(linestyle='-', linewidth=2.5, color='k')
@@ -366,13 +366,13 @@ def plotBoxesCoalecenceTime(handyArr, maxGen, yMax=0):
     plt.boxplot(ll, labels=lbls, boxprops=boxprops, medianprops=medianprops,
                 whiskerprops=whiskerprops, capprops=capprops,
                 flierprops=flierprops)
-    plt.xlabel("number of pathogen species", fontsize=fs)
+    plt.xlabel(xlabels, fontsize=fs)
     plt.ylabel("hosts' generations since MRCA", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     if yMax > 0:
         plt.ylim(ymax=yMax)
-    plt.grid(True)
+    plt.grid(axis='y')
     plt.show()
 
 
@@ -407,10 +407,11 @@ def plotScatterMHCnumbMRCA(handyArr, maxGen, yMax=0):
 
 def main():
     """Main function - the script's main body."""
-    if len(sys.argv) <= 2:
+    if len(sys.argv) <= 3:
         print("Two arguments are needed:")
         print("  1. Give the path to template file.")
         print("  2. Give the name of the output file.")
+        print("  3. Give the name of HostGenomesFile.XXXX.csv file")
         sys.exit()
     headerr = 'VAR VARX MRCA_time maxMutNumb numOfGenes sourceDir'
     outputFile = str(sys.argv[2])
@@ -420,7 +421,7 @@ def main():
         print("Cannot load the template file. Exiting.")
         sys.exit()
     try:
-        theData = serchTheDirs("HostGenomesFile.5000.csv", template)
+        theData = serchTheDirs(sys.argv[3], template)
     except:
         print("Failed to process the data. Some serious issues arose.")
         sys.exit()

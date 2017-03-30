@@ -724,7 +724,7 @@ void Environment::selectAndReprodHostsNoMating() {
         HostPopulation.clear();
         HostPopulation = NewHostsVec;
     }else{
-        std::cout << "Error in selectAndReprodHostsReplace(): Size mismatch " <<
+        std::cout << "Error in selectAndReprodHostsNoMating(): Size mismatch " <<
                 "between the new and the old population!" << std::endl;
         std::cout << "old pop: " << HostPopulation.size() <<
                 " | new pop: " << NewHostsVec.size()  << std::endl;
