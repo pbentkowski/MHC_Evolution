@@ -1313,9 +1313,10 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
  *
  * There are no sexes as the host species is assumed a hermaphrodite. Each
  * individual checks out a user defined N number of random individuals from the
- * population and mates with the individual that has the lowest number of similar
- * MHC genes. The process of random mating and selection is repeated until
- * the algorithm will recreate a population of the same size as the original one.
+ * population and mates with the first on N individual that has at least one different
+ * MHC gene not present in chosing party genome The process of random mating and
+ * selection is repeated until the algorithm will recreate a population of the
+ * same size as the original one.
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
@@ -1325,8 +1326,9 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
-    unsigned long i, maxGenomeSize, highScore, geneIndCount;
+    unsigned long i, maxGenomeSize;
     int theBestMatch;
+    bool differentGene;
     maxGenomeSize = 0;
     for(auto indvidual : HostPopulation){
         if(indvidual.getGenomeSize() > maxGenomeSize){
@@ -1346,21 +1348,20 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
         auto genn = std::bind(dist, mersenne_engine);
         generate(begin(matesVec), end(matesVec), genn);
         // find the best mate out of N randomly chosen
-        highScore = maxGenomeSize;
         theBestMatch = matesVec[0];
         for (auto mate : matesVec) {
 //            std::cout << mate << " ";
-            geneIndCount = 0;
             for (unsigned long l = 0; l < HostPopulation[i].getUniqueMhcSize(); ++l){
+                differentGene = true;
                 for (unsigned long m = 0; m < HostPopulation[mate].getUniqueMhcSize(); ++m){
                     if(HostPopulation[i].getOneGeneFromUniqVect(l) ==
                        HostPopulation[mate].getOneGeneFromUniqVect(m)){
-                        geneIndCount++;
+                        differentGene = false;
+                        break;
                     }
                 }
             }
-            if(geneIndCount < highScore){
-                highScore = geneIndCount;
+            if(differentGene){
                 theBestMatch = mate;
             }
         }

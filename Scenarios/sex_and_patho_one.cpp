@@ -36,7 +36,8 @@
  */
 void printTipsToRun(){
     std::cout << std::endl;
-    std::cout << "Parameters should be:" << std::endl;
+    std::cout << "This is the first sex scenario where most different MHC composition"
+            " is preferred. Parameters should be:" << std::endl;
     std::cout << " 1. Seed for the RNG (when set to < 0 the program will " <<
             "seed the RNG engine itself with a truly random number)." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
