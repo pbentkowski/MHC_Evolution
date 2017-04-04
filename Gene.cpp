@@ -225,7 +225,7 @@ void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
  * @brief Core method. Returns the gene in a bit-string format, can be used to
  * pass the gene string to an another method.
  *
- * @return bitgene - a gene in a bit-string format, a boost::dynamic_bitset object.
+ * return bitgene - a gene in a bit-string format, a boost::dynamic_bitset object.
  */
 genestring Gene::getBitGene(){
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
