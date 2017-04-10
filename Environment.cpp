@@ -657,7 +657,7 @@ void Environment::selectAndReprodHostsReplace(){
             }
         }
         second_parent:
-        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
+        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
         HostPopulationSize = HostPopulation.size();
         for(unsigned long p = 0; p < HostPopulationSize; ++p) {
             rnd = rnd - HostPopulation[p].getFitness();
@@ -1048,187 +1048,6 @@ unsigned long Environment::getHostsPopSize(){
     return HostPopulation.size();
 }
 
-/**
- * @brief Core method. Creates a new generation of hosts by sexual reproduction
- *  with strong negative preference towards MHC similarity between mates.
- * 
- * There are no sexes as the host species is assumed a hermaphrodite. Each 
- * individual checks out all other individuals in the population in a random
- * order and mates with the first individual that has 0 same MHCs. If
- * 0-similarity-rule will not provide enough offspring to match the old population
- * size, then 1 same MHC is accepted, after that 2 same MHC are OK, etc. until
- * the algorithm will recreate a population of the same size as the original one.
- * 
- */
-void Environment::matingWithNoCommonMHCwholePop(){
-    unsigned long popSize = HostPopulation.size();
-    // Generating a vector of shuffled indices 
-    std::vector<int> indxVec;
-    for (int &&i = 0; i < popSize; ++i){
-        indxVec.push_back((int) i);
-    }
-    long seed = std::chrono::system_clock::now().time_since_epoch().count();
-    shuffle (indxVec.begin(), indxVec.end(), std::default_random_engine(seed));
-    
-    std::vector<Host> NewHostsVec;
-    NewHostsVec.clear();
-    // proper mating
-    int similCount, geneIndCount;
-    similCount = 0;
-    while(NewHostsVec.size() < popSize){
-        for (unsigned long j = 0; j < HostPopulation.size(); ++j){
-            for (unsigned long k = 0; k < popSize; ++k){
-                geneIndCount = 0;
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromOne(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
-                            geneIndCount++;
-                        }
-                    }
-                }
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromOne(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
-                            geneIndCount++;
-                        }
-                    }
-                }
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromTwo(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
-                            geneIndCount++;
-                        }
-                    }
-                }
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromTwo(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
-                            geneIndCount++;
-                        }
-                    }
-                }
-                if(geneIndCount == similCount and NewHostsVec.size() < popSize){
-                    // mate two hosts, set a new individual
-                    NewHostsVec.push_back(HostPopulation[j]);
-                    NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
-                    NewHostsVec.back().swapChromosomes();
-                    break;
-                }
-            }
-        }
-        similCount++;
-    }
-    if (HostPopulation.size() == NewHostsVec.size()){
-        HostPopulation.clear();
-        HostPopulation = NewHostsVec;
-    }else{
-        std::cout << "Error in matingWithNoCommonMHC(): Size mismatch " <<
-                "between the new and the old population!" << std::endl;
-        std::cout << "old pop: " << HostPopulation.size() <<
-                " | new pop: " << NewHostsVec.size()  << std::endl;
-    }
-}
-
-/**
- * @brief Core method. Creates a new generation of hosts by sexual reproduction
- *  with weak negative preference towards MHC similarity between mates.
- * 
- * There are no sexes as the host species is assumed a hermaphrodite. Each 
- * individual checks out all other individuals in the population in a random
- * order and mates with the first individual that has at least one different
- * MHC. If one-similarity-rule will not provide enough offspring to match the
- * old population size, then partners are matched at random until the algorithm
- * will recreate a population of the same size as the original one.
- * 
- */
-void Environment::matingWithOneDifferentMHCwholePop(){
-    unsigned long popSize = HostPopulation.size();
-    // Generating a vector of shuffled indices 
-    std::vector<int> indxVec;
-    for (unsigned long i = 0; i < popSize; ++i){
-        indxVec.push_back((int) i);
-    }
-    long seed = std::chrono::system_clock::now().time_since_epoch().count();
-    shuffle (indxVec.begin(), indxVec.end(), std::default_random_engine(seed));
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    
-    std::vector<Host> NewHostsVec;
-    NewHostsVec.clear();
-    bool isThereMatch;
-    // proper mating
-    while(NewHostsVec.size() < popSize){
-        for (unsigned long j = 0; j < HostPopulation.size(); ++j){
-            for (unsigned long k = 0; k < popSize; ++k){
-                isThereMatch = false;
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromOne(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
-                            isThereMatch = true;
-                            goto got_a_match;
-                        }
-                    }
-                }
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoOneSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromOne(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
-                            isThereMatch = true;
-                            goto got_a_match;
-                        }
-                    }
-                }
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoOneSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromTwo(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromOne(m)){
-                            isThereMatch = true;
-                            goto got_a_match;
-                        }
-                    }
-                }
-                for (unsigned long l = 0; l < HostPopulation[j].getChromoTwoSize(); ++l){
-                    for (unsigned long m = 0; m < HostPopulation[indxVec[k]].getChromoTwoSize(); ++m){
-                        if(HostPopulation[j].getOneGeneFromTwo(l) == 
-                           HostPopulation[indxVec[k]].getOneGeneFromTwo(m)){
-                            isThereMatch = true;
-                            goto got_a_match;
-                        }
-                    }
-                }
-                got_a_match:
-                if(isThereMatch and NewHostsVec.size() < popSize){
-                    // mate two hosts, set a new individual
-                    NewHostsVec.push_back(HostPopulation[j]);
-                    NewHostsVec.back().assignChromTwo(HostPopulation[indxVec[k]].getChromosomeTwo());
-                    NewHostsVec.back().swapChromosomes();
-                    break;
-                }
-            }
-            if (!isThereMatch and NewHostsVec.size() < popSize){
-                NewHostsVec.push_back(HostPopulation[j]);
-                NewHostsVec.back().
-                  assignChromTwo(HostPopulation[p_RandomNumbs->NextLongInt(0, popSize-1)].
-                  getChromosomeTwo());
-                NewHostsVec.back().swapChromosomes();
-            }
-        }
-    }
-    if (HostPopulation.size() == NewHostsVec.size()){
-        HostPopulation.clear();
-        HostPopulation = NewHostsVec;
-    }else{
-        std::cout << "Error in matingWithOneDifferentMHC(): Size mismatch " <<
-                "between the new and the old population!" << std::endl;
-        std::cout << "old pop: " << HostPopulation.size() <<
-                " | new pop: " << NewHostsVec.size()  << std::endl;
-    }
-}
-
 
 /**
  * @brief Core method. Creates a new generation of hosts by sexual reproduction
@@ -1291,7 +1110,9 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
         if (int(NewHostsVec.size()) < popSize) {
             // mate two hosts, set a new individual
             NewHostsVec.push_back(HostPopulation[i]);
+            NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
+            NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
             NewHostsVec.back().swapChromosomes();
         }
 //        std::cout << std::endl;
@@ -1368,7 +1189,9 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
         if (int(NewHostsVec.size()) < popSize) {
             // mate two hosts, set a new individual
             NewHostsVec.push_back(HostPopulation[i]);
+            NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
+            NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
             NewHostsVec.back().swapChromosomes();
         }
 //        std::cout << std::endl;
@@ -1393,7 +1216,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
  */
-void Environment::maringMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber) {
+void Environment::omaringMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
@@ -1522,6 +1345,37 @@ std::string Environment::getNumbersOfPathogensPresented() {
     presentedPatho +=  sttr("\n");
     return presentedPatho;
 }
+
+/**
+ * @brief Data harvesting method. Prepares a string with the list of how many unique MHC
+ * a "mother" had (a selecting party in mating procedures)
+ *
+ * @return a string listing how many MHCs a "mother" had
+ */
+std::string Environment::getNumbersOfMhcInMother() {
+    sttr mhcsInMother;
+    for(auto indvidual : HostPopulation){
+        mhcsInMother += sttr(" ") + std::to_string(indvidual.getMotherMhcNumber());
+    }
+    mhcsInMother +=  sttr("\n");
+    return mhcsInMother;
+}
+
+/**
+ * @brief Data harvesting method. Prepares a string with the list of how many unique MHC
+ * a "father" had (the party that is selected in mating procedures)
+ *
+ * @return a string listing how many MHCs a "father" had
+ */
+std::string Environment::getNumbersOfMhcInFather()  {
+    sttr mhcsInFather;
+    for(auto indvidual : HostPopulation){
+        mhcsInFather += sttr(" ") + std::to_string(indvidual.getFatherMhcNumber());
+    }
+    mhcsInFather +=  sttr("\n");
+    return mhcsInFather;
+}
+
 
 unsigned long Environment::getSingleHostGenomeSize(unsigned long indx){
     return HostPopulation[indx].getGenomeSize();

@@ -83,8 +83,7 @@ public:
     void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
         double dupl, unsigned long maxGene, int timeStamp);
     double MMtoPMscaling(double MM_prob_mut, unsigned long geneLength);
-    void matingWithNoCommonMHCwholePop();
-    void matingWithOneDifferentMHCwholePop();
+
     void matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber);
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
     void maringMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber);
@@ -99,6 +98,8 @@ public:
     std::string getHostUniqMHCtoString(int i);
     std::string getFixedBitsInAntigens();
     std::string getNumbersOfPathogensPresented();
+    std::string getNumbersOfMhcInMother();
+    std::string getNumbersOfMhcInFather();
     unsigned long getSingleHostGenomeSize(unsigned long indx);
     unsigned long getSingleHostChromoOneSize(unsigned long indx);
     unsigned long getSingleHostChromoTwoSize(unsigned long indx);

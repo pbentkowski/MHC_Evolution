@@ -45,7 +45,7 @@ def plotBoxesGeneMeans(dataArr):
     whiskerprops = dict(linewidth=2.5)
     capprops = dict(linewidth=2.5)
     flierprops = dict(markersize=10)
-    plt.figure(1, figsize=(10, 7))
+    plt.figure(1, figsize=(10, 8))
     plt.boxplot(ll1, labels=lbls, boxprops=boxprops, medianprops=medianprops,
                 whiskerprops=whiskerprops, capprops=capprops,
                 flierprops=flierprops)
@@ -53,7 +53,7 @@ def plotBoxesGeneMeans(dataArr):
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.grid(axis='y')
-    plt.figure(2, figsize=(10, 7))
+    plt.figure(2, figsize=(10, 8))
     plt.boxplot(ll2, labels=lbls, boxprops=boxprops, medianprops=medianprops,
                 whiskerprops=whiskerprops, capprops=capprops,
                 flierprops=flierprops)

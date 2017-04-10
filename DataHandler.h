@@ -79,6 +79,7 @@ public:
     void saveHostGeneNumbers(Environment &EnvObj, int tayme);
     void savePathoNoMuttList(Environment &EnvObj);
     void savePresentedPathos(Environment &EnvObj, int tayme);
+    void saveMhcNumbersWhenMating(Environment &EnvObj, int tayme);
 private:
     bool ifFirstSpecToFileRun;
     bool ifFirstHostClonesRun;
@@ -87,6 +88,7 @@ private:
     bool ifFirstGeneNumbersUnique;
     bool ifNoMuttPathoListUnique;
     bool ifNumberOfPresentedPatho;
+    bool ifNumberOfMhcWhenMating;
 };
 
 #endif	/* DATAHARVESTER_H */

@@ -86,6 +86,8 @@ public:
     void calculateFitnessExpFunc(double alpha);
     void calculateFitnessExpFuncUniqAlleles(double alpha);
     double getFitness();
+    void setMotherMhcNumber(unsigned long int theMhcNumber);
+    void setFatherMhcNumber(unsigned long int theMhcNumber);
     // === Data harvesting methods ===
     std::string stringChromosomes();
     std::string stringUniqMHCs();
@@ -93,12 +95,16 @@ public:
     unsigned long int getOneGeneFromTwo(unsigned long indx);
     unsigned long int getOneGeneFromUniqVect(unsigned long indx);
     unsigned getNumberOfPresentedPatho();
+    unsigned long int getMotherMhcNumber();
+    unsigned long int getFatherMhcNumber();
 private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;
     std::vector<Gene> ChromosomeTwo;
     std::vector<Gene> UniqueAlleles;
     double Fitness;
+    unsigned long int MotherMhcNumber;
+    unsigned long int FatherMhcNumber;
 };
 
 #endif	/* HOST_H */

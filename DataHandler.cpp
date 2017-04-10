@@ -90,6 +90,7 @@ void DataHandler::setAllFilesAsFirtsTimers(){
     ifFirstGeneNumbersUnique = true;
     ifNoMuttPathoListUnique = true;
     ifNumberOfPresentedPatho = true;
+    ifNumberOfMhcWhenMating = true;
 }
 
 /** 
@@ -706,13 +707,7 @@ void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
 }
 
 /**
- * @brief  Data harvesting method. Record the total number of genes and types
- * of MHCs in hosts. All the freaking hosts!
- * 
- * Writes to separate files (a) the number of  genes of all the host in each 
- * time step, (b) the number of unique MHC types corresponding to the numbers
- *  in the first file. All together you get two files witch data sync to each
- * other.
+ * @brief  Data harvesting method.
  * 
  * @param EnvObj - the Environment class object
  * @param tayme - time stamp
@@ -720,7 +715,13 @@ void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
 void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     if(ifFirstGeneNumbersTotal){
         std::ofstream HostGeneNumbTotal;
-        HostGeneNumbTotal.open("HostGeneNumbTotal_ChrOne.csv");
+        HostGeneNumbTotal.open("HostGeneRecord the total number of genes and types\n"
+                                       " * of MHCs in hosts. All the freaking hosts!\n"
+                                       " * \n"
+                                       " * Writes to separate files (a) the number of  genes of all the host in each \n"
+                                       " * time step, (b) the number of unique MHC types corresponding to the numbers\n"
+                                       " *  in the first file. All together you get two files witch data sync to each\n"
+                                       " * other.NumbTotal_ChrOne.csv");
         HostGeneNumbTotal << "#time total_number_of_genes_in_all_host_cells"
                 << std::endl;
         HostGeneNumbTotal.close();
@@ -796,7 +797,7 @@ void DataHandler::savePathoNoMuttList(Environment& EnvObj){
 }
 
 void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
-if(ifNumberOfPresentedPatho){
+    if(ifNumberOfPresentedPatho){
         std::ofstream PresentedPathoNumb;
         PresentedPathoNumb.open("PresentedPathogenNumbers.csv");
         PresentedPathoNumb << "#time number_of_pathogens_presented_by_hosts"
@@ -810,4 +811,46 @@ if(ifNumberOfPresentedPatho){
     PresentedPathoNumb << tayme;
     PresentedPathoNumb << EnvObj.getNumbersOfPathogensPresented();
     PresentedPathoNumb.close();
+}
+
+
+/**
+ * @brief Data harvesting method. Rwcords the number of unique MHCs a "mother" and
+ * a "farther" had.
+ *
+ * Writes to two separate files in each time step the number of unique MHCs a
+ * seceting individual had (the "mather") in file NumberOfMhcInMother.csv and
+ * how many unique MHCs the selected individual had (the "father") in file
+ * NumberOfMhcInFather.csv. Both files are in sync - one line is same time
+ * stamp, one enty in both lines is the same individual.
+ *
+ * @param EnvObj - the Environment class object
+ * @param tayme - time stamp
+ */
+void DataHandler::saveMhcNumbersWhenMating(Environment &EnvObj, int tayme) {
+    if(ifNumberOfMhcWhenMating){
+        std::ofstream NumberOfMhcInMotherWnenMating;
+        NumberOfMhcInMotherWnenMating.open("NumberOfMhcInMother.csv");
+        NumberOfMhcInMotherWnenMating << "#time number_of_MHCs_in_mother"
+                                      << std::endl;
+        NumberOfMhcInMotherWnenMating.close();
+        std::ofstream NumberOfMhcInFatherWhenMating;
+        NumberOfMhcInFatherWhenMating.open("NumberOfMhcInFather.csv");
+        NumberOfMhcInFatherWhenMating <<"#time number_of_MHCs_in_father"
+                                      << std::endl;
+        NumberOfMhcInFatherWhenMating.close();
+        ifNumberOfMhcWhenMating = false;
+    }
+    std::ofstream NumberOfMhcInMotherWnenMating;
+    NumberOfMhcInMotherWnenMating.open("NumberOfMhcInMother.csv",
+                                       std::ios::out | std::ios::ate | std::ios::app);
+    NumberOfMhcInMotherWnenMating << tayme;
+    NumberOfMhcInMotherWnenMating << EnvObj.getNumbersOfMhcInMother();
+    NumberOfMhcInMotherWnenMating.close();
+    std::ofstream NumberOfMhcInFatherWhenMating;
+    NumberOfMhcInFatherWhenMating.open("NumberOfMhcInFather.csv",
+                                       std::ios::out | std::ios::ate | std::ios::app);
+    NumberOfMhcInFatherWhenMating << tayme;
+    NumberOfMhcInFatherWhenMating << EnvObj.getNumbersOfMhcInFather();
+    NumberOfMhcInFatherWhenMating.close();
 }

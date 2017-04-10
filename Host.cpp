@@ -56,6 +56,8 @@ void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int ti
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
+    MotherMhcNumber = 0;
+    FatherMhcNumber = 0;
     Fitness = 0.0;
     for(unsigned long i = 0; i < num_of_loci; ++i){
         ChromosomeOne.push_back(Gene());
@@ -81,6 +83,8 @@ void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size,
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
+    MotherMhcNumber = 0;
+    FatherMhcNumber = 0;
     Fitness = 0.0;
     chromovector tempChromo;
     for(unsigned long k = 0; k < num_of_loci; ++k){
@@ -696,6 +700,17 @@ void Host::clearInfections(){
     Fitness = 0.0;
 }
 
+
+void Host::setMotherMhcNumber(unsigned long int theMhcNumber) {
+    MotherMhcNumber = theMhcNumber;
+}
+
+
+void Host::setFatherMhcNumber(unsigned long int theMhcNumber) {
+    FatherMhcNumber = theMhcNumber;
+}
+
+
 /**
  * @brief Data harvesting method. Gives a host's genome in a human-readable 
  * format. With all the gene specs.
@@ -806,4 +821,13 @@ std::string Host::stringUniqMHCs() {
         }
     }
     return outString;
+}
+
+
+unsigned long int Host::getMotherMhcNumber() {
+    return MotherMhcNumber;
+}
+
+unsigned long int Host::getFatherMhcNumber() {
+    return FatherMhcNumber;
 }
