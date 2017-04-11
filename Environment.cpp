@@ -1226,17 +1226,9 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
-    unsigned long i, maxGenomeSize, highScore, geneIndCount, allUniqueNumber;
+    unsigned long i;
     int theBestMatch;
-    maxGenomeSize = 0;
-    double meanUnique;
-    for(auto indvidual : HostPopulation){
-        allUniqueNumber += indvidual.getUniqueMhcSize();
-        if(indvidual.getGenomeSize() > maxGenomeSize){
-            maxGenomeSize = indvidual.getUniqueMhcSize();
-        }
-    }
-    meanUnique = (double) allUniqueNumber / (double) popSize;
+    double sameGeneCount, highScore, uniqueMHCcount, score;
 // First create an instance of an random engine.
     std::random_device rnd_device;
     // Specify the size of the mates vector
@@ -1250,21 +1242,24 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
         auto genn = std::bind(dist, mersenne_engine);
         generate(begin(matesVec), end(matesVec), genn);
         // find the best mate out of N randomly chosen
-        highScore = maxGenomeSize;
+        highScore = 1.0;
         theBestMatch = matesVec[0];
         for (auto mate : matesVec) {
 //            std::cout << mate << " ";
-            geneIndCount = 0;
+            sameGeneCount = 0;
+            uniqueMHCcount = (double) (HostPopulation[i].getUniqueMhcSize()
+                                       + HostPopulation[mate].getUniqueMhcSize());
             for (unsigned long l = 0; l < HostPopulation[i].getUniqueMhcSize(); ++l){
                 for (unsigned long m = 0; m < HostPopulation[mate].getUniqueMhcSize(); ++m){
                     if(HostPopulation[i].getOneGeneFromUniqVect(l) ==
                        HostPopulation[mate].getOneGeneFromUniqVect(m)){
-                        geneIndCount++;
+                        sameGeneCount++;
                     }
                 }
             }
-            if(geneIndCount < highScore){
-                highScore = geneIndCount;
+            score = sameGeneCount / (uniqueMHCcount - sameGeneCount);
+            if(score < highScore){
+                highScore = score;
                 theBestMatch = mate;
             }
         }
