@@ -657,7 +657,7 @@ void Environment::selectAndReprodHostsReplace(){
             }
         }
         second_parent:
-        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
+        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
         HostPopulationSize = HostPopulation.size();
         for(unsigned long p = 0; p < HostPopulationSize; ++p) {
             rnd = rnd - HostPopulation[p].getFitness();
@@ -1113,9 +1113,8 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
             NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
             NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
-            NewHostsVec.back().swapChromosomes();
+            NewHostsVec.back().swapChromosomes();;
         }
-//        std::cout << std::endl;
     }
     if (HostPopulation.size() == NewHostsVec.size()){
         HostPopulation.clear();
@@ -1126,6 +1125,12 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
         std::cout << "old pop: " << HostPopulation.size() <<
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
+//    // **** printing for testing  ****
+//    for(auto indvidual : HostPopulation){
+//        std::cout << "(" << indvidual.getMotherMhcNumber() << ", "
+//                      << indvidual.getFatherMhcNumber() << ") ";
+//    }
+//    std::cout << std::endl;
 }
 
 /**
@@ -1216,7 +1221,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
  */
-void Environment::omaringMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber) {
+void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
@@ -1266,7 +1271,9 @@ void Environment::omaringMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber
         if (int(NewHostsVec.size()) < popSize) {
             // mate two hosts, set a new individual
             NewHostsVec.push_back(HostPopulation[i]);
+            NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
+            NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
             NewHostsVec.back().swapChromosomes();
         }
 //        std::cout << std::endl;

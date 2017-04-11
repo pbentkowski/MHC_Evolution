@@ -86,7 +86,7 @@ public:
 
     void matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber);
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
-    void maringMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber);
+    void matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber);
 
     // === Data harvesting methods ===
     unsigned long getPathoNumOfSpecies();
