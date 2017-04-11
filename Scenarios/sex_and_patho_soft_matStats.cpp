@@ -229,8 +229,9 @@ int main(int argc, char** argv) {
             }
             Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessPlainPresent();  // changed for sexual reproduction
+//            ENV.selectAndReprodHostsReplace();
             ENV.selectAndReprodHostsNoMating();  // changed for sexual reproduction
-//            ENV.matingWithOneDifferentMHCsmallSubset(NumbPartners); // changed for sexual reproduction
+            ENV.matingWithOneDifferentMHCsmallSubset(NumbPartners); // changed for sexual reproduction
             Data2file.saveMhcNumbersWhenMating(ENV, i);
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
