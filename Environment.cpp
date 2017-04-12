@@ -652,6 +652,7 @@ void Environment::selectAndReprodHostsReplace(){
             if(rnd <= 0){
                HostPopulation[k].SelectedForReproduction += 1;
                NewHostsVec.push_back(HostPopulation[k]);
+               NewHostsVec.back().setMotherMhcNumber(HostPopulation[k].getUniqueMHCs().size());
                n += 1;
                goto second_parent;
             }
@@ -664,6 +665,8 @@ void Environment::selectAndReprodHostsReplace(){
             if(rnd <= 0){
                HostPopulation[p].SelectedForReproduction += 1;
                NewHostsVec.back().assignChromTwo(HostPopulation[p].getChromosomeTwo());
+               NewHostsVec.back().setFatherMhcNumber(HostPopulation[p].getUniqueMHCs().size());
+
                // Randomly swaps places of chromosomes to avoid situation when
                // they effectively become two separate populations.
                NewHostsVec.back().swapChromosomes();

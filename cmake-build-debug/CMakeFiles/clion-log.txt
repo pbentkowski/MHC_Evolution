@@ -1,6 +1,6 @@
-/opt/clion-2016.3.4/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/piotr/Documents/MHC_UAM/Projects/mhcevolution
--- The C compiler identification is GNU 5.4.0
--- The CXX compiler identification is GNU 5.4.0
+/opt/clion-2016.2.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/piotr/MHC_code_OBA
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
 -- Check for working C compiler: /usr/bin/cc
 -- Check for working C compiler: /usr/bin/cc -- works
 -- Detecting C compiler ABI info
@@ -15,4 +15,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/piotr/Documents/MHC_UAM/Projects/mhcevolution/cmake-build-debug
+-- Build files have been written to: /home/piotr/MHC_code_OBA/cmake-build-debug
