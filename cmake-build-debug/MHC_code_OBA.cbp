@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MHC_code_OBA">
-				<Option output="/home/piotr/MHC_code_OBA/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option output="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include/c++/4.8/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MHC_code_OBA/fast">
-				<Option output="/home/piotr/MHC_code_OBA/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option output="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,74 +77,74 @@
 					<Add directory="/usr/include/c++/4.8/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/Documents/UAM/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/piotr/MHC_code_OBA/Antigen.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Antigen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Antigen.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Antigen.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/DataHandler.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/DataHandler.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/DataHandler.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/DataHandler.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Environment.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Environment.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Environment.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Environment.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Gene.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Gene.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Gene.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Gene.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/H2Pinteraction.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/H2Pinteraction.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/H2Pinteraction.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/H2Pinteraction.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Host.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Host.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Host.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Host.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Pathogen.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Pathogen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Pathogen.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Pathogen.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/RandomNumbs.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/RandomNumbs.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/RandomNumbs.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/RandomNumbs.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Tagging_system.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Tagging_system.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Tagging_system.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/Tagging_system.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/main.cpp">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/main.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/mainpage.h">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/mainpage.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/CMakeLists.txt">
+		<Unit filename="/home/piotr/Documents/UAM/mhcevolution/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
