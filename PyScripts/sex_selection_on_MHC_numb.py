@@ -10,7 +10,8 @@ for Evolutionary Biology Group, Faculty of Biology
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
 
 
 def loadTheParents(moth="NumberOfMhcInMother.csv",
@@ -53,7 +54,7 @@ def reshapeMatherFather(mother, father):
 
 
 def pickMotherSizeGroups(mother, father):
-    """ """
+    """Takes reshaped 1D mother and father arrays"""
     ww = list(range(int(np.min(mother)), int(np.max(mother) + 1)))
     bigOnes = []
     for iii in ww:
@@ -66,14 +67,31 @@ def pickMotherSizeGroups(mother, father):
     return ww, bigOnes
 
 
-mother, father = ssmn.trimData(Mom, Fath, 2.5, 3.5)
-rMom, rDad = ssmn.reshapeMatherFather(mother, father)
-slope, interc, rval, pval, stderr = linregress(rMom, rDad)
-
-x = rMom + 0.1 * np.random.randn(len(rMom))
-y = rDad + 0.1 * np.random.randn(len(rDad))
-xx = np.linspace(0, 9, 15)
-ss = slope * xx + interc
-plt.plot(x, y, '.')
-plot(xx, ss, 'r-')
-plt.show()
+def plotAndDoStats(Mom, Dad, low_copy, up_copy):
+    """ """
+    if low_copy >= up_copy:
+        print("Lower boudry on MHC copy number has to me smaller than higher",
+              "boundry on MHC copy number.")
+        return None
+    mother, father = trimData(Mom, Dad, low_copy, up_copy)
+    rMom, rDad = reshapeMatherFather(mother, father)
+    slope, interc, rval, pval, stderr = linregress(rMom, rDad)
+    print("\nslope =", slope, "; R^2 =", rval*rval, "; p_val =", pval)
+    print("There are", len(rMom), "breeding pairs")
+    x = rMom + 0.1 * np.random.randn(len(rMom))
+    y = rDad + 0.1 * np.random.randn(len(rDad))
+    xx = np.linspace(1, int(np.max(rMom)), 15)
+    ss = slope * xx + interc
+    FS = 16
+    plt.figure(1, figsize=(8, 7))
+    plt.plot(x, y, '.')
+    plt.plot(xx, ss, 'r-')
+    plt.grid(True)
+    plt.xlabel("MHC copy number in 'mothers' (selecting indv.)", fontsize=FS)
+    plt.ylabel("MHC copy number in 'fathers' (selected indv.)", fontsize=FS)
+    plt.xticks(size=FS-1)
+    plt.yticks(size=FS-1)
+    plt.xlim(xmin=0.5)
+    plt.ylim(ymin=0.5)
+    plt.show()
+    return pickMotherSizeGroups(rMom, rDad)
