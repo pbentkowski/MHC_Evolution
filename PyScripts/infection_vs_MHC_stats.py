@@ -181,6 +181,8 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                               "population data")
                         continue
                     uniqNumb, pathoNumb = calculateTheNumbers(hosts, pathos)
+                    uniqNumb = np.hstack((uniqNumb, 0))
+                    pathoNumb = np.hstack((pathoNumb, 0))
                     # slope, intercept, r_val, p_val, std_err
                     data = linregress(uniqNumb, pathoNumb)
                     plotMHCvsPathoPresent(uniqNumb, pathoNumb,
@@ -191,7 +193,7 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
     return np.sort(datOut, order=dataOrdering)
 
 
-def plotBoxesSlopes(handyArr, yMax=0):
+def plotBoxesSlopes(handyArr, xlabels="The values", yMax=0):
     """ """
     if handyArr.dtype == handyType:
         spp = np.unique(handyArr['VARX'])
@@ -203,7 +205,7 @@ def plotBoxesSlopes(handyArr, yMax=0):
     ll = []
     fs = 16
     tkfs = 14
-    plt.figure(figsize=(12, 9))
+    plt.figure(figsize=(9, 6))
     for itm in spp:
         ll.append(handyArr[handyArr['VARX'] == itm]['slope'])
     boxprops = dict(linestyle='-', linewidth=2.5, color='k')
@@ -214,13 +216,13 @@ def plotBoxesSlopes(handyArr, yMax=0):
     plt.boxplot(ll, labels=lbls, boxprops=boxprops, medianprops=medianprops,
                 whiskerprops=whiskerprops, capprops=capprops,
                 flierprops=flierprops)
-    plt.xlabel("number of pathogen species", fontsize=fs)
+    plt.xlabel(xlabels, fontsize=fs)
     plt.ylabel("linear regression slope value", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     if yMax > 0:
         plt.ylim(ymax=yMax)
-    plt.grid(True)
+    plt.grid(axis='y')
     plt.show()
 
 
