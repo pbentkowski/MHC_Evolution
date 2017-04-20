@@ -1218,8 +1218,8 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
 
 /**
  * @brief Core method. Creates a new generation of hosts by sexual reproduction
- * picking a mate which ensures that the offspring will have the number of MHC genes
- * similar to the population mean. Takes given number of possible sexual partners.
+ * picking a mate which ensures that the offspring will have the number of unique MHC
+ * greater then their parents. Takes given number of possible sexual partners.
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
