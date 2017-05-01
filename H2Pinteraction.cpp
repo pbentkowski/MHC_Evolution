@@ -79,16 +79,15 @@ bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antige
  */
 void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     antigenvector tmppatho = patho.getAllAntigens();
-    chromovector tmphost = host.getUniqueMHCs();
     if (host.PathoSpecInfecting.size()){
         // Making sure a pathogen species infects only ones
         for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
             if(host.PathoSpecInfecting[w] == patho.getSpeciesTag()) return;
         }
     }
-    for(int i = 0; i < tmphost.size(); ++i){
+    for(int i = 0; i < host.getChromoOneSize(); ++i){
         for(int j = 0; j < tmppatho.size(); ++j){
-            if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
+            if(presentAntigen(host.getChromosomeOne()[i].getTheRealGene(), tmppatho[j].getEpitopes())){
                 // the pathogen gets presented, the host evades infection:
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
                 host.PathogesPresented.push_back(patho.getSpeciesTag());
@@ -96,6 +95,17 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
             }
         }
     }
+    for(int i = 0; i < host.getChromoTwoSize(); ++i){
+        for(int j = 0; j < tmppatho.size(); ++j){
+            if(presentAntigen(host.getChromosomeTwo()[i].getTheRealGene(), tmppatho[j].getEpitopes())){
+                // the pathogen gets presented, the host evades infection:
+                host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
+                host.PathogesPresented.push_back(patho.getSpeciesTag());
+                return;
+            }
+        }
+
+
     // The host gets infected:
 //    host.PathogesInfecting.push_back(patho.getSpeciesTag());
 //    patho.HostsInfected.push_back(host.getHostIndvTag());
@@ -103,25 +113,4 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     patho.NumOfHostsInfected = patho.NumOfHostsInfected + 1;
     host.PathoSpecInfecting.push_back(patho.getSpeciesTag());
     return;
-}
-
-
-/**
- * @brief Core method for checking presice infection statistics. Checks if a host gets infected with a pathogen.
- * Heterozygote has an advantage here over homozygote and each species is
- * allowed to infect a host only ONES.
- *
- * @param host - a Host-class object
- * @param patho - a Pathogen-class object
- */
-void H2Pinteraction::doesInfecHeteroOnePerSpecRecord(Host &host, Pathogen &patho) {
-    antigenvector tmppatho = patho.getAllAntigens();
-    chromovector tmphost = host.getUniqueMHCs();
-    if (host.PathoSpecInfecting.size()){
-        // Making sure a pathogen species infects only ones
-        for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
-            if(host.PathoSpecInfecting[w] == patho.getSpeciesTag()) return;
-        }
-    }
-
 }
