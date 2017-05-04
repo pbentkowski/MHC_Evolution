@@ -93,7 +93,7 @@ public:
     unsigned long int getOneGeneFromTwo(unsigned long indx);
     unsigned long int getOneGeneFromUniqVect(unsigned long indx);
     unsigned getNumberOfPresentedPatho();
-private:
+//private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;
     std::vector<Gene> ChromosomeTwo;

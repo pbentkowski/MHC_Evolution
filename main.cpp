@@ -215,7 +215,11 @@ int main(int argc, char** argv) {
     std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
+        Data2file.savePathoPopulToFile(ENV, 0);
+        Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
+        Data2file.saveHostGeneNumbers(ENV, 0);
+        Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -223,12 +227,12 @@ int main(int argc, char** argv) {
                 ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
                 ENV.clearPathoInfectionData();
             }
+            Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
             ENV.selectAndReprodHostsReplace();
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
-            ENV.setUniqueGenes();
             Data2file.saveHostGeneticDivers(ENV, i);
-            // Data2file -> gene presentation data
+            Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }

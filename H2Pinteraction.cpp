@@ -91,21 +91,22 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
                 // the pathogen gets presented, the host evades infection:
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
                 host.PathogesPresented.push_back(patho.getSpeciesTag());
-                return;
+                host.getChromosomeOne()[i].presentedPathos += 1;
+//                return;
             }
         }
     }
-    for(int i = 0; i < host.getChromoTwoSize(); ++i){
-        for(int j = 0; j < tmppatho.size(); ++j){
-            if(presentAntigen(host.getChromosomeTwo()[i].getTheRealGene(), tmppatho[j].getEpitopes())){
+    for(int i = 0; i < host.getChromoTwoSize(); ++i) {
+        for (int j = 0; j < tmppatho.size(); ++j) {
+            if (presentAntigen(host.getChromosomeTwo()[i].getTheRealGene(), tmppatho[j].getEpitopes())) {
                 // the pathogen gets presented, the host evades infection:
                 host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
                 host.PathogesPresented.push_back(patho.getSpeciesTag());
-                return;
+                host.getChromosomeTwo()[i].presentedPathos += 1;
+//                return;
             }
         }
-
-
+    }
     // The host gets infected:
 //    host.PathogesInfecting.push_back(patho.getSpeciesTag());
 //    patho.HostsInfected.push_back(host.getHostIndvTag());
