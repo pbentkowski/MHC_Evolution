@@ -1331,13 +1331,13 @@ void Environment::setUniqueGenes() {
     std::vector<Gene> AllGenes;
     // Finding unique genes
     if(HostPopulation.size()){
-        for(unsigned long i = 0; i < (unsigned long) HostPopulation.size(); ++i){
-            for(unsigned long j = 0; (unsigned long) HostPopulation[i].getChromoOneSize() > j; ++j){
+        for(unsigned long i = 0; i < HostPopulation.size(); ++i){
+            for(unsigned long j = 0; HostPopulation[i].getChromoOneSize() > j; ++j){
                 AllGenes.push_back(HostPopulation[i].ChromosomeOne[j]);
             }
         }
-        for(unsigned long i = 0; i < (unsigned long) HostPopulation.size(); ++i){
-            for(unsigned long j = 0; (unsigned long) HostPopulation[i].getChromoTwoSize() > j; ++j){
+        for(unsigned long i = 0; i <  HostPopulation.size(); ++i){
+            for(unsigned long j = 0;  HostPopulation[i].getChromoTwoSize() > j; ++j){
                 AllGenes.push_back(HostPopulation[i].ChromosomeTwo[j]);
             }
         }
@@ -1359,11 +1359,13 @@ void Environment::setUniqueGenes() {
         }
         for(unsigned long l = 0; l < UniqueGenes.size(); ++l){
             UniqueGenes[l].presentedPathos = 0;
+            UniqueGenes[l].occurence = 0;
         }
         for (unsigned long k = 0; k < UniqueGenes.size(); ++k) {
             for(unsigned long i = 0; i < GeneCounter; ++i){
                 if(UniqueGenes[k].getTheRealGene() == AllGenes[i].getTheRealGene()){
                     UniqueGenes[k].presentedPathos += AllGenes[i].presentedPathos;
+                    UniqueGenes[k].occurence +=  1;
                 }
             }
         }

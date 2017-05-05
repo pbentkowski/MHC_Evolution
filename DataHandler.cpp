@@ -90,6 +90,7 @@ void DataHandler::setAllFilesAsFirtsTimers(){
     ifFirstGeneNumbersUnique = true;
     ifNoMuttPathoListUnique = true;
     ifNumberOfPresentedPatho = true;
+    ifInfectionData = true;
 }
 
 /** 
@@ -796,7 +797,7 @@ void DataHandler::savePathoNoMuttList(Environment& EnvObj){
 }
 
 void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
-if(ifNumberOfPresentedPatho){
+    if(ifNumberOfPresentedPatho){
         std::ofstream PresentedPathoNumb;
         PresentedPathoNumb.open("PresentedPathogenNumbers.csv");
         PresentedPathoNumb << "#time number_of_pathogens_presented_by_hosts"
@@ -810,4 +811,61 @@ if(ifNumberOfPresentedPatho){
     PresentedPathoNumb << tayme;
     PresentedPathoNumb << EnvObj.getNumbersOfPathogensPresented();
     PresentedPathoNumb.close();
+}
+
+
+/**
+ * @brief Data harvesting method. Record the infection parameters regarding single genes.
+ *
+ * Writes to 4 files: 1st record unique gene ID, 2nd the time of origin of a gene,
+ * 3rd the number of pathogens each gene has presented, 4th the number of gene occurrence
+ *
+ * @param EnvObj - the Environment class object
+ */
+void DataHandler::saveInfectionData(Environment &EnvObj, int tayme) {
+    if(ifInfectionData){
+        std::ofstream InfectionGeneID;
+        InfectionGeneID.open("InfectionGeneID.csv");
+        InfectionGeneID << "#time ID_of_genes" << std::endl;
+        InfectionGeneID.close();
+        std::ofstream InfectionGeneTimeOrig;
+        InfectionGeneTimeOrig.open("InfectionGeneTimeOrig.csv");
+        InfectionGeneTimeOrig << "#time time_of_gene_origin" << std::endl;
+        InfectionGeneTimeOrig.close();
+        std::ofstream InfectionGeneNumbPatho;
+        InfectionGeneNumbPatho.open("InfectionGeneNumbPatho.csv");
+        InfectionGeneNumbPatho  << "#time number_of_presented_pathogens" << std::endl;
+        InfectionGeneNumbPatho.close();
+        std::ofstream InfectionGeneNUmber;
+        InfectionGeneNUmber.open("InfectionGeneNumb.csv");
+        InfectionGeneNUmber << "#time number_of_gene_copies" << std::endl;
+        InfectionGeneNUmber.close();
+        ifInfectionData = false;
+    }
+    std::ofstream InfectionGeneID;
+    InfectionGeneID.open("InfectionGeneID.csv",  std::ios::out | std::ios::ate | std::ios::app);
+    InfectionGeneID << tayme;
+    std::ofstream InfectionGeneTimeOrig;
+    InfectionGeneTimeOrig.open("InfectionGeneTimeOrig.csv", std::ios::out | std::ios::ate | std::ios::app);
+    InfectionGeneTimeOrig << tayme;
+    std::ofstream InfectionGeneNumbPatho;
+    InfectionGeneNumbPatho.open("InfectionGeneNumbPatho.csv", std::ios::out | std::ios::ate | std::ios::app);
+    InfectionGeneNumbPatho << tayme;
+    std::ofstream InfectionGeneNUmber;
+    InfectionGeneNUmber.open("InfectionGeneNumb.csv", std::ios::out | std::ios::ate | std::ios::app);
+    InfectionGeneNUmber << tayme;
+    for(auto aGene : EnvObj.UniqueGenes){
+        InfectionGeneID << " " << aGene.GenesTag;
+        InfectionGeneTimeOrig << " " << aGene.timeOfOrigin;
+        InfectionGeneNumbPatho << " " << aGene.presentedPathos;
+        InfectionGeneNUmber << " " << aGene.occurence;
+    }
+    InfectionGeneID << std::endl;
+    InfectionGeneTimeOrig << std::endl;
+    InfectionGeneNumbPatho << std::endl;
+    InfectionGeneNUmber << std::endl;
+    InfectionGeneID.close();
+    InfectionGeneTimeOrig.close();
+    InfectionGeneNumbPatho.close();
+    InfectionGeneNUmber.close();
 }

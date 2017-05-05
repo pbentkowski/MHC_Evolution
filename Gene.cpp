@@ -56,6 +56,7 @@ void Gene::setNewGene(unsigned long length, int timeStamp) {
     GenesTag = pTagging_system->getTag();
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     TheGene = p_RandomNumbs->NextLongInt(0, std::pow(2, BitStringLength)-1);
+    occurence = 1;
 }
 
 /**

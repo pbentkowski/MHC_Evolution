@@ -40,7 +40,6 @@ private:
     std::vector<Host> HostPopulation;
     std::vector<std::vector<Pathogen> > PathPopulation;
     std::vector<std::set<unsigned long>> NoMutsVec;
-    std::vector<Gene> UniqueGenes;
 public:
     // === Core methods ===
     Environment();
@@ -90,6 +89,7 @@ public:
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
 
     // === Data harvesting methods ===
+    std::vector<Gene> UniqueGenes;
     unsigned long getPathoNumOfSpecies();
     unsigned long getPathoSpeciesPopSize(unsigned long spec_numb);
     unsigned long getHostsPopSize();

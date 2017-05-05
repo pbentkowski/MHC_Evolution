@@ -63,6 +63,7 @@ public:
     unsigned long int GenesTag;
     void printGeneToScreen();
     int presentedPathos;
+    int occurence;
 private:
     unsigned long TheGene;
     unsigned long BitStringLength;
