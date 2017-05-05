@@ -1343,10 +1343,11 @@ void Environment::setUniqueGenes() {
         }
         unsigned long GeneCounter = AllGenes.size();
         bool IfCountedLyst[GeneCounter];
-        for (unsigned long w = 0; w < GeneCounter; ++w) {
+        for (unsigned long w = 1; w < GeneCounter; ++w) {
             IfCountedLyst[w] = false;
         }
         UniqueGenes.push_back(AllGenes[0]);
+        IfCountedLyst[0] = true;
         for (unsigned long i = 0; i < GeneCounter; ++i) {
             if (!IfCountedLyst[i]) {
                 for (unsigned long j = i + 1; j < GeneCounter; ++j) {

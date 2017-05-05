@@ -854,6 +854,7 @@ void DataHandler::saveInfectionData(Environment &EnvObj, int tayme) {
     std::ofstream InfectionGeneNUmber;
     InfectionGeneNUmber.open("InfectionGeneNumb.csv", std::ios::out | std::ios::ate | std::ios::app);
     InfectionGeneNUmber << tayme;
+    std::cout << EnvObj.UniqueGenes.size() << std::endl;
     for(auto aGene : EnvObj.UniqueGenes){
         InfectionGeneID << " " << aGene.GenesTag;
         InfectionGeneTimeOrig << " " << aGene.timeOfOrigin;
