@@ -57,28 +57,9 @@ void Gene::setNewGene(unsigned long length, int timeStamp) {
     RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     TheGene = p_RandomNumbs->NextLongInt(0, std::pow(2, BitStringLength)-1);
     occurence = 1;
+    presentedPathos = 0;
 }
 
-/**
- * @brief Core method. Sets a new gene filling it with a random bit-string of
- * a given length.
- * 
- * The value of the gene is given here by the user.
- * 
- * 
- * @param length - number of bits in a gene.
- * @param timeStamp - current time (current number of the model iteration)
- * @param fixedGene - the gene value
- * @param fixedTag - tag value
- */
-void Gene::setNewFixedGene(unsigned long length, int timeStamp, unsigned long fixedGene,
-        unsigned long fixedTag){
-    timeOfOrigin = timeStamp;
-    TheParentWas = -1;
-    BitStringLength = length;
-    GenesTag = fixedTag;
-    TheGene = fixedGene;
-}
 
 /**
  *  @brief Core method. Sets a new gene filling it with a random bit-string of

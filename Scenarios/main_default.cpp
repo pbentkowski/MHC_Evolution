@@ -229,9 +229,9 @@ int main(int argc, char** argv) {
             }
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
             ENV.selectAndReprodHostsReplace();
+            ENV.setUniqueGenes();
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
-            ENV.setUniqueGenes();
             Data2file.saveInfectionData(ENV, i);
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;

@@ -45,8 +45,6 @@ public:
     void setNewGene(unsigned long lenght, int timeStamp);
     void setNewGene(unsigned long  lenght, unsigned long low_lim,
                     unsigned long up_lim, int timeStamp);
-    void setNewFixedGene(unsigned long lenght, int timeStamp, unsigned long fixedGene,
-                         unsigned long int fixedTag);
     void mutateGeneWhole(double mut_prob_whole, int timeStamp);
     void mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
                          unsigned long up_lim, int timeStamp);
@@ -62,7 +60,7 @@ public:
     std::vector<int> MutationTime;
     unsigned long int GenesTag;
     void printGeneToScreen();
-    int presentedPathos;
+    unsigned long int presentedPathos;
     int occurence;
 private:
     unsigned long TheGene;

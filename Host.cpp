@@ -694,6 +694,12 @@ void Host::clearInfections(){
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
     Fitness = 0.0;
+    for(auto gene: ChromosomeOne){
+        gene.presentedPathos = 0;
+    }
+    for(auto gene: ChromosomeTwo){
+        gene.presentedPathos = 0;
+    }
 }
 
 /**

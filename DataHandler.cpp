@@ -834,12 +834,12 @@ void DataHandler::saveInfectionData(Environment &EnvObj, int tayme) {
         InfectionGeneTimeOrig.close();
         std::ofstream InfectionGeneNumbPatho;
         InfectionGeneNumbPatho.open("InfectionGeneNumbPatho.csv");
-        InfectionGeneNumbPatho  << "#time number_of_presented_pathogens" << std::endl;
+        InfectionGeneNumbPatho  << "#time number_of_pathogen_presentation_events" << std::endl;
         InfectionGeneNumbPatho.close();
-        std::ofstream InfectionGeneNUmber;
-        InfectionGeneNUmber.open("InfectionGeneNumb.csv");
-        InfectionGeneNUmber << "#time number_of_gene_copies" << std::endl;
-        InfectionGeneNUmber.close();
+        std::ofstream InfectionGeneNumber;
+        InfectionGeneNumber.open("InfectionGeneNumb.csv");
+        InfectionGeneNumber << "#time number_of_gene_copies" << std::endl;
+        InfectionGeneNumber.close();
         ifInfectionData = false;
     }
     std::ofstream InfectionGeneID;
@@ -851,22 +851,21 @@ void DataHandler::saveInfectionData(Environment &EnvObj, int tayme) {
     std::ofstream InfectionGeneNumbPatho;
     InfectionGeneNumbPatho.open("InfectionGeneNumbPatho.csv", std::ios::out | std::ios::ate | std::ios::app);
     InfectionGeneNumbPatho << tayme;
-    std::ofstream InfectionGeneNUmber;
-    InfectionGeneNUmber.open("InfectionGeneNumb.csv", std::ios::out | std::ios::ate | std::ios::app);
-    InfectionGeneNUmber << tayme;
-    std::cout << EnvObj.UniqueGenes.size() << std::endl;
+    std::ofstream InfectionGeneNumber;
+    InfectionGeneNumber.open("InfectionGeneNumb.csv", std::ios::out | std::ios::ate | std::ios::app);
+    InfectionGeneNumber << tayme;
     for(auto aGene : EnvObj.UniqueGenes){
         InfectionGeneID << " " << aGene.GenesTag;
         InfectionGeneTimeOrig << " " << aGene.timeOfOrigin;
         InfectionGeneNumbPatho << " " << aGene.presentedPathos;
-        InfectionGeneNUmber << " " << aGene.occurence;
+        InfectionGeneNumber << " " << aGene.occurence;
     }
     InfectionGeneID << std::endl;
     InfectionGeneTimeOrig << std::endl;
     InfectionGeneNumbPatho << std::endl;
-    InfectionGeneNUmber << std::endl;
+    InfectionGeneNumber << std::endl;
     InfectionGeneID.close();
     InfectionGeneTimeOrig.close();
     InfectionGeneNumbPatho.close();
-    InfectionGeneNUmber.close();
+    InfectionGeneNumber.close();
 }

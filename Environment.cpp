@@ -1329,30 +1329,28 @@ std::string Environment::getNumbersOfPathogensPresented() {
 void Environment::setUniqueGenes() {
     UniqueGenes.clear();
     std::vector<Gene> AllGenes;
+    AllGenes.clear();
     // Finding unique genes
     if(HostPopulation.size()){
         for(unsigned long i = 0; i < HostPopulation.size(); ++i){
-            for(unsigned long j = 0; HostPopulation[i].getChromoOneSize() > j; ++j){
+//            std::cout << HostPopulation[i].getChromoOneSize() << " ";
+            for(unsigned long j = 0; j < HostPopulation[i].getChromoOneSize(); ++j){
                 AllGenes.push_back(HostPopulation[i].ChromosomeOne[j]);
             }
-        }
-        for(unsigned long i = 0; i <  HostPopulation.size(); ++i){
-            for(unsigned long j = 0;  HostPopulation[i].getChromoTwoSize() > j; ++j){
-                AllGenes.push_back(HostPopulation[i].ChromosomeTwo[j]);
+            for(unsigned long l = 0; l < HostPopulation[i].getChromoTwoSize(); ++l){
+                AllGenes.push_back(HostPopulation[i].ChromosomeTwo[l]);
             }
         }
         unsigned long GeneCounter = AllGenes.size();
         bool IfCountedLyst[GeneCounter];
-        for (unsigned long w = 1; w < GeneCounter; ++w) {
+        for (unsigned long w = 0; w < GeneCounter; ++w) {
             IfCountedLyst[w] = false;
         }
-        UniqueGenes.push_back(AllGenes[0]);
-        IfCountedLyst[0] = true;
         for (unsigned long i = 0; i < GeneCounter; ++i) {
             if (!IfCountedLyst[i]) {
+                UniqueGenes.push_back(AllGenes[i]);
                 for (unsigned long j = i + 1; j < GeneCounter; ++j) {
-                    if (i != j && !IfCountedLyst[j] && AllGenes[i].getTheRealGene() == AllGenes[j].getTheRealGene()){
-                        UniqueGenes.push_back(AllGenes[j]);
+                    if (i != j && !IfCountedLyst[j] && AllGenes[i].GenesTag == AllGenes[j].GenesTag){
                         IfCountedLyst[j] = true;
                     }
                 }
