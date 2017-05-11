@@ -1359,6 +1359,7 @@ void Environment::setUniqueGenes() {
         for(unsigned long l = 0; l < UniqueGenes.size(); ++l){
             UniqueGenes[l].presentedPathos = 0;
             UniqueGenes[l].occurence = 0;
+            UniqueGenes[l].numbOfHostsBearing = 0;
         }
         for (unsigned long k = 0; k < UniqueGenes.size(); ++k) {
             for(unsigned long i = 0; i < GeneCounter; ++i){
@@ -1366,6 +1367,24 @@ void Environment::setUniqueGenes() {
                     UniqueGenes[k].presentedPathos += AllGenes[i].presentedPathos;
                     UniqueGenes[k].occurence +=  1;
                 }
+            }
+        }
+        for(unsigned long l = 0; l < UniqueGenes.size(); ++l){
+            for(unsigned long i = 0; i < HostPopulation.size(); ++i){
+                for(unsigned long j = 0; j < HostPopulation[i].getChromoOneSize(); ++j){
+                    if(UniqueGenes[l].GenesTag ==  HostPopulation[i].ChromosomeOne[j].GenesTag){
+                        UniqueGenes[l].numbOfHostsBearing += 1;
+                        goto geneCheckDone;
+                    }
+                }
+                for(unsigned long k = 0; k < HostPopulation[i].getChromoTwoSize(); ++k){
+                    if(UniqueGenes[l].GenesTag ==  HostPopulation[i].ChromosomeTwo[k].GenesTag){
+                        UniqueGenes[l].numbOfHostsBearing += 1;
+                        goto geneCheckDone;
+                    }
+                }
+                geneCheckDone:
+                continue;
             }
         }
     }

@@ -817,8 +817,9 @@ void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
 /**
  * @brief Data harvesting method. Record the infection parameters regarding single genes.
  *
- * Writes to 4 files: 1st record unique gene ID, 2nd the time of origin of a gene,
- * 3rd the number of pathogens each gene has presented, 4th the number of gene occurrence
+ * Writes to 5 files: 1st record unique gene ID, 2nd the time of origin of a gene,
+ * 3rd the number of pathogens each gene has presented, 4th the number of gene occurrence,
+ * 5th number of individuals the gene is preset at each time step
  *
  * @param EnvObj - the Environment class object
  */
@@ -840,6 +841,11 @@ void DataHandler::saveInfectionData(Environment &EnvObj, int tayme) {
         InfectionGeneNumber.open("InfectionGeneNumb.csv");
         InfectionGeneNumber << "#time number_of_gene_copies" << std::endl;
         InfectionGeneNumber.close();
+        std::ofstream InfectionGeneInHosts;
+        InfectionGeneInHosts.open("InfectionGeneInHosts.csv");
+        InfectionGeneInHosts << "#time number_of_hosts_bearing_the_gene" << std::endl;
+        InfectionGeneInHosts.close();
+
         ifInfectionData = false;
     }
     std::ofstream InfectionGeneID;
@@ -854,18 +860,24 @@ void DataHandler::saveInfectionData(Environment &EnvObj, int tayme) {
     std::ofstream InfectionGeneNumber;
     InfectionGeneNumber.open("InfectionGeneNumb.csv", std::ios::out | std::ios::ate | std::ios::app);
     InfectionGeneNumber << tayme;
+    std::ofstream InfectionGeneInHosts;
+    InfectionGeneInHosts.open("InfectionGeneInHosts.csv", std::ios::out | std::ios::ate | std::ios::app);
+    InfectionGeneInHosts << tayme;
     for(auto aGene : EnvObj.UniqueGenes){
         InfectionGeneID << " " << aGene.GenesTag;
         InfectionGeneTimeOrig << " " << aGene.timeOfOrigin;
         InfectionGeneNumbPatho << " " << aGene.presentedPathos;
         InfectionGeneNumber << " " << aGene.occurence;
+        InfectionGeneInHosts << " " << aGene.numbOfHostsBearing;
     }
     InfectionGeneID << std::endl;
     InfectionGeneTimeOrig << std::endl;
     InfectionGeneNumbPatho << std::endl;
     InfectionGeneNumber << std::endl;
+    InfectionGeneInHosts << std::endl;
     InfectionGeneID.close();
     InfectionGeneTimeOrig.close();
     InfectionGeneNumbPatho.close();
     InfectionGeneNumber.close();
+    InfectionGeneInHosts.close();
 }

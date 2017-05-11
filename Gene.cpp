@@ -58,6 +58,7 @@ void Gene::setNewGene(unsigned long length, int timeStamp) {
     TheGene = p_RandomNumbs->NextLongInt(0, std::pow(2, BitStringLength)-1);
     occurence = 1;
     presentedPathos = 0;
+    numbOfHostsBearing = 0;
 }
 
 

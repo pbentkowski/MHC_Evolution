@@ -696,9 +696,11 @@ void Host::clearInfections(){
     Fitness = 0.0;
     for(auto gene: ChromosomeOne){
         gene.presentedPathos = 0;
+        gene.numbOfHostsBearing = 0;
     }
     for(auto gene: ChromosomeTwo){
         gene.presentedPathos = 0;
+        gene.numbOfHostsBearing = 0;
     }
 }
 
