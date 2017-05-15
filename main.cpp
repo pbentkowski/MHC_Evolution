@@ -127,7 +127,7 @@ int main(int argc, char** argv) {
         fixedAntigPosit = boost::lexical_cast<double>(argv[18]);
     }
     catch(boost::bad_lexical_cast& e) {
-        std::cout << std::endl;
+           std::cout << std::endl;
         std::cout << "Arguments from 1 to " << numbOfArgs-1 << " should be " <<
             "numbers. Not all are numbers. Check the params list!" << std::endl;
         printTipsToRun();

@@ -105,6 +105,7 @@ public:
     unsigned long getSingleHostRealGeneOne(unsigned long i, unsigned long j);
     unsigned long getSingleHostRealGeneTwo(unsigned long i, unsigned long j);
     double getHostFitness(unsigned long indx);
+    void setUniqueGenesTotalChromo();
     void setUniqueGenes();
     
 };

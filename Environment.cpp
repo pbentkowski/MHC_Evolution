@@ -460,7 +460,7 @@ void Environment::infectOneFromOneSpecHetero(){
         for(unsigned long sp = 0; sp < PathPopulationSize; ++sp){
             if(PathPopulation[sp].size()){
                 j = p_RandomNumbs->NextLongInt(0, PathPopulation[sp].size()-1);
-                H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
+                H2P.doesInfectedHeteroOnePerSpecUniqe(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
     }
@@ -1325,8 +1325,9 @@ std::string Environment::getNumbersOfPathogensPresented() {
 
 /**
  * @brief  Data harvesting method. Creates a vector of unique genes with all their stats.
+ * Based on original chromosomes of hosts.
  */
-void Environment::setUniqueGenes() {
+void Environment::setUniqueGenesTotalChromo() {
     UniqueGenes.clear();
     std::vector<Gene> AllGenes;
     AllGenes.clear();
@@ -1389,6 +1390,67 @@ void Environment::setUniqueGenes() {
         }
     }
 }
+
+
+/**
+ * @brief  Data harvesting method. Creates a vector of unique genes with all their stats.
+ * Based on pre-selected set on unique genes in hosts.
+ */
+void Environment::setUniqueGenes() {
+    UniqueGenes.clear();
+    std::vector<Gene> AllGenes;
+    AllGenes.clear();
+    // Finding unique genes
+    if(HostPopulation.size()){
+        for(unsigned long i = 0; i < HostPopulation.size(); ++i){
+//            std::cout << HostPopulation[i].getChromoOneSize() << " ";
+            for(unsigned long j = 0; j < HostPopulation[i].getUniqueMhcSize(); ++j){
+                AllGenes.push_back(HostPopulation[i].UniqueAlleles[j]);
+            }
+        }
+        unsigned long GeneCounter = AllGenes.size();
+        bool IfCountedLyst[GeneCounter];
+        for (unsigned long w = 0; w < GeneCounter; ++w) {
+            IfCountedLyst[w] = false;
+        }
+        for (unsigned long i = 0; i < GeneCounter; ++i) {
+            if (!IfCountedLyst[i]) {
+                UniqueGenes.push_back(AllGenes[i]);
+                for (unsigned long j = i + 1; j < GeneCounter; ++j) {
+                    if (i != j && !IfCountedLyst[j] && AllGenes[i].GenesTag == AllGenes[j].GenesTag){
+                        IfCountedLyst[j] = true;
+                    }
+                }
+            }
+        }
+        for(unsigned long l = 0; l < UniqueGenes.size(); ++l){
+            UniqueGenes[l].presentedPathos = 0;
+            UniqueGenes[l].occurence = 0;
+            UniqueGenes[l].numbOfHostsBearing = 0;
+        }
+        for (unsigned long k = 0; k < UniqueGenes.size(); ++k) {
+            for(unsigned long i = 0; i < GeneCounter; ++i){
+                if(UniqueGenes[k].getTheRealGene() == AllGenes[i].getTheRealGene()){
+                    UniqueGenes[k].presentedPathos += AllGenes[i].presentedPathos;
+                    UniqueGenes[k].occurence +=  1;
+                }
+            }
+        }
+        for(unsigned long l = 0; l < UniqueGenes.size(); ++l){
+            for(unsigned long i = 0; i < HostPopulation.size(); ++i){
+                for(unsigned long j = 0; j < HostPopulation[i].getUniqueMhcSize(); ++j){
+                    if(UniqueGenes[l].GenesTag ==  HostPopulation[i].UniqueAlleles[j].GenesTag){
+                        UniqueGenes[l].numbOfHostsBearing += 1;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
 
 unsigned long Environment::getSingleHostGenomeSize(unsigned long indx){
     return HostPopulation[indx].getGenomeSize();
