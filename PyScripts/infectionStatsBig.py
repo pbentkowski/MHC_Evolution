@@ -129,8 +129,6 @@ def getStatsFromOneLine(FILE, firstOccur):
     return np.array(l[1::], dtype=int)
 
 
-
-
 def totalPlot(geneStats):
     """ """
     for oneMHC in geneStats:
@@ -157,4 +155,4 @@ def totalPlot(geneStats):
 def statsMHCatOrigin(mhcID, path=os.getcwd()):
     """ """
     firsArr = getFirstOccurence(path + "/InfectionGeneID.csv", mhcID)
-
+    return firsArr
