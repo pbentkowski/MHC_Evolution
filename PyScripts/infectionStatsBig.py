@@ -191,11 +191,14 @@ def calculateRelatFittManyMHC(geneList):
     return mhcStatList
 
 
-def getTheMeanRelatFitt(mhcStatList):
+def getTheMeanRelatFitt(mhcStatList, minGeneAge=1):
     """ """
     maxaxX = 0
     for itm in mhcStatList:
         maxX = len(itm)
+        if(maxX < minGeneAge):
+            del itm
+#            print(maxX)
         if maxX > maxaxX:
             maxaxX = maxX
     statList = []
@@ -210,12 +213,12 @@ def getTheMeanRelatFitt(mhcStatList):
     return statList
 
 
-def plotManyMhcStat(mhcStatList, maxx=100, maxy=10e5):
+def plotManyMhcStat(mhcStatList, minMhcAge=1, maxxy=(100, 10e5)):
     """ """
     fs = 16
     tkfs = 14
     maxaxX = 0
-    meanStats = getTheMeanRelatFitt(mhcStatList)
+    meanStats = getTheMeanRelatFitt(mhcStatList, minMhcAge)
     ww = np.zeros(len(meanStats))
     for i, itm in enumerate(meanStats):
         ww[i] = np.mean(itm[~np.isnan(itm)])
@@ -229,20 +232,25 @@ def plotManyMhcStat(mhcStatList, maxx=100, maxy=10e5):
     plt.semilogy(np.ones(maxaxX) * 2., 'k--')
     plt.semilogy(1. + ww, 'b-', lw=2)
     plt.grid(True)
-    plt.xlabel("Time since gene emerged [host generations]", fontsize=fs)
-    plt.ylabel("gene's relative fitness , $log(x + 1)$ ", fontsize=fs)
+    plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
+    plt.ylabel("mutant’s relative immunocompetence, $log(y + 1)$ ",
+               fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    if(maxx > 100):
-        plt.xlim((0, maxx))
-        plt.ylim((1, 1e5))
+    if(maxxy[0] > 100):
+        plt.xlim((0, maxxy[0]))
+        plt.ylim((1, maxxy[1]))
     plt.show()
 
 
 def main():
     """ """
-    if len(sys.argv) < 2:
-        print("Give the name of working directory. May be '.'")
+    if len(sys.argv) <= 4:
+        print("4 arguments needed:")
+        print("1. Give the name of working directory. May be '.'")
+        print("2. Host generation after which stats will be obtained")
+        print("3. Minimum number of generations an MHC must exist")
+        print("4. Number of genes that need to be selected for analysis")
         sys.exit()
     if(os.path.exists(sys.argv[1])):
         path = sys.argv[1] + "/"
@@ -250,13 +258,14 @@ def main():
         print("Data directory non-existent or inaccessible")
         sys.exit()
     try:
-        geneList = pickRandomMHCs(path + "InfectionGeneID.csv", 1000, 500)
+        geneList = pickRandomMHCs(path + "InfectionGeneID.csv",
+                                  int(sys.argv[2]), int(sys.argv[4]))
 #        print(geneList)
     except:
         print("Cannot load the data. Maybe they're gone...")
         sys.exit()
     mhcStatList = calculateRelatFittManyMHC(geneList)
-    plotManyMhcStat(mhcStatList, 300)
+    plotManyMhcStat(mhcStatList, int(sys.argv[3]), (300, 10e5))
 
 
 if __name__ == "__main__":
