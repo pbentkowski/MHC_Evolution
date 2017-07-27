@@ -8,143 +8,143 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/MHC_code/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/MHC_code/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/MHC_code/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MHC_code_OBA">
-				<Option output="/home/piotr/MHC_code_OBA/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option output="/home/piotr/MHC_code/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/piotr/MHC_code/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/4.8"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.8"/>
-					<Add directory="/usr/include/c++/4.8/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MHC_code_OBA/fast">
-				<Option output="/home/piotr/MHC_code_OBA/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/piotr/MHC_code_OBA/cmake-build-debug"/>
+				<Option output="/home/piotr/MHC_code/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/piotr/MHC_code/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/4.8"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.8"/>
-					<Add directory="/usr/include/c++/4.8/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/piotr/MHC_code_OBA/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/MHC_code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/piotr/MHC_code_OBA/Antigen.cpp">
+		<Unit filename="/home/piotr/MHC_code/Antigen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Antigen.h">
+		<Unit filename="/home/piotr/MHC_code/Antigen.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/DataHandler.cpp">
+		<Unit filename="/home/piotr/MHC_code/DataHandler.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/DataHandler.h">
+		<Unit filename="/home/piotr/MHC_code/DataHandler.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Environment.cpp">
+		<Unit filename="/home/piotr/MHC_code/Environment.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Environment.h">
+		<Unit filename="/home/piotr/MHC_code/Environment.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Gene.cpp">
+		<Unit filename="/home/piotr/MHC_code/Gene.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Gene.h">
+		<Unit filename="/home/piotr/MHC_code/Gene.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/H2Pinteraction.cpp">
+		<Unit filename="/home/piotr/MHC_code/H2Pinteraction.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/H2Pinteraction.h">
+		<Unit filename="/home/piotr/MHC_code/H2Pinteraction.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Host.cpp">
+		<Unit filename="/home/piotr/MHC_code/Host.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Host.h">
+		<Unit filename="/home/piotr/MHC_code/Host.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Pathogen.cpp">
+		<Unit filename="/home/piotr/MHC_code/Pathogen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Pathogen.h">
+		<Unit filename="/home/piotr/MHC_code/Pathogen.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/RandomNumbs.cpp">
+		<Unit filename="/home/piotr/MHC_code/RandomNumbs.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/RandomNumbs.h">
+		<Unit filename="/home/piotr/MHC_code/RandomNumbs.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Tagging_system.cpp">
+		<Unit filename="/home/piotr/MHC_code/Tagging_system.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/Tagging_system.h">
+		<Unit filename="/home/piotr/MHC_code/Tagging_system.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/main.cpp">
+		<Unit filename="/home/piotr/MHC_code/main.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/mainpage.h">
+		<Unit filename="/home/piotr/MHC_code/mainpage.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/MHC_code_OBA/CMakeLists.txt">
+		<Unit filename="/home/piotr/MHC_code/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -1288,6 +1288,77 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
 }
 
 
+/**
+ *@brief Core method. Creates a new generation of hosts by sexual reproduction
+ * picking a mate which has the most different MHCs then the selecting partner.
+ * Takes given number of possible sexual partners.
+ *
+ * @param matingPartnerNumber - number of randomly selected partners an individual
+ * will checks out eventually selecting one best to mate with.
+ */
+void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
+    unsigned long popSize = HostPopulation.size();
+    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
+    unsigned long i;
+    int theBestMatch;
+    double sameGeneCount, highScore, score;
+// First create an instance of an random engine.
+    std::random_device rnd_device;
+    // Specify the size of the mates vector
+    std::vector<int> matesVec(matingPartnerNumber);
+    // the mating procedure
+    while(NewHostsVec.size() < popSize){
+        i = p_RandomNumbs->NextLongInt(0, popSize-1);
+        // Specify the engine and create unique vector listing mates from population
+        std::mt19937 mersenne_engine(rnd_device());
+        std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
+        auto genn = std::bind(dist, mersenne_engine);
+        generate(begin(matesVec), end(matesVec), genn);
+        // find the best mate out of N randomly chosen
+        highScore = 0.0;
+        theBestMatch = matesVec[0];
+        for (auto mate : matesVec) {
+//            std::cout << mate << " ";
+            sameGeneCount = 0;
+            for (unsigned long l = 0; l < HostPopulation[i].getUniqueMhcSize(); ++l){
+                for (unsigned long m = 0; m < HostPopulation[mate].getUniqueMhcSize(); ++m){
+                    if(HostPopulation[i].getOneGeneFromUniqVect(l) ==
+                       HostPopulation[mate].getOneGeneFromUniqVect(m)){
+                        sameGeneCount++;
+                    }
+                }
+            }
+            score = (double) HostPopulation[mate].getUniqueMhcSize() - sameGeneCount;
+            if(score > highScore){
+                highScore = score;
+                theBestMatch = mate;
+            }
+        }
+        if (int(NewHostsVec.size()) < popSize) {
+            // mate two hosts, set a new individual
+            NewHostsVec.push_back(HostPopulation[i]);
+            NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
+            NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
+            NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
+            NewHostsVec.back().swapChromosomes();
+        }
+//        std::cout << std::endl;
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in maringMeanOptimalNumberMHCsmallSubset(): Size mismatch " <<
+                  "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                  " | new pop: " << NewHostsVec.size()  << std::endl;
+    }
+
+}
+
+
 //==============================================================//
 
 /**

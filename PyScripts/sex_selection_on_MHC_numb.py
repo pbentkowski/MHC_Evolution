@@ -83,7 +83,7 @@ def plotAndDoStats(Mom, Dad, low_copy, up_copy):
     xx = np.linspace(1, int(np.max(rMom)), 15)
     ss = slope * xx + interc
     FS = 16
-    plt.figure(1, figsize=(8, 7))
+    plt.figure(1, figsize=(12, 11))
     plt.plot(x, y, '.')
     plt.plot(xx, ss, 'r-')
     plt.grid(True)
