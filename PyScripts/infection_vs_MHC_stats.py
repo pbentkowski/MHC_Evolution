@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Your doc string here, please...
+Run this script on simulation outputs containing infection data. It will create
+a CSV file with computed statistics and parameters for each single sun. Then
+use Ipython to load this file with function  importComputedData() and plot its
+output with function plotBoxesSlopes().
 
 
 Created on Fri Feb  3 15:30:05 2017
@@ -31,12 +34,13 @@ handyType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('slope', 'f8'),
 
 
 def importComputedData(dataFile):
-    """ """
+    """Reads the data file pre-computed by the main() function and loads it to
+    a handyType Numpy structured array """
     try:
         dd = np.genfromtxt(dataFile, usecols=(0, 1, 2, 3, 4, 5, 6, 7),
                            skip_header=1, dtype=handyType)
         return dd
-    except:
+    except Exception:
         print("ERROR in importComputedData(): Cannot load the data from file:",
               dataFile)
 
@@ -158,10 +162,10 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                ppma.loadTheDateFromParamFile(filepath) >= theStartDate):
                 paramzList = ppma.loadParamSettings(filepath)
                 if ppma.compareParams(template, paramzList):
-                    l = re.split(" ", ln.getline(filepath, 9))
-                    path_spp = float(l[2].split()[0])
-                    l = re.split(" ", ln.getline(filepath, 13))
-                    lg = l[2].split()[0]
+                    ll = re.split(" ", ln.getline(filepath, 9))
+                    path_spp = float(ll[2].split()[0])
+                    ll = re.split(" ", ln.getline(filepath, 13))
+                    lg = ll[2].split()[0]
                     genomeFileName = "HostGenomesFile." + str(lg) + ".csv"
                     genomeFileName = os.path.join(dirName, genomeFileName)
 #                    print(genomeFileName)
@@ -176,7 +180,7 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                             continue
                         else:
                             print("Done")
-                    except:
+                    except Exception:
                         print("ERROR in getTheData(): cant's load the host",
                               "population data")
                         continue
@@ -194,7 +198,9 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
 
 
 def plotBoxesSlopes(handyArr, xlabels="The values", yMax=0):
-    """ """
+    """ Read the handy the handyType type array and plots box plots of
+    regression slopes calculated by the script  infection_vs_MHC_stats.py. Use
+    function importComputedData() to import the computed data from file."""
     if handyArr.dtype == handyType:
         spp = np.unique(handyArr['VARX'])
     else:
@@ -253,7 +259,7 @@ def main():
         try:
             print("Computing data...")
             theData = getTheData(startDate, template)
-        except:
+        except Exception:
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
         if len(theData):

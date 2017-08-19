@@ -202,7 +202,7 @@ int main(int argc, char** argv) {
                                        patho_sp, mhcGeneLength, 0, fixedAntigPosit);
     std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
-    Data2file.savePathoNoMuttList(ENV);
+//    Data2file.savePathoNoMuttList(ENV);
     std::ofstream InputParams;
     InputParams.open("InputParameters.csv", std::ios::out | std::ios::ate | std::ios::app);
     InputParams << "# Other_information:" << std::endl;
@@ -238,7 +238,7 @@ int main(int argc, char** argv) {
        std::cout << " advantage. Sorry :-(" << std::endl;
        return 0;
     }
-    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
+//    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
 
     std::cout << "Run finished. Check the output files for results." << std::endl;
