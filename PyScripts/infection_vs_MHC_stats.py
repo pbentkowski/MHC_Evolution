@@ -253,7 +253,7 @@ def main():
         try:
             template = ppma.loadParamSettings(sys.argv[2])
 #            x_Label = ppma.getVarxLabel(sys.argv[2])
-        except:
+        except Exception:
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
