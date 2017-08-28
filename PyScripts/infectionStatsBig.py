@@ -23,7 +23,9 @@ def file_len(fname):
 
 
 def getUniqueGenes(FILE, firstIndex=1):
-    """ """
+    """Creates a list of unique MHCs IDs form the InfectionGeneID.csv file.
+    User can define the generation from which to start recording unique MHCs.
+    """
     uniqueGenes = []
     with open(FILE) as infile:
         for i, line in enumerate(infile):
@@ -43,7 +45,10 @@ def getUniqueGenes(FILE, firstIndex=1):
 
 
 def getIndexGivenGeneID(FILE, geneID, firstIndex=1):
-    """ """
+    """Fed with the MHC's geneID  and the path to InfectionGeneID.csv it
+    creates a list of generation numbers when the gene was in existence and its
+    position in  the line. Needed for retrieving other data from simulations.
+    """
     indexInFile = []
     strID = str(geneID)
     with open(FILE) as infile:
@@ -60,24 +65,26 @@ def getIndexGivenGeneID(FILE, geneID, firstIndex=1):
 
 
 def getDataOfGivenGeneByID(FILE, idxArr, firstIndex=1):
-    """ """
+    """Fed a data file and an index array created by the function
+    getIndexGivenGeneID() it retrieves the data for a given MHC gene."""
     dataInFile = []
     for itm in idxArr:
-        l = re.split(" ", ln.getline(FILE, itm[0]))
-        dataInFile.append((int(l[itm[1]])))
+        ll = re.split(" ", ln.getline(FILE, itm[0]))
+        dataInFile.append((int(ll[itm[1]])))
     return dataInFile
 
 
 def pickRandomMHCs(FILE, firstGen=2, numbOfRand=100):
-    """ """
+    """ Creates a list of randomly selected MHC of a given length. User can
+    define the host generation to start with."""
     maxLine = file_len(FILE)
     geneList = []
     while(len(geneList) < numbOfRand):
         try:
-            l = re.split(" ", ln.getline(FILE,
-                                         rnd.randrange(firstGen, maxLine)))
-            mhc = l[rnd.randrange(1, len(l)-1)]
-        except:
+            ll = re.split(" ", ln.getline(FILE,
+                                          rnd.randrange(firstGen, maxLine)))
+            mhc = ll[rnd.randrange(1, len(ll)-1)]
+        except Exception:
             print("Failed to pick a gene")
             continue
         if mhc not in geneList:
@@ -88,7 +95,8 @@ def pickRandomMHCs(FILE, firstGen=2, numbOfRand=100):
 
 
 def getMHCsStats(randomMHCs):
-    """ """
+    """Fed with a list of MHC geneID it creates a list containing MHCs basic
+    stats about presence and abundance across host generations."""
     geneStats = []
     for mhc in randomMHCs:
         idxArr = getIndexGivenGeneID("InfectionGeneID.csv", mhc)
@@ -126,9 +134,9 @@ def getTheLinesByIndexes(FILE, idxArr):
     """ """
     dataInFile = []
     for itm in idxArr:
-        l = re.split(" ", ln.getline(FILE, itm[0]))
-        del l[itm[1]]
-        dataInFile.append(np.array(l[1::], dtype=np.int))
+        ll = re.split(" ", ln.getline(FILE, itm[0]))
+        del ll[itm[1]]
+        dataInFile.append(np.array(ll[1::], dtype=np.int))
     return dataInFile
 
 
@@ -136,9 +144,9 @@ def getStatsFromOneLine(FILE, firstOccur):
     """ """
     print(firstOccur)
     print(ln.getline(FILE, firstOccur[0][0]))
-    l = re.split(" ", ln.getline(FILE, firstOccur[0][0]))
-    del l[firstOccur[0][1]]
-    return np.array(l[1::], dtype=int)
+    ll = re.split(" ", ln.getline(FILE, firstOccur[0][0]))
+    del ll[firstOccur[0][1]]
+    return np.array(ll[1::], dtype=int)
 
 
 def totalPlot(geneStats):
@@ -207,7 +215,7 @@ def getTheMeanRelatFitt(mhcStatList, minGeneAge=1):
         for itm in mhcStatList:
             try:
                 ll.append(itm[i])
-            except:
+            except Exception:
                 pass
         statList.append(np.array(ll))
     return statList
@@ -261,7 +269,7 @@ def main():
         geneList = pickRandomMHCs(path + "InfectionGeneID.csv",
                                   int(sys.argv[2]), int(sys.argv[4]))
 #        print(geneList)
-    except:
+    except Exception:
         print("Cannot load the data. Maybe they're gone...")
         sys.exit()
     mhcStatList = calculateRelatFittManyMHC(geneList)
