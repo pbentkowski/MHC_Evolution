@@ -3,6 +3,40 @@
 """
 Created on Wed May 10 00:27:47 2017
 
+ryc 3 w Ejsmond i Radwan 2015, na poczatek może być tak jak D-E
+(immunocompetence), ale jak latwiej recruitment probability, to tez może być.
+Nie szkodzi, że więcej genów, chcemy wiedzieć, jaka przewagę mają nowe
+warianty w róznych kontekstach (zestawach parametrów).
+
+Fig 3.
+Presentation ability and probability of recruitment of a new mutant MHC
+allele. (A-C) Data points indicate the probability that a mutant allele will
+stay in the population for at least 10 host generations (cut-off points longer
+or shorter than 10 generations (e.g., 2 or 20) showed similar patterns). (D-F)
+Data points indicate the relative pathogen-recognition ability of a mutant MHC
+allele relative to the immunocompetence of resident alleles. The average
+immunocompetence of resident alleles was measured as the number of pathogens
+recognized in a given generation, weighted by the frequency of each resident
+allele. Note that a presentation spectrum equal to 1 indicates the threshold at
+which a mutant allele is able to present, on average, the same proportion of
+pathogens as resident alleles are. (A-F) Characteristics were calculated across
+the last 6000 generations of 10 replicates. Scenario labels: HA–heterozygote
+advantage, RQ–Red
+
+
+From the paper fig. 4:
+Panels in the bottom row show the dynamics of median mutant allele
+immunocompetence in relation to the immunocompetence of resident alleles,
+measured as the number of pathogens presented in a given generation (weighted
+by the frequency of resident alleles). The measure was calculated across the
+last 6000 generations of 10 replicate simulations with the host population size
+N = 5000. Note that a presentation spectrum equal to 1 in the bottom row
+panels indicate the threshold at which a mutant allele is able to recognize,
+on average, the same proportion of pathogens as the resident alleles. For
+presentation purposes the scale on the Y-axis in the bottom row panels was
+log-transformed. Scenario labels: HA–heterozygote advantage, RQ–Red Queen,
+HA+RQ–both.
+
 @author: piotr
 """
 import re
@@ -45,8 +79,8 @@ def getUniqueGenes(FILE, firstIndex=1):
 
 
 def getIndexGivenGeneID(FILE, geneID, firstIndex=1):
-    """Fed with the MHC's geneID  and the path to InfectionGeneID.csv it
-    creates a list of generation numbers when the gene was in existence and its
+    """Fed with the MHC's geneID and the path to InfectionGeneID.csv it creates
+    a list of generation numbers when the gene was in existence and its
     position in  the line. Needed for retrieving other data from simulations.
     """
     indexInFile = []
@@ -71,6 +105,20 @@ def getDataOfGivenGeneByID(FILE, idxArr, firstIndex=1):
     for itm in idxArr:
         ll = re.split(" ", ln.getline(FILE, itm[0]))
         dataInFile.append((int(ll[itm[1]])))
+    return dataInFile
+
+
+def getBkgroundDataOfGivenGeneByID(FILE, idxArr, firstIndex=1):
+    """Fed a data file and an index array created by the function
+    getIndexGivenGeneID() it retrieves the data for a given MHC gene."""
+    dataInFile = []
+    for itm in idxArr:
+        ll = re.split(" ", ln.getline(FILE, itm[0]))
+        del ll[itm[1]]
+        bkgGenes = []
+        for ii in ll:
+            bkgGenes.append(int(ii))
+    dataInFile.append(np.array(bkgGenes))
     return dataInFile
 
 
@@ -278,3 +326,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# =============================================================================
+# mhcID = geneList[23]
+# someGene = isb.getIndexGivenGeneID("InfectionGeneID.csv", mhcID)
+# geneStats = isb.getMHCsStats([mhcID])
+# plt.plot(geneStats[0][1] / geneStats[0][2])
+# plt.grid(True)
+# plt.show()
+# =============================================================================
