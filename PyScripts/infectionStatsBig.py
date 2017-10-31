@@ -108,20 +108,6 @@ def getDataOfGivenGeneByID(FILE, idxArr, firstIndex=1):
     return dataInFile
 
 
-def getBkgroundDataOfGivenGeneByID(FILE, idxArr, firstIndex=1):
-    """Fed a data file and an index array created by the function
-    getIndexGivenGeneID() it retrieves the data for a given MHC gene."""
-    dataInFile = []
-    for itm in idxArr:
-        ll = re.split(" ", ln.getline(FILE, itm[0]))
-        del ll[itm[1]]
-        bkgGenes = []
-        for ii in ll:
-            bkgGenes.append(int(ii))
-    dataInFile.append(np.array(bkgGenes))
-    return dataInFile
-
-
 def pickRandomMHCs(FILE, firstGen=2, numbOfRand=100):
     """ Creates a list of randomly selected MHC of a given length. User can
     define the host generation to start with."""
@@ -148,11 +134,13 @@ def getMHCsStats(randomMHCs):
     geneStats = []
     for mhc in randomMHCs:
         idxArr = getIndexGivenGeneID("InfectionGeneID.csv", mhc)
-        present = np.array(getDataOfGivenGeneByID("InfectionGeneNumbPatho.csv",
+        numPath = np.array(getDataOfGivenGeneByID("InfectionGeneNumbPatho.csv",
                                                   idxArr), dtype=int)
-        abundan = np.array(getDataOfGivenGeneByID("InfectionGeneNumb.csv",
-                                                  idxArr), dtype=int)
-        geneStats.append((mhc, present, abundan))
+        numGenCopy = np.array(getDataOfGivenGeneByID("InfectionGeneNumb.csv",
+                                                     idxArr), dtype=int)
+        numbHosts = np.array(getDataOfGivenGeneByID("InfectionGeneInHosts.csv",
+                                                    idxArr), dtype=int)
+        geneStats.append((mhc, numGenCopy, numbHosts, numPath))
     return geneStats
 
 
@@ -178,8 +166,10 @@ def getFirstOccurence(FILE, geneID, firstIndex=1):
         return None
 
 
-def getTheLinesByIndexes(FILE, idxArr):
-    """ """
+def getBkgroundDataOfGivenGeneByID(FILE, idxArr):
+    """Fed a data file and an index array created by the function
+    getIndexGivenGeneID() it retrieves the background data for a given MHC
+    gene, what means stats of all the other genes excluding the queried one."""
     dataInFile = []
     for itm in idxArr:
         ll = re.split(" ", ln.getline(FILE, itm[0]))
@@ -227,8 +217,10 @@ def statsMHC(mhcID, path=os.getcwd()):
                                                someGene), dtype=int)
     hostCount = np.array(getDataOfGivenGeneByID("InfectionGeneInHosts.csv",
                                                 someGene), dtype=int)
-    bkgPathoLoad = getTheLinesByIndexes("InfectionGeneNumbPatho.csv", someGene)
-    bkgHostCount = getTheLinesByIndexes("InfectionGeneInHosts.csv", someGene)
+    bkgPathoLoad = getBkgroundDataOfGivenGeneByID("InfectionGeneNumbPatho.csv",
+                                                  someGene)
+    bkgHostCount = getBkgroundDataOfGivenGeneByID("InfectionGeneInHosts.csv",
+                                                  someGene)
     bkg_fitt = []
     for itm in zip(bkgPathoLoad, bkgHostCount):
         bkg_fitt.append(itm[0] / itm[1])
@@ -269,6 +261,22 @@ def getTheMeanRelatFitt(mhcStatList, minGeneAge=1):
     return statList
 
 
+def randomMhcPlot(geneList, plottedMHCs=23):
+    """Test plost of absolute immunocompetence of a set of randomly selected
+    MHCs."""
+    plt.figure(1, figsize=(8, 6))
+    for i in range(plottedMHCs):
+        mhcID = geneList[np.random.randint(len(geneList))]
+        geneStats = getMHCsStats([mhcID])
+        plt.plot(geneStats[0][3]/geneStats[0][2])
+        plt.grid(True)
+        plt.xlabel("age of a new MHC variant\n[number of host generation from"
+                   + " de novo mutation]")
+        plt.ylabel("number of pathogens presented / number\nof host with the"
+                   + " new mutation")
+        plt.show()
+
+
 def plotManyMhcStat(mhcStatList, minMhcAge=1, maxxy=(100, 10e5)):
     """ """
     fs = 16
@@ -277,7 +285,7 @@ def plotManyMhcStat(mhcStatList, minMhcAge=1, maxxy=(100, 10e5)):
     meanStats = getTheMeanRelatFitt(mhcStatList, minMhcAge)
     ww = np.zeros(len(meanStats))
     for i, itm in enumerate(meanStats):
-        ww[i] = np.mean(itm[~np.isnan(itm)])
+        ww[i] = np.median(itm[~np.isnan(itm)])
 #        print(ww[i], end=", ")
     plt.figure(1, figsize=(12, 8))
     for itm in mhcStatList:
@@ -326,12 +334,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# =============================================================================
-# mhcID = geneList[23]
-# someGene = isb.getIndexGivenGeneID("InfectionGeneID.csv", mhcID)
-# geneStats = isb.getMHCsStats([mhcID])
-# plt.plot(geneStats[0][1] / geneStats[0][2])
-# plt.grid(True)
-# plt.show()
-# =============================================================================
