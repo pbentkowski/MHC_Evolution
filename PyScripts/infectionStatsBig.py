@@ -210,7 +210,7 @@ def totalPlot(geneStats):
     plt.show()
 
 
-def statsMHC(mhcID, path=os.getcwd()):
+def statsMHC(mhcID, hostPopSize, path=os.getcwd()):
     """ """
     someGene = getIndexGivenGeneID("InfectionGeneID.csv", mhcID)
     nubPatho = np.array(getDataOfGivenGeneByID("InfectionGeneNumbPatho.csv",
@@ -221,21 +221,29 @@ def statsMHC(mhcID, path=os.getcwd()):
                                                   someGene)
     bkgHostCount = getBkgroundDataOfGivenGeneByID("InfectionGeneInHosts.csv",
                                                   someGene)
+    hostWeigth = []
+    for itmHo in hostCount:
+        hostWeigth.append(itmHo / hostPopSize)
+    hostWeigth = np.array(hostWeigth)
+    hostWeigth[hostWeigth == 0] = np.nan
+    bkgHostWeigth = []
+    for itmBkg in bkgHostCount:
+        bkgHostWeigth.append(itmBkg / hostPopSize)
     bkg_fitt = []
-    for itm in zip(bkgPathoLoad, bkgHostCount):
+    for itm in zip(bkgPathoLoad, bkgHostWeigth):
         bkg_fitt.append(itm[0] / itm[1])
     meanFitt = np.zeros(len(bkg_fitt))
     for i, sett in enumerate(bkg_fitt):
-        meanFitt[i] = np.mean(sett)
+        meanFitt[i] = np.median(sett)
     meanFitt[meanFitt == 0] = np.nan
-    return (nubPatho / hostCount) / meanFitt
+    return nubPatho / meanFitt
 
 
-def calculateRelatFittManyMHC(geneList):
+def calculateRelatFittManyMHC(geneList, hostPopSize):
     """ """
     mhcStatList = []
     for mhc in geneList:
-        mhcStatList.append(statsMHC(mhc))
+        mhcStatList.append(statsMHC(mhc, hostPopSize))
     return mhcStatList
 
 
@@ -286,15 +294,16 @@ def plotManyMhcStat(mhcStatList, minMhcAge=1, maxxy=(100, 10e5)):
     ww = np.zeros(len(meanStats))
     for i, itm in enumerate(meanStats):
         ww[i] = np.median(itm[~np.isnan(itm)])
-#        print(ww[i], end=", ")
+#    ww[np.isnan(ww)] = 1
+    np.savetxt("ww.txt", ww)
     plt.figure(1, figsize=(12, 8))
     for itm in mhcStatList:
         maxX = len(itm)
         if maxX > maxaxX:
             maxaxX = maxX
-        plt.semilogy(1. + itm, color=(0.75, 0.75, 0.75, 0.75))
+        plt.semilogy(itm + 1., color=(0.75, 0.75, 0.75, 0.75))
     plt.semilogy(np.ones(maxaxX) * 2., 'k--')
-    plt.semilogy(1. + ww, 'b-', lw=2)
+    plt.semilogy(ww + 1., 'b-', lw=2)
     plt.grid(True)
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
     plt.ylabel("mutant’s relative immunocompetence, $log(y + 1)$ ",
@@ -303,7 +312,7 @@ def plotManyMhcStat(mhcStatList, minMhcAge=1, maxxy=(100, 10e5)):
     plt.yticks(fontsize=tkfs)
     if(maxxy[0] > 100):
         plt.xlim((0, maxxy[0]))
-        plt.ylim((1, maxxy[1]))
+        plt.ylim((0, maxxy[1]))
     plt.show()
 
 
@@ -324,12 +333,16 @@ def main():
     try:
         geneList = pickRandomMHCs(path + "InfectionGeneID.csv",
                                   int(sys.argv[2]), int(sys.argv[4]))
-#        print(geneList)
+        paramsFile = os.path.join(path, 'InputParameters.csv')
+        ll = re.split(" ", ln.getline(paramsFile, 7))
+        hostPopSize = float(ll[2])
     except Exception:
         print("Cannot load the data. Maybe they're gone...")
         sys.exit()
-    mhcStatList = calculateRelatFittManyMHC(geneList)
-    plotManyMhcStat(mhcStatList, int(sys.argv[3]), (300, 10e5))
+    mhcStatList = calculateRelatFittManyMHC(geneList, hostPopSize)
+    plotManyMhcStat(mhcStatList, int(sys.argv[3]), (101, 10e5))
+#    for itm in ww:
+#        print(itm)
 
 
 if __name__ == "__main__":
