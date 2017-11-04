@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-                The doc string here, please....
+Iterates through the directories looking for the data regarding the infection
+data statistics. Generates a file containing a list of stats from each
+individual run (one per line) with its main parameters.
 
 Created on Fri Nov  3 19:19:04 2017
 
@@ -16,8 +18,7 @@ import infectionStatsBig as isb
 
 def getTheData(firstGen, numbOfRand, minLastTime, avgWay='median',
                dirr=os.getcwd()):
-    """Walking the dir using Python 3.5. Variable theStartDate has to be
-    a datetime.date() data type."""
+    """Walking the dir in search of data using the os.walk() mechanism"""
     datOut = []
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
@@ -35,35 +36,56 @@ def getTheData(firstGen, numbOfRand, minLastTime, avgWay='median',
                 alphaFact = float(ll[2])
                 mhcStats = isb.calcRelatFittManyMHC(geneList, hostPopSize,
                                                     avgWay, dirName)
-                mhcStats, procFixed = isb.removeShortLivedMHC(mhcStats,
-                                                              minLastTime)
+                mhcStats, totGen, genFix = isb.removeShortLivedMHC(mhcStats,
+                                                                   minLastTime)
                 avgImmCompts = isb.calcAverageForOneRun(mhcStats, avgWay)
-                datOut.append((alphaFact, pathoSppNum, procFixed,
+                datOut.append((alphaFact, pathoSppNum, totGen, genFix,
                                avgImmCompts))
+                print
     return datOut
+
+
+def argInfo():
+    print("Three arguments are needed:")
+    print("  1. Host generation after which stats will be obtained.")
+    print("  2. Number of genes that need to be selected for analysis.")
+    print("  3. Minimum number of generations an MHC must exist.")
 
 
 def main():
     """Main function - the script's main body."""
     if len(sys.argv) <= 3:
-        print("Three arguments are needed:")
-        print("  1. Host generation after which stats will be obtained.")
-        print("  2. Number of genes that need to be selected for analysis.")
-        print("  3. Minimum number of generations an MHC must exist.")
+        argInfo()
         sys.exit()
-#    startDate = None
-#    headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
-#        + 'stdFitt meanCvFitt stdCvFitt sourceDir'
-    if 1:
-        # third argument is very important
-        theData = getTheData(int(sys.argv[1]), int(sys.argv[2]),
-                             int(sys.argv[3]))
-        print(theData)
-#    except Exception:
-#        print("Failed to process the data. Some serious issues arose.",
-#              "Check if the cut-off host generation for calculating stats",
-#              "is smaller than the total number of host generations.")
-#        sys.exit()
+    file_c = "#alpha_factor numb_of_patho_spp genesTested genesFixed" \
+        + "array_with_avg_immunocompetence\n"
+    try:
+        generStart = int(sys.argv[1])
+        numbGenes = int(sys.argv[2])
+        minGeneAge = int(sys.argv[3])
+        f_name = "immuno_" + sys.argv[1] + "_" + sys.argv[2] + "_" \
+                 + sys.argv[3] + ".dat"
+    except Exception:
+        print("Cannot convert arguments to integers. Check your params")
+        argInfo()
+        sys.exit()
+    try:
+        theData = getTheData(generStart, numbGenes, minGeneAge)
+    except Exception:
+        print("Failed to process the data. Some serious issues arose.",
+              "Check if the cut-off host generation for calculating stats",
+              "is smaller than the total number of host generations.")
+        sys.exit()
+    for itm in theData:
+        file_c += str(itm[0]) + ',' + str(itm[1]) + ',' + str(itm[2]) + ',' \
+            + str(itm[3]) + ','
+        for ii in itm[4]:
+            file_c += "%6.3f;" % ii
+        file_c += "\n"
+    dataFile = open(f_name, 'w')
+    dataFile.write(file_c)
+    dataFile.close
+    print("DONE! Check immuno_aut.dat file for data output.")
 
 
 if __name__ == "__main__":

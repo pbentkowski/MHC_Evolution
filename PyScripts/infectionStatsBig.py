@@ -120,7 +120,8 @@ def pickRandomMHCs(FILE, firstGen=2, numbOfRand=100):
     define the host generation to start with."""
     maxLine = file_len(FILE)
     geneList = []
-    while(len(geneList) < numbOfRand):
+    failedAttempts = 0
+    while(len(geneList) < numbOfRand and failedAttempts <= 500):
         try:
             ll = re.split(" ", ln.getline(FILE,
                                           rnd.randrange(firstGen, maxLine)))
@@ -131,6 +132,7 @@ def pickRandomMHCs(FILE, firstGen=2, numbOfRand=100):
         if mhc not in geneList:
             geneList.append(mhc)
         else:
+            failedAttempts += 1
             continue
     return geneList
 
@@ -292,7 +294,7 @@ def removeShortLivedMHC(mhcStatList, minGeneAge=1):
     print("There are", genesRetained, "MHC genes that lasted at",
           "least", minGeneAge, "host generations. It is %.2f" % fracGenesRet,
           "of genes submitted for the analysis.")
-    return mhcStatList_trimm, fracGenesRet
+    return mhcStatList_trimm, totalGeneCount, float(genesRetained)
 
 
 def getTheMeanRelatFitt(mhcStatList_trimm):
@@ -349,7 +351,7 @@ def calcAverageForOneRun(mhcStatList, avergWay='median'):
     else:
         print("Select how you want to average the result: 'mean' or 'median'?")
         return None
-    np.savetxt("avrg.txt", avrg)
+#    np.savetxt("avrg.txt", avrg)
     return avrg
 
 
