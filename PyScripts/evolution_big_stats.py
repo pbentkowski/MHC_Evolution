@@ -94,7 +94,7 @@ def findTheOnesAtBeginning(Mut_tags, jj=0):
                 pass
             else:
                 ll.append(itm[jj])
-        except:
+        except Exception:
             pass
     return ll
 
@@ -132,7 +132,7 @@ def findMRCA(Mut_tags, Mut_times):
     for item in Mut_times:
         try:
             indx = int(item[kk])
-        except:
+        except Exception:
             continue
         if indx < minn:
             minn = indx
@@ -259,15 +259,15 @@ def processDataOneFile(FILE):
     try:
         filepath = os.path.join(os.path.dirname(FILE), 'InputParameters.csv')
         print(filepath)
-        l = re.split(" ", ln.getline(filepath, 13))
-        maxTime = float(l[2].split()[0])
-    except:
+        ll = re.split(" ", ln.getline(filepath, 13))
+        maxTime = float(ll[2].split()[0])
+    except Exception:
         print("Can't load the data from InputParameters.csv.",
               "Check if it exist.")
         return None
     try:
         mutTags, mutTimes = loadHostPopulation(FILE)
-    except:
+    except Exception:
         print("Can't load the host population snapshot file.")
         return None
     mrcaTag, mrcaOri, mrcaIdx, mrcaTime = findMRCA(mutTags, mutTimes)
@@ -299,13 +299,13 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
                 try:
                     paramzList = ppma.loadParamSettings(os.path.join(dirName,
                                                         "InputParameters.csv"))
-                except:
+                except Exception:
                     print("Cannot load the parameters. in dir", dirName)
                     continue
                 if ppma.compareParams(template, paramzList):
                     try:
                         DATA = processDataOneFile(filepath)
-                    except:
+                    except Exception:
                         print("Cannot load the data. in dir", dirName)
                         continue
                     plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4],
@@ -417,12 +417,12 @@ def main():
     outputFile = str(sys.argv[2])
     try:
         template = ppma.loadParamSettings(sys.argv[1])
-    except:
+    except Exception:
         print("Cannot load the template file. Exiting.")
         sys.exit()
     try:
         theData = serchTheDirs(sys.argv[3], template)
-    except:
+    except Exception:
         print("Failed to process the data. Some serious issues arose.")
         sys.exit()
     if len(theData):

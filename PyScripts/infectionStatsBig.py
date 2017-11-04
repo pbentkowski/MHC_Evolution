@@ -121,7 +121,10 @@ def pickRandomMHCs(FILE, firstGen=2, numbOfRand=100):
     maxLine = file_len(FILE)
     geneList = []
     failedAttempts = 0
-    while(len(geneList) < numbOfRand and failedAttempts <= 500):
+    numbOfFailes = numbOfRand
+    if numbOfFailes < 100:
+        numbOfFailes = 100
+    while(len(geneList) < numbOfRand and failedAttempts <= numbOfFailes):
         try:
             ll = re.split(" ", ln.getline(FILE,
                                           rnd.randrange(firstGen, maxLine)))
