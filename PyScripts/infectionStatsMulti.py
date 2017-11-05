@@ -85,7 +85,7 @@ def main():
     dataFile = open(f_name, 'w')
     dataFile.write(file_c)
     dataFile.close
-    print("DONE! Check immuno_aut.dat file for data output.")
+    print("DONE! Check file", f_name, "for data output.")
 
 
 if __name__ == "__main__":
