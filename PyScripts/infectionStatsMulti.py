@@ -16,7 +16,7 @@ import linecache as ln
 import infectionStatsBig as isb
 
 
-def getTheData(firstGen, numbOfRand, minLastTime, avgWay='median',
+def getTheData(firstGen, numbOfRand, minLastTime, avgWay='mean',
                dirr=os.getcwd()):
     """Walking the dir in search of data using the os.walk() mechanism"""
     datOut = []
@@ -70,7 +70,7 @@ def main():
         argInfo()
         sys.exit()
     try:
-        theData = getTheData(generStart, numbGenes, minGeneAge)
+        theData = getTheData(generStart, numbGenes, minGeneAge, 'mean')
     except Exception:
         print("Failed to process the data. Some serious issues arose.",
               "Check if the cut-off host generation for calculating stats",

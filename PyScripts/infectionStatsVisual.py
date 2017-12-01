@@ -91,7 +91,7 @@ def getAvgVals(dataList, allParamsTupl, avgWay='median'):
     return sorted(avgDataList, key=lambda elm: (elm[0], elm[1]))
 
 
-def plotAvgStats(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
+def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     """Plots the summary results. Makes it to look nice."""
     ii = 0
     fs = 16
@@ -109,9 +109,69 @@ def plotAvgStats(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
         forBoxPlt.append(itm[3])
         boxLbls.append("alpha %1.2f\npath. spp %d" % (itm[0], itm[1]))
         ii += 1
+    plt.hlines(2., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
     plt.ylabel("mutant’s immuno-competence, $log(y + 1)$\n"
-               + "   (muttant / resident)", fontsize=fs)
+               + "   (mutant / resident)", fontsize=fs)
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    plt.xlim((0, maxxy[0]))
+    plt.ylim((0, maxxy[1]))
+    plt.grid(True)
+    plt.subplot(122)
+    boxprops = dict(linestyle='-', linewidth=boxLineWth, color='k')
+    # color the median line
+    medianprops = []
+    medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='b'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='b'))
+    medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='r'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='r'))
+    # end color the median line
+    whiskerprops = dict(linewidth=boxLineWth)
+    capprops = dict(linewidth=boxLineWth)
+    flierprops = dict(markersize=10)
+    mockList = []
+    for jj in range(len(forBoxPlt)):
+        mockList.append([])
+    typesOfmedLines = len(medianprops)
+    for i, dat in enumerate(forBoxPlt):
+        mockList[i] = dat
+        indx = i % typesOfmedLines
+        plt.boxplot(mockList, labels=boxLbls, boxprops=boxprops,
+                    medianprops=medianprops[indx], whiskerprops=whiskerprops,
+                    capprops=capprops,  flierprops=flierprops)
+        mockList[i] = []
+    plt.ylim((0.0, 1))
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    plt.ylabel("recruitmeent probability", fontsize=fs)
+    plt.grid(axis='y')
+    plt.tight_layout()
+    plt.savefig(plottName, dpi=150)
+    plt.show()
+
+
+def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
+    """Plots the summary results. Makes it to look nice."""
+    ii = 0
+    fs = 16
+    tkfs = 14
+    boxLineWth = 1.5
+    boxMedLine = 3.0
+    linez = ('b-', 'b--', 'r-', 'r--')
+    forBoxPlt = []
+    boxLbls = []
+    plt.figure(1, figsize=(18, 8))
+    plt.subplot(121)
+    for itm in avgDataList:
+        plt.plot(itm[2] + 1., linez[ii], lw=2)
+        print("line", linez[ii], "represents", itm[0], ",", itm[1])
+        forBoxPlt.append(itm[3])
+        boxLbls.append("alpha %1.2f\npath. spp %d" % (itm[0], itm[1]))
+        ii += 1
+    plt.hlines(1., 0, maxxy[0], colors='k', linestyles='dashed')
+    plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
+    plt.ylabel("mutant’s immuno-competence (mutant / resident)", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.xlim((0, maxxy[0]))
@@ -154,11 +214,12 @@ def argInfo():
     print("Three arguments are needed:")
     print("  1. Name of the file with data.")
     print("  2. Name of the figure.")
+    print("  3. Y-axis scale 'log' or 'lin'")
 
 
 def main():
     """Main function - the script's main body."""
-    if len(sys.argv) <= 2:
+    if len(sys.argv) <= 3:
         argInfo()
         sys.exit()
     try:
@@ -169,7 +230,13 @@ def main():
     paramzv = getListOfParamsSets(dataList)
     avgDataList = getAvgVals(dataList, paramzv)
     try:
-        plotAvgStats(avgDataList, (25, 1e5), sys.argv[2])
+        if sys.argv[3] == 'lin':
+            plotAvgLinn(avgDataList, (50, 300), sys.argv[2])
+        elif sys.argv[3] == 'log':
+            plotAvgLog(avgDataList, (50, 3e2), sys.argv[2])
+        else:
+            print("Wrong Y-axis scaling. Hast to be 'log' or 'lin', pick one.")
+            sys.exit()
         print("DONE! Check the plot:", sys.argv[2])
     except Exception:
         print("Cannot create the plot. Check if the file format is OK")
