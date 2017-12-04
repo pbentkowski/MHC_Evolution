@@ -267,14 +267,23 @@ def statsMHC(mhcID, hostPopSize, avergWay='median', path=os.getcwd()):
     avgBkgImm = np.zeros(len(bkg_imm))
     if avergWay == 'median':
         for i, sett in enumerate(bkg_imm):
-            avgBkgImm[i] = np.median(sett)
-        avgBkgImm[avgBkgImm == 0] = 1.
+            if len(sett):
+                avgBkgImm[i] = np.median(sett)
+            else:
+                avgBkgImm[i] = avgBkgImm[i-1]
     elif avergWay == 'mean':
         for i, sett in enumerate(bkg_imm):
-            avgBkgImm[i] = np.mean(sett)
+            if len(sett):
+                avgBkgImm[i] = np.mean(sett)
+            else:
+                avgBkgImm[i] = avgBkgImm[i-1]
     else:
         print("Select how you want to average the result: 'mean' or 'median'?")
         return None
+    col_med = np.nanmedian(avgBkgImm)
+    if col_med <= 0:
+        col_med = 0.1
+    avgBkgImm[avgBkgImm == 0] = col_med
     return (nubPatho / hostCount) / avgBkgImm
 
 
@@ -447,13 +456,13 @@ def main():
     except Exception:
         print("Cannot load the data. Maybe they're gone...")
         sys.exit()
-    xMax = 30
+    xMax = 50
 #    mhcStatList = calculateRelatFittManyMHC(geneList, hostPopSize, 'mean')
 
     mhcStatList = calcRelatFittManyMHC(geneList, hostPopSize, sys.argv[5])
 
-#    semLogPlotManyMhcStat(mhcStatList, int(sys.argv[3]), sys.argv[5],
-#                          (xMax, 10e5))
+    semLogPlotManyMhcStat(mhcStatList, int(sys.argv[3]), sys.argv[5],
+                          (xMax, 10e5))
 
 #    semLogPlotManyMhcStat(mhcStatList, int(sys.argv[3]), 'median',
 #                          (xMax, 10e5))

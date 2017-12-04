@@ -219,6 +219,8 @@ def argInfo():
 
 def main():
     """Main function - the script's main body."""
+    xMax = 30
+    yMax = 10000
     if len(sys.argv) <= 3:
         argInfo()
         sys.exit()
@@ -228,12 +230,12 @@ def main():
         print("Cannot load the file with data. Check the name or if it exists")
         sys.exit()
     paramzv = getListOfParamsSets(dataList)
-    avgDataList = getAvgVals(dataList, paramzv)
+    avgDataList = getAvgVals(dataList, paramzv, 'mean')
     try:
         if sys.argv[3] == 'lin':
-            plotAvgLinn(avgDataList, (50, 300), sys.argv[2])
+            plotAvgLinn(avgDataList, (xMax, yMax), sys.argv[2])
         elif sys.argv[3] == 'log':
-            plotAvgLog(avgDataList, (50, 3e2), sys.argv[2])
+            plotAvgLog(avgDataList, (xMax, yMax), sys.argv[2])
         else:
             print("Wrong Y-axis scaling. Hast to be 'log' or 'lin', pick one.")
             sys.exit()

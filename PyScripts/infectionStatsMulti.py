@@ -50,27 +50,33 @@ def argInfo():
     print("  1. Host generation after which stats will be obtained.")
     print("  2. Number of genes that need to be selected for analysis.")
     print("  3. Minimum number of generations an MHC must exist.")
+    print("  4. How to average the data? 'mean' or 'median'?")
 
 
 def main():
     """Main function - the script's main body."""
-    if len(sys.argv) <= 3:
+    if len(sys.argv) <= 4:
         argInfo()
         sys.exit()
-    file_c = "#alpha_factor numb_of_patho_spp genesTested genesFixed" \
+    file_c = "#alpha_factor numb_of_patho_spp genesTested genesFixed " \
         + "array_with_avg_immunocompetence\n"
+    if sys.argv[4] == 'mean' or sys.argv[4] == 'median':
+        pass
+    else:
+        print("Averaging methods must be 'mean' or 'median'!")
+        sys.exit()
     try:
         generStart = int(sys.argv[1])
         numbGenes = int(sys.argv[2])
         minGeneAge = int(sys.argv[3])
         f_name = "immuno_" + sys.argv[1] + "_" + sys.argv[2] + "_" \
-                 + sys.argv[3] + ".dat"
+                 + sys.argv[3] + "_" + sys.argv[4] + ".dat"
     except Exception:
         print("Cannot convert arguments to integers. Check your params")
         argInfo()
         sys.exit()
     try:
-        theData = getTheData(generStart, numbGenes, minGeneAge, 'mean')
+        theData = getTheData(generStart, numbGenes, minGeneAge, 'median')
     except Exception:
         print("Failed to process the data. Some serious issues arose.",
               "Check if the cut-off host generation for calculating stats",
