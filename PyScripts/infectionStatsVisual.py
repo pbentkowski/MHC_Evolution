@@ -81,13 +81,16 @@ def getAvgVals(dataList, allParamsTupl, avgWay='median'):
     for prm in allParamsTupl:
         oneGoSimuls = []
         persist = []
+        immDomOne = []
         for itm in dataList:
             tupparamz = (itm[0], itm[1])
             if tupparamz == prm:
                 persist.append(itm[3]/itm[2])
+                immDomOne.append(itm[4][0])
                 oneGoSimuls.append(itm[4])
         meanStats = isb.calcAverageForOneRun(oneGoSimuls, avgWay)
-        avgDataList.append((prm[0], prm[1], meanStats, np.array(persist)))
+        avgDataList.append((prm[0], prm[1], meanStats, np.array(persist),
+                            np.array(immDomOne)))
     return sorted(avgDataList, key=lambda elm: (elm[0], elm[1]))
 
 
@@ -99,26 +102,28 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     boxLineWth = 1.5
     boxMedLine = 3.0
     linez = ('b-', 'b--', 'r-', 'r--')
-    forBoxPlt = []
+    forBoxPltRecruit = []
+    forBoxPltImmume = []
     boxLbls = []
-    plt.figure(1, figsize=(18, 8))
-    plt.subplot(121)
+    plt.figure(1, figsize=(14, 10))
+    plt.subplot(212)
     for itm in avgDataList:
         plt.semilogy(itm[2] + 1., linez[ii], lw=2)
         print("line", linez[ii], "represents", itm[0], ",", itm[1])
-        forBoxPlt.append(itm[3])
+        forBoxPltRecruit.append(itm[3])
+        forBoxPltImmume.append(itm[4])
         boxLbls.append("alpha %1.2f\npath. spp %d" % (itm[0], itm[1]))
         ii += 1
     plt.hlines(2., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
-    plt.ylabel("mutant’s immuno-competence, $log(y + 1)$\n"
-               + "   (mutant / resident)", fontsize=fs)
+    plt.ylabel("mutant’s relative               \nimmuno-competence"
+               + "  $log(y + 1)$", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.xlim((0, maxxy[0]))
     plt.ylim((0, maxxy[1]))
     plt.grid(True)
-    plt.subplot(122)
+    plt.subplot(221)
     boxprops = dict(linestyle='-', linewidth=boxLineWth, color='k')
     # color the median line
     medianprops = []
@@ -131,10 +136,10 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     capprops = dict(linewidth=boxLineWth)
     flierprops = dict(markersize=10)
     mockList = []
-    for jj in range(len(forBoxPlt)):
+    for jj in range(len(forBoxPltRecruit)):
         mockList.append([])
     typesOfmedLines = len(medianprops)
-    for i, dat in enumerate(forBoxPlt):
+    for i, dat in enumerate(forBoxPltRecruit):
         mockList[i] = dat
         indx = i % typesOfmedLines
         plt.boxplot(mockList, labels=boxLbls, boxprops=boxprops,
@@ -145,6 +150,25 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.ylabel("recruitmeent probability", fontsize=fs)
+    plt.grid(axis='y')
+    plt.subplot(222)
+    mockList = []
+    for jj in range(len(forBoxPltImmume)):
+        mockList.append([])
+    typesOfmedLines = len(medianprops)
+    for i, dat in enumerate(forBoxPltImmume):
+        mockList[i] = dat
+        indx = i % typesOfmedLines
+        plt.boxplot(mockList, labels=boxLbls, boxprops=boxprops,
+                    medianprops=medianprops[indx], whiskerprops=whiskerprops,
+                    capprops=capprops,  flierprops=flierprops)
+        plt.yscale('log')
+        mockList[i] = []
+    plt.ylim((1, 1e4))
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    plt.ylabel("mutant’s relative immuno-\ncompetence at the first generation",
+               fontsize=fs)
     plt.grid(axis='y')
     plt.tight_layout()
     plt.savefig(plottName, dpi=150)
@@ -159,25 +183,27 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     boxLineWth = 1.5
     boxMedLine = 3.0
     linez = ('b-', 'b--', 'r-', 'r--')
-    forBoxPlt = []
+    forBoxPltRecruit = []
+    forBoxPltImmume = []
     boxLbls = []
-    plt.figure(1, figsize=(18, 8))
-    plt.subplot(121)
+    plt.figure(1, figsize=(14, 10))
+    plt.subplot(212)
     for itm in avgDataList:
         plt.plot(itm[2] + 1., linez[ii], lw=2)
         print("line", linez[ii], "represents", itm[0], ",", itm[1])
-        forBoxPlt.append(itm[3])
+        forBoxPltRecruit.append(itm[3])
+        forBoxPltImmume.append(itm[4])
         boxLbls.append("alpha %1.2f\npath. spp %d" % (itm[0], itm[1]))
         ii += 1
     plt.hlines(1., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
-    plt.ylabel("mutant’s immuno-competence (mutant / resident)", fontsize=fs)
+    plt.ylabel("mutant’s relative immuno-competence", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.xlim((0, maxxy[0]))
     plt.ylim((0, maxxy[1]))
     plt.grid(True)
-    plt.subplot(122)
+    plt.subplot(221)
     boxprops = dict(linestyle='-', linewidth=boxLineWth, color='k')
     # color the median line
     medianprops = []
@@ -190,10 +216,10 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     capprops = dict(linewidth=boxLineWth)
     flierprops = dict(markersize=10)
     mockList = []
-    for jj in range(len(forBoxPlt)):
+    for jj in range(len(forBoxPltRecruit)):
         mockList.append([])
     typesOfmedLines = len(medianprops)
-    for i, dat in enumerate(forBoxPlt):
+    for i, dat in enumerate(forBoxPltRecruit):
         mockList[i] = dat
         indx = i % typesOfmedLines
         plt.boxplot(mockList, labels=boxLbls, boxprops=boxprops,
@@ -204,6 +230,24 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.ylabel("recruitmeent probability", fontsize=fs)
+    plt.grid(axis='y')
+    plt.subplot(222)
+    mockList = []
+    for jj in range(len(forBoxPltImmume)):
+        mockList.append([])
+    typesOfmedLines = len(medianprops)
+    for i, dat in enumerate(forBoxPltImmume):
+        mockList[i] = dat
+        indx = i % typesOfmedLines
+        plt.boxplot(mockList, labels=boxLbls, boxprops=boxprops,
+                    medianprops=medianprops[indx], whiskerprops=whiskerprops,
+                    capprops=capprops,  flierprops=flierprops)
+        mockList[i] = []
+    plt.ylim((0.0, 5000))
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    plt.ylabel("mutant’s relative immuno-\ncompetence at the first generation",
+               fontsize=fs)
     plt.grid(axis='y')
     plt.tight_layout()
     plt.savefig(plottName, dpi=150)
