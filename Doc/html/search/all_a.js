@@ -1,14 +1,10 @@
 var searchData=
 [
-  ['parenttags',['ParentTags',['../class_antigen.html#a6a0987eb093f450f52dadc74fc70ad2c',1,'Antigen::ParentTags()'],['../class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b',1,'Gene::ParentTags()']]],
-  ['pathogen',['Pathogen',['../class_pathogen.html',1,'Pathogen'],['../class_pathogen.html#adea224ac2875e8cc141ed3ee02534f6c',1,'Pathogen::Pathogen()']]],
-  ['pathogen_2ecpp',['Pathogen.cpp',['../_pathogen_8cpp.html',1,'']]],
-  ['pathogen_2eh',['Pathogen.h',['../_pathogen_8h.html',1,'']]],
-  ['pathogespresented',['PathogesPresented',['../class_host.html#ac8b084352039979629a7896e2aaefb45',1,'Host']]],
-  ['pathospecinfecting',['PathoSpecInfecting',['../class_host.html#a0d79bd02d6147f8e94ae975dc42ae026',1,'Host']]],
-  ['presentantigen',['presentAntigen',['../class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53',1,'H2Pinteraction']]],
-  ['printantigentoscreen',['printAntigenToScreen',['../class_antigen.html#a08ecd5321a466090806e0b5a100c394a',1,'Antigen']]],
-  ['printgenesfromgenome',['printGenesFromGenome',['../class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea',1,'Pathogen']]],
-  ['printgenetoscreen',['printGeneToScreen',['../class_gene.html#aac0df5c1d80054e7191bad9bfb325c00',1,'Gene']]],
-  ['printtipstorun',['printTipsToRun',['../main_8cpp.html#ac225f5c6e0e3615f223c552c5501bfa6',1,'main.cpp']]]
+  ['nextint',['NextInt',['../class_random_numbs.html#a301ebb1a7c447763903f925a634da605',1,'RandomNumbs']]],
+  ['nextlongint',['NextLongInt',['../class_random_numbs.html#ad1d47bddda7a3050959bd757de39e57a',1,'RandomNumbs']]],
+  ['nextreal',['NextReal',['../class_random_numbs.html#aaae77654579060738e55b46c8caba9a6',1,'RandomNumbs']]],
+  ['numbofhostsbearing',['numbOfHostsBearing',['../class_gene.html#ad80d82232e8c18b3cb5f72cd8c3f30e8',1,'Gene']]],
+  ['numofhostsinfected',['NumOfHostsInfected',['../class_pathogen.html#a84c8ddaee9c9a5a96ab6d183d4f781a5',1,'Pathogen']]],
+  ['numofpathogesinfecting',['NumOfPathogesInfecting',['../class_host.html#ac173100d13da6dfeb93387f0d689c349',1,'Host']]],
+  ['numofpathogespresented',['NumOfPathogesPresented',['../class_host.html#ad0411c059e63ed72507b0c370880b5ab',1,'Host']]]
 ];

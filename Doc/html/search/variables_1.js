@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['genestag',['GenesTag',['../class_gene.html#a0ca1205d9bb7895e2d33310dbf07e208',1,'Gene']]]
+  ['chromosomeone',['ChromosomeOne',['../class_host.html#af4c460c65f085a6a7c9b73b46e83e7f6',1,'Host']]],
+  ['chromosometwo',['ChromosomeTwo',['../class_host.html#aca6f27f6124477919835a233e9760a6f',1,'Host']]]
 ];

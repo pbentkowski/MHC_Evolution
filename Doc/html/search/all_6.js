@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['infectonefromonespechetero',['infectOneFromOneSpecHetero',['../class_environment.html#aecd592b734359557235bb0a6980f77f9',1,'Environment']]],
-  ['inputparamstofile',['inputParamsToFile',['../class_data_handler.html#a47cd22d646a4e8eeb6923a43b8d86d24',1,'DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength, int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb, int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha, double fixedAntigPosit)'],['../class_data_handler.html#a8e636fc0b498ca3b6aee33e3cfdf2b7b',1,'DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize, int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates)']]]
+  ['h2pinteraction',['H2Pinteraction',['../class_h2_pinteraction.html',1,'H2Pinteraction'],['../class_h2_pinteraction.html#a4ea9649d7d2da587f072082e471604c0',1,'H2Pinteraction::H2Pinteraction()']]],
+  ['h2pinteraction_2ecpp',['H2Pinteraction.cpp',['../_h2_pinteraction_8cpp.html',1,'']]],
+  ['h2pinteraction_2eh',['H2Pinteraction.h',['../_h2_pinteraction_8h.html',1,'']]],
+  ['host',['Host',['../class_host.html',1,'Host'],['../class_host.html#a369c12e7425c030528bab0784da40e4b',1,'Host::Host()']]],
+  ['host_2ecpp',['Host.cpp',['../_host_8cpp.html',1,'']]],
+  ['host_2eh',['Host.h',['../_host_8h.html',1,'']]]
 ];

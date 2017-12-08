@@ -1,10 +1,10 @@
 <map id="Tagging_system::getTag" name="Tagging_system::getTag">
-<area shape="rect" id="node2" href="$class_antigen.html#ab52432ee37e632004979251ee56a015a" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="233,5,396,32"/>
-<area shape="rect" id="node3" href="$class_antigen.html#a623b615ff9bce45937f8913e9491fb20" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="227,57,402,98"/>
-<area shape="rect" id="node4" href="$class_antigen.html#ae1664f59e709564f99de614f0a142f32" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="228,122,401,163"/>
-<area shape="rect" id="node5" href="$class_gene.html#ad3bb5a49fb03e3a934c2275563ae801d" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="246,188,383,215"/>
-<area shape="rect" id="node6" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="230,239,399,265"/>
-<area shape="rect" id="node7" href="$class_gene.html#a9179fd84199c114a1e8bcea73ae22c36" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="225,289,405,316"/>
-<area shape="rect" id="node8" href="$class_gene.html#a5313b38571bdec542a80af94a3389ea8" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="227,341,403,382"/>
-<area shape="rect" id="node9" href="$class_pathogen.html#a1b82b702752e1c0ca36a3c1d203fdfca" title="Core method. Sets a new Pathogen object with pre&#45;defined antigen. " alt="" coords="222,406,407,447"/>
+<area shape="rect" id="node2" href="$class_antigen.html#ab52432ee37e632004979251ee56a015a" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="231,5,394,32"/>
+<area shape="rect" id="node3" href="$class_antigen.html#a623b615ff9bce45937f8913e9491fb20" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="225,57,400,98"/>
+<area shape="rect" id="node4" href="$class_antigen.html#ae1664f59e709564f99de614f0a142f32" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="226,122,399,163"/>
+<area shape="rect" id="node5" href="$class_gene.html#ad3bb5a49fb03e3a934c2275563ae801d" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="244,188,381,215"/>
+<area shape="rect" id="node6" href="$class_gene.html#a625cc7e2a230d7e9594da553aed60c17" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="228,239,397,265"/>
+<area shape="rect" id="node7" href="$class_gene.html#a9179fd84199c114a1e8bcea73ae22c36" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="223,289,403,316"/>
+<area shape="rect" id="node8" href="$class_gene.html#a5313b38571bdec542a80af94a3389ea8" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="225,341,401,382"/>
+<area shape="rect" id="node9" href="$class_pathogen.html#a1b82b702752e1c0ca36a3c1d203fdfca" title="Core method. Sets a new Pathogen object with pre&#45;defined antigen. " alt="" coords="220,406,405,447"/>
 </map>

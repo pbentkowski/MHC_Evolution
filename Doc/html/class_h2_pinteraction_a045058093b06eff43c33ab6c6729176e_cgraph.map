@@ -1,0 +1,7 @@
+<map id="H2Pinteraction::doesInfectedHeteroOnePerSpecTotalGenome" name="H2Pinteraction::doesInfectedHeteroOnePerSpecTotalGenome">
+<area shape="rect" id="node2" href="$class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c" title="Core method. Fetches the pathogene&#39;s antigens. " alt="" coords="283,5,453,32"/>
+<area shape="rect" id="node3" href="$class_pathogen.html#ada9e5929d6736f63377f0625153b224b" title="Core method. Fetches a species tag. " alt="" coords="282,56,454,83"/>
+<area shape="rect" id="node4" href="$class_host.html#a51d5609864393846c577672908f824b0" title="Returns the number of genes in the Chromosome One. " alt="" coords="282,107,454,133"/>
+<area shape="rect" id="node5" href="$class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53" title="Core method. Checks if the antigen is presented by a given MHC. " alt="" coords="267,157,469,184"/>
+<area shape="rect" id="node6" href="$class_host.html#a5158ada636bdc6c9985abfeb51cc5642" title="Returns the number of genes in the Chromosome Two. " alt="" coords="281,208,455,235"/>
+</map>

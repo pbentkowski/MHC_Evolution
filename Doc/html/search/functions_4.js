@@ -18,12 +18,15 @@ var searchData=
   ['gethoststags',['getHostsTags',['../class_environment.html#a93a98eb73207ed37097a5b398579b44a',1,'Environment']]],
   ['gethostuniqmhctostring',['getHostUniqMHCtoString',['../class_environment.html#aac0eb33e3bce3534c5513c2867c4a298',1,'Environment']]],
   ['getinstance',['getInstance',['../class_random_numbs.html#a364c415e5105061274013a1e68576a64',1,'RandomNumbs::getInstance()'],['../class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba',1,'Tagging_system::getInstance()']]],
+  ['getnumberofpresentedpatho',['getNumberOfPresentedPatho',['../class_host.html#a21a7fead03f3fb31005028f6575ea867',1,'Host']]],
+  ['getnumbersofpathogenspresented',['getNumbersOfPathogensPresented',['../class_environment.html#a12173f6c8c70376c82bace9cc578a738',1,'Environment']]],
   ['getnumbofchromooneuniqalleles',['getNumbOfChromoOneUniqAlleles',['../class_host.html#a9757c15b19a45468e3ce5921b5d2deab',1,'Host']]],
   ['getnumbofchromotwouniqalleles',['getNumbOfChromoTwoUniqAlleles',['../class_host.html#a533fcc0f3f715fe36abdb878b0491aaf',1,'Host']]],
   ['getnumbofuniqmhcgenes',['getNumbOfUniqMHCgenes',['../class_host.html#a87feca6e68d17438266fe8e92468382f',1,'Host']]],
   ['getoneepitope',['getOneEpitope',['../class_antigen.html#a1fdd54293c073202155a0244c78a1623',1,'Antigen']]],
   ['getonegenefromone',['getOneGeneFromOne',['../class_host.html#a48ffcaf86f00239f8dd8c56683478e2a',1,'Host']]],
   ['getonegenefromtwo',['getOneGeneFromTwo',['../class_host.html#a2540e6d2f6d139292a964b61f04449f0',1,'Host']]],
+  ['getonegenefromuniqvect',['getOneGeneFromUniqVect',['../class_host.html#ab51c69cfe9d0f1b2bf4f3ca4225ae3d9',1,'Host']]],
   ['getpathogenestostring',['getPathoGenesToString',['../class_environment.html#aa0b7fddb5c105c65ef4817531593e64f',1,'Environment']]],
   ['getpathonumofspecies',['getPathoNumOfSpecies',['../class_environment.html#a9bbe18137bc9b931826ec18a036f5697',1,'Environment']]],
   ['getpathospeciespopsize',['getPathoSpeciesPopSize',['../class_environment.html#af8726165c8bdeb45dcc0e0f91e894c38',1,'Environment']]],
@@ -38,5 +41,7 @@ var searchData=
   ['getsinglehostrealgenetwo',['getSingleHostRealGeneTwo',['../class_environment.html#af838d055fa650935798fe466e19809e4',1,'Environment']]],
   ['getspeciestag',['getSpeciesTag',['../class_pathogen.html#ada9e5929d6736f63377f0625153b224b',1,'Pathogen']]],
   ['gettag',['getTag',['../class_tagging__system.html#af57001cb7fe7d78d05076231552d1911',1,'Tagging_system']]],
-  ['gettherealgene',['getTheRealGene',['../class_gene.html#a5053ceb89a7370e642555e3a392b6228',1,'Gene']]]
+  ['gettherealgene',['getTheRealGene',['../class_gene.html#a5053ceb89a7370e642555e3a392b6228',1,'Gene']]],
+  ['getuniquemhcs',['getUniqueMHCs',['../class_host.html#a0d36e2b60e48e985e6e561fc46213564',1,'Host']]],
+  ['getuniquemhcsize',['getUniqueMhcSize',['../class_host.html#a6c8640b0cd873b9669983330b2c4c59e',1,'Host']]]
 ];

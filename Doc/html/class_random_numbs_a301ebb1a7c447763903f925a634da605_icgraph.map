@@ -1,5 +1,5 @@
 <map id="RandomNumbs::NextInt" name="RandomNumbs::NextInt">
-<area shape="rect" id="node2" href="$class_environment.html#ad7f96a8620fa9df1601c613130b275e0" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,5,443,46"/>
-<area shape="rect" id="node3" href="$class_environment.html#a90177792fb03087e1fc64dca78f7e312" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,70,443,111"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="491,77,541,104"/>
+<area shape="rect" id="node2" href="$class_environment.html#ad7f96a8620fa9df1601c613130b275e0" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="217,5,441,47"/>
+<area shape="rect" id="node3" href="$class_environment.html#a90177792fb03087e1fc64dca78f7e312" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="217,71,441,112"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="489,78,540,105"/>
 </map>

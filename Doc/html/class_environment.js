@@ -16,6 +16,7 @@ var class_environment =
     [ "getHostsPopSize", "class_environment.html#a45aeebf99b44c9b1e66ca16b923605ae", null ],
     [ "getHostsTags", "class_environment.html#a93a98eb73207ed37097a5b398579b44a", null ],
     [ "getHostUniqMHCtoString", "class_environment.html#aac0eb33e3bce3534c5513c2867c4a298", null ],
+    [ "getNumbersOfPathogensPresented", "class_environment.html#a12173f6c8c70376c82bace9cc578a738", null ],
     [ "getPathoGenesToString", "class_environment.html#aa0b7fddb5c105c65ef4817531593e64f", null ],
     [ "getPathoNumOfSpecies", "class_environment.html#a9bbe18137bc9b931826ec18a036f5697", null ],
     [ "getPathoSpeciesPopSize", "class_environment.html#af8726165c8bdeb45dcc0e0f91e894c38", null ],
@@ -48,5 +49,8 @@ var class_environment =
     [ "setPathoPopulatioDistincSpp", "class_environment.html#a4c146e24fd05fdc26d47075d2ea4f9d8", null ],
     [ "setPathoPopulatioDivSpecies", "class_environment.html#a96b49e87a46866e5207fe0b4701e250d", null ],
     [ "setPathoPopulationFourClades", "class_environment.html#a8321f1afcf32fa3805402c54435382ae", null ],
-    [ "setPathoPopulatioUniformGenome", "class_environment.html#afb424921da516c1c71890114bb8af7c9", null ]
+    [ "setPathoPopulatioUniformGenome", "class_environment.html#afb424921da516c1c71890114bb8af7c9", null ],
+    [ "setUniqueGenes", "class_environment.html#ad231d4483ad3aaed1c05c73ab782f148", null ],
+    [ "setUniqueGenesTotalChromo", "class_environment.html#ac1341fbbb27bbb8267691c8d1c64ac61", null ],
+    [ "UniqueGenes", "class_environment.html#a90418d61ef7dcff35ae37af8013c7a5b", null ]
 ];

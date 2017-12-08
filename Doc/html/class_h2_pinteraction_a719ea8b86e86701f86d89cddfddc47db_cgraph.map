@@ -1,0 +1,6 @@
+<map id="H2Pinteraction::doesInfectedHeteroOnePerSpecUniqe" name="H2Pinteraction::doesInfectedHeteroOnePerSpecUniqe">
+<area shape="rect" id="node2" href="$class_pathogen.html#a87ddcd5dc3951338533cc35b5b2d059c" title="Core method. Fetches the pathogene&#39;s antigens. " alt="" coords="261,5,430,32"/>
+<area shape="rect" id="node3" href="$class_pathogen.html#ada9e5929d6736f63377f0625153b224b" title="Core method. Fetches a species tag. " alt="" coords="259,56,431,83"/>
+<area shape="rect" id="node4" href="$class_host.html#a6c8640b0cd873b9669983330b2c4c59e" title="Core method. Returns the size of the vector containing unique MHCs. " alt="" coords="261,107,429,133"/>
+<area shape="rect" id="node5" href="$class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53" title="Core method. Checks if the antigen is presented by a given MHC. " alt="" coords="244,157,447,184"/>
+</map>

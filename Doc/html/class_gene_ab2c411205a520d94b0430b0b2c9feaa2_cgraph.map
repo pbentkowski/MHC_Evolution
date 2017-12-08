@@ -1,7 +1,7 @@
 <map id="Gene::mutateGeneWhole" name="Gene::mutateGeneWhole">
-<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="227,5,416,32"/>
-<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="233,56,409,83"/>
-<area shape="rect" id="node4" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="224,107,419,133"/>
-<area shape="rect" id="node5" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="238,157,405,184"/>
-<area shape="rect" id="node6" href="$class_random_numbs.html#ad1d47bddda7a3050959bd757de39e57a" title="RandomNumbs::NextLongInt" alt="" coords="225,208,417,235"/>
+<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="225,5,415,32"/>
+<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="232,56,408,83"/>
+<area shape="rect" id="node4" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="223,107,417,133"/>
+<area shape="rect" id="node5" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="237,157,403,184"/>
+<area shape="rect" id="node6" href="$class_random_numbs.html#ad1d47bddda7a3050959bd757de39e57a" title="RandomNumbs::NextLongInt" alt="" coords="224,208,416,235"/>
 </map>

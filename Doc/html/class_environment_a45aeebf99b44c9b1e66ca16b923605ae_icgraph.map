@@ -1,6 +1,6 @@
 <map id="Environment::getHostsPopSize" name="Environment::getHostsPopSize">
-<area shape="rect" id="node2" href="$class_data_handler.html#a46129d74eac82af0caae37a9e20e3e2e" title="Data harvesting method. Writes to a file all hosts with their genomes in a human&#45;readable format..." alt="" coords="265,5,457,46"/>
-<area shape="rect" id="node4" href="$class_data_handler.html#a23ad0de50b3da065674e92b150e12d9f" title="Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic..." alt="" coords="259,70,463,111"/>
-<area shape="rect" id="node5" href="$class_data_handler.html#a5661a45f0a9965bcd041c5617f1a1e8b" title="Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! " alt="" coords="266,135,457,177"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="512,77,563,104"/>
+<area shape="rect" id="node2" href="$class_data_handler.html#a46129d74eac82af0caae37a9e20e3e2e" title="Data harvesting method. Writes to a file all hosts with their genomes in a human&#45;readable format..." alt="" coords="265,5,457,47"/>
+<area shape="rect" id="node4" href="$class_data_handler.html#a23ad0de50b3da065674e92b150e12d9f" title="Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic..." alt="" coords="259,71,463,112"/>
+<area shape="rect" id="node5" href="$class_data_handler.html#a5661a45f0a9965bcd041c5617f1a1e8b" title="Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! " alt="" coords="265,136,456,177"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="511,46,561,73"/>
 </map>

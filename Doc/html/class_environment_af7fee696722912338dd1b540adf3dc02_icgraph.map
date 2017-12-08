@@ -1,5 +1,5 @@
 <map id="Environment::getSingleHostChromoOneSize" name="Environment::getSingleHostChromoOneSize">
-<area shape="rect" id="node2" href="$class_data_handler.html#a23ad0de50b3da065674e92b150e12d9f" title="Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic..." alt="" coords="241,5,445,46"/>
-<area shape="rect" id="node4" href="$class_data_handler.html#a5661a45f0a9965bcd041c5617f1a1e8b" title="Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! " alt="" coords="247,70,438,111"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="493,45,544,72"/>
+<area shape="rect" id="node2" href="$class_data_handler.html#a23ad0de50b3da065674e92b150e12d9f" title="Data harvesting method. Calculates and writes to a file some stats about the hosts population genetic..." alt="" coords="239,5,443,47"/>
+<area shape="rect" id="node4" href="$class_data_handler.html#a5661a45f0a9965bcd041c5617f1a1e8b" title="Data harvesting method. Record the total number of genes and types of MHCs in hosts. All the freaking hosts! " alt="" coords="245,71,436,112"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="491,13,541,39"/>
 </map>

@@ -1,7 +1,7 @@
 <map id="Antigen::mutateAntigenBitByBit" name="Antigen::mutateAntigenBitByBit">
-<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="232,5,421,32"/>
-<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="239,56,415,83"/>
-<area shape="rect" id="node4" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="229,107,424,133"/>
-<area shape="rect" id="node5" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="243,157,410,184"/>
-<area shape="rect" id="node6" href="$class_antigen.html#a2e4e0c8eac818109974dd7f67894d6d7" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="238,208,415,235"/>
+<area shape="rect" id="node2" href="$class_random_numbs.html#a364c415e5105061274013a1e68576a64" title="Core method. Gets the instance of a singleton class. " alt="" coords="231,5,420,32"/>
+<area shape="rect" id="node3" href="$class_random_numbs.html#aaae77654579060738e55b46c8caba9a6" title="Core method. Generates one real random number from a given interval with an uniform distribution..." alt="" coords="237,56,413,83"/>
+<area shape="rect" id="node4" href="$class_tagging__system.html#a80d575a3bbb747f9e1ff71877a937cba" title="Data collecting method. Gets instance of the tagging system. " alt="" coords="228,107,423,133"/>
+<area shape="rect" id="node5" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Data collecting method. Obtaining an unique tag. " alt="" coords="242,157,409,184"/>
+<area shape="rect" id="node6" href="$class_antigen.html#a2e4e0c8eac818109974dd7f67894d6d7" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="237,208,414,235"/>
 </map>

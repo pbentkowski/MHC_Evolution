@@ -1,4 +1,4 @@
 <map id="DataHandler::saveNumOfPathoSpeciesToFile" name="DataHandler::saveNumOfPathoSpeciesToFile">
-<area shape="rect" id="node2" href="$class_environment.html#a9bbe18137bc9b931826ec18a036f5697" title="Core method. Gets the number of species of pathogens. " alt="" coords="271,5,454,46"/>
-<area shape="rect" id="node3" href="$class_environment.html#af8726165c8bdeb45dcc0e0f91e894c38" title="Core method. Gets a number of individuals in a selected species of pathogen. " alt="" coords="261,70,464,111"/>
+<area shape="rect" id="node2" href="$class_environment.html#a9bbe18137bc9b931826ec18a036f5697" title="Core method. Gets the number of species of pathogens. " alt="" coords="270,5,453,47"/>
+<area shape="rect" id="node3" href="$class_environment.html#af8726165c8bdeb45dcc0e0f91e894c38" title="Core method. Gets a number of individuals in a selected species of pathogen. " alt="" coords="260,71,463,112"/>
 </map>

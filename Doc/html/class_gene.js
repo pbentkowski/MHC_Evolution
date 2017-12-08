@@ -9,12 +9,14 @@ var class_gene =
     [ "mutateGeneWhole", "class_gene.html#a625cc7e2a230d7e9594da553aed60c17", null ],
     [ "mutateGeneWhole", "class_gene.html#ab2c411205a520d94b0430b0b2c9feaa2", null ],
     [ "printGeneToScreen", "class_gene.html#aac0df5c1d80054e7191bad9bfb325c00", null ],
-    [ "setNewFixedGene", "class_gene.html#a06f6cf75316ee38521a908f7812b240d", null ],
     [ "setNewGene", "class_gene.html#ad3bb5a49fb03e3a934c2275563ae801d", null ],
     [ "setNewGene", "class_gene.html#aa8e97260d077455a574e68daf911d3e5", null ],
     [ "GenesTag", "class_gene.html#a0ca1205d9bb7895e2d33310dbf07e208", null ],
     [ "MutationTime", "class_gene.html#a1064cb15966708c7d7fb8d7c2e9ba31b", null ],
+    [ "numbOfHostsBearing", "class_gene.html#ad80d82232e8c18b3cb5f72cd8c3f30e8", null ],
+    [ "occurence", "class_gene.html#a696adf948ab5abe612a03dc041f64073", null ],
     [ "ParentTags", "class_gene.html#a70b4476f69b6ca4582d6f2682a44ca5b", null ],
+    [ "presentedPathos", "class_gene.html#a2af3d4e4db1b605f4eea4a80fa3ac381", null ],
     [ "TheParentWas", "class_gene.html#a5462b63a3fbcce8412386d49e09babc6", null ],
     [ "timeOfOrigin", "class_gene.html#ac94d480860ec3e10326d9906eb3359c2", null ]
 ];
