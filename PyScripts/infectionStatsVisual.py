@@ -101,18 +101,18 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     tkfs = 14
     boxLineWth = 1.5
     boxMedLine = 3.0
-    linez = ('b-', 'b--', 'r-', 'r--')
+    linez = ('y-', 'b-', 'r-', 'g-', 'y--', 'b--', 'r--', 'g--')
     forBoxPltRecruit = []
     forBoxPltImmume = []
     boxLbls = []
-    plt.figure(1, figsize=(14, 10))
+    plt.figure(1, figsize=(18, 12))
     plt.subplot(212)
     for itm in avgDataList:
         plt.semilogy(itm[2] + 1., linez[ii], lw=2)
         print("line", linez[ii], "represents", itm[0], ",", itm[1])
         forBoxPltRecruit.append(itm[3])
         forBoxPltImmume.append(itm[4])
-        boxLbls.append("alpha %1.2f\npath. spp %d" % (itm[0], itm[1]))
+        boxLbls.append("α=%1.2f\npat %d" % (itm[0], itm[1]))
         ii += 1
     plt.hlines(2., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
@@ -127,11 +127,14 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     boxprops = dict(linestyle='-', linewidth=boxLineWth, color='k')
     # color the median line
     medianprops = []
+    medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='y'))
     medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='b'))
-    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='b'))
     medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='r'))
+    medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='g'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='y'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='b'))
     medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='r'))
-    # end color the median line
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='g'))
     whiskerprops = dict(linewidth=boxLineWth)
     capprops = dict(linewidth=boxLineWth)
     flierprops = dict(markersize=10)
@@ -182,7 +185,7 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     tkfs = 14
     boxLineWth = 1.5
     boxMedLine = 3.0
-    linez = ('b-', 'b--', 'r-', 'r--')
+    linez = ('y-', 'b-', 'r-', 'g-', 'y--', 'b--', 'r--', 'g--')
     forBoxPltRecruit = []
     forBoxPltImmume = []
     boxLbls = []
@@ -193,7 +196,7 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
         print("line", linez[ii], "represents", itm[0], ",", itm[1])
         forBoxPltRecruit.append(itm[3])
         forBoxPltImmume.append(itm[4])
-        boxLbls.append("alpha %1.2f\npath. spp %d" % (itm[0], itm[1]))
+        boxLbls.append("α=%1.2f\npat %d" % (itm[0], itm[1]))
         ii += 1
     plt.hlines(1., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
@@ -207,10 +210,14 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     boxprops = dict(linestyle='-', linewidth=boxLineWth, color='k')
     # color the median line
     medianprops = []
+    medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='y'))
     medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='b'))
-    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='b'))
     medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='r'))
+    medianprops.append(dict(linestyle='-', linewidth=boxMedLine, color='g'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='y'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='b'))
     medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='r'))
+    medianprops.append(dict(linestyle='--', linewidth=boxMedLine, color='g'))
     # end color the median line
     whiskerprops = dict(linewidth=boxLineWth)
     capprops = dict(linewidth=boxLineWth)
