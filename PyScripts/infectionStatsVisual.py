@@ -26,9 +26,9 @@ def loadDataFromDataFile(FILE):
                 continue
             else:
                 one = line.split(',')
-                ww = re.split(";", one[4])
+                ww = re.split(";", one[5])
                 dataList.append((float(one[0]), float(one[1]), float(one[2]),
-                                 float(one[3]),
+                                 float(one[3]), float(one[4]),
                                  np.array(ww[0:-1], dtype=float)))
     return dataList
 
@@ -38,7 +38,7 @@ def getListOfParamsSets(dataList):
     the informations on what parameters are used."""
     allParamsTupl = []
     for itm in dataList:
-        tupparamz = (itm[0], itm[1])
+        tupparamz = (itm[0], itm[1], itm[2])
         if tupparamz not in allParamsTupl:
             allParamsTupl.append(tupparamz)
     return allParamsTupl
@@ -54,10 +54,10 @@ def plotOneSet(dataList, paramsTupl, maxxy=(100, 1e5), figNum=1):
     plt.subplot(121)
     persist = []
     for itm in dataList:
-        tupparamz = (itm[0], itm[1])
+        tupparamz = (itm[0], itm[1], itm[2])
         if tupparamz == paramsTupl:
-            persist.append(itm[3]/itm[2])
-            plt.semilogy(itm[4] + 1.)
+            persist.append(itm[4]/itm[3])
+            plt.semilogy(itm[5] + 1.)
             ii += 1
     persist = np.array(persist)
     print("We have", ii, "simulations for", paramsTupl)
@@ -83,19 +83,31 @@ def getAvgVals(dataList, allParamsTupl, avgWay='median'):
         persist = []
         immDomOne = []
         for itm in dataList:
-            tupparamz = (itm[0], itm[1])
+            tupparamz = (itm[0], itm[1], itm[2])
             if tupparamz == prm:
-                persist.append(itm[3]/itm[2])
-                immDomOne.append(itm[4][0])
-                oneGoSimuls.append(itm[4])
+                persist.append(itm[4]/itm[3])
+                immDomOne.append(itm[5][0])
+                oneGoSimuls.append(itm[5])
         meanStats = isb.calcAverageForOneRun(oneGoSimuls, avgWay)
-        avgDataList.append((prm[0], prm[1], meanStats, np.array(persist),
-                            np.array(immDomOne)))
-    return sorted(avgDataList, key=lambda elm: (elm[0], elm[1]))
+        avgDataList.append((prm[0], prm[1], prm[2],
+                            meanStats, np.array(persist), np.array(immDomOne)))
+    return sorted(avgDataList, key=lambda elm: (elm[1], elm[2]))
 
 
-def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
+def plotAvgLog(avgDataList, alpha, maxxy=(100, 1e5),
+               plottName='imm_compt_fig.png'):
     """Plots the summary results. Makes it to look nice."""
+    avgDataListReduc = []
+    alphas = []
+    for itmm in avgDataList:
+        if itmm[0] not in alphas:
+            alphas.append(itmm[0])
+        if itmm[0] == alpha:
+            avgDataListReduc.append(itmm)
+    if len(avgDataListReduc) == 0:
+        print("The data set is empty. No corresponding alpha factor has been",
+              "found. Available alphas are:", alphas)
+        return None
     ii = 0
     fs = 16
     tkfs = 14
@@ -107,12 +119,12 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     boxLbls = []
     plt.figure(1, figsize=(18, 12))
     plt.subplot(212)
-    for itm in avgDataList:
-        plt.semilogy(itm[2] + 1., linez[ii], lw=2)
-        print("line", linez[ii], "represents", itm[0], ",", itm[1])
-        forBoxPltRecruit.append(itm[3])
-        forBoxPltImmume.append(itm[4])
-        boxLbls.append("α=%1.2f\npat %d" % (itm[0], itm[1]))
+    for itm in avgDataListReduc:
+        plt.semilogy(itm[3] + 1., linez[ii], lw=2)
+        print("line", linez[ii], "represents", itm[1], ",", itm[2])
+        forBoxPltRecruit.append(itm[4])
+        forBoxPltImmume.append(itm[5])
+        boxLbls.append("%1.0f$\cdot 10^{-5}$\npat %d" % (itm[1]*1e5, itm[2]))
         ii += 1
     plt.hlines(2., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
@@ -178,8 +190,20 @@ def plotAvgLog(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     plt.show()
 
 
-def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
+def plotAvgLinn(avgDataList, alpha, maxxy=(100, 1e5),
+                plottName='imm_compt_fig.png'):
     """Plots the summary results. Makes it to look nice."""
+    avgDataListReduc = []
+    alphas = []
+    for itmm in avgDataList:
+        if itmm[0] not in alphas:
+            alphas.append(itmm[0])
+        if itmm[0] == alpha:
+            avgDataListReduc.append(itmm)
+    if len(avgDataListReduc) == 0:
+        print("The data set is empty. No corresponding alpha factor has been",
+              "found. Available alphas are:", alphas)
+        return None
     ii = 0
     fs = 16
     tkfs = 14
@@ -189,14 +213,14 @@ def plotAvgLinn(avgDataList, maxxy=(100, 1e5), plottName='imm_compt_fig.png'):
     forBoxPltRecruit = []
     forBoxPltImmume = []
     boxLbls = []
-    plt.figure(1, figsize=(14, 10))
+    plt.figure(1, figsize=(18, 12))
     plt.subplot(212)
-    for itm in avgDataList:
-        plt.plot(itm[2] + 1., linez[ii], lw=2)
-        print("line", linez[ii], "represents", itm[0], ",", itm[1])
-        forBoxPltRecruit.append(itm[3])
-        forBoxPltImmume.append(itm[4])
-        boxLbls.append("α=%1.2f\npat %d" % (itm[0], itm[1]))
+    for itm in avgDataListReduc:
+        plt.plot(itm[3] + 1., linez[ii], lw=2)
+        print("line", linez[ii], "represents", itm[1], ",", itm[2])
+        forBoxPltRecruit.append(itm[4])
+        forBoxPltImmume.append(itm[5])
+        boxLbls.append("%1.0f$\cdot 10^{-5}$\npat %d" % (itm[1]*1e5, itm[2]))
         ii += 1
     plt.hlines(1., 0, maxxy[0], colors='k', linestyles='dashed')
     plt.xlabel("time [host generations after mutation apperence]", fontsize=fs)
@@ -266,13 +290,14 @@ def argInfo():
     print("  1. Name of the file with data.")
     print("  2. Name of the figure.")
     print("  3. Y-axis scale 'log' or 'lin'")
+    print("  4. Alpha factor you wish to see.")
 
 
 def main():
     """Main function - the script's main body."""
     xMax = 30
     yMax = 10000
-    if len(sys.argv) <= 3:
+    if len(sys.argv) <= 4:
         argInfo()
         sys.exit()
     try:
@@ -280,13 +305,18 @@ def main():
     except Exception:
         print("Cannot load the file with data. Check the name or if it exists")
         sys.exit()
+    try:
+        alpha = float(sys.argv[4])
+    except Exception:
+        print("Alpha factor has to be a number. Now we have:", alpha)
+        sys.exit()
     paramzv = getListOfParamsSets(dataList)
     avgDataList = getAvgVals(dataList, paramzv, 'mean')
     try:
         if sys.argv[3] == 'lin':
-            plotAvgLinn(avgDataList, (xMax, yMax), sys.argv[2])
+            plotAvgLinn(avgDataList, alpha, (xMax, yMax), sys.argv[2])
         elif sys.argv[3] == 'log':
-            plotAvgLog(avgDataList, (xMax, yMax), sys.argv[2])
+            plotAvgLog(avgDataList, alpha, (xMax, yMax), sys.argv[2])
         else:
             print("Wrong Y-axis scaling. Hast to be 'log' or 'lin', pick one.")
             sys.exit()

@@ -115,7 +115,11 @@ def getIndexGivenGeneID(FILE, geneID, firstIndex=1):
             else:
                 if re.search(" " + strID, line):
                     LL = line.split()
-                    indexInFile.append((i + 1, LL.index(strID)))
+                    try:
+                        indexInFile.append((i + 1, LL.index(strID)))
+                    except ValueError:
+                        print(strID, "is not in the list. Might've evolved",
+                              "before the cut-off generation.")
     return np.array(indexInFile, dtype=int)
 
 

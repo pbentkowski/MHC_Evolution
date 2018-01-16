@@ -34,13 +34,15 @@ def getTheData(firstGen, numbOfRand, minLastTime, avgWay='mean',
                 pathoSppNum = float(ll[2])
                 ll = re.split(" ", ln.getline(paramsFile, 20))
                 alphaFact = float(ll[2])
+                ll = re.split(" ", ln.getline(paramsFile, 15))
+                pathoMut = float(ll[2])
                 mhcStats = isb.calcRelatFittManyMHC(geneList, hostPopSize,
                                                     avgWay, dirName)
                 mhcStats, totGen, genFix = isb.removeShortLivedMHC(mhcStats,
                                                                    minLastTime)
                 avgImmCompts = isb.calcAverageForOneRun(mhcStats, avgWay)
-                datOut.append((alphaFact, pathoSppNum, totGen, genFix,
-                               avgImmCompts))
+                datOut.append((alphaFact, pathoMut, pathoSppNum, totGen,
+                               genFix, avgImmCompts))
                 print
     return datOut
 
@@ -58,8 +60,8 @@ def main():
     if len(sys.argv) <= 4:
         argInfo()
         sys.exit()
-    file_c = "#alpha_factor numb_of_patho_spp genesTested genesFixed " \
-        + "array_with_avg_immunocompetence\n"
+    file_c = "#alpha_factor,patho_mut_rate,numb_of_patho_spp,genesTested," \
+        + "genesFixed,array_with_avg_immunocompetence\n"
     if sys.argv[4] == 'mean' or sys.argv[4] == 'median':
         pass
     else:
@@ -75,8 +77,10 @@ def main():
         print("Cannot convert arguments to integers. Check your params")
         argInfo()
         sys.exit()
+#    if True:
     try:
         theData = getTheData(generStart, numbGenes, minGeneAge, 'median')
+#    else:
     except Exception:
         print("Failed to process the data. Some serious issues arose.",
               "Check if the cut-off host generation for calculating stats",
@@ -84,8 +88,8 @@ def main():
         sys.exit()
     for itm in theData:
         file_c += str(itm[0]) + ',' + str(itm[1]) + ',' + str(itm[2]) + ',' \
-            + str(itm[3]) + ','
-        for ii in itm[4]:
+            + str(itm[3]) + ',' + str(itm[4]) + ','
+        for ii in itm[5]:
             file_c += "%6.3f;" % ii
         file_c += "\n"
     dataFile = open(f_name, 'w')
