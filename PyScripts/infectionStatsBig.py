@@ -288,7 +288,10 @@ def statsMHC(mhcID, hostPopSize, avergWay='median', path=os.getcwd()):
     if col_med <= 0:
         col_med = 0.1
     avgBkgImm[avgBkgImm == 0] = col_med
-    return (nubPatho / hostCount) / avgBkgImm
+#    return (nubPatho / hostCount) / avgBkgImm
+    ll = re.split(" ", ln.getline(path + "/InputParameters.csv", 9))
+    numbPathoSpp = float(ll[2])
+    return (nubPatho / hostCount) / (avgBkgImm * numbPathoSpp)
 
 
 def calcRelatFittManyMHC(geneList, hostPopSize, averWay='median',
