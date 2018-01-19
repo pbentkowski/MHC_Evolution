@@ -179,7 +179,7 @@ def plotAvgLog(avgDataList, alpha, maxxy=(100, 1e5),
                     capprops=capprops,  flierprops=flierprops)
         plt.yscale('log')
         mockList[i] = []
-    plt.ylim((1, 1e4))
+    plt.ylim((0.0, maxxy[1]))
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.ylabel("mutant’s relative immuno-\ncompetence at the first generation",
@@ -274,7 +274,7 @@ def plotAvgLinn(avgDataList, alpha, maxxy=(100, 1e5),
                     medianprops=medianprops[indx], whiskerprops=whiskerprops,
                     capprops=capprops,  flierprops=flierprops)
         mockList[i] = []
-    plt.ylim((0.0, 5000))
+    plt.ylim((0.0, maxxy[1]))
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.ylabel("mutant’s relative immuno-\ncompetence at the first generation",
@@ -296,7 +296,7 @@ def argInfo():
 def main():
     """Main function - the script's main body."""
     xMax = 30
-    yMax = 10000
+    yMax = 300
     if len(sys.argv) <= 4:
         argInfo()
         sys.exit()
