@@ -214,7 +214,7 @@ int main(int argc, char** argv) {
     std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
-        Data2file.savePathoPopulToFile(ENV, 0);
+//        Data2file.savePathoPopulToFile(ENV, 0);
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveHostGeneNumbers(ENV, 0);
@@ -240,7 +240,7 @@ int main(int argc, char** argv) {
        std::cout << " advantage. Sorry :-(" << std::endl;
        return 0;
     }
-    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
+//    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
 
     std::cout << "Run finished. Check the output files for results." << std::endl;
