@@ -235,7 +235,7 @@ def main():
         sys.exit()
     try:
         hostList = loadHostPopulation(sys.argv[1])
-    except:
+    except Exception:
         print("ERROR of loadHostPopulation() when loading data. Check if the",
               "input file has the right format.")
         sys.exit()
@@ -255,7 +255,7 @@ def main():
         print("There are", len(hostList[0]), "loci per individual.")
         print("Co-occurrence matrix's min and max:", np.min(cooccMtx), ":",
               np.max(cooccMtx))
-    except:
+    except Exception:
         print("ERROR when processing data. Probably clustering went wrong.",
               "Sorry.")
         sys.exit()

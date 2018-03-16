@@ -27,12 +27,12 @@ def LoadTheData2(arg, dirname, files):
         if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
             genes = p.genfromtxt(filepath)
             paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            l = re.split(" ", ln.getline(paramsFile, 15))   # change here
-            interestingOne = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 10))   # change here
-            interestingTwo = float(l[2])
-            l = re.split(" ", ln.getline(paramsFile, 9))
-            path_spp = l[2].split()[0]
+            ll = re.split(" ", ln.getline(paramsFile, 15))   # change here
+            interestingOne = float(ll[2])
+            ll = re.split(" ", ln.getline(paramsFile, 10))   # change here
+            interestingTwo = float(ll[2])
+            ll = re.split(" ", ln.getline(paramsFile, 9))
+            path_spp = ll[2].split()[0]
             print("patho species:", path_spp, "| things:",  interestingOne,
                   " ; ", interestingTwo, "| dir:", dirname.split("/")[-1])
             arg.append((interestingOne, interestingTwo, path_spp, genes[:, 0],
@@ -63,14 +63,14 @@ def loadTheData3(DIRR=os.getcwd()):
             if filepath == os.path.join(dirName, 'HostsGeneDivers.csv'):
                 genes = p.genfromtxt(filepath)
                 paramsFile = os.path.join(dirName, 'InputParameters.csv')
-                l = re.split(" ", ln.getline(paramsFile, 15))   # change here
-                interestingOne = float(l[2])
-                l = re.split(" ", ln.getline(paramsFile, 9))   # change here
-                interestingTwo = float(l[2])
-                l = re.split(" ", ln.getline(paramsFile, 9))
-                path_spp = l[2].split()[0]
-                l = re.split(" ", ln.getline(paramsFile, 7))
-                pop_size = float(l[2].split()[0])
+                ll = re.split(" ", ln.getline(paramsFile, 15))   # change here
+                interestingOne = float(ll[2])
+                ll = re.split(" ", ln.getline(paramsFile, 9))   # change here
+                interestingTwo = float(ll[2])
+                ll = re.split(" ", ln.getline(paramsFile, 9))
+                path_spp = ll[2].split()[0]
+                ll = re.split(" ", ln.getline(paramsFile, 7))
+                pop_size = float(ll[2].split()[0])
                 if path_spp == "NOT_IN_THIS_MODEL":
                     path_spp = 1
                 print("patho species:", path_spp, "| things:",  interestingOne,
@@ -103,7 +103,7 @@ def main():
     try:
         interestOne = float(sys.argv[1])
         interestTwo = float(sys.argv[2])
-    except:
+    except Exception:
         print("Can't recognise the parameters. Two are required.")
         sys.exit()
     saveFiggs = True  # True to save figures to disk, False to not save

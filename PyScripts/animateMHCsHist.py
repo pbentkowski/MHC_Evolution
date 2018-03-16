@@ -17,6 +17,7 @@ for Evolutionary Biology Group, Faculty of Biology
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import n
 
 # This variable sets that every Nth row is used for plotting
 # thanks to that we get a speedy animation.

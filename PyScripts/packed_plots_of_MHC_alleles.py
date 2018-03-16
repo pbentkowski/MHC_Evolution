@@ -45,7 +45,7 @@ def getVarxLabel(filepath):
                     pass
         print("ERROR in getVarxLabel(): Cannot find the X label.")
         return None
-    except:
+    except Exception:
         print("ERROR in getVarxLabel(): Cannot get the X label.")
         return None
 
@@ -62,10 +62,10 @@ def loadParamSettings(filepath):
                 else:
                     try:
                         paramzList.append(line.split()[2])
-                    except:
+                    except Exception:
                         pass
         return paramzList
-    except:
+    except Exception:
         print("ERROR in loadParamSettings(): Cannot load params into a list.")
         return None
 
@@ -79,7 +79,7 @@ def compareParams(template, paramz):
             try:
                 ITM_0 = float(itm[0])
                 ITM_1 = float(itm[1])
-            except:
+            except Exception:
                 ITM_0 = str(itm[0])
                 ITM_1 = str(itm[1])
             if(itm[0] == "VARX" or itm[0] == "VAR" or itm[0] == "IRR" or
@@ -122,7 +122,7 @@ def readDate(string):
         dd = string.split("-")
         theDate = dt.date(int(dd[0]), int(dd[1]), int(dd[2]))
         return theDate
-    except:
+    except Exception:
         print("ERROR in readDate(): Bad string format! It has to be ISO's",
               "yyyy-mm-dd format!")
         return None
@@ -132,15 +132,15 @@ def loadTheDateFromParamFile(filePar):
     """Takes InputParameters.csv file and tries to figure out what day the run
     was started (line 2 in the file)."""
     try:
-        l = re.split(" ", ln.getline(filePar, 2))[2].split(".")[0].split("-")
-    except:
+        ll = re.split(" ", ln.getline(filePar, 2))[2].split(".")[0].split("-")
+    except Exception:
         print("ERROR in loadTheDate(): Cannot load the Params file. Check if",
               "the path to the params file is correct as well as its name.")
         return None
     try:
-        theDay = dt.date(int(l[0]), int(l[1]), int(l[2]))
+        theDay = dt.date(int(ll[0]), int(ll[1]), int(ll[2]))
         return theDay
-    except:
+    except Exception:
         print("ERROR in loadTheDate(): Cannot covert data into the date",
               "format. Check if the data file has the right flavour.")
         return None
@@ -159,10 +159,10 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                loadTheDateFromParamFile(filepath) >= theStartDate):
                 paramzList = loadParamSettings(filepath)
                 if compareParams(template, paramzList):
-                    l = re.split(" ", ln.getline(filepath, 9))
-                    path_spp = float(l[2].split()[0])
-                    l = re.split(" ", ln.getline(filepath, 12))
-                    pathoNorm = float(l[2].split()[0]) * path_spp
+                    ll = re.split(" ", ln.getline(filepath, 9))
+                    path_spp = float(ll[2].split()[0])
+                    ll = re.split(" ", ln.getline(filepath, 12))
+                    pathoNorm = float(ll[2].split()[0]) * path_spp
                     var = float(paramzList[vv['VAR']])
                     varx = float(paramzList[vv['VARX']])
                     dataFilePath = os.path.join(dirName, "HostsGeneDivers.csv")
@@ -336,7 +336,7 @@ def loadTheStuuff(dataSlice, specFile, dataType):
         meanResult = buildStats(dd)
         x_Label = getVarxLabel(specFile)
         return dd, meanResult, x_Label
-    except:
+    except Exception:
         print("Bump... Nope...")
         return None
 
@@ -362,13 +362,13 @@ def main():
         try:
             template = loadParamSettings(sys.argv[2])
             x_Label = getVarxLabel(sys.argv[2])
-        except:
+        except Exception:
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
             # third argument is very important
             theData = getTheData(startDate, template, int(sys.argv[3]))
-        except:
+        except Exception:
             print("Failed to process the data. Some serious issues arose.",
                   "Check if the cut-off host generation for calculating stats",
                   "is smaller than the total number of host generations.")
