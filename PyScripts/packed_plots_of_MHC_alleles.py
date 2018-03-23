@@ -223,10 +223,16 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     of averaged data."""
     FS = 22
     annoSize = int(0.85*FS)
+    xtix = ("", "", "2", "", "4", "", "", "", "8", "", "", "", "", "", "", "",
+            "16", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+            "32", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+            "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+            "64", "", "", "", "", "", "")
+    k = (-0.35, 0.35)
     ll = []
 #    maxX = 1.15 * float(np.max(meanResult[:, 1]))
 #    limitz = (0., maxX)
-    figSize = (10, 7)
+    figSize = (12, 9)
     for itm in meanResult:
         if itm[0] in ll:
             pass
@@ -234,35 +240,37 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
             ll.append(itm[0])
     # First plot - unique MHC alleles in population
     plt.figure(1, figsize=figSize)
-    for var in ll:
+    for i, var in enumerate(ll):
         ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
+        plt.errorbar(ww[:, 1]+k[i], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 2]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
     plt.ylim((0, 200))
     plt.xscale(logsc)
-    plt.tick_params(axis='both', labelsize=annoSize)
-    plt.grid(True)
+    plt.tick_params(axis='both', labelsize=annoSize, bottom='off')
+    plt.xticks(np.arange(70), xtix)
+    plt.grid(axis='y')
     # Second plot - unique MHC alleles in one chromosome
     plt.figure(2, figsize=figSize)
-    for var in ll:
+    for i, var in enumerate(ll):
         ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
+        plt.errorbar(ww[:, 1]+k[i], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 4]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
-    plt.ylabel("average number of MHCs copies in an indiv.",
+    plt.ylabel("average number of MHC copies in an individual",
                fontsize=FS)
 #    plt.xlim(limitz)
     plt.ylim((0, 30))
     plt.xscale(logsc)
-    plt.tick_params(axis='both', labelsize=annoSize)
-    plt.grid(True)
+    plt.tick_params(axis='both', labelsize=annoSize, bottom='off')
+    plt.xticks(np.arange(70), xtix)
+    plt.grid(axis='y')
     plt.figure(3, figsize=figSize)
-    for var in ll:
+    for i, var in enumerate(ll):
         ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 6], ww[:, 7], lw=2, marker="o", ms=8)
+        plt.errorbar(ww[:, 1]+k[i], ww[:, 6], ww[:, 7], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 6]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("hosts average fitness normalized per number\nof pathogen" +
@@ -270,12 +278,13 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 #    plt.xlim(limitz)
     plt.ylim(ymin=0)
     plt.xscale(logsc)
-    plt.tick_params(axis='both', labelsize=annoSize)
-    plt.grid(True)
+    plt.tick_params(axis='both', labelsize=annoSize, bottom='off')
+    plt.xticks(np.arange(70), xtix)
+    plt.grid(axis='y')
     plt.figure(4, figsize=figSize)
-    for var in ll:
+    for i, var in enumerate(ll):
         ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 8], ww[:, 9], lw=2, marker="o", ms=8)
+        plt.errorbar(ww[:, 1]+k[i], ww[:, 8], ww[:, 9], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 8]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("hosts average CV fitness normalized per\nnumber of " +
@@ -283,8 +292,9 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 #    plt.xlim(limitz)
     plt.ylim(ymin=0)
     plt.xscale(logsc)
-    plt.tick_params(axis='both', labelsize=annoSize)
-    plt.grid(True)
+    plt.tick_params(axis='both', labelsize=annoSize, bottom='off')
+    plt.xticks(np.arange(70), xtix)
+    plt.grid(axis='y')
 #    plt.show()
 
 
