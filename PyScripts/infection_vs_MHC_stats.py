@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Run this script on simulation outputs containing infection data. It will create
-a CSV file with computed statistics and parameters for each single sun. Then
-use Ipython to load this file with function  importComputedData() and plot its
-output with function plotBoxesSlopes().
+a CSV file with computed statistics and parameters for each single run. Then
+use Ipython to load this file with function `importComputedData()` and plot its
+output with function `plotBoxesSlopes()`.
 
 
 Created on Fri Feb  3 15:30:05 2017

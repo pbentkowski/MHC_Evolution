@@ -95,7 +95,7 @@ def main():
     atigens = rawBitArr(theNumber, antiSize)
     MHCS = rawBitArr(theNumber, mhcSize)
     counter = finInRawBit(atigens, MHCS)
-    print("MHC fitted", counter, "times")
+    print("MHC fitted", int(counter), "times")
     print("Fraction of MHC tested that fitted:",
           counter / theNumber)
     print("\nDone!")
@@ -131,7 +131,7 @@ def main2():
                 ss += " : Match!"
                 break
         print(ss)
-    print("MHC fitted", counter, "times")
+    print("MHC fitted", int(counter), "times")
     print("Fraction of MHC tested that fitted:",
           counter / theNumber)
     print("\nDone!")
