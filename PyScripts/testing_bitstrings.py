@@ -89,7 +89,7 @@ def main():
                 print("Size of antigen cannot be smaller then size of MHC.",
                       "Quit.")
                 sys.exit()
-        except:
+        except Exception:
             print("Cannot convert arguments to numbers. Quit")
             sys.exit()
     atigens = rawBitArr(theNumber, antiSize)
@@ -117,7 +117,7 @@ def main2():
                 print("Size of antigen cannot be smaller then size of MHC.",
                       "Quit.")
                 sys.exit()
-        except:
+        except Exception:
             print("Cannot convert arguments to numbers. Quit")
             sys.exit()
     Antig = createAtingArr(theNumber, antiSize, mhcSize)
@@ -135,6 +135,7 @@ def main2():
     print("Fraction of MHC tested that fitted:",
           counter / theNumber)
     print("\nDone!")
+
 
 if __name__ == "__main__":
     main()

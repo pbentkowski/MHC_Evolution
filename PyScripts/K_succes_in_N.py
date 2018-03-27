@@ -37,12 +37,12 @@ def main():
     """ """
     try:
         numBits = int(input("Enter length of the big bit string: "))
-    except:
+    except Exception:
         print("The length of the bit string has to be an integer!")
         sys.exit()
     try:
         minFits = int(input("Enter length of the fitting string: "))
-    except:
+    except Exception:
         print("The length of the fitting string has to be an integer!")
         sys.exit()
     print("====================")
@@ -51,6 +51,7 @@ def main():
           " p =", probOfStreak(numBits, minFits))
     print("\nDONE!")
 
+
 if __name__ == "__main__":
-    sys.setrecursionlimit(20000)
+    sys.setrecursionlimit(200000)
     main()
