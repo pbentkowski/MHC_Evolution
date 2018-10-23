@@ -1,3 +1,0 @@
-/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir
