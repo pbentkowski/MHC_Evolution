@@ -6,7 +6,7 @@ This work is part of the project [**Evolution of the number of copies of MHC gen
 Documentation:
 -----------
 
-Go from here to ./Doc/html/ and launch the ./Doc/html/index.html file in your web browser. The documentation was produced with Doxygen.
+Go from here to *./Doc/html/* and launch the *./Doc/html/index.html* file in your web browser. The documentation was produced with Doxygen.
 
 Authors:
 --------
