@@ -32,7 +32,7 @@ $** g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2P
 
 It should also compile with flag -std=c++11 only with minor warnings. The code here can be also used like a toolbox for your research. You can stitch your own *main_yourown.cpp* file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run: 
 
-$ ** scons -Q scenario="Scenarios/main_default.cpp"**
+$ **scons -Q scenario="Scenarios/main_default.cpp"**
 
 replacing "Scenarios/main_default.cpp" with the path to your own custom *main_xyz.cpp*. Use our *main_core.cpp* file as the base to develop your own scenarios of MHC evolution dynamics. WARNING!
 Using our Scons script overwrites the *main.cpp* file in the main source directory - always
@@ -44,4 +44,4 @@ $ **g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen
 
 Or run the Scons script: 
 
-$ ** scons -Q scenario="Scenarios/main_default.cpp" linking="static" **       
+$ **scons -Q scenario="Scenarios/main_default.cpp" linking="static"**       
