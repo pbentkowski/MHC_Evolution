@@ -1,9 +1,12 @@
 *.o
 *.pyc
 *.exe
+*checkpoint.ipynb
 .sconsign.dblite
 .idea
 dist
 build
 SCBuild
 cmake-build-debug
+PyScripts/.ipynb_checkpoints
+PyScripts/__pycache__
