@@ -36,8 +36,8 @@
  */
 void printTipsToRun(){
     std::cout << std::endl;
-    std::cout << "This is the first sex scenario where most different MHC composition"
-            " is preferred. Parameters should be:" << std::endl;
+    std::cout << "This is the second sex scenario where one different MHC is needed. "
+            "Parameters should be:" << std::endl;
     std::cout << " 1. Seed for the RNG (when set to < 0 the program will " <<
             "seed the RNG engine itself with a truly random number)." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
@@ -216,10 +216,11 @@ int main(int argc, char** argv) {
     std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
-        Data2file.savePathoPopulToFile(ENV, 0);
+//        Data2file.savePathoPopulToFile(ENV, 0);
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
-        Data2file.saveMhcNumbersWhenMating(ENV, 0);
+        Data2file.saveHostGeneNumbers(ENV, 0);
+        Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -229,11 +230,12 @@ int main(int argc, char** argv) {
             }
             Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessPlainPresent();  // changed for sexual reproduction
+//            ENV.selectAndReprodHostsReplace();
             ENV.selectAndReprodHostsNoMating();  // changed for sexual reproduction
-            ENV.matingMaxDifferentMHCs(NumbPartners);// changed for sexual reproduction
-            Data2file.saveMhcNumbersWhenMating(ENV, i);
+            ENV.matingWithOneDifferentMHCsmallSubset(NumbPartners); // second sex scenario
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
             Data2file.saveHostGeneticDivers(ENV, i);
+            Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }
@@ -243,7 +245,7 @@ int main(int argc, char** argv) {
        std::cout << " advantage. Sorry :-(" << std::endl;
        return 0;
     }
-    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
+//    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);
 
     std::cout << "Run finished. Check the output files for results." << std::endl;

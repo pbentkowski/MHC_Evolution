@@ -1143,7 +1143,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
  * There are no sexes as the host species is assumed a hermaphrodite. Each
  * individual checks out a user defined N number of random individuals from the
  * population and mates with the first on N individual that has at least one different
- * MHC gene not present in chosing party genome The process of random mating and
+ * MHC gene not present in the chosing party genome. The process of random mating and
  * selection is repeated until the algorithm will recreate a population of the
  * same size as the original one.
  *
@@ -1291,10 +1291,11 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
 /**
  *@brief Core method. Creates a new generation of hosts by sexual reproduction
  * picking a mate which has the most different MHCs then the selecting partner.
- * Takes given number of possible sexual partners.
+ * Takes a given number of possible sexual partners that are selected. It rather
+ * should be called 'minimal overlap'.
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
- * will checks out eventually selecting one best to mate with.
+ * will checks out eventually selecting one that is the best to mate with.
  */
 void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
