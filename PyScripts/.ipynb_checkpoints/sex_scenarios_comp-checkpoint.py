@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Uses a post-processed file (you may need to edit it manually) and creates a
-nice boxplot based on the data in that file. Check the `datype` data type to
-see what kind of file you need. Script `packed_plots_of_MHC_alleles.py` may be
-useful in creating this file. E.g. is `Prem_Results_16.csv`.
+Your doc string here, please...
 
 
 Created on Thu Apr  6 16:44:53 2017
@@ -23,7 +20,7 @@ datype = np.dtype([('VAR', 'f8'), ('Mode', 'S12'), ('meanAllel', 'f8'),
                    ('cvFitMean', 'f8'), ('cvFitSTD', 'f8')])
 
 
-def plotBoxesGeneMeans(dataArr, suffix=""):
+def plotBoxesGeneMeans(dataArr):
     """ """
     if dataArr.dtype == datype:
         lebls = np.unique(dataArr["Mode"])
@@ -31,19 +28,14 @@ def plotBoxesGeneMeans(dataArr, suffix=""):
         print("ERROR in plotHistograms(): wrong numpy data type. It should",
               "be:", datype)
         return None
-    if suffix == "":
-        figureName = "sexCompr.png"
-    else:
-        figureName = "sexCompr_" + suffix + ".png"
     lbls = []
     for itm in lebls:
         lbls.append(itm.decode())
     ll1 = []
     ll2 = []
     fs = 16
-    tkfs = 16
-    plt.figure(figsize=(14, 6))
-    plt.subplot(121)
+    tkfs = 14
+    plt.figure(figsize=(9, 6))
     for itm in lebls:
         ll1.append(dataArr[dataArr["Mode"] == itm]['meanAllel'])
     for itm in lebls:
@@ -53,26 +45,22 @@ def plotBoxesGeneMeans(dataArr, suffix=""):
     whiskerprops = dict(linewidth=2.5)
     capprops = dict(linewidth=2.5)
     flierprops = dict(markersize=10)
+    plt.figure(1, figsize=(10, 8))
     plt.boxplot(ll1, labels=lbls, boxprops=boxprops, medianprops=medianprops,
                 whiskerprops=whiskerprops, capprops=capprops,
                 flierprops=flierprops)
     plt.ylabel("number of types MHCs in population", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    plt.ylim(ymin=0)
     plt.grid(axis='y')
-#    plt.figure(2, figsize=(10, 8))
-    plt.subplot(122)
+    plt.figure(2, figsize=(10, 8))
     plt.boxplot(ll2, labels=lbls, boxprops=boxprops, medianprops=medianprops,
                 whiskerprops=whiskerprops, capprops=capprops,
                 flierprops=flierprops)
     plt.ylabel("number of MHC in individual", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    plt.ylim(ymin=0)
     plt.grid(axis='y')
-    plt.tight_layout()
-    plt.savefig(figureName)
     plt.show()
 
 
@@ -84,15 +72,12 @@ def main():
         sys.exit()
     try:
         dat = np.genfromtxt(sys.argv[1], dtype=datype)
-    except Exception:
+    except:
         print("Cannot load the data from data file. Failed.")
         sys.exit()
     try:
-        if len(sys.argv) > 2:
-            plotBoxesGeneMeans(dat, sys.argv[2])
-        else:
-            plotBoxesGeneMeans(dat)
-    except Exception:
+        plotBoxesGeneMeans(dat)
+    except:
         print("Failed to plot the data.")
         sys.exit()
 

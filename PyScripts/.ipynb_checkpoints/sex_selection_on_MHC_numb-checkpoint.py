@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
- Your doc string here...
+Your doc string here, please...
 
 
 Created on Thu Apr 13 15:42:41 2017
@@ -19,12 +19,12 @@ def loadTheParents(moth="NumberOfMhcInMother.csv",
     """ """
     try:
         mother = np.genfromtxt(moth)[1::, 1::]
-    except Exception:
+    except:
         print("Failed to load mothers MHC numbers. Check if file exists.")
         return None
     try:
         father = np.genfromtxt(fath)[1::, 1::]
-    except Exception:
+    except:
         print("Failed to load fathers MHC numbers. Check if file exists.")
         return None
 #    time = np.genfromtxt(moth)[:, 0]
