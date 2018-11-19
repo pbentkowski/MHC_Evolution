@@ -36,7 +36,7 @@ def importComputedData(dataFile):
         dd = np.genfromtxt(dataFile, usecols=(0, 1, 2, 3, 4, 5, 6, 7),
                            skip_header=1, dtype=handyType)
         return dd
-    except:
+    except Exception:
         print("ERROR in importComputedData(): Cannot load the data from file:",
               dataFile)
 
@@ -158,10 +158,10 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                ppma.loadTheDateFromParamFile(filepath) >= theStartDate):
                 paramzList = ppma.loadParamSettings(filepath)
                 if ppma.compareParams(template, paramzList):
-                    l = re.split(" ", ln.getline(filepath, 9))
-                    path_spp = float(l[2].split()[0])
-                    l = re.split(" ", ln.getline(filepath, 13))
-                    lg = l[2].split()[0]
+                    ll = re.split(" ", ln.getline(filepath, 9))
+                    path_spp = float(ll[2].split()[0])
+                    ll = re.split(" ", ln.getline(filepath, 13))
+                    lg = ll[2].split()[0]
                     genomeFileName = "HostGenomesFile." + str(lg) + ".csv"
                     genomeFileName = os.path.join(dirName, genomeFileName)
 #                    print(genomeFileName)
@@ -176,7 +176,7 @@ def getTheData(theStartDate, template, dirr=os.getcwd()):
                             continue
                         else:
                             print("Done")
-                    except:
+                    except Exception:
                         print("ERROR in getTheData(): cant's load the host",
                               "population data")
                         continue
@@ -247,13 +247,13 @@ def main():
         try:
             template = ppma.loadParamSettings(sys.argv[2])
 #            x_Label = ppma.getVarxLabel(sys.argv[2])
-        except:
+        except Exception:
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
             print("Computing data...")
             theData = getTheData(startDate, template)
-        except:
+        except Exception:
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
         if len(theData):

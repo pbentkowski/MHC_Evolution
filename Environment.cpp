@@ -1142,8 +1142,8 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
  *
  * There are no sexes as the host species is assumed a hermaphrodite. Each
  * individual checks out a user defined N number of random individuals from the
- * population and mates with the first on N individual that has at least one different
- * MHC gene not present in the chosing party genome. The process of random mating and
+ * population and mates with the first of the N individual that has at least one different
+ * MHC gene not present in the choosing party genome. The process of random mating and
  * selection is repeated until the algorithm will recreate a population of the
  * same size as the original one.
  *

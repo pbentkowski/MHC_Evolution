@@ -23,8 +23,11 @@ datype = np.dtype([('VAR', 'f8'), ('Mode', 'S12'), ('meanAllel', 'f8'),
                    ('cvFitMean', 'f8'), ('cvFitSTD', 'f8')])
 
 
-def plotBoxesGeneMeans(dataArr, suffix=""):
+def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     """ """
+    if len(ymaxes) < 4:
+        ymaxes = ()
+        print("Setting y-maxes to default")
     if dataArr.dtype == datype:
         lebls = np.unique(dataArr["Mode"])
     else:
@@ -32,9 +35,11 @@ def plotBoxesGeneMeans(dataArr, suffix=""):
               "be:", datype)
         return None
     if suffix == "":
-        figureName = "sexCompr.png"
+        figureNameOne = "sexComprMHC.png"
+        figureNameTwo = "sexComprFitt.png"
     else:
-        figureName = "sexCompr_" + suffix + ".png"
+        figureNameOne = "sexComprMHC_" + suffix + ".png"
+        figureNameTwo = "sexComprFitt_" + suffix + ".png"
     lbls = []
     for itm in lebls:
         lbls.append(itm.decode())
@@ -42,7 +47,8 @@ def plotBoxesGeneMeans(dataArr, suffix=""):
     ll2 = []
     fs = 16
     tkfs = 16
-    plt.figure(figsize=(14, 6))
+    # MHC numbers in population and in individuals
+    plt.figure(1, figsize=(14, 6))
     plt.subplot(121)
     for itm in lebls:
         ll1.append(dataArr[dataArr["Mode"] == itm]['meanAllel'])
@@ -60,6 +66,8 @@ def plotBoxesGeneMeans(dataArr, suffix=""):
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.ylim(ymin=0)
+    if ymaxes:
+        plt.ylim(ymax=ymaxes[0])
     plt.grid(axis='y')
 #    plt.figure(2, figsize=(10, 8))
     plt.subplot(122)
@@ -70,9 +78,44 @@ def plotBoxesGeneMeans(dataArr, suffix=""):
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
     plt.ylim(ymin=0)
+    if ymaxes:
+        plt.ylim(ymax=ymaxes[1])
     plt.grid(axis='y')
     plt.tight_layout()
-    plt.savefig(figureName)
+    plt.savefig(figureNameOne)
+    # mean normalised fitness and its CV
+    plt.figure(2, figsize=(14, 6))
+    plt.subplot(121)
+    ll1 = []
+    ll2 = []
+    for itm in lebls:
+        ll1.append(dataArr[dataArr["Mode"] == itm]['meanFitt'])
+    for itm in lebls:
+        ll2.append(dataArr[dataArr["Mode"] == itm]['cvFitMean'])
+    plt.boxplot(ll1, labels=lbls, boxprops=boxprops, medianprops=medianprops,
+                whiskerprops=whiskerprops, capprops=capprops,
+                flierprops=flierprops)
+    plt.ylabel("mean normalised fitness", fontsize=fs)
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    plt.ylim(ymin=0)
+    if ymaxes:
+        plt.ylim(ymax=ymaxes[2])
+    plt.grid(axis='y')
+#    plt.figure(2, figsize=(10, 8))
+    plt.subplot(122)
+    plt.boxplot(ll2, labels=lbls, boxprops=boxprops, medianprops=medianprops,
+                whiskerprops=whiskerprops, capprops=capprops,
+                flierprops=flierprops)
+    plt.ylabel("averaged normalised CV fitness", fontsize=fs)
+    plt.xticks(fontsize=tkfs)
+    plt.yticks(fontsize=tkfs)
+    plt.ylim(ymin=0)
+    if ymaxes:
+        plt.ylim(ymax=ymaxes[3])
+    plt.grid(axis='y')
+    plt.tight_layout()
+    plt.savefig(figureNameTwo)
     plt.show()
 
 
@@ -84,14 +127,18 @@ def main():
         sys.exit()
     try:
         dat = np.genfromtxt(sys.argv[1], dtype=datype)
+#        print(dat.dtype.descr)
     except Exception:
         print("Cannot load the data from data file. Failed.")
         sys.exit()
+#    if True:
     try:
         if len(sys.argv) > 2:
-            plotBoxesGeneMeans(dat, sys.argv[2])
+            maxes = (40, 17, 0.1, 0.005)
+            plotBoxesGeneMeans(dat, sys.argv[2], maxes)
         else:
             plotBoxesGeneMeans(dat)
+#    else:
     except Exception:
         print("Failed to plot the data.")
         sys.exit()

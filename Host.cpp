@@ -176,7 +176,7 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
  * Iterates through the both chromosomes and calls gene mutation function. Point
  * sites in genes are mutated at random depending on the probability which was 
  * user-defined. Also at random a gene can be deleted or duplicated. If there's
- * only one single gene in the chromosome then no deletion will be carried on.
+ * only one single gene in the chromosome then no deletion will be carried out.
  * 
  * @param pm_mut_probabl - point mutation probability, a probability a gene 
  * will be replaced by a new one
