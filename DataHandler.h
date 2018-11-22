@@ -55,12 +55,18 @@ public:
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
         unsigned long numberOfMates);
-    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
-        double fixedAntigPosit);
+        int numberOfMates); // for alpha and optimal mating scenario
+    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+                           int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
+                           int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
+                           double hostMutationProb, double pathoMutationProb, int HeteroHomo,
+                           double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
+                           double fixedAntigPosit);
     void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
                            int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                            int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
@@ -68,9 +74,15 @@ public:
                            double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
                            double fixedAntigPosit);
     void inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
-        int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
-        int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
-        unsigned long numberOfMates);
+                           int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
+                           int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
+                           unsigned long numberOfMates);
+    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+                           int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
+                           int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
+                           double hostMutationProb, double pathoMutationProb, int HeteroHomo,
+                           double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
+                           int numberOfMates); // for alpha and optimal mating scenario
     void setAllFilesAsFirtsTimers();
     void saveNumOfPathoSpeciesToFile(Environment &EnvObj, int tayme);
     void savePathoPopulToFile(Environment &EnvObj, int tayme);

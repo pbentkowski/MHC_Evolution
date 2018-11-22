@@ -662,8 +662,7 @@ void Host::calculateFitnessExpFuncUniqAlleles(double alpha){
 //    double NN = getNumbOfChromoOneUniqAlleles() + getNumbOfChromoTwoUniqAlleles();
     double NN = (double) UniqueAlleles.size();
     if (NN) {
-        Fitness = (double) NumOfPathogesPresented
-                            * std::exp( - std::pow(alpha * NN, 2.0));
+        Fitness = (double) NumOfPathogesPresented * std::exp( - std::pow(alpha * NN, 2.0));
     } else {
         Fitness = 0.0;
     }
