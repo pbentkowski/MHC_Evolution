@@ -1,4 +1,0 @@
-<map id="Environment::getPathoSpeciesPopSize" name="Environment::getPathoSpeciesPopSize">
-<area shape="rect" id="node2" href="$class_data_handler.html#a89f86a67a11f719ec282f37740663f95" title="Data harvesting method. Writes to a file population sizes of all pathogen species in a given time..." alt="" coords="257,5,463,46"/>
-<area shape="rect" id="node3" href="$class_data_handler.html#a877ed5bfd00f0cbeef0413bf1d47f865" title="Data harvesting method. Writes to a file all pathogens with their genomes in a human&#45;readable format..." alt="" coords="261,70,459,111"/>
-</map>

@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.6)
 project(MHC_code_OBA)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(SOURCE_FILES
     Antigen.cpp
@@ -20,8 +21,8 @@ set(SOURCE_FILES
     mainpage.h
     Pathogen.cpp
     Pathogen.h
-    RandomNumbs.cpp
-    RandomNumbs.h
+    Random.cpp
+    Random.h
     Tagging_system.cpp
     Tagging_system.h)
 

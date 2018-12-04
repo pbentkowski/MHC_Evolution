@@ -1,4 +1,0 @@
-<map id="Host::calculateFitnessExpFuncUniqAlleles" name="Host::calculateFitnessExpFuncUniqAlleles">
-<area shape="rect" id="node2" href="$class_host.html#a9757c15b19a45468e3ce5921b5d2deab" title="Returns the number of unique MHC alleles in the Chromosome One. " alt="" coords="231,5,425,46"/>
-<area shape="rect" id="node3" href="$class_host.html#a533fcc0f3f715fe36abdb878b0491aaf" title="Returns the number of unique MHC alleles in the Chromosome Two. " alt="" coords="230,70,426,111"/>
-</map>

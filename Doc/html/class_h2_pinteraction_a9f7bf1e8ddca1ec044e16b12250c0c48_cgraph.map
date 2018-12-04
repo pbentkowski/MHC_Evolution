@@ -1,6 +1,0 @@
-<map id="H2Pinteraction::doesInfectedHeteroBetter" name="H2Pinteraction::doesInfectedHeteroBetter">
-<area shape="rect" id="node2" href="$class_pathogen.html#af721c6841459cb8e6e1d39d89d4ce076" title="Core method. Fetches the pathogene&#39;s chromosome. " alt="" coords="266,5,443,32"/>
-<area shape="rect" id="node3" href="$class_host.html#ac387176ba203f6aa1f20610f5679385a" title="Core method. Returns the first chromosome. " alt="" coords="265,56,444,83"/>
-<area shape="rect" id="node4" href="$class_h2_pinteraction.html#ab637d7bd65852a9010815ea0371af6fc" title="Compares two genes if they have a span of length of N bits similar to each other. ..." alt="" coords="246,107,463,133"/>
-<area shape="rect" id="node5" href="$class_host.html#aa5afa38408ebba644f56667364213f0d" title="Core method. Returns the first chromosome. " alt="" coords="265,157,444,184"/>
-</map>

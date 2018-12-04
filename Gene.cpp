@@ -2,7 +2,7 @@
  * File:   Gene.cpp
  * Author: Piotr Bentkowski : bentkowski.piotr@gmail.com
  *
- * Created on 13 February 2015, 13:26
+ * Created on 24 November 2018
  *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -29,14 +29,12 @@
 
 typedef boost::dynamic_bitset<> genestring;
 
-Gene::Gene() {
-}
+Gene::Gene() = default;
 
 //Gene::Gene(const Gene& orig) {
 //}
 
-Gene::~Gene() {
-}
+Gene::~Gene() = default;
 
 /**
  * @brief Core method. Sets a new gene filling it with a random bit-string of
@@ -47,15 +45,15 @@ Gene::~Gene() {
  *
  * @param length - number of bits in a gene.
  * @param timeStamp - current time (current number of the model iteration)
+ * @randGen - instance of the PRNG
  */
-void Gene::setNewGene(unsigned long length, int timeStamp) {
+void Gene::setNewGene(unsigned long length, int timeStamp, Random& randGen) {
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     BitStringLength = length;
     Tagging_system* pTagging_system = Tagging_system::getInstance();
     GenesTag = pTagging_system->getTag();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    TheGene = p_RandomNumbs->NextLongInt(0, std::pow(2, BitStringLength)-1);
+    TheGene = randGen.getRandomFromUniform(0, (unsigned int)std::pow(2, BitStringLength)-1);
 }
 
 /**
@@ -91,7 +89,8 @@ void Gene::setNewFixedGene(unsigned long length, int timeStamp, unsigned long fi
  * @param up_lim - upper limit of the range of permitted bit-string values
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long up_lim, int timeStamp) {
+void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long up_lim,
+        int timeStamp, Random& randGen) {
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     Tagging_system* pTagging_system = Tagging_system::getInstance();
@@ -104,9 +103,8 @@ void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long
                   " length." << std::endl;
         up_lim = possible_max;
     }
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     // assigned a random string of ones and zeros of given length
-    TheGene = p_RandomNumbs->NextLongInt(low_lim, up_lim);
+    TheGene = randGen.getRandomFromUniform(low_lim, up_lim);
 //    // below is a added line -remove
 //    std::cout << "low: " << low_lim << ", high: " << up_lim \
 //              << ", gene: "<< TheGene << std::endl;
@@ -118,15 +116,14 @@ void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long
  * @param mut_prob_whole - probability of a whole-gene mutation.
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp) {
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    if(p_RandomNumbs->NextReal(0.0, 1.0) < mut_prob_whole){
+void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen) {
+    if(randGen.getUni() < mut_prob_whole){
         TheParentWas = (int) TheGene;
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
         Tagging_system* pTagging_system = Tagging_system::getInstance();
         GenesTag = pTagging_system->getTag();
-        TheGene = p_RandomNumbs->NextLongInt(0, (unsigned long) std::pow(2, BitStringLength)-1);
+        TheGene = randGen.getRandomFromUniform(0, (unsigned long) std::pow(2, BitStringLength)-1);
         timeOfOrigin = timeStamp;
     }
 }

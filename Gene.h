@@ -2,7 +2,7 @@
  * File:   Gene.h
  * Author: Piotr Bentkowski : bentkowski.piotr@gmail.com
  *
- * Created on 13 February 2015, 13:26
+ * Created on 24 November 2018
  * 
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -19,15 +19,16 @@
  *    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  *    MA 02110-1301, USA.
  */
-#ifndef GENE_H
-#define	GENE_H
 
 #include <iostream>
 #include <vector>
 #include <set>
 
 #include "boost/dynamic_bitset.hpp"
-#include "RandomNumbs.h"
+#include "Random.h"
+
+#ifndef GENE_H
+#define	GENE_H
 
 typedef boost::dynamic_bitset<> genestring;
 
@@ -42,12 +43,12 @@ public:
 //    Gene(const Gene& orig);
     // === Core stuff ===
     virtual ~Gene();
-    void setNewGene(unsigned long lenght, int timeStamp);
+    void setNewGene(unsigned long length, int timeStamp, Random& randGen);
     void setNewGene(unsigned long  lenght, unsigned long low_lim,
-                    unsigned long up_lim, int timeStamp);
+                    unsigned long up_lim, int timeStamp, Random& randGen);
     void setNewFixedGene(unsigned long lenght, int timeStamp, unsigned long fixedGene,
                          unsigned long int fixedTag);
-    void mutateGeneWhole(double mut_prob_whole, int timeStamp);
+    void mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen);
     void mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
                          unsigned long up_lim, int timeStamp);
     void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);

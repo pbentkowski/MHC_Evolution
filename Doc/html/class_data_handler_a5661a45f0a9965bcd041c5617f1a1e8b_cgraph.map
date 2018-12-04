@@ -1,6 +1,0 @@
-<map id="DataHandler::saveHostGeneNumbers" name="DataHandler::saveHostGeneNumbers">
-<area shape="rect" id="node2" href="$class_environment.html#a45aeebf99b44c9b1e66ca16b923605ae" title="Core method. Gets the host population size. " alt="" coords="245,5,451,32"/>
-<area shape="rect" id="node3" href="$class_environment.html#af7fee696722912338dd1b540adf3dc02" title="Environment::getSingleHost\lChromoOneSize" alt="" coords="255,57,441,98"/>
-<area shape="rect" id="node4" href="$class_environment.html#ad5a2510424df27c93774fe0fde37e08b" title="Environment::getSingleHost\lRealGeneOne" alt="" coords="255,122,441,163"/>
-<area shape="rect" id="node5" href="$_data_handler_8cpp.html#a99feb0968fda949e69c4ff4aa9dd0a16" title="Data harvesting method. Calculates some stats of population genetics: Shannon&#39;s index, number of MHC/antigen types, total number of MHC copies. Runs internally within DataHarvester class. " alt="" coords="290,188,406,215"/>
-</map>

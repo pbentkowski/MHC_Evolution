@@ -17,7 +17,7 @@ for Evolutionary Biology Group, Faculty of Biology
 from shutil import copyfile
 from os import getcwd
 
-cxxflaggs = "-std=c++1y"
+cxxflaggs = "-std=c++14"
 cppath = '/usr/include/boost/'
 
 # normal compilation
@@ -51,7 +51,7 @@ except:
 OUTprog = "SCBuild/" + mainn.split("/")[-1].split(".")[0]
 SRS = ['DataHandler.cpp', 'Environment.cpp', 'Gene.cpp',
        'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
-       'Pathogen.cpp','RandomNumbs.cpp', 'Tagging_system.cpp',
+       'Pathogen.cpp','Random.cpp', 'Tagging_system.cpp',
        local_main]
 
 linking = ARGUMENTS.get('linking', 1)
