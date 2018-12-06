@@ -24,7 +24,8 @@ datype = np.dtype([('VAR', 'f8'), ('Mode', 'S12'), ('meanAllel', 'f8'),
 
 
 def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
-    """ """
+    """Plots boxplots of how many MHC types are there in different simulation,
+    and fitnesses from data given in files usualy called `DataSlice.csv`"""
     if len(ymaxes) < 4:
         ymaxes = ()
         print("Setting y-maxes to default")
@@ -53,7 +54,11 @@ def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     for itm in lebls:
         ll1.append(dataArr[dataArr["Mode"] == itm]['meanAllel'])
     for itm in lebls:
-        ll2.append(dataArr[dataArr["Mode"] == itm]['indvMean'])
+        ll2.append(dataArr[dataArr["Mode"] == itm]['indvMean'] * 2.)
+        # the factor 2 is a result of the fact that the original data are given
+        # just for the Chromosome One. You can siply multiply it by two,
+        # because the chromosomes swap places at random (One becomes Two and
+        # vice versa)
     boxprops = dict(linestyle='-', linewidth=2.5, color='k')
     medianprops = dict(linestyle='-', linewidth=2.5)
     whiskerprops = dict(linewidth=2.5)
@@ -65,9 +70,9 @@ def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     plt.ylabel("number of types MHCs in population", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     if ymaxes:
-        plt.ylim(ymax=ymaxes[0])
+        plt.ylim(top=ymaxes[0])
     plt.grid(axis='y')
 #    plt.figure(2, figsize=(10, 8))
     plt.subplot(122)
@@ -77,9 +82,9 @@ def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     plt.ylabel("number of MHC in individual", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     if ymaxes:
-        plt.ylim(ymax=ymaxes[1])
+        plt.ylim(top=ymaxes[1])
     plt.grid(axis='y')
     plt.tight_layout()
     plt.savefig(figureNameOne)
@@ -98,9 +103,9 @@ def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     plt.ylabel("mean normalised fitness", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     if ymaxes:
-        plt.ylim(ymax=ymaxes[2])
+        plt.ylim(top=ymaxes[2])
     plt.grid(axis='y')
 #    plt.figure(2, figsize=(10, 8))
     plt.subplot(122)
@@ -110,9 +115,9 @@ def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     plt.ylabel("averaged normalised CV fitness", fontsize=fs)
     plt.xticks(fontsize=tkfs)
     plt.yticks(fontsize=tkfs)
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     if ymaxes:
-        plt.ylim(ymax=ymaxes[3])
+        plt.ylim(top=ymaxes[3])
     plt.grid(axis='y')
     plt.tight_layout()
     plt.savefig(figureNameTwo)
@@ -134,8 +139,10 @@ def main():
 #    if True:
     try:
         if len(sys.argv) > 2:
-            maxes = (40, 17, 0.1, 0.005)
+            maxes = (120, 40, 0.4, 0.005)  # set these for plot axes max-mins
+            # maxes = (populMHCnumb, IndvMHCnumb, Fitness, CVfitnes)
             plotBoxesGeneMeans(dat, sys.argv[2], maxes)
+            # sys.argv[2] is suffix added to the name of the PNG plot with data
         else:
             plotBoxesGeneMeans(dat)
 #    else:

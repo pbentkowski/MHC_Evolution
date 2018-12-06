@@ -24,6 +24,6 @@ set(SOURCE_FILES
     Random.cpp
     Random.h
     Tagging_system.cpp
-    Tagging_system.h)
+    Tagging_system.h mainTest.cpp)
 
-add_executable(MHC_code_OBA ${SOURCE_FILES})
+add_executable(MHC_code_OBA ${SOURCE_FILES} mainTest.cpp)

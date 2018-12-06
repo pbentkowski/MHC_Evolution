@@ -20,59 +20,20 @@
 
 #include "Tagging_system.h"
 
-/**
- * @brief Data collecting method. Initializing a singleton of the tagging system.
- */
-Tagging_system* Tagging_system::s_pInstance = NULL;
-
+unsigned long int theTag = 0;
 /**
  * @brief Data collecting method. Constructor.
  */
-Tagging_system::Tagging_system() {
+Tagging_system::Tagging_system()
+{
+    theTag = 0;
+    omp_init_lock(&lockTagCreation);
 }
 
-/**
- * @brief Data collecting method. Destructor.
- */
-Tagging_system::~Tagging_system() {
-}
-
-/**
- * @brief Data collecting method. Gets instance of the tagging system.
- */
-Tagging_system* Tagging_system::getInstance() {
-    if (NULL == s_pInstance) {
-        s_pInstance = new Tagging_system();
-    }
-    return s_pInstance;
-}
-
-/**
- * @brief Data collecting method. Releases instance of the tagging system.
- */
-void Tagging_system::release() {
-    if (NULL != s_pInstance) {
-        delete s_pInstance;
-        s_pInstance = NULL;
-    }
-}
-
-/**
- * @brief Data collecting method. Sets a new value for the tagging system.
- *
- * @param - number from which tagging begins.
- */
-void Tagging_system::setValue(unsigned long v) {
-    theTag = v;
-}
-
-/**
- * @brief Data collecting method. Obtaining an unique tag.
- *
- * @return - new unique tag (unsigned long int)
- */
-unsigned long int Tagging_system::getTag() {
-    theTag += 1;
+unsigned long int Tagging_system::getTag()
+{
+    omp_set_lock(&lockTagCreation);
+    theTag++;
+    omp_unset_lock(&lockTagCreation);
     return theTag;
 }
-

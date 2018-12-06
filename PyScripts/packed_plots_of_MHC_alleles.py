@@ -181,6 +181,7 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                     dataFilePath = os.path.join(dirName,
                                                 "HostMHCsNumbUniq_ChrOne.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
+                    # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
                     indvSTD = np.std(hgsUNIQ[EqPt:, 1:])
                     datOut.append((var, varx, meanAlle, stdAlle, c1,
@@ -241,7 +242,8 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 20))
+#    plt.ylim((0, 20))
+    plt.ylim(bottom=0)
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -255,7 +257,8 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim((0, 10))
+#    plt.ylim((0, 10))
+    plt.ylim(bottom=0)
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -268,7 +271,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("hosts average fitness normalized per number\nof pathogen" +
                " spp. and pathogen generations", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -281,7 +284,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.ylabel("hosts average CV fitness normalized per\nnumber of " +
                "pathogen spp. and pathogen generations", fontsize=FS)
 #    plt.xlim(limitz)
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
@@ -317,8 +320,8 @@ def plotDotMeans(theData):
                fontsize=FS)
     plt.ylabel("average number of unique MHC\nalleles in one chromosome",
                fontsize=FS)
-    plt.xlim(xmin=0)
-    plt.ylim(ymin=0)
+    plt.xlim(left=0)
+    plt.ylim(bottom=0)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
 #    plt.show()

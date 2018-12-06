@@ -20,7 +20,10 @@
 #ifndef _TAGGING_SYSTEM_
 #define _TAGGING_SYSTEM_
 
-#include <stdio.h>
+#include <omp.h>
+#include <atomic>
+
+extern unsigned long int theTag;
 
 /**
  * @class Tagging_system
@@ -31,19 +34,12 @@
  */
 class Tagging_system {
 private:
-    Tagging_system();
-    virtual ~Tagging_system();
-    unsigned long int theTag;
+    //    unsigned long int theTag;
+    omp_lock_t lockTagCreation;
 
 public:
-    static Tagging_system* getInstance();
-    void setValue(unsigned long int v);
-    void release();
-
+    Tagging_system();
     unsigned long int getTag();
-
-private:
-    static Tagging_system* s_pInstance;
 };
 
 #endif  /* TAGGING_SYSTEM */

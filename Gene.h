@@ -26,6 +26,7 @@
 
 #include "boost/dynamic_bitset.hpp"
 #include "Random.h"
+#include "Tagging_system.h"
 
 #ifndef GENE_H
 #define	GENE_H
@@ -43,12 +44,12 @@ public:
 //    Gene(const Gene& orig);
     // === Core stuff ===
     virtual ~Gene();
-    void setNewGene(unsigned long length, int timeStamp, Random& randGen);
-    void setNewGene(unsigned long  lenght, unsigned long low_lim,
-                    unsigned long up_lim, int timeStamp, Random& randGen);
-    void setNewFixedGene(unsigned long lenght, int timeStamp, unsigned long fixedGene,
+    void setNewGene(unsigned long length, int timeStamp, Random& randGen, Tagging_system& tag);
+    void setNewGene(unsigned long  length, unsigned long low_lim,
+                    unsigned long up_lim, int timeStamp, Random& randGen, Tagging_system& tag);
+    void setNewFixedGene(unsigned long length, int timeStamp, unsigned long fixedGene,
                          unsigned long int fixedTag);
-    void mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen);
+    void mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen, Tagging_system& tag);
     void mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
                          unsigned long up_lim, int timeStamp);
     void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);

@@ -83,7 +83,7 @@ void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int tim
     boost::dynamic_bitset<> tmpAntig(length);
     boost::dynamic_bitset<>::size_type tmpAntigSize = tmpAntig.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < tmpAntigSize; ++i){
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < 0.5){
+        if (p_RandomNumbs->NextReal(0.0, 1.0) < 0.5) {
             tmpAntig[i] = true;
         } else {
             tmpAntig[i] = false;

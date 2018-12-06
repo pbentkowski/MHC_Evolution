@@ -25,7 +25,6 @@
 #include "boost/dynamic_bitset.hpp"
 
 #include "Gene.h"
-#include "Tagging_system.h"
 
 typedef boost::dynamic_bitset<> genestring;
 
@@ -47,22 +46,21 @@ Gene::~Gene() = default;
  * @param timeStamp - current time (current number of the model iteration)
  * @randGen - instance of the PRNG
  */
-void Gene::setNewGene(unsigned long length, int timeStamp, Random& randGen) {
+void Gene::setNewGene(unsigned long length, int timeStamp, Random& randGen, Tagging_system& tag) {
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     BitStringLength = length;
-    Tagging_system* pTagging_system = Tagging_system::getInstance();
-    GenesTag = pTagging_system->getTag();
+    GenesTag = tag.getTag();
     TheGene = randGen.getRandomFromUniform(0, (unsigned int)std::pow(2, BitStringLength)-1);
 }
 
 /**
  * @brief Core method. Sets a new gene filling it with a random bit-string of
  * a given length.
- * 
+ *
  * The value of the gene is given here by the user.
- * 
- * 
+ *
+ *
  * @param length - number of bits in a gene.
  * @param timeStamp - current time (current number of the model iteration)
  * @param fixedGene - the gene value
@@ -90,11 +88,10 @@ void Gene::setNewFixedGene(unsigned long length, int timeStamp, unsigned long fi
  * @param timeStamp - current time (current number of the model iteration).
  */
 void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long up_lim,
-        int timeStamp, Random& randGen) {
+        int timeStamp, Random& randGen, Tagging_system& tag) {
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
-    Tagging_system* pTagging_system = Tagging_system::getInstance();
-    GenesTag = pTagging_system->getTag();
+    GenesTag = tag.getTag();
     BitStringLength = length;
     unsigned long possible_max = std::pow(2, length)-1;
     if(possible_max < up_lim){
@@ -116,13 +113,12 @@ void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long
  * @param mut_prob_whole - probability of a whole-gene mutation.
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen) {
+void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen, Tagging_system& tag) {
     if(randGen.getUni() < mut_prob_whole){
         TheParentWas = (int) TheGene;
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
-        Tagging_system* pTagging_system = Tagging_system::getInstance();
-        GenesTag = pTagging_system->getTag();
+        GenesTag = tag.getTag();
         TheGene = randGen.getRandomFromUniform(0, (unsigned long) std::pow(2, BitStringLength)-1);
         timeOfOrigin = timeStamp;
     }
