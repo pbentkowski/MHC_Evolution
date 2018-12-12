@@ -33,18 +33,19 @@ int main(int argc, char** argv) {
     for(unsigned int i = 0; i < numberOfThreads; ++i)
         mRandGenArr[i].reseed(10*i);
 
-    for (int k = 0; k < 1000; ++k) {
+    Random* randGen_ptr = mRandGenArr;
+    for(int k = 0; k < 1000; ++k) {
         chrom.push_back(Gene());
     }
-    #pragma omp parallel for
+#pragma omp parallel default(none) shared(randGen_ptr)
     for (int i = 0; i < 1000; ++i) {
-        vect[i] = tag.getTag();
+        chrom[i].setNewGene(16, 0, randGen_ptr[omp_get_thread_num()], tag);
     }
 //    for (auto it = vect.begin(); it != vect.end(); ++it){
 //        std::cout << *it << " ";
 //    }
     for (int j = 0; j < 1000; ++j) {
-        std::cout << vect[j] << " ";
+        std::cout << chrom[j].printGeneToScreen() << " ";
     }
     std::cout << std::endl;
 }
