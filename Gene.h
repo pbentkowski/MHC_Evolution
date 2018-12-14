@@ -51,7 +51,7 @@ public:
                          unsigned long int fixedTag);
     void mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen, Tagging_system& tag);
     void mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
-                         unsigned long up_lim, int timeStamp);
+                         unsigned long up_lim, int timeStamp, Random& randGen, Tagging_system& ta);
     void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);
     void mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
                                    std::set<unsigned long>& noMutts);
@@ -63,7 +63,7 @@ public:
     std::vector<unsigned long int> ParentTags;
     std::vector<int> MutationTime;
     unsigned long int GenesTag;
-    void printGeneToScreen();
+    void printGeneToScreen(std::string tagLine);
 private:
     unsigned long TheGene;
     unsigned long BitStringLength;

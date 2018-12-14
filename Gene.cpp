@@ -134,9 +134,9 @@ void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen
  * @param timeStamp - current time (current number of the model iteration).
  */
 void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
-                           unsigned long up_lim, int timeStamp) {
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    if(p_RandomNumbs->NextReal(0.0, 1.0) < mut_prob_whole){
+                           unsigned long up_lim, int timeStamp, Random& randGen,
+                           Tagging_system& tag) {
+    if(randGen.getRandomFromUniform(0.0, 1.0) < mut_prob_whole){
         unsigned long possible_max = (unsigned long) std::pow(2, BitStringLength)-1;
         if(possible_max < up_lim){
             std::cout << "Error in Gene::mutateGeneWhole(): Demanded upper limit"\
@@ -147,9 +147,8 @@ void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
         TheParentWas = (int) TheGene;
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
-        Tagging_system* pTagging_system = Tagging_system::getInstance();
-        GenesTag = pTagging_system->getTag();
-        TheGene = p_RandomNumbs->NextLongInt(low_lim, up_lim);
+        GenesTag = tag.getTag();
+        TheGene = randGen.getRandomFromUniform(low_lim, up_lim);
         timeOfOrigin = timeStamp;
     }
 }
@@ -160,7 +159,7 @@ void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
  *
  * @param pm_mut_probabl - probability of mutating a single bit.
  * @param timeStamp - current time (current number of the model iteration).
- */
+
 void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
     unsigned long currentGene = TheGene;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
@@ -190,7 +189,7 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
  * @param timeStamp - current time (current number of the model iteration).
  * @param noMutts - a std::set containing indices of residues of the bit-string 
  * that are not allowed to change.
- */
+ *
 void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp, 
         std::set<unsigned long >& noMutts){
     unsigned long currentGene = TheGene;
@@ -213,7 +212,7 @@ void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
         timeOfOrigin = timeStamp;
     }
 }
-
+*/
 /**
  * @brief Core method. Returns the gene in a bit-string format, can be used to
  * pass the gene string to an another method.
@@ -238,7 +237,7 @@ unsigned long int Gene::getTheRealGene(){
 /**
  * @brief Auxiliary method useful for debugging. Prints a gene to the screen.
  */
-void Gene::printGeneToScreen(){
+void Gene::printGeneToScreen(std::string tagLine){
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
-    std::cout << bitgene << std::endl;
+    std::cout << bitgene << " :: " << tagLine << std::endl;
 }
