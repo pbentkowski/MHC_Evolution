@@ -51,8 +51,11 @@ Host::~Host() {
  * @param num_of_loci - number of gene loci in a chromosome
  * @param gene_size - the length of the bit-string representing a gene
  * @param timeStamp - current time (number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system
  */
-void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp){
+void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp,
+        Random& randGen, Tagging_system& tag){
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
@@ -61,9 +64,9 @@ void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int ti
     Fitness = 0.0;
     for(unsigned long i = 0; i < num_of_loci; ++i){
         ChromosomeOne.push_back(Gene());
-        ChromosomeOne.back().setNewGene(gene_size, timeStamp);
+        ChromosomeOne.back().setNewGene(gene_size, timeStamp, randGen, tag);
         ChromosomeTwo.push_back(Gene());
-        ChromosomeTwo.back().setNewGene(gene_size, timeStamp);
+        ChromosomeTwo.back().setNewGene(gene_size, timeStamp, randGen, tag);
     }
     evalUniqueMHCs();
 }
@@ -78,8 +81,11 @@ void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int ti
  * @param num_of_loci - number of gene loci in a chromosome
  * @param gene_size - the length of the bit-string representing a gene
  * @param timeStamp - current time (number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system
  */
-void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp){
+void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp,
+        Random& randGen, Tagging_system& tag){
     NumOfPathogesInfecting = 0;
     NumOfPathogesPresented = 0;
     SelectedForReproduction = 0;
@@ -89,7 +95,7 @@ void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size,
     chromovector tempChromo;
     for(unsigned long k = 0; k < num_of_loci; ++k){
         tempChromo.push_back(Gene());
-        tempChromo.back().setNewGene(gene_size, timeStamp);
+        tempChromo.back().setNewGene(gene_size, timeStamp, randGen, tag);
     }
     for(int i = 0; i < tempChromo.size(); ++i){
         ChromosomeOne.push_back(tempChromo[i]);
@@ -108,15 +114,17 @@ void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size,
  * @param mut_probabl - mutation probability, a probability a gene will be
  * replaced by a new one
  * @param timeStamp - current time (number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system
  */
-void Host::chromoMutProcess(double mut_probabl, int timeStamp){
+void Host::chromoMutProcess(double mut_probabl, int timeStamp, Random& randGen, Tagging_system& tag){
     unsigned long ChromosomeOneSize = ChromosomeOne.size();
     for(unsigned long i = 0; i < ChromosomeOneSize; ++i){
-        ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp);
+        ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp, randGen, tag);
     }
     unsigned long ChromosomeTwoSize = ChromosomeTwo.size();
     for(unsigned long i = 0; i < ChromosomeTwoSize; ++i){
-        ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp);
+        ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp, randGen, tag);
     }
     evalUniqueMHCs();
 }
@@ -138,30 +146,31 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp){
  * @param maxGene - maximal allowed number of genes in a chromosome (user 
  * defined parameter).
  * @param timeStamp - current time (current number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system
  */
 void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del, 
-        double dupli, unsigned long maxGene, int timeStamp){
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+        double dupli, unsigned long maxGene, int timeStamp, Random& randGen, Tagging_system& tag){
     if(ChromosomeOne.size()){
         for(int i = (int) (ChromosomeOne.size() - 1); i >= 0; --i){
-            ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp);
+            ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp, randGen, tag);
             if(ChromosomeOne.size() and ChromosomeOne.size() < maxGene 
-                    and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
+                    and randGen.getUni() < dupli){
                 ChromosomeOne.push_back(ChromosomeOne[i]);
             }
-            if(ChromosomeOne.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeOne.size() > 1 and randGen.getUni() < del){
                 ChromosomeOne.erase(ChromosomeOne.begin() + i);
             }
         }
     }
     if(ChromosomeTwo.size()){
         for(int i = (int) (ChromosomeTwo.size() - 1); i >= 0; --i){
-            ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp);
+            ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp, randGen, tag);
             if(ChromosomeTwo.size() and ChromosomeTwo.size() < maxGene 
-                    and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
+                    and randGen.getUni() < dupli){
                 ChromosomeTwo.push_back(ChromosomeTwo[i]);
             }
-            if(ChromosomeTwo.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeTwo.size() > 1 and randGen.getUni() < del){
                 ChromosomeTwo.erase(ChromosomeTwo.begin() + i);
             }
         }
@@ -186,30 +195,32 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
  * @param maxGene - maximal allowed number of genes in a chromosome (user 
  * defined parameter).
  * @param timeStamp - current time (current number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system
  */
 void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
-        double del, double dupli, unsigned long maxGene, int timeStamp){
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    if(ChromosomeOne.size()){
+        double del, double dupli, unsigned long maxGene, int timeStamp,
+        Random& randGen, Tagging_system& tag){
+    if(!ChromosomeOne.empty()){
         for(int i = (int) ChromosomeOne.size() - 1; i >= 0; --i){
-            ChromosomeOne[i].mutateGeneBitByBit(pm_mut_probabl, timeStamp);
-            if(ChromosomeOne.size() and ChromosomeOne.size() < maxGene 
-                    and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
+            ChromosomeOne[i].mutateGeneBitByBit(pm_mut_probabl, timeStamp, randGen, tag);
+            if(!ChromosomeOne.empty() and ChromosomeOne.size() < maxGene
+                    and randGen.getUni() < dupli){
                 ChromosomeOne.push_back(ChromosomeOne[i]);
             }
-            if(ChromosomeOne.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeOne.size() > 1 and randGen.getUni() < del){
                 ChromosomeOne.erase(ChromosomeOne.begin() + i);
             }
         }
     }
-    if(ChromosomeTwo.size()){
+    if(!ChromosomeTwo.empty()){
         for(int i = (int) ChromosomeTwo.size() - 1; i >= 0; --i){
-            ChromosomeTwo[i].mutateGeneBitByBit(pm_mut_probabl, timeStamp);
-            if(ChromosomeTwo.size() and ChromosomeTwo.size() < maxGene 
-                    and p_RandomNumbs->NextReal(0.0, 1.0) < dupli){
+            ChromosomeTwo[i].mutateGeneBitByBit(pm_mut_probabl, timeStamp, randGen, tag);
+            if(!ChromosomeTwo.empty() and ChromosomeTwo.size() < maxGene
+                    and randGen.getUni() < dupli){
                 ChromosomeTwo.push_back(ChromosomeTwo[i]);
             }
-            if(ChromosomeTwo.size() > 1 and p_RandomNumbs->NextReal(0.0, 1.0) < del){
+            if(ChromosomeTwo.size() > 1 and randGen.getUni() < del){
                 ChromosomeTwo.erase(ChromosomeTwo.begin() + i);
             }
         }
@@ -223,11 +234,10 @@ void Host::chromoMutProcessWithDelDuplPointMuts(double pm_mut_probabl,
  * and swapping the resulting parts of the chromosomes.
  * 
  * @param recomb_prob - probability of the recombination event in host's genome
- * @param timeStamp - current time (current number of the model iteration) 
+ * @param randGen - pointer to random number generator
  */
-void Host::chromoRecombination(double recomb_prob){
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    if (p_RandomNumbs->NextReal(0.0, 1.0) < recomb_prob){
+void Host::chromoRecombination(double recomb_prob, Random& randGen){
+    if (randGen.getUni() < recomb_prob){
        // needs to be done!
     }
 }
@@ -248,23 +258,24 @@ void Host::chromoRecombination(double recomb_prob){
  * then 0.5 will favor ChromosomeTwo as a donor.
  * 
  * @return a Chromosome vector.
+ * @corssing_prob - probablituty of crossing-over
+ * @param randGen - pointer to random number generator
  */
- chromovector Host::doCrossAndMeiosis(double corssing_prob){
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
+ chromovector Host::doCrossAndMeiosis(double corssing_prob, Random& randGen){
     chromovector new_chromos;
     for(int i = 0; i < ChromosomeOne.size(); ++i){
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
+        if(randGen.getUni() < corssing_prob){
             new_chromos.push_back(ChromosomeOne[i]);
         }
     }
     corssing_prob = 1.0 - corssing_prob;
     for(int j = 0; j < ChromosomeTwo.size(); ++j){
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
+        if(randGen.getUni() < corssing_prob){
             new_chromos.push_back(ChromosomeTwo[j]);
         }
     }
     if(new_chromos.size() == 0){
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < corssing_prob){
+        if(randGen.getUni() < corssing_prob){
             new_chromos.push_back(ChromosomeOne[0]);
         }else{
             new_chromos.push_back(ChromosomeTwo[0]);
@@ -536,9 +547,8 @@ void Host::assignChromTwo(chromovector Two){
  * @brief Core method. Randomly swaps places of Chromosome One and Chromosome Two
  * to avoid situation when they effectively become two separate populations. 
  */
-void Host::swapChromosomes(){
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
-    if(p_RandomNumbs->NextReal(0.0, 1.0) < 0.5){
+void Host::swapChromosomes(Random& randGen){
+    if(randGen.getUni() < 0.5){
         chromovector tmpChrome;
         tmpChrome = ChromosomeOne;
         ChromosomeOne = ChromosomeTwo;

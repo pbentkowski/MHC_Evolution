@@ -159,14 +159,13 @@ void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
  *
  * @param pm_mut_probabl - probability of mutating a single bit.
  * @param timeStamp - current time (current number of the model iteration).
-
-void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
+ */
+void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp, Random& randGen, Tagging_system& tag) {
     unsigned long currentGene = TheGene;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) {
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+        if(randGen.getUni() < pm_mut_probabl) {
             bitgene[i].flip();
         }
     TheGene = bitgene.to_ulong();
@@ -174,8 +173,7 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
     if(currentGene != TheGene){
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
-        Tagging_system* pTagging_system = Tagging_system::getInstance();
-        GenesTag = pTagging_system->getTag();
+        GenesTag = tag.getTag();
         timeOfOrigin = timeStamp;
     }
 }
@@ -189,17 +187,16 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp) {
  * @param timeStamp - current time (current number of the model iteration).
  * @param noMutts - a std::set containing indices of residues of the bit-string 
  * that are not allowed to change.
- *
+ */
 void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp, 
-        std::set<unsigned long >& noMutts){
+        std::set<unsigned long >& noMutts, Random& randGen, Tagging_system& tag){
     unsigned long currentGene = TheGene;
     bool exists;
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) { 
         exists = noMutts.find((int) i) != noMutts.end();
-        if(!exists and p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+        if(!exists and randGen.getUni() < pm_mut_probabl) {
             bitgene[i].flip();
         }
     TheGene = bitgene.to_ulong();
@@ -207,12 +204,11 @@ void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
     if(currentGene != TheGene){
         ParentTags.push_back(GenesTag);
         MutationTime.push_back(timeOfOrigin);
-        Tagging_system* pTagging_system = Tagging_system::getInstance();
-        GenesTag = pTagging_system->getTag();
+        GenesTag = tag.getTag();
         timeOfOrigin = timeStamp;
     }
 }
-*/
+
 /**
  * @brief Core method. Returns the gene in a bit-string format, can be used to
  * pass the gene string to an another method.
@@ -239,5 +235,5 @@ unsigned long int Gene::getTheRealGene(){
  */
 void Gene::printGeneToScreen(std::string tagLine){
     boost::dynamic_bitset<> bitgene(BitStringLength, TheGene);
-    std::cout << bitgene << " :: " << tagLine << std::endl;
+    std::cout << bitgene << " :: " << GenesTag << " :: " << tagLine << std::endl;
 }

@@ -47,15 +47,14 @@ public:
     unsigned NumOfHostsInfected;  // how many host are infected
     int SelectedToReproduct;
     void setNewPathogen(int num_of_loci, unsigned long antigen_size, unsigned long mhcSize,
-                        int species, int timeStamp);
-    void setNewPathogenNthSwap(int num_of_loci, anigenstring antigen, unsigned long mhcSize,
+                        int species, int timeStamp, Random& randGen, Tagging_system& tag);
+    void setNewPathogenNthSwap(anigenstring antigen, unsigned long int Tag, unsigned long mhcSize,
                                int species, int timeStamp, int Nth);
-    antigenvector getAllAntigens();
+    Antigen getAntigenProt();
     void chromoMutProcess(double mut_probabl, unsigned long mhcSize, int timeStamp);
     void chromoMutProcessWithRestric(double mut_probabl, unsigned long mhcSize, int timeStamp,
-                                     std::set<unsigned long>& noMutts);
+                                     std::set<unsigned long>& noMutts, Random& randGen, Tagging_system& tag);
     void setNewSpeciesNumber(int new_spp_num);
-    anigenstring getSingleAntigen(int indx);
     int getSpeciesTag();
     void clearInfections();
     // === Data harvesting methods ===
@@ -63,7 +62,7 @@ public:
     // === Auxiliary methods ===
     void printGenesFromGenome();
 private:
-    std::vector<Antigen> PathogenProts;
+    Antigen PathoProtein;
     int Species;
 };
 

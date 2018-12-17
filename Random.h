@@ -31,9 +31,11 @@ class Random{
                 bool isCustomProbOK() { return isOK;}
         };
         //return a random unsigned int value in [min, max] from uniform distribution
-        unsigned int getRandomFromUniform(unsigned int min, unsigned int max);
+        unsigned int getRandomFromUniform(unsigned int from, unsigned int thru);
         //return a random float value in [0, 1) from uniform distribution
         float getUni();
+        //return a random double value in [min, max] from uniform distribution
+        double getRealDouble(double from, double thru);
         //return a random float value in from a user-defined gaussian distribution
         float getRandomFromGaussian(float mean, float variance);
         //return true with probability prob, in range [0,1);
@@ -43,6 +45,8 @@ class Random{
 
         float getValueAccordingToGivenProb(CustomProb probData);
         std::vector<float> getAlotOfValuesAccordingToGivenProb(CustomProb probData, unsigned int manySamples);
+
+        std::mt19937 returnEngene();
 };
 
 #endif // RANDOM_H

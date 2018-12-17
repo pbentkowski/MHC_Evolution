@@ -28,9 +28,11 @@
 #include "boost/dynamic_bitset.hpp"
 
 #include "Gene.h"
+#include "Random.h"
+#include "Tagging_system.h"
 
 typedef boost::dynamic_bitset<> genestring;
-typedef std::vector<Gene>  chromovector;
+typedef std::vector<Gene> chromovector;
 
 /**
  * @brief Core class. Stores and handles a single host object. Each host
@@ -48,16 +50,18 @@ public:
     unsigned NumOfPathogesInfecting;
     unsigned NumOfPathogesPresented;
     int SelectedForReproduction;
-    void setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp);
-    void setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp);
-    void chromoMutProcess(double mut_probabl, int timeStamp);
+    void setNewHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp,
+                    Random& randGen, Tagging_system& tag);
+    void setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size, int timeStamp,
+                           Random& randGen, Tagging_system& tag);
+    void chromoMutProcess(double mut_probabl, int timeStamp, Random& randGen, Tagging_system& tag);
     void chromoMutProcessWithDelDupl(double mut_probabl, double del,
-        double dupli, unsigned long maxGene, int timeStamp);
+        double dupli, unsigned long maxGene, int timeStamp, Random& randGen, Tagging_system& tag);
     void chromoMutProcessWithDelDuplPointMuts(double mut_probabl, double del,
-        double dupli, unsigned long maxGene, int timeStamp);
-    void chromoRecombination(double recomb_prob);
+        double dupli, unsigned long maxGene, int timeStamp, Random& randGen, Tagging_system& tag);
+    void chromoRecombination(double recomb_prob, Random& randGen);
     void clearInfections();
-    chromovector doCrossAndMeiosis(double corssing_prob);
+    chromovector doCrossAndMeiosis(double corssing_prob, Random& randGen);
     chromovector getChromosomeOne();
     chromovector getChromosomeTwo();
     chromovector mergeChromosomes();
@@ -77,7 +81,7 @@ public:
 //    unsigned long getHostMotherTag();
 //    void setHostIndvTag(unsigned long theTag);
 //    void setHostMotherTag(unsigned long theTag);
-    void swapChromosomes();
+    void swapChromosomes(Random& randGen);
     void evalUniqueMHCs();
     void calculateFitnessJustInfection();
     void calculateFitnessAccChromSize();
@@ -97,6 +101,7 @@ public:
     unsigned getNumberOfPresentedPatho();
     unsigned long int getMotherMhcNumber();
     unsigned long int getFatherMhcNumber();
+    void printGenes(std::string aTag);
 private:
     // === Very core methods ===
     std::vector<Gene> ChromosomeOne;

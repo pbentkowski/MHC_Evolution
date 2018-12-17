@@ -28,7 +28,8 @@
 #include <set>
 
 #include "boost/dynamic_bitset.hpp"
-#include "RandomNumbs.h"
+#include "Random.h"
+#include "Tagging_system.h"
 
 typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<unsigned long int> longIntVec;
@@ -42,12 +43,14 @@ public:
     Antigen();
     virtual ~Antigen();
     void calculateEpitopes(unsigned long mhcSize);
-    void setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp);
+    void setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp, Random& randGen, Tagging_system& tag);
     void setNewFixedAntigen(unsigned long length, int timeStamp, int fixedGene,
                             unsigned long int fixedTag);
-    void mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp);
+    void mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp,
+                               Random& randGen, Tagging_system& tag);
     void mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhcSize,
-                                   int timeStamp, std::set<unsigned long>& noMutts);
+                                   int timeStamp, std::set<unsigned long>& noMutts,
+                                   Random& randGen, Tagging_system& tag);
     void setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
                                    int Nth, unsigned long mhcSize, int timeStamp);
     antigenstring getBitAntigen();

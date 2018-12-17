@@ -393,32 +393,59 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-mainTest.o: mainTest.cpp.o
+mainTestGene.o: mainTestGene.cpp.o
 
-.PHONY : mainTest.o
+.PHONY : mainTestGene.o
 
 # target to build an object file
-mainTest.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTest.cpp.o
-.PHONY : mainTest.cpp.o
+mainTestGene.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestGene.cpp.o
+.PHONY : mainTestGene.cpp.o
 
-mainTest.i: mainTest.cpp.i
+mainTestGene.i: mainTestGene.cpp.i
 
-.PHONY : mainTest.i
+.PHONY : mainTestGene.i
 
 # target to preprocess a source file
-mainTest.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTest.cpp.i
-.PHONY : mainTest.cpp.i
+mainTestGene.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestGene.cpp.i
+.PHONY : mainTestGene.cpp.i
 
-mainTest.s: mainTest.cpp.s
+mainTestGene.s: mainTestGene.cpp.s
 
-.PHONY : mainTest.s
+.PHONY : mainTestGene.s
 
 # target to generate assembly for a file
-mainTest.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTest.cpp.s
-.PHONY : mainTest.cpp.s
+mainTestGene.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestGene.cpp.s
+.PHONY : mainTestGene.cpp.s
+
+mainTestHost.o: mainTestHost.cpp.o
+
+.PHONY : mainTestHost.o
+
+# target to build an object file
+mainTestHost.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestHost.cpp.o
+.PHONY : mainTestHost.cpp.o
+
+mainTestHost.i: mainTestHost.cpp.i
+
+.PHONY : mainTestHost.i
+
+# target to preprocess a source file
+mainTestHost.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestHost.cpp.i
+.PHONY : mainTestHost.cpp.i
+
+mainTestHost.s: mainTestHost.cpp.s
+
+.PHONY : mainTestHost.s
+
+# target to generate assembly for a file
+mainTestHost.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestHost.cpp.s
+.PHONY : mainTestHost.cpp.s
 
 # Help Target
 help:
@@ -459,9 +486,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... mainTest.o"
-	@echo "... mainTest.i"
-	@echo "... mainTest.s"
+	@echo "... mainTestGene.o"
+	@echo "... mainTestGene.i"
+	@echo "... mainTestGene.s"
+	@echo "... mainTestHost.o"
+	@echo "... mainTestHost.i"
+	@echo "... mainTestHost.s"
 .PHONY : help
 
 

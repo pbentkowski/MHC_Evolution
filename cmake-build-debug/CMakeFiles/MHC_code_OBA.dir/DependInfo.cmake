@@ -14,7 +14,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/piotr/CodeProjects/MhcEvo2000/Random.cpp" "/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir/Random.cpp.o"
   "/home/piotr/CodeProjects/MhcEvo2000/Tagging_system.cpp" "/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o"
   "/home/piotr/CodeProjects/MhcEvo2000/main.cpp" "/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir/main.cpp.o"
-  "/home/piotr/CodeProjects/MhcEvo2000/mainTest.cpp" "/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir/mainTest.cpp.o"
+  "/home/piotr/CodeProjects/MhcEvo2000/mainTestGene.cpp" "/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir/mainTestGene.cpp.o"
+  "/home/piotr/CodeProjects/MhcEvo2000/mainTestHost.cpp" "/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/CMakeFiles/MHC_code_OBA.dir/mainTestHost.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

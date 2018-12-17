@@ -25,9 +25,11 @@
 #include <random>
 #include <boost/lexical_cast.hpp>
 #include <fstream>
+#include <thread>     // for reading the number of concurrent threads supported
+#include "omp.h"
 
-#include "RandomNumbs.h"
 #include "Tagging_system.h"
+#include "Random.h"
 #include "Environment.h"
 #include "DataHandler.h"
 
@@ -184,12 +186,23 @@ int main(int argc, char** argv) {
 
 // === And now doing the calculations! ===
 
-    // Initializing the random number generator engine and tagging system
-    RandomNumbs* p_RandomNumbs = RandomNumbs::getInstance();
-    p_RandomNumbs->SetSeed(rndSeed);
-    Tagging_system* pTagging_system = Tagging_system::getInstance();
-    pTagging_system->setValue(0);
+    // Initializing the random number generator engine for multi-threaded environment and tagging system
+    unsigned int numberOfThreads = 0;
+    Random* mRandGenArr;
+    if(numberOfThreads == 0)
+    {
+        numberOfThreads = std::thread::hardware_concurrency();
+        if(numberOfThreads == 0) // if the value is not well defined or not computable, set at least 1 thread
+            numberOfThreads = 1;
+    }
+    std::cout << "We have " << numberOfThreads << " threads" << std::endl;
+    omp_set_num_threads(numberOfThreads);
+    mRandGenArr = new Random[numberOfThreads];
 
+    for(unsigned int i = 0; i < numberOfThreads; ++i)
+        mRandGenArr[i].reseed(rndSeed*10);
+
+    Tagging_system tag;
 // ======================================
 
     Environment ENV; // Initialize the simulation environment

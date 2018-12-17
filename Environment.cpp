@@ -27,7 +27,6 @@
 #include <chrono>       // std::chrono::system_clock
 #include <iterator>
 
-#include "RandomNumbs.h"
 #include "Environment.h"
 #include "H2Pinteraction.h"
 
@@ -58,14 +57,13 @@ Environment::~Environment() {
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setNoMutsVector(int numb_of_species, unsigned long antigen_size,
-        double fixedAntigenFrac){
+        double fixedAntigenFrac, Random &randGen){
     std::set<unsigned long> NoMutSet;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < numb_of_species; ++i){
         NoMutSet.clear();
         NoMutsVec.push_back(NoMutSet);
         for(unsigned long j = 0; j < antigen_size; ++j){
-            if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
+            if(randGen.getUni() <= fixedAntigenFrac){
                 NoMutsVec.back().insert(j);
             }
         }
@@ -87,16 +85,15 @@ void Environment::setNoMutsVector(int numb_of_species, unsigned long antigen_siz
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
-        double fixedAntigenFrac){
+        double fixedAntigenFrac, Random &randGen){
     std::set<unsigned long> NoMutSet;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     fixedAntigenFrac = fixedAntigenFrac / 4.0;
     for(int i = 0; i < numb_of_species; ++i){
         NoMutSet.clear();
         NoMutsVec.push_back(NoMutSet);
         unsigned long indexCounter = 0;
         while (indexCounter < antigen_size) {
-            if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
+            if(randGen.getUni() <= fixedAntigenFrac){
                 NoMutsVec.back().insert(indexCounter);
                 NoMutsVec.back().insert(indexCounter + 1);
                 NoMutsVec.back().insert(indexCounter + 2);
@@ -127,15 +124,14 @@ void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setNoMutsVecFourClads(int numb_of_species, unsigned long antigen_size,
-        double fixedAntigenFrac){
+        double fixedAntigenFrac, Random &randGen){
     std::set<unsigned long> NoMutSet;
     std::vector<std::set<unsigned long>> TmpNoMutsVec;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < 4; ++i){
         NoMutSet.clear();
         TmpNoMutsVec.push_back(NoMutSet);
         for(unsigned long j = 0; j < antigen_size; ++j){
-            if(p_RandomNumbs->NextReal(0.0, 1.0) <= fixedAntigenFrac){
+            if(randGen.getUni() <= fixedAntigenFrac){
                 TmpNoMutsVec.back().insert(j);
             }
         }
@@ -161,10 +157,11 @@ void Environment::setNoMutsVecFourClads(int numb_of_species, unsigned long antig
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
-                                          unsigned long chrom_size, int timeStamp){
+                                          unsigned long chrom_size, int timeStamp,
+                                          Random &randGen, Tagging_system &tag){
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(Host());
-        HostPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
+        HostPopulation.back().setNewHost(chrom_size, gene_size, timeStamp, randGen, tag);
     }
 }
 
@@ -184,19 +181,18 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
  * @param chrom_size_uper - upper limit of the number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
-                                          unsigned long chrom_size_lower,
-                                          unsigned long chrom_size_uper, int timeStamp){
+void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size_lower,
+                                          unsigned long chrom_size_uper, int timeStamp,
+                                          Random &randGen, Tagging_system &tag){
     if(chrom_size_lower > chrom_size_uper){
         unsigned long tmp_size = chrom_size_lower;
         chrom_size_lower = chrom_size_uper;
         chrom_size_uper = tmp_size;
     }
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(Host());
-        HostPopulation.back().setNewHost(p_RandomNumbs->NextLongInt(chrom_size_lower,
-                chrom_size_uper), gene_size, timeStamp);
+        HostPopulation.back().setNewHost(randGen.getRandomFromUniform(chrom_size_lower,
+                chrom_size_uper), gene_size, timeStamp, randGen, tag);
     }
 }
 
@@ -216,10 +212,11 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
-                                          unsigned long chrom_size, int timeStamp){
+                                          unsigned long chrom_size, int timeStamp,
+                                          Random &randGen, Tagging_system &tag){
     std::vector<Host> tmpPopulation;
     tmpPopulation.push_back(Host());
-    tmpPopulation.back().setNewHomozygHost(chrom_size, gene_size, timeStamp);
+    tmpPopulation.back().setNewHomozygHost(chrom_size, gene_size, timeStamp, randGen, tag);
     //tmpPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
     for(int i = 0; i < pop_size; ++i){
         HostPopulation.push_back(tmpPopulation.back());
@@ -245,8 +242,8 @@ void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
  */
 void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long antigenSize,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
-        double fixedAntigenFrac){
-    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
+        double fixedAntigenFrac, Random &randGen, Tagging_system &tag){
+    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac, randGen);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
@@ -256,15 +253,15 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long ant
             OneSpeciesVector.push_back(Pathogen());
             if(i+1 != indiv_per_species){
                 OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
-                        mhcSize, i, timeStamp);
+                        mhcSize, i, timeStamp, randGen, tag);
             } else {
                 OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
-                        mhcSize, i, timeStamp);
+                        mhcSize, i, timeStamp, randGen, tag);
             }
             if(indiv_left){
                 OneSpeciesVector.push_back(Pathogen());
                 OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize,
-                        mhcSize,  i, timeStamp);
+                        mhcSize,  i, timeStamp, randGen, tag);
                 indiv_left--;
             }
         }
@@ -290,7 +287,7 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long ant
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- */
+ *
 void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antigenSize,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac){
@@ -307,13 +304,11 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antige
         if(kk % 2){
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
-            mhcSize, kk, timeStamp, kk);
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr, mhcSize, kk, timeStamp, kk);
         } else {
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
-            mhcSize, kk, timeStamp, 1);
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr, mhcSize, kk, timeStamp, 1);
         }
     }
     std::vector<Pathogen> OneSpeciesVector;
@@ -329,6 +324,7 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antige
         OneSpeciesVector.clear();
     }
 }
+*/
 
 /**
  * @brief Core method. Initializes the pathogen population.
@@ -348,8 +344,8 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antige
  */
 void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antigenSize,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
-        double fixedAntigenFrac){
-    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
+        double fixedAntigenFrac, Random &randGen, Tagging_system &tag){
+    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac, randGen);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
@@ -357,7 +353,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antige
     for(int kk = 0; kk < numb_of_species; ++kk){
         PathoSppTemplateVector.push_back(Pathogen());
         PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
-                        mhcSize, kk, timeStamp);
+                        mhcSize, kk, timeStamp, randGen, tag);
     }
     std::vector<Pathogen> OneSpeciesVector;
     for (int i = 0; i < numb_of_species; ++i){
@@ -390,7 +386,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antige
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- */
+ *
 void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antigenSize,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac){
@@ -407,12 +403,12 @@ void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antig
         if(kk % 2){
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr,
             mhcSize, kk, timeStamp, 2);
         } else {
             atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
             PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(chrom_size, atniStrr,
+            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr,
             mhcSize, kk, timeStamp, 1);
         }
     }
@@ -433,7 +429,7 @@ void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antig
         OneSpeciesVector.clear();
     }
 }
-
+*/
 
 /**
  * @brief Core method. Iterates through the host population and the parasite
@@ -450,16 +446,15 @@ void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antig
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
  */
-void Environment::infectOneFromOneSpecHetero(){
+void Environment::infectOneFromOneSpecHetero(Random &randGen){
     H2Pinteraction H2P;
     unsigned long j;
-        RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     unsigned long HostPopulationSize = HostPopulation.size();
     for(unsigned long i = 0; i < HostPopulationSize; ++i){
         unsigned long PathPopulationSize = PathPopulation.size();
         for(unsigned long sp = 0; sp < PathPopulationSize; ++sp){
             if(PathPopulation[sp].size()){
-                j = p_RandomNumbs->NextLongInt(0, PathPopulation[sp].size()-1);
+                j = randGen.getRandomFromUniform(0, PathPopulation[sp].size()-1);
                 H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
@@ -557,7 +552,7 @@ void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
  * fitness proportionate selection method</a> (also known as the roulette wheel
  * selection).
  */
-void Environment::selectAndReprodHostsAddOffspring(){
+void Environment::selectAndReprodHostsAddOffspring(Random &randGen){
     unsigned long pop_size = HostPopulation.size();
     double sum_of_fit = 0;
     double rnd;
@@ -567,11 +562,10 @@ void Environment::selectAndReprodHostsAddOffspring(){
     if(sum_of_fit == 0){
         return;
     }
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     int n = 0;
     aley_oop:
     while(n < pop_size){
-        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
+        rnd = randGen.getRealDouble(0, sum_of_fit);
         for(unsigned k = 0; k < pop_size; ++k) {
             rnd = rnd - HostPopulation[k].getFitness();
             if(rnd <= 0){
@@ -602,16 +596,16 @@ void Environment::selectAndReprodHostsAddOffspring(){
     unsigned long emptySlots = pop_size - PopSize;
     unsigned long indx_father, indx_mother;
     for (unsigned long p = 0; p < emptySlots; ++p){
-        indx_father = p_RandomNumbs->NextLongInt(0, PopSize);
-        indx_mother = p_RandomNumbs->NextLongInt(0, PopSize);
+        indx_father = randGen.getRandomFromUniform(0, PopSize);
+        indx_mother = randGen.getRandomFromUniform(0, PopSize);
         while (indx_father == indx_mother){
-            indx_mother = p_RandomNumbs->NextLongInt(0, PopSize);
+            indx_mother = randGen.getRandomFromUniform(0, PopSize);
         }
         HostPopulation.push_back(HostPopulation[indx_mother]);
         HostPopulation.back().assignChromTwo(HostPopulation[indx_father].getChromosomeTwo());
         // Randomly swaps places of chromosomes to avoid situation when they
         // effectively become two separate populations.
-        HostPopulation.back().swapChromosomes();
+        HostPopulation.back().swapChromosomes(randGen);
     }
 }
 
@@ -626,7 +620,7 @@ void Environment::selectAndReprodHostsAddOffspring(){
  * selection). Simulates random mating of hermaphrodites with no difference 
  * between sexes.
  */
-void Environment::selectAndReprodHostsReplace(){
+void Environment::selectAndReprodHostsReplace(Random &randGen){
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     unsigned long pop_size = HostPopulation.size();
@@ -641,11 +635,10 @@ void Environment::selectAndReprodHostsReplace(){
     if(sum_of_fit == 0){
         return;
     }
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     int n = 0;
     aley_oop:
     while(n < pop_size){
-        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
+        rnd = randGen.getRealDouble(0, sum_of_fit);
         unsigned long HostPopulationSize = HostPopulation.size();
         for(unsigned long k = 0; k < HostPopulationSize; ++k) {
             rnd = rnd - HostPopulation[k].getFitness();
@@ -658,7 +651,7 @@ void Environment::selectAndReprodHostsReplace(){
             }
         }
         second_parent:
-        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
+        rnd = randGen.getRealDouble(0, sum_of_fit);
         HostPopulationSize = HostPopulation.size();
         for(unsigned long p = 0; p < HostPopulationSize; ++p) {
             rnd = rnd - HostPopulation[p].getFitness();
@@ -669,7 +662,7 @@ void Environment::selectAndReprodHostsReplace(){
 
                // Randomly swaps places of chromosomes to avoid situation when
                // they effectively become two separate populations.
-               NewHostsVec.back().swapChromosomes();
+               NewHostsVec.back().swapChromosomes(randGen);
                goto aley_oop;
             }
         }
@@ -695,7 +688,7 @@ void Environment::selectAndReprodHostsReplace(){
  * fitness proportionate selection method</a> (also known as the roulette wheel
  * selection). Successful individuals are simply cloned replacing the weak ones.
  */
-void Environment::selectAndReprodHostsNoMating() {
+void Environment::selectAndReprodHostsNoMating(Random &randGen) {
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     unsigned long pop_size = HostPopulation.size();
@@ -707,11 +700,10 @@ void Environment::selectAndReprodHostsNoMating() {
     if(sum_of_fit == 0){
         return;
     }
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     int n = 0;
     aley_oop:
     while(n < pop_size) {
-        rnd = p_RandomNumbs->NextReal(0, sum_of_fit);
+        rnd = randGen.getRealDouble(0, sum_of_fit);
         unsigned long HostPopulationSize = HostPopulation.size();
         for (unsigned long k = 0; k < HostPopulationSize; ++k) {
             rnd = rnd - HostPopulation[k].getFitness();
@@ -744,7 +736,7 @@ void Environment::selectAndReprodHostsNoMating() {
  * for reproduction using  fitness proportionate selection method (roulette
  * wheel selection).
  */
-void Environment::selectAndReproducePathoFlexPopSizes(){
+void Environment::selectAndReproducePathoFlexPopSizes(Random &randGen){
     int rnd;
     int tot_patho_pop_size = 0;
     int total_ifected = 0;
@@ -763,11 +755,10 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
     if (total_ifected == 0){
         return;
     }
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     int n = 0;
     aley_oop:
     while(n < tot_patho_pop_size){
-        rnd = p_RandomNumbs->NextInt(0, sum_of_fit);
+        rnd = randGen.getRandomFromUniform(0, sum_of_fit);
         PathPopulationSize = PathPopulation.size();
         for (int i = 0; i < PathPopulationSize; ++i){
             unsigned long PathPopulationIthSize = PathPopulation[i].size();
@@ -815,7 +806,7 @@ void Environment::selectAndReproducePathoFlexPopSizes(){
  * for reproduction using fitness proportionate selection method (roulette
  * wheel selection).
  */
-void Environment::selectAndReproducePathoFixedPopSizes(){
+void Environment::selectAndReproducePathoFixedPopSizes(Random &randGen){
     std::vector<Pathogen> TmpPathVec;
     int rnd;
     unsigned long PopSizes[(int) PathPopulation.size()];
@@ -832,14 +823,13 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
     }
     if(total_ifected == 0)
         return;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     PathPopulationSize = PathPopulation.size();
     for (int k = 0; k < PathPopulationSize; ++k){
         TmpPathVec.clear();
         int n = 0;
         aley_oop:
         while(n < PopSizes[k]){
-           rnd = p_RandomNumbs->NextInt(0, SpecTotInfected[k]);
+           rnd = randGen.getRandomFromUniform(0, SpecTotInfected[k]);
             unsigned long PathPopulationKthSize = PathPopulation[k].size();
            for(unsigned long l = 0; l < PathPopulationKthSize; ++l){
                rnd = rnd - PathPopulation[k][l].NumOfHostsInfected;
@@ -898,10 +888,10 @@ void Environment::clearHostInfectionsData(){
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param timeStamp - current time (number of the model iteration)
  */
-void Environment::mutateHosts(double mut_probabl, int timeStamp){
+void Environment::mutateHosts(double mut_probabl, int timeStamp, Random &randGen, Tagging_system &tag){
     unsigned long HostPopulationSzie = HostPopulation.size();
     for(unsigned long k = 0; k < HostPopulationSzie; ++k){
-        HostPopulation[k].chromoMutProcess(mut_probabl, timeStamp);
+        HostPopulation[k].chromoMutProcess(mut_probabl, timeStamp, randGen, tag);
     }
 }
 
@@ -918,11 +908,12 @@ void Environment::mutateHosts(double mut_probabl, int timeStamp){
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
-        double dupl, unsigned long maxGene, int timeStamp){
+        double dupl, unsigned long maxGene, int timeStamp, Random &randGen,
+        Tagging_system &tag){
     unsigned long HostPopulationSzie = HostPopulation.size();
     for(unsigned long k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl,
-                maxGene, timeStamp);
+                maxGene, timeStamp, randGen, tag);
     }
 }
 
@@ -938,11 +929,12 @@ void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
-        double del, double dupl, unsigned long maxGene, int timeStamp){
+        double del, double dupl, unsigned long maxGene, int timeStamp,
+        Random &randGen, Tagging_system &tag){
     unsigned long HostPopulationSzie = HostPopulation.size();
     for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDuplPointMuts(pm_mut_probabl,
-                del, dupl, maxGene, timeStamp);
+                del, dupl, maxGene, timeStamp, randGen, tag);
     }
 }
 
@@ -1005,14 +997,14 @@ void Environment::mutatePathogens(double mut_probabl, unsigned long mhcSize, int
  * @param timeStamp - current time (number of the model iteration)
  */
 void Environment::mutatePathogensWithRestric(double mut_probabl, unsigned long mhcSize,
-        int timeStamp){
+        int timeStamp, Random &randGen, Tagging_system &tag){
     if (PathPopulation.size() == NoMutsVec.size()){
         unsigned long PathPopulationSize = PathPopulation.size();
         for(unsigned long i = 0; i < PathPopulationSize; ++i){
             unsigned long PathPopulationIthSize = PathPopulation[i].size();
             for(unsigned long j = 0; j < PathPopulationIthSize; ++j){
                 PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
-                        mhcSize, timeStamp, NoMutsVec[i]);
+                        mhcSize, timeStamp, NoMutsVec[i], randGen, tag);
             }
         }
     } else {
@@ -1066,9 +1058,8 @@ unsigned long Environment::getHostsPopSize(){
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
  */
-void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber){
+void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber, Random &randGen){
     unsigned long popSize = HostPopulation.size();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     unsigned long i, maxGenomeSize, highScore, geneIndCount;
@@ -1085,7 +1076,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
     while(NewHostsVec.size() < popSize){
-        i = p_RandomNumbs->NextLongInt(0, popSize-1);
+        i = randGen.getRandomFromUniform(0, popSize-1);
         // Specify the engine and create unique vector listing mates from population
         std::mt19937 mersenne_engine(rnd_device());
         std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
@@ -1116,7 +1107,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
             NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
             NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
-            NewHostsVec.back().swapChromosomes();;
+            NewHostsVec.back().swapChromosomes(randGen);
         }
     }
     if (HostPopulation.size() == NewHostsVec.size()){
@@ -1150,9 +1141,8 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
  */
-void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber) {
+void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber, Random &randGen) {
     unsigned long popSize = HostPopulation.size();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     unsigned long i, maxGenomeSize;
@@ -1170,7 +1160,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
     while(NewHostsVec.size() < popSize){
-        i = p_RandomNumbs->NextLongInt(0, popSize-1);
+        i = randGen.getRandomFromUniform(0, popSize-1);
         // Specify the engine and create unique vector listing mates from population
         std::mt19937 mersenne_engine(rnd_device());
         std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
@@ -1200,7 +1190,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
             NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
             NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
-            NewHostsVec.back().swapChromosomes();
+            NewHostsVec.back().swapChromosomes(randGen);
         }
 //        std::cout << std::endl;
     }
@@ -1224,9 +1214,8 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
  */
-void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber) {
+void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber, Random &randGen) {
     unsigned long popSize = HostPopulation.size();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     unsigned long i;
@@ -1238,9 +1227,10 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
     while(NewHostsVec.size() < popSize){
-        i = p_RandomNumbs->NextLongInt(0, popSize-1);
+        i = randGen.getRandomFromUniform(0, popSize-1);
         // Specify the engine and create unique vector listing mates from population
-        std::mt19937 mersenne_engine(rnd_device());
+//        std::mt19937 mersenne_engine(rnd_device());
+        std::mt19937 mersenne_engine = randGen.returnEngene();
         std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
         auto genn = std::bind(dist, mersenne_engine);
         generate(begin(matesVec), end(matesVec), genn);
@@ -1272,7 +1262,7 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
             NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
             NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
-            NewHostsVec.back().swapChromosomes();
+            NewHostsVec.back().swapChromosomes(randGen);
         }
 //        std::cout << std::endl;
     }
@@ -1297,9 +1287,8 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one that is the best to mate with.
  */
-void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
+void Environment::matingMaxDifferentMHCs(int matingPartnerNumber, Random &randGen) {
     unsigned long popSize = HostPopulation.size();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
     unsigned long i;
@@ -1311,7 +1300,7 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
     while(NewHostsVec.size() < popSize){
-        i = p_RandomNumbs->NextLongInt(0, popSize-1);
+        i = randGen.getRandomFromUniform(0, popSize-1);
         // Specify the engine and create unique vector listing mates from population
         std::mt19937 mersenne_engine(rnd_device());
         std::uniform_int_distribution<unsigned long> dist(0, popSize-1);
@@ -1343,7 +1332,7 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
             NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
             NewHostsVec.back().assignChromTwo(HostPopulation[theBestMatch].getChromosomeTwo());
             NewHostsVec.back().setFatherMhcNumber(HostPopulation[theBestMatch].getUniqueMHCs().size());
-            NewHostsVec.back().swapChromosomes();
+            NewHostsVec.back().swapChromosomes(randGen);
         }
 //        std::cout << std::endl;
     }

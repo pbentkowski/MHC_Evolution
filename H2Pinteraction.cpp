@@ -27,7 +27,6 @@
 
 typedef std::vector<unsigned long int> longIntVec;
 typedef std::vector<Gene> chromovector;
-typedef std::vector<Antigen> antigenvector;
 
 H2Pinteraction::H2Pinteraction() {
 }
@@ -78,8 +77,8 @@ bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antige
  * @param patho - a Pathogen-class object
  */
 void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
-    antigenvector tmppatho = patho.getAllAntigens();
     chromovector tmphost = host.getUniqueMHCs();
+    longIntVec pathoEpitopes = patho.getAntigenProt().getEpitopes();
     if (host.PathoSpecInfecting.size()){
         // Making sure a pathogen species infects only ones
         for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
@@ -87,13 +86,11 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
         }
     }
     for(int i = 0; i < tmphost.size(); ++i){
-        for(int j = 0; j < tmppatho.size(); ++j){
-            if(presentAntigen(tmphost[i].getTheRealGene(), tmppatho[j].getEpitopes())){
-                // the pathogen gets presented, the host evades infection:
-                host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
-                host.PathogesPresented.push_back(patho.getSpeciesTag());
-                return;
-            }
+        if(presentAntigen(tmphost[i].getTheRealGene(), pathoEpitopes)){
+            // the pathogen gets presented, the host evades infection:
+            host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
+            host.PathogesPresented.push_back(patho.getSpeciesTag());
+            return;
         }
     }
     // The host gets infected:

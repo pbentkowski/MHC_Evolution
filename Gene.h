@@ -52,9 +52,9 @@ public:
     void mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen, Tagging_system& tag);
     void mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
                          unsigned long up_lim, int timeStamp, Random& randGen, Tagging_system& ta);
-    void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp);
+    void mutateGeneBitByBit(double pm_mut_probabl, int timeStamp, Random& randGen, Tagging_system& tag);
     void mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp,
-                                   std::set<unsigned long>& noMutts);
+                                   std::set<unsigned long>& noMutts, Random& randGen, Tagging_system& tag);
     genestring getBitGene();
     unsigned long int getTheRealGene();
     // === Data harvesting ===

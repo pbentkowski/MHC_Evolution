@@ -62,6 +62,21 @@ float Random::getUni()
 }
 
 
+double Random::getRealDouble(double from, double thru)
+{
+    if( from == thru )
+        return from;
+    if( from > thru ){
+        double tmp = from;
+        from = thru;
+        thru = tmp;
+    }
+    static std::uniform_real_distribution<double> dd{};
+    using parm_t = decltype(dd)::param_type;
+    return dd( m_mt, parm_t{from, thru} );
+}
+
+
 /**
  * @brief Returns a random float value from a user-defined gaussian distribution
  *
@@ -189,4 +204,8 @@ float Random::CustomProb::getOneValue(unsigned int indx) {
     else {
         return values[indx];
     }
+}
+
+std::mt19937 Random::returnEngene() {
+    return m_mt;
 }

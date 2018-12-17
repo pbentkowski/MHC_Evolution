@@ -22,7 +22,6 @@
 #include "boost/dynamic_bitset.hpp"
 
 #include "Antigen.h"
-#include "Tagging_system.h"
 
 typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<unsigned long int> longIntVec;
@@ -72,18 +71,16 @@ void Antigen::calculateEpitopes(unsigned long mhcSize){
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp){
+void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp, Random& randGen, Tagging_system& tag){
     timeOfOrigin = timeStamp;
     TheParentWas = -1;
     BitStringLength = length;
-    Tagging_system* pTagging_system = Tagging_system::getInstance();
-    AntigenTag = pTagging_system->getTag();
+    AntigenTag = tag.getTag();
     TheAntigen.clear();
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<> tmpAntig(length);
     boost::dynamic_bitset<>::size_type tmpAntigSize = tmpAntig.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < tmpAntigSize; ++i){
-        if (p_RandomNumbs->NextReal(0.0, 1.0) < 0.5) {
+        if (randGen.getUni() < 0.5) {
             tmpAntig[i] = true;
         } else {
             tmpAntig[i] = false;
@@ -126,21 +123,20 @@ void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration).
  */
-void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp){
+void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp,
+                                    Random& randGen, Tagging_system& tag){
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     boost::dynamic_bitset<>::size_type bitgeneSize = bitgene.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < bitgeneSize; ++i) {
-        if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+        if(randGen.getUni() < pm_mut_probabl) {
             bitgene[i].flip();
         }
     }
     if(TheAntigen != bitgene){
         ParentTags.push_back(AntigenTag);
         MutationTime.push_back(timeOfOrigin);
-        Tagging_system* pTagging_system = Tagging_system::getInstance();
-        AntigenTag = pTagging_system->getTag();
+        AntigenTag = tag.getTag();
         timeOfOrigin = timeStamp;
         TheAntigen = bitgene;
         calculateEpitopes(mhcSize);
@@ -159,14 +155,13 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize
  * the mutation process, a way to define a species.  
  */
 void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhcSize,
-        int timeStamp, std::set<unsigned long>& noMutts){
+        int timeStamp, std::set<unsigned long>& noMutts, Random& randGen, Tagging_system& tag){
     boost::dynamic_bitset<> bitgene;
     bitgene = TheAntigen;
-    RandomNumbs * p_RandomNumbs = RandomNumbs::getInstance();
     unsigned long bitgeneSize = bitgene.size();
     for(unsigned long i = 0; i < bitgeneSize; ++i) {
         if(noMutts.count(i) == 0){
-            if(p_RandomNumbs->NextReal(0.0, 1.0) < pm_mut_probabl) {
+            if(randGen.getUni() < pm_mut_probabl) {
                 bitgene[i].flip(); 
            }
         }
@@ -174,8 +169,7 @@ void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhc
     if(TheAntigen != bitgene){
         ParentTags.push_back(AntigenTag);
         MutationTime.push_back(timeOfOrigin);
-        Tagging_system* pTagging_system = Tagging_system::getInstance();
-        AntigenTag = pTagging_system->getTag();
+        AntigenTag = tag.getTag();
         timeOfOrigin = timeStamp;
         TheAntigen = bitgene;
         calculateEpitopes(mhcSize);
