@@ -134,14 +134,14 @@ const std::string currentDateTime(){
  * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
  */
-bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit){
     bool ifError = false;
-    if (rndSeed < 0){
+    if (numberOfThreads < 0){
         std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
         ifError = true;
     }
@@ -227,15 +227,15 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsi
  * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
  */
-bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                                      int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                                      int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
                                      double hostMutationProb, double pathoMutationProb, int HeteroHomo,
                                      double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
                                      double fixedAntigPosit){
     bool ifError = false;
-    if (rndSeed < 0){
-        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
+    if (numberOfThreads < 0){
+        std::cout << "\nError in the number of threads. It has to be a positive integer!." << std::endl;
         ifError = true;
     }
     if (geneLength > 31){
@@ -313,13 +313,13 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsi
  * @param alpha
  * @return 
  */
-bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
+bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
         unsigned long numberOfMates){
     bool ifError = false;
-    if (rndSeed < 0){
-        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
+    if (numberOfThreads < 0){
+        std::cout << "\nError in the number of threads. It has to be a positive integer!." << std::endl;
         ifError = true;
     }
     if (geneLength > 31){
@@ -388,15 +388,15 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, int 
  * @param numberOfMates
  * @return
  */
-bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
                         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
                         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
                         int numberOfMates){
      bool ifError = false;
-    if (rndSeed < 0){
-        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
+    if (numberOfThreads < 0){
+        std::cout << "\nError in the number of threads. It has to be a positive integer!." << std::endl;
         ifError = true;
     }
     if (geneLength > 31){
@@ -471,7 +471,7 @@ bool DataHandler::checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsi
  * @param alpha
  * @param fixedAntigPosit
  */
-void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
@@ -483,7 +483,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
     InputParams << "# Runtime properties:" << std::endl;
     InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
     InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
+    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
     InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
     InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
     InputParams << "\thost_population_size = " << hostPopSize << std::endl;
@@ -545,7 +545,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
  * @param alpha
  * @param fixedAntigPosit
  */
-void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
      int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
      int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
      double hostMutationProb, double pathoMutationProb, int HeteroHomo,
@@ -557,7 +557,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
     InputParams << "# Runtime properties:" << std::endl;
     InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
     InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
+    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
     InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
     InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
     InputParams << "\thost_population_size = " << hostPopSize << std::endl;
@@ -612,7 +612,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
  * @param maxGene
  * @param alpha
  */
-void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
+void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
         unsigned long numberOfMates){
@@ -622,7 +622,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, int h
     InputParams << "# Runtime properties:" << std::endl;
     InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
     InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
+    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
     InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
     InputParams << "\tnumber_of_bits_per_antigen = " << "NOT_IN_THIS_MODEL" << std::endl;
     InputParams << "\thost_population_size = " << hostPopSize << std::endl;
@@ -655,7 +655,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, int h
     InputParams.close();
 }
 
-void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb, int pathoGeneNumb,
         int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
@@ -666,7 +666,7 @@ void DataHandler::inputParamsToFile(int rndSeed, unsigned long geneLength, unsig
     InputParams << "# Runtime properties:" << std::endl;
     InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
     InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\trandom_number_seed = " << rndSeed << std::endl;
+    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
     InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
     InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
     InputParams << "\thost_population_size = " << hostPopSize << std::endl;

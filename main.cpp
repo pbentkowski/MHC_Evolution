@@ -103,12 +103,13 @@ int main(int argc, char** argv) {
         return 0;
     }
     unsigned long maxGene, hostGeneNumbb, mhcGeneLength, antigenLength;
-    int rndSeed, hostPopSize, pathoPopSize, patho_sp, NumbPartners,
+    unsigned int numberOfThreads;
+    int hostPopSize, pathoPopSize, patho_sp, NumbPartners,
         pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
     double hostMutationProb, pathoMutationProb, deletion, duplication, alpha;
     // Check if input params are numbers
     try {
-        rndSeed = boost::lexical_cast<int>(argv[1]);
+        numberOfThreads = boost::lexical_cast<unsigned int>(argv[1]);
         mhcGeneLength = boost::lexical_cast<unsigned long>(argv[2]);
         antigenLength = boost::lexical_cast<unsigned long>(argv[3]);
         hostPopSize = boost::lexical_cast<int>(argv[4]);
@@ -135,7 +136,7 @@ int main(int argc, char** argv) {
         return 0;
     }
     // Load the input params
-    rndSeed = atoi(argv[1]);
+    numberOfThreads = (unsigned int) atoi(argv[1]);
     mhcGeneLength = (unsigned long) atoi(argv[2]);
     antigenLength = (unsigned long) atoi(argv[3]);
     hostPopSize = atoi(argv[4]);
@@ -154,12 +155,16 @@ int main(int argc, char** argv) {
     NumbPartners = atoi(argv[17]);
     alpha = atof(argv[18]);
 
-    // When told so, fetching a truly random number to seed the RNG engine
-    if (rndSeed < 0){
-        std::random_device rd;
-        std::uniform_int_distribution<int> dist(0, 99999);
-        rndSeed = dist(rd);
+    // Initializing the multi-threaded environment
+    if (numberOfThreads == 0)
+    {
+        numberOfThreads = std::thread::hardware_concurrency();
+        if(numberOfThreads == 0) // if the value is not well defined or not computable, set at least 1 thread
+            numberOfThreads = 1;
     }
+    std::cout << "We have " << numberOfThreads << " threads" << std::endl;
+    omp_set_num_threads(numberOfThreads);
+
 
     DataHandler Data2file;  // Initialize the data harvesting mechanism
 
@@ -186,32 +191,17 @@ int main(int argc, char** argv) {
 
 // === And now doing the calculations! ===
 
-    // Initializing the random number generator engine for multi-threaded environment and tagging system
-    unsigned int numberOfThreads = 0;
-    Random* mRandGenArr;
-    if(numberOfThreads == 0)
-    {
-        numberOfThreads = std::thread::hardware_concurrency();
-        if(numberOfThreads == 0) // if the value is not well defined or not computable, set at least 1 thread
-            numberOfThreads = 1;
-    }
-    std::cout << "We have " << numberOfThreads << " threads" << std::endl;
-    omp_set_num_threads(numberOfThreads);
-    mRandGenArr = new Random[numberOfThreads];
-
-    for(unsigned int i = 0; i < numberOfThreads; ++i)
-        mRandGenArr[i].reseed(rndSeed*10);
-
+    // Initializing tagging system
     Tagging_system tag;
 // ======================================
 
-    Environment ENV; // Initialize the simulation environment
+    Environment ENV(numberOfThreads); // Initialize the simulation environment
     Data2file.setAllFilesAsFirtsTimers();
-    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
+    ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0, tag);
 //    ENV.setHostClonalPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0);
     std::cout << "Host population all set!" << std::endl;
     ENV.setPathoPopulatioDivSpecies(pathoPopSize, antigenLength, pathoGeneNumb,
-                                       patho_sp, mhcGeneLength, 0, 0);
+                                       patho_sp, mhcGeneLength, 0, 0, tag);
     std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     Data2file.savePathoNoMuttList(ENV);
@@ -236,7 +226,7 @@ int main(int argc, char** argv) {
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
                 ENV.selectAndReproducePathoFixedPopSizes();
-                ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i);
+                ENV.mutatePathogensWithRestric(pathoMutationProb, mhcGeneLength, i, tag);
                 ENV.clearPathoInfectionData();
             }
             Data2file.savePresentedPathos(ENV, i);
@@ -244,7 +234,7 @@ int main(int argc, char** argv) {
 //            ENV.selectAndReprodHostsReplace();
             ENV.selectAndReprodHostsNoMating();  // changed for sexual reproduction
             ENV.matingMeanOptimalNumberMHCsmallSubset(NumbPartners); // changed for sexual reproduction
-            ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i);
+            ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i, tag);
             Data2file.saveHostGeneticDivers(ENV, i);
             Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();

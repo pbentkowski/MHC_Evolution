@@ -39,45 +39,45 @@ public:
     DataHandler();
 //    DataHarvester(const DataHarvester& orig);
     virtual ~DataHandler();
-    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         double fixedAntigPosit);
-    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
         double fixedAntigPosit);
-    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, int hostPopSize, 
+    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
         unsigned long numberOfMates);
-    bool checkParamsIfWrong(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
         double hostMutationProb, double pathoMutationProb, int HeteroHomo,
         double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         int numberOfMates); // for alpha and optimal mating scenario
-    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    void inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                            int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                            int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
                            double hostMutationProb, double pathoMutationProb, int HeteroHomo,
                            double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
                            double fixedAntigPosit);
-    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    void inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                            int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                            int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
                            double hostMutationProb, double pathoMutationProb, int HeteroHomo,
                            double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
                            double fixedAntigPosit);
-    void inputParamsToFile(int rndSeed, unsigned long geneLength, int hostPopSize,
+    void inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
                            int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
                            int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
                            unsigned long numberOfMates);
-    void inputParamsToFile(int rndSeed, unsigned long geneLength, unsigned long antigenLength,
+    void inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                            int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                            int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
                            double hostMutationProb, double pathoMutationProb, int HeteroHomo,
