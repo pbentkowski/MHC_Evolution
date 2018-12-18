@@ -51,8 +51,7 @@ Pathogen::~Pathogen() {
  * @param species - user-defined number of species
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Pathogen::setNewPathogen(int num_of_loci, unsigned long antigen_size,
-                              unsigned long mhcSize, int species, int timeStamp,
+void Pathogen::setNewPathogen(unsigned long antigen_size, unsigned long mhcSize, int species, int timeStamp,
                               Random& randGen, Tagging_system& tag){
     Species = species;
     NumOfHostsInfected = 0;
@@ -93,8 +92,9 @@ void Pathogen::setNewPathogenNthSwap(anigenstring antigen, unsigned long int Tag
  * replaced by a new one
  * @param timeStamp - current time (current number of the model iteration)
  */
-void Pathogen::chromoMutProcess(double mut_probabl, unsigned long mhcSize, int timeStamp){
-    PathoProtein.mutateAntigenBitByBit(mut_probabl, mhcSize, timeStamp);
+void Pathogen::chromoMutProcess(double mut_probabl, unsigned long mhcSize, int timeStamp,
+        Random& randGen, Tagging_system& tag){
+    PathoProtein.mutateAntigenBitByBit(mut_probabl, mhcSize, timeStamp, randGen, tag);
 }
 
 /**

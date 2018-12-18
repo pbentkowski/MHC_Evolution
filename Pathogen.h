@@ -46,12 +46,12 @@ public:
 //    std::vector<unsigned long> HostsInfected; // which host are infected
     unsigned NumOfHostsInfected;  // how many host are infected
     int SelectedToReproduct;
-    void setNewPathogen(int num_of_loci, unsigned long antigen_size, unsigned long mhcSize,
+    void setNewPathogen(unsigned long antigen_size, unsigned long mhcSize,
                         int species, int timeStamp, Random& randGen, Tagging_system& tag);
     void setNewPathogenNthSwap(anigenstring antigen, unsigned long int Tag, unsigned long mhcSize,
                                int species, int timeStamp, int Nth);
     Antigen getAntigenProt();
-    void chromoMutProcess(double mut_probabl, unsigned long mhcSize, int timeStamp);
+    void chromoMutProcess(double mut_probabl, unsigned long mhcSize, int timeStamp, Random& randGen, Tagging_system& tag);
     void chromoMutProcessWithRestric(double mut_probabl, unsigned long mhcSize, int timeStamp,
                                      std::set<unsigned long>& noMutts, Random& randGen, Tagging_system& tag);
     void setNewSpeciesNumber(int new_spp_num);

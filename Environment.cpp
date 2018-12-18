@@ -73,91 +73,22 @@ void Environment::seedEnvsRNG() {
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setNoMutsVector(int numb_of_species, unsigned long antigen_size,
-        double fixedAntigenFrac){
+        double fixedAntigenFrac)
+{
+    Random * rngGenPtr = mRandGenArr;
     std::set<unsigned long> NoMutSet;
+//    #pragma omp parallel for default(none) shared(numb_of_species, rngGenPtr, antigen_size, fixedAntigenFrac) private(NoMutSet)
     for(int i = 0; i < numb_of_species; ++i){
         NoMutSet.clear();
         NoMutsVec.push_back(NoMutSet);
         for(unsigned long j = 0; j < antigen_size; ++j){
-            if(randGen.getUni() <= fixedAntigenFrac){
+            if(rngGenPtr[omp_get_thread_num()].getUni() <= fixedAntigenFrac){
                 NoMutsVec.back().insert(j);
             }
         }
     }
 }
 
-/**
- * @brief Core method. It defines "no mutation sites" in 4-bit-long packages of
- * the antigen for all  individual pathogen species in the simulation. It should
- * be run only ones per simulation.
- *
- * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
- * STD sets</a> containing indices of antigen bits in which  mutations are not
- * allowed. The length of the vector equals the number of pathogen species. Each
- * species has its own vector. Number of fixed sites is a user-defined parameter.
- *
- * @param numb_of_species - number of pathogen species
- * @param antigen_size - number of bits per antigen
- * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- */
-void Environment::setNoMutsVecInFours(int numb_of_species, int antigen_size,
-        double fixedAntigenFrac){
-    std::set<unsigned long> NoMutSet;
-    fixedAntigenFrac = fixedAntigenFrac / 4.0;
-    for(int i = 0; i < numb_of_species; ++i){
-        NoMutSet.clear();
-        NoMutsVec.push_back(NoMutSet);
-        unsigned long indexCounter = 0;
-        while (indexCounter < antigen_size) {
-            if(randGen.getUni() <= fixedAntigenFrac){
-                NoMutsVec.back().insert(indexCounter);
-                NoMutsVec.back().insert(indexCounter + 1);
-                NoMutsVec.back().insert(indexCounter + 2);
-                NoMutsVec.back().insert(indexCounter + 3);
-                indexCounter = indexCounter + 3;
-            } else {
-                indexCounter++;
-            }
-        }
-    }
-}
-
-
-/**
- *  @brief Core method. It defines "no mutation sites" of the antigen for all
- * individual pathogen species in the simulation. It should be run only ones per
- * simulation.
- *
- * Creates a vector of <a href="http://www.cplusplus.com/reference/set/set/">
- * STD sets</a> containing indices of antigen bits in which  mutations are not
- * allowed. The length of the vector equals the number of pathogen species. Each
- * species has its own vector. Number of fixed sites is a user-defined parameter.
- * This version generates only four unique "no-mutation" vectors (all vectors are
- * just copies of one of the four) to differentiate "clads" of pathogen species.
- *
- * @param numb_of_species - number of pathogen species
- * @param antigen_size - number of bits per antigen
- * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- */
-void Environment::setNoMutsVecFourClads(int numb_of_species, unsigned long antigen_size,
-        double fixedAntigenFrac){
-    std::set<unsigned long> NoMutSet;
-    std::vector<std::set<unsigned long>> TmpNoMutsVec;
-    for(int i = 0; i < 4; ++i){
-        NoMutSet.clear();
-        TmpNoMutsVec.push_back(NoMutSet);
-        for(unsigned long j = 0; j < antigen_size; ++j){
-            if(randGen.getUni() <= fixedAntigenFrac){
-                TmpNoMutsVec.back().insert(j);
-            }
-        }
-    }
-    int spp_count;
-    for(int i = 0; i < numb_of_species; ++i){
-        spp_count = i % 4;
-        NoMutsVec.push_back(TmpNoMutsVec[spp_count]);
-    }
-}
 
 /**
  * @brief Core method. Initializes a vector containing host population.
@@ -175,9 +106,13 @@ void Environment::setNoMutsVecFourClads(int numb_of_species, unsigned long antig
 void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
                                           unsigned long chrom_size, int timeStamp,
                                            Tagging_system &tag){
-    for(int i = 0; i < pop_size; ++i){
+    for(int i = 0; i < pop_size; ++i) {
         HostPopulation.push_back(Host());
-        HostPopulation.back().setNewHost(chrom_size, gene_size, timeStamp, randGen, tag);
+    }
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp parallel for default(none) shared(chrom_size, pop_size, rngGenPtr, gene_size, timeStamp, tag)
+    for(int j = 0; j < pop_size; ++j){
+        HostPopulation[j].setNewHost(chrom_size, gene_size, timeStamp, rngGenPtr[omp_get_thread_num()], tag);
     }
 }
 
@@ -205,10 +140,14 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
         chrom_size_lower = chrom_size_uper;
         chrom_size_uper = tmp_size;
     }
-    for(int i = 0; i < pop_size; ++i){
+    for(int i = 0; i < pop_size; ++i) {
         HostPopulation.push_back(Host());
-        HostPopulation.back().setNewHost(randGen.getRandomFromUniform(chrom_size_lower,
-                chrom_size_uper), gene_size, timeStamp, randGen, tag);
+    }
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp parallel for default(none) shared(pop_size, chrom_size_lower, chrom_size_uper, rngGenPtr, gene_size, timeStamp, tag)
+    for(int j = 0; j < pop_size; ++j){
+        HostPopulation[j].setNewHost(rngGenPtr[omp_get_thread_num()].getRandomFromUniform(chrom_size_lower,
+                chrom_size_uper), gene_size, timeStamp, rngGenPtr[omp_get_thread_num()], tag);
     }
 }
 
@@ -232,10 +171,14 @@ void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
                                            Tagging_system &tag){
     std::vector<Host> tmpPopulation;
     tmpPopulation.push_back(Host());
-    tmpPopulation.back().setNewHomozygHost(chrom_size, gene_size, timeStamp, randGen, tag);
-    //tmpPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
-    for(int i = 0; i < pop_size; ++i){
-        HostPopulation.push_back(tmpPopulation.back());
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp single
+    {
+        tmpPopulation.back().setNewHomozygHost(chrom_size, gene_size, timeStamp, rngGenPtr[omp_get_thread_num()], tag);
+        //tmpPopulation.back().setNewHost(chrom_size, gene_size, timeStamp);
+        for (int i = 0; i < pop_size; ++i) {
+            HostPopulation.push_back(tmpPopulation.back());
+        }
     }
 }
 
@@ -255,7 +198,7 @@ void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- */
+ *
 void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long antigenSize,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac, Tagging_system &tag){
@@ -286,61 +229,6 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long ant
     }
 }
 
-/**
- * @brief Core method. Initializes the pathogen population.
- *
- * Given the number of individuals, number of bit per gene, desired number of
- * genes in a genome and desired number of pathogen species it generates
- * random population of pathogens. Number of individuals will be evenly
- * distributed between species and each species consists of identical clones.
- * Antigens in species are not assigned at random, but are spread evenly in all
- * possible bit strings space.
- *
- * @@param pop_size - total number of individuals
- * @param antigenSize - number of bits per gene
- * @param chrom_size - number of genes per genome
- * @param numb_of_species - number of pathogen species
- * @param mhcSize - number of bits in MHC protein
- * @param timeStamp - current time (number of the model iteration)
- * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- *
-void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antigenSize,
-        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
-        double fixedAntigenFrac){
-    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
-    if (numb_of_species > pop_size) numb_of_species = pop_size;
-    int indiv_per_species = pop_size / numb_of_species;
-    int indiv_left = pop_size % numb_of_species;
-    std::vector<Pathogen> PathoSppTemplateVector;
-    PathoSppTemplateVector.push_back(Pathogen());
-    antigenstring atniStrr;
-    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
-                                                 mhcSize, 0, timeStamp);
-    for(int kk = 1; kk < numb_of_species; ++kk){
-        if(kk % 2){
-            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
-            PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr, mhcSize, kk, timeStamp, kk);
-        } else {
-            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
-            PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr, mhcSize, kk, timeStamp, 1);
-        }
-    }
-    std::vector<Pathogen> OneSpeciesVector;
-    for (int i = 0; i < numb_of_species; ++i){
-        for(int j = 0; j < indiv_per_species; ++j){
-            OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
-            if(indiv_left){
-                OneSpeciesVector.push_back(PathoSppTemplateVector[i]);
-                indiv_left--;
-            }
-        }
-        PathPopulation.push_back(OneSpeciesVector);
-        OneSpeciesVector.clear();
-    }
-}
-*/
 
 /**
  * @brief Core method. Initializes the pathogen population.
@@ -359,17 +247,23 @@ void Environment::setPathoPopulatioDistincSpp(int pop_size, unsigned long antige
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
  */
 void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antigenSize,
-        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
-        double fixedAntigenFrac, Tagging_system &tag){
-    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac, randGen);
+        int numb_of_species, unsigned long mhcSize, int timeStamp,
+        double fixedAntigenFrac, Tagging_system &tag)
+{
+    Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac);
     if (numb_of_species > pop_size) numb_of_species = pop_size;
     int indiv_per_species = pop_size / numb_of_species;
     int indiv_left = pop_size % numb_of_species;
     std::vector<Pathogen> PathoSppTemplateVector;
-    for(int kk = 0; kk < numb_of_species; ++kk){
+    for(int kk = 0; kk < numb_of_species; ++kk) {
         PathoSppTemplateVector.push_back(Pathogen());
-        PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
-                        mhcSize, kk, timeStamp, randGen, tag);
+    }
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp parallel for default(none) \
+        shared(numb_of_species, rngGenPtr, PathoSppTemplateVector, antigenSize, mhcSize, timeStamp, tag)
+    for(int ll = 0; ll < numb_of_species; ++ll) {
+        PathoSppTemplateVector[ll].setNewPathogen(antigenSize, mhcSize, ll, timeStamp,
+                                                  rngGenPtr[omp_get_thread_num()], tag);
     }
     std::vector<Pathogen> OneSpeciesVector;
     for (int i = 0; i < numb_of_species; ++i){
@@ -385,67 +279,6 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antige
     }
 }
 
-/**
- * @brief Core method. Initializes the pathogen population.
- *
- * Given the number of individuals, number of bit per gene, desired number of
- * genes in a genome and desired number of pathogen species it generates
- * random population of pathogens. Number of individuals will be evenly
- * distributed between species, each species draws its genes from the same
- * pool of possible bit strings and there are only 4 possible "clads" - groups
- * of species initialized with the same antigens and same mutations restrictions.
- *
- * @param pop_size - total number of individuals
- * @param antigenSize - number of bits per gene
- * @param chrom_size - number of genes per genome
- * @param numb_of_species - number of pathogen species
- * @param mhcSize - number of bits in MHC protein
- * @param timeStamp - current time (number of the model iteration)
- * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
- *
-void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antigenSize,
-        int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
-        double fixedAntigenFrac){
-    Environment::setNoMutsVecFourClads(numb_of_species, antigenSize, fixedAntigenFrac);
-    if (numb_of_species > pop_size) numb_of_species = pop_size;
-    int indiv_per_species = pop_size / numb_of_species;
-    int indiv_left = pop_size % numb_of_species;
-    std::vector<Pathogen> PathoSppTemplateVector;
-    PathoSppTemplateVector.push_back(Pathogen());
-    antigenstring atniStrr;
-    PathoSppTemplateVector.back().setNewPathogen(chrom_size, antigenSize,
-                                                 mhcSize, 0, timeStamp);
-    for(int kk = 1; kk < 4; ++kk){
-        if(kk % 2){
-            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
-            PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr,
-            mhcSize, kk, timeStamp, 2);
-        } else {
-            atniStrr = PathoSppTemplateVector.back().getSingleAntigen(0);
-            PathoSppTemplateVector.push_back(Pathogen());
-            PathoSppTemplateVector.back().setNewPathogenNthSwap(atniStrr,
-            mhcSize, kk, timeStamp, 1);
-        }
-    }
-    int spp_count;
-    std::vector<Pathogen> OneSpeciesVector;
-    for (int i = 0; i < numb_of_species; ++i){
-        spp_count = i % 4;
-        for(int j = 0; j < indiv_per_species; ++j){
-            OneSpeciesVector.push_back(PathoSppTemplateVector[spp_count]);
-            OneSpeciesVector.back().setNewSpeciesNumber(i);
-            if(indiv_left){
-                OneSpeciesVector.push_back(PathoSppTemplateVector[spp_count]);
-                OneSpeciesVector.back().setNewSpeciesNumber(i);
-                indiv_left--;
-            }
-        }
-        PathPopulation.push_back(OneSpeciesVector);
-        OneSpeciesVector.clear();
-    }
-}
-*/
 
 /**
  * @brief Core method. Iterates through the host population and the parasite
@@ -461,7 +294,7 @@ void Environment::setPathoPopulationFourClades(int pop_size, unsigned long antig
  *
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
- */
+ *
 void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
     unsigned long j;
@@ -555,75 +388,6 @@ void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
     }
 }
 
-/**
- * @brief Core method. Forms the next generation of hosts using the fitness
- * proportionate selection method.
- *
- * The new generation takes place of individuals which got removed from
- * population due to too low fitness.
- *
- * Iterates through the host population selecting the next generation
- * for reproduction using
- * <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">
- * fitness proportionate selection method</a> (also known as the roulette wheel
- * selection).
- */
-void Environment::selectAndReprodHostsAddOffspring(){
-    unsigned long pop_size = HostPopulation.size();
-    double sum_of_fit = 0;
-    double rnd;
-    for(unsigned i = 0; i < pop_size; ++i){
-        sum_of_fit += HostPopulation[i].getFitness();
-    }
-    if(sum_of_fit == 0){
-        return;
-    }
-    int n = 0;
-    aley_oop:
-    while(n < pop_size){
-        rnd = randGen.getRealDouble(0, sum_of_fit);
-        for(unsigned k = 0; k < pop_size; ++k) {
-            rnd = rnd - HostPopulation[k].getFitness();
-            if(rnd <= 0){
-               HostPopulation[k].SelectedForReproduction += 1;
-               n += 1;
-               goto aley_oop;
-            }
-        }
-    }
-    // Remove the unfit ones
-    unsigned long PopSize = HostPopulation.size();
-    for (unsigned long i = PopSize - 1; i >= 0; --i){
-        if (HostPopulation[i].SelectedForReproduction == 0){
-            HostPopulation.erase(HostPopulation.begin() + i);
-        }
-    }
-    // Reproduce the fit ones
-//    PopSize = HostPopulation.size();
-//    for (int i = PopSize - 1; i >= 0; --i){
-//        if (HostPopulation[i].SelectedForReproduction){
-//            for(int k = 1; k < HostPopulation[i].SelectedForReproduction; ++k){
-//                HostPopulation.push_back(HostPopulation[k]);
-//            }
-//        }
-//    }
-    // Random mating
-    PopSize = HostPopulation.size();
-    unsigned long emptySlots = pop_size - PopSize;
-    unsigned long indx_father, indx_mother;
-    for (unsigned long p = 0; p < emptySlots; ++p){
-        indx_father = randGen.getRandomFromUniform(0, PopSize);
-        indx_mother = randGen.getRandomFromUniform(0, PopSize);
-        while (indx_father == indx_mother){
-            indx_mother = randGen.getRandomFromUniform(0, PopSize);
-        }
-        HostPopulation.push_back(HostPopulation[indx_mother]);
-        HostPopulation.back().assignChromTwo(HostPopulation[indx_father].getChromosomeTwo());
-        // Randomly swaps places of chromosomes to avoid situation when they
-        // effectively become two separate populations.
-        HostPopulation.back().swapChromosomes(randGen);
-    }
-}
 
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
@@ -635,7 +399,7 @@ void Environment::selectAndReprodHostsAddOffspring(){
  * fitness proportionate selection method</a> (also known as the roulette wheel
  * selection). Simulates random mating of hermaphrodites with no difference 
  * between sexes.
- */
+ *
 void Environment::selectAndReprodHostsReplace(){
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
@@ -703,7 +467,7 @@ void Environment::selectAndReprodHostsReplace(){
  * <a href="http://en.wikipedia.org/wiki/Fitness_proportionate_selection">
  * fitness proportionate selection method</a> (also known as the roulette wheel
  * selection). Successful individuals are simply cloned replacing the weak ones.
- */
+ *
 void Environment::selectAndReprodHostsNoMating() {
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
@@ -742,76 +506,6 @@ void Environment::selectAndReprodHostsNoMating() {
     }
 }
 
-/**
- * @brief Core method. Forms the next generation of hosts using the fitness
- * proportionate selection method. It can adjust species population sizes in
- * proportion to its individuals fitness values keeping the total number of
- * pathogens fixed.
- *
- * Iterates through the pathogen population selecting the next generation
- * for reproduction using  fitness proportionate selection method (roulette
- * wheel selection).
- */
-void Environment::selectAndReproducePathoFlexPopSizes(){
-    int rnd;
-    int tot_patho_pop_size = 0;
-    int total_ifected = 0;
-    int sum_of_fit = 0;
-    unsigned long PathPopulationSize = PathPopulation.size();
-    for (unsigned long i = 0; i < PathPopulationSize; ++i){
-        tot_patho_pop_size = tot_patho_pop_size + (int) PathPopulation[i].size();
-        for (int j = 0; j < PathPopulation[i].size(); ++j){
-            total_ifected += PathPopulation[i][j].NumOfHostsInfected;
-//            PathPopulation[i][j].NumOfHostsInfected += 1;
-            // A trick to have more survivors
-            sum_of_fit += PathPopulation[i][j].NumOfHostsInfected;
-        }
-    }
-//    std::cout << "Total infected: " << total_ifected << std::endl;
-    if (total_ifected == 0){
-        return;
-    }
-    int n = 0;
-    aley_oop:
-    while(n < tot_patho_pop_size){
-        rnd = randGen.getRandomFromUniform(0, sum_of_fit);
-        PathPopulationSize = PathPopulation.size();
-        for (int i = 0; i < PathPopulationSize; ++i){
-            unsigned long PathPopulationIthSize = PathPopulation[i].size();
-            for (int j = 0; j < PathPopulationIthSize; ++j){
-                rnd = rnd - PathPopulation[i][j].NumOfHostsInfected;
-                if(rnd <= 0){
-                    PathPopulation[i][j].SelectedToReproduct += 1;
-                    n += 1;
-                    goto aley_oop;
-                }
-            }
-        }
-    }
-    unsigned long PopSize;
-    // Elimination of the unfit
-    unsigned long PopOfPopsSize = PathPopulation.size();
-    for (unsigned long i = PopOfPopsSize - 1; i >= 0; --i){
-        PopSize = PathPopulation[i].size();
-        for (unsigned long j = PopSize - 1; j >= 0; --j){
-            if(PathPopulation[i][j].SelectedToReproduct  == 0){
-                PathPopulation[i].erase(PathPopulation[i].begin() + j);
-            }
-        }
-    }
-    // Reproduction of the fit ones
-    PopOfPopsSize = PathPopulation.size();
-    for (unsigned long i = PopOfPopsSize - 1; i >= 0; --i){
-        PopSize = PathPopulation[i].size();
-        for (unsigned long j = PopSize - 1; j >= 0; j--){
-            if(PathPopulation[i][j].SelectedToReproduct){
-                for(int k = 1; k < PathPopulation[i][j].SelectedToReproduct; ++k){
-                    PathPopulation[i].push_back(PathPopulation[i][j]);
-                }
-            }
-        }
-    }
-}
 
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
@@ -840,13 +534,15 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
     if(total_ifected == 0)
         return;
     PathPopulationSize = PathPopulation.size();
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp parallel for ordered default(none) shared(rngGenPtr, PathPopulationSize, PopSizes, SpecTotInfected, std::cout) private(rnd, TmpPathVec)
     for (int k = 0; k < PathPopulationSize; ++k){
         TmpPathVec.clear();
         int n = 0;
         aley_oop:
         while(n < PopSizes[k]){
-           rnd = randGen.getRandomFromUniform(0, SpecTotInfected[k]);
-            unsigned long PathPopulationKthSize = PathPopulation[k].size();
+           rnd = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, SpecTotInfected[k]);
+           unsigned long PathPopulationKthSize = PathPopulation[k].size();
            for(unsigned long l = 0; l < PathPopulationKthSize; ++l){
                rnd = rnd - PathPopulation[k][l].NumOfHostsInfected;
                if(rnd <= 0){
@@ -857,14 +553,17 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
                }
            }
         }
-        if(PathPopulation[k].size() == TmpPathVec.size()){
-            PathPopulation[k].clear();
-            PathPopulation[k] = TmpPathVec;
-        }else{
-            std::cout << "Error in selectAndReproducePathoFixedPopSizes(): " <<
-                "Size mismatch between the new and the old population!" << std::endl;
-            std::cout << "old pop: " << PathPopulation[k].size() <<
-                " | new pop: " << TmpPathVec.size() << std::endl;
+        #pragma omp ordered
+        {
+            if (PathPopulation[k].size() == TmpPathVec.size()) {
+                PathPopulation[k].clear();
+                PathPopulation[k] = TmpPathVec;
+            } else {
+                std::cout << "Error in selectAndReproducePathoFixedPopSizes(): " <<
+                          "Size mismatch between the new and the old population!" << std::endl;
+                std::cout << "old pop: " << PathPopulation[k].size() <<
+                          " | new pop: " << TmpPathVec.size() << std::endl;
+            }
         }
 
     }
@@ -873,7 +572,7 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
 /**
  * @brief. Core method. Clears information about infection and fitness in the
  * whole pathogen population.
- */
+ *
 void Environment::clearPathoInfectionData(){
     // Clear pathogens infection data
     unsigned long PathPopulationSize = PathPopulation.size();
@@ -892,46 +591,12 @@ void Environment::clearPathoInfectionData(){
 void Environment::clearHostInfectionsData(){
     // Clear hosts infection data
     unsigned long HostPopulationSzie = HostPopulation.size();
+    #pragma omp prallel for default(none) shared(HostPopulationSzie)
     for(unsigned long k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].clearInfections();
     }
 }
 
-/**
- * @brief Core method. Iterates through the all genes of the host population
- * and performs mutations in genes with a given probability.
- *
- * @param mut_probabl - probability of a mutation in a single gene.
- * @param timeStamp - current time (number of the model iteration)
- */
-void Environment::mutateHosts(double mut_probabl, int timeStamp, Tagging_system &tag){
-    unsigned long HostPopulationSzie = HostPopulation.size();
-    for(unsigned long k = 0; k < HostPopulationSzie; ++k){
-        HostPopulation[k].chromoMutProcess(mut_probabl, timeStamp, randGen, tag);
-    }
-}
-
-/**
- * @brief Core method. Iterates through the all genes of the host population
- * and performs mutations in genes with a given probability. Also deletions and
- * duplications of genes.
- *
- * @param mut_probabl - probability of a mutation in a single gene.
- * @param del - mutation probability, probability a gene will be deleted
- * @param dupli - mutation probability, probability a gene will be duplicated
- * (and added at the end of the Chromosome vector)
- * @param maxGene - maximal allowed number of genes in a chromosome
- * @param timeStamp - current time (number of the model iteration)
- */
-void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
-        double dupl, unsigned long maxGene, int timeStamp,
-        Tagging_system &tag){
-    unsigned long HostPopulationSzie = HostPopulation.size();
-    for(unsigned long k = 0; k < HostPopulationSzie; ++k){
-        HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl,
-                maxGene, timeStamp, randGen, tag);
-    }
-}
 
 /**
  * @brief Core method. Iterates through the all genes of the host population
@@ -943,7 +608,7 @@ void Environment::mutateHostsWithDelDupl(double mut_probabl, double del,
  * @param dupli - mutation probability, probability a gene will be duplicated
  * (and added at the end of the Chromosome vector)
  * @param timeStamp - current time (number of the model iteration)
- */
+ *
 void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
         double del, double dupl, unsigned long maxGene, int timeStamp,
          Tagging_system &tag){
@@ -990,7 +655,7 @@ double Environment::MMtoPMscaling(double MM_prob_mut, unsigned long geneLength){
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
- */
+ *
 void Environment::mutatePathogens(double mut_probabl, unsigned long mhcSize, int timeStamp){
     unsigned long PathPopulationSize = PathPopulation.size();
     for (int i = 0; i < PathPopulationSize; ++i){
@@ -1015,12 +680,15 @@ void Environment::mutatePathogens(double mut_probabl, unsigned long mhcSize, int
 void Environment::mutatePathogensWithRestric(double mut_probabl, unsigned long mhcSize,
         int timeStamp, Tagging_system &tag){
     if (PathPopulation.size() == NoMutsVec.size()){
+        Random * rngGenPtr = mRandGenArr;
+//    #pragma omp parallel for default(none) shared(
         unsigned long PathPopulationSize = PathPopulation.size();
         for(unsigned long i = 0; i < PathPopulationSize; ++i){
             unsigned long PathPopulationIthSize = PathPopulation[i].size();
+            #pragma omp parallel for default(none) shared(rngGenPtr, tag, mut_probabl, mhcSize, timeStamp, i, PathPopulationIthSize)
             for(unsigned long j = 0; j < PathPopulationIthSize; ++j){
                 PathPopulation[i][j].chromoMutProcessWithRestric(mut_probabl,
-                        mhcSize, timeStamp, NoMutsVec[i], randGen, tag);
+                        mhcSize, timeStamp, NoMutsVec[i], rngGenPtr[omp_get_thread_num()], tag);
             }
         }
     } else {
@@ -1073,7 +741,7 @@ unsigned long Environment::getHostsPopSize(){
  * 
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
- */
+ *
 void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber){
     unsigned long popSize = HostPopulation.size();
     std::vector<Host> NewHostsVec;
@@ -1156,7 +824,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
- */
+ *
 void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
     std::vector<Host> NewHostsVec;
@@ -1229,7 +897,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one best to mate with.
- */
+ *
 void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
     std::vector<Host> NewHostsVec;
@@ -1302,7 +970,7 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one that is the best to mate with.
- */
+ *
 void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
     std::vector<Host> NewHostsVec;

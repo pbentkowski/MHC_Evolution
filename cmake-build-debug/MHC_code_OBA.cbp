@@ -141,6 +141,9 @@
 		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/main.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/mainTestEnv.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
 		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/mainTestGene.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>

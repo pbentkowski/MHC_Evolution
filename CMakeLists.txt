@@ -26,6 +26,7 @@ set(SOURCE_FILES
     Tagging_system.cpp
     Tagging_system.h
     mainTestGene.cpp
-    mainTestHost.cpp)
+    mainTestHost.cpp
+    mainTestEnv.cpp)
 
 add_executable(MHC_code_OBA ${SOURCE_FILES} mainTestGene.cpp)

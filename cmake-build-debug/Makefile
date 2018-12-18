@@ -393,6 +393,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+mainTestEnv.o: mainTestEnv.cpp.o
+
+.PHONY : mainTestEnv.o
+
+# target to build an object file
+mainTestEnv.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestEnv.cpp.o
+.PHONY : mainTestEnv.cpp.o
+
+mainTestEnv.i: mainTestEnv.cpp.i
+
+.PHONY : mainTestEnv.i
+
+# target to preprocess a source file
+mainTestEnv.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestEnv.cpp.i
+.PHONY : mainTestEnv.cpp.i
+
+mainTestEnv.s: mainTestEnv.cpp.s
+
+.PHONY : mainTestEnv.s
+
+# target to generate assembly for a file
+mainTestEnv.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/mainTestEnv.cpp.s
+.PHONY : mainTestEnv.cpp.s
+
 mainTestGene.o: mainTestGene.cpp.o
 
 .PHONY : mainTestGene.o
@@ -486,6 +513,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... mainTestEnv.o"
+	@echo "... mainTestEnv.i"
+	@echo "... mainTestEnv.s"
 	@echo "... mainTestGene.o"
 	@echo "... mainTestGene.i"
 	@echo "... mainTestGene.s"

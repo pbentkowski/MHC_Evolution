@@ -50,8 +50,8 @@ public:
     virtual ~Environment();
     void seedEnvsRNG();
     void setNoMutsVector(int numb_of_species, unsigned long antigen_size, double fixedAntigenFrac);
-    void setNoMutsVecInFours(int numb_of_species, int antigen_size, double fixedAntigenFrac);
-    void setNoMutsVecFourClads(int numb_of_species, unsigned long antigen_size, double fixedAntigenFrac);
+//    void setNoMutsVecInFours(int numb_of_species, int antigen_size, double fixedAntigenFrac);
+//    void setNoMutsVecFourClads(int numb_of_species, unsigned long antigen_size, double fixedAntigenFrac);
     void setHostRandomPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size, int timeStamp,
                                  Tagging_system &tag);
     void setHostRandomPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size_lower,
@@ -61,13 +61,9 @@ public:
     void setPathoPopulatioUniformGenome(int pop_size, unsigned long gene_size,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
         double fixedAntigenFrac, Tagging_system &tag);
-    void setPathoPopulatioDivSpecies(int pop_size, unsigned long gene_size, int chrom_size,
+    void setPathoPopulatioDivSpecies(int pop_size, unsigned long gene_size,
         int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac,
          Tagging_system &tag);
-//    void setPathoPopulatioDistincSpp(int pop_size, unsigned long antigenSize, int chrom_size,
-//        int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac);
-//    void setPathoPopulationFourClades(int pop_size, unsigned long antigenSize, int chrom_size,
-//        int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac);
     void infectOneFromOneSpecHetero();
     //void infectEveryOne(int simil_mesure);
     void calculateHostsFitnessPerGene();
@@ -76,19 +72,14 @@ public:
     void calculateHostsFitnessAlphaXsqr(double alpha);
     void calculateHostsFitnessExpScaling(double alpha);
     void calculateHostsFitnessExpScalingUniqAlleles(double alpha);
-    void selectAndReprodHostsAddOffspring();
     void selectAndReprodHostsReplace();
     void selectAndReprodHostsNoMating();
-    void selectAndReproducePathoFlexPopSizes();
     void selectAndReproducePathoFixedPopSizes();
     void clearHostInfectionsData();
     void clearPathoInfectionData();
     void mutatePathogens(double mut_probabl, unsigned long mhcSize, int timeStamp);
     void mutatePathogensWithRestric(double mut_probabl,  unsigned long mhcSize, int timeStamp,
                                      Tagging_system &tag);
-    void mutateHosts(double mut_probabl, int timeStamp, Tagging_system &tag);
-    void mutateHostsWithDelDupl(double mut_probabl, double del, double dupl, 
-        unsigned long maxGene, int timeStamp, Tagging_system &tag);
     void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
         double dupl, unsigned long maxGene, int timeStamp, Tagging_system &tag);
     double MMtoPMscaling(double MM_prob_mut, unsigned long geneLength);
