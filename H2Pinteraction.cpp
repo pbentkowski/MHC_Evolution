@@ -50,7 +50,7 @@ H2Pinteraction::~H2Pinteraction() {
  * @return 'true' if gene is presented, 'false' if it's not
  */
 bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antigen){
-    if(antigen.size() > 0){
+    if(!antigen.empty()){
         for(unsigned long i = 0; i < antigen.size(); ++i){
             if(antigen[i] == hostgen){ return true; }            
         }

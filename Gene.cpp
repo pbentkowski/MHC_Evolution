@@ -93,7 +93,7 @@ void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long
     TheParentWas = -1;
     GenesTag = tag.getTag();
     BitStringLength = length;
-    unsigned long possible_max = std::pow(2, length)-1;
+    unsigned long possible_max = (unsigned long) std::pow(2, length)-1;
     if(possible_max < up_lim){
         std::cout << "Error in Gene::setNewGene(): Demanded upper limit"\
                   " is out of possible boundaries for a bit string of this"\

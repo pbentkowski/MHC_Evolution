@@ -26,11 +26,9 @@
 typedef boost::dynamic_bitset<> antigenstring;
 typedef std::vector<unsigned long int> longIntVec;
 
-Antigen::Antigen() {
-}
+Antigen::Antigen() = default;
 
-Antigen::~Antigen() {
-}
+Antigen::~Antigen() = default;
 
 
 /**
@@ -80,11 +78,7 @@ void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int tim
     boost::dynamic_bitset<> tmpAntig(length);
     boost::dynamic_bitset<>::size_type tmpAntigSize = tmpAntig.size();
     for(boost::dynamic_bitset<>::size_type i = 0; i < tmpAntigSize; ++i){
-        if (randGen.getUni() < 0.5) {
-            tmpAntig[i] = true;
-        } else {
-            tmpAntig[i] = false;
-        }
+        tmpAntig[i] = randGen.getUni() < 0.5 ? true : false;
     }
     TheAntigen = tmpAntig;
     calculateEpitopes(mhcSize);

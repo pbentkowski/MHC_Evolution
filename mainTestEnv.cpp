@@ -1,7 +1,7 @@
 
 //
 // Created by piotr on 04/12/18.
-// compile: g++ Tagging_system.cpp Gene.cpp Antigen.cpp Random.cpp Host.cpp Pathogen.cpp Environment.cpp DataHandler.cpp mainTestEnv.cpp -fopenmp -std=c++14
+// compile: g++ Tagging_system.cpp Gene.cpp Antigen.cpp Random.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp Environment.cpp DataHandler.cpp mainTestEnv.cpp -fopenmp -std=c++14
 //     run: ./a.out
 //
 
@@ -23,8 +23,8 @@
 int main(int argc, char** argv)
 {
     time_t begin_t, end_t;
-    begin_t = time(NULL);
-    unsigned int numberOfThreads = 1;
+    begin_t = time(nullptr);
+    unsigned int numberOfThreads = 0;
 
     Tagging_system tag;
     DataHandler Data2file;  // Initialize the data harvesting mechanism
@@ -37,6 +37,7 @@ int main(int argc, char** argv)
     ENV.setHostRandomPopulation(hostPopSize, mhcGeneLength, hostGeneNumbb, 0, tag);
     ENV.setPathoPopulatioDivSpecies(16000, 6000, 16, 16, 0, 0.33, tag);
     ENV.mutatePathogensWithRestric(0.05, 16, 0, tag);
+    ENV.infectOneFromOneSpecHetero();
     ENV.selectAndReproducePathoFixedPopSizes();
 
     Data2file.setAllFilesAsFirtsTimers();
@@ -44,7 +45,10 @@ int main(int argc, char** argv)
     Data2file.savePathoPopulToFile(ENV, 0);
     Data2file.savePathoNoMuttList(ENV);
 
-    end_t = time(NULL);
+    ENV.clearPathoInfectionData();
+    ENV.clearHostInfectionsData();
+
+    end_t = time(nullptr);
     std::cout << "Czas obliczen: " << difftime(end_t, begin_t) << std::endl;
 
     return 0;

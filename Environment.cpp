@@ -50,8 +50,7 @@ Environment::Environment(unsigned int numberOfThreads) {
 //Environment::Environment(const Environment& orig) {
 //}
 
-Environment::~Environment() {
-}
+Environment::~Environment() = default;
 
 void Environment::seedEnvsRNG() {
     for(unsigned int i = 0; i < mRandGenArrSize; ++i)
@@ -107,7 +106,7 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
                                           unsigned long chrom_size, int timeStamp,
                                            Tagging_system &tag){
     for(int i = 0; i < pop_size; ++i) {
-        HostPopulation.push_back(Host());
+        HostPopulation.emplace_back(Host());
     }
     Random * rngGenPtr = mRandGenArr;
     #pragma omp parallel for default(none) shared(chrom_size, pop_size, rngGenPtr, gene_size, timeStamp, tag)
@@ -228,7 +227,7 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long ant
         OneSpeciesVector.clear();
     }
 }
-
+*/
 
 /**
  * @brief Core method. Initializes the pathogen population.
@@ -256,7 +255,7 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antige
     int indiv_left = pop_size % numb_of_species;
     std::vector<Pathogen> PathoSppTemplateVector;
     for(int kk = 0; kk < numb_of_species; ++kk) {
-        PathoSppTemplateVector.push_back(Pathogen());
+        PathoSppTemplateVector.emplace_back(Pathogen());
     }
     Random * rngGenPtr = mRandGenArr;
     #pragma omp parallel for default(none) \
@@ -294,16 +293,18 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antige
  *
  * @param simil_mesure - number of bits which have to be similar, to expose
  * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
- *
+ */
 void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
     unsigned long j;
     unsigned long HostPopulationSize = HostPopulation.size();
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp parallel for default(none) shared(rngGenPtr, HostPopulationSize) private(H2P, j)
     for(unsigned long i = 0; i < HostPopulationSize; ++i){
         unsigned long PathPopulationSize = PathPopulation.size();
         for(unsigned long sp = 0; sp < PathPopulationSize; ++sp){
-            if(PathPopulation[sp].size()){
-                j = randGen.getRandomFromUniform(0, PathPopulation[sp].size()-1);
+            if(!PathPopulation[sp].empty()){
+                j = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, PathPopulation[sp].size()-1);
                 H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
@@ -457,6 +458,7 @@ void Environment::selectAndReprodHostsReplace(){
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
+*/
 
 /**
  *@brief Core method. Forms the next generation of hosts using the fitness
@@ -505,7 +507,7 @@ void Environment::selectAndReprodHostsNoMating() {
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
-
+*/
 
 /**
  * @brief Core method. Forms the next generation of hosts using the fitness
@@ -535,7 +537,8 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
         return;
     PathPopulationSize = PathPopulation.size();
     Random * rngGenPtr = mRandGenArr;
-    #pragma omp parallel for ordered default(none) shared(rngGenPtr, PathPopulationSize, PopSizes, SpecTotInfected, std::cout) private(rnd, TmpPathVec)
+    #pragma omp parallel for ordered default(none) \
+        shared(rngGenPtr, PathPopulationSize, PopSizes, SpecTotInfected, std::cout) private(rnd, TmpPathVec)
     for (int k = 0; k < PathPopulationSize; ++k){
         TmpPathVec.clear();
         int n = 0;
@@ -572,10 +575,11 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
 /**
  * @brief. Core method. Clears information about infection and fitness in the
  * whole pathogen population.
- *
+ */
 void Environment::clearPathoInfectionData(){
     // Clear pathogens infection data
     unsigned long PathPopulationSize = PathPopulation.size();
+    #pragma omp prallel for default(none) shared(PathPopulationSize)
     for (int i = 0; i < PathPopulationSize; ++i){
         unsigned long PathPopulationIthSize = PathPopulation[i].size();
         for (int j = 0; j < PathPopulationIthSize; ++j){
@@ -618,6 +622,7 @@ void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
                 del, dupl, maxGene, timeStamp, randGen, tag);
     }
 }
+ */
 
 /**
  * @brief Core method. When given micro-recombination mutation probability it
@@ -665,6 +670,7 @@ void Environment::mutatePathogens(double mut_probabl, unsigned long mhcSize, int
         }
     }
 }
+*/
 
 /**
  * @brief Core method. Iterates through the all genes of the pathogen population
@@ -810,6 +816,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
 //    }
 //    std::cout << std::endl;
 }
+*/
 
 /**
  * @brief Core method. Creates a new generation of hosts by sexual reproduction
@@ -888,7 +895,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
                   " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
-
+*/
 
 /**
  * @brief Core method. Creates a new generation of hosts by sexual reproduction
@@ -960,7 +967,7 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
-
+*/
 
 /**
  *@brief Core method. Creates a new generation of hosts by sexual reproduction
@@ -1032,7 +1039,7 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
 
 }
 
-
+*/
 //==============================================================//
 
 /**

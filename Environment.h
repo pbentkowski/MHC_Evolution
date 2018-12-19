@@ -45,7 +45,7 @@ private:
     unsigned int mRandGenArrSize;
 public:
     // === Core methods ===
-    Environment(unsigned int numberOfThreads);
+    explicit Environment(unsigned int numberOfThreads);
 //    Environment(const Environment& orig);
     virtual ~Environment();
     void seedEnvsRNG();
