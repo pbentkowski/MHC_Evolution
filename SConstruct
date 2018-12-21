@@ -17,29 +17,29 @@ for Evolutionary Biology Group, Faculty of Biology
 from shutil import copyfile
 from os import getcwd
 
-cxxflaggs = "-std=c++14"
+# cxxflaggs = ["-std=c++14"]
 cppath = '/usr/include/boost/'
 
 # normal compilation
 env_dynamic = Environment(CC='g++',
-              CCFLAGS='-O3',
+              # CCFLAGS=['-O3','-std=c++14'],
               CPPPATH=cppath,
-              CXXFLAGS=cxxflaggs,
-              LINKFLAGS = "-fopenmp")
+              CXXFLAGS=['-O3','-std=c++14'],
+              LINKFLAGS = ["-fopenmp","-std=c++14"])
 
 # debugging compilation
 env_dbg = Environment(CC='g++',
-          CCFLAGS='-g',
+          # CCFLAGS=['-g','-std=c++14'],
           CPPPATH=cppath,
-          CXXFLAGS=cxxflaggs,
-          LINKFLAGS = "-fopenmp")
+          CXXFLAGS=['-g','-std=c++14'],
+          LINKFLAGS = ["-fopenmp","-std=c++14"])
 
 # static compilation
 env_static = Environment(CC='g++',
-             CCFLAGS='-O3',
+             # CCFLAGS=['-O3','-std=c++14'],
              CPPPATH=cppath,
-             CXXFLAGS=cxxflaggs,
-             LINKFLAGS = "-fopenmp -static")
+             CXXFLAGS=['-O3','-std=c++14'],
+             LINKFLAGS = "-fopenmp -static -std=c++14")
 
 scenario = ARGUMENTS.get('scenario', 0)
 try:
@@ -57,7 +57,7 @@ OUTprog = "SCBuild/" + mainn.split("/")[-1].split(".")[0]
 SRS = ['DataHandler.cpp', 'Environment.cpp', 'Gene.cpp',
        'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
        'Pathogen.cpp','Random.cpp', 'Tagging_system.cpp',
-       local_main]
+       'nlohmann/json.hpp', local_main]
 
 linking = ARGUMENTS.get('linking', 1)
 

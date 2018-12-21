@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 project(MHC_code_OBA)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -std=c++14")
 
 set(SOURCE_FILES
     Antigen.cpp
@@ -25,8 +25,6 @@ set(SOURCE_FILES
     Random.h
     Tagging_system.cpp
     Tagging_system.h
-    mainTestGene.cpp
-    mainTestHost.cpp
-    mainTestEnv.cpp)
+    nlohmann/json.hpp)
 
-add_executable(MHC_code_OBA ${SOURCE_FILES} mainTestGene.cpp)
+add_executable(MHC_code_OBA ${SOURCE_FILES} main.cpp)

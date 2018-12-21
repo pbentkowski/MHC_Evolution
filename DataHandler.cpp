@@ -26,7 +26,9 @@
 #include <tuple>
 
 #include "DataHandler.h"
+#include "nlohmann/json.hpp"
 
+using jsonf = nlohmann::json;
 typedef std::string sttr;
 
 DataHandler::DataHandler() {
@@ -135,7 +137,7 @@ const std::string currentDateTime(){
  * @param alpha
  * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
- */
+ *
 bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
@@ -204,7 +206,7 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
     }
     return ifError;
 }
-
+*/
 /**
  * @brief Input params validation method. Does the basic check if the entered
  * parameters are free of total nonsense. Sex and Parasites version.
@@ -228,7 +230,7 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
  * @param alpha
  * @param fixedAntigPosit
  * @return 'true' if something is wrong, 'false' if no errors were found.
- */
+ *
 bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                                      int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
                                      int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
@@ -297,7 +299,7 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
     }
     return ifError;
 }
-
+*/
 /**
  * @brief Input params validation method. Does the basic check if the entered 
  * parameters are free of total nonsense
@@ -314,7 +316,7 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
  * @param maxGene
  * @param alpha
  * @return 
- */
+ *
 bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
         int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
@@ -364,6 +366,7 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
     }
     return ifError;
 }
+*/
 
 /**
  * @brief Input params validation method. Does the basic check if the entered
@@ -388,14 +391,13 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
  * @param maxGene
  * @param alpha
  * @param numberOfMates
- * @return
+ * @return 'true' if something is wrong, 'false' if no errors were found.
  */
 bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
                         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-                        int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-                        double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-                        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
-                        int numberOfMates){
+                        int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb,
+                        double pathoMutationProb, int HeteroHomo, double hostDeletion, double hostDuplication,
+                        unsigned long maxGene, double alpha, int numberOfMates){
      bool ifError = false;
     if (numberOfThreads < 0){
         std::cout << "\nError in the number of threads. It has to be a positive integer!." << std::endl;
@@ -447,259 +449,41 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
     return ifError;
 }
 
-/**
- * @brief Data harvesting method. Writes all the input params and some run stats
- * to a file. Must be run only ones per run of the model.
- * 
- * It's better to run it after running DataHarvester::checkParamsIfWrong() which
- * will check if parameters make any sense.
- * 
- * @param rndSeed
- * @param geneLength
- * @param antigenLength
- * @param hostPopSize
- * @param pathoPopSize
- * @param patho_sp
- * @param hostGeneNumbb
- * @param pathoGeneNumb
- * @param patoPerHostGeneration
- * @param numOfHostGenerations
- * @param hostMutationProb
- * @param pathoMutationProb
- * @param HeteroHomo
- * @param hostDeletion
- * @param hostDuplication
- * @param maxGene
- * @param alpha
- * @param fixedAntigPosit
- */
 void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-        int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-        double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
-        double fixedAntigPosit){
-    std::ofstream InputParams;
-    InputParams.open("InputParameters.csv");
-
-    InputParams << "# Runtime properties:" << std::endl;
-    InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
-    InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
-    InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
-    InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
-    InputParams << "\thost_population_size = " << hostPopSize << std::endl;
-    InputParams << "\tpathogen_population_size = " << pathoPopSize << std::endl;
-    InputParams << "\tnumber_of_pathogen_species = " << patho_sp << std::endl;
-    InputParams << "\tnumber_of_genes_per_host_one_chromosome = " << 
-        hostGeneNumbb << std::endl;
-    InputParams << "\tnumber_of_antigens_per_pathogen = " << pathoGeneNumb << std::endl;
-    InputParams << "\tnumber_of_pathogen_generation_per_one_host_generation = " <<
-        patoPerHostGeneration << std::endl;
-    InputParams << "\tnumber_of_host_generations = " << numOfHostGenerations << std::endl;
-    InputParams << "\tmutation_probability_in_host = " << 
-            hostMutationProb << std::endl;
-    InputParams << "\tmutation_probability_in_pathogen = " << 
-            pathoMutationProb << std::endl;
-    if (HeteroHomo == 10){
-        InputParams << "\theterozygote_advantage = YES" << std::endl;
-    }else if (HeteroHomo == 11){
-        InputParams << "\theterozygote_advantage = NO" << std::endl;
-    } else {
-        InputParams << "\theterozygote_advantage = ERROR" << std::endl;
-    }
-    InputParams << "\thost_gene_deletion_probability = " <<
-            hostDeletion << std::endl;
-    InputParams << "\thost_gene_duplication_probability = " <<
-            hostDuplication << std::endl;
-    InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
-            maxGene << std::endl;
-    InputParams << "\tAlpha_factor_for_the_host_fitness_function = " <<
-            alpha << std::endl;
-    InputParams << "\tFraction_of_antigen_bits_getting_fixed = " <<
-            fixedAntigPosit << std::endl;
-    InputParams.close();
-}
-
-/**
- * @brief Data harvesting method. Writes all the input params and some run stats
- * to a file. Must be run only ones per run of the model.
- *
- * It's better to run it after running DataHarvester::checkParamsIfWrong() which
- * will check if parameters make any sense.
- *
- * @param rndSeed
- * @param geneLength
- * @param antigenLength
- * @param hostPopSize
- * @param pathoPopSize
- * @param patho_sp
- * @param hostGeneNumbb
- * @param pathoGeneNumb
- * @param patoPerHostGeneration
- * @param numOfHostGenerations
- * @param hostMutationProb
- * @param pathoMutationProb
- * @param HeteroHomo
- * @param hostDeletion
- * @param hostDuplication
- * @param maxGene
- * @param alpha
- * @param fixedAntigPosit
- */
-void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
-     int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-     int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-     double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-     double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
-     double fixedAntigPosit){
-    std::ofstream InputParams;
-    InputParams.open("InputParameters.csv");
-
-    InputParams << "# Runtime properties:" << std::endl;
-    InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
-    InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
-    InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
-    InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
-    InputParams << "\thost_population_size = " << hostPopSize << std::endl;
-    InputParams << "\tpathogen_population_size = " << pathoPopSize << std::endl;
-    InputParams << "\tnumber_of_pathogen_species = " << patho_sp << std::endl;
-    InputParams << "\tnumber_of_genes_per_host_one_chromosome = " <<
-                hostGeneNumbb << std::endl;
-    InputParams << "\tnumber_of_antigens_per_pathogen = " << pathoGeneNumb << std::endl;
-    InputParams << "\tnumber_of_pathogen_generation_per_one_host_generation = " <<
-                patoPerHostGeneration << std::endl;
-    InputParams << "\tnumber_of_host_generations = " << numOfHostGenerations << std::endl;
-    InputParams << "\tmutation_probability_in_host = " <<
-                hostMutationProb << std::endl;
-    InputParams << "\tmutation_probability_in_pathogen = " <<
-                pathoMutationProb << std::endl;
-    if (HeteroHomo == 10){
-        InputParams << "\theterozygote_advantage = YES" << std::endl;
-    }else if (HeteroHomo == 11){
-        InputParams << "\theterozygote_advantage = NO" << std::endl;
-    } else {
-        InputParams << "\theterozygote_advantage = ERROR" << std::endl;
-    }
-    InputParams << "\thost_gene_deletion_probability = " <<
-                hostDeletion << std::endl;
-    InputParams << "\thost_gene_duplication_probability = " <<
-                hostDuplication << std::endl;
-    InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
-                maxGene << std::endl;
-    InputParams << "\tnumber_of_sex_mates = " << numberOfMates << std::endl;
-    InputParams << "\tFraction_of_antigen_bits_getting_fixed = " <<
-                fixedAntigPosit << std::endl;
-    InputParams.close();
-}
-
-
-/**
- * @brief Data harvesting method. Writes all the input params and some run stats
- * to a file. Must be run only ones per run of the model.
- * 
- * It's better to run it after running DataHarvester::checkParamsIfWrong() which
- * will check if parameters make any sense.
- * 
- * @param rndSeed
- * @param geneLength
- * @param hostPopSize
- * @param hostGeneNumbb
- * @param numOfHostGenerations
- * @param hostMutationProb
- * @param HeteroHomo
- * @param hostDeletion
- * @param hostDuplication
- * @param maxGene
- * @param alpha
- */
-void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
-        int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
-        int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene,
-        unsigned long numberOfMates){
-    std::ofstream InputParams;
-    InputParams.open("InputParameters.csv");
-
-    InputParams << "# Runtime properties:" << std::endl;
-    InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
-    InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
-    InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
-    InputParams << "\tnumber_of_bits_per_antigen = " << "NOT_IN_THIS_MODEL" << std::endl;
-    InputParams << "\thost_population_size = " << hostPopSize << std::endl;
-    InputParams << "\tpathogen_population_size = " << "NOT_IN_THIS_MODEL" << std::endl;
-    InputParams << "\tnumber_of_pathogen_species = " << "NOT_IN_THIS_MODEL" << std::endl;
-    InputParams << "\tnumber_of_genes_per_host_one_chromosome = " << 
-        hostGeneNumbb << std::endl;
-    InputParams << "\tnumber_of_antigens_per_pathogen = " << "NOT_IN_THIS_MODEL" << std::endl;
-    InputParams << "\tnumber_of_pathogen_generation_per_one_host_generation = " <<
-        "NOT_IN_THIS_MODEL" << std::endl;
-    InputParams << "\tnumber_of_host_generations = " << numOfHostGenerations << std::endl;
-    InputParams << "\tmutation_probability_in_host = " << 
-            hostMutationProb << std::endl;
-    InputParams << "\tmutation_probability_in_pathogen = " << 
-            "NOT_IN_THIS_MODEL" << std::endl;
-    if (HeteroHomo == 10){
-        InputParams << "\theterozygote_advantage = YES" << std::endl;
-    }else if (HeteroHomo == 11){
-        InputParams << "\theterozygote_advantage = NO" << std::endl;
-    } else {
-        InputParams << "\theterozygote_advantage = ERROR" << std::endl;
-    }
-    InputParams << "\thost_gene_deletion_probability = " <<
-            hostDeletion << std::endl;
-    InputParams << "\thost_gene_duplication_probability = " <<
-            hostDuplication << std::endl;
-    InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
-            maxGene << std::endl;
-    InputParams << "\tnumber_of_sex_mates = " << numberOfMates << std::endl;
-    InputParams.close();
-}
-
-void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
-        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb, int pathoGeneNumb,
         int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb,
         int HeteroHomo, double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
         int numberOfMates){
-    std::ofstream InputParams;
-    InputParams.open("InputParameters.csv");
-
-    InputParams << "# Runtime properties:" << std::endl;
-    InputParams << "\trun_start_date_and_time = " << currentDateTime() << std::endl;
-    InputParams << "# Model's core parameters:" << std::endl;
-    InputParams << "\tnumber_of_threads = " << numberOfThreads << std::endl;
-    InputParams << "\tnumber_of_bits_per_gene = " << geneLength << std::endl;
-    InputParams << "\tnumber_of_bits_per_antigen = " << antigenLength << std::endl;
-    InputParams << "\thost_population_size = " << hostPopSize << std::endl;
-    InputParams << "\tpathogen_population_size = " << pathoPopSize << std::endl;
-    InputParams << "\tnumber_of_pathogen_species = " << patho_sp << std::endl;
-    InputParams << "\tnumber_of_genes_per_host_one_chromosome = " <<
-                hostGeneNumbb << std::endl;
-    InputParams << "\tnumber_of_antigens_per_pathogen = " << pathoGeneNumb << std::endl;
-    InputParams << "\tnumber_of_pathogen_generation_per_one_host_generation = " <<
-                patoPerHostGeneration << std::endl;
-    InputParams << "\tnumber_of_host_generations = " << numOfHostGenerations << std::endl;
-    InputParams << "\tmutation_probability_in_host = " <<
-                hostMutationProb << std::endl;
-    InputParams << "\tmutation_probability_in_pathogen = " <<
-                pathoMutationProb << std::endl;
+    jsonf jsonfile;
+    jsonfile["run_start_date_and_time"] = currentDateTime();
+    jsonfile["number_of_threads"] = numberOfThreads;
+    jsonfile["number_of_bits_per_gene"] = geneLength;
+    jsonfile["number_of_bits_per_antigen"] = antigenLength;
+    jsonfile["host_population_size"] = hostPopSize;
+    jsonfile["pathogen_population_size"] = pathoPopSize;
+    jsonfile["number_of_pathogen_species"] = patho_sp;
+    jsonfile["number_of_genes_per_host_one_chromosome"] = hostGeneNumbb;
+    jsonfile["number_of_pathogen_generation_per_one_host_generation"] = patoPerHostGeneration;
+    jsonfile["number_of_host_generations"] = numOfHostGenerations;
+    jsonfile["mutation_probability_in_host"] = hostMutationProb;
+    jsonfile["mutation_probability_in_pathogen"] =  pathoMutationProb;
     if (HeteroHomo == 10){
-        InputParams << "\theterozygote_advantage = YES" << std::endl;
+        jsonfile["heterozygote_advantage"] = "YES";
     }else if (HeteroHomo == 11){
-        InputParams << "\theterozygote_advantage = NO" << std::endl;
+        jsonfile["heterozygote_advantage"] = "NO";
     } else {
-        InputParams << "\theterozygote_advantage = ERROR" << std::endl;
+        jsonfile["heterozygote_advantage"] = "ERROR";
     }
-    InputParams << "\thost_gene_deletion_probability = " <<
-                hostDeletion << std::endl;
-    InputParams << "\thost_gene_duplication_probability = " <<
-                hostDuplication << std::endl;
-    InputParams << "\thost_maximal_number_of_genes_in_chromosome = " <<
-            maxGene << std::endl;
-    InputParams << "\tnumber_of_sex_mates = " << numberOfMates << std::endl;
-    InputParams << "\tAlpha_factor_for_the_host_fitness_function = " <<
-            alpha << std::endl;
+    jsonfile["host_gene_deletion_probability"] = hostDeletion;
+    jsonfile["host_gene_duplication_probability"] = hostDuplication;
+    jsonfile["host_maximal_number_of_genes_in_chromosome"] = maxGene;
+    jsonfile["number_of_sex_mates"] = numberOfMates;
+    jsonfile["alpha_factor_for_the_host_fitness_function"] = alpha;
+
+    std::string s = jsonfile.dump(4);
+    std::ofstream InputParams;
+    InputParams.open("InputParameters.json");
+    InputParams << s;
     InputParams.close();
 }
 

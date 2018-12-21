@@ -14,7 +14,7 @@
  * Poland \n
  *
  *
- * @version 0.9
+ * @version 0.9.1
  *
  * @section intro Introduction
  * This program is an implementation of the evolution dynamics of MHC described
@@ -33,14 +33,14 @@
  *
  * @section Compilation
  * The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> so if
- * you are using GCC then version gcc 4.8 seems to be the minimum requirement. This program has
+ * you are using GCC then version gcc 4.8 seems to be the minimum requirement (I have 5.4). This program has
  * some serious dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile
  * smoothly on most modern GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons
- * build tool</a> might be useful too. Basic compilation works fine on Ubuntu 14.04 LTS with mentioned packages
+ * build tool</a> might be useful too. Basic compilation works fine on Ubuntu 17.04 LTS with mentioned packages
  * installed by running the command: \n
  * \n
  * $<b>
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++1y
+ * g++ -O3 -o SCBuild/MHC_model main.cpp nlohmann/json.hpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp Random.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14
  * </b>\n \n
  * It should also compile with flag -std=c++11 only with minor warnings. \n
  * The code here can be also used like a toolbox for your research. You can stitch your own <i>main_yourown.cpp</i> file
@@ -60,12 +60,12 @@
  * Or run the Scons script:\n
  * \n
  * $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="static" </b>\n \n
+ * But dependecies of the OpenMP might trigger some warnings. \n   
  *
  * @section Parameters
  * <b>In the most advanced scenario the program takes exactly 18 parameters. These are:</b> \n
  * <b> 00 </b>- Program's name \n
- * <b> 01 </b>- Seed for the RNG (when set to < 0 the program will seed the RNG engine itself with
- * a <a href="http://en.cppreference.com/w/cpp/numeric/random/random_device">truly random number using preferably /dev/random</a>). \n
+ * <b> 01 </b>- Number of threads program will try to use on a multicore CPU. \n
  * <b> 02 </b>- Number of bits in a gene. \n
  * <b> 03 </b>- Number of bits in an antigen. \n
  * <b> 04 </b>- Host population size. \n
@@ -117,7 +117,7 @@
  * the program runtime.
  * \n\n
   *  All the files are:\n
- * <b><i>InputParameters.csv </i></b> - contains run's parametrisation \n
+ * <b><i>InputParameters.json </i></b> - contains run's parametrisation in JSON text format \n
  * <b><i>HostsGeneDivers.csv</i></b> - contain basic statistics of the output for host genomes \n
  * <b><i>HostGenomesFile.[t].csv</i></b> - contains all the genomes of all the cells for host population
  * in time <i>t</i>. There can be more then one file like this for different time snapshots. \n
@@ -129,6 +129,10 @@
  * <b><i>HostMHCsNumbUniq.csv </i></b> -  number of unique MHC alleles in each individual host in each
  * time step (linked to <i>HostGeneNumbTotal.csv </i>, that each column in <i>HostGeneNumbTotal.csv </i>
  * is represents the same cells as in <i>HostMHCsNumbUniq.csv </i>). \n
+ * <b><i> .csv </i></b> - total \n
+ * <b><i> .csv </i></b> - total \n
+ * <b><i> .csv </i></b> - total \n
+ * <b><i> .csv </i></b> - total \n
 
  * \n
  *

@@ -33,6 +33,9 @@
 #include "Random.h"
 #include "Environment.h"
 #include "DataHandler.h"
+#include "nlohmann/json.hpp"
+
+using jsonf = nlohmann::json;
 
 /**
  * @brief A handful of tips about the input parameters.
@@ -49,25 +52,24 @@ void printTipsToRun(){
     std::cout << " 6. Number of pathogen species." << std::endl;
     std::cout << " 7. Number of genes in one host chromosome (they have " <<
             "two chromosomes)." << std::endl;
-    std::cout << " 8. Number of antigens in a pathogen." << std::endl;
-    std::cout << " 9. Number of pathogen generations per one host generation. " <<
+    std::cout << " 8. Number of pathogen generations per one host generation. " <<
             std::endl;
-    std::cout << "10. Number of host generations (effective length of model run)." <<
+    std::cout << "9. Number of host generations (effective length of model run)." <<
             std::endl;
-    std::cout << "11. Probability of mutation in hosts ([0,1] range)." << std::endl;
-    std::cout << "12. Probability of mutation in pathogens ([0,1] range)." << std::endl;
-    std::cout << "13. The heterozygote advantage / lack of advantage " <<
+    std::cout << "10. Probability of mutation in hosts ([0,1] range)." << std::endl;
+    std::cout << "11. Probability of mutation in pathogens ([0,1] range)." << std::endl;
+    std::cout << "12. The heterozygote advantage / lack of advantage " <<
                 "mode. It has to be 10 for heterozygote advantage or 11 for " <<
                 "lack of thereof." << std::endl;
-    std::cout << "14. Probability of deleting a gene in the host ([0,1] range)." <<
+    std::cout << "13. Probability of deleting a gene in the host ([0,1] range)." <<
             std::endl;
-    std::cout << "15. Probability of duplicating a gene in the host" <<
+    std::cout << "14. Probability of duplicating a gene in the host" <<
                 " ([0,1] range)" << std::endl;
-    std::cout << "16. Maximal number of genes permitted in one host chromosome." <<
+    std::cout << "15. Maximal number of genes permitted in one host chromosome." <<
             std::endl;
-    std::cout << "17. Number of sexual partners an individual checks out before selecting one for mating." <<
+    std::cout << "16. Number of sexual partners an individual checks out before selecting one for mating." <<
             std::endl;
-    std::cout << "18. Alpha factor for the host fitness function ([0,1] range)." << std::endl;
+    std::cout << "17. Alpha factor for the host fitness function ([0,1] range)." << std::endl;
     std::cout << std::endl;
 
 }
@@ -85,7 +87,7 @@ void printTipsToRun(){
  */
 int main(int argc, char** argv) {
 // === Check if the entered parameters make sense ===
-    int numbOfArgs = 19; // how many arguments we need to run this model
+    int numbOfArgs = 18; // how many arguments we need to run this model
     if (argc < numbOfArgs) {
         std::cout << std::endl;
         std::cout << "Not enough arguments. It has to be " <<
@@ -105,7 +107,7 @@ int main(int argc, char** argv) {
     unsigned long maxGene, hostGeneNumbb, mhcGeneLength, antigenLength;
     unsigned int numberOfThreads;
     int hostPopSize, pathoPopSize, patho_sp, NumbPartners,
-        pathoGeneNumb, patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
+        patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
     double hostMutationProb, pathoMutationProb, deletion, duplication, alpha;
     // Check if input params are numbers
     try {
@@ -116,17 +118,16 @@ int main(int argc, char** argv) {
         pathoPopSize = boost::lexical_cast<int>(argv[5]);
         patho_sp = boost::lexical_cast<int>(argv[6]);
         hostGeneNumbb = boost::lexical_cast<unsigned long>(argv[7]);
-        pathoGeneNumb = boost::lexical_cast<int>(argv[8]);
-        patoPerHostGeneration = boost::lexical_cast<int>(argv[9]);
-        numOfHostGenerations = boost::lexical_cast<int>(argv[10]);
-        hostMutationProb = boost::lexical_cast<double>(argv[11]);
-        pathoMutationProb = boost::lexical_cast<double>(argv[12]);
-        HeteroHomo = boost::lexical_cast<int>(argv[13]);
-        deletion = boost::lexical_cast<double>(argv[14]);
-        duplication = boost::lexical_cast<double>(argv[15]);
-        maxGene = boost::lexical_cast<unsigned long>(argv[16]);
-        NumbPartners = boost::lexical_cast<int>(argv[17]);
-        alpha = boost::lexical_cast<double>(argv[18]);
+        patoPerHostGeneration = boost::lexical_cast<int>(argv[8]);
+        numOfHostGenerations = boost::lexical_cast<int>(argv[9]);
+        hostMutationProb = boost::lexical_cast<double>(argv[10]);
+        pathoMutationProb = boost::lexical_cast<double>(argv[11]);
+        HeteroHomo = boost::lexical_cast<int>(argv[12]);
+        deletion = boost::lexical_cast<double>(argv[13]);
+        duplication = boost::lexical_cast<double>(argv[14]);
+        maxGene = boost::lexical_cast<unsigned long>(argv[15]);
+        NumbPartners = boost::lexical_cast<int>(argv[16]);
+        alpha = boost::lexical_cast<double>(argv[17]);
     }
     catch(boost::bad_lexical_cast& e) {
         std::cout << std::endl;
@@ -143,17 +144,16 @@ int main(int argc, char** argv) {
     pathoPopSize = atoi(argv[5]);
     patho_sp = atoi(argv[6]);
     hostGeneNumbb = (unsigned long) atoi(argv[7]);
-    pathoGeneNumb = atoi(argv[8]);
-    patoPerHostGeneration = atoi(argv[9]);
-    numOfHostGenerations = atoi(argv[10]);
-    hostMutationProb = atof(argv[11]);
-    pathoMutationProb = atof(argv[12]);
-    HeteroHomo = atoi(argv[13]);
-    deletion = atof(argv[14]);
-    duplication = atof(argv[15]);
-    maxGene = (unsigned long) atoi(argv[16]);
-    NumbPartners = atoi(argv[17]);
-    alpha = atof(argv[18]);
+    patoPerHostGeneration = atoi(argv[8]);
+    numOfHostGenerations = atoi(argv[9]);
+    hostMutationProb = atof(argv[10]);
+    pathoMutationProb = atof(argv[11]);
+    HeteroHomo = atoi(argv[12]);
+    deletion = atof(argv[13]);
+    duplication = atof(argv[14]);
+    maxGene = (unsigned long) atoi(argv[15]);
+    NumbPartners = atoi(argv[16]);
+    alpha = atof(argv[17]);
 
     unsigned int threadsAvailable = std::thread::hardware_concurrency();
     // Initializing the multi-threaded environment
@@ -173,8 +173,7 @@ int main(int argc, char** argv) {
 
     // Check if input params are of any sense
     if (Data2file.checkParamsIfWrong(numberOfThreads, mhcGeneLength, antigenLength, hostPopSize,
-            pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
-            patoPerHostGeneration, numOfHostGenerations,
+            pathoPopSize, patho_sp, hostGeneNumbb, patoPerHostGeneration, numOfHostGenerations,
             hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
             maxGene, alpha, NumbPartners)){
         std::cout << std::endl;
@@ -187,8 +186,7 @@ int main(int argc, char** argv) {
 
     // Save input parameters to file
     Data2file.inputParamsToFile(numberOfThreads, mhcGeneLength, antigenLength, hostPopSize,
-            pathoPopSize, patho_sp, hostGeneNumbb, pathoGeneNumb,
-            patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
+            pathoPopSize, patho_sp, hostGeneNumbb, patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
             pathoMutationProb, HeteroHomo, deletion, duplication, maxGene,
             alpha, NumbPartners);
 
@@ -207,15 +205,21 @@ int main(int argc, char** argv) {
     std::cout << "Pathogen population all set!" << std::endl;
     hostMutationProb = ENV.MMtoPMscaling(hostMutationProb, mhcGeneLength);
     Data2file.savePathoNoMuttList(ENV);
-    std::ofstream InputParams;
-    InputParams.open("InputParameters.csv", std::ios::out | std::ios::ate | std::ios::app);
-    InputParams << "# Other_information:" << std::endl;
-    InputParams << "\tseparated_species_genomes = YES" << std::endl;
+
+    // Adding extra info about the parameters of this simulation
+    std::ifstream inJson("InputParameters.json");
+    jsonf jsonfile;
+    inJson >> jsonfile;
+    jsonfile["separated_species_genomes"] = "YES";
     // set "NO" when using ENV.setPathoPopulatioUniformGenome()
-//    InputParams << "\tseparated_species_genomes = NO" << std::endl;
-    InputParams << "\tpoint_mutation_in_host_is_used = " << hostMutationProb << std::endl;
-    InputParams << std::endl;
+//    jsonfile["separated_species_genomes"] = "NO";
+    jsonfile["point_mutation_in_host_is_used"] = hostMutationProb;
+    std::string s = jsonfile.dump(4);
+    std::ofstream InputParams;
+    InputParams.open("InputParameters.json");
+    InputParams << s;
     InputParams.close();
+    
     std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
