@@ -299,9 +299,8 @@ void Environment::infectOneFromOneSpecHetero(){
     unsigned long j;
     unsigned long HostPopulationSize = HostPopulation.size();
     Random * rngGenPtr = mRandGenArr;
-    #pragma omp parallel for default(none) shared(rngGenPtr, HostPopulationSize, std::cout) private(H2P, j)
+    #pragma omp parallel for default(none) shared(rngGenPtr, HostPopulationSize) private(H2P, j)
     for(unsigned long i = 0; i < HostPopulationSize; ++i){
-        std::cout << omp_get_thread_num() << " ";
         unsigned long PathPopulationSize = PathPopulation.size();
         for(unsigned long sp = 0; sp < PathPopulationSize; ++sp){
             if(!PathPopulation[sp].empty()){
@@ -309,7 +308,6 @@ void Environment::infectOneFromOneSpecHetero(){
                 H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
-        std::cout << "\n";
     }
 }
 
