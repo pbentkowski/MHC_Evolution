@@ -91,6 +91,8 @@ void DataHandler::setAllFilesAsFirtsTimers(){
     ifNoMuttPathoListUnique = true;
     ifNumberOfPresentedPatho = true;
     ifNumberOfMhcWhenMating = true;
+    ifNumberOfMhcBeforeMating = true;
+    ifNumberOfMhcAfterMating = true;
 }
 
 /** 
@@ -980,4 +982,40 @@ void DataHandler::saveMhcNumbersWhenMating(Environment &EnvObj, int tayme) {
     NumberOfMhcInFatherWhenMating << tayme;
     NumberOfMhcInFatherWhenMating << EnvObj.getNumbersOfMhcInFather();
     NumberOfMhcInFatherWhenMating.close();
+}
+
+
+void DataHandler::saveMhcNumbersBeforeMating(Environment &EnvObj, int tayme) {
+    if(ifNumberOfMhcWhenMating){
+        std::ofstream NumberOfMhcBeforeMating;
+        NumberOfMhcBeforeMating.open("NumberOfMhcBeforeMating.csv");
+        NumberOfMhcBeforeMating << "#time number_of_MHCs_before_mating"
+                                      << std::endl;
+        NumberOfMhcBeforeMating.close();
+        ifNumberOfMhcBeforeMating = false;
+    }
+    std::ofstream NumberOfMhcBeforeMating;
+    NumberOfMhcBeforeMating.open("NumberOfMhcBeforeMating.csv",
+                                       std::ios::out | std::ios::ate | std::ios::app);
+    NumberOfMhcBeforeMating << tayme;
+    NumberOfMhcBeforeMating << EnvObj.getNumbersOfUniqueMHCs();
+    NumberOfMhcBeforeMating.close();
+
+}
+
+void DataHandler::saveMhcNumbersAfterMating(Environment &EnvObj, int tayme) {
+    if(ifNumberOfMhcWhenMating){
+        std::ofstream NumberOfMhcBeforeMating;
+        NumberOfMhcBeforeMating.open("NumberOfMhcAfterMating.csv");
+        NumberOfMhcBeforeMating << "#time number_of_MHCs_after_mating"
+                                << std::endl;
+        NumberOfMhcBeforeMating.close();
+        ifNumberOfMhcAfterMating = false;
+    }
+    std::ofstream NumberOfMhcBeforeMating;
+    NumberOfMhcBeforeMating.open("NumberOfMhcAfterMating.csv",
+                                 std::ios::out | std::ios::ate | std::ios::app);
+    NumberOfMhcBeforeMating << tayme;
+    NumberOfMhcBeforeMating << EnvObj.getNumbersOfUniqueMHCs();
+    NumberOfMhcBeforeMating.close();
 }

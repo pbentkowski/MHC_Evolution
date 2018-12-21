@@ -70,7 +70,7 @@ public:
     unsigned long getChromoOneSize();
     unsigned long getChromoTwoSize();
     unsigned long getUniqueMhcSize();
-    double getNumbOfUniqMHCgenes();
+    unsigned long getNumbOfUniqMHCgenes();
     double getNumbOfChromoOneUniqAlleles();
     double getNumbOfChromoTwoUniqAlleles();
     void assignChromOne(chromovector One);

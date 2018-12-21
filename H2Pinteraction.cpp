@@ -28,14 +28,12 @@
 typedef std::vector<unsigned long int> longIntVec;
 typedef std::vector<Gene> chromovector;
 
-H2Pinteraction::H2Pinteraction() {
-}
+H2Pinteraction::H2Pinteraction() = default;
 
 //H2Pinteraction::H2Pinteraction(const H2Pinteraction& orig) {
 //}
 
-H2Pinteraction::~H2Pinteraction() {
-}
+H2Pinteraction::~H2Pinteraction() = default;
 
 /**
  * @brief Core method. Checks if the antigen is presented by a given MHC.
@@ -52,7 +50,7 @@ H2Pinteraction::~H2Pinteraction() {
 bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antigen){
     if(!antigen.empty()){
         for(unsigned long i = 0; i < antigen.size(); ++i){
-            if(antigen[i] == hostgen){ return true; }            
+            if(antigen[i] == hostgen){ return true; }
         }
         return false;
     } else {

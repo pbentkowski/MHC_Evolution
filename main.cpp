@@ -41,8 +41,7 @@ void printTipsToRun(){
     std::cout << std::endl;
     std::cout << "This is the first sex scenario where most different MHC composition"
             " is preferred. Parameters should be:" << std::endl;
-    std::cout << " 1. Seed for the RNG (when set to < 0 the program will " <<
-            "seed the RNG engine itself with a truly random number)." << std::endl;
+    std::cout << " 1. How many threads should the program use? " << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
     std::cout << " 3. Number of bits in an antigen." << std::endl;
     std::cout << " 4. Host population size." << std::endl;
@@ -78,7 +77,7 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here.
  *
  * Compile this program with:
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -std=c++1y
+ * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14
  *
  * @param argc - number of arguments
  * @param argv - list of arguments
@@ -156,12 +155,15 @@ int main(int argc, char** argv) {
     NumbPartners = atoi(argv[17]);
     alpha = atof(argv[18]);
 
+    unsigned int threadsAvailable = std::thread::hardware_concurrency();
     // Initializing the multi-threaded environment
     if (numberOfThreads == 0)
     {
         numberOfThreads = std::thread::hardware_concurrency();
         if(numberOfThreads == 0) // if the value is not well defined or not computable, set at least 1 thread
             numberOfThreads = 1;
+    } else if (numberOfThreads > threadsAvailable) {
+        numberOfThreads = threadsAvailable;
     }
     std::cout << "We have " << numberOfThreads << " threads" << std::endl;
     omp_set_num_threads(numberOfThreads);
@@ -220,8 +222,10 @@ int main(int argc, char** argv) {
 //        Data2file.savePathoPopulToFile(ENV, 0);
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
-        Data2file.saveHostGeneNumbers(ENV, 0);
-        Data2file.savePresentedPathos(ENV, 0);
+        Data2file.saveMhcNumbersBeforeMating(ENV, 0);
+        Data2file.saveMhcNumbersWhenMating(ENV, 0);
+        Data2file.saveMhcNumbersAfterMating(ENV, 0);
+	Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -233,10 +237,13 @@ int main(int argc, char** argv) {
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha);
 //            ENV.selectAndReprodHostsReplace();
             ENV.selectAndReprodHostsNoMating();  // changed for sexual reproduction
+            Data2file.saveMhcNumbersBeforeMating(ENV, i);
             ENV.matingMeanOptimalNumberMHCsmallSubset(NumbPartners); // changed for sexual reproduction
+            Data2file.saveMhcNumbersWhenMating(ENV, i);
+            Data2file.saveMhcNumbersAfterMating(ENV, i);
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i, tag);
             Data2file.saveHostGeneticDivers(ENV, i);
-            Data2file.saveHostGeneNumbers(ENV, i);
+//            Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }

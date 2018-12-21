@@ -101,6 +101,7 @@ public:
     std::string getNumbersOfPathogensPresented();
     std::string getNumbersOfMhcInMother();
     std::string getNumbersOfMhcInFather();
+    std::string getNumbersOfUniqueMHCs();
     unsigned long getSingleHostGenomeSize(unsigned long indx);
     unsigned long getSingleHostChromoOneSize(unsigned long indx);
     unsigned long getSingleHostChromoTwoSize(unsigned long indx);

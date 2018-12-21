@@ -21,20 +21,25 @@ cxxflaggs = "-std=c++14"
 cppath = '/usr/include/boost/'
 
 # normal compilation
-env_dynamic = Environment(CCFLAGS='-O3',
+env_dynamic = Environment(CC='g++',
+              CCFLAGS='-O3',
               CPPPATH=cppath,
-              CXXFLAGS=cxxflaggs)
+              CXXFLAGS=cxxflaggs,
+              LINKFLAGS = "-fopenmp")
 
 # debugging compilation
-env_dbg = Environment(CCFLAGS='-g',
-          CPPPATH='/usr/include/boost/',
-          CXXFLAGS=cxxflaggs)
+env_dbg = Environment(CC='g++',
+          CCFLAGS='-g',
+          CPPPATH=cppath,
+          CXXFLAGS=cxxflaggs,
+          LINKFLAGS = "-fopenmp")
 
 # static compilation
-env_static = Environment(CCFLAGS='-O3',
+env_static = Environment(CC='g++',
+             CCFLAGS='-O3',
              CPPPATH=cppath,
              CXXFLAGS=cxxflaggs,
-             LINKFLAGS = "-static")
+             LINKFLAGS = "-fopenmp -static")
 
 scenario = ARGUMENTS.get('scenario', 0)
 try:
@@ -55,6 +60,7 @@ SRS = ['DataHandler.cpp', 'Environment.cpp', 'Gene.cpp',
        local_main]
 
 linking = ARGUMENTS.get('linking', 1)
+
 try:
     linkk = str(linking)
     if linkk=="static":

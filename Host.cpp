@@ -780,8 +780,8 @@ void Host::setFatherMhcNumber(unsigned long int theMhcNumber) {
  *
  * @return number of unique MHC genes in individual host's genome.
  */
-double Host::getNumbOfUniqMHCgenes() {
-    return (double) UniqueAlleles.size();
+unsigned long Host::getNumbOfUniqMHCgenes() {
+    return UniqueAlleles.size();
 }
 
 

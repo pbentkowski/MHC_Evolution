@@ -92,6 +92,8 @@ public:
     void savePathoNoMuttList(Environment &EnvObj);
     void savePresentedPathos(Environment &EnvObj, int tayme);
     void saveMhcNumbersWhenMating(Environment &EnvObj, int tayme);
+    void saveMhcNumbersBeforeMating(Environment &EnvObj, int tayme);
+    void saveMhcNumbersAfterMating(Environment &EnvObj, int tayme);
 private:
     bool ifFirstSpecToFileRun;
     bool ifFirstHostClonesRun;
@@ -101,6 +103,8 @@ private:
     bool ifNoMuttPathoListUnique;
     bool ifNumberOfPresentedPatho;
     bool ifNumberOfMhcWhenMating;
+    bool ifNumberOfMhcBeforeMating;
+    bool ifNumberOfMhcAfterMating;
 };
 
 #endif	/* DATAHARVESTER_H */
