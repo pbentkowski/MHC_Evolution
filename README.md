@@ -68,6 +68,7 @@ How to run:
 -----------
 
 The program takes exactly 17 parameters. These are:
+
 *  **00** - Program's name
 *  **01** - Number of threads program will try to use on a multi-core CPU. Giving 0 will make the program use all CPU cores available.
 *  **02** - Number of bits in a gene.
@@ -103,6 +104,7 @@ the basics to analyse the simulation output. Other files are optional and they c
 out some lines in the main function (*main.cpp* file) what should speed up the program runtime.
 
 All the files are:
+
 *  ***InputParameters.json*** - contains run's parametrisation in JSON text format 
 *  ***HostsGeneDivers.csv*** - contain basic statistics of the output for host genomes 
 *  ***HostGenomesFile.[t].csv*** - contains all the genomes of all the cells for host population in time *t*. There can be more then one file like this for different time snapshots. 
