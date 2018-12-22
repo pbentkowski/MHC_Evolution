@@ -7,3 +7,4 @@ dist
 build
 SCBuild
 cmake-build-debug
+.ipynb_checkpoints
