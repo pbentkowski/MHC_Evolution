@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('class_environment.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Core class. Stores and handles the environment object that is the place where all the things are happening. It contains host and pathogen populations stored in separate STL Vectors.  
+<p>Core class. Stores and handles the environment object that is the place where all the things are happening. It contains host and pathogen populations stored in separate STL Vectors. Handles all the population-wide things (setting populations up, calculating fitness in all population, matching pathogens and hosts for infections, mating hosts etc.). Also has methods for fetching some of the stats.  
  <a href="class_environment.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_environment_8h_source.html">Environment.h</a>&gt;</code></p>
@@ -249,9 +249,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab34c398994fe34c54bdb4239ac624ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Core class. Stores and handles the environment object that is the place where all the things are happening. It contains host and pathogen populations stored in separate STL Vectors. </p>
+<div class="textblock"><p>Core class. Stores and handles the environment object that is the place where all the things are happening. It contains host and pathogen populations stored in separate STL Vectors. Handles all the population-wide things (setting populations up, calculating fitness in all population, matching pathogens and hosts for infections, mating hosts etc.). Also has methods for fetching some of the stats. </p>
 
-<p>Definition at line <a class="el" href="_environment_8h_source.html#l00039">39</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
+<p>Definition at line <a class="el" href="_environment_8h_source.html#l00042">42</a> of file <a class="el" href="_environment_8h_source.html">Environment.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeff4f165bb55ef7abe27662598bb82f2"></a>
 <div class="memitem">
@@ -1974,7 +1974,7 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<p>void <a class="el" href="class_environment.html#a5e09ffa9aa8d501096f19131571bace1">Environment::setPathoPopulatioUniformGenome</a>(int pop_size, unsigned long antigenSize, int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac, <a class="el" href="class_tagging__system.html" title="A singleton class which generates unique tags for genes. These tags are used when keeping a track of ...">Tagging_system</a> &amp;tag){ Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac, rngGenPtr[omp_get_thread_num()]); if (numb_of_species &gt; pop_size) numb_of_species = pop_size; int indiv_per_species = pop_size / numb_of_species; int indiv_left = pop_size % numb_of_species; std::vector&lt;Pathogen&gt; OneSpeciesVector; for (int i = 0; i &lt; numb_of_species; ++i){ for(int j = 0; j &lt; indiv_per_species; ++j){ OneSpeciesVector.push_back(Pathogen()); if(i+1 != indiv_per_species){ OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize, mhcSize, i, timeStamp, randGen, tag); } else { OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize, mhcSize, i, timeStamp, randGen, tag); } if(indiv_left){ OneSpeciesVector.push_back(Pathogen()); OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize, mhcSize, i, timeStamp, randGen, tag); indiv_left&ndash;; } } PathPopulation.push_back(OneSpeciesVector); OneSpeciesVector.clear(); } } Core method. Initializes the pathogen population.</p>
+<p>void <a class="el" href="class_environment.html#a5e09ffa9aa8d501096f19131571bace1">Environment::setPathoPopulatioUniformGenome</a>(int pop_size, unsigned long antigenSize, int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp, double fixedAntigenFrac, <a class="el" href="class_tagging__system.html" title="A little handy machine which generates unique tags for genes. These tags are used when keeping the tr...">Tagging_system</a> &amp;tag){ Environment::setNoMutsVector(numb_of_species, antigenSize, fixedAntigenFrac, rngGenPtr[omp_get_thread_num()]); if (numb_of_species &gt; pop_size) numb_of_species = pop_size; int indiv_per_species = pop_size / numb_of_species; int indiv_left = pop_size % numb_of_species; std::vector&lt;Pathogen&gt; OneSpeciesVector; for (int i = 0; i &lt; numb_of_species; ++i){ for(int j = 0; j &lt; indiv_per_species; ++j){ OneSpeciesVector.push_back(Pathogen()); if(i+1 != indiv_per_species){ OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize, mhcSize, i, timeStamp, randGen, tag); } else { OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize, mhcSize, i, timeStamp, randGen, tag); } if(indiv_left){ OneSpeciesVector.push_back(Pathogen()); OneSpeciesVector.back().setNewPathogen(chrom_size, antigenSize, mhcSize, i, timeStamp, randGen, tag); indiv_left&ndash;; } } PathPopulation.push_back(OneSpeciesVector); OneSpeciesVector.clear(); } } Core method. Initializes the pathogen population.</p>
 <p>Given the number of individuals, number of bit per gene, desired number of genes in a genome and desired number of pathogen species it generates random population of pathogens. Number of individuals will be evenly distributed between species and each species consists of identical clones.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2086,7 +2086,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_environment.html">Environment</a></li>
-    <li class="footer">Generated on Sat Dec 22 2018 20:24:53 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Sat Dec 22 2018 20:45:39 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

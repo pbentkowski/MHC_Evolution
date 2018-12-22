@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('class_pathogen.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of <a class="el" href="class_antigen.html" title="Core class. Stores and handles a single antigen object. Has methods to access and to mutate antigen...">Antigen</a> class objects and stores them in a vector called PathogenProts.  
+<p>Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of the <a class="el" href="class_antigen.html" title="Core class. Stores and handles a single antigen object. Has methods to access and to mutate antigen...">Antigen</a> class objects. Has methods for calling methods to mutate the antigen, stores stats regarding the pathogen (infected hosts etc.)  
  <a href="class_pathogen.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_pathogen_8h_source.html">Pathogen.h</a>&gt;</code></p>
@@ -126,10 +126,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3732c4d3e828dc368f85106768a643c1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a3732c4d3e828dc368f85106768a643c1">~Pathogen</a> ()</td></tr>
 <tr class="separator:a3732c4d3e828dc368f85106768a643c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3769ead903f609bfe0467289d0168ce2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a3769ead903f609bfe0467289d0168ce2">setNewPathogen</a> (unsigned long antigen_size, unsigned long mhcSize, int species, int timeStamp, <a class="el" href="class_random.html">Random</a> &amp;randGen, <a class="el" href="class_tagging__system.html">Tagging_system</a> &amp;tag)</td></tr>
-<tr class="memdesc:a3769ead903f609bfe0467289d0168ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object.  <a href="#a3769ead903f609bfe0467289d0168ce2">More...</a><br /></td></tr>
+<tr class="memdesc:a3769ead903f609bfe0467289d0168ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of ...">Pathogen</a> object.  <a href="#a3769ead903f609bfe0467289d0168ce2">More...</a><br /></td></tr>
 <tr class="separator:a3769ead903f609bfe0467289d0168ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e4054690c35c7f5e6993386b1a1ad95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a4e4054690c35c7f5e6993386b1a1ad95">setNewPathogenNthSwap</a> (<a class="el" href="_pathogen_8h.html#a9c0586c8373cedbc990258374b02cc43">anigenstring</a> antigen, unsigned long int Tag, unsigned long mhcSize, int species, int timeStamp, int Nth)</td></tr>
-<tr class="memdesc:a4e4054690c35c7f5e6993386b1a1ad95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object with pre-defined antigen.  <a href="#a4e4054690c35c7f5e6993386b1a1ad95">More...</a><br /></td></tr>
+<tr class="memdesc:a4e4054690c35c7f5e6993386b1a1ad95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of ...">Pathogen</a> object with pre-defined antigen.  <a href="#a4e4054690c35c7f5e6993386b1a1ad95">More...</a><br /></td></tr>
 <tr class="separator:a4e4054690c35c7f5e6993386b1a1ad95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a751c89dc80a7a21207ce7d16beaf266c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_antigen.html">Antigen</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathogen.html#a751c89dc80a7a21207ce7d16beaf266c">getAntigenProt</a> ()</td></tr>
 <tr class="memdesc:a751c89dc80a7a21207ce7d16beaf266c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core method. Fetches the pathogene's antigens.  <a href="#a751c89dc80a7a21207ce7d16beaf266c">More...</a><br /></td></tr>
@@ -164,7 +164,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4b9ae991d5bb856a9a1a5211ca92cbd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of <a class="el" href="class_antigen.html" title="Core class. Stores and handles a single antigen object. Has methods to access and to mutate antigen...">Antigen</a> class objects and stores them in a vector called PathogenProts. </p>
+<div class="textblock"><p>Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of the <a class="el" href="class_antigen.html" title="Core class. Stores and handles a single antigen object. Has methods to access and to mutate antigen...">Antigen</a> class objects. Has methods for calling methods to mutate the antigen, stores stats regarding the pathogen (infected hosts etc.) </p>
 
 <p>Definition at line <a class="el" href="_pathogen_8h_source.html#l00040">40</a> of file <a class="el" href="_pathogen_8h_source.html">Pathogen.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -515,8 +515,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object. </p>
-<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object and assigns a user-defined number of genes of user-defined number of bits (as antigens are bit-strings). Value of a antigens is randomly assigned from an interval between 0 and 2^N-1, where N is the number of bits in a gene.</p>
+<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of ...">Pathogen</a> object. </p>
+<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of ...">Pathogen</a> object and assigns a user-defined number of genes of user-defined number of bits (as antigens are bit-strings). Value of a antigens is randomly assigned from an interval between 0 and 2^N-1, where N is the number of bits in a gene.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num_of_loci</td><td>- number of gene loci in a chromosome </td></tr>
@@ -592,8 +592,8 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object with pre-defined antigen. </p>
-<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have multiple instances of...">Pathogen</a> object and assigns a user-defined number of antigens of user-defined number of bits (as antigens are bit-strings). Value of an antigen is loaded as a bit-string. Later on every N-th bit in the antigen is flipped to the opposite value.</p>
+<p>Core method. Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of ...">Pathogen</a> object with pre-defined antigen. </p>
+<p>Sets a new <a class="el" href="class_pathogen.html" title="Core class. Stores and handles a single pathogen object. Each pathogen can have just one instance of ...">Pathogen</a> object and assigns a user-defined number of antigens of user-defined number of bits (as antigens are bit-strings). Value of an antigen is loaded as a bit-string. Later on every N-th bit in the antigen is flipped to the opposite value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">antigen</td><td>- bit string containing pre-defined antigen </td></tr>
@@ -715,7 +715,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_pathogen.html">Pathogen</a></li>
-    <li class="footer">Generated on Sat Dec 22 2018 20:24:53 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Sat Dec 22 2018 20:45:39 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

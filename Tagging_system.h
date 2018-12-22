@@ -28,9 +28,9 @@ extern unsigned long int theTag;
 /**
  * @class Tagging_system
  * 
- * @brief A singleton class which generates unique tags for genes. These tags 
- * are used when keeping a track of evolution of individual alleles.
- * 
+ * @brief A little handy machine which generates unique tags for genes. These tags 
+ * are used when keeping the track of evolution of individual MHC alleles. They do
+ * not fallow a time sequence! Not when you use a multi-threaded computing.
  */
 class Tagging_system {
 private:
