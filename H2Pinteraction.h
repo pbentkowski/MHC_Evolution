@@ -30,7 +30,8 @@
 typedef std::vector<unsigned long int> longIntVec;
 
 /**
- * @brief Core class. Handles interactions between hosts and pathogens.
+ * @brief Core class. Handles interactions between hosts and pathogens,
+ * especially the infection-presentation process (how MHCs recognise Antigens).
  */
 class H2Pinteraction {
 public:

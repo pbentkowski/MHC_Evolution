@@ -37,7 +37,9 @@ typedef std::vector<Gene> chromovector;
 /**
  * @brief Core class. Stores and handles a single host object. Each host
  * has multiple instances of Gene class objects and stores them in 2 vectors
- * called ChromosomeOne and ChromosomeTwo which simulate a diploid genome.
+ * called ChromosomeOne and ChromosomeTwo which simulate a diploid genome. Has
+ * methods for calculating fitness of various forms and stores the stats
+ * regarding a host (pathogens presented, fitness etc.).
  */
 class Host {
 public:

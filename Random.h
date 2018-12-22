@@ -5,9 +5,9 @@
 
 
 /**
- * @brief A handy class for managing your daily pseudo-random number generation with C++11 STL <random> library
+ * @brief A handy class for managing your daily pseudo-random number generation with C++11 / C++14 STL <random> library
  *
- * For more tips how to use <random> in C++11 see:
+ * For more tips how to use <random> in C++11 (and C++14) see:
  * https://isocpp.org/files/papers/n3551.pdf
  */
 class Random{

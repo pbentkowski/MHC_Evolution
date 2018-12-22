@@ -34,8 +34,8 @@ typedef std::vector<Antigen> antigenvector;
 
 /**
  * @brief Core class. Stores and handles a single pathogen object. Each pathogen
- * can have multiple instances of Antigen class objects and stores them in a 
- * vector called PathogenProts.
+ * can have just one instance of the Antigen class objects. Has methods for calling
+ * methods to mutate the antigen, stores stats regarding the pathogen (infected hosts etc.)
  */
 class Pathogen {
 public:

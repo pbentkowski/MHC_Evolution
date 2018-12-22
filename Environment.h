@@ -34,7 +34,10 @@
 /**
  * @brief Core class. Stores and handles the environment object that is the 
  * place where all the things are happening. It contains host and pathogen
- * populations stored in separate STL Vectors.
+ * populations stored in separate STL Vectors. Handles all the population-wide
+ * things (setting populations up, calculating fitness in all population, matching
+ * pathogens and hosts for infections, mating hosts etc.). Also has methods for
+ * fetching some of the stats.
  */
 class Environment {
 private:

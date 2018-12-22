@@ -32,7 +32,8 @@
 
 /**
  * @brief Data harvesting class. A class that has methods to collect data and
- * writes them to files.
+ * to write them to output files. It heavily relies on the Environment class that stores
+ * some of the data and has methods to access other kind of data.
  */
 class DataHandler {
 public:
