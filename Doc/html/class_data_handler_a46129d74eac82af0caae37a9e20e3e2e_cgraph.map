@@ -1,0 +1,4 @@
+<map id="DataHandler::saveHostPopulToFile" name="DataHandler::saveHostPopulToFile">
+<area shape="rect" id="node2" href="$class_environment.html#a45aeebf99b44c9b1e66ca16b923605ae" title="Core method. Gets the host population size. " alt="" coords="245,5,451,32"/>
+<area shape="rect" id="node3" href="$class_environment.html#a71dc8a1828a2830ffefa901d0974b2c1" title="Data harvesting method. Gets the genome of selected host in human&#45;readable format. " alt="" coords="255,57,441,98"/>
+</map>

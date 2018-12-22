@@ -68,6 +68,8 @@ void Antigen::calculateEpitopes(unsigned long mhcSize){
  * @param lenght - number of bits in the antigen (usually a lot)
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer the tagging system marking each gene variant
  */
 void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int timeStamp, Random& randGen, Tagging_system& tag){
     timeOfOrigin = timeStamp;
@@ -94,6 +96,8 @@ void Antigen::setNewAntigen(unsigned long length, unsigned long mhcSize, int tim
  * @param Nth - step at each a bit should be flipped
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration)
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer the tagging system marking each gene variant
  */
 void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int Tag,
         int Nth, unsigned long mhcSize, int timeStamp){
@@ -116,6 +120,8 @@ void Antigen::setAntigenFlipedPositions(antigenstring bitgene, unsigned long int
  * @param pm_mut_probabl - probability of mutating a single bit.
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration).
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer the tagging system marking each gene variant
  */
 void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize, int timeStamp,
                                     Random& randGen, Tagging_system& tag){
@@ -146,7 +152,9 @@ void Antigen::mutateAntigenBitByBit(double pm_mut_probabl, unsigned long mhcSize
  * @param mhcSize - length of a bit string representing the MHC protein.
  * @param timeStamp - current time (current number of the model iteration).
  * @param noMutts - a STL set of positions that should remain intact during
- * the mutation process, a way to define a species.  
+ * the mutation process, a way to define a species.
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer the tagging system marking each gene variant
  */
 void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhcSize,
         int timeStamp, std::set<unsigned long>& noMutts, Random& randGen, Tagging_system& tag){
@@ -174,7 +182,7 @@ void Antigen::mutateAntgBitByBitWithRes(double pm_mut_probabl, unsigned long mhc
 /**
  * @brief Core method. Returns the antigen so other methods can use it.
  * 
- * @return The antigen in it's native bit format
+ * @return The antigen in its native bit format
  */
 antigenstring Antigen::getBitAntigen(){
     return TheAntigen;

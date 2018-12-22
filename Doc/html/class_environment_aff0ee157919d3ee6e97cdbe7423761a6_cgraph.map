@@ -1,0 +1,4 @@
+<map id="Environment::matingMaxDifferentMHCs" name="Environment::matingMaxDifferentMHCs">
+<area shape="rect" id="node2" href="$class_random.html#aff6c9a321cc83da8ae04f003fdfdd169" title="Returns a random unsigned int value in [min, max] from uniform distribution. " alt="" coords="308,5,531,32"/>
+<area shape="rect" id="node3" href="$class_random.html#a549d2fd18d531d9b8973eb49824073b2" title="Random::returnEngene" alt="" coords="341,56,497,83"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="DataHandler::saveMhcNumbersWhenMating" name="DataHandler::saveMhcNumbersWhenMating">
+<area shape="rect" id="node2" href="$class_environment.html#aaaccca98aea69e0eede4010fec439e56" title="Data harvesting method. Prepares a string with the list of how many unique MHC a &quot;mother&quot; had (a sele..." alt="" coords="263,5,451,47"/>
+<area shape="rect" id="node3" href="$class_environment.html#abc923f56f8f796f81f05a41bea0b4c82" title="Data harvesting method. Prepares a string with the list of how many unique MHC a &quot;father&quot; had (the pa..." alt="" coords="263,71,451,112"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Host::evalUniqueMHCs" name="Host::evalUniqueMHCs">
+<area shape="rect" id="node2" href="$class_host.html#a8a9eb712dfbb9f8af7c6f37992700f07" title="Core method. Sets a new Host object and assigns a user&#45;defined number of genes of user&#45;defined number..." alt="" coords="249,5,379,32"/>
+<area shape="rect" id="node3" href="$class_host.html#ad14057449d148eaa01067d7bba9c436d" title="Core method. Sets a new Host object and assigns a user&#45;defined number of genes of user&#45;defined number..." alt="" coords="221,56,407,83"/>
+<area shape="rect" id="node4" href="$class_host.html#aa4ba3431134b883c78f7b2a6e8e3e608" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="229,107,399,133"/>
+<area shape="rect" id="node5" href="$class_host.html#ad2697764fc93fc5093a2f63877d2e9c2" title="Core method. Decides (on a random basis) if there will be any mutations in the genome: deletion..." alt="" coords="215,158,413,199"/>
+<area shape="rect" id="node6" href="$class_host.html#a72f5e34bd2c54f277fa54248d841f5eb" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="215,223,413,265"/>
+</map>

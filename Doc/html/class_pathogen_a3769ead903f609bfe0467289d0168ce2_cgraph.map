@@ -1,0 +1,6 @@
+<map id="Pathogen::setNewPathogen" name="Pathogen::setNewPathogen">
+<area shape="rect" id="node2" href="$class_antigen.html#a95707deec1f5e51ac9661f0ea3bac5b5" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="239,56,401,83"/>
+<area shape="rect" id="node3" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Tagging_system::getTag" alt="" coords="455,5,621,32"/>
+<area shape="rect" id="node4" href="$class_random.html#a40b7a9c704e56c492176373d842c8c52" title="Returns a random float value in [0, 1) from uniform distribution. " alt="" coords="479,56,597,83"/>
+<area shape="rect" id="node5" href="$class_antigen.html#a2e4e0c8eac818109974dd7f67894d6d7" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="449,107,627,133"/>
+</map>

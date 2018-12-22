@@ -1,0 +1,11 @@
+\form#0:$ p_{t} = 1 - \left[1 - p_{m} (1 - 0.5^{b})\right]^{1/b} $
+\form#1:$b$
+\form#2:$p_{m}$
+\form#3:$1/b$
+\form#4:$ p_{t} = 1 - \exp\left( 1/b \cdot \ln [1 - p_{m} (1 - 0.5^{b})]\right) $
+\form#5:$ \alpha $
+\form#6:$ F = \frac{P}{(\alpha \cdot N)^{2}} $
+\form#7:$0 < \alpha < 1 $
+\form#8:$ P $
+\form#9:$ N $
+\form#10:$ F = P \cdot \exp \left[-(\alpha N)^{2}\right] $

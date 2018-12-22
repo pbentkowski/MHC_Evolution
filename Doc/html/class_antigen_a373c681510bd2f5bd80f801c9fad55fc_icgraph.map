@@ -1,0 +1,4 @@
+<map id="Antigen::getBitAntigen" name="Antigen::getBitAntigen">
+<area shape="rect" id="node2" href="$class_pathogen.html#ad879ba5dc9ca0fe3fa68eb800b3446f3" title="Data harvesting method. Returns a string containing the whole pathogen genome in a human&#45;readable for..." alt="" coords="205,5,391,47"/>
+<area shape="rect" id="node3" href="$class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea" title="Auxiliary method useful for debugging. Prints genome to screen. " alt="" coords="209,71,387,112"/>
+</map>

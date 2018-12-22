@@ -34,6 +34,11 @@
 typedef std::string sttr;
 typedef boost::dynamic_bitset<> antigenstring;
 
+/**
+ * @brief Core method. Sets the number of threads used later for computing the model.
+ *
+ * @param numberOfThreads - number of threads you want to use for computing this mode.
+ */
 Environment::Environment(unsigned int numberOfThreads) {
     if(numberOfThreads == 0)
     {
@@ -101,6 +106,7 @@ void Environment::setNoMutsVector(int numb_of_species, unsigned long antigen_siz
  * @param gene_size - number of bits in bit-represented genes
  * @param chrom_size - number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
                                           unsigned long chrom_size, int timeStamp,
@@ -130,6 +136,7 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
  * @param chrom_size_lower - lower limit of the number of genes in a chromosome
  * @param chrom_size_uper - upper limit of the number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size, unsigned long chrom_size_lower,
                                           unsigned long chrom_size_uper, int timeStamp,
@@ -140,13 +147,13 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
         chrom_size_uper = tmp_size;
     }
     for(int i = 0; i < pop_size; ++i) {
-        HostPopulation.push_back(Host());
+        HostPopulation.emplace_back(Host());
     }
     Random * rngGenPtr = mRandGenArr;
     #pragma omp parallel for default(none) shared(pop_size, chrom_size_lower, chrom_size_uper, rngGenPtr, gene_size, timeStamp, tag)
     for(int j = 0; j < pop_size; ++j){
-        HostPopulation[j].setNewHost(rngGenPtr[omp_get_thread_num()].getRandomFromUniform(chrom_size_lower,
-                chrom_size_uper), gene_size, timeStamp, rngGenPtr[omp_get_thread_num()], tag);
+        HostPopulation[j].setNewHost(rngGenPtr[omp_get_thread_num()].getRandomFromUniform((unsigned int) chrom_size_lower,
+                (unsigned int) chrom_size_uper), gene_size, timeStamp, rngGenPtr[omp_get_thread_num()], tag);
     }
 }
 
@@ -164,12 +171,13 @@ void Environment::setHostRandomPopulation(int pop_size, unsigned long gene_size,
  * @param gene_size - number of bits in bit-represented genes
  * @param chrom_size - number of genes in a chromosome
  * @param timeStamp - current time (number of the model iteration)
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
                                           unsigned long chrom_size, int timeStamp,
                                            Tagging_system &tag){
     std::vector<Host> tmpPopulation;
-    tmpPopulation.push_back(Host());
+    tmpPopulation.emplace_back(Host());
     Random * rngGenPtr = mRandGenArr;
     #pragma omp single
     {
@@ -197,6 +205,7 @@ void Environment::setHostClonalPopulation(int pop_size, unsigned long gene_size,
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ * @param tag - pointer to the tagging system marking each gene variant
  *
 void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long antigenSize,
         int chrom_size, int numb_of_species, unsigned long mhcSize, int timeStamp,
@@ -244,6 +253,7 @@ void Environment::setPathoPopulatioUniformGenome(int pop_size, unsigned long ant
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
  * @param fixedAntigenFrac - fraction of bits in antigens which need to be fixed
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antigenSize,
         int numb_of_species, unsigned long mhcSize, int timeStamp,
@@ -291,8 +301,6 @@ void Environment::setPathoPopulatioDivSpecies(int pop_size, unsigned long antige
  * advantage added (antigen recognition just by one allele gives a full advantage).
  * One species can infect a host only ONES.
  *
- * @param simil_mesure - number of bits which have to be similar, to expose
- * a pathogen. It's passed to H2Pinteraction::doesInfected() method.
  */
 void Environment::infectOneFromOneSpecHetero(){
     H2Pinteraction H2P;
@@ -304,7 +312,7 @@ void Environment::infectOneFromOneSpecHetero(){
         unsigned long PathPopulationSize = PathPopulation.size();
         for(unsigned long sp = 0; sp < PathPopulationSize; ++sp){
             if(!PathPopulation[sp].empty()){
-                j = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, PathPopulation[sp].size()-1);
+                j = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) PathPopulation[sp].size()-1);
                 H2P.doesInfectedHeteroOnePerSpec(HostPopulation[i], PathPopulation[sp][j]);
             }
         }
@@ -358,6 +366,8 @@ void Environment::calculateHostsFitnessForDrift(){
  * Fitness for each single individual by calling
  * Host::calculateHostsFitnessAlphaXsqr(), which uses one over the square on
  * number of genes as a fitness cost.
+ *
+ * @param alpha - penalty for having too many MHC types factor for the host fitness function
  */
 void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
     unsigned long HostPopulationSize = HostPopulation.size();
@@ -372,6 +382,8 @@ void Environment::calculateHostsFitnessAlphaXsqr(double alpha){
  * Fitness for each single individual by calling
  * Host::calculateFitnessExpFunc(), which uses a Gaussian function to accommodate
  * the costs of having lots of genes.
+ *
+ * @param alpha - penalty for having too many MHC types factor for the host fitness function
  */
 void Environment::calculateHostsFitnessExpScaling(double alpha){
     unsigned long HostPopulationSize = HostPopulation.size();
@@ -386,6 +398,8 @@ void Environment::calculateHostsFitnessExpScaling(double alpha){
  * Fitness for each single individual by calling
  * Host::calculateFitnessExpFuncUniqAlleles(), which uses a Gaussian function
  * to accommodate the costs of having lots of unique MHC alleles in chromosomes.
+ *
+ * @param alpha - penalty for having too many MHC types factor for the host fitness function
  */
 void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
     unsigned long HostPopulationSize = HostPopulation.size();
@@ -554,7 +568,7 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
         int n = 0;
         aley_oop:
         while(n < PopSizes[k]){
-           rnd = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, SpecTotInfected[k]);
+           rnd = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) SpecTotInfected[k]);
            unsigned long PathPopulationKthSize = PathPopulation[k].size();
            for(unsigned long l = 0; l < PathPopulationKthSize; ++l){
                rnd = rnd - PathPopulation[k][l].NumOfHostsInfected;
@@ -589,7 +603,7 @@ void Environment::selectAndReproducePathoFixedPopSizes(){
 void Environment::clearPathoInfectionData(){
     // Clear pathogens infection data
     unsigned long PathPopulationSize = PathPopulation.size();
-    #pragma omp prallel for default(none) shared(PathPopulationSize)
+    #pragma omp parallel for default(none) shared(PathPopulationSize)
     for (int i = 0; i < PathPopulationSize; ++i){
         unsigned long PathPopulationIthSize = PathPopulation[i].size();
         for (int j = 0; j < PathPopulationIthSize; ++j){
@@ -605,7 +619,7 @@ void Environment::clearPathoInfectionData(){
 void Environment::clearHostInfectionsData(){
     // Clear hosts infection data
     unsigned long HostPopulationSzie = HostPopulation.size();
-    #pragma omp prallel for default(none) shared(HostPopulationSzie)
+    #pragma omp parallel for default(none) shared(HostPopulationSzie)
     for(unsigned long k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].clearInfections();
     }
@@ -622,14 +636,17 @@ void Environment::clearHostInfectionsData(){
  * @param dupli - mutation probability, probability a gene will be duplicated
  * (and added at the end of the Chromosome vector)
  * @param timeStamp - current time (number of the model iteration)
+ * @param maxGene - maximal allowed number of genes in a chromosome (user
+ * defined parameter).
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
         double del, double dupl, unsigned long maxGene, int timeStamp,
          Tagging_system &tag){
     unsigned long HostPopulationSzie = HostPopulation.size();
     Random * rngGenPtr = mRandGenArr;
-    #pragma omp prallel for default(none) \
-        shared(HostPopulationSzie, pm_mut_probabl, del, dupl, maxGene, timeStamp, tag)
+    #pragma omp parallel for default(none) \
+        shared(HostPopulationSzie, pm_mut_probabl, del, dupl, maxGene, timeStamp, rngGenPtr, tag)
     for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDuplPointMuts(pm_mut_probabl,
                 del, dupl, maxGene, timeStamp, rngGenPtr[omp_get_thread_num()], tag);
@@ -695,6 +712,7 @@ void Environment::mutatePathogens(double mut_probabl, unsigned long mhcSize, int
  * @param mut_probabl - probability of a mutation in a single gene.
  * @param mhcSize - number of bits in MHC protein
  * @param timeStamp - current time (number of the model iteration)
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Environment::mutatePathogensWithRestric(double mut_probabl, unsigned long mhcSize,
         int timeStamp, Tagging_system &tag){
@@ -782,7 +800,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
     #pragma omp single
     {
         while (NewHostsVec.size() < popSize) {
-            i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, popSize - 1);
+            i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) popSize - 1);
             // Specify the engine and create unique vector listing mates from population
 //            std::mt19937 mersenne_engine(rnd_device());
             std::mt19937 mersenne_engine = rngGenPtr[omp_get_thread_num()].returnEngene();
@@ -867,13 +885,13 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
     // First create an instance of an random engine.
     std::random_device rnd_device;
     // Specify the size of the mates vector
-    std::vector<int> matesVec(matingPartnerNumber);
+    std::vector<int> matesVec((unsigned int) matingPartnerNumber);
     // the mating procedure
     Random * rngGenPtr = mRandGenArr;
     #pragma omp single
     {
         while (NewHostsVec.size() < popSize) {
-            i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, popSize - 1);
+            i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) popSize - 1);
             // Specify the engine and create unique vector listing mates from population
 //            std::mt19937 mersenne_engine(rnd_device());
             std::mt19937 mersenne_engine = rngGenPtr[omp_get_thread_num()].returnEngene();
@@ -1015,13 +1033,13 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
 // First create an instance of an random engine.
     std::random_device rnd_device;
     // Specify the size of the mates vector
-    std::vector<int> matesVec(matingPartnerNumber);
+    std::vector<int> matesVec((unsigned int) matingPartnerNumber);
     // the mating procedure
     Random * rngGenPtr = mRandGenArr;
     #pragma omp single
     {
         while (NewHostsVec.size() < popSize) {
-            i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, popSize - 1);
+            i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) popSize - 1);
             // Specify the engine and create unique vector listing mates from population
 //            std::mt19937 mersenne_engine(rnd_device());
             std::mt19937 mersenne_engine = rngGenPtr[omp_get_thread_num()].returnEngene();
@@ -1110,8 +1128,8 @@ std::string Environment::getHostUniqMHCtoString(int i) {
  */
 std::string Environment::getFixedBitsInAntigens(){
     sttr fixedMutStr;
-    for(int i = 0; i < NoMutsVec.size(); ++i){
-        for (unsigned long const& possit : NoMutsVec[i]){
+    for (auto &i : NoMutsVec) {
+        for (unsigned long const& possit : i){
             fixedMutStr += std::to_string(possit) + sttr(" ");
         }
         fixedMutStr += sttr("\n");

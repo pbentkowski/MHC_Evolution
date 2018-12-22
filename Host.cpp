@@ -32,14 +32,12 @@ typedef boost::dynamic_bitset<> genestring;
 typedef std::vector<Gene> chromovector;
 typedef std::string sttr;
 
-Host::Host() {
-}
+Host::Host() = default;
 
 //Host::Host(const Host& orig) {
 //}
 
-Host::~Host() {
-}
+Host::~Host() = default;
 
 /**
  * @brief Core method. Sets a new Host object and assigns a user-defined
@@ -63,9 +61,9 @@ void Host::setNewHost(unsigned long num_of_loci, unsigned long gene_size, int ti
     FatherMhcNumber = 0;
     Fitness = 0.0;
     for(unsigned long i = 0; i < num_of_loci; ++i){
-        ChromosomeOne.push_back(Gene());
+        ChromosomeOne.emplace_back(Gene());
         ChromosomeOne.back().setNewGene(gene_size, timeStamp, randGen, tag);
-        ChromosomeTwo.push_back(Gene());
+        ChromosomeTwo.emplace_back(Gene());
         ChromosomeTwo.back().setNewGene(gene_size, timeStamp, randGen, tag);
     }
     evalUniqueMHCs();
@@ -97,9 +95,9 @@ void Host::setNewHomozygHost(unsigned long num_of_loci, unsigned long gene_size,
         tempChromo.push_back(Gene());
         tempChromo.back().setNewGene(gene_size, timeStamp, randGen, tag);
     }
-    for(int i = 0; i < tempChromo.size(); ++i){
-        ChromosomeOne.push_back(tempChromo[i]);
-        ChromosomeTwo.push_back(tempChromo[i]);
+    for (const auto &i : tempChromo) {
+        ChromosomeOne.push_back(i);
+        ChromosomeTwo.push_back(i);
     }
     evalUniqueMHCs();
 }
@@ -151,10 +149,10 @@ void Host::chromoMutProcess(double mut_probabl, int timeStamp, Random& randGen, 
  */
 void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del, 
         double dupli, unsigned long maxGene, int timeStamp, Random& randGen, Tagging_system& tag){
-    if(ChromosomeOne.size()){
+    if(!ChromosomeOne.empty()){
         for(int i = (int) (ChromosomeOne.size() - 1); i >= 0; --i){
             ChromosomeOne[i].mutateGeneWhole(mut_probabl, timeStamp, randGen, tag);
-            if(ChromosomeOne.size() and ChromosomeOne.size() < maxGene 
+            if(!ChromosomeOne.empty() and ChromosomeOne.size() < maxGene
                     and randGen.getUni() < dupli){
                 ChromosomeOne.push_back(ChromosomeOne[i]);
             }
@@ -163,10 +161,10 @@ void Host::chromoMutProcessWithDelDupl(double mut_probabl, double del,
             }
         }
     }
-    if(ChromosomeTwo.size()){
+    if(!ChromosomeTwo.empty()){
         for(int i = (int) (ChromosomeTwo.size() - 1); i >= 0; --i){
             ChromosomeTwo[i].mutateGeneWhole(mut_probabl, timeStamp, randGen, tag);
-            if(ChromosomeTwo.size() and ChromosomeTwo.size() < maxGene 
+            if(!ChromosomeTwo.empty() and ChromosomeTwo.size() < maxGene
                     and randGen.getUni() < dupli){
                 ChromosomeTwo.push_back(ChromosomeTwo[i]);
             }
@@ -258,23 +256,23 @@ void Host::chromoRecombination(double recomb_prob, Random& randGen){
  * then 0.5 will favor ChromosomeTwo as a donor.
  * 
  * @return a Chromosome vector.
- * @corssing_prob - probablituty of crossing-over
+ * @corssing_prob - probability of crossing-over
  * @param randGen - pointer to random number generator
  */
  chromovector Host::doCrossAndMeiosis(double corssing_prob, Random& randGen){
     chromovector new_chromos;
-    for(int i = 0; i < ChromosomeOne.size(); ++i){
+    for (const auto &i : ChromosomeOne) {
         if(randGen.getUni() < corssing_prob){
-            new_chromos.push_back(ChromosomeOne[i]);
+            new_chromos.push_back(i);
         }
     }
     corssing_prob = 1.0 - corssing_prob;
-    for(int j = 0; j < ChromosomeTwo.size(); ++j){
+    for (const auto &j : ChromosomeTwo) {
         if(randGen.getUni() < corssing_prob){
-            new_chromos.push_back(ChromosomeTwo[j]);
+            new_chromos.push_back(j);
         }
     }
-    if(new_chromos.size() == 0){
+    if(new_chromos.empty()){
         if(randGen.getUni() < corssing_prob){
             new_chromos.push_back(ChromosomeOne[0]);
         }else{
@@ -292,7 +290,7 @@ void Host::chromoRecombination(double recomb_prob, Random& randGen){
  * @return an integer representation of a gene with a given index.
  */
 unsigned long int Host::getOneGeneFromOne(unsigned long indx){
-    if(ChromosomeOne.size()){
+    if(!ChromosomeOne.empty()){
         if(indx < ChromosomeOne.size()){
             return ChromosomeOne[indx].getTheRealGene();
         }else{
@@ -316,7 +314,7 @@ unsigned long int Host::getOneGeneFromOne(unsigned long indx){
  * @return an integer representation of a gene with a given index.
  */
 unsigned long int Host::getOneGeneFromTwo(unsigned long indx){
-    if(ChromosomeTwo.size()){
+    if(!ChromosomeTwo.empty()){
         if(indx < ChromosomeTwo.size()){
             return ChromosomeTwo[indx].getTheRealGene();
         }else{
@@ -341,7 +339,7 @@ unsigned long int Host::getOneGeneFromTwo(unsigned long indx){
  * @return an integer representation of a gene with a given index.
  */
 unsigned long int Host::getOneGeneFromUniqVect(unsigned long indx) {
-    if(UniqueAlleles.size()){
+    if(!UniqueAlleles.empty()){
         if(indx < UniqueAlleles.size()){
             return UniqueAlleles[indx].getTheRealGene();
         }else{
@@ -519,7 +517,7 @@ chromovector Host::mergeChromosomes(){
 /**
  * @brief Core method.  Returns unique MHC alleles from the host.
  *
- * @return chromosome-like vector if unique MHC alleles.
+ * @return chromosome-like vector of the unique MHC alleles.
  */
 chromovector Host::getUniqueMHCs() {
     return UniqueAlleles;
@@ -669,10 +667,9 @@ void Host::calculateFitnessExpFunc(double alpha){
  * @param alpha - scaling parameter for F() shape
  */
 void Host::calculateFitnessExpFuncUniqAlleles(double alpha){
-//    double NN = getNumbOfChromoOneUniqAlleles() + getNumbOfChromoTwoUniqAlleles();
-    double NN = (double) UniqueAlleles.size();
-    if (NN) {
-        Fitness = (double) NumOfPathogesPresented * std::exp( - std::pow(alpha * NN, 2.0));
+    if (!UniqueAlleles.empty()) {
+//        double NN = (double) UniqueAlleles.size();
+        Fitness = (double) NumOfPathogesPresented * std::exp( - std::pow(alpha * (double) UniqueAlleles.size(), 2.0));
     } else {
         Fitness = 0.0;
     }
@@ -731,7 +728,7 @@ void Host::setFatherMhcNumber(unsigned long int theMhcNumber) {
     std::string pathoSppString = sttr(" ");
     unsigned long PathogesPresentedSize = PathogesPresented.size();
     for(unsigned long ll = 0; ll < PathogesPresentedSize; ++ll){
-        pathoSppString = pathoSppString + std::to_string(PathogesPresented[ll]) + sttr(" ");
+        pathoSppString += std::to_string(PathogesPresented[ll]) + sttr(" ");
     }
     std::string outString;
     outString = sttr(" === Host has ") +  std::to_string(NumOfPathogesInfecting) +
@@ -745,7 +742,7 @@ void Host::setFatherMhcNumber(unsigned long int theMhcNumber) {
         outString += sttr(g1) + sttr("\tch_one\t") 
                    + std::to_string(ChromosomeOne[i].timeOfOrigin) + sttr("\t")
                    + std::to_string(ChromosomeOne[i].GenesTag);
-        if (ChromosomeOne[i].ParentTags.size()){
+        if (!ChromosomeOne[i].ParentTags.empty()){
             for (int j = 0; j < ChromosomeOne[i].ParentTags.size(); ++j){
                 outString += sttr("\t") + std::to_string(ChromosomeOne[i].MutationTime[j])
                         + sttr("\t") + std::to_string(ChromosomeOne[i].ParentTags[j]);
@@ -762,7 +759,7 @@ void Host::setFatherMhcNumber(unsigned long int theMhcNumber) {
         outString += sttr(g2) + sttr("\tch_two\t") 
                    + std::to_string(ChromosomeTwo[k].timeOfOrigin) + sttr("\t")
                    + std::to_string(ChromosomeTwo[k].GenesTag);
-        if (ChromosomeTwo[k].ParentTags.size()){
+        if (!ChromosomeTwo[k].ParentTags.empty()){
             for (unsigned long l = 0; l < ChromosomeTwo[k].ParentTags.size(); ++l){
                 outString += sttr("\t") + std::to_string(ChromosomeTwo[k].MutationTime[l])
                         + sttr("\t") + std::to_string(ChromosomeTwo[k].ParentTags[l]);
@@ -806,7 +803,7 @@ std::string Host::stringUniqMHCs() {
     std::string pathoSppString = sttr(" ");
     unsigned long PathogesPresentedSize = PathogesPresented.size();
     for(unsigned long ll = 0; ll < PathogesPresentedSize; ++ll){
-        pathoSppString = pathoSppString + std::to_string(PathogesPresented[ll]) + sttr(" ");
+        pathoSppString += std::to_string(PathogesPresented[ll]) + sttr(" ");
     }
     std::string outString;
     outString = sttr(" === Host has ") +  std::to_string(NumOfPathogesInfecting) +
@@ -819,7 +816,7 @@ std::string Host::stringUniqMHCs() {
         outString += sttr(g1) + sttr("\tunique\t")
                      + std::to_string(UniqueAlleles[i].timeOfOrigin) + sttr("\t")
                      + std::to_string(UniqueAlleles[i].GenesTag);
-        if (UniqueAlleles[i].ParentTags.size()){
+        if (!UniqueAlleles[i].ParentTags.empty()){
             for (int j = 0; j < UniqueAlleles[i].ParentTags.size(); ++j){
                 outString += sttr("\t") + std::to_string(UniqueAlleles[i].MutationTime[j])
                              + sttr("\t") + std::to_string(UniqueAlleles[i].ParentTags[j]);

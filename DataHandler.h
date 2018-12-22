@@ -39,22 +39,6 @@ public:
     DataHandler();
 //    DataHarvester(const DataHarvester& orig);
     virtual ~DataHandler();
-//    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
-//        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-//        int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-//        double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-//        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
-//        double fixedAntigPosit);
-//    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
-//        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-//        int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-//        double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-//        double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
-//        double fixedAntigPosit);
-//    bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
-//        int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
-//        int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
-//        unsigned long numberOfMates);
     bool checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb,

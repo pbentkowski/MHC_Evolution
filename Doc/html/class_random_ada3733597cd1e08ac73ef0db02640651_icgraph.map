@@ -1,0 +1,5 @@
+<map id="Random::getBool" name="Random::getBool">
+<area shape="rect" id="node2" href="$class_random_1_1_custom_prob.html#a947c058092657a76997ad1a31528a5c1" title="Random::CustomProb\l::isCustomProbOK" alt="" coords="176,5,328,47"/>
+<area shape="rect" id="node3" href="$class_random.html#acdc16c09d7448084255389734036edf8" title="Takes the Custom Probability Data Structure and select a value in correspondence to the probability d..." alt="" coords="376,5,564,47"/>
+<area shape="rect" id="node4" href="$class_random.html#ae8f168968cb95f799b57dcfcfbd4a1c1" title="Random::getAlotOfValuesAccording\lToGivenProb" alt="" coords="612,35,844,76"/>
+</map>

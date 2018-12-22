@@ -1,0 +1,4 @@
+<map id="Pathogen::setNewPathogenNthSwap" name="Pathogen::setNewPathogenNthSwap">
+<area shape="rect" id="node2" href="$class_antigen.html#a882a06ec1bdc878c2a24f64a76f8f410" title="Core method. Sets a new antigen filling it with a given bit strings. " alt="" coords="239,5,409,47"/>
+<area shape="rect" id="node3" href="$class_antigen.html#a2e4e0c8eac818109974dd7f67894d6d7" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="457,13,635,39"/>
+</map>

@@ -44,7 +44,7 @@ void printTipsToRun(){
     std::cout << std::endl;
     std::cout << "This is the first sex scenario where most different MHC composition"
             " is preferred. Parameters should be:" << std::endl;
-    std::cout << " 1. How many threads should the program use? " << std::endl;
+    std::cout << " 1. The number of threads the program will use. Give 0 to use all the available CPU cores." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
     std::cout << " 3. Number of bits in an antigen." << std::endl;
     std::cout << " 4. Host population size." << std::endl;
@@ -54,7 +54,7 @@ void printTipsToRun(){
             "two chromosomes)." << std::endl;
     std::cout << " 8. Number of pathogen generations per one host generation. " <<
             std::endl;
-    std::cout << "9. Number of host generations (effective length of model run)." <<
+    std::cout << " 9. Number of host generations (effective length of model run)." <<
             std::endl;
     std::cout << "10. Probability of mutation in hosts ([0,1] range)." << std::endl;
     std::cout << "11. Probability of mutation in pathogens ([0,1] range)." << std::endl;
@@ -79,7 +79,8 @@ void printTipsToRun(){
  * @brief The main function. Things are happening here.
  *
  * Compile this program with:
- * g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp RandomNumbs.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14
+ * g++ -O3 -o MHC_model main.cpp nlohmann/json.hpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp \
+  Random.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14
  *
  * @param argc - number of arguments
  * @param argv - list of arguments
@@ -137,23 +138,23 @@ int main(int argc, char** argv) {
         return 0;
     }
     // Load the input params
-    numberOfThreads = (unsigned int) strtol(argv[1], NULL, 10);
-    mhcGeneLength = (unsigned long) atoi(argv[2]);
-    antigenLength = (unsigned long) atoi(argv[3]);
-    hostPopSize = atoi(argv[4]);
-    pathoPopSize = atoi(argv[5]);
-    patho_sp = atoi(argv[6]);
-    hostGeneNumbb = (unsigned long) atoi(argv[7]);
-    patoPerHostGeneration = atoi(argv[8]);
-    numOfHostGenerations = atoi(argv[9]);
-    hostMutationProb = atof(argv[10]);
-    pathoMutationProb = atof(argv[11]);
-    HeteroHomo = atoi(argv[12]);
-    deletion = atof(argv[13]);
-    duplication = atof(argv[14]);
-    maxGene = (unsigned long) atoi(argv[15]);
-    NumbPartners = atoi(argv[16]);
-    alpha = atof(argv[17]);
+    numberOfThreads = (unsigned int) strtol(argv[1], nullptr, 10);
+    mhcGeneLength = (unsigned long) strtol(argv[2], nullptr, 10);
+    antigenLength = (unsigned long) strtol(argv[3], nullptr, 10);
+    hostPopSize = (int) strtol(argv[4], nullptr, 10);
+    pathoPopSize = (int) strtol(argv[5], nullptr, 10);
+    patho_sp = (int) strtol(argv[6], nullptr, 10);
+    hostGeneNumbb = (unsigned long) strtol(argv[7], nullptr, 10);
+    patoPerHostGeneration = (int) strtol(argv[8], nullptr, 10);
+    numOfHostGenerations = (int) strtol(argv[9], nullptr, 10);
+    hostMutationProb = strtod(argv[10], nullptr);
+    pathoMutationProb = strtod(argv[11], nullptr);
+    HeteroHomo = (int) strtol(argv[12], nullptr, 10);
+    deletion = strtod(argv[13], nullptr);
+    duplication = strtod(argv[14], nullptr);
+    maxGene = (unsigned long) strtol(argv[15], nullptr, 10);
+    NumbPartners = (int) strtol(argv[16], nullptr, 10);
+    alpha = strtod(argv[17], nullptr);
 
     unsigned int threadsAvailable = std::thread::hardware_concurrency();
     // Initializing the multi-threaded environment

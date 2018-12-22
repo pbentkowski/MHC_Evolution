@@ -1,0 +1,3 @@
+<map id="Antigen::mutateAntgBitByBitWithRes" name="Antigen::mutateAntgBitByBitWithRes">
+<area shape="rect" id="node2" href="$class_pathogen.html#ac2ab4b534b54793c448adc9f41d4757f" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. But some positions in the bit&#45;string are not allowed to change. " alt="" coords="227,5,425,47"/>
+</map>

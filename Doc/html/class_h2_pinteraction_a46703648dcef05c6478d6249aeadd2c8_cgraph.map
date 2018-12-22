@@ -1,0 +1,7 @@
+<map id="H2Pinteraction::doesInfectedHeteroOnePerSpec" name="H2Pinteraction::doesInfectedHeteroOnePerSpec">
+<area shape="rect" id="node2" href="$class_host.html#a0d36e2b60e48e985e6e561fc46213564" title="Core method. Returns unique MHC alleles from the host. " alt="" coords="268,5,423,32"/>
+<area shape="rect" id="node3" href="$class_pathogen.html#a751c89dc80a7a21207ce7d16beaf266c" title="Core method. Fetches the pathogene&#39;s antigens. " alt="" coords="260,56,431,83"/>
+<area shape="rect" id="node4" href="$class_antigen.html#aeebf005aeee7ea02f135550d127603dd" title="Core method. Returns the epitopes that can be generated from one antigen. " alt="" coords="274,107,417,133"/>
+<area shape="rect" id="node5" href="$class_pathogen.html#ada9e5929d6736f63377f0625153b224b" title="Core method. Fetches a species tag. " alt="" coords="259,157,431,184"/>
+<area shape="rect" id="node6" href="$class_h2_pinteraction.html#ae63bc3afa414686c4c7d9a500f3d4a53" title="Core method. Checks if the antigen is presented by a given MHC. " alt="" coords="244,208,447,235"/>
+</map>

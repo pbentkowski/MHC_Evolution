@@ -49,8 +49,8 @@ H2Pinteraction::~H2Pinteraction() = default;
  */
 bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antigen){
     if(!antigen.empty()){
-        for(unsigned long i = 0; i < antigen.size(); ++i){
-            if(antigen[i] == hostgen){ return true; }
+        for (unsigned long i : antigen) {
+            if(i == hostgen){ return true; }
         }
         return false;
     } else {
@@ -77,14 +77,14 @@ bool H2Pinteraction::presentAntigen(unsigned long int hostgen, longIntVec antige
 void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     chromovector tmphost = host.getUniqueMHCs();
     longIntVec pathoEpitopes = patho.getAntigenProt().getEpitopes();
-    if (host.PathoSpecInfecting.size()){
+    if (!host.PathoSpecInfecting.empty()){
         // Making sure a pathogen species infects only ones
-        for (unsigned long w = 0; w < host.PathoSpecInfecting.size(); ++w){
-            if(host.PathoSpecInfecting[w] == patho.getSpeciesTag()) return;
+        for (int w : host.PathoSpecInfecting) {
+            if(w == patho.getSpeciesTag()) return;
         }
     }
-    for(int i = 0; i < tmphost.size(); ++i){
-        if(presentAntigen(tmphost[i].getTheRealGene(), pathoEpitopes)){
+    for (auto &i : tmphost) {
+        if(presentAntigen(i.getTheRealGene(), pathoEpitopes)){
             // the pathogen gets presented, the host evades infection:
             host.NumOfPathogesPresented = host.NumOfPathogesPresented + 1;
             host.PathogesPresented.push_back(patho.getSpeciesTag());
@@ -97,5 +97,4 @@ void H2Pinteraction::doesInfectedHeteroOnePerSpec(Host& host, Pathogen& patho){
     host.NumOfPathogesInfecting = host.NumOfPathogesInfecting + 1;
     patho.NumOfHostsInfected = patho.NumOfHostsInfected + 1;
     host.PathoSpecInfecting.push_back(patho.getSpeciesTag());
-    return;
 }

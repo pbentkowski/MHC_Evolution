@@ -1,0 +1,5 @@
+<map id="Antigen::mutateAntigenBitByBit" name="Antigen::mutateAntigenBitByBit">
+<area shape="rect" id="node2" href="$class_random.html#a40b7a9c704e56c492176373d842c8c52" title="Returns a random float value in [0, 1) from uniform distribution. " alt="" coords="258,5,375,32"/>
+<area shape="rect" id="node3" href="$class_tagging__system.html#af57001cb7fe7d78d05076231552d1911" title="Tagging_system::getTag" alt="" coords="233,56,400,83"/>
+<area shape="rect" id="node4" href="$class_antigen.html#a2e4e0c8eac818109974dd7f67894d6d7" title="Core method. Translates a raw bit string representing the antigen into series of epitopes. " alt="" coords="228,107,405,133"/>
+</map>

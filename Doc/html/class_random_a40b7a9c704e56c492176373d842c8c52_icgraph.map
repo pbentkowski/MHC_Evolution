@@ -1,0 +1,19 @@
+<map id="Random::getUni" name="Random::getUni">
+<area shape="rect" id="node2" href="$class_antigen.html#a95707deec1f5e51ac9661f0ea3bac5b5" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="189,5,351,32"/>
+<area shape="rect" id="node4" href="$class_antigen.html#a14e729dada7017806966fc4ceb715757" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="183,57,357,98"/>
+<area shape="rect" id="node6" href="$class_antigen.html#a871ce757cad871f537dc298540135b25" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="183,122,357,163"/>
+<area shape="rect" id="node8" href="$class_gene.html#a754ef9f5af6057471023f4d5b80ab169" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="185,188,355,215"/>
+<area shape="rect" id="node9" href="$class_gene.html#ad833114b0d38601fc21a2150d3a41c07" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="180,239,360,265"/>
+<area shape="rect" id="node10" href="$class_gene.html#ada494b2aee4eb1dc359c87f3365960cc" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="182,290,358,331"/>
+<area shape="rect" id="node11" href="$class_host.html#ad2697764fc93fc5093a2f63877d2e9c2" title="Core method. Decides (on a random basis) if there will be any mutations in the genome: deletion..." alt="" coords="171,355,369,397"/>
+<area shape="rect" id="node12" href="$class_host.html#a72f5e34bd2c54f277fa54248d841f5eb" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="171,421,369,462"/>
+<area shape="rect" id="node13" href="$class_host.html#a17d40e218cb86de23b73b0bf6bacc4d7" title="Core method. Performs recombination between host&#39;s chromosomes by inserting a brake in randomly selec..." alt="" coords="176,487,364,513"/>
+<area shape="rect" id="node14" href="$class_host.html#afee295d95d928d23a0b727a9169092fc" title="Core method. Performing crossing over and chromosome selection before mating. " alt="" coords="183,537,357,564"/>
+<area shape="rect" id="node15" href="$class_host.html#a7f5551aacd91fb520f1628800ff5360e" title="Core method. Randomly swaps places of Chromosome One and Chromosome Two to avoid situation when they ..." alt="" coords="183,588,357,615"/>
+<area shape="rect" id="node16" href="$class_random_1_1_custom_prob.html#a947c058092657a76997ad1a31528a5c1" title="Random::CustomProb\l::isCustomProbOK" alt="" coords="194,639,346,681"/>
+<area shape="rect" id="node3" href="$class_pathogen.html#a3769ead903f609bfe0467289d0168ce2" title="Core method. Sets a new Pathogen object. " alt="" coords="424,5,609,32"/>
+<area shape="rect" id="node5" href="$class_pathogen.html#a1fe8a1ad3eae7227c36ef69a613927b0" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="417,64,616,91"/>
+<area shape="rect" id="node7" href="$class_pathogen.html#ac2ab4b534b54793c448adc9f41d4757f" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. But some positions in the bit&#45;string are not allowed to change. " alt="" coords="417,122,616,163"/>
+<area shape="rect" id="node17" href="$class_random.html#acdc16c09d7448084255389734036edf8" title="Takes the Custom Probability Data Structure and select a value in correspondence to the probability d..." alt="" coords="423,639,611,681"/>
+<area shape="rect" id="node18" href="$class_random.html#ae8f168968cb95f799b57dcfcfbd4a1c1" title="Random::getAlotOfValuesAccording\lToGivenProb" alt="" coords="664,669,896,710"/>
+</map>

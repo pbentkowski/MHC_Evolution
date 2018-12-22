@@ -24,22 +24,22 @@ cppath = '/usr/include/boost/'
 env_dynamic = Environment(CC='g++',
               # CCFLAGS=['-O3','-std=c++14'],
               CPPPATH=cppath,
-              CXXFLAGS=['-O3','-std=c++14'],
-              LINKFLAGS = ["-fopenmp","-std=c++14"])
+              CXXFLAGS=['-O3', '-std=c++14', "-fopenmp"],
+              LINKFLAGS = ["-fopenmp", "-std=c++14"])
 
 # debugging compilation
 env_dbg = Environment(CC='g++',
           # CCFLAGS=['-g','-std=c++14'],
           CPPPATH=cppath,
-          CXXFLAGS=['-g','-std=c++14'],
-          LINKFLAGS = ["-fopenmp","-std=c++14"])
+          CXXFLAGS=['-g', '-std=c++14', "-fopenmp"],
+          LINKFLAGS = ["-fopenmp", "-std=c++14"])
 
 # static compilation
 env_static = Environment(CC='g++',
              # CCFLAGS=['-O3','-std=c++14'],
              CPPPATH=cppath,
-             CXXFLAGS=['-O3','-std=c++14'],
-             LINKFLAGS = "-fopenmp -static -std=c++14")
+             CXXFLAGS=['-O3','-std=c++14', "-fopenmp"],
+             LINKFLAGS = ['-fopenmp', '-static', "-std=c++14"])
 
 scenario = ARGUMENTS.get('scenario', 0)
 try:

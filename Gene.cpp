@@ -44,7 +44,8 @@ Gene::~Gene() = default;
  *
  * @param length - number of bits in a gene.
  * @param timeStamp - current time (current number of the model iteration)
- * @randGen - instance of the PRNG
+ * @param randGen - pointer to random number generator
+ * @param tag - instance of the tagging system marking each gene variant
  */
 void Gene::setNewGene(unsigned long length, int timeStamp, Random& randGen, Tagging_system& tag) {
     timeOfOrigin = timeStamp;
@@ -64,7 +65,7 @@ void Gene::setNewGene(unsigned long length, int timeStamp, Random& randGen, Tagg
  * @param length - number of bits in a gene.
  * @param timeStamp - current time (current number of the model iteration)
  * @param fixedGene - the gene value
- * @param fixedTag - tag value
+ * @param fixedTag - the tag value
  */
 void Gene::setNewFixedGene(unsigned long length, int timeStamp, unsigned long fixedGene,
         unsigned long fixedTag){
@@ -86,6 +87,8 @@ void Gene::setNewFixedGene(unsigned long length, int timeStamp, unsigned long fi
  * @param low_lim - lower limit of the range of permitted bit-string values
  * @param up_lim - upper limit of the range of permitted bit-string values
  * @param timeStamp - current time (current number of the model iteration).
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long up_lim,
         int timeStamp, Random& randGen, Tagging_system& tag) {
@@ -112,6 +115,8 @@ void Gene::setNewGene(unsigned long length, unsigned long low_lim, unsigned long
  *
  * @param mut_prob_whole - probability of a whole-gene mutation.
  * @param timeStamp - current time (current number of the model iteration).
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen, Tagging_system& tag) {
     if(randGen.getUni() < mut_prob_whole){
@@ -132,6 +137,8 @@ void Gene::mutateGeneWhole(double mut_prob_whole, int timeStamp, Random& randGen
  * @param low_lim - lower limit of possible gene value. 
  * @param up_lim - upper limit of possible gene value.
  * @param timeStamp - current time (current number of the model iteration).
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
                            unsigned long up_lim, int timeStamp, Random& randGen,
@@ -159,6 +166,8 @@ void Gene::mutateGeneWhole(double mut_prob_whole, unsigned long low_lim,
  *
  * @param pm_mut_probabl - probability of mutating a single bit.
  * @param timeStamp - current time (current number of the model iteration).
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp, Random& randGen, Tagging_system& tag) {
     unsigned long currentGene = TheGene;
@@ -187,6 +196,8 @@ void Gene::mutateGeneBitByBit(double pm_mut_probabl, int timeStamp, Random& rand
  * @param timeStamp - current time (current number of the model iteration).
  * @param noMutts - a std::set containing indices of residues of the bit-string 
  * that are not allowed to change.
+ * @param randGen - pointer to random number generator
+ * @param tag - pointer to the tagging system marking each gene variant
  */
 void Gene::mutateBitByBitWithRestric(double pm_mut_probabl, int timeStamp, 
         std::set<unsigned long >& noMutts, Random& randGen, Tagging_system& tag){

@@ -1,0 +1,12 @@
+<map id="Tagging_system::getTag" name="Tagging_system::getTag">
+<area shape="rect" id="node2" href="$class_antigen.html#a95707deec1f5e51ac9661f0ea3bac5b5" title="Core method. Sets a new antigen filling it with a random bits. " alt="" coords="229,5,391,32"/>
+<area shape="rect" id="node4" href="$class_antigen.html#a14e729dada7017806966fc4ceb715757" title="Core method. Mutates antigen one bit by one bit. " alt="" coords="223,57,397,98"/>
+<area shape="rect" id="node6" href="$class_antigen.html#a871ce757cad871f537dc298540135b25" title="Core method. Mutates antigen one bit by one bit but leaves predefined positions on the antigen intact..." alt="" coords="223,122,397,163"/>
+<area shape="rect" id="node8" href="$class_gene.html#a238c0a13058dc555d8f579c9976eecec" title="Core method. Sets a new gene filling it with a random bit&#45;string of a given length. " alt="" coords="241,188,379,215"/>
+<area shape="rect" id="node9" href="$class_gene.html#a754ef9f5af6057471023f4d5b80ab169" title="Core method. Mutates a gene by overwriting a whole new bit&#45;string. " alt="" coords="225,239,395,265"/>
+<area shape="rect" id="node10" href="$class_gene.html#ad833114b0d38601fc21a2150d3a41c07" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="220,289,400,316"/>
+<area shape="rect" id="node11" href="$class_gene.html#ada494b2aee4eb1dc359c87f3365960cc" title="Core method. Iterates through a gene sequence and (if selected so) flips the value of a single bit to..." alt="" coords="222,341,398,382"/>
+<area shape="rect" id="node3" href="$class_pathogen.html#a3769ead903f609bfe0467289d0168ce2" title="Core method. Sets a new Pathogen object. " alt="" coords="455,5,640,32"/>
+<area shape="rect" id="node5" href="$class_pathogen.html#a1fe8a1ad3eae7227c36ef69a613927b0" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. " alt="" coords="448,64,647,91"/>
+<area shape="rect" id="node7" href="$class_pathogen.html#ac2ab4b534b54793c448adc9f41d4757f" title="Core method. Decides (on a random basis) if there will be any mutations in the genome. But some positions in the bit&#45;string are not allowed to change. " alt="" coords="448,122,647,163"/>
+</map>

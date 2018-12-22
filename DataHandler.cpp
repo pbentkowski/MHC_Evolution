@@ -115,260 +115,6 @@ const std::string currentDateTime(){
 }
 
 /**
- * @brief Input params validation method. Does the basic check if the entered 
- * parameters are free of total nonsense.
- * 
- * @param rndSeed
- * @param geneLength
- * @param antigenLength
- * @param hostPopSize
- * @param pathoPopSize
- * @param patho_sp
- * @param hostGeneNumbb
- * @param pathoGeneNumb
- * @param patoPerHostGeneration
- * @param numOfHostGenerations
- * @param hostMutationProb
- * @param pathoMutationProb
- * @param HeteroHomo
- * @param hostDeletion
- * @param hostDuplication
- * @param maxGene
- * @param alpha
- * @param fixedAntigPosit
- * @return 'true' if something is wrong, 'false' if no errors were found.
- *
-bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
-        int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-        int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-        double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-        double hostDeletion, double hostDuplication, unsigned long maxGene, double alpha,
-        double fixedAntigPosit){
-    bool ifError = false;
-    if (numberOfThreads < 0){
-        std::cout << "\nError in RNG seed. It has to be a positive integer!." << std::endl;
-        ifError = true;
-    }
-    if (geneLength > 31){
-        std::cout << "\nError in number of bits per gene. ";
-        std::cout << geneLength << " bits in genes is bit too much. ";
-        std::cout << "Try something less radical, e.g. smaller than 31."  << std::endl;
-        ifError =  true;
-    } 
-    if (geneLength > antigenLength){
-        std::cout << "\nError in size of an antigen. ";
-        std::cout << " Number of bits in antigen cannot be smaller";
-        std::cout << " than the number of bits in MHC gene." << std::endl;
-        ifError =  true;
-    }
-    
-    if (hostMutationProb < 0.0 or hostMutationProb > 1.0){
-        std::cout << "\nError in the hosts' mutation probability. It has to be " <<
-                "within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (pathoMutationProb < 0.0 or pathoMutationProb > 1.0){
-        std::cout << "\nError in the pathogens' mutation probability. It has " <<
-                "to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (hostDeletion < 0.0 or hostDeletion > 1.0){
-        std::cout << "\nError in the hosts' probability of deletion of a gene. " <<
-                "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (hostDuplication < 0.0 or hostDuplication > 1.0){
-        std::cout << "\nError in the hosts' duplication of a gene probability. " <<
-                "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (HeteroHomo != 10 and HeteroHomo != 11){
-        std::cout << "\nError in the heterozygote advantage / lack of advantage " <<
-                "mode. It has to be 10 for heterozygote advantage or 11 for " <<
-                "lack of thereof." << std::endl;
-        ifError = true;
-    }
-    if (maxGene < 1 or maxGene < hostGeneNumbb){
-        std::cout << "\nError in the hosts' maximal number of genes per " <<
-                "chromosome. It has to be at least one, but not less then the " <<
-                "number used to initialize the system. "<< std::endl;
-        ifError = true;
-    }
-    if (alpha < 0.0 or alpha > 1.0){
-        std::cout << "\nError in the hosts' alpha factor for the host fitness function. " <<
-                "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (fixedAntigPosit < 0.0 or fixedAntigPosit > 1.0){
-        std::cout << "\nError in the parameter for fraction of antigen bits " <<
-                "being fixed. It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    return ifError;
-}
-*/
-/**
- * @brief Input params validation method. Does the basic check if the entered
- * parameters are free of total nonsense. Sex and Parasites version.
- *
- * @param rndSeed
- * @param geneLength
- * @param antigenLength
- * @param hostPopSize
- * @param pathoPopSize
- * @param patho_sp
- * @param hostGeneNumbb
- * @param pathoGeneNumb
- * @param patoPerHostGeneration
- * @param numOfHostGenerations
- * @param hostMutationProb
- * @param pathoMutationProb
- * @param HeteroHomo
- * @param hostDeletion
- * @param hostDuplication
- * @param maxGene
- * @param alpha
- * @param fixedAntigPosit
- * @return 'true' if something is wrong, 'false' if no errors were found.
- *
-bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
-                                     int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
-                                     int pathoGeneNumb, int patoPerHostGeneration, int numOfHostGenerations,
-                                     double hostMutationProb, double pathoMutationProb, int HeteroHomo,
-                                     double hostDeletion, double hostDuplication, unsigned long maxGene, int numberOfMates,
-                                     double fixedAntigPosit){
-    bool ifError = false;
-    if (numberOfThreads < 0){
-        std::cout << "\nError in the number of threads. It has to be a positive integer!." << std::endl;
-        ifError = true;
-    }
-    if (geneLength > 31){
-        std::cout << "\nError in number of bits per gene. ";
-        std::cout << geneLength << " bits in genes is bit too much. ";
-        std::cout << "Try something less radical, e.g. smaller than 31."  << std::endl;
-        ifError =  true;
-    }
-    if (geneLength > antigenLength){
-        std::cout << "\nError in size of an antigen. ";
-        std::cout << " Number of bits in antigen cannot be smaller";
-        std::cout << " than the number of bits in MHC gene." << std::endl;
-        ifError =  true;
-    }
-
-    if (hostMutationProb < 0.0 or hostMutationProb > 1.0){
-        std::cout << "\nError in the hosts' mutation probability. It has to be " <<
-                  "within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (pathoMutationProb < 0.0 or pathoMutationProb > 1.0){
-        std::cout << "\nError in the pathogens' mutation probability. It has " <<
-                  "to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (hostDeletion < 0.0 or hostDeletion > 1.0){
-        std::cout << "\nError in the hosts' probability of deletion of a gene. " <<
-                  "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (hostDuplication < 0.0 or hostDuplication > 1.0){
-        std::cout << "\nError in the hosts' duplication of a gene probability. " <<
-                  "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (HeteroHomo != 10 and HeteroHomo != 11){
-        std::cout << "\nError in the heterozygote advantage / lack of advantage " <<
-                  "mode. It has to be 10 for heterozygote advantage or 11 for " <<
-                  "lack of thereof." << std::endl;
-        ifError = true;
-    }
-    if (maxGene < 1 or maxGene < hostGeneNumbb){
-        std::cout << "\nError in the hosts' maximal number of genes per " <<
-                  "chromosome. It has to be at least one, but not less then the " <<
-                  "number used to initialize the system. "<< std::endl;
-        ifError = true;
-    }
-    if (numberOfMates < 1 or numberOfMates > hostPopSize){
-        std::cout << "\nError in the hosts' number of sexual partners. " <<
-                  "It has to be within the range 1 and the hosts' population size." << std::endl;
-        ifError = true;
-    }
-    if (fixedAntigPosit < 0.0 or fixedAntigPosit > 1.0){
-        std::cout << "\nError in the parameter for fraction of antigen bits " <<
-                  "being fixed. It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    return ifError;
-}
-*/
-/**
- * @brief Input params validation method. Does the basic check if the entered 
- * parameters are free of total nonsense
- * 
- * @param rndSeed
- * @param geneLength
- * @param hostPopSize
- * @param hostGeneNumbb
- * @param numOfHostGenerations
- * @param hostMutationProb
- * @param HeteroHomo
- * @param hostDeletion
- * @param hostDuplication
- * @param maxGene
- * @param alpha
- * @return 
- *
-bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long geneLength, int hostPopSize,
-        int hostGeneNumbb, int numOfHostGenerations, double hostMutationProb,
-        int HeteroHomo, double hostDeletion, double hostDuplication, int maxGene,
-        unsigned long numberOfMates){
-    bool ifError = false;
-    if (numberOfThreads < 0){
-        std::cout << "\nError in the number of threads. It has to be a positive integer!." << std::endl;
-        ifError = true;
-    }
-    if (geneLength > 31){
-        std::cout << "\nError in number of bits per gene. ";
-        std::cout << geneLength << " bits in genes is bit too much. ";
-        std::cout << "Try something less radical, e.g. smaller than 31."  << std::endl;
-        ifError =  true;
-    }   
-    if (hostMutationProb < 0.0 or hostMutationProb > 1.0){
-        std::cout << "\nError in the hosts' mutation probability. It has to be " <<
-                "within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (hostDeletion < 0.0 or hostDeletion > 1.0){
-        std::cout << "\nError in the hosts' probability of deletion of a gene. " <<
-                "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (hostDuplication < 0.0 or hostDuplication > 1.0){
-        std::cout << "\nError in the hosts' duplication of a gene probability. " <<
-                "It has to be within the range [0, 1]." << std::endl;
-        ifError = true;
-    }
-    if (HeteroHomo != 10 and HeteroHomo != 11){
-        std::cout << "\nError in the heterozygote advantage / lack of advantage " <<
-                "mode. It has to be 10 for heterozygote advantage or 11 for " <<
-                "lack of thereof." << std::endl;
-        ifError = true;
-    }
-    if (maxGene < 1.0 or maxGene < hostGeneNumbb){
-        std::cout << "\nError in the hosts' maximal number of genes per " <<
-                "chromosome. It has to be at least one, but not less then the " <<
-                "number used to initialize the system. "<< std::endl;
-        ifError = true;
-    }
-    if (numberOfMates < 0 or numberOfMates > hostPopSize){
-        std::cout << "\nError in the hosts' number of sexual partners. It has " <<
-                "to be larger than 0 but not more than host population size ." << std::endl;
-        ifError = true;
-    }
-    return ifError;
-}
-*/
-
-/**
  * @brief Input params validation method. Does the basic check if the entered
  * parameters are free of total nonsense. This one is for sex optimality hypothesis
  * and alpha-based selection.
@@ -449,6 +195,28 @@ bool DataHandler::checkParamsIfWrong(unsigned int numberOfThreads, unsigned long
     return ifError;
 }
 
+/**
+ * @brief Saves given parametrisation of the model to a JSON file. Make sure you always have this JSON file, or
+ * you will loose track what simulation did what!
+ * 
+ * @param numberOfThreads 
+ * @param geneLength 
+ * @param antigenLength 
+ * @param hostPopSize 
+ * @param pathoPopSize 
+ * @param patho_sp 
+ * @param hostGeneNumbb 
+ * @param patoPerHostGeneration 
+ * @param numOfHostGenerations 
+ * @param hostMutationProb 
+ * @param pathoMutationProb 
+ * @param HeteroHomo 
+ * @param hostDeletion 
+ * @param hostDuplication 
+ * @param maxGene 
+ * @param alpha 
+ * @param numberOfMates 
+ */
 void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long geneLength, unsigned long antigenLength,
         int hostPopSize, int pathoPopSize, int patho_sp, unsigned long hostGeneNumbb,
         int patoPerHostGeneration, int numOfHostGenerations, double hostMutationProb, double pathoMutationProb,
@@ -480,7 +248,7 @@ void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long 
     jsonfile["number_of_sex_mates"] = numberOfMates;
     jsonfile["alpha_factor_for_the_host_fitness_function"] = alpha;
 
-    std::string s = jsonfile.dump(4);
+    std::string s = jsonfile.dump(4); // making it look human-readable instead of one long line in a file
     std::ofstream InputParams;
     InputParams.open("InputParameters.json");
     InputParams << s;
@@ -493,7 +261,7 @@ void DataHandler::inputParamsToFile(unsigned int numberOfThreads, unsigned long 
  * pathogen species in a given time.
  * 
  * @param EnvObj - the Environment object
- * @param tayme - time stamp 
+ * @param tayme - time stamp (hosts generation number) 
  */
 void DataHandler::saveNumOfPathoSpeciesToFile(Environment& EnvObj, int tayme){
     if(ifFirstSpecToFileRun){
@@ -519,7 +287,7 @@ void DataHandler::saveNumOfPathoSpeciesToFile(Environment& EnvObj, int tayme){
  * genomes in a human-readable format.
  * 
  * @param EnvObj - the Environment object
- * @param tayme - time stamp
+ * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::savePathoPopulToFile(Environment& EnvObj, int tayme){
     sttr theFilename = sttr("PathoGenomesFile.") + std::to_string(tayme) + sttr(".csv");
@@ -541,7 +309,7 @@ void DataHandler::savePathoPopulToFile(Environment& EnvObj, int tayme){
  * genomes in a human-readable format.
  * 
  * @param EnvObj - the Environment object
- * @param tayme - time stamp
+ * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::saveHostPopulToFile(Environment& EnvObj, int tayme){
     sttr theFilename = sttr("HostGenomesFile.") + std::to_string(tayme) + sttr(".csv");
@@ -560,7 +328,8 @@ void DataHandler::saveHostPopulToFile(Environment& EnvObj, int tayme){
 
 /**
  * @brief Data harvesting method. Calculates and writes to a file some stats 
- * about the hosts population genetic. Will create one file per run.
+ * about the hosts population genetic. Will create one file per run. First column
+ * is time stamp (hosts generation number).
  * 
  * You call it ones per host generation iteration. In each call it adds a line
  * with some statistics regarding population genetics of the host population.
@@ -568,7 +337,7 @@ void DataHandler::saveHostPopulToFile(Environment& EnvObj, int tayme){
  * scripts to visualize this dataset.
  * 
  * @param EnvObj - the Environment object
- * @param tayme - time stamp
+ * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
     if(ifFirstHostGeneDivRun){
@@ -620,10 +389,12 @@ void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
 }
 
 /**
- * @brief  Data harvesting method.
+ * @brief  Data harvesting method. Saves the number of genes in Chromosome ONE and the number of unique MHC types.
+ * You get a pair of files with corresponding data in each row-and-column. First column is time stamp
+ * (hosts generation number).
  * 
  * @param EnvObj - the Environment class object
- * @param tayme - time stamp
+ * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
     if(ifFirstGeneNumbersTotal){
@@ -688,7 +459,7 @@ void DataHandler::saveHostGeneNumbers(Environment& EnvObj, int tayme){
 }
 
 /**
- * @brief Data harvesting method. Record the indices of fixed bits in all
+ * @brief Data harvesting method. Record the indices of fixed bits that are not allow to mutate in all
  * pathogen species. Run this just ones. 
  * 
  * @param EnvObj - the Environment class object
@@ -709,6 +480,13 @@ void DataHandler::savePathoNoMuttList(Environment& EnvObj){
     NoMuttPathoList.close();
 }
 
+/**
+ * @brief Data harvesting method. Saves the number of presented pathogens by each indrividual host in each time step.
+ * First column is time stamp (hosts generation number).
+ *
+ * @param EnvObj - the Environment class object
+ * @param tayme - time stamp (hosts generation number)
+ */
 void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
     if(ifNumberOfPresentedPatho){
         std::ofstream PresentedPathoNumb;
@@ -728,8 +506,8 @@ void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
 
 
 /**
- * @brief Data harvesting method. Rwcords the number of unique MHCs a "mother" and
- * a "farther" had.
+ * @brief Data harvesting method. Records the number of unique MHCs a "mother" and
+ * a "farther" had. First column is time stamp (hosts generation number).
  *
  * Writes to two separate files in each time step the number of unique MHCs a
  * seceting individual had (the "mather") in file NumberOfMhcInMother.csv and
@@ -738,7 +516,7 @@ void DataHandler::savePresentedPathos(Environment &EnvObj, int tayme) {
  * stamp, one enty in both lines is the same individual.
  *
  * @param EnvObj - the Environment class object
- * @param tayme - time stamp
+ * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::saveMhcNumbersWhenMating(Environment &EnvObj, int tayme) {
     if(ifNumberOfMhcWhenMating){
@@ -768,7 +546,13 @@ void DataHandler::saveMhcNumbersWhenMating(Environment &EnvObj, int tayme) {
     NumberOfMhcInFatherWhenMating.close();
 }
 
-
+/**
+ * @brief Saves the number of unique MHC types of each individual in each time step. Should be used BEFORE
+ * mating occurs. First column is time stamp (hosts generation number).
+ *
+ * @param EnvObj - the Environment class object
+ * @param tayme - time stamp (hosts generation number)
+ */
 void DataHandler::saveMhcNumbersBeforeMating(Environment &EnvObj, int tayme) {
     if(ifNumberOfMhcWhenMating){
         std::ofstream NumberOfMhcBeforeMating;
@@ -787,6 +571,13 @@ void DataHandler::saveMhcNumbersBeforeMating(Environment &EnvObj, int tayme) {
 
 }
 
+/**
+ * @brief Saves the number of unique MHC types of each individual in each time step. Should be used AFTER
+ * mating occurs.
+ *
+ * @param EnvObj - the Environment class object
+ * @param tayme - time stamp (hosts generation number)
+ */
 void DataHandler::saveMhcNumbersAfterMating(Environment &EnvObj, int tayme) {
     if(ifNumberOfMhcWhenMating){
         std::ofstream NumberOfMhcBeforeMating;
