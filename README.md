@@ -83,7 +83,7 @@ values when only positive are allowed etc.), but will not recognise when they do
 The output and data visualisation:
 -----------
 
-Program produces a number of text files containing desired data. The file *InputParameters.json* contains the values of parameters fed to the model. Thefile *HostsGeneDivers.csv* contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (*main.cpp* file) what should speed up the program runtime.
+Program produces a number of text files containing desired data. The file *InputParameters.json* contains the values of parameters fed to the model. The file *HostsGeneDivers.csv* contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (*main.cpp* file) what should speed up the program runtime.
 
 All the files are:
 
