@@ -68,24 +68,24 @@ How to run:
 -----------
 
 The program takes exactly 17 parameters. These are:
- - **00** - Program's name
- - **01** - Number of threads program will try to use on a multi-core CPU. Giving 0 will make the program use all CPU cores available.
- - **02** - Number of bits in a gene.
- - **03** - Number of bits in an antigen.
- - **04** - Host population size.
- - **05** - Pathogen population size.
- - **06** - Number of pathogen species.
- - **07** - Number of genes in one host chromosome (they have two chromosomes) when the model is being initialised.
- - **08** - Number of pathogen generations per one host generation.
- - **09** - Number of host generations (effective length of model run).
- - **10** - Probability of mutation in hosts ([0,1] range).
- - **11** - Probability of mutation in pathogens ([0,1] range).
- - **12** - The heterozygote advantage / lack of advantage mode. It has to be 10 for heterozygote advantage or 11 for lack of thereof.
- - **13** - Probability of deleting a gene in the host ([0,1] range).
- - **14** - Probability of duplicating a gene in the host ([0,1] range).
- - **15** - Maximal number of genes permitted in one host chromosome.
- - **16** - Number of sexual partners an individual checks out before selecting one for mating.
- - **17** - Alpha factor for the host fitness function ([0,1] range).
+* **00** - Program's name
+* **01** - Number of threads program will try to use on a multi-core CPU. Giving 0 will make the program use all CPU cores available.
+* **02** - Number of bits in a gene.
+* **03** - Number of bits in an antigen.
+* **04** - Host population size.
+* **05** - Pathogen population size.
+* **06** - Number of pathogen species.
+* **07** - Number of genes in one host chromosome (they have two chromosomes) when the model is being initialised.
+* **08** - Number of pathogen generations per one host generation.
+* **09** - Number of host generations (effective length of model run).
+* **10** - Probability of mutation in hosts ([0,1] range).
+* **11** - Probability of mutation in pathogens ([0,1] range).
+* **12** - The heterozygote advantage / lack of advantage mode. It has to be 10 for heterozygote advantage or 11 for lack of thereof.
+* **13** - Probability of deleting a gene in the host ([0,1] range).
+* **14** - Probability of duplicating a gene in the host ([0,1] range).
+* **15** - Maximal number of genes permitted in one host chromosome.
+* **16** - Number of sexual partners an individual checks out before selecting one for mating.
+* **17** - Alpha factor for the host fitness function ([0,1] range).
  
  Historically we also had one more argument, that can be added if you want:
  - 18 - Fraction of the antigen's bits which are forbidden from changing (a.k.a. *No Mutation Bits*).
@@ -103,18 +103,18 @@ the basics to analyse the simulation output. Other files are optional and they c
 out some lines in the main function (*main.cpp* file) what should speed up the program runtime.
 
 All the files are:
- - ***InputParameters.json*** - contains run's parametrisation in JSON text format 
- - ***HostsGeneDivers.csv*** - contain basic statistics of the output for host genomes 
- - ***HostGenomesFile.[t].csv*** - contains all the genomes of all the cells for host population in time *t*. There can be more then one file like this for different time snapshots. 
- - ***PathoGenomesFile.[t].csv*** - contains all the genomes of all the cells for pathogen population in time *t*. There can be more then one file like this for different time snapshots. 
- - ***HostGeneNumbTotal.csv*** - total number of genes in each individual host in each time step (linked to *HostMHCsNumbUniq.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*). 
- - ***HostMHCsNumbUniq.csv*** - number of unique MHC alleles in each individual host in each time step (linked to*HostGeneNumbTotal.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*). 
- - ***NoMutationInPathoList.csv*** - list of conserved antigen sites. Each line contains one pathogen species, each number indicates the index of a "no-mutation" site in this species antigen. When empty it means there is no mutation restrictions. 
- - ***NumberOfMhcAfterMating.csv*** -number of the unique MHC types in each individual host in each time step after the mating procedure took place.
- - ***NumberOfMhcBeforeMating.csv*** - number of the unique MHC types in each individual host in each time step before the mating procedure took place.
- - ***NumberOfMhcInMother.csv*** - number of the unique MHC types in each individual host that is selecting a partner (a.k.a. "mother") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInFather.csv*. 
- - ***NumberOfMhcInFather.csv*** - number of the unique MHC types in each individual host that has been selected as a mating (a.k.a. "father") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInMother.csv*. 
- - ***PresentedPathogenNumbers.csv*** - number of presented pathogens by each individual in each time step. 
+* ***InputParameters.json*** - contains run's parametrisation in JSON text format 
+* ***HostsGeneDivers.csv*** - contain basic statistics of the output for host genomes 
+* ***HostGenomesFile.[t].csv*** - contains all the genomes of all the cells for host population in time *t*. There can be more then one file like this for different time snapshots. 
+* ***PathoGenomesFile.[t].csv*** - contains all the genomes of all the cells for pathogen population in time *t*. There can be more then one file like this for different time snapshots. 
+* ***HostGeneNumbTotal.csv*** - total number of genes in each individual host in each time step (linked to *HostMHCsNumbUniq.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*). 
+* ***HostMHCsNumbUniq.csv*** - number of unique MHC alleles in each individual host in each time step (linked to*HostGeneNumbTotal.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*). 
+* ***NoMutationInPathoList.csv*** - list of conserved antigen sites. Each line contains one pathogen species, each number indicates the index of a "no-mutation" site in this species antigen. When empty it means there is no mutation restrictions. 
+* ***NumberOfMhcAfterMating.csv*** -number of the unique MHC types in each individual host in each time step after the mating procedure took place.
+* ***NumberOfMhcBeforeMating.csv*** - number of the unique MHC types in each individual host in each time step before the mating procedure took place.
+* ***NumberOfMhcInMother.csv*** - number of the unique MHC types in each individual host that is selecting a partner (a.k.a. "mother") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInFather.csv*. 
+* ***NumberOfMhcInFather.csv*** - number of the unique MHC types in each individual host that has been selected as a mating (a.k.a. "father") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInMother.csv*. 
+* ***PresentedPathogenNumbers.csv*** - number of presented pathogens by each individual in each time step. 
 
 
 Visualisation is done using Python 3.6 scripts containing a a lot of calls to Numpy, Matplotlib and other scietific
