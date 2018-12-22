@@ -3,6 +3,8 @@ Evolution of MHC repertoire and number of copies:
 
 This work is part of the project [**Evolution of the number of copies of MHC genes: testing the optimality hypothesis and exploring alternatives.**](https://sites.google.com/site/evobiolab/projects) supported by the Polish Science Centre (NCN).
 
+Submitted - waiting for reviews.
+
 Documentation:
 -----------
 
