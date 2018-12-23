@@ -55,12 +55,12 @@ def main():
     """The main function."""
     try:
         hh = loadHostPopulation(sys.argv[1])
-    except:
+    except Exception:
         print("Can't load the data file. Make sure it exists.")
         sys.exit()
     try:
         print("No reapets in", str(checkHeteroZyg(hh)), "of genomes.")
-    except:
+    except Exception:
         print("Can't load the data.")
         sys.exit()
 

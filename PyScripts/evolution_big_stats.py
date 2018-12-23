@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Iterates through directories and looks for the file with the Host population
-snapshot called HostGenomesFile.XXXX.csv and the InputParameters.csv file with
+snapshot called HostGenomesFile.XXXX.csv and the InputParameters.json file with
 the parameters used it the run. It extracts information about the genes origin
 like ancestry tree and MRCA.
 
@@ -12,7 +12,8 @@ Created on Thu Dec  8 02:38:00 2016
 """
 import re
 import os
-import linecache as ln
+import json
+# import linecache as ln
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -94,7 +95,7 @@ def findTheOnesAtBeginning(Mut_tags, jj=0):
                 pass
             else:
                 ll.append(itm[jj])
-        except:
+        except Exception:
             pass
     return ll
 
@@ -132,7 +133,7 @@ def findMRCA(Mut_tags, Mut_times):
     for item in Mut_times:
         try:
             indx = int(item[kk])
-        except:
+        except Exception:
             continue
         if indx < minn:
             minn = indx
@@ -140,9 +141,9 @@ def findMRCA(Mut_tags, Mut_times):
 
 
 def transTagsToNumpyArr(tagList):
-    """Takes list of tags created by loadHostPopulation() and transforms in into
-    a Numpy array where number of columns equals to the number of unique genes
-    and the number of rows equals to the number of mutation events in the
+    """Takes list of tags created by loadHostPopulation() and transforms it
+    into a Numpy array where number of columns equals to the number of unique
+    genes and the number of rows equals to the number of mutation events in the
     history of the gene that had the most of these events."""
     maxLen = 0
     for itm in tagList:
@@ -254,20 +255,23 @@ def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict, dirrName,
 def processDataOneFile(FILE):
     """A meta-function that takes the host population snapshot file
     HostGenomesFile.XXXX.csv, also loads some parameters for the file
-    InputParameters.csv and pre-processes the population to produce more
+    InputParameters.json and pre-processes the population to produce more
     useful data structures."""
     try:
-        filepath = os.path.join(os.path.dirname(FILE), 'InputParameters.csv')
+        filepath = os.path.join(os.path.dirname(FILE), 'InputParameters.json')
         print(filepath)
-        l = re.split(" ", ln.getline(filepath, 13))
-        maxTime = float(l[2].split()[0])
-    except:
-        print("Can't load the data from InputParameters.csv.",
+        with open(filepath) as f:
+            prms = json.load(f)
+#        l = re.split(" ", ln.getline(filepath, 13))
+#        maxTime = float(l[2].split()[0])
+        maxTime = float(prms['number_of_host_generations'])
+    except Exception:
+        print("Can't load the data from InputParameters.json.",
               "Check if it exist.")
         return None
     try:
         mutTags, mutTimes = loadHostPopulation(FILE)
-    except:
+    except Exception:
         print("Can't load the host population snapshot file.")
         return None
     mrcaTag, mrcaOri, mrcaIdx, mrcaTime = findMRCA(mutTags, mutTimes)
@@ -297,21 +301,21 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
             filepath = os.path.join(dirName, file)
             if filepath == os.path.join(dirName, FILE):
                 try:
-                    paramzList = ppma.loadParamSettings(os.path.join(dirName,
-                                                        "InputParameters.csv"))
-                except:
+                    paramList = ppma.loadParamSettings(os.path.join(dirName,
+                                                       "InputParameters.json"))
+                except Exception:
                     print("Cannot load the parameters. in dir", dirName)
                     continue
-                if ppma.compareParams(template, paramzList):
+                if ppma.compareParams(template, paramList):
                     try:
                         DATA = processDataOneFile(filepath)
-                    except:
+                    except Exception:
                         print("Cannot load the data. in dir", dirName)
                         continue
                     plotTheTimes(DATA[0], DATA[1], DATA[2], DATA[3], DATA[4],
                                  dirName)
-                    var = float(paramzList[vv['VAR']])
-                    varx = float(paramzList[vv['VARX']])
+                    var = float(paramList[vv['VAR']])
+                    varx = float(paramList[vv['VARX']])
                     datOut.append((var, varx, DATA[6], DATA[0].shape[1],
                                    DATA[0].shape[0], dirName))
     if len(datOut) > 0:
@@ -417,12 +421,12 @@ def main():
     outputFile = str(sys.argv[2])
     try:
         template = ppma.loadParamSettings(sys.argv[1])
-    except:
+    except Exception:
         print("Cannot load the template file. Exiting.")
         sys.exit()
     try:
         theData = serchTheDirs(sys.argv[3], template)
-    except:
+    except Exception:
         print("Failed to process the data. Some serious issues arose.")
         sys.exit()
     if len(theData):

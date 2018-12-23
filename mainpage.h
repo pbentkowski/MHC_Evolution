@@ -61,8 +61,8 @@
  * $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="static" </b>\n \n
  * But it may throw some warnings e.g.: \n
  * /usr/lib/gcc/x86_64-linux-gnu/5/libgomp.a(target.o): In function gomp_target_init :
- * (.text+0xba): warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries 
- * from the glibc version used for linking \n\n  
+ * (.text+0xba): warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries
+ * from the glibc version used for linking \n\n
  *
  * @section Parameters
  * <b>In the most advanced scenario the program takes exactly 17 parameters. These are:</b> \n
@@ -92,7 +92,12 @@
  * \n
  * This program can recognise simple errors in the argument list (a probability value out of
  * [0,1] range, negative values when only positive are allowed etc.), but will not recognise
- * when they don't make a 'biological' sense.
+ * when they don't make a 'biological' sense.\n
+ * \n
+ * Example run call: \n
+ * $ <b>./main_default 0 16 6000 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 50 10 0.02</b>\n\n
+ *
+ * There are 8 pathogen species here, each has 1000 individuals, hence the total pathogen population size is 8000. \n\n
  *
  * @section The output and data visualisation
  * Program produces a number of text files containing desired data. The file
@@ -124,7 +129,7 @@
  * <b><i> NumberOfMhcBeforeMating.csv </i></b> - number of the unique MHC types in each individual host in each
  * time step before the mating procedure took place. \n
  * <b><i> NumberOfMhcInMother.csv </i></b> - number of the unique MHC types in each individual host that is selecting
- * a partner (a.k.a. "mother") in each time step during mating procedure. Each individual has a corresponding partner 
+ * a partner (a.k.a. "mother") in each time step during mating procedure. Each individual has a corresponding partner
  * at the same index in the file <i>NumberOfMhcInFather.csv</i>. \n
  * <b><i> NumberOfMhcInFather.csv </i></b> - number of the unique MHC types in each individual host that has been
  * selected as a mating (a.k.a. "father") in each time step during mating procedure. Each individual has a corresponding

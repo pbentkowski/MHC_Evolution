@@ -2,7 +2,7 @@
 
 # Script for launching the MHC Evolution Model on the PCSS Eagle cluster that is
 # using Slurm queueing system. The script will submit as many jobs to the
-# Slurm queuing system as many lines are in theParamParam.csv file. Each simulation
+# Slurm queuing system as many lines are in the ParamParam.csv file. Each simulation
 # will write its results to a separate directory.
 
 if [ $# -ne 2 ]
@@ -26,7 +26,6 @@ for line in $(< ParamParam.csv);
     cat ~/launchers/sbatchTemplate_begin.sh theLine.txt ~/launchers/sbatchTemplate_end.sh > runTheMHCjob.sl
     rm theLine.txt
     sbatch --job-name=$j.mhc runTheMHCjob.sl &
-#    echo "cd $PWD && $PWD/$1 $line"
     echo -e "Run No. $j launched! Params are set to: $line"
     IFS=$'\n'
     cd ..

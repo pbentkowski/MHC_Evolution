@@ -13,8 +13,9 @@ for Evolutionary Biology Group, Faculty of Biology
 import os
 import re
 import sys
+import json
 import datetime as dt
-import linecache as ln
+# import linecache as ln
 import numpy as np
 import numpy.polynomial.polynomial as poly
 import matplotlib.pyplot as plt
@@ -51,19 +52,32 @@ def getVarxLabel(filepath):
 
 
 def loadParamSettings(filepath):
-    """Loads model's parametrisation from i.g. InputParameters.csv file into
+    """Loads model's parametrisation from i.g. InputParameters.json file into
     a handy list. """
+    nogphoch = 'number_of_genes_per_host_one_chromosome'
+    nopgpohg = 'number_of_pathogen_generation_per_one_host_generation'
+    hmnogich = 'host_maximal_number_of_genes_in_chromosome'
+    paramzList = []
     try:
-        paramzList = []
-        with open(filepath, 'r') as f:
-            for ii, line in enumerate(f):
-                if re.search("#", line) or line == "":
-                    pass
-                else:
-                    try:
-                        paramzList.append(line.split()[2])
-                    except Exception:
-                        pass
+        with open(filepath) as f:
+            prms = json.load(f)
+        paramzList.append(prms['number_of_threads'])
+        paramzList.append(prms['number_of_bits_per_gene'])
+        paramzList.append(prms['number_of_bits_per_antigen'])
+        paramzList.append(prms['host_population_size'])
+        paramzList.append(prms['pathogen_population_size'])
+        paramzList.append(prms['number_of_pathogen_species'])
+        paramzList.append(prms[nogphoch])
+        paramzList.append(prms[nopgpohg])
+        paramzList.append(prms['number_of_host_generations'])
+        paramzList.append(prms['mutation_probability_in_host'])
+        paramzList.append(prms['mutation_probability_in_pathogen'])
+        paramzList.append(prms['separated_species_genomes'])
+        paramzList.append(prms['host_gene_deletion_probability'])
+        paramzList.append(prms['host_gene_duplication_probability'])
+        paramzList.append(prms[hmnogich])
+        paramzList.append(prms['number_of_sex_mates'])
+        paramzList.append(prms['alpha_factor_for_the_host_fitness_function'])
         return paramzList
     except Exception:
         print("ERROR in loadParamSettings(): Cannot load params into a list.")
@@ -100,19 +114,38 @@ def compareParams(template, paramz):
 
 def lookForVAR(template):
     """Checks which parameters are designated to be investigated as independent
-    variables. Gets their line numbers in the file with parameter
-    description. You have to provide a template file."""
-    varrs = {"VAR": 0, "VARX": 0, "IRR": 0}
-    for ii, itm in enumerate(template):
-        if itm == "VAR":
-            varrs["VAR"] = ii
-        elif itm == "VARX":
-            varrs["VARX"] = ii
-        elif itm == "IRR":
-            varrs["IRR"] = ii
+    variables. Gets their name in the JSON file with parameter description. You
+    have to provide a different template JSON file."""
+    varrs = {"VAR": "", "VARX": "", "IRR": ""}
+    with open(template) as f:
+        prms = json.load(f)
+    for itm in prms.keys():
+        if(prms[itm] == "VAR"):
+            varrs["VAR"] = itm
+        elif(prms[itm] == "VARX"):
+            varrs["VARX"] = itm
+        elif (prms[itm] == "IRR"):
+            varrs["IRR"] = itm
         else:
             pass
     return varrs
+
+
+def lookForVARinList(templateList):
+    """Checks which parameters are designated to be investigated as independent
+    variables. Gets their index in the list of template parameter description.
+    The list can be genarated with `loadParamSettings(templateFile)`."""
+    varsList = {"VAR": 0, "VARX": 0, "IRR": 0}
+    for ii, itm in enumerate(templateList):
+        if(itm == "VAR"):
+            varsList["VAR"] = ii
+        elif(itm == "VARX"):
+            varsList["VARX"] = ii
+        elif(itm == "IRR"):
+            varsList["IRR"] = ii
+        else:
+            pass
+    return varsList
 
 
 def readDate(string):
@@ -129,10 +162,13 @@ def readDate(string):
 
 
 def loadTheDateFromParamFile(filePar):
-    """Takes InputParameters.csv file and tries to figure out what day the run
-    was started (line 2 in the file)."""
+    """Takes InputParameters.json file and tries to figure out what day the run
+    was started."""
     try:
-        ll = re.split(" ", ln.getline(filePar, 2))[2].split(".")[0].split("-")
+        with open(filePar) as f:
+            prms = json.load(f)
+        ll = prms['run_start_date_and_time'].split(".")[0].split("-")
+#        ll = re.split(" ", ln.getline(filePar, 2))[2].split(".")[0].split("-")
     except Exception:
         print("ERROR in loadTheDate(): Cannot load the Params file. Check if",
               "the path to the params file is correct as well as its name.")
@@ -141,28 +177,33 @@ def loadTheDateFromParamFile(filePar):
         theDay = dt.date(int(ll[0]), int(ll[1]), int(ll[2]))
         return theDay
     except Exception:
-        print("ERROR in loadTheDate(): Cannot covert data into the date",
+        print("ERROR in loadTheDate(): Cannot convert data into the date",
               "format. Check if the data file has the right flavour.")
         return None
 
 
-def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
+def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
     """Walking the dir using Python 3.5. Variable theStartDate has to be
     a datetime.date() data type."""
-    vv = lookForVAR(template)
+    nopgpohg = 'number_of_pathogen_generation_per_one_host_generation'
+    vv = lookForVARinList(templateList)
     datOut = []
     dataOrdering = ['VAR', 'VARX', 'meanAllel', 'stdAllel', 'slope']
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
-            if(filepath == os.path.join(dirName, 'InputParameters.csv') and
+            if(filepath == os.path.join(dirName, 'InputParameters.json') and
                loadTheDateFromParamFile(filepath) >= theStartDate):
                 paramzList = loadParamSettings(filepath)
-                if compareParams(template, paramzList):
-                    ll = re.split(" ", ln.getline(filepath, 9))
-                    path_spp = float(ll[2].split()[0])
-                    ll = re.split(" ", ln.getline(filepath, 12))
-                    pathoNorm = float(ll[2].split()[0]) * path_spp
+                with open(filepath) as f:
+                    prms = json.load(f)
+                if compareParams(templateList, paramzList):
+                    path_spp = float(prms['number_of_pathogen_species'])
+#                    ll = re.split(" ", ln.getline(filepath, 9))
+#                    path_spp = float(ll[2].split()[0])
+                    pathoNorm = float(prms[nopgpohg]) * path_spp
+#                    ll = re.split(" ", ln.getline(filepath, 12))
+#                    pathoNorm = float(ll[2].split()[0]) * path_spp
                     var = float(paramzList[vv['VAR']])
                     varx = float(paramzList[vv['VARX']])
                     dataFilePath = os.path.join(dirName, "HostsGeneDivers.csv")
@@ -178,8 +219,10 @@ def getTheData(theStartDate, template, EqPt=1000, dirr=os.getcwd()):
                     cvFitt = cvFitt[~np.isnan(cvFitt)]
                     cvFittMean = np.mean(cvFitt) / pathoNorm
                     cvFittSTD = np.std(cvFitt) / pathoNorm
+#                    dataFilePath = os.path.join(dirName,
+#                                                "HostMHCsNumbUniq_ChrOne.csv")
                     dataFilePath = os.path.join(dirName,
-                                                "HostMHCsNumbUniq_ChrOne.csv")
+                                                "NumberOfMhcAfterMating.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
@@ -227,7 +270,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     ll = []
 #    maxX = 1.15 * float(np.max(meanResult[:, 1]))
 #    limitz = (0., maxX)
-    figSize = (10, 7)
+    figSize = (12, 9)
     for itm in meanResult:
         if itm[0] in ll:
             pass
@@ -247,7 +290,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.xscale(logsc)
     plt.tick_params(axis='both', labelsize=annoSize)
     plt.grid(True)
-    # Second plot - unique MHC alleles in one chromosome
+    # Second plot - unique MHC alleles in an individual
     plt.figure(2, figsize=figSize)
     for var in ll:
         ww = meanResult[meanResult[:, 0] == var]
@@ -292,8 +335,8 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
 
 
 def plotDotMeans(theData):
-    """Plots number of MHC alleles in population vs average number of MHC in
-    one chromosome."""
+    """Plots number of MHC alleles in population vs average number of MHC types
+    in an individual."""
 #    clrs = ['bo', 'go', 'ro', 'co', 'mo']  # , 'yo'  , 'ko', 'wo']
     clrs = ['bo', 'go', 'ro', 'co', 'mo', 'yo']
     clrs += ['bv', 'gv', 'rv', 'cv', 'mv', 'yv', 'kv', 'wv']
@@ -318,7 +361,7 @@ def plotDotMeans(theData):
     plt.legend(loc='lower right', numpoints=1, ncol=2, fontsize=10)
     plt.xlabel("mean number of unique MHC alleles in population",
                fontsize=FS)
-    plt.ylabel("average number of unique MHC\nalleles in one chromosome",
+    plt.ylabel("average number of unique MHC\ntypes in an individual",
                fontsize=FS)
     plt.xlim(left=0)
     plt.ylim(bottom=0)
@@ -371,6 +414,7 @@ def main():
         try:
             # third argument is very important
             theData = getTheData(startDate, template, int(sys.argv[3]))
+            print(theData)
         except Exception:
             print("Failed to process the data. Some serious issues arose.",
                   "Check if the cut-off host generation for calculating stats",

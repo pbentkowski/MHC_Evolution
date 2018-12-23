@@ -12,8 +12,9 @@ for Evolutionary Biology Group, Faculty of Biology
 import re
 import os
 import sys
+import json
 import numpy as np
-import linecache as ln
+# import linecache as ln
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
 # depends on this packedge of mine:
@@ -145,23 +146,23 @@ def plotMHCvsPathoPresent(uniqNumb, pathoNumb, slope, intercept,
     plt.savefig(dirr + "/infect_vs_MHCnumb.png")
 
 
-def getTheData(theStartDate, template, dirr=os.getcwd()):
-    """Walking the dir using Python 3.5. Variable theStartDate has to be
+def getTheData(theStartDate, templateList, dirr=os.getcwd()):
+    """Walking the dir using Python 3.6. Variable theStartDate has to be
     a datetime.date() data type."""
-    vv = ppma.lookForVAR(template)
+    vv = ppma.lookForVARinList(templateList)
     datOut = []
     dataOrdering = ['VAR', 'VARX', 'slope', 'intercept']
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
-            if(filepath == os.path.join(dirName, 'InputParameters.csv') and
+            if(filepath == os.path.join(dirName, 'InputParameters.json') and
                ppma.loadTheDateFromParamFile(filepath) >= theStartDate):
                 paramzList = ppma.loadParamSettings(filepath)
-                if ppma.compareParams(template, paramzList):
-                    ll = re.split(" ", ln.getline(filepath, 9))
-                    path_spp = float(ll[2].split()[0])
-                    ll = re.split(" ", ln.getline(filepath, 13))
-                    lg = ll[2].split()[0]
+                if ppma.compareParams(templateList, paramzList):
+                    with open(filepath) as f:
+                        prms = json.load(f)
+                    path_spp = float(prms['number_of_pathogen_species'])
+                    lg = prms['number_of_host_generations']
                     genomeFileName = "HostGenomesFile." + str(lg) + ".csv"
                     genomeFileName = os.path.join(dirName, genomeFileName)
 #                    print(genomeFileName)

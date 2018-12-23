@@ -13,6 +13,7 @@ for Evolutionary Biology Group, Faculty of Biology
 """
 import sys
 import re
+import json
 import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
@@ -61,7 +62,7 @@ def bitSimWhinIndiv(BitLyst, sim_measure=7):
                     compArr[k] = 0
                 k += 1
         return np.mean(compArr)
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.bitSimWhinIndiv():" +
               "Can't load the data!")
         return np.NaN
@@ -78,7 +79,7 @@ def hamDistWhinIndiv(BitLyst):
                 compArr[k] = hamming_distance(itmOne, BitLyst[jj])
                 k += 1
         return compArr
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.bitSimWhinIndiv():" +
               "Can't load the data!")
         return np.NaN
@@ -94,7 +95,7 @@ def bitSimBetweenIndv(indOne, indTwo, sim_measure=16):
                 if bitSimInRow(itmOne, itmTwo, sim_measure):
                     compArr[k] = 1.
         return compArr
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.bitSimBetweenIndv():" +
               "Can't proccess the data!")
         return np.NaN
@@ -111,7 +112,7 @@ def hamDistBetweenIndv(indOne, indTwo):
                 compArr[k] = hamming_distance(itmOne, itmTwo)
                 k += 1
         return compArr
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.hamDistBetweenIndv():" +
               "Can't proccess the data!")
         return np.NaN
@@ -127,8 +128,8 @@ def loadThePopulationBitstrings(FILE):
     nextPatho = False
     endOfSpp = False
     ll = []
-    l = re.split(" ", ln.getline(FILE, 3))
-    old_spec = int(l[5])
+    lp = re.split(" ", ln.getline(FILE, 3))
+    old_spec = int(lp[5])
     try:
         with open(FILE) as infile:
             for j, line in enumerate(infile):
@@ -137,7 +138,7 @@ def loadThePopulationBitstrings(FILE):
                 elif re.search(r"===", line):
                     try:
                         new_spec = int(line.split()[4])
-                    except:
+                    except Exception:
                         pass
                     if nextPatho:
                         if new_spec == old_spec:
@@ -175,8 +176,8 @@ def loadIndvPathoTags(FILE):
     nextPatho = False
     endOfSpp = False
     ll = []
-    l = re.split(" ", ln.getline(FILE, 3))
-    old_spec = int(l[5])
+    lp = re.split(" ", ln.getline(FILE, 3))
+    old_spec = int(lp[5])
     try:
         with open(FILE) as infile:
             for j, line in enumerate(infile):
@@ -185,7 +186,7 @@ def loadIndvPathoTags(FILE):
                 elif re.search(r"===", line):
                     try:
                         new_spec = int(line.split()[4])
-                    except:
+                    except Exception:
                         pass
                     if nextPatho:
                         if new_spec == old_spec:
@@ -324,12 +325,12 @@ def loadNoMutSet(FILE):
                         ll = line.split()
                         ll = np.array(ll, dtype='int')
                         LL.append(ll)
-                    except:
+                    except Exception:
                         print("ERROR in loadNoMutSet(): cannot convert",
                               "data from line into numbers")
                         return None
         return LL
-    except:
+    except Exception:
         print("ERROR in loadNoMutSet(): Cannot proccess the file.")
         return None
 
@@ -425,21 +426,25 @@ def main():
               " simulation and the second at the end.")
         sys.exit()
     try:
-        l = re.split(" ", ln.getline("InputParameters.csv", 9))
-        spp_num = int(l[2])
-        l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
-        bitfit = int(l2[2])
+        with open('InputParameters.json') as f:
+            paramz = json.load(f)
+#        l = re.split(" ", ln.getline("InputParameters.csv", 9))
+        spp_num = int(paramz['number_of_pathogen_species'])
+#        l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
+#        bitfit = int(l2[2])
+        bitfit = int(paramz['number_of_bits_per_gene'])
         print("No. of pathogen species = " + str(spp_num) + "\n" +
-              " Length of the bit string =" +
-              str(int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])))
+              " Length of the bit string = " +
+              str(int(paramz['number_of_bits_per_antigen'])))
+#             str(int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])))
         print("Length of bit string fit = " + str(bitfit))
-    except:
+    except Exception:
         print("Can't load the param file! You may be in a wrong directory.")
         sys.exit()
     try:
         L_init = loadThePopulationBitstrings(sys.argv[1])
         print("First file loaded!")
-    except:
+    except Exception:
         print("Can't load file named " + str(sys.argv[1]) +
               ". Check if it exists.")
         sys.exit()
@@ -447,7 +452,7 @@ def main():
         L_endd = loadThePopulationBitstrings(sys.argv[2])
         cloneList = loadIndvPathoTags(sys.argv[2])
         print("Second file loaded!")
-    except:
+    except Exception:
         print("Can't load file named" + str(sys.argv[2]) +
               ". Check if it exists.")
         sys.exit()

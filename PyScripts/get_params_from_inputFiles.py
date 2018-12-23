@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
-Searches for 'InputParameters.csv' files, pulls out parameters from them and
+Searches for 'InputParameters.json' files, pulls out parameters from them and
 renders them in one line which can be feed as input to the model's program.
 
 Created on Fri Jun 19 20:04:08 2015
@@ -10,10 +10,10 @@ for Evolutionary Biology Group, Faculty of Biology
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
 import os
-import re
 import sys
+import json
 import datetime as dt
-import linecache as ln
+# import linecache as ln
 
 
 def readDate(string):
@@ -23,25 +23,28 @@ def readDate(string):
         dd = string.split("-")
         theDate = dt.date(int(dd[0]), int(dd[1]), int(dd[2]))
         return theDate
-    except:
+    except Exception:
         print("ERROR in readDate(): Bad string format! It has to be ISO's",
               "yyyy-mm-dd format!")
         return None
 
 
 def loadTheDateFromParamFile(filePar):
-    """Takes InputParameters.csv file and tries to figure out what day the run
-    was started (line 2 in the file)."""
+    """Takes InputParameters.json file and tries to figure out what day the run
+    was started."""
     try:
-        l = re.split(" ", ln.getline(filePar, 2))[2].split(".")[0].split("-")
-    except:
+        with open(filePar) as f:
+            prms = json.load(f)
+        ll = prms['run_start_date_and_time'].split(".")[0].split("-")
+#        ll = re.split(" ", ln.getline(filePar, 2))[2].split(".")[0].split("-")
+    except Exception:
         print("ERROR in loadTheDate(): Cannot load the Params file. Check if",
               "the path to the params file is correct as well as its name.")
         return None
     try:
-        theDay = dt.date(int(l[0]), int(l[1]), int(l[2]))
+        theDay = dt.date(int(ll[0]), int(ll[1]), int(ll[2]))
         return theDay
-    except:
+    except Exception:
         print("ERROR in loadTheDate(): Cannot convert data into the date",
               "format. Check if the data file has the right flavour.")
         return None
@@ -50,28 +53,41 @@ def loadTheDateFromParamFile(filePar):
 def printTheParams3(theStartDate, dirr=os.getcwd()):
     """Walking the dir using Python 3.5. Variable theStartDate has to be
     a datetime.date() data type."""
+    nogphoch = 'number_of_genes_per_host_one_chromosome'
+    nopgpohg = 'number_of_pathogen_generation_per_one_host_generation'
+    hmnogich = 'host_maximal_number_of_genes_in_chromosome'
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
             filepath = os.path.join(dirName, file)
-            if(filepath == os.path.join(dirName, 'InputParameters.csv') and
+            if(filepath == os.path.join(dirName, 'InputParameters.json') and
                loadTheDateFromParamFile(filepath) >= theStartDate):
-                strr = ""
+                ST = ""
                 with open(filepath, 'r') as f:
-                    for ii, line in enumerate(f):
-                        l = line.split()
-                        if re.search("#", line):
-                            if re.search("# Other_information:", line):
-                                break
-                            else:
-                                continue
-                        elif ii > 2 and len(l) > 1:
-                            if l[2] == "YES":
-                                strr += "10 "
-                            elif l[2] == "NO":
-                                strr += "11 "
-                            else:
-                                strr += l[2] + " "
-                print(strr)
+                    prms = json.load(f)
+                if prms['separated_species_genomes'] == "YES":
+                    sepSpGen = "10"
+                elif prms['separated_species_genomes'] == "NO":
+                    sepSpGen = "11"
+                else:
+                    sepSpGen = prms['separated_species_genomes']
+                ST = str(prms['number_of_threads']) + " "\
+                    + str(prms['number_of_bits_per_gene']) + " "\
+                    + str(prms['number_of_bits_per_antigen']) + " "\
+                    + str(prms['host_population_size']) + " "\
+                    + str(prms['pathogen_population_size']) + " "\
+                    + str(prms['number_of_pathogen_species']) + " "\
+                    + str(prms[nogphoch]) + " "\
+                    + str(prms[nopgpohg]) + " "\
+                    + str(prms['number_of_host_generations']) + " "\
+                    + str(prms['mutation_probability_in_host']) + " "\
+                    + str(prms['mutation_probability_in_pathogen']) + " "\
+                    + sepSpGen + " "\
+                    + str(prms['host_gene_deletion_probability']) + " "\
+                    + str(prms['host_gene_duplication_probability']) + " "\
+                    + str(prms[hmnogich]) + " "\
+                    + str(prms['number_of_sex_mates']) + " "\
+                    + str(prms['alpha_factor_for_the_host_fitness_function'])
+                print(ST)
 
 
 def main():
@@ -89,6 +105,7 @@ def main():
     else:
         print("Wrong date format.")
         sys.exit()
+
 
 if __name__ == "__main__":
     main()

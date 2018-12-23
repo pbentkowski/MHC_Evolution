@@ -75,12 +75,18 @@ The program takes exactly 17 parameters. These are:
 *  **15** - Maximal number of genes permitted in one host chromosome.
 *  **16** - Number of sexual partners an individual checks out before selecting one for mating.
 *  **17** - Alpha factor for the host fitness function ([0,1] range).
- 
+
  Historically we also had one more argument, that can be added if you want:
  - 18 - Fraction of the antigen's bits which are forbidden from changing (a.k.a. *No Mutation Bits*).
 
 This program can recognise simple errors in the argument list (a probability value out of [0,1] range, negative
 values when only positive are allowed etc.), but will not recognise when they don't make a 'biological' sense.
+
+Example run call:
+```shell
+./main_default 0 16 6000 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 50 10 0.02
+```
+There are 8 pathogen species here, each has 1000 individuals, hence the total pathogen population size is 8000.
 
 The output and data visualisation:
 -----------
@@ -89,21 +95,21 @@ Program produces a number of text files containing desired data. The file *Input
 
 All the files are:
 
-*  ***InputParameters.json*** - contains run's parametrisation in JSON text format 
-*  ***HostsGeneDivers.csv*** - contain basic statistics of the output for host genomes 
-*  ***HostGenomesFile.[t].csv*** - contains all the genomes of all the cells for host population in time *t*. There can be more then one file like this for different time snapshots. 
-*  ***PathoGenomesFile.[t].csv*** - contains all the genomes of all the cells for pathogen population in time *t*. There can be more then one file like this for different time snapshots. 
-*  ***HostGeneNumbTotal.csv*** - total number of genes in each individual host in each time step (linked to *HostMHCsNumbUniq.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*). 
-*  ***HostMHCsNumbUniq.csv*** - number of unique MHC alleles in each individual host in each time step (linked to*HostGeneNumbTotal.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*). 
-*  ***NoMutationInPathoList.csv*** - list of conserved antigen sites. Each line contains one pathogen species, each number indicates the index of a "no-mutation" site in this species antigen. When empty it means there is no mutation restrictions. 
+*  ***InputParameters.json*** - contains run's parametrisation in JSON text format
+*  ***HostsGeneDivers.csv*** - contain basic statistics of the output for host genomes
+*  ***HostGenomesFile.[t].csv*** - contains all the genomes of all the cells for host population in time *t*. There can be more then one file like this for different time snapshots.
+*  ***PathoGenomesFile.[t].csv*** - contains all the genomes of all the cells for pathogen population in time *t*. There can be more then one file like this for different time snapshots.
+*  ***HostGeneNumbTotal.csv*** - total number of genes in each individual host in each time step (linked to *HostMHCsNumbUniq.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*).
+*  ***HostMHCsNumbUniq.csv*** - number of unique MHC alleles in each individual host in each time step (linked to*HostGeneNumbTotal.csv*, that each column in *HostGeneNumbTotal.csv* is represents the same cells as in *HostMHCsNumbUniq.csv*).
+*  ***NoMutationInPathoList.csv*** - list of conserved antigen sites. Each line contains one pathogen species, each number indicates the index of a "no-mutation" site in this species antigen. When empty it means there is no mutation restrictions.
 *  ***NumberOfMhcAfterMating.csv*** -number of the unique MHC types in each individual host in each time step after the mating procedure took place.
 *  ***NumberOfMhcBeforeMating.csv*** - number of the unique MHC types in each individual host in each time step before the mating procedure took place.
-*  ***NumberOfMhcInMother.csv*** - number of the unique MHC types in each individual host that is selecting a partner (a.k.a. "mother") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInFather.csv*. 
-*  ***NumberOfMhcInFather.csv*** - number of the unique MHC types in each individual host that has been selected as a mating (a.k.a. "father") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInMother.csv*. 
-*  ***PresentedPathogenNumbers.csv*** - number of presented pathogens by each individual in each time step. 
+*  ***NumberOfMhcInMother.csv*** - number of the unique MHC types in each individual host that is selecting a partner (a.k.a. "mother") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInFather.csv*.
+*  ***NumberOfMhcInFather.csv*** - number of the unique MHC types in each individual host that has been selected as a mating (a.k.a. "father") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file *NumberOfMhcInMother.csv*.
+*  ***PresentedPathogenNumbers.csv*** - number of presented pathogens by each individual in each time step.
 
 
-Visualisation is done using Python 3.6 scripts containing a a lot of calls to Numpy, Matplotlib and other scietific Python libraries. You may wish to consider using the [Python Anaconda](https://www.anaconda.com/download/) for your Pythonic endeavours. Visualisation and stats scripts can be found in *PyScripts* directory. 
+Visualisation is done using Python 3.6 scripts containing a a lot of calls to Numpy, Matplotlib and other scientific Python libraries. You may wish to consider using the [Python Anaconda](https://www.anaconda.com/download/) for your Pythonic endeavours. Visualisation and stats scripts can be found in *PyScripts* directory.
 
 To load the environment for output analysis run:
 ```shell

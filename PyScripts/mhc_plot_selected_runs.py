@@ -13,31 +13,9 @@ for Evolutionary Biology Group, Faculty of Biology
 import os
 import re
 import sys
+import json
 import pylab as p
-import linecache as ln
-
-
-def LoadTheData2(arg, dirname, files):
-    """Iterates trough directories and look for HostsGeneDivers.csv file and
-    corresponding InputParameters.csv then copies the necessary data to
-    a Python list to be analysed and plotted later on in the program. Version
-    for Python 2.7 to use with os.path.walk() mechanism"""
-    for file in files:
-        filepath = os.path.join(dirname, file)
-        if filepath == os.path.join(dirname, 'HostsGeneDivers.csv'):
-            genes = p.genfromtxt(filepath)
-            paramsFile = os.path.join(dirname, 'InputParameters.csv')
-            ll = re.split(" ", ln.getline(paramsFile, 15))   # change here
-            interestingOne = float(ll[2])
-            ll = re.split(" ", ln.getline(paramsFile, 10))   # change here
-            interestingTwo = float(ll[2])
-            ll = re.split(" ", ln.getline(paramsFile, 9))
-            path_spp = ll[2].split()[0]
-            print("patho species:", path_spp, "| things:",  interestingOne,
-                  " ; ", interestingTwo, "| dir:", dirname.split("/")[-1])
-            arg.append((interestingOne, interestingTwo, path_spp, genes[:, 0],
-                        genes[:, 3], genes[:, 4], genes[:, 5],
-                        genes[:, 2], genes[:, 6]))
+# import linecache as ln
 
 
 def meanMhcTypeNumber(DATA):
@@ -53,7 +31,7 @@ def meanMhcTypeNumber(DATA):
 
 def loadTheData3(DIRR=os.getcwd()):
     """Iterates trough directories and look for HostsGeneDivers.csv file and
-    corresponding InputParameters.csv then copies the necessary data to
+    corresponding InputParameters.json then copies the necessary data to
     a Python list to be analysed and plotted later on in the program. Version
     for Python 3.5 utilazing os.walk() function"""
     TheData = []
@@ -62,20 +40,20 @@ def loadTheData3(DIRR=os.getcwd()):
             filepath = os.path.join(dirName, file)
             if filepath == os.path.join(dirName, 'HostsGeneDivers.csv'):
                 genes = p.genfromtxt(filepath)
-                paramsFile = os.path.join(dirName, 'InputParameters.csv')
-                ll = re.split(" ", ln.getline(paramsFile, 15))   # change here
-                interestingOne = float(ll[2])
-                ll = re.split(" ", ln.getline(paramsFile, 9))   # change here
-                interestingTwo = float(ll[2])
-                ll = re.split(" ", ln.getline(paramsFile, 9))
-                path_spp = ll[2].split()[0]
-                ll = re.split(" ", ln.getline(paramsFile, 7))
-                pop_size = float(ll[2].split()[0])
+                paramsFile = os.path.join(dirName, 'InputParameters.json')
+                with open(paramsFile) as f:
+                    prms = json.load(f)
+                # change here
+                interestOne = float(prms['mutation_probability_in_pathogen'])
+                # change here
+                interestTwo = float(prms['number_of_pathogen_species'])
+                path_spp = prms['number_of_pathogen_species']
+                pop_size = float(prms['host_population_size'])
                 if path_spp == "NOT_IN_THIS_MODEL":
                     path_spp = 1
-                print("patho species:", path_spp, "| things:",  interestingOne,
-                      " ; ", interestingTwo, "| dir:", dirName.split("/")[-1])
-                TheData.append((interestingOne, interestingTwo, int(path_spp),
+                print("patho species:", path_spp, "| things:",  interestOne,
+                      " ; ", interestTwo, "| dir:", dirName.split("/")[-1])
+                TheData.append((interestOne, interestTwo, int(path_spp),
                                 genes[:, 0], genes[:, 3], genes[:, 4],
                                 genes[:, 5], genes[:, 2], genes[:, 6],
                                 pop_size))
@@ -89,7 +67,7 @@ def main():
 #    print(os.getcwd())
 
     TheData = loadTheData3()
-
+    print(TheData)
     AxLabelFontSize = 22
     AxisTickFontSize = 22
     AnnotateFontSize = 19
@@ -117,6 +95,7 @@ def main():
     mm = 0.
     ii = 0.
     for item in TheData:
+        print(item[1], interestTwo, item[0], interestOne)
         if (item[1] == interestTwo and item[0] == interestOne):
             XX = float(item[3][annotShift + i*annotScale])
             YY = float(item[4][annotShift + i*annotScale])
@@ -133,7 +112,7 @@ def main():
     ax = p.annotate(nnn, xy=(textXlocal, 180), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid(True)
-    p.tight_layout()
+#    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_allel_num.png")
@@ -159,7 +138,7 @@ def main():
     ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
-    p.tight_layout()
+#    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_Shann.png")
@@ -181,7 +160,7 @@ def main():
 #    ax = p.annotate(nnn, xy=(textXlocal, 2.0), xycoords='data',
 #                    fontsize=AnnotateFontSize)
     p.grid()
-    p.tight_layout()
+#    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_H_CV_fitt.png")
@@ -203,7 +182,7 @@ def main():
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
     p.grid()
-    p.tight_layout()
+#    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "_H_fitt.png")
@@ -229,7 +208,7 @@ def main():
     ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
                     fontsize=AnnotateFontSize)
     p.grid()
-    p.tight_layout()
+#    p.tight_layout()
     if saveFiggs:
         p.savefig("one_" + str(interestOne) + ".two_" +
                   str(interestTwo) + "AvgGenomeSize.png")

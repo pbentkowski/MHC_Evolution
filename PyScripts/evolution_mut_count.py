@@ -12,7 +12,8 @@ for Evolutionary Biology Group, Faculty of Biology
 """
 import re
 import sys
-import linecache as ln
+import json
+# import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
 import bitstring as bts
@@ -51,19 +52,23 @@ def main():
         print("Give the name of the file with data at the end of simulation.")
         sys.exit()
     try:
-        l = re.split(" ", ln.getline("InputParameters.csv", 9))
+        with open('InputParameters.json') as f:
+            prms = json.load(f)
+#        l = re.split(" ", ln.getline("InputParameters.csv", 9))
         try:
-            pathoSpp = int(l[2])
-        except:
-            pathoSpp = str(l[2])
+            pathoSpp = int(prms['number_of_pathogen_species'])
+#            pathoSpp = int(l[2])
+        except Exception:
+            pathoSpp = str(prms['number_of_pathogen_species'])
+#            pathoSpp = str(l[2])
         print("No. of pathogen species =", pathoSpp)
-    except:
+    except Exception:
         print("Can't find parameter file! You may be in a wrong directory.")
         sys.exit()
     try:
         L_endd = loadHostPopulation(sys.argv[1])
         print("File loaded!")
-    except:
+    except Exception:
         print("Can't load file named" + str(sys.argv[1]) +
               ". Check if it exists.")
         sys.exit()
