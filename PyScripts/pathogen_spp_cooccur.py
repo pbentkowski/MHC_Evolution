@@ -11,7 +11,7 @@ for Evolutionary Biology Group, Faculty of Biology
 import re
 import os
 import sys
-import linecache as ln
+import json
 import numpy as np
 import scipy.cluster.hierarchy as sch
 import matplotlib.pyplot as plt
@@ -21,13 +21,13 @@ import matplotlib.gridspec as gridspec
 def loadParams(dirname):
     """ """
     try:
-        paramsFile = os.path.join(dirname, 'InputParameters.csv')
-        l = re.split(" ", ln.getline(paramsFile, 8))
-        popSize = int(l[2])
-        l = re.split(" ", ln.getline(paramsFile, 9))
-        sppNumber = int(l[2])
+        paramsFile = os.path.join(dirname, 'InputParameters.json')
+        with open(paramsFile) as f:
+            prms = json.load(f)
+        popSize = int(prms['pathogen_population_size'])
+        sppNumber = int(prms['number_of_pathogen_species'])
         return popSize, sppNumber
-    except:
+    except Exception:
         print("ERROR in loadParams(): cannot find parameters in file.",
               "Check if the file exists.")
         return None, None
@@ -45,7 +45,7 @@ def loadPresentedSpecies(filepath):
                 else:
                     pass
         return LL
-    except:
+    except Exception:
         print("ERROR in loadPresentedSpecies(): Cannot load the presented",
               "pathogen species.")
         return None
@@ -111,12 +111,12 @@ def main():
     ''' '''
     if len(sys.argv) <= 1:
         print("Specify the file with hosts genetic data. It is usualy named:",
-              "HostGenomesFile.2500.csv or similar.")
+              "HostGenomesFile.XXXX.csv or similar.")
         sys.exit()
     try:
         popSize, sppNumber = loadParams(os.getcwd())
         LL = loadPresentedSpecies(sys.argv[1])
-    except:
+    except Exception:
         print("Cannot load the data. Check if you are in the right folder.")
         sys.exit()
     print("Number of pathogen spp:", sppNumber)

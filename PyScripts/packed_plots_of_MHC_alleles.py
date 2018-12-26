@@ -29,8 +29,8 @@ inType = np.dtype([('time', np.int), ('pop_size', np.int),
 # """Data type for storing processed data"""
 outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
                     ('stdAllel', 'f8'), ('slope', 'f8'), ('indvMean', 'f8'),
-                    ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('stdFitt', 'f8'),
-                    ('cvFitMean', 'f8'), ('cvFitSTD', 'f8'),
+                    ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('cvFitMean', 'f8'),
+                    ('meanPato', 'f8'), ('stdPato', 'f8'),
                     ('sourceDir', 'S99')])
 
 
@@ -213,12 +213,12 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     meanAlle = data['num_of_MHC_types'][EqPt::].mean()
                     stdAlle = data['num_of_MHC_types'][EqPt::].std()
                     meanFitt = data['mean_fitness'][EqPt::].mean() / pathoNorm
-                    stdFitt = np.std(data['mean_fitness'][EqPt::] / pathoNorm)
+#                    stdFitt = np.std(data['mean_fitness'][EqPt::] / pathoNorm)
                     cvFitt = data['std_fitness']/data['mean_fitness']
                     cvFitt = cvFitt[EqPt::]
                     cvFitt = cvFitt[~np.isnan(cvFitt)]
                     cvFittMean = np.mean(cvFitt) / pathoNorm
-                    cvFittSTD = np.std(cvFitt) / pathoNorm
+#                    cvFittSTD = np.std(cvFitt) / pathoNorm
 #                    dataFilePath = os.path.join(dirName,
 #                                                "HostMHCsNumbUniq_ChrOne.csv")
                     dataFilePath = os.path.join(dirName,
@@ -227,9 +227,14 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
                     indvSTD = np.std(hgsUNIQ[EqPt:, 1:])
+                    dataFilePath = os.path.join(dirName,
+                                                "PresentedPathogenNumbers.csv")
+                    patoPres = np.genfromtxt(dataFilePath)
+                    patoMean = np.mean(patoPres[EqPt:, 1:]) / pathoNorm
+                    patoSTD = np.std(patoPres[EqPt:, 1:]) / pathoNorm
                     datOut.append((var, varx, meanAlle, stdAlle, c1,
-                                   indvMean, indvSTD, meanFitt, stdFitt,
-                                   cvFittMean, cvFittSTD, dirName))
+                                   indvMean, indvSTD, meanFitt, cvFittMean,
+                                   patoMean, patoSTD, dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
 
@@ -254,11 +259,13 @@ def buildStats(theData):
         meanIndv = np.mean(ww['indvMean'])
         stdIndv = np.sqrt(np.sum(ww['indvSTD']**2) / NN)
         meanFitt = np.mean(ww['meanFitt'])
-        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / NN)
+#        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / NN)
         meanCvFit = np.mean(ww['cvFitMean'])
-        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / NN)
+#        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / NN)
+        patoMean = np.mean(ww['meanPato'])
+        patoSTD = np.sqrt(np.sum(ww['stdPato']**2) / NN)
         meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdIndv,
-                           meanFitt, stdFitt, meanCvFit, stdCvFit))
+                           meanFitt, meanCvFit, patoMean, patoSTD))
     return np.array(meanResult)
 
 
@@ -324,7 +331,7 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
         plt.errorbar(ww[:, 1], ww[:, 8], ww[:, 9], lw=2, marker="o", ms=8)
         plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 8]), size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
-    plt.ylabel("hosts average CV fitness normalized per\nnumber of " +
+    plt.ylabel("number of presented pathogens normalized per\n number of " +
                "pathogen spp. and pathogen generations", fontsize=FS)
 #    plt.xlim(limitz)
     plt.ylim(bottom=0)
@@ -398,7 +405,7 @@ def main():
         sys.exit()
     startDate = None
     headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
-        + 'stdFitt meanCvFitt stdCvFitt sourceDir'
+        + 'meanCvFitt meanPatho stdPato sourceDir'
     try:
         startDate = readDate(sys.argv[1])
     except ValueError:

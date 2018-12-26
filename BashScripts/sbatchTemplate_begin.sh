@@ -3,7 +3,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=24
 #SBATCH --mem=4gb
-#SBATCH --time=96:00:00
+#SBATCH --time=16:00:00
+#SBATCH --partition=standard
+
 
 module load openmpi/4.0.0_gcc620
 module load boost/1.63.0-gcc620_py2712

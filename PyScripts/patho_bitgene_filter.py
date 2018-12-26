@@ -17,12 +17,12 @@ def main():
     """ """
     if len(sys.argv) <= 2:
         print("Tow file needed:\n 1. Name of the file with pathogen genomes",
-              "e.g. PathoGenomesFile.2500.csv\n 2. Name of the output file")
+              "e.g. PathoGenomesFile.XXXX.csv\n 2. Name of the output file")
         sys.exit()
     else:
         try:
             open(sys.argv[2], 'w').close()
-        except:
+        except Exception:
             print("Cannot create the new file")
             sys.exit()
         try:
@@ -37,7 +37,7 @@ def main():
                         ff.write(line.split()[0] + '\n')
                     ff.close()
             print("DONE!")
-        except:
+        except Exception:
             print("Cannot process the input file. Check if it exists.")
             sys.exit()
 

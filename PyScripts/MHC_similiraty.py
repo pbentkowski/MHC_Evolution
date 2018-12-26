@@ -11,7 +11,8 @@ for Evolutionary Biology Group, Faculty of Biology
 """
 import sys
 import re
-import linecache as ln
+import json
+# import linecache as ln
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -56,7 +57,7 @@ def bitSimWhinIndiv(BitLyst, sim_measure=7):
                     compArr[k] = 0
                 k += 1
         return np.mean(compArr)
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
               "Can't load the data!")
         return np.NaN
@@ -73,7 +74,7 @@ def hamDistWhinIndiv(BitLyst):
                 compArr[k] = hamming_distance(itmOne, BitLyst[jj])
                 k += 1
         return compArr
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.bitSimWhinIndiv():",
               "Can't load the data!")
         return np.NaN
@@ -89,7 +90,7 @@ def bitSimBetweenIndv(indOne, indTwo, sim_measure=7):
                 if bitSimInRow(itmOne, itmTwo, sim_measure):
                     compArr[k] = 1.
         return compArr
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.bitSimBetweenIndv():",
               "Can't proccess the data!")
         return np.NaN
@@ -106,7 +107,7 @@ def hamDistBetweenIndv(indOne, indTwo):
                 compArr[k] = hamming_distance(itmOne, itmTwo)
                 k += 1
         return compArr
-    except:
+    except Exception:
         print("ERROR in anti_gen_similiraty.hamDistBetweenIndv():",
               "Can't proccess the data!")
         return np.NaN
@@ -242,26 +243,27 @@ def main():
               "simulation and the second at the end.")
         sys.exit()
     try:
-        l = re.split(" ", ln.getline("InputParameters.csv", 9))
-        l2 = re.split(" ", ln.getline("InputParameters.csv", 6))
-        bitfit = int(l2[2])
-        print("No. of pathogen species =", int(l[2]))
-        MHC_len = int(re.split(" ", ln.getline("InputParameters.csv", 5))[2])
+        with open('InputParameters.json') as f:
+            prms = json.load(f)
+        pathSpp = prms['number_of_pathogen_species']
+        bitfit = prms['number_of_bits_per_antigen']
+        print("No. of pathogen species =", int(pathSpp))
+        MHC_len = int(prms['number_of_bits_per_gene'])
         print("Length of the bit string =", MHC_len)
         print("Length of bit string fit =", bitfit)
-    except:
+    except Exception:
         print("Can't find parameter file! You may be in a wrong directory.")
         sys.exit()
     try:
         L_init = loadHostPopulation(sys.argv[1])
         print("First file loaded!")
-    except:
+    except Exception:
         print("Can't load file named", sys.argv[1], ". Check if it exists.")
         sys.exit()
     try:
         L_endd = loadHostPopulation(sys.argv[2])
         print("Second file loaded!")
-    except:
+    except Exception:
         print("Can't load file named", sys.argv[2], ". Check if it exists.")
         sys.exit()
 #    F_init = bitSimAll(L_init, bitfit)

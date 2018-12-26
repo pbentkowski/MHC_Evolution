@@ -7,8 +7,7 @@ at the end of simulation.
 Created on Tue Mar 15 10:17:01 2016
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
-import re
-import linecache as ln
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -33,8 +32,9 @@ def main():
 #    GenerData = np.genfromtxt("HostsGeneDivers.csv")
     print("Done loading data files!")
 
-    l = re.split(" ", ln.getline('InputParameters.csv', 9))
-    print("Number of pathogen species:", l[2])
+    with open('InputParameters.json') as f:
+        prms = json.load(f)
+    print("Number of pathogen species:", prms['number_of_pathogen_species'])
 
     binz = np.arange(0.5, MAXX+0.5, 1.0)
     tick_binz = np.arange(0, MAXX+1, XX_tikz)

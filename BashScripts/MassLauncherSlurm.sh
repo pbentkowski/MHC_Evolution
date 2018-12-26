@@ -22,10 +22,10 @@ for line in $(< ParamParam.csv);
     cd MHC.$j
     IFS=$' '
     # the lines below will stitch a custom sbatch Slurm file and run it
-    echo "srun ./$1 $line" > theLine.txt
+    echo "srun --job-name=$j.mhc ./$1 $line" > theLine.txt
     cat ~/launchers/sbatchTemplate_begin.sh theLine.txt ~/launchers/sbatchTemplate_end.sh > runTheMHCjob.sl
     rm theLine.txt
-    sbatch --job-name=$j.mhc runTheMHCjob.sl &
+    sbatch runTheMHCjob.sl &
     echo -e "Run No. $j launched! Params are set to: $line"
     IFS=$'\n'
     cd ..
