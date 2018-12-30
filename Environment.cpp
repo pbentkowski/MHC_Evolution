@@ -420,7 +420,7 @@ void Environment::calculateHostsFitnessExpScalingUniqAlleles(double alpha){
  * fitness proportionate selection method</a> (also known as the roulette wheel
  * selection). Simulates random mating of hermaphrodites with no difference 
  * between sexes.
- *
+ */
 void Environment::selectAndReprodHostsReplace(){
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
@@ -436,35 +436,39 @@ void Environment::selectAndReprodHostsReplace(){
     if(sum_of_fit == 0){
         return;
     }
-    int n = 0;
-    aley_oop:
-    while(n < pop_size){
-        rnd = randGen.getRealDouble(0, sum_of_fit);
-        unsigned long HostPopulationSize = HostPopulation.size();
-        for(unsigned long k = 0; k < HostPopulationSize; ++k) {
-            rnd = rnd - HostPopulation[k].getFitness();
-            if(rnd <= 0){
-               HostPopulation[k].SelectedForReproduction += 1;
-               NewHostsVec.push_back(HostPopulation[k]);
-               NewHostsVec.back().setMotherMhcNumber(HostPopulation[k].getUniqueMHCs().size());
-               n += 1;
-               goto second_parent;
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp single
+    {
+        int n = 0;
+        aley_oop:
+        while (n < pop_size) {
+            rnd = rngGenPtr[omp_get_thread_num()].getRealDouble(0, sum_of_fit);
+            unsigned long HostPopulationSize = HostPopulation.size();
+            for (unsigned long k = 0; k < HostPopulationSize; ++k) {
+                rnd = rnd - HostPopulation[k].getFitness();
+                if (rnd <= 0) {
+                    HostPopulation[k].SelectedForReproduction += 1;
+                    NewHostsVec.push_back(HostPopulation[k]);
+                    NewHostsVec.back().setMotherMhcNumber(HostPopulation[k].getUniqueMHCs().size());
+                    n += 1;
+                    goto second_parent;
+                }
             }
-        }
-        second_parent:
-        rnd = randGen.getRealDouble(0, sum_of_fit);
-        HostPopulationSize = HostPopulation.size();
-        for(unsigned long p = 0; p < HostPopulationSize; ++p) {
-            rnd = rnd - HostPopulation[p].getFitness();
-            if(rnd <= 0){
-               HostPopulation[p].SelectedForReproduction += 1;
-               NewHostsVec.back().assignChromTwo(HostPopulation[p].getChromosomeTwo());
-               NewHostsVec.back().setFatherMhcNumber(HostPopulation[p].getUniqueMHCs().size());
+            second_parent:
+            rnd = rngGenPtr[omp_get_thread_num()].getRealDouble(0, sum_of_fit);
+            HostPopulationSize = HostPopulation.size();
+            for (unsigned long p = 0; p < HostPopulationSize; ++p) {
+                rnd = rnd - HostPopulation[p].getFitness();
+                if (rnd <= 0) {
+                    HostPopulation[p].SelectedForReproduction += 1;
+                    NewHostsVec.back().assignChromTwo(HostPopulation[p].getChromosomeTwo());
+                    NewHostsVec.back().setFatherMhcNumber(HostPopulation[p].getUniqueMHCs().size());
 
-               // Randomly swaps places of chromosomes to avoid situation when
-               // they effectively become two separate populations.
-               NewHostsVec.back().swapChromosomes(rngGenPtr[omp_get_thread_num()]);
-               goto aley_oop;
+                    // Randomly swaps places of chromosomes to avoid situation when
+                    // they effectively become two separate populations.
+                    NewHostsVec.back().swapChromosomes(rngGenPtr[omp_get_thread_num()]);
+                    goto aley_oop;
+                }
             }
         }
     }
@@ -478,7 +482,7 @@ void Environment::selectAndReprodHostsReplace(){
                 " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 }
-*/
+
 
 /**
  *@brief Core method. Forms the next generation of hosts using the fitness

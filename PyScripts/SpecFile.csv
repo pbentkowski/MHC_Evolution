@@ -1,25 +1,22 @@
-# Runtime date:
-	run_start_date = 2016-04-26
-# Model's core parameters:
-	random_number_seed = 98163
-	number_of_bits_per_gene = 14
-	number_of_bits_per_antigen = 6000
-	host_population_size = 3500
-	pathogen_population_size = 3500
-	number_of_pathogen_species = 16
-	number_of_genes_per_host_one_chromosome = 1
-	number_of_antigens_per_pathogen = 1
-	number_of_pathogen_generation_per_one_host_generation = 10
-	number_of_host_generations = 2500
-	mutation_probability_in_host = 0.0001
-	mutation_probability_in_pathogen = 0.001
-	heterozygote_advantage = YES
-	host_gene_deletion_probability = 0.001
-	host_gene_duplication_probability = 0.001
-	host_maximal_number_of_genes_in_chromosome = 100
-	Alpha_factor_for_the_host_fitness_function = 0.08
-	Fraction_of_antigen_bits_getting_fixed = 0.333
-# Other_information:
-	separated_species_genomes = YES
-	point_mutation_in_host_is_used = 7.14275e-06
-
+{
+    "alpha_factor_for_the_host_fitness_function": 0.02,
+    "heterozygote_advantage": "YES",
+    "host_gene_deletion_probability": 0.001,
+    "host_gene_duplication_probability": 0.001,
+    "host_maximal_number_of_genes_in_chromosome": 50,
+    "host_population_size": 1000,
+    "mutation_probability_in_host": 0.0001,
+    "mutation_probability_in_pathogen": "VARX",
+    "number_of_bits_per_antigen": 6000,
+    "number_of_bits_per_gene": 16,
+    "number_of_genes_per_host_one_chromosome": 1,
+    "number_of_host_generations": 3000,
+    "number_of_pathogen_generation_per_one_host_generation": 10,
+    "number_of_pathogen_species": "VAR",
+    "number_of_sex_mates": 10,
+    "number_of_threads": 28,
+    "pathogen_population_size": "IRR",
+    "point_mutation_in_host_is_used": 6.250197611246122e-06,
+    "run_start_date_and_time": "2018-12-24.23:38:43",
+    "separated_species_genomes": "YES"
+}

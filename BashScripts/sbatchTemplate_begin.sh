@@ -1,9 +1,11 @@
 #!/bin/bash
 
+#SBATCH -o mhc.out    # output file
+#SBATCH -e mhc.err    # error file
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=24
-#SBATCH --mem=4gb
-#SBATCH --time=16:00:00
+#SBATCH --mem=16gb
+#SBATCH --time=48:00:00
 #SBATCH --partition=standard
 
 
