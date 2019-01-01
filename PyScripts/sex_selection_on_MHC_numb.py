@@ -9,9 +9,11 @@ for Evolutionary Biology Group, Faculty of Biology
     Adam Mickiewicz University, Poznan, Poland
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
+import packed_plots_of_MHC_alleles as ppma
 
 
 def loadTheParents(moth="NumberOfMhcInMother.csv",
@@ -22,17 +24,18 @@ def loadTheParents(moth="NumberOfMhcInMother.csv",
         mother = np.genfromtxt(moth)[1::, 1::]
     except Exception:
         print("Failed to load mothers MHC numbers. Check if file exists.")
-        return None
+        return None, None, None
     try:
         father = np.genfromtxt(fath)[1::, 1::]
     except Exception:
         print("Failed to load fathers MHC numbers. Check if file exists.")
-        return None
+        return None, None, None
     try:
         mates = np.genfromtxt(beforeMating)[1::, 1::]
     except Exception:
-        print("Failed to load fathers MHC numbers. Check if file exists.")
-        return None
+        print("Failed to load available mates MHC numbers.",
+              "Check if file exists.")
+        return None, None, None
 #    time = np.genfromtxt(moth)[:, 0]
     return mother, father, mates
 
@@ -56,26 +59,27 @@ def avrgMateMHCnumb(mate):
     """For each time step of the `mate` array it calculates the mean number
     of MHC types per time step and files an array of the exact shape as the the
     `mate` array. Used later for calculation."""
-    mmFarh = np.zeros(mate.shape)
+    mmMate = np.zeros(mate.shape)
     for i, itm in enumerate(mate):
-        mmFarh[i, :] = np.mean(itm)
-    return mmFarh
+        mmMate[i, :] = np.mean(itm)
+    return mmMate
 
 
-def reshapeMatherFather(mother, father, mmFarh):
+def reshapeMatherFather(mother, father, mmMate):
     """Simply reshapes the the data, but keep corresponding pairs."""
-    if (mother.shape == father.shape and father.shape == mmFarh.shape):
+    if (mother.shape == father.shape and father.shape == mmMate.shape):
         mother = np.reshape(mother, mother.shape[0] * mother.shape[1])
         father = np.reshape(father, father.shape[0] * father.shape[1])
-        mmFarh = np.reshape(mmFarh, mmFarh.shape[0] * mmFarh.shape[1])
-        return mother, father, mmFarh
+        mmMate = np.reshape(mmMate, mmMate.shape[0] * mmMate.shape[1])
+        return mother, father, mmMate
     else:
-        print("Mother and father arrays need to have same shapes. Aborded.")
+        print("Mother, father and mates arrays need to have same shapes.",
+              "Aborded.")
         return None
 
 
 def pickMotherSizeGroups(motherR, fatherR, mmFarhR):
-    """Takes reshaped 1D mother and father arrays done by
+    """Takes reshaped 1D mother, father and mate arrays done by
     `reshapeMatherFather()`. For 'mothers' with N MHC types (`ww` list) it
     creates an array of all values of MHC types numbers of 'fathers'."""
     ww = list(range(int(np.min(motherR)), int(np.max(motherR) + 1)))
@@ -105,7 +109,8 @@ def meanFatherMHCnumb(ww, bigOnes, meanOnes):
 
 
 def plotAndDoStats(Mom, Dad, low_copy, up_copy):
-    """ """
+    """Plot regression plot between number of MHC types a 'mother' has and the
+    number 'father' has. Not very useful though :-/ """
     if low_copy >= up_copy:
         print("Lower boudry on MHC copy number has to me smaller than higher",
               "boundry on MHC copy number.")
@@ -135,7 +140,10 @@ def plotAndDoStats(Mom, Dad, low_copy, up_copy):
 
 
 def plotDeviantFromMeanFather(mother, father, mate, lower, upper):
-    """ """
+    """Plots the difference between the number of MHC types 'father' had and
+    the mean number of MHC types that individuals had in host population before
+    mating (the mean for the pool of available mates) for each size of 'mother'
+    MHC repertoire."""
     mother, father, mate = trimData(mother, father, mate, lower, upper)
     mmMate = avrgMateMHCnumb(mate)
     rMom, rDad, rMmMate = reshapeMatherFather(mother, father, mmMate)
@@ -159,3 +167,59 @@ def plotDeviantFromMeanFather(mother, father, mate, lower, upper):
     plt.tight_layout()
     plt.savefig("SexSelectStrght.png")
     plt.show()
+
+
+def justPlotDeviantFromMeanFather(ww, deltas, bSize, path):
+    """Does the same as `plotDeviantFromMeanFather()` only it does not
+    calculate the stats on it self."""
+    bSize = np.sqrt(bSize)  # Create marker list
+    plt.figure(1, figsize=(9, 6))
+    plt.scatter(ww, deltas, s=bSize)
+    plt.plot(ww, np.zeros(len(ww)), 'k-', lw=2)
+    plt.grid(axis='y')
+    plt.xlabel("Number of MHC types in 'mothers'")
+    plt.ylabel("Average deviation of 'fathers' MHC type\nnumber from" +
+               " pre-mating population")
+    plt.tight_layout()
+    fileName = os.path.join(path, "SexSelectStrght.png")
+    plt.savefig(fileName)
+    plt.cla()
+
+
+def getTheData(theStartDate, templateList, dirr=os.getcwd()):
+    """Walking the dir using Python 3.5. Variable theStartDate has to be
+    a datetime.date() data type."""
+    datOut = []
+    for dirName, subdirList, fileList in os.walk(dirr):
+        for file in fileList:
+            filepath = os.path.join(dirName, file)
+            if(filepath == os.path.join(dirName, 'InputParameters.json') and
+               ppma.loadTheDateFromParamFile(filepath) >= theStartDate):
+                paramzList = ppma.loadParamSettings(filepath)
+                if ppma.compareParams(templateList, paramzList):
+                    print("Processing dir:", dirName, end=" ")
+                    moPth = os.path.join(dirName, 'NumberOfMhcInMother.csv')
+                    faPth = os.path.join(dirName, 'NumberOfMhcInFather.csv')
+                    mPth = os.path.join(dirName, 'NumberOfMhcBeforeMating.csv')
+                    mother, father, mate = loadTheParents(moPth, faPth, mPth)
+                    moth, fath, mate = trimData(mother, father, mate, 2, 100)
+                    mmMt = avrgMateMHCnumb(mate)
+                    rMom, rDad, rMmMt = reshapeMatherFather(moth, fath, mmMt)
+                    ww, Fatrs, meanM = pickMotherSizeGroups(rMom, rDad, rMmMt)
+                    bSize = np.zeros(len(Fatrs))
+                    for i, itm in enumerate(Fatrs):
+                        bSize[i] = len(itm)
+                    deltas = []
+                    for i, it in enumerate(ww):
+                        deltas.append(np.mean(Fatrs[i] - meanM[i]))
+                    justPlotDeviantFromMeanFather(ww, deltas, bSize, dirName)
+                    try:
+                        xx = np.transpose(np.vstack((ww, np.array(deltas),
+                                                     bSize)))
+                    except Exception:
+                        print(" - failed to stack the data! Check if the",
+                              "input file sizes (e.g. line numbers) are OK.")
+                        continue
+                    datOut.append(xx)
+                    print(" - done.")
+    return datOut
