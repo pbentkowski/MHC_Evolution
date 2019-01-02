@@ -10,6 +10,7 @@ for Evolutionary Biology Group, Faculty of Biology
 @author: Piotr Bentkowski - bentkowski.piotr@gmail.com
 """
 import os
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
@@ -169,7 +170,7 @@ def plotDeviantFromMeanFather(mother, father, mate, lower, upper):
     plt.show()
 
 
-def justPlotDeviantFromMeanFather(ww, deltas, bSize, path):
+def justPlotDeviantFromMeanFather(ww, deltas, bSize, path, suffix=""):
     """Does the same as `plotDeviantFromMeanFather()` only it does not
     calculate the stats on it self."""
     bSize = np.sqrt(bSize)  # Create marker list
@@ -181,7 +182,11 @@ def justPlotDeviantFromMeanFather(ww, deltas, bSize, path):
     plt.ylabel("Average deviation of 'fathers' MHC type\nnumber from" +
                " pre-mating population")
     plt.tight_layout()
-    fileName = os.path.join(path, "SexSelectStrght.png")
+    if suffix:
+        strr = "SexSelectStrght" + suffix + ".png"
+        fileName = os.path.join(path, strr)
+    else:
+        fileName = os.path.join(path, "SexSelectStrght.png")
     plt.savefig(fileName)
     plt.cla()
 
@@ -223,3 +228,78 @@ def getTheData(theStartDate, templateList, dirr=os.getcwd()):
                     datOut.append(xx)
                     print(" - done.")
     return datOut
+
+
+def avgDatOut(datOut):
+    """ """
+    minn = np.inf
+    maxx = 0
+    for itm in datOut:
+        new_min = np.min(itm[:, 0])
+        new_max = np.max(itm[:, 0])
+        if new_min < minn:
+            minn = new_min
+        if new_max > maxx:
+            maxx = new_max
+    ww = np.arange(minn, maxx+1, 1)
+    ll = np.zeros((len(ww), 4))
+    ll[:, 0] = ww
+    for itm in datOut:
+        for ii, w in enumerate(ww):
+            try:
+                ll[ii, 1] += itm[ii][1]
+                ll[ii, 2] += 1
+                ll[ii, 3] += itm[ii][2]
+            except Exception:
+                continue
+    out = np.zeros((len(ll), 3))
+    out[:, 0] = ll[:, 0]
+    out[:, 1] = ll[:, 1] / ll[:, 2]
+    out[:, 2] = ll[:, 3]
+    return out
+
+
+def main():
+    """Main function - the script's main body."""
+    if len(sys.argv) <= 3:
+        print("Two arguments are needed:")
+        print("  1. Give a starting date. It has to be in yyyy-mm-dd format.")
+        print("  2. Give the path to template file.")
+        print("  3. Give the plot file suffix.")
+        sys.exit()
+    startDate = None
+    try:
+        startDate = ppma.readDate(sys.argv[1])
+    except ValueError:
+        print("Cannot convert argument #1 to a date format.")
+        sys.exit()
+    if startDate:
+        try:
+            template = ppma.loadParamSettings(sys.argv[2])
+        except Exception:
+            print("Cannot load the template file. Exiting.")
+            sys.exit()
+        try:
+            theData = getTheData(startDate, template, ".")
+#            print(theData)
+        except Exception:
+            print("Failed to process the data. Some serious issues arose.",
+                  "Check if the cut-off host generation for calculating stats",
+                  "is smaller than the total number of host generations.")
+            sys.exit()
+        if len(theData):
+            np.save("sexSelectStrgt" + sys.argv[3], theData)
+            out = avgDatOut(theData)
+            justPlotDeviantFromMeanFather(out[:, 0], out[:, 1], out[:, 2],
+                                          ".", sys.argv[3])
+        else:
+            print("No data files matching the criterions were found.",
+                  "Specify your template file.")
+            sys.exit()
+    else:
+        print("Wrong date format.")
+        sys.exit()
+
+
+if __name__ == "__main__":
+    main()
