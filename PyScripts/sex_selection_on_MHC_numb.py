@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
- Your doc string here...
+Uses the files `NumberOfMhcInMother.csv`, `NumberOfMhcInFather.csv`,
+`NumberOfMhcBeforeMating.csv` and `InputParameters.json` to analyse the
+strength of selection preference on partners' MHC type number depending on the
+sexual selection scenario used.
 
 
 Created on Thu Apr 13 15:42:41 2017
@@ -193,7 +196,8 @@ def justPlotDeviantFromMeanFather(ww, deltas, bSize, path, suffix=""):
 
 def getTheData(theStartDate, templateList, dirr=os.getcwd()):
     """Walking the dir using Python 3.5. Variable theStartDate has to be
-    a datetime.date() data type."""
+    a datetime.date() data type. Each item in the `datOut` structure is the
+    result of computing one simulation."""
     datOut = []
     for dirName, subdirList, fileList in os.walk(dirr):
         for file in fileList:
@@ -231,7 +235,9 @@ def getTheData(theStartDate, templateList, dirr=os.getcwd()):
 
 
 def avgDatOut(datOut):
-    """ """
+    """Takes the data structure produced by `getTheData()` and averages the
+    results collapsing them to one data structure ready to plot with
+    `justPlotDeviantFromMeanFather()`"""
     minn = np.inf
     maxx = 0
     for itm in datOut:
