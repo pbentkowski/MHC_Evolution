@@ -91,6 +91,7 @@ public:
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
     void matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber);
     void matingMaxDifferentMHCs(int matingPartnerNumber);
+    void matingRandom();
 
     // === Data harvesting methods ===
     unsigned long getPathoNumOfSpecies();

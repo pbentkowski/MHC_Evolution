@@ -796,7 +796,7 @@ void Environment::matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNu
         }
     }
     // First create an instance of an random engine.
-    std::random_device rnd_device;
+//    std::random_device rnd_device;
     // Specify the size of the mates vector
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
@@ -887,7 +887,7 @@ void  Environment::matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber)
         }
     }
     // First create an instance of an random engine.
-    std::random_device rnd_device;
+//    std::random_device rnd_device;
     // Specify the size of the mates vector
     std::vector<int> matesVec((unsigned int) matingPartnerNumber);
     // the mating procedure
@@ -958,7 +958,7 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
     int theBestMatch;
     double sameGeneCount, highScore, uniqueMHCcount, score;
 // First create an instance of an random engine.
-    std::random_device rnd_device;
+//    std::random_device rnd_device;
     // Specify the size of the mates vector
     std::vector<int> matesVec(matingPartnerNumber);
     // the mating procedure
@@ -1010,7 +1010,7 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
         HostPopulation.clear();
         HostPopulation = NewHostsVec;
     }else{
-        std::cout << "Error in maringMeanOptimalNumberMHCsmallSubset(): Size mismatch " <<
+        std::cout << "Error in matingMeanOptimalNumberMHCsmallSubset(): Size mismatch " <<
                 "between the new and the old population!" << std::endl;
         std::cout << "old pop: " << HostPopulation.size() <<
                 " | new pop: " << NewHostsVec.size()  << std::endl;
@@ -1035,7 +1035,7 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
     int theBestMatch;
     double sameGeneCount, highScore, score;
 // First create an instance of an random engine.
-    std::random_device rnd_device;
+//    std::random_device rnd_device;
     // Specify the size of the mates vector
     std::vector<int> matesVec((unsigned int) matingPartnerNumber);
     // the mating procedure
@@ -1085,12 +1085,57 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
         HostPopulation.clear();
         HostPopulation = NewHostsVec;
     }else{
-        std::cout << "Error in maringMeanOptimalNumberMHCsmallSubset(): Size mismatch " <<
+        std::cout << "Error in matingMaxDifferentMHCs(): Size mismatch " <<
                   "between the new and the old population!" << std::endl;
         std::cout << "old pop: " << HostPopulation.size() <<
                   " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 
+}
+
+/**
+ * @brief Core method. Creates a new generation of hosts by sexual reproduction
+ * picking mates at random.
+ *
+ * Mates are randomly selected. It only makes sure that an individual does not mate with itself.
+ *
+ */
+void Environment::matingRandom() {
+    unsigned long popSize = HostPopulation.size();
+    std::vector<Host> NewHostsVec;
+    NewHostsVec.clear();
+    unsigned long i;
+    int theMatch;
+    // the random mating procedure
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp single
+    {
+        while (NewHostsVec.size() < popSize) {
+            i = 0;
+            theMatch = 0;
+            while (i == theMatch) {
+                i = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) popSize - 1);
+                theMatch = rngGenPtr[omp_get_thread_num()].getRandomFromUniform(0, (unsigned int) popSize - 1);
+            }
+            if (int(NewHostsVec.size()) < popSize) {
+                // mate two hosts, set a new individual
+                NewHostsVec.push_back(HostPopulation[i]);
+                NewHostsVec.back().setMotherMhcNumber(HostPopulation[i].getUniqueMHCs().size());
+                NewHostsVec.back().assignChromTwo(HostPopulation[theMatch].getChromosomeTwo());
+                NewHostsVec.back().setFatherMhcNumber(HostPopulation[theMatch].getUniqueMHCs().size());
+                NewHostsVec.back().swapChromosomes(rngGenPtr[omp_get_thread_num()]);
+            }
+        }
+    }
+    if (HostPopulation.size() == NewHostsVec.size()){
+        HostPopulation.clear();
+        HostPopulation = NewHostsVec;
+    }else{
+        std::cout << "Error in matingRandom(): Size mismatch " <<
+                  "between the new and the old population!" << std::endl;
+        std::cout << "old pop: " << HostPopulation.size() <<
+                  " | new pop: " << NewHostsVec.size()  << std::endl;
+    }
 }
 
 //==============================================================//

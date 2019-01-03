@@ -42,8 +42,8 @@ using jsonf = nlohmann::json;
  */
 void printTipsToRun(){
     std::cout << std::endl;
-    std::cout << "This is the first sex scenario where most different MHC composition"
-            " is preferred. Parameters should be:" << std::endl;
+    std::cout << "This is the first sex scenario where most different MHC composition."
+            " Parameters should be:" << std::endl;
     std::cout << " 1. The number of threads the program will use. Give 0 to use all the available CPU cores." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
     std::cout << " 3. Number of bits in an antigen." << std::endl;
