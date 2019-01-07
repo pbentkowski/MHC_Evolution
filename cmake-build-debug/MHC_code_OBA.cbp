@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MHC_code_OBA">
-				<Option output="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug"/>
+				<Option output="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="MHC_code_OBA/fast">
-				<Option output="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug"/>
+				<Option output="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/MHC_code_OBA" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -67,87 +67,87 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 MHC_code_OBA/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/piotr/CodeProjects/mhcevolution/cmake-build-debug"/>
+				<Option working_dir="/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/piotr/CodeProjects/MhcEvo2000/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Antigen.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Antigen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Antigen.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Antigen.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/DataHandler.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/DataHandler.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/DataHandler.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/DataHandler.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Environment.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Environment.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Environment.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Environment.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Gene.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Gene.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Gene.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Gene.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/H2Pinteraction.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/H2Pinteraction.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/H2Pinteraction.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/H2Pinteraction.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Host.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Host.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Host.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Host.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Pathogen.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Pathogen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Pathogen.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Pathogen.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Random.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Random.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Random.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Random.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Tagging_system.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Tagging_system.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Tagging_system.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/Tagging_system.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/main.cpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/main.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/mainpage.h">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/mainpage.h">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/nlohmann/json.hpp">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/nlohmann/json.hpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/CMakeLists.txt">
+		<Unit filename="/home/piotr/CodeProjects/MhcEvo2000/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

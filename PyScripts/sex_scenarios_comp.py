@@ -121,7 +121,7 @@ def main():
 #    if True:
     try:
         if len(sys.argv) > 2:
-            maxes = (90, 60, 0.35)  # set these for plot axes max-mins
+            maxes = (120, 70, 0.4)  # set these for plot axes max-mins
             # maxes = (populMHCnumb, IndvMHCnumb, PresentPatho)
             plotBoxesGeneMeans(dat, sys.argv[2], maxes)
             # sys.argv[2] is suffix added to the name of the PNG plot with data
