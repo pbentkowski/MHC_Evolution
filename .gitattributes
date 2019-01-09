@@ -1,2 +1,3 @@
 PyScripts/*.ipynb linguist-vendored
+nlohmann/* linguist-vendored
 Doc/* linguist-documentation

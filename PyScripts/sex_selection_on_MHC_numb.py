@@ -176,14 +176,17 @@ def plotDeviantFromMeanFather(mother, father, mate, lower, upper):
 def justPlotDeviantFromMeanFather(ww, deltas, bSize, path, suffix=""):
     """Does the same as `plotDeviantFromMeanFather()` only it does not
     calculate the stats on it self."""
+    FS = 16
     bSize = np.sqrt(bSize)  # Create marker list
     plt.figure(1, figsize=(9, 6))
     plt.scatter(ww, deltas, s=bSize)
     plt.plot(ww, np.zeros(len(ww)), 'k-', lw=2)
     plt.grid(axis='y')
-    plt.xlabel("Number of MHC types in 'mothers'")
+    plt.xlabel("Number of MHC types in 'mothers'", fontsize=FS)
     plt.ylabel("Average deviation of 'fathers' MHC type\nnumber from" +
-               " pre-mating population")
+               " pre-mating population", fontsize=FS)
+    plt.xticks(size=FS-2)
+    plt.yticks(size=FS-2)
     plt.tight_layout()
     if suffix:
         strr = "SexSelectStrght" + suffix + ".png"
