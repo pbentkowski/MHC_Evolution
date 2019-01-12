@@ -657,6 +657,32 @@ void Environment::mutateHostsWithDelDuplPointMuts(double pm_mut_probabl,
     }
 }
 
+/**
+ *  @brief Core method. Iterates through the all genes of the host population
+ * and performs all-MHC-mutation (writing a whole new bit string over an existing MHC)
+ * of genes with a given probability. Also deletions and duplications of genes.
+ *
+ * @param mut_probabl - probability of mutation of the whole MHC flip.
+ * @param del - mutation probability, probability a gene will be deleted
+ * @param dupli - mutation probability, probability a gene will be duplicated
+ * (and added at the end of the Chromosome vector)
+ * @param timeStamp - current time (number of the model iteration)
+ * @param maxGene - maximal allowed number of genes in a chromosome (user
+ * defined parameter).
+ * @param tag - pointer to the tagging system marking each gene variant
+ */
+void Environment::mutateHostWithDelDuplAllMHCchange(double mut_probabl, double del, double dupl, unsigned long maxGene,
+                                                    int timeStamp, Tagging_system &tag) {
+    unsigned long HostPopulationSzie = HostPopulation.size();
+    Random * rngGenPtr = mRandGenArr;
+    #pragma omp parallel for default(none) \
+        shared(HostPopulationSzie, mut_probabl, del, dupl, maxGene, timeStamp, rngGenPtr, tag)vi
+    for(int k = 0; k < HostPopulationSzie; ++k){
+        HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl, maxGene,
+                timeStamp, rngGenPtr[omp_get_thread_num()], tag);
+    }
+}
+
 
 /**
  * @brief Core method. When given micro-recombination mutation probability it

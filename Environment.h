@@ -83,7 +83,9 @@ public:
     void mutatePathogens(double mut_probabl, unsigned long mhcSize, int timeStamp);
     void mutatePathogensWithRestric(double mut_probabl,  unsigned long mhcSize, int timeStamp,
                                      Tagging_system &tag);
-    void mutateHostsWithDelDuplPointMuts(double mut_probabl, double del, 
+    void mutateHostsWithDelDuplPointMuts(double pm_mut_probabl, double del,
+        double dupl, unsigned long maxGene, int timeStamp, Tagging_system &tag);
+    void mutateHostWithDelDuplAllMHCchange(double mut_probabl, double del,
         double dupl, unsigned long maxGene, int timeStamp, Tagging_system &tag);
     double MMtoPMscaling(double MM_prob_mut, unsigned long geneLength);
 
