@@ -676,7 +676,7 @@ void Environment::mutateHostWithDelDuplAllMHCchange(double mut_probabl, double d
     unsigned long HostPopulationSzie = HostPopulation.size();
     Random * rngGenPtr = mRandGenArr;
     #pragma omp parallel for default(none) \
-        shared(HostPopulationSzie, mut_probabl, del, dupl, maxGene, timeStamp, rngGenPtr, tag)vi
+        shared(HostPopulationSzie, mut_probabl, del, dupl, maxGene, timeStamp, rngGenPtr, tag)
     for(int k = 0; k < HostPopulationSzie; ++k){
         HostPopulation[k].chromoMutProcessWithDelDupl(mut_probabl, del, dupl, maxGene,
                 timeStamp, rngGenPtr[omp_get_thread_num()], tag);
