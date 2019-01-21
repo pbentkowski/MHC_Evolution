@@ -104,6 +104,7 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <div class="contents">
 <div class="textblock"><p>This work is part of the project <a href="https://sites.google.com/site/evobiolab/projects"><b>Evolution of the number of copies of MHC genes: testing the optimality hypothesis and exploring alternatives.</b></a> supported by the Polish Science Centre (NCN).</p>
 <p>This branch <b>MhcEvo2000</b> has the ability to be run parellel on multi-core CPUs using openMP with *#pragma omp parallel* preprocessor calls. <b>It aims at simulating the sexual selection component in MHC gene copy number variation</b>.</p>
+<p>This is a new development - the program used for research and papers is in the branch <b>InDeapthInfection</b>.</p>
 <h2>Documentation: </h2>
 <p>Go from here to *./Doc/html/* and launch the *./Doc/html/index.html* file in your web browser. The documentation was created with Doxygen.</p>
 <h2>Authors: </h2>
@@ -114,7 +115,8 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <p>The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> so if you are using GCC, then version gcc 4.8 seems to be the minimum requirement (I had 5.4 and 6.2). This program has some serious dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile smoothly on most modern GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons build tool</a> might be useful too. Basic compilation works fine on Ubuntu 16.04 LTS with mentioned packages installed by running the command: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp Random.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14</div></div><!-- fragment --><p>The code here can be also used as a toolbox for your research. You can stitch your own <em>main_yourown.cpp</em> file with your scenario and tailored procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;scons -Q scenario=&quot;Scenarios/main_default.cpp&quot;</div></div><!-- fragment --><p> replacing <em>Scenarios/main_default.cpp</em> with the path to your own custom <em>main_xyz.cpp</em>. Use our <em>main_core.cpp</em> file as the base to develop your scenarios of MHC evolution dynamics. WARNING! Using our Scons script overwrites the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file in the main source directory - always store your scenarios somewhere else than the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file!</p>
 <p>Sometimes your HPC Cluster is lame and old and it has fairly outdated compiler (e.g. gcc &lt; 4.8). Then you can statically link the libraries on your fancy brand new PC running the latest Linux distro and send the no-dependencies executable to cluster. Compile like this: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp Random.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14</div></div><!-- fragment --><p>Or run the Scons script: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;scons -Q scenario=&quot;Scenarios/main_default.cpp&quot; linking=&quot;static&quot;</div></div><!-- fragment --><p> But it may throw some warnings… e.g. */usr/lib/gcc/x86_64-linux-gnu/5/libgomp.a(target.o): In function <code>gomp_target_init</code>: (.text+0xba): warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking*.</p>
 <h2>How to run: </h2>
-<p>The program takes exactly 17 parameters. These are:</p><ul>
+<p>The program takes exactly 17 parameters. These are:</p>
+<ul>
 <li><b>00</b> - Program's name</li>
 <li><b>01</b> - Number of threads program will try to use on a multi-core CPU. Giving 0 will make the program use all CPU cores available.</li>
 <li><b>02</b> - Number of bits in a gene.</li>
@@ -132,15 +134,18 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <li><b>14</b> - Probability of duplicating a gene in the host ([0,1] range).</li>
 <li><b>15</b> - Maximal number of genes permitted in one host chromosome.</li>
 <li><b>16</b> - Number of sexual partners an individual checks out before selecting one for mating.</li>
-<li><b>17</b> - Alpha factor for the host fitness function ([0,1] range).</li>
-</ul>
-<p>Historically we also had one more argument, that can be added if you want:</p><ul>
+<li><p class="startli"><b>17</b> - Alpha factor for the host fitness function ([0,1] range).</p>
+<p class="startli">Historically we also had one more argument, that can be added if you want:</p><ul>
 <li>18 - Fraction of the antigen's bits which are forbidden from changing (a.k.a. <em>No Mutation Bits</em>).</li>
 </ul>
+</li>
+</ul>
 <p>This program can recognise simple errors in the argument list (a probability value out of [0,1] range, negative values when only positive are allowed etc.), but will not recognise when they don't make a 'biological' sense.</p>
+<p>Example run call: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;./main_default 0 16 6000 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 50 10 0.02</div></div><!-- fragment --><p> There are 8 pathogen species here, each has 1000 individuals, hence the total pathogen population size is 8000.</p>
 <h2>The output and data visualisation: </h2>
-<p>Program produces a number of text files containing desired data. The file <em>InputParameters.json</em> contains the values of parameters fed to the model. Thefile <em>HostsGeneDivers.csv</em> contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (<em><a class="el" href="main_8cpp.html">main.cpp</a></em> file) what should speed up the program runtime.</p>
-<p>All the files are:</p><ul>
+<p>Program produces a number of text files containing desired data. The file <em>InputParameters.json</em> contains the values of parameters fed to the model. The file <em>HostsGeneDivers.csv</em> contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (<em><a class="el" href="main_8cpp.html">main.cpp</a></em> file) what should speed up the program runtime.</p>
+<p>All the files are:</p>
+<ul>
 <li>***InputParameters.json*** - contains run's parametrisation in JSON text format</li>
 <li>***HostsGeneDivers.csv*** - contain basic statistics of the output for host genomes</li>
 <li>***HostGenomesFile.[t].csv*** - contains all the genomes of all the cells for host population in time <em>t</em>. There can be more then one file like this for different time snapshots.</li>
@@ -154,14 +159,14 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <li>***NumberOfMhcInFather.csv*** - number of the unique MHC types in each individual host that has been selected as a mating (a.k.a. "father") in each time step during mating procedure. Each individual has a corresponding partner at the same index in the file <em>NumberOfMhcInMother.csv</em>.</li>
 <li>***PresentedPathogenNumbers.csv*** - number of presented pathogens by each individual in each time step.</li>
 </ul>
-<p>Visualisation is done using Python 3.6 scripts containing a a lot of calls to Numpy, Matplotlib and other scietific Python libraries. You may wish to consider using the <a href="https://www.anaconda.com/download/">Python Anaconda</a> for your Pythonic endeavours. Visualisation and stats scripts can be found in <em>PyScripts</em> directory.</p>
+<p>Visualisation is done using Python 3.6 scripts containing a a lot of calls to Numpy, Matplotlib and other scientific Python libraries. You may wish to consider using the <a href="https://www.anaconda.com/download/">Python Anaconda</a> for your Pythonic endeavours. Visualisation and stats scripts can be found in <em>PyScripts</em> directory.</p>
 <p>To load the environment for output analysis run: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;conda env create -f mhcEvoCondaEnv.yaml</div></div><!-- fragment --><p> file <code>mhcEvoCondaEnv.yaml</code> can be found in <em>PyScripts</em> directory. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Dec 22 2018 20:45:39 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Sun Jan 20 2019 23:54:14 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

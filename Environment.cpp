@@ -691,8 +691,7 @@ void Environment::mutateHostWithDelDuplAllMHCchange(double mut_probabl, double d
  *
  * It implements the way in Ejsmond MJ, Radwan J. 2015. *Red Queen drives
  * positive selection on Major Histocompatibility Complex genes (MHC)*
- * [not published yet] micro-recombination mutation is transformed to
- * point-mutation probability:
+ * micro-recombination mutation is transformed to point-mutation probability:
  *
  *  \f$ p_{t} = 1 - \left[1 - p_{m} (1 - 0.5^{b})\right]^{1/b} \f$
  *

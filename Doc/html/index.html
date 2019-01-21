@@ -154,7 +154,7 @@ $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="static" </b><br />
 But it may throw some warnings e.g.: <br />
 /usr/lib/gcc/x86_64-linux-gnu/5/libgomp.a(target.o): In function gomp_target_init : (.text+0xba): warning: Using 'dlopen' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking <br />
 <br />
-</p>
+ </p>
 <h1><a class="anchor" id="Parameters"></a>
 Parameters</h1>
 <p><b>In the most advanced scenario the program takes exactly 17 parameters. These are:</b> <br />
@@ -179,7 +179,14 @@ Parameters</h1>
 Historically we also had one more argument, that can be added if you want : <br />
  18- Fraction of the antigen's bits which are forbidden from changing (a.k.a. "No Mutation Bits"). <br />
 <br />
-This program can recognise simple errors in the argument list (a probability value out of [0,1] range, negative values when only positive are allowed etc.), but will not recognise when they don't make a 'biological' sense.</p>
+This program can recognise simple errors in the argument list (a probability value out of [0,1] range, negative values when only positive are allowed etc.), but will not recognise when they don't make a 'biological' sense.<br />
+<br />
+Example run call: <br />
+$ <b>./main_default 0 16 6000 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 50 10 0.02</b><br />
+<br />
+ There are 8 pathogen species here, each has 1000 individuals, hence the total pathogen population size is 8000. <br />
+<br />
+ </p>
 <h1><a class="anchor" id="The"></a>
 output and data visualisation</h1>
 <p>Program produces a number of text files containing desired data. The file <em>InputParameters.json</em> contains the values of parameters fed to the model. The file <em>HostsGeneDivers.csv</em> contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (<em><a class="el" href="main_8cpp.html">main.cpp</a></em> file) what should speed up the program runtime. <br />
@@ -208,7 +215,7 @@ $ <b>conda env create -f mhcEvoCondaEnv.yaml</b> <br />
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Dec 22 2018 20:45:41 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Sun Jan 20 2019 23:54:16 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"class_random.html#aff6c9a321cc83da8ae04f003fdfdd169":[2,0,7,6],
+"class_random_1_1_custom_prob.html":[2,0,7,0],
 "class_random_1_1_custom_prob.html#a294f28fcd139f790c416a084e86338cf":[2,0,7,0,1],
 "class_random_1_1_custom_prob.html#a3c0f4b62449b8b3e0ffd68a1a32b52cb":[2,0,7,0,3],
 "class_random_1_1_custom_prob.html#a75bc8aa32b86b5c4aa3473d402260905":[2,0,7,0,0],
@@ -18,8 +20,8 @@ var NAVTREEINDEX1 =
 "globals_func.html":[3,1,1],
 "globals_type.html":[3,1,3],
 "globals_vars.html":[3,1,2],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "index.html#Compilation":[0,1],
 "index.html#Parameters":[0,2],
 "index.html#The":[0,3],

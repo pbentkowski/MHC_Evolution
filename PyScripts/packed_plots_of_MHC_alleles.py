@@ -221,8 +221,10 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
 #                    cvFittSTD = np.std(cvFitt) / pathoNorm
 #                    dataFilePath = os.path.join(dirName,
 #                                                "HostMHCsNumbUniq_ChrOne.csv")
+#                    dataFilePath = os.path.join(dirName,
+#                                                "NumberOfMhcAfterMating.csv")
                     dataFilePath = os.path.join(dirName,
-                                                "NumberOfMhcAfterMating.csv")
+                                                "NumberOfMhcBeforeMating.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
@@ -414,15 +416,21 @@ def main():
     if startDate:
         try:
             template = loadParamSettings(sys.argv[2])
+            if template is None:
+                print("Failed to load the template file. Exiting.",
+                      "Check if the path is correct - you may wish to provide",
+                      "an absolute path.")
+                sys.exit()
             x_Label = getVarxLabel(sys.argv[2])
         except Exception:
             print("Cannot load the template file. Exiting.")
             sys.exit()
-        try:
+        if True:
             # third argument is very important
             theData = getTheData(startDate, template, int(sys.argv[3]))
             print(theData)
-        except Exception:
+#        except Exception:
+        else:
             print("Failed to process the data. Some serious issues arose.",
                   "Check if the cut-off host generation for calculating stats",
                   "is smaller than the total number of host generations.")

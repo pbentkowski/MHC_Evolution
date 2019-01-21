@@ -11,7 +11,6 @@ for Evolutionary Biology Group, Faculty of Biology
 """
 
 import os
-import re
 import sys
 import json
 import pylab as p

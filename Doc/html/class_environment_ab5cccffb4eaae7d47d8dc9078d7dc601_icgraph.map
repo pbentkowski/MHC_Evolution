@@ -1,5 +1,5 @@
 <map id="Environment::getNumbersOfUniqueMHCs" name="Environment::getNumbersOfUniqueMHCs">
 <area shape="rect" id="node2" href="$class_data_handler.html#a791581a6ac572d0daabd2c5bf8a53033" title="Saves the number of unique MHC types of each individual in each time step. Should be used BEFORE mati..." alt="" coords="241,5,451,47"/>
 <area shape="rect" id="node4" href="$class_data_handler.html#a95cd188763d53b65e7e2e658bb76760b" title="Saves the number of unique MHC types of each individual in each time step. Should be used AFTER matin..." alt="" coords="241,71,451,112"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="499,46,549,73"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="499,13,549,39"/>
 </map>
