@@ -554,7 +554,7 @@ void DataHandler::saveMhcNumbersWhenMating(Environment &EnvObj, int tayme) {
  * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::saveMhcNumbersBeforeMating(Environment &EnvObj, int tayme) {
-    if(ifNumberOfMhcWhenMating){
+    if(ifNumberOfMhcBeforeMating){
         std::ofstream NumberOfMhcBeforeMating;
         NumberOfMhcBeforeMating.open("NumberOfMhcBeforeMating.csv");
         NumberOfMhcBeforeMating << "#time number_of_MHCs_before_mating"
@@ -579,7 +579,7 @@ void DataHandler::saveMhcNumbersBeforeMating(Environment &EnvObj, int tayme) {
  * @param tayme - time stamp (hosts generation number)
  */
 void DataHandler::saveMhcNumbersAfterMating(Environment &EnvObj, int tayme) {
-    if(ifNumberOfMhcWhenMating){
+    if(ifNumberOfMhcAfterMating){
         std::ofstream NumberOfMhcBeforeMating;
         NumberOfMhcBeforeMating.open("NumberOfMhcAfterMating.csv");
         NumberOfMhcBeforeMating << "#time number_of_MHCs_after_mating"
