@@ -241,7 +241,7 @@ def plotTheTimes(tagArr, timeArr, maxTime, genePairs, maxTimeGenDict, dirrName,
         plt.hlines(dd[item][1], dd[item][0], maxTimeGenDict[item],
                    colors='r', lw=lastLineWdth)
     plt.xlim((0, maxTime))
-    plt.ylim(ymin=0)
+    plt.ylim(bottom=0)
     plt.xlabel("time [hosts generations]", fontsize=FS)
     plt.xticks(size=FS-2)
     plt.yticks([])
@@ -293,7 +293,8 @@ def serchTheDirs(FILE, template, dirr=os.getcwd()):
     """Walk the directory tree in search of model runs and process each
     simulation individually. Produces some meta-statistics regarding the
     results geathered in Numpy structured array."""
-    vv = ppma.lookForVAR(template)
+#    vv = ppma.lookForVAR(template)
+    vv = ppma.lookForVARinList(template)
     datOut = []
     dataOrdering = ['VAR', 'VARX', 'MRCA_time', 'maxMutNumb', 'numOfGenes']
     for dirName, subdirList, fileList in os.walk(dirr):

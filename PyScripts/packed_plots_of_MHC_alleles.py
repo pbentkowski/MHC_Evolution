@@ -229,14 +229,41 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     indvSTD = np.std(hgsUNIQ[EqPt:, 1:])
                     dataFilePath = os.path.join(dirName,
                                                 "PresentedPathogenNumbers.csv")
-                    patoPres = np.genfromtxt(dataFilePath)
-                    patoMean = np.mean(patoPres[EqPt:, 1:]) / pathoNorm
-                    patoSTD = np.std(patoPres[EqPt:, 1:]) / pathoNorm
+                    try:
+                        patoPres = np.genfromtxt(dataFilePath)
+                        patoMean = np.mean(patoPres[EqPt:, 1:]) / pathoNorm
+                        patoSTD = np.std(patoPres[EqPt:, 1:]) / pathoNorm
+                    except OSError:
+                        print("No PresentedPathogenNumbers.csv in:", dirName)
+                        patoMean = np.nan
+                        patoSTD = np.nan
                     datOut.append((var, varx, meanAlle, stdAlle, c1,
                                    indvMean, indvSTD, meanFitt, cvFittMean,
                                    patoMean, patoSTD, dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
+
+
+def checkOneParamValue(templateList, theStartDate,
+                       theParam='run_start_date_and_time', dirr=os.getcwd()):
+    """Auxiliary function. Crawls the directory tree according to given
+    template and minimal date, searches the runs with parametrisations
+    compatible with the template file and run after the given date and extracts
+    from them just one parameter value. Useful to check if some parameters are
+    there or still missing before running time-consuming `getTheData()`
+    function."""
+    datOut = []
+    for dirName, subdirList, fileList in os.walk(dirr):
+        for file in fileList:
+            filepath = os.path.join(dirName, file)
+            if(filepath == os.path.join(dirName, 'InputParameters.json') and
+               loadTheDateFromParamFile(filepath) >= theStartDate):
+                paramzList = loadParamSettings(filepath)
+                with open(filepath) as f:
+                    prms = json.load(f)
+                if compareParams(templateList, paramzList):
+                    datOut.append((theParam, prms[theParam], dirName))
+    return datOut
 
 
 def buildStats(theData):
@@ -257,14 +284,14 @@ def buildStats(theData):
         meanAll = np.mean(ww['meanAllel'])
         stdAll = np.sqrt(np.sum(ww['stdAllel']**2) / NN)
         meanIndv = np.mean(ww['indvMean'])
-        stdIndv = np.sqrt(np.sum(ww['indvSTD']**2) / NN)
+        stdSTD = np.sqrt(np.sum(ww['indvSTD']**2) / NN)
         meanFitt = np.mean(ww['meanFitt'])
 #        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / NN)
         meanCvFit = np.mean(ww['cvFitMean'])
 #        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / NN)
-        patoMean = np.mean(ww['meanPato'])
-        patoSTD = np.sqrt(np.sum(ww['stdPato']**2) / NN)
-        meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdIndv,
+        patoMean = np.nanmean(ww['meanPato'])
+        patoSTD = np.sqrt(np.nansum(ww['stdPato']**2) / NN)
+        meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdSTD,
                            meanFitt, meanCvFit, patoMean, patoSTD))
     return np.array(meanResult)
 
@@ -380,7 +407,7 @@ def plotDotMeans(theData):
 def loadTheStuuff(dataSlice, specFile, dataType):
     """Loads the data from post-processed files. Useful when working in Ipython
     console.
-     . dataSlice - path to DataSlice.csv type of file
+     . dataSlice - path to *DataSlice.csv type of file
      . specFile - path to parameter file type of file"""
     try:
         dd = np.genfromtxt(dataSlice, dtype=dataType)
@@ -396,12 +423,14 @@ def loadTheStuuff(dataSlice, specFile, dataType):
 
 def main():
     """Main function - the script's main body."""
-    if len(sys.argv) <= 3:
+    if len(sys.argv) <= 4:
         print("Two arguments are needed:")
         print("  1. Give a starting date. It has to be in yyyy-mm-dd format.")
         print("  2. Give the path to template file.")
         print("  3. Give number of host generations after which calculate.",
               "the statistics.")
+        print("  4. Give the output file name's prefix (e.g. the value",
+              "of alpha.")
         sys.exit()
     startDate = None
     headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
@@ -435,15 +464,16 @@ def main():
             sys.exit()
         if len(theData):
             FMT = '%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %s'
-            open("DataSlice.csv", 'w').close()
-            np.savetxt("DataSlice.csv", theData, fmt=FMT, header=headerr,
+            outFile = str(sys.argv[4]) + "DataSlice.csv"
+            open(outFile, 'w').close()
+            np.savetxt(outFile, theData, fmt=FMT, header=headerr,
                        comments='#')
             for itm in theData:
                 for ii in range(len(itm) - 1):
                     print(itm[ii], "\t", end=" ")
                 print()
-            print("Check the output file:", str(os.getcwd()) +
-                  "/DataSlice.csv for details.")
+            print("Check the output file:", str(os.getcwd()) + "/" +
+                  outFile + " for details.")
             meanResult = buildStats(theData)
             plotAllAllesInPop(meanResult, x_Label)
             plotDotMeans(theData)
