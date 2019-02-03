@@ -10,7 +10,7 @@ conda env create -f mhcEvoCondaEnv.yaml
 ```
 to get all the stuff you need to run the scripts (and unfortunately some more...)
 
-#### What the scripts do
+### What the scripts do
 
 * ***animateMHCsHist.py*** - reads files with genome size histograms (`HostGeneNumbTotal_ChrOne.csv` and `HostMHCsNumbUniq_ChrOne.csv`) and a general host statistics file `HostsGeneDivers.csv` to render an animation how the size of the hosts' chromosomes and the number of MHC unique alleles in them evolve. You probably need a video codec like i.g. *ffmpeg* for *matplotlib* to be able
 to create a MP4 animation clip.
