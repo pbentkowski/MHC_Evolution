@@ -53,11 +53,7 @@ def plotBoxesGeneMeans(dataArr, suffix="", ymaxes=()):
     for itm in lebls:
         ll1.append(dataArr[dataArr["Mode"] == itm]['meanAllel'])
     for itm in lebls:
-        ll2.append(dataArr[dataArr["Mode"] == itm]['indvMean'] * 2.)
-        # the factor 2 is a result of the fact that the original data are given
-        # just for the Chromosome One. You can siply multiply it by two,
-        # because the chromosomes swap places at random (One becomes Two and
-        # vice versa)
+        ll2.append(dataArr[dataArr["Mode"] == itm]['indvMean'])
     for itm in lebls:
         ll3.append(dataArr[dataArr["Mode"] == itm]['meanPato'])
     boxprops = dict(linestyle='-', linewidth=2.5, color='k')
