@@ -42,7 +42,7 @@ using jsonf = nlohmann::json;
  */
 void printTipsToRun(){
     std::cout << std::endl;
-    std::cout << "This is the sex scenario with random mating."
+    std::cout << "This is the sexual selection scenario with random mating."
             " Parameters should be:" << std::endl;
     std::cout << " 1. The number of threads the program will use. Give 0 to use all the available CPU cores." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;

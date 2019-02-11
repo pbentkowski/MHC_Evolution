@@ -238,7 +238,7 @@ int main(int argc, char** argv) {
                 ENV.clearPathoInfectionData();
             }
             Data2file.savePresentedPathos(ENV, i);
-            ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha); // no limit on the gene number!
+            ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha); // penalty for too many MHCs
             ENV.selectAndReprodHostsReplace();  // changed for sexual reproduction
             Data2file.saveMhcNumbersBeforeMating(ENV, i);
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i, tag);
