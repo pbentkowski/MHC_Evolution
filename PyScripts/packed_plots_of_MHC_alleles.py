@@ -29,9 +29,14 @@ inType = np.dtype([('time', np.int), ('pop_size', np.int),
 # """Data type for storing processed data"""
 outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
                     ('stdAllel', 'f8'), ('slope', 'f8'), ('indvMean', 'f8'),
-                    ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('cvFitMean', 'f8'),
+                    ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('stdFitt', 'f8'),
+                    ('cvFitMean', 'f8'), ('cvFitSTD', 'f8'),
                     ('meanPato', 'f8'), ('stdPato', 'f8'),
                     ('sourceDir', 'S99')])
+meanTyp = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
+                    ('stdAllel', 'f8'), ('indvMean', 'f8'), ('indvSTD', 'f8'),
+                    ('meanFitt', 'f8'), ('stdFitt', 'f8'), ('cvFitMean', 'f8'),
+                    ('cvFitSTD', 'f8'), ('meanPato', 'f8'), ('stdPato', 'f8')])
 
 
 def getVarxLabel(filepath):
@@ -218,7 +223,7 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     cvFitt = cvFitt[EqPt::]
                     cvFitt = cvFitt[~np.isnan(cvFitt)]
                     cvFittMean = np.mean(cvFitt) / pathoNorm
-#                    cvFittSTD = np.std(cvFitt) / pathoNorm
+                    cvFittSTD = np.std(cvFitt) / pathoNorm
                     dataFilePath = os.path.join(dirName,
                                                 "HostMHCsNumbUniq_ChrOne.csv")
 #                                                "NumberOfMhcAfterMating.csv")
@@ -227,6 +232,7 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
                     indvSTD = np.std(hgsUNIQ[EqPt:, 1:])
+                    stdFitt = np.std(data['mean_fitness'][EqPt::] / pathoNorm)
                     dataFilePath = os.path.join(dirName,
                                                 "PresentedPathogenNumbers.csv")
                     try:
@@ -238,8 +244,9 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                         patoMean = np.nan
                         patoSTD = np.nan
                     datOut.append((var, varx, meanAlle, stdAlle, c1,
-                                   indvMean, indvSTD, meanFitt, cvFittMean,
-                                   patoMean, patoSTD, dirName))
+                                   indvMean, indvSTD, meanFitt, stdFitt,
+                                   cvFittMean, cvFittSTD, patoMean, patoSTD,
+                                   dirName))
     datOut = np.array(datOut, dtype=outType)
     return np.sort(datOut, order=dataOrdering)
 
@@ -286,14 +293,15 @@ def buildStats(theData):
         meanIndv = np.mean(ww['indvMean'])
         stdSTD = np.sqrt(np.sum(ww['indvSTD']**2) / NN)
         meanFitt = np.mean(ww['meanFitt'])
-#        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / NN)
+        stdFitt = np.sqrt(np.sum(ww['stdFitt']**2) / NN)
         meanCvFit = np.mean(ww['cvFitMean'])
-#        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / NN)
+        stdCvFit = np.sqrt(np.sum(ww['cvFitSTD']**2) / NN)
         patoMean = np.nanmean(ww['meanPato'])
         patoSTD = np.sqrt(np.nansum(ww['stdPato']**2) / NN)
         meanResult.append((ii[0], ii[1], meanAll, stdAll, meanIndv, stdSTD,
-                           meanFitt, meanCvFit, patoMean, patoSTD))
-    return np.array(meanResult)
+                           meanFitt, stdFitt, meanCvFit, stdCvFit, patoMean,
+                           patoSTD))
+    return np.array(meanResult, dtype=meanTyp)
 
 
 def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
@@ -313,9 +321,11 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     # First plot - unique MHC alleles in population
     plt.figure(1, figsize=figSize)
     for var in ll:
-        ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 2], ww[:, 3], lw=2, marker="o", ms=8)
-        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 2]), size=annoSize)
+        ww = meanResult[meanResult['VAR'] == var]
+        plt.errorbar(ww['VARX'], ww['meanAllel'], ww['stdAllel'],
+                     lw=2, marker="o", ms=8)
+        plt.annotate(str(var), xy=(ww['VARX'][-1], ww['meanAllel'][-1]),
+                     size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("mean number of MHCs in population", fontsize=FS)
 #    plt.xlim(limitz)
@@ -327,9 +337,11 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     # Second plot - unique MHC alleles in an individual
     plt.figure(2, figsize=figSize)
     for var in ll:
-        ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 4], ww[:, 5], lw=2, marker="o", ms=8)
-        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 4]), size=annoSize)
+        ww = meanResult[meanResult['VAR'] == var]
+        plt.errorbar(ww['VARX'], ww['indvMean'], ww['indvSTD'],
+                     lw=2, marker="o", ms=8)
+        plt.annotate(str(var), xy=(ww['VARX'][-1], ww['indvMean'][-1]),
+                     size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("average number of MHCs copies in an indiv.",
                fontsize=FS)
@@ -341,9 +353,11 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.grid(True)
     plt.figure(3, figsize=figSize)
     for var in ll:
-        ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 6], ww[:, 7], lw=2, marker="o", ms=8)
-        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 6]), size=annoSize)
+        ww = meanResult[meanResult['VAR'] == var]
+        plt.errorbar(ww['VARX'], ww['meanFitt'], ww['stdFitt'],
+                     lw=2, marker="o", ms=8)
+        plt.annotate(str(var), xy=(ww['VARX'][-1], ww['meanFitt'][-1]),
+                     size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("hosts average fitness normalized per number\nof pathogen" +
                " spp. and pathogen generations", fontsize=FS)
@@ -354,9 +368,11 @@ def plotAllAllesInPop(meanResult, x_label, logsc='linear'):
     plt.grid(True)
     plt.figure(4, figsize=figSize)
     for var in ll:
-        ww = meanResult[meanResult[:, 0] == var]
-        plt.errorbar(ww[:, 1], ww[:, 8], ww[:, 9], lw=2, marker="o", ms=8)
-        plt.annotate(str(var), xy=(ww[-1, 1], ww[-1, 8]), size=annoSize)
+        ww = meanResult[meanResult['VAR'] == var]
+        plt.errorbar(ww['VARX'], ww['meanPato'], ww['stdPato'],
+                     lw=2, marker="o", ms=8)
+        plt.annotate(str(var), xy=(ww['VARX'][-1], ww['meanPato'][-1]),
+                     size=annoSize)
     plt.xlabel(str(x_label), fontsize=FS)
     plt.ylabel("number of presented pathogens normalized per\n number of " +
                "pathogen spp. and pathogen generations", fontsize=FS)
@@ -434,7 +450,7 @@ def main():
         sys.exit()
     startDate = None
     headerr = 'VAR VARX meanAllel stdAllel slope indvMean indvSTD meanFitt '\
-        + 'meanCvFitt meanPatho stdPato sourceDir'
+        + 'stdFitt meanCvFitt cvFitSTD meanPatho stdPato sourceDir'
     try:
         startDate = readDate(sys.argv[1])
     except ValueError:
@@ -463,7 +479,8 @@ def main():
                   "is smaller than the total number of host generations.")
             sys.exit()
         if len(theData):
-            FMT = '%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %s'
+            FMT = '%.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e %.4e' \
+                + ' %.4e %.4e %s'
             outFile = str(sys.argv[4]) + "DataSlice.csv"
             open(outFile, 'w').close()
             np.savetxt(outFile, theData, fmt=FMT, header=headerr,

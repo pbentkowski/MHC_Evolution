@@ -6,9 +6,13 @@ https://www.anaconda.com/download/
 
 When you have Anaconda installed run:
 ```shell
-conda env create -f mhcEvoCondaEnv.yaml
+conda env create -f mhcEvoEnv.yaml
 ```
-to get all the stuff you need to run the scripts (and unfortunately some more...)
+to get all the stuff you need to run the scripts (and probably some more...). And then (on Linux):
+```shell
+source activate mhcEvoEnv
+```
+and you're good to go!
 
 ### What the scripts do
 

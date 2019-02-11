@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
 """
 Calculates the theoretical probability of getting a run of K or more successes
@@ -37,12 +37,12 @@ def main():
     """ """
     try:
         numBits = int(input("Enter length of the big bit string: "))
-    except:
+    except Exception:
         print("The length of the bit string has to be an integer!")
         sys.exit()
     try:
         minFits = int(input("Enter length of the fitting string: "))
-    except:
+    except Exception:
         print("The length of the fitting string has to be an integer!")
         sys.exit()
     print("====================")
@@ -50,6 +50,7 @@ def main():
           "fit into a larger random bit string of length", numBits, "is:" +
           " p =", probOfStreak(numBits, minFits))
     print("\nDONE!")
+
 
 if __name__ == "__main__":
     sys.setrecursionlimit(20000)
