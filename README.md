@@ -113,6 +113,6 @@ Visualisation is done using Python 3.6 scripts containing a a lot of calls to Nu
 
 To load the environment for output analysis run:
 ```shell
-conda env create -f mhcEvoCondaEnv.yaml
+conda env create -f mhcEvoEnv.yaml
 ```
-file `mhcEvoCondaEnv.yaml` can be found in *PyScripts* directory.
+file `mhcEvoEnv.yaml` can be found in *PyScripts* directory.
