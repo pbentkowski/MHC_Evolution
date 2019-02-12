@@ -95,7 +95,7 @@
  * when they don't make a 'biological' sense.\n
  * \n
  * Example run call: \n
- * $ <b>./main_default 0 16 6000 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 50 10 0.02</b>\n\n
+ * $ <b>./main_default 0 16 3200 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 50 10 0.02</b>\n\n
  *
  * There are 8 pathogen species here, each has 1000 individuals, hence the total pathogen population size is 8000. \n\n
  *
@@ -142,6 +142,6 @@
  * <a href="https://www.anaconda.com/download/">Python Anaconda project</a>. These scripts
  * can be found in <i>PyScripts</i> directory. \n
  * To load the environment for output analysis run: \n\n
- * $ <b>conda env create -f mhcEvoCondaEnv.yaml</b> \n
+ * $ <b>conda env create -f mhcEvoEnv.yaml</b> \n
  *
  */
