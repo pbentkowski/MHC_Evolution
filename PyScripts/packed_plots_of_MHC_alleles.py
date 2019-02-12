@@ -32,7 +32,8 @@ outType = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
                     ('indvSTD', 'f8'), ('meanFitt', 'f8'), ('stdFitt', 'f8'),
                     ('cvFitMean', 'f8'), ('cvFitSTD', 'f8'),
                     ('meanPato', 'f8'), ('stdPato', 'f8'),
-                    ('sourceDir', 'S99')])
+                    ('sourceDir', 'S199')])
+# """Data type for storing data processed even more (averages for the final plots)"""
 meanTyp = np.dtype([('VAR', 'f8'), ('VARX', 'f8'), ('meanAllel', 'f8'),
                     ('stdAllel', 'f8'), ('indvMean', 'f8'), ('indvSTD', 'f8'),
                     ('meanFitt', 'f8'), ('stdFitt', 'f8'), ('cvFitMean', 'f8'),
@@ -225,9 +226,9 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     cvFittMean = np.mean(cvFitt) / pathoNorm
                     cvFittSTD = np.std(cvFitt) / pathoNorm
                     dataFilePath = os.path.join(dirName,
-#                                                "HostMHCsNumbUniq_ChrOne.csv")
+                                                "HostMHCsNumbUniq_ChrOne.csv")
 #                                                "NumberOfMhcAfterMating.csv")
-                                                "NumberOfMhcBeforeMating.csv")
+#                                                "NumberOfMhcBeforeMating.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
