@@ -3,9 +3,7 @@ Evolution of MHC repertoire and number of copies:
 
 This work is part of the project [**Evolution of the number of copies of MHC genes: testing the optimality hypothesis and exploring alternatives.**](https://sites.google.com/site/evobiolab/projects) supported by the Polish Science Centre (NCN).
 
-This branch **MhcEvo2000** has the ability to be run parellel on multi-core CPUs using openMP with *#pragma omp parallel* preprocessor calls. **It aims at simulating the sexual selection component in MHC gene copy number variation**.
-
-This is a new development - the program used for research and papers is in the branch **InDeapthInfection**.
+This branch **MhcEvo2000** has the ability to be run parellel on multi-core CPUs using openMP with *#pragma omp parallel* preprocessor calls.
 
 Documentation:
 -----------
