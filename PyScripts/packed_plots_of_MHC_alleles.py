@@ -189,7 +189,7 @@ def loadTheDateFromParamFile(filePar):
         return None
 
 
-def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
+def getTheData(theStartDate, templateList, genrsUsed=1000, dirr=os.getcwd()):
     """Walking the dir using Python 3.5. Variable theStartDate has to be
     a datetime.date() data type."""
     nopgpohg = 'number_of_pathogen_generation_per_one_host_generation'
@@ -215,6 +215,11 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     varx = float(paramzList[vv['VARX']])
                     dataFilePath = os.path.join(dirName, "HostsGeneDivers.csv")
                     data = np.genfromtxt(dataFilePath, dtype=inType)
+                    EqPt = len(data) - genrsUsed
+                    if EqPt <= 0:
+                        print("ERROR in getTheData(): not enough generations",
+                              "in run", dirName, ";", EqPt, "is not good.")
+                        sys.exit(1)
                     c0, c1 = poly.polyfit(data['time'][EqPt::],
                                           data['num_of_MHC_types'][EqPt::], 1)
                     meanAlle = data['num_of_MHC_types'][EqPt::].mean()
@@ -227,9 +232,9 @@ def getTheData(theStartDate, templateList, EqPt=1000, dirr=os.getcwd()):
                     cvFittMean = np.mean(cvFitt) / pathoNorm
                     cvFittSTD = np.std(cvFitt) / pathoNorm
                     dataFilePath = os.path.join(dirName,
-                                                "HostMHCsNumbUniq_ChrOne.csv")
+#                                                "HostMHCsNumbUniq_ChrOne.csv")
 #                                                "NumberOfMhcAfterMating.csv")
-#                                                "NumberOfMhcBeforeMating.csv")
+                                                "NumberOfMhcBeforeMating.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])
