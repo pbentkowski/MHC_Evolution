@@ -18,10 +18,14 @@ from matplotlib import cm
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import numpy as np
 
+figNumb = 0
+
 
 def plotFinttSurf(alpha, mhc_max=30, patho_max=70):
     """The 3D plot."""
-    fig = plt.figure(figsize=(10, 10))
+    global figNumb
+    figNumb += 1
+    fig = plt.figure(figNumb, figsize=(10, 10))
     ax = fig.gca(projection='3d')
     patho = np.arange(0, patho_max, 1.0)
     mhc = np.arange(1, mhc_max, 1.0)
