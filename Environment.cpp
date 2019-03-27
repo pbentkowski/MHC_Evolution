@@ -999,7 +999,7 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
             auto genn = std::bind(dist, mersenne_engine);
             generate(begin(matesVec), end(matesVec), genn);
             // find the best mate out of N randomly chosen
-            highScore = 1.0;
+            highScore = 0.0;
             theBestMatch = matesVec[0];
             for (auto mate : matesVec) {
 //            std::cout << mate << " ";
@@ -1014,8 +1014,8 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
                         }
                     }
                 }
-                score = sameGeneCount / ( uniqueMHCcount - sameGeneCount );
-                if (score < highScore) {
+                score = ( uniqueMHCcount - sameGeneCount ) / sameGeneCount ;
+                if (score > highScore) {
                     highScore = score;
                     theBestMatch = mate;
                 }
