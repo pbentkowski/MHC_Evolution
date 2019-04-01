@@ -5,26 +5,26 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -std=c++14")
 
 set(SOURCE_FILES
-    Antigen.cpp
-    Antigen.h
-    DataHandler.cpp
-    DataHandler.h
-    Environment.cpp
-    Environment.h
-    Gene.cpp
-    Gene.h
-    H2Pinteraction.cpp
-    H2Pinteraction.h
-    Host.cpp
-    Host.h
+    src/Antigen.cpp
+    src/Antigen.h
+    src/DataHandler.cpp
+    src/DataHandler.h
+    src/Environment.cpp
+    src/Environment.h
+    src/Gene.cpp
+    src/Gene.h
+    src/H2Pinteraction.cpp
+    src/H2Pinteraction.h
+    src/Host.cpp
+    src/Host.h
     main.cpp
-    mainpage.h
-    Pathogen.cpp
-    Pathogen.h
-    Random.cpp
-    Random.h
-    Tagging_system.cpp
-    Tagging_system.h
-    nlohmann/json.hpp)
+    src/mainpage.h
+    src/Pathogen.cpp
+    src/Pathogen.h
+    src/Random.cpp
+    src/Random.h
+    src/Tagging_system.cpp
+    src/Tagging_system.h
+    src/nlohmann/json.hpp)
 
 add_executable(MHC_code_OBA ${SOURCE_FILES} main.cpp)

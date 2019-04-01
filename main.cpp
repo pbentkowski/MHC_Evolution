@@ -29,11 +29,11 @@
 
 #include "omp.h"
 
-#include "Tagging_system.h"
-#include "Random.h"
-#include "Environment.h"
-#include "DataHandler.h"
-#include "nlohmann/json.hpp"
+#include "src/Tagging_system.h"
+#include "src/Random.h"
+#include "src/Environment.h"
+#include "src/DataHandler.h"
+#include "src/nlohmann/json.hpp"
 
 using jsonf = nlohmann::json;
 
@@ -42,8 +42,8 @@ using jsonf = nlohmann::json;
  */
 void printTipsToRun(){
     std::cout << std::endl;
-    std::cout << "This is the a no-sex scenario. The hosts MHC mutation are a 'whole-gene mutation' (instead of point mutations)."
-            " Parameters should be:" << std::endl;
+    std::cout << "This is the sex scenario when partner searches an optimal number of MHC types in offspring."
+            "With alpha limitting the fitness! (param No. 17). Parameters should be:" << std::endl;
     std::cout << " 1. The number of threads the program will use. Give 0 to use all the available CPU cores." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
     std::cout << " 3. Number of bits in an antigen." << std::endl;
@@ -228,8 +228,9 @@ int main(int argc, char** argv) {
         Data2file.saveHostPopulToFile(ENV, 0);
         Data2file.saveHostGeneticDivers(ENV, 0);
         Data2file.saveMhcNumbersBeforeMating(ENV, 0);
-        Data2file.saveHostGeneNumbers(ENV, 0);
-    	Data2file.savePresentedPathos(ENV, 0);
+        Data2file.saveMhcNumbersWhenMating(ENV, 0);
+        Data2file.saveMhcNumbersAfterMating(ENV, 0);
+	Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -238,13 +239,16 @@ int main(int argc, char** argv) {
                 ENV.clearPathoInfectionData();
             }
             Data2file.savePresentedPathos(ENV, i);
-            ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha); // no limit on the gene number!
-            ENV.selectAndReprodHostsReplace();  // changed for sexual reproduction
+            ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha); // alpha-bounded fitness
+//            ENV.selectAndReprodHostsReplace();
+            ENV.selectAndReprodHostsNoMating();  // changed for sexual reproduction
             Data2file.saveMhcNumbersBeforeMating(ENV, i);
+            ENV.matingMeanOptimalNumberMHCsmallSubset(NumbPartners); // changed for sexual reproduction
+            Data2file.saveMhcNumbersWhenMating(ENV, i);
+            Data2file.saveMhcNumbersAfterMating(ENV, i);
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i, tag);
-//            ENV.mutateHostWithDelDuplAllMHCchange(hostMutationProb, deletion, duplication, maxGene, i, tag); // changed mutation regime
             Data2file.saveHostGeneticDivers(ENV, i);
-            Data2file.saveHostGeneNumbers(ENV, i);
+//            Data2file.saveHostGeneNumbers(ENV, i);
             ENV.clearHostInfectionsData();
 //           std::cout << "Host loop " << i << " finished" << std::endl;
         }

@@ -123,249 +123,6 @@ MHC_code_OBA/fast:
 	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/build
 .PHONY : MHC_code_OBA/fast
 
-Antigen.o: Antigen.cpp.o
-
-.PHONY : Antigen.o
-
-# target to build an object file
-Antigen.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o
-.PHONY : Antigen.cpp.o
-
-Antigen.i: Antigen.cpp.i
-
-.PHONY : Antigen.i
-
-# target to preprocess a source file
-Antigen.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.i
-.PHONY : Antigen.cpp.i
-
-Antigen.s: Antigen.cpp.s
-
-.PHONY : Antigen.s
-
-# target to generate assembly for a file
-Antigen.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.s
-.PHONY : Antigen.cpp.s
-
-DataHandler.o: DataHandler.cpp.o
-
-.PHONY : DataHandler.o
-
-# target to build an object file
-DataHandler.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o
-.PHONY : DataHandler.cpp.o
-
-DataHandler.i: DataHandler.cpp.i
-
-.PHONY : DataHandler.i
-
-# target to preprocess a source file
-DataHandler.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.i
-.PHONY : DataHandler.cpp.i
-
-DataHandler.s: DataHandler.cpp.s
-
-.PHONY : DataHandler.s
-
-# target to generate assembly for a file
-DataHandler.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.s
-.PHONY : DataHandler.cpp.s
-
-Environment.o: Environment.cpp.o
-
-.PHONY : Environment.o
-
-# target to build an object file
-Environment.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o
-.PHONY : Environment.cpp.o
-
-Environment.i: Environment.cpp.i
-
-.PHONY : Environment.i
-
-# target to preprocess a source file
-Environment.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Environment.cpp.i
-.PHONY : Environment.cpp.i
-
-Environment.s: Environment.cpp.s
-
-.PHONY : Environment.s
-
-# target to generate assembly for a file
-Environment.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Environment.cpp.s
-.PHONY : Environment.cpp.s
-
-Gene.o: Gene.cpp.o
-
-.PHONY : Gene.o
-
-# target to build an object file
-Gene.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o
-.PHONY : Gene.cpp.o
-
-Gene.i: Gene.cpp.i
-
-.PHONY : Gene.i
-
-# target to preprocess a source file
-Gene.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Gene.cpp.i
-.PHONY : Gene.cpp.i
-
-Gene.s: Gene.cpp.s
-
-.PHONY : Gene.s
-
-# target to generate assembly for a file
-Gene.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Gene.cpp.s
-.PHONY : Gene.cpp.s
-
-H2Pinteraction.o: H2Pinteraction.cpp.o
-
-.PHONY : H2Pinteraction.o
-
-# target to build an object file
-H2Pinteraction.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o
-.PHONY : H2Pinteraction.cpp.o
-
-H2Pinteraction.i: H2Pinteraction.cpp.i
-
-.PHONY : H2Pinteraction.i
-
-# target to preprocess a source file
-H2Pinteraction.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.i
-.PHONY : H2Pinteraction.cpp.i
-
-H2Pinteraction.s: H2Pinteraction.cpp.s
-
-.PHONY : H2Pinteraction.s
-
-# target to generate assembly for a file
-H2Pinteraction.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.s
-.PHONY : H2Pinteraction.cpp.s
-
-Host.o: Host.cpp.o
-
-.PHONY : Host.o
-
-# target to build an object file
-Host.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Host.cpp.o
-.PHONY : Host.cpp.o
-
-Host.i: Host.cpp.i
-
-.PHONY : Host.i
-
-# target to preprocess a source file
-Host.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Host.cpp.i
-.PHONY : Host.cpp.i
-
-Host.s: Host.cpp.s
-
-.PHONY : Host.s
-
-# target to generate assembly for a file
-Host.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Host.cpp.s
-.PHONY : Host.cpp.s
-
-Pathogen.o: Pathogen.cpp.o
-
-.PHONY : Pathogen.o
-
-# target to build an object file
-Pathogen.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o
-.PHONY : Pathogen.cpp.o
-
-Pathogen.i: Pathogen.cpp.i
-
-.PHONY : Pathogen.i
-
-# target to preprocess a source file
-Pathogen.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.i
-.PHONY : Pathogen.cpp.i
-
-Pathogen.s: Pathogen.cpp.s
-
-.PHONY : Pathogen.s
-
-# target to generate assembly for a file
-Pathogen.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.s
-.PHONY : Pathogen.cpp.s
-
-Random.o: Random.cpp.o
-
-.PHONY : Random.o
-
-# target to build an object file
-Random.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Random.cpp.o
-.PHONY : Random.cpp.o
-
-Random.i: Random.cpp.i
-
-.PHONY : Random.i
-
-# target to preprocess a source file
-Random.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Random.cpp.i
-.PHONY : Random.cpp.i
-
-Random.s: Random.cpp.s
-
-.PHONY : Random.s
-
-# target to generate assembly for a file
-Random.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Random.cpp.s
-.PHONY : Random.cpp.s
-
-Tagging_system.o: Tagging_system.cpp.o
-
-.PHONY : Tagging_system.o
-
-# target to build an object file
-Tagging_system.cpp.o:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o
-.PHONY : Tagging_system.cpp.o
-
-Tagging_system.i: Tagging_system.cpp.i
-
-.PHONY : Tagging_system.i
-
-# target to preprocess a source file
-Tagging_system.cpp.i:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.i
-.PHONY : Tagging_system.cpp.i
-
-Tagging_system.s: Tagging_system.cpp.s
-
-.PHONY : Tagging_system.s
-
-# target to generate assembly for a file
-Tagging_system.cpp.s:
-	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.s
-.PHONY : Tagging_system.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -393,6 +150,249 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Antigen.o: src/Antigen.cpp.o
+
+.PHONY : src/Antigen.o
+
+# target to build an object file
+src/Antigen.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o
+.PHONY : src/Antigen.cpp.o
+
+src/Antigen.i: src/Antigen.cpp.i
+
+.PHONY : src/Antigen.i
+
+# target to preprocess a source file
+src/Antigen.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.i
+.PHONY : src/Antigen.cpp.i
+
+src/Antigen.s: src/Antigen.cpp.s
+
+.PHONY : src/Antigen.s
+
+# target to generate assembly for a file
+src/Antigen.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.s
+.PHONY : src/Antigen.cpp.s
+
+src/DataHandler.o: src/DataHandler.cpp.o
+
+.PHONY : src/DataHandler.o
+
+# target to build an object file
+src/DataHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o
+.PHONY : src/DataHandler.cpp.o
+
+src/DataHandler.i: src/DataHandler.cpp.i
+
+.PHONY : src/DataHandler.i
+
+# target to preprocess a source file
+src/DataHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.i
+.PHONY : src/DataHandler.cpp.i
+
+src/DataHandler.s: src/DataHandler.cpp.s
+
+.PHONY : src/DataHandler.s
+
+# target to generate assembly for a file
+src/DataHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.s
+.PHONY : src/DataHandler.cpp.s
+
+src/Environment.o: src/Environment.cpp.o
+
+.PHONY : src/Environment.o
+
+# target to build an object file
+src/Environment.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o
+.PHONY : src/Environment.cpp.o
+
+src/Environment.i: src/Environment.cpp.i
+
+.PHONY : src/Environment.i
+
+# target to preprocess a source file
+src/Environment.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.i
+.PHONY : src/Environment.cpp.i
+
+src/Environment.s: src/Environment.cpp.s
+
+.PHONY : src/Environment.s
+
+# target to generate assembly for a file
+src/Environment.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.s
+.PHONY : src/Environment.cpp.s
+
+src/Gene.o: src/Gene.cpp.o
+
+.PHONY : src/Gene.o
+
+# target to build an object file
+src/Gene.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o
+.PHONY : src/Gene.cpp.o
+
+src/Gene.i: src/Gene.cpp.i
+
+.PHONY : src/Gene.i
+
+# target to preprocess a source file
+src/Gene.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.i
+.PHONY : src/Gene.cpp.i
+
+src/Gene.s: src/Gene.cpp.s
+
+.PHONY : src/Gene.s
+
+# target to generate assembly for a file
+src/Gene.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.s
+.PHONY : src/Gene.cpp.s
+
+src/H2Pinteraction.o: src/H2Pinteraction.cpp.o
+
+.PHONY : src/H2Pinteraction.o
+
+# target to build an object file
+src/H2Pinteraction.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o
+.PHONY : src/H2Pinteraction.cpp.o
+
+src/H2Pinteraction.i: src/H2Pinteraction.cpp.i
+
+.PHONY : src/H2Pinteraction.i
+
+# target to preprocess a source file
+src/H2Pinteraction.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.i
+.PHONY : src/H2Pinteraction.cpp.i
+
+src/H2Pinteraction.s: src/H2Pinteraction.cpp.s
+
+.PHONY : src/H2Pinteraction.s
+
+# target to generate assembly for a file
+src/H2Pinteraction.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.s
+.PHONY : src/H2Pinteraction.cpp.s
+
+src/Host.o: src/Host.cpp.o
+
+.PHONY : src/Host.o
+
+# target to build an object file
+src/Host.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o
+.PHONY : src/Host.cpp.o
+
+src/Host.i: src/Host.cpp.i
+
+.PHONY : src/Host.i
+
+# target to preprocess a source file
+src/Host.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.i
+.PHONY : src/Host.cpp.i
+
+src/Host.s: src/Host.cpp.s
+
+.PHONY : src/Host.s
+
+# target to generate assembly for a file
+src/Host.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.s
+.PHONY : src/Host.cpp.s
+
+src/Pathogen.o: src/Pathogen.cpp.o
+
+.PHONY : src/Pathogen.o
+
+# target to build an object file
+src/Pathogen.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o
+.PHONY : src/Pathogen.cpp.o
+
+src/Pathogen.i: src/Pathogen.cpp.i
+
+.PHONY : src/Pathogen.i
+
+# target to preprocess a source file
+src/Pathogen.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.i
+.PHONY : src/Pathogen.cpp.i
+
+src/Pathogen.s: src/Pathogen.cpp.s
+
+.PHONY : src/Pathogen.s
+
+# target to generate assembly for a file
+src/Pathogen.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.s
+.PHONY : src/Pathogen.cpp.s
+
+src/Random.o: src/Random.cpp.o
+
+.PHONY : src/Random.o
+
+# target to build an object file
+src/Random.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o
+.PHONY : src/Random.cpp.o
+
+src/Random.i: src/Random.cpp.i
+
+.PHONY : src/Random.i
+
+# target to preprocess a source file
+src/Random.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.i
+.PHONY : src/Random.cpp.i
+
+src/Random.s: src/Random.cpp.s
+
+.PHONY : src/Random.s
+
+# target to generate assembly for a file
+src/Random.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.s
+.PHONY : src/Random.cpp.s
+
+src/Tagging_system.o: src/Tagging_system.cpp.o
+
+.PHONY : src/Tagging_system.o
+
+# target to build an object file
+src/Tagging_system.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o
+.PHONY : src/Tagging_system.cpp.o
+
+src/Tagging_system.i: src/Tagging_system.cpp.i
+
+.PHONY : src/Tagging_system.i
+
+# target to preprocess a source file
+src/Tagging_system.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.i
+.PHONY : src/Tagging_system.cpp.i
+
+src/Tagging_system.s: src/Tagging_system.cpp.s
+
+.PHONY : src/Tagging_system.s
+
+# target to generate assembly for a file
+src/Tagging_system.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.s
+.PHONY : src/Tagging_system.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -402,36 +402,36 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... MHC_code_OBA"
 	@echo "... edit_cache"
-	@echo "... Antigen.o"
-	@echo "... Antigen.i"
-	@echo "... Antigen.s"
-	@echo "... DataHandler.o"
-	@echo "... DataHandler.i"
-	@echo "... DataHandler.s"
-	@echo "... Environment.o"
-	@echo "... Environment.i"
-	@echo "... Environment.s"
-	@echo "... Gene.o"
-	@echo "... Gene.i"
-	@echo "... Gene.s"
-	@echo "... H2Pinteraction.o"
-	@echo "... H2Pinteraction.i"
-	@echo "... H2Pinteraction.s"
-	@echo "... Host.o"
-	@echo "... Host.i"
-	@echo "... Host.s"
-	@echo "... Pathogen.o"
-	@echo "... Pathogen.i"
-	@echo "... Pathogen.s"
-	@echo "... Random.o"
-	@echo "... Random.i"
-	@echo "... Random.s"
-	@echo "... Tagging_system.o"
-	@echo "... Tagging_system.i"
-	@echo "... Tagging_system.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Antigen.o"
+	@echo "... src/Antigen.i"
+	@echo "... src/Antigen.s"
+	@echo "... src/DataHandler.o"
+	@echo "... src/DataHandler.i"
+	@echo "... src/DataHandler.s"
+	@echo "... src/Environment.o"
+	@echo "... src/Environment.i"
+	@echo "... src/Environment.s"
+	@echo "... src/Gene.o"
+	@echo "... src/Gene.i"
+	@echo "... src/Gene.s"
+	@echo "... src/H2Pinteraction.o"
+	@echo "... src/H2Pinteraction.i"
+	@echo "... src/H2Pinteraction.s"
+	@echo "... src/Host.o"
+	@echo "... src/Host.i"
+	@echo "... src/Host.s"
+	@echo "... src/Pathogen.o"
+	@echo "... src/Pathogen.i"
+	@echo "... src/Pathogen.s"
+	@echo "... src/Random.o"
+	@echo "... src/Random.i"
+	@echo "... src/Random.s"
+	@echo "... src/Tagging_system.o"
+	@echo "... src/Tagging_system.i"
+	@echo "... src/Tagging_system.s"
 .PHONY : help
 
 

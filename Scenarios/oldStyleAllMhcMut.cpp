@@ -29,11 +29,11 @@
 
 #include "omp.h"
 
-#include "Tagging_system.h"
-#include "Random.h"
-#include "Environment.h"
-#include "DataHandler.h"
-#include "nlohmann/json.hpp"
+#include "src/Tagging_system.h"
+#include "src/Random.h"
+#include "src/Environment.h"
+#include "src/DataHandler.h"
+#include "src/nlohmann/json.hpp"
 
 using jsonf = nlohmann::json;
 

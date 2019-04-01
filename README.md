@@ -30,7 +30,7 @@ How to compile:
 -----------
 The program was written in [C++14 standard](https://en.wikipedia.org/wiki/C%2B%2B14) so if you are using GCC, then version gcc 4.8 seems to be the minimum requirement (I had 5.4 and 6.2). This program has some serious dependencies on [C++ Boost Libraries](http://www.boost.org/). Should compile smoothly on most modern GNU/Linux distros with Boost Libs installed. Having [Scons build tool](http://www.scons.org/) might be useful too. Basic compilation works fine on Ubuntu 16.04 LTS with mentioned packages installed by running the command:
 ```bash
-g++ -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp Random.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14
+g++ -O3 -o MHC_model main.cpp src/Gene.cpp src/Antigen.cpp src/Host.cpp src/Pathogen.cpp src/H2Pinteraction.cpp src/Random.cpp src/Tagging_system.cpp src/Environment.cpp src/DataHandler.cpp -fopenmp -std=c++14
 ```
 
 The code here can be also used as a toolbox for your research. You can stitch your own *main_yourown.cpp* file with your scenario and tailored procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:
@@ -41,7 +41,7 @@ replacing *Scenarios/main_default.cpp* with the path to your own custom *main_xy
 
 Sometimes your HPC Cluster is lame and old and it has fairly outdated compiler (e.g. gcc < 4.8). Then you can statically link the libraries on your fancy brand new PC running the latest Linux distro and send the no-dependencies executable to cluster. Compile like this:
 ```bash
-g++ -static -O3 -o MHC_model main.cpp Gene.cpp Antigen.cpp Host.cpp Pathogen.cpp H2Pinteraction.cpp Random.cpp Tagging_system.cpp Environment.cpp DataHandler.cpp -fopenmp -std=c++14
+g++ -static -O3 -o MHC_model main.cpp src/Gene.cpp src/Antigen.cpp src/Host.cpp src/Pathogen.cpp src/H2Pinteraction.cpp src/Random.cpp src/Tagging_system.cpp src/Environment.cpp src/DataHandler.cpp -fopenmp -std=c++14
 ```
 
 Or run the Scons script:

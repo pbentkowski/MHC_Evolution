@@ -57,83 +57,83 @@ include CMakeFiles/MHC_code_OBA.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/MHC_code_OBA.dir/flags.make
 
-CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o: ../Antigen.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Antigen.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o: ../src/Antigen.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Antigen.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Antigen.cpp > CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Antigen.cpp > CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Antigen.cpp -o CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Antigen.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o: ../DataHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o -c /home/piotr/CodeProjects/mhcevolution/DataHandler.cpp
+CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o: ../src/DataHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/DataHandler.cpp
 
-CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/DataHandler.cpp > CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/DataHandler.cpp > CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/DataHandler.cpp -o CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/DataHandler.cpp -o CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o: ../Environment.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Environment.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o: ../src/Environment.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Environment.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Environment.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Environment.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Environment.cpp > CMakeFiles/MHC_code_OBA.dir/Environment.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Environment.cpp > CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Environment.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Environment.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Environment.cpp -o CMakeFiles/MHC_code_OBA.dir/Environment.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Environment.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o: ../Gene.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Gene.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o: ../src/Gene.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Gene.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Gene.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Gene.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Gene.cpp > CMakeFiles/MHC_code_OBA.dir/Gene.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Gene.cpp > CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Gene.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Gene.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Gene.cpp -o CMakeFiles/MHC_code_OBA.dir/Gene.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Gene.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o: ../H2Pinteraction.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o -c /home/piotr/CodeProjects/mhcevolution/H2Pinteraction.cpp
+CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o: ../src/H2Pinteraction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/H2Pinteraction.cpp
 
-CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/H2Pinteraction.cpp > CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/H2Pinteraction.cpp > CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/H2Pinteraction.cpp -o CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/H2Pinteraction.cpp -o CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/Host.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Host.cpp.o: ../Host.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Host.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Host.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Host.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o: ../src/Host.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Host.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Host.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Host.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Host.cpp > CMakeFiles/MHC_code_OBA.dir/Host.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Host.cpp > CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Host.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Host.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Host.cpp -o CMakeFiles/MHC_code_OBA.dir/Host.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Host.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.s
 
 CMakeFiles/MHC_code_OBA.dir/main.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
 CMakeFiles/MHC_code_OBA.dir/main.cpp.o: ../main.cpp
@@ -148,71 +148,71 @@ CMakeFiles/MHC_code_OBA.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/main.cpp -o CMakeFiles/MHC_code_OBA.dir/main.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o: ../Pathogen.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Pathogen.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o: ../src/Pathogen.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Pathogen.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Pathogen.cpp > CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Pathogen.cpp > CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Pathogen.cpp -o CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Pathogen.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/Random.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Random.cpp.o: ../Random.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Random.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Random.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Random.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o: ../src/Random.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Random.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Random.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Random.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Random.cpp > CMakeFiles/MHC_code_OBA.dir/Random.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Random.cpp > CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Random.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Random.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Random.cpp -o CMakeFiles/MHC_code_OBA.dir/Random.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Random.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.s
 
-CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
-CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o: ../Tagging_system.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o -c /home/piotr/CodeProjects/mhcevolution/Tagging_system.cpp
+CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o: CMakeFiles/MHC_code_OBA.dir/flags.make
+CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o: ../src/Tagging_system.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o -c /home/piotr/CodeProjects/mhcevolution/src/Tagging_system.cpp
 
-CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/Tagging_system.cpp > CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.i
+CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piotr/CodeProjects/mhcevolution/src/Tagging_system.cpp > CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.i
 
-CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/Tagging_system.cpp -o CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.s
+CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piotr/CodeProjects/mhcevolution/src/Tagging_system.cpp -o CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.s
 
 # Object files for target MHC_code_OBA
 MHC_code_OBA_OBJECTS = \
-"CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/Host.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o" \
 "CMakeFiles/MHC_code_OBA.dir/main.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/Random.cpp.o" \
-"CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o"
+"CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o" \
+"CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o"
 
 # External object files for target MHC_code_OBA
 MHC_code_OBA_EXTERNAL_OBJECTS =
 
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Antigen.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/DataHandler.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Environment.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Gene.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/H2Pinteraction.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Host.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Antigen.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/DataHandler.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Environment.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Gene.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/H2Pinteraction.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Host.cpp.o
 MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/main.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Pathogen.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Random.cpp.o
-MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/Tagging_system.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Pathogen.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Random.cpp.o
+MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/src/Tagging_system.cpp.o
 MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/build.make
 MHC_code_OBA: CMakeFiles/MHC_code_OBA.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/piotr/CodeProjects/mhcevolution/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable MHC_code_OBA"

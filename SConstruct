@@ -54,10 +54,11 @@ except:
   copyfile(mainn, local_main)
 
 OUTprog = "SCBuild/" + mainn.split("/")[-1].split(".")[0]
-SRS = ['DataHandler.cpp', 'Environment.cpp', 'Gene.cpp',
-       'Antigen.cpp','H2Pinteraction.cpp', 'Host.cpp',
-       'Pathogen.cpp','Random.cpp', 'Tagging_system.cpp',
-       'nlohmann/json.hpp', local_main]
+src = 'src/'
+SRS = [src + 'DataHandler.cpp', src + 'Environment.cpp', src + 'Gene.cpp',
+       src + 'Antigen.cpp', src + 'H2Pinteraction.cpp', src + 'Host.cpp',
+       src + 'Pathogen.cpp',src + 'Random.cpp', src + 'Tagging_system.cpp',
+       src + 'nlohmann/json.hpp', local_main]
 
 linking = ARGUMENTS.get('linking', 1)
 

@@ -84,67 +84,67 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Antigen.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Antigen.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/DataHandler.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/DataHandler.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Environment.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Environment.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Gene.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Gene.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/H2Pinteraction.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/H2Pinteraction.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Host.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Host.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Pathogen.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Pathogen.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Random.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Random.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Tagging_system.cpp">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/Tagging_system.h">
-			<Option target="MHC_code_OBA"/>
-		</Unit>
 		<Unit filename="/home/piotr/CodeProjects/mhcevolution/main.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/mainpage.h">
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Antigen.cpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
-		<Unit filename="/home/piotr/CodeProjects/mhcevolution/nlohmann/json.hpp">
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Antigen.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/DataHandler.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/DataHandler.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Environment.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Environment.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Gene.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Gene.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/H2Pinteraction.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/H2Pinteraction.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Host.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Host.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Pathogen.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Pathogen.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Random.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Random.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Tagging_system.cpp">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/Tagging_system.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/mainpage.h">
+			<Option target="MHC_code_OBA"/>
+		</Unit>
+		<Unit filename="/home/piotr/CodeProjects/mhcevolution/src/nlohmann/json.hpp">
 			<Option target="MHC_code_OBA"/>
 		</Unit>
 		<Unit filename="/home/piotr/CodeProjects/mhcevolution/CMakeLists.txt">
