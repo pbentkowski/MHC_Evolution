@@ -5,8 +5,7 @@ var indexSectionsWithContent =
   2: "adeghmprt",
   3: "acdeghilmprst~",
   4: "agmnpst",
-  5: "acgjls",
-  6: "e"
+  5: "acgjls"
 };
 
 var indexSectionNames =
@@ -16,8 +15,7 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "typedefs",
-  6: "pages"
+  5: "typedefs"
 };
 
 var indexSectionLabels =
@@ -27,7 +25,6 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Variables",
-  5: "Typedefs",
-  6: "Pages"
+  5: "Typedefs"
 };
 

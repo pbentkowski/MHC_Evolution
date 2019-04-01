@@ -1,8 +1,7 @@
 <map id="Random::getRealDouble" name="Random::getRealDouble">
 <area shape="rect" id="node2" href="$class_environment.html#a09af2890db9eb1a02069adfb8836aa47" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,5,421,47"/>
-<area shape="rect" id="node4" href="$class_environment.html#aa3e7b74e17329b650089507642e76e5f" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,71,421,112"/>
-<area shape="rect" id="node5" href="$class_random_1_1_custom_prob.html#a947c058092657a76997ad1a31528a5c1" title="Random::CustomProb\l::isCustomProbOK" alt="" coords="244,136,396,177"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="The main function. Things are happening here. " alt="" coords="538,13,589,39"/>
-<area shape="rect" id="node6" href="$class_random.html#acdc16c09d7448084255389734036edf8" title="Takes the Custom Probability Data Structure and select a value in correspondence to the probability d..." alt="" coords="469,136,657,177"/>
-<area shape="rect" id="node7" href="$class_random.html#ae8f168968cb95f799b57dcfcfbd4a1c1" title="Random::getAlotOfValuesAccording\lToGivenProb" alt="" coords="705,165,937,207"/>
+<area shape="rect" id="node3" href="$class_environment.html#aa3e7b74e17329b650089507642e76e5f" title="Core method. Forms the next generation of hosts using the fitness proportionate selection method..." alt="" coords="219,71,421,112"/>
+<area shape="rect" id="node4" href="$class_random_1_1_custom_prob.html#a947c058092657a76997ad1a31528a5c1" title="Random::CustomProb\l::isCustomProbOK" alt="" coords="244,136,396,177"/>
+<area shape="rect" id="node5" href="$class_random.html#acdc16c09d7448084255389734036edf8" title="Takes the Custom Probability Data Structure and select a value in correspondence to the probability d..." alt="" coords="469,136,657,177"/>
+<area shape="rect" id="node6" href="$class_random.html#ae8f168968cb95f799b57dcfcfbd4a1c1" title="Random::getAlotOfValuesAccording\lToGivenProb" alt="" coords="705,165,937,207"/>
 </map>

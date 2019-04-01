@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
   ['mainpage_2eh',['mainpage.h',['../mainpage_8h.html',1,'']]],
   ['matingmaxdifferentmhcs',['matingMaxDifferentMHCs',['../class_environment.html#aff0ee157919d3ee6e97cdbe7423761a6',1,'Environment']]],
   ['matingmeanoptimalnumbermhcsmallsubset',['matingMeanOptimalNumberMHCsmallSubset',['../class_environment.html#a9111a354d21ef5e3b967e42feda93a94',1,'Environment']]],

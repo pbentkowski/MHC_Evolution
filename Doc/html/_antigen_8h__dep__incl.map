@@ -1,12 +1,11 @@
-<map id="Antigen.h" name="Antigen.h">
-<area shape="rect" id="node2" href="$_antigen_8cpp.html" title="Antigen.cpp" alt="" coords="165,80,256,107"/>
-<area shape="rect" id="node3" href="$_pathogen_8h.html" title="Pathogen.h" alt="" coords="280,80,368,107"/>
-<area shape="rect" id="node4" href="$_environment_8h.html" title="Environment.h" alt="" coords="133,155,240,181"/>
-<area shape="rect" id="node9" href="$_h2_pinteraction_8h.html" title="H2Pinteraction.h" alt="" coords="265,155,383,181"/>
-<area shape="rect" id="node11" href="$_pathogen_8cpp.html" title="Pathogen.cpp" alt="" coords="407,155,510,181"/>
-<area shape="rect" id="node5" href="$_data_handler_8h.html" title="DataHandler.h" alt="" coords="43,229,149,256"/>
-<area shape="rect" id="node7" href="$main_8cpp.html" title="main.cpp" alt="" coords="149,304,224,331"/>
-<area shape="rect" id="node8" href="$_environment_8cpp.html" title="Environment.cpp" alt="" coords="224,229,344,256"/>
-<area shape="rect" id="node6" href="$_data_handler_8cpp.html" title="DataHandler.cpp" alt="" coords="5,304,125,331"/>
-<area shape="rect" id="node10" href="$_h2_pinteraction_8cpp.html" title="H2Pinteraction.cpp" alt="" coords="368,229,501,256"/>
+<map id="src/Antigen.h" name="src/Antigen.h">
+<area shape="rect" id="node2" href="$_antigen_8cpp.html" title="src/Antigen.cpp" alt="" coords="123,80,236,107"/>
+<area shape="rect" id="node3" href="$_pathogen_8h.html" title="src/Pathogen.h" alt="" coords="260,80,371,107"/>
+<area shape="rect" id="node4" href="$_environment_8h.html" title="src/Environment.h" alt="" coords="93,155,221,181"/>
+<area shape="rect" id="node8" href="$_h2_pinteraction_8h.html" title="src/H2Pinteraction.h" alt="" coords="245,155,386,181"/>
+<area shape="rect" id="node10" href="$_pathogen_8cpp.html" title="src/Pathogen.cpp" alt="" coords="409,155,533,181"/>
+<area shape="rect" id="node5" href="$_data_handler_8h.html" title="src/DataHandler.h" alt="" coords="13,229,141,256"/>
+<area shape="rect" id="node7" href="$_environment_8cpp.html" title="src/Environment.cpp" alt="" coords="165,229,308,256"/>
+<area shape="rect" id="node6" href="$_data_handler_8cpp.html" title="src/DataHandler.cpp" alt="" coords="5,304,148,331"/>
+<area shape="rect" id="node9" href="$_h2_pinteraction_8cpp.html" title="src/H2Pinteraction.cpp" alt="" coords="333,229,487,256"/>
 </map>

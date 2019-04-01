@@ -5,6 +5,5 @@ var searchData=
   ['printantigentoscreen',['printAntigenToScreen',['../class_antigen.html#a08ecd5321a466090806e0b5a100c394a',1,'Antigen']]],
   ['printgenes',['printGenes',['../class_host.html#a4420e7c9df2e2be8ddfd8737336c5f37',1,'Host']]],
   ['printgenesfromgenome',['printGenesFromGenome',['../class_pathogen.html#a7146f4adc796ff8f71e8828930a563ea',1,'Pathogen']]],
-  ['printgenetoscreen',['printGeneToScreen',['../class_gene.html#a8ef6909ae153c7ca8006ac8487c89887',1,'Gene']]],
-  ['printtipstorun',['printTipsToRun',['../main_8cpp.html#ac225f5c6e0e3615f223c552c5501bfa6',1,'main.cpp']]]
+  ['printgenetoscreen',['printGeneToScreen',['../class_gene.html#a8ef6909ae153c7ca8006ac8487c89887',1,'Gene']]]
 ];

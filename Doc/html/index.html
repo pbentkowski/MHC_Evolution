@@ -47,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -135,17 +134,17 @@ Introduction</h1>
 Compilation</h1>
 <p>The program was written in <a href="https://en.wikipedia.org/wiki/C%2B%2B14">C++14 standard</a> so if you are using GCC then version gcc 4.8 seems to be the minimum requirement (I have 5.4). This program has some serious dependencies on <a href="http://www.boost.org/">C++ Boost Libraries</a>. Should compile smoothly on most modern GNU/Linux distros with Boost Libs installed. Having <a href="http://www.scons.org/">Scons build tool</a> might be useful too. Basic compilation works fine on Ubuntu 16.04 LTS with mentioned packages installed by running the command: <br />
 <br />
-$<b> g++ -O3 -o SCBuild/MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> nlohmann/json.hpp <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_8cpp.html">Random.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_handler_8cpp.html">DataHandler.cpp</a> -fopenmp -std=c++14 </b><br />
+$<b> g++ -O3 -o SCBuild/MHC_model main.cpp nlohmann/json.hpp <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> <a class="el" href="_random_8cpp.html">Random.cpp</a> <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_handler_8cpp.html">DataHandler.cpp</a> -fopenmp -std=c++14 </b><br />
  <br />
 The code here can be also used like a toolbox for your research. You can stitch your own <em>main_yourown.cpp</em> file with your scenario and custom procedures (we did so for our research) and compile it using Scons script which is part of this code bundle. To do so run:<br />
 <br />
 $<b> scons -Q scenario="Scenarios/main_default.cpp" linking="dynamic"</b><br />
  <br />
-replacing "Scenarios/main_default.cpp" with the path to your own custom <em>main_xyz.cpp</em>. Use our <em>main_core.cpp</em> file as the base to develop your own scenarios of MHC evolution dynamics. WARNING! Using our Scons script overwrites the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file in the main source directory - always store your scenarios somewhere else then the <em><a class="el" href="main_8cpp.html">main.cpp</a></em> file!<br />
+replacing "Scenarios/main_default.cpp" with the path to your own custom <em>main_xyz.cpp</em>. Use our <em>main_core.cpp</em> file as the base to develop your own scenarios of MHC evolution dynamics. WARNING! Using our Scons script overwrites the <em>main.cpp</em> file in the main source directory - always store your scenarios somewhere else then the <em>main.cpp</em> file!<br />
 <br />
 Sometimes the HPC Cluster you have is lame and old and it has fairly outdated compiler (e.g. gcc &lt; 4.8). Then you can statically link the libraries on your fancy brand new PC running latest Linux distro and send the no-dependencies executable to cluster. Compile like this: <br />
  <br />
-$<b> g++ -static -O3 -o MHC_model <a class="el" href="main_8cpp.html">main.cpp</a> <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> RandomNumbs.cpp <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_handler_8cpp.html">DataHandler.cpp</a> -std=c++14 </b><br />
+$<b> g++ -static -O3 -o MHC_model main.cpp <a class="el" href="_gene_8cpp.html">Gene.cpp</a> <a class="el" href="_antigen_8cpp.html">Antigen.cpp</a> <a class="el" href="_host_8cpp.html">Host.cpp</a> <a class="el" href="_pathogen_8cpp.html">Pathogen.cpp</a> <a class="el" href="_h2_pinteraction_8cpp.html">H2Pinteraction.cpp</a> RandomNumbs.cpp <a class="el" href="_tagging__system_8cpp.html">Tagging_system.cpp</a> <a class="el" href="_environment_8cpp.html">Environment.cpp</a> <a class="el" href="_data_handler_8cpp.html">DataHandler.cpp</a> -std=c++14 </b><br />
 <br />
 Or run the Scons script:<br />
 <br />
@@ -189,7 +188,7 @@ $ <b>./main_default 0 16 3200 1000 8000 8 1 10 3000 0.0001 5e-05 10 0.001 0.001 
  </p>
 <h1><a class="anchor" id="The"></a>
 output and data visualisation</h1>
-<p>Program produces a number of text files containing desired data. The file <em>InputParameters.json</em> contains the values of parameters fed to the model. The file <em>HostsGeneDivers.csv</em> contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (<em><a class="el" href="main_8cpp.html">main.cpp</a></em> file) what should speed up the program runtime. <br />
+<p>Program produces a number of text files containing desired data. The file <em>InputParameters.json</em> contains the values of parameters fed to the model. The file <em>HostsGeneDivers.csv</em> contains the main statistics of the model, including the time stamp used in the visualisation process of the other files with data. This two files are the basics to analyse the simulation output. Other files are optional and they can be switched off by commenting out some lines in the main function (<em>main.cpp</em> file) what should speed up the program runtime. <br />
 <br />
  All the files are:<br />
 <b><em>InputParameters.json </em></b> - contains run's parametrisation in JSON text format <br />
@@ -215,7 +214,7 @@ $ <b>conda env create -f mhcEvoEnv.yaml</b> <br />
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Feb 12 2019 16:14:23 for Modelling MHC Evolutionary Dynamics by
+    <li class="footer">Generated on Mon Apr 1 2019 15:29:40 for Modelling MHC Evolutionary Dynamics by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
   </ul>
