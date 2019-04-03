@@ -1,4 +1,4 @@
 PyScripts/*.ipynb linguist-vendored
-nlohmann/* linguist-vendored
+src/nlohmann/* linguist-vendored
 cmake-build-debug/* linguist-vendored
 Doc/* linguist-documentation
