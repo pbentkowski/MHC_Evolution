@@ -9,3 +9,4 @@ SCBuild
 cmake-build-debug
 .ipynb_checkpoints
 PyScripts/.ipynb_checkpoints
+MHC_model
