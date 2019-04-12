@@ -20,10 +20,11 @@ from scipy.stats import linregress
 import packed_plots_of_MHC_alleles as ppma
 
 
-def loadTheParents(moth="NumberOfMhcInMother.csv",
+def loadTheParents(cc=0, moth="NumberOfMhcInMother.csv",
                    fath="NumberOfMhcInFather.csv",
                    beforeMating="NumberOfMhcBeforeMating.csv"):
-    """Simply load the data into two Numpy arrays."""
+    """Simply load the data into two Numpy arrays. 'cc' is how many last
+    generations you want to analyse - 0 means ALL will be loaded."""
     try:
         mother = np.genfromtxt(moth)[1::, 1::]
     except Exception:
@@ -40,6 +41,11 @@ def loadTheParents(moth="NumberOfMhcInMother.csv",
         print("Failed to load available mates MHC numbers.",
               "Check if file exists.")
         return None, None, None
+    if cc > 0 and cc < len(mates):
+        cc = len(mates) - cc
+        mother = mother[cc::, :]
+        father = father[cc::, :]
+        mates = mates[cc::, :]
 #    time = np.genfromtxt(moth)[:, 0]
     return mother, father, mates
 
@@ -197,7 +203,7 @@ def justPlotDeviantFromMeanFather(ww, deltas, bSize, path, suffix=""):
     plt.cla()
 
 
-def getTheData(theStartDate, templateList, dirr=os.getcwd()):
+def getTheData(theStartDate, templateList, dirr=os.getcwd(), genLast=0):
     """Walking the dir using Python 3.5. Variable theStartDate has to be
     a datetime.date() data type. Each item in the `datOut` structure is the
     result of computing one simulation."""
@@ -213,9 +219,10 @@ def getTheData(theStartDate, templateList, dirr=os.getcwd()):
                     moPth = os.path.join(dirName, 'NumberOfMhcInMother.csv')
                     faPth = os.path.join(dirName, 'NumberOfMhcInFather.csv')
                     mPth = os.path.join(dirName, 'NumberOfMhcBeforeMating.csv')
-                    mother, father, mate = loadTheParents(moPth, faPth, mPth)
-                    moth, fath, mate = trimData(mother, father, mate, 2, 100)
-                    mmMt = avrgMateMHCnumb(mate)
+                    mothr, fathr, bmate = loadTheParents(genLast,
+                                                         moPth, faPth, mPth)
+                    moth, fath, bmate = trimData(mothr, fathr, bmate, 2, 100)
+                    mmMt = avrgMateMHCnumb(bmate)
                     rMom, rDad, rMmMt = reshapeMatherFather(moth, fath, mmMt)
                     ww, Fatrs, meanM = pickMotherSizeGroups(rMom, rDad, rMmMt)
                     bSize = np.zeros(len(Fatrs))
@@ -274,13 +281,20 @@ def main():
         print("Two arguments are needed:")
         print("  1. Give a starting date. It has to be in yyyy-mm-dd format.")
         print("  2. Give the path to template file.")
-        print("  3. Give the plot file suffix.")
+        print("  3. The last N generations to analyse. Type 0 if you wand to",
+              "analyse everything.")
+        print("  4. Give the plot file suffix.")
         sys.exit()
     startDate = None
     try:
         startDate = ppma.readDate(sys.argv[1])
     except ValueError:
         print("Cannot convert argument #1 to a date format.")
+        sys.exit()
+    try:
+        cc = int(sys.argv[3])
+    except ValueError:
+        print("Cannot convert argument #3 to integer.")
         sys.exit()
     if startDate:
         try:
@@ -289,7 +303,7 @@ def main():
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
-            theData = getTheData(startDate, template, ".")
+            theData = getTheData(startDate, template, ".", cc)
 #            print(theData)
         except Exception:
             print("Failed to process the data. Some serious issues arose.",
@@ -300,7 +314,7 @@ def main():
             np.save("sexSelectStrgt" + sys.argv[3], theData)
             out = avgDatOut(theData)
             justPlotDeviantFromMeanFather(out[:, 0], out[:, 1], out[:, 2],
-                                          ".", sys.argv[3])
+                                          ".", sys.argv[4])
         else:
             print("No data files matching the criterions were found.",
                   "Specify your template file.")
