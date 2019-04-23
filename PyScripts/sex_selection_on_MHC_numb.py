@@ -230,7 +230,7 @@ def getTheData(theStartDate, templateList, dirr=os.getcwd(), genLast=0):
                         bSize[i] = len(itm)
                     deltas = []
                     for i, it in enumerate(ww):
-                        deltas.append(np.mean(Fatrs[i] - meanM[i]))
+                        deltas.append(np.nanmean(Fatrs[i] - meanM[i]))
                     justPlotDeviantFromMeanFather(ww, deltas, bSize, dirName)
                     try:
                         xx = np.transpose(np.vstack((ww, np.array(deltas),
@@ -263,16 +263,18 @@ def avgDatOut(datOut):
     for itm in datOut:
         for ii, w in enumerate(ww):
             try:
-                ll[ii, 1] += itm[ii][1]
-                ll[ii, 2] += 1
-                ll[ii, 3] += itm[ii][2]
+                if(not np.any(np.isnan([itm[ii][1], itm[ii][2]]))
+                   and itm[ii][2] != 0):
+                    ll[ii, 1] += itm[ii][1]
+                    ll[ii, 2] += 1
+                    ll[ii, 3] += itm[ii][2]
             except Exception:
                 continue
     out = np.zeros((len(ll), 3))
     out[:, 0] = ll[:, 0]
     out[:, 1] = ll[:, 1] / ll[:, 2]
     out[:, 2] = ll[:, 3]
-    return out
+    return out[~np.isnan(out).any(axis=1)]
 
 
 def main():
@@ -303,15 +305,16 @@ def main():
             print("Cannot load the template file. Exiting.")
             sys.exit()
         try:
-            theData = getTheData(startDate, template, ".", cc)
-#            print(theData)
+            wdir = os.getcwd()
+            print("Working directory:", wdir)
+            theData = getTheData(startDate, template, wdir, cc)
         except Exception:
             print("Failed to process the data. Some serious issues arose.",
                   "Check if the cut-off host generation for calculating stats",
                   "is smaller than the total number of host generations.")
             sys.exit()
         if len(theData):
-            np.save("sexSelectStrgt" + sys.argv[3], theData)
+            np.save("sexSelectStrgt" + sys.argv[4], theData)
             out = avgDatOut(theData)
             justPlotDeviantFromMeanFather(out[:, 0], out[:, 1], out[:, 2],
                                           ".", sys.argv[4])
