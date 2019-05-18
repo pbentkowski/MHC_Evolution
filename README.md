@@ -3,7 +3,11 @@ Evolution of MHC repertoire and number of copies:
 
 This work is part of the project [**Evolution of the number of copies of MHC genes: testing the optimality hypothesis and exploring alternatives.**](https://sites.google.com/site/evobiolab/projects) supported by the Polish Science Centre (NCN).
 
-This branch **MhcEvo2000** has the ability to be run parellel on multi-core CPUs using openMP with *#pragma omp parallel* preprocessor calls.
+This code was the base for fallowing publications:
+
+ * Bentkowski P, Radwan J (2019) *Evolution of major histocompatibility complex gene copy number*. PLOS Computational Biology 15(5): e1007015. https://doi.org/10.1371/journal.pcbi.1007015
+
+This branch **MhcEvo2000** has the ability to be run parallel on multi-core CPUs using openMP with *#pragma omp parallel* preprocessor calls.
 
 Documentation:
 -----------
