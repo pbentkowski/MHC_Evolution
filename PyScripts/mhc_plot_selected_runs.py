@@ -74,8 +74,8 @@ def main():
     annotScale = 10
     annotShift = 200
 
-    Xmax = 3000
-    Ymax = 140
+    Xmax = 60000
+    Ymax = 30
     textXlocal = 1500
     try:
         interestOne = float(sys.argv[1])
@@ -201,11 +201,11 @@ def main():
             i = i + 1
             p.ylabel('number of MHC loci / indv.', fontsize=AxLabelFontSize)
             p.xlabel('time [host generations]', fontsize=AxLabelFontSize)
-            p.axis([0, Xmax, 0, 100])
+            p.axis([0, Xmax, 0, 10])
             p.xticks(size=AxisTickFontSize)
             p.yticks(size=AxisTickFontSize)
-    ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
-                    fontsize=AnnotateFontSize)
+   # ax = p.annotate(nnn, xy=(textXlocal, 3.5), xycoords='data',
+   #                 fontsize=AnnotateFontSize)
     p.grid()
 #    p.tight_layout()
     if saveFiggs:
