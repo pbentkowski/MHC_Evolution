@@ -233,8 +233,8 @@ def getTheData(theStartDate, templateList, genrsUsed=1000, dirr=os.getcwd()):
                     cvFittSTD = np.std(cvFitt) / pathoNorm
                     dataFilePath = os.path.join(dirName,
 #                                                "HostMHCsNumbUniq_ChrOne.csv")
-#                                                "NumberOfMhcAfterMating.csv")
-                                                "NumberOfMhcBeforeMating.csv")
+                                                "NumberOfMhcAfterMating.csv")
+#                                                "NumberOfMhcBforeMating.csv")
                     hgsUNIQ = np.genfromtxt(dataFilePath)
                     # Note, that the MHC type number is given per 1 chromosome
                     indvMean = np.mean(hgsUNIQ[EqPt:, 1:])

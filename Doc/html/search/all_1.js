@@ -25,6 +25,5 @@ var searchData=
   ['clearinfections',['clearInfections',['../class_host.html#a7c21e1938c61966dc2657a437aeec9b9',1,'Host::clearInfections()'],['../class_pathogen.html#a4a59ff7b7bb309ee22f1cc1503518f59',1,'Pathogen::clearInfections()']]],
   ['clearpathoinfectiondata',['clearPathoInfectionData',['../class_environment.html#af43ff3d50276e23f42895c6c7ddac69c',1,'Environment']]],
   ['currentdatetime',['currentDateTime',['../_data_handler_8cpp.html#aa46369f3c8adbff876c82270346fffa2',1,'DataHandler.cpp']]],
-  ['customprob',['CustomProb',['../class_random_1_1_custom_prob.html#a75bc8aa32b86b5c4aa3473d402260905',1,'Random::CustomProb']]],
-  ['customprob',['CustomProb',['../class_random_1_1_custom_prob.html',1,'Random']]]
+  ['customprob',['CustomProb',['../class_random_1_1_custom_prob.html',1,'Random::CustomProb'],['../class_random_1_1_custom_prob.html#a75bc8aa32b86b5c4aa3473d402260905',1,'Random::CustomProb::CustomProb()']]]
 ];
