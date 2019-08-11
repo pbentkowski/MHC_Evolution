@@ -20,7 +20,8 @@ import packed_plots_of_MHC_alleles as ppma
 
 def awkMeanINV(path='.'):
     """ """
-    inFile = os.path.join(path, "NumberOfMhcAfterMating.csv")
+#    inFile = os.path.join(path, "NumberOfMhcAfterMating.csv")
+    inFile = os.path.join(path, "NumberOfMhcBeforeMating.csv")
     outFile = os.path.join(path, "MeanInvdMhcNumb.csv")
     awk = """awk 'NR==1 { next }
                { T=0
