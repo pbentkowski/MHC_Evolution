@@ -27,6 +27,7 @@
 #include <chrono>       // std::chrono::system_clock
 #include <iterator>
 #include <thread>
+#include <functional>   // std::bind
 
 #include "Environment.h"
 #include "H2Pinteraction.h"

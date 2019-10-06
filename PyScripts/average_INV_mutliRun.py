@@ -129,7 +129,7 @@ def plotAggrOut(aggrOut, figtag=''):
     plt.grid()
     plt.xlabel("time [host generations]")
     plt.ylabel(r"individual number of MHC variants (INV $\pm$ 95%CI)")
-    plt.ylim(bottom=0)
+    plt.ylim(bottom=0, top=27)
     plt.tight_layout()
     figName = "INV_time_trajc" + figtag + ".png"
     plt.savefig(figName)
