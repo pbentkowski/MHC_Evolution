@@ -123,6 +123,33 @@ MHC_code_OBA/fast:
 	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/build
 .PHONY : MHC_code_OBA/fast
 
+Scenarios/minSharedAlpha.o: Scenarios/minSharedAlpha.cpp.o
+
+.PHONY : Scenarios/minSharedAlpha.o
+
+# target to build an object file
+Scenarios/minSharedAlpha.cpp.o:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Scenarios/minSharedAlpha.cpp.o
+.PHONY : Scenarios/minSharedAlpha.cpp.o
+
+Scenarios/minSharedAlpha.i: Scenarios/minSharedAlpha.cpp.i
+
+.PHONY : Scenarios/minSharedAlpha.i
+
+# target to preprocess a source file
+Scenarios/minSharedAlpha.cpp.i:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Scenarios/minSharedAlpha.cpp.i
+.PHONY : Scenarios/minSharedAlpha.cpp.i
+
+Scenarios/minSharedAlpha.s: Scenarios/minSharedAlpha.cpp.s
+
+.PHONY : Scenarios/minSharedAlpha.s
+
+# target to generate assembly for a file
+Scenarios/minSharedAlpha.cpp.s:
+	$(MAKE) -f CMakeFiles/MHC_code_OBA.dir/build.make CMakeFiles/MHC_code_OBA.dir/Scenarios/minSharedAlpha.cpp.s
+.PHONY : Scenarios/minSharedAlpha.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -402,6 +429,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... MHC_code_OBA"
 	@echo "... edit_cache"
+	@echo "... Scenarios/minSharedAlpha.o"
+	@echo "... Scenarios/minSharedAlpha.i"
+	@echo "... Scenarios/minSharedAlpha.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

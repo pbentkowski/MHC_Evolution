@@ -25,6 +25,6 @@ set(SOURCE_FILES
     src/Random.h
     src/Tagging_system.cpp
     src/Tagging_system.h
-    src/nlohmann/json.hpp)
+    src/nlohmann/json.hpp Scenarios/minSharedAlpha.cpp)
 
 add_executable(MHC_code_OBA ${SOURCE_FILES} main.cpp)
