@@ -1047,13 +1047,12 @@ void Environment::matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber)
 /**
  *@brief Core method. Creates a new generation of hosts by sexual reproduction
  * picking a mate which has the most different MHCs then the selecting partner.
- * Takes a given number of possible sexual partners that are selected. It rather
- * should be called 'minimal overlap'.
+ * Takes a given number of possible sexual partners that are selected.
  *
  * @param matingPartnerNumber - number of randomly selected partners an individual
  * will checks out eventually selecting one that is the best to mate with.
  */
-void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
+void Environment::matingMaxDifferentNumber(int matingPartnerNumber) {
     unsigned long popSize = HostPopulation.size();
     std::vector<Host> NewHostsVec;
     NewHostsVec.clear();
@@ -1111,13 +1110,14 @@ void Environment::matingMaxDifferentMHCs(int matingPartnerNumber) {
         HostPopulation.clear();
         HostPopulation = NewHostsVec;
     }else{
-        std::cout << "Error in matingMaxDifferentMHCs(): Size mismatch " <<
+        std::cout << "Error in matingMaxDifferentNumber(): Size mismatch " <<
                   "between the new and the old population!" << std::endl;
         std::cout << "old pop: " << HostPopulation.size() <<
                   " | new pop: " << NewHostsVec.size()  << std::endl;
     }
 
 }
+
 
 /**
  * @brief Core method. Creates a new generation of hosts by sexual reproduction

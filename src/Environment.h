@@ -92,7 +92,7 @@ public:
     void matingWithNoCommonMHCsmallSubset(unsigned long matingPartnerNumber);
     void matingWithOneDifferentMHCsmallSubset(int matingPartnerNumber);
     void matingMeanOptimalNumberMHCsmallSubset(int matingPartnerNumber);
-    void matingMaxDifferentMHCs(int matingPartnerNumber);
+    void matingMaxDifferentNumber(int matingPartnerNumber);
     void matingRandom();
 
     // === Data harvesting methods ===

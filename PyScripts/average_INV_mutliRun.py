@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-     Your doc string here, please...
+Iterates the directory tree piking runs with parametrisations
+specified in the template file. Loads the individual number of MHC
+variants (INV, unique MHC genes) and plots how it changed over the
+simulation time. One of the parameters which in the template file is
+tagged "VAR" will be used to label (and aggregate) lines of mean INV
+for a boundle of runs with same parametrisation.
 
 Created on Sun Jul 21 15:07:56 2019
 
@@ -114,22 +119,24 @@ def smoothing(inv, NN=500):
     return np.convolve(inv, np.ones((NN,))/NN, mode='valid')
 
 
-def plotAggrOut(aggrOut, figtag=''):
+def plotAggrOut(aggrOut, frame, ymaxx=27, figtag=''):
     """ """
     clrs = ['C0', 'C1', 'C2', 'C3']
     plt.figure(1, figsize=(9, 6))
     for i, agRun in enumerate(aggrOut):
-        agrRun = smoothing(agRun[1])
-        agrSTD = smoothing(agRun[2])
+        agrRun = smoothing(agRun[1], frame)
+        agrSTD = smoothing(agRun[2], frame)
         x = np.arange(0, len(agrRun))
-        plt.plot(x, agrRun, lw=2, color=clrs[i], label=str(int(2*agRun[0][1])))
+        #plt.plot(x, agrRun, lw=2, color=clrs[i], label=str(int(2*agRun[0][1])))
+        plt.plot(x, agrRun, lw=2, color=clrs[i], label=str(int(agRun[0][1])))
         plt.fill_between(x, agrRun+agrSTD, agrRun-agrSTD, facecolor=clrs[i],
                          alpha=0.5)
-    plt.legend(title="INV at init.")
+    #plt.legend(title="INV at init.")
+    plt.legend(title="Patho spp.")
     plt.grid()
     plt.xlabel("time [host generations]")
     plt.ylabel(r"individual number of MHC variants (INV $\pm$ 95%CI)")
-    plt.ylim(bottom=0, top=27)
+    plt.ylim(bottom=0, top=ymaxx)
     plt.tight_layout()
     figName = "INV_time_trajc" + figtag + ".png"
     plt.savefig(figName)
@@ -149,6 +156,8 @@ def main():
     startDate = None
     try:
         startDate = ppma.readDate(sys.argv[1])
+        ymaxx = 5
+        frame = 50
     except ValueError:
         print("Cannot convert argument #1 to a date format.")
         sys.exit()
@@ -167,14 +176,14 @@ def main():
         if True:
             # third argument is very important
             theData = getTheData(startDate, template)
-            print(theData)
+#            print(theData)
 #        except Exception:
         else:
             print("Failed to process the data. Some serious issues arose.")
             sys.exit()
         if len(theData):
             aggrOutCI = aggrDataByRunsCI(theData)
-            plotAggrOut(aggrOutCI, figLabel)
+            plotAggrOut(aggrOutCI, frame, ymaxx, figLabel)
         else:
             print("No data files matching the criterions were found.",
                   "Specify your template file.")
