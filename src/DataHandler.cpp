@@ -372,18 +372,18 @@ void DataHandler::saveHostGeneticDivers(Environment& EnvObj, int tayme){
     int mhcTypes = std::get < 1 >( ShOut );
     double tot_gene_numb = std::get < 2 >( ShOut );
     
-    // calculating coefficient of variation of hosts fitness
+    // calculating for coefficient of variation of hosts fitness
     double cv_sum = std::accumulate(Fitness.begin(), Fitness.end(), 0.0);
-    double cv_mean = cv_sum / Fitness.size();
+    double fit_mean = cv_sum / Fitness.size();
     double sq_sum = std::inner_product(Fitness.begin(), Fitness.end(), 
                                        Fitness.begin(), 0.0);
-    double stdev = std::sqrt(sq_sum / Fitness.size() - cv_mean * cv_mean);
+    double stdev = std::sqrt(sq_sum / Fitness.size() - fit_mean * fit_mean);
     
     std::ofstream HostGenomesFile;
     HostGenomesFile.open("HostsGeneDivers.csv",
             std::ios::out | std::ios::ate | std::ios::app);
     HostGenomesFile << tayme << " " << popSize << " " << tot_gene_numb << " " <<
-            mhcTypes << " " << Summ << " " << cv_mean <<
+            mhcTypes << " " << Summ << " " << fit_mean <<
             " " << stdev << std::endl;
     HostGenomesFile.close();
 }
