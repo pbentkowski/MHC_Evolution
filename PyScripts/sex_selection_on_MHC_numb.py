@@ -301,6 +301,7 @@ def main():
     if startDate:
         try:
             template = ppma.loadParamSettings(sys.argv[2])
+            print("The template:", template)
         except Exception:
             print("Cannot load the template file. Exiting.")
             sys.exit()

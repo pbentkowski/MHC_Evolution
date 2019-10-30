@@ -67,7 +67,7 @@ def hamDistWhinIndiv(BitLyst):
     """Hamming distances between genes in one pathogen."""
     try:
         N = len(BitLyst)
-        compArr = np.ones((N*(N-1))/2)
+        compArr = np.ones(int((N*(N-1))/2))
         k = 0
         for ii, itmOne in enumerate(BitLyst):
             for jj in np.arange(ii+1, N, 1):

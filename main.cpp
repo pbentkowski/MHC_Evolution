@@ -42,8 +42,8 @@ using jsonf = nlohmann::json;
  */
 void printTipsToRun(){
     std::cout << std::endl;
-    std::cout << "This is the first sex scenario where the number of different MHC is maximised."
-                 " Parameters should be:" << std::endl;
+    std::cout << "This is the sex scenario when partner searches an optimal number of MHC types in offspring."
+            "With alpha limitting the fitness! (param No. 17). Parameters should be:" << std::endl;
     std::cout << " 1. The number of threads the program will use. Give 0 to use all the available CPU cores." << std::endl;
     std::cout << " 2. Number of bits in a MHC gene." << std::endl;
     std::cout << " 3. Number of bits in an antigen." << std::endl;
@@ -51,24 +51,24 @@ void printTipsToRun(){
     std::cout << " 5. Pathogen population size." << std::endl;
     std::cout << " 6. Number of pathogen species." << std::endl;
     std::cout << " 7. Number of genes in one host chromosome (they have " <<
-              "two chromosomes)." << std::endl;
+            "two chromosomes)." << std::endl;
     std::cout << " 8. Number of pathogen generations per one host generation. " <<
-              std::endl;
+            std::endl;
     std::cout << " 9. Number of host generations (effective length of model run)." <<
-              std::endl;
+            std::endl;
     std::cout << "10. Probability of mutation in hosts ([0,1] range)." << std::endl;
     std::cout << "11. Probability of mutation in pathogens ([0,1] range)." << std::endl;
     std::cout << "12. The heterozygote advantage / lack of advantage " <<
-              "mode. It has to be 10 for heterozygote advantage or 11 for " <<
-              "lack of thereof." << std::endl;
+                "mode. It has to be 10 for heterozygote advantage or 11 for " <<
+                "lack of thereof." << std::endl;
     std::cout << "13. Probability of deleting a gene in the host ([0,1] range)." <<
-              std::endl;
+            std::endl;
     std::cout << "14. Probability of duplicating a gene in the host" <<
-              " ([0,1] range)" << std::endl;
+                " ([0,1] range)" << std::endl;
     std::cout << "15. Maximal number of genes permitted in one host chromosome." <<
-              std::endl;
+            std::endl;
     std::cout << "16. Number of sexual partners an individual checks out before selecting one for mating." <<
-              std::endl;
+            std::endl;
     std::cout << "17. Alpha factor for the host fitness function ([0,1] range)." << std::endl;
     std::cout << std::endl;
 
@@ -92,23 +92,23 @@ int main(int argc, char** argv) {
     if (argc < numbOfArgs) {
         std::cout << std::endl;
         std::cout << "Not enough arguments. It has to be " <<
-                  "precisely " << numbOfArgs -1 << " of them and only " << argc - 1 <<
-                  " are provided." << std::endl;
+            "precisely " << numbOfArgs -1 << " of them and only " << argc - 1 <<
+            " are provided." << std::endl;
         printTipsToRun();
         return 0;
     }
     if (argc > numbOfArgs) {
         std::cout << std::endl;
         std::cout << "Too many arguments. It has to be " <<
-                  "precisely " << numbOfArgs -1 << " of them but " << argc - 1 <<
-                  " are provided." << std::endl;
+            "precisely " << numbOfArgs -1 << " of them but " << argc - 1 <<
+            " are provided." << std::endl;
         printTipsToRun();
         return 0;
     }
     unsigned long maxGene, hostGeneNumbb, mhcGeneLength, antigenLength;
     unsigned int numberOfThreads;
     int hostPopSize, pathoPopSize, patho_sp, NumbPartners,
-            patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
+        patoPerHostGeneration, numOfHostGenerations, HeteroHomo;
     double hostMutationProb, pathoMutationProb, deletion, duplication, alpha;
     // Check if input params are numbers
     try {
@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
     catch(boost::bad_lexical_cast& e) {
         std::cout << std::endl;
         std::cout << "Arguments from 1 to " << numbOfArgs-1 << " should be " <<
-                  "numbers. Not all are numbers. Check the params list!" << std::endl;
+            "numbers. Not all are numbers. Check the params list!" << std::endl;
         printTipsToRun();
         return 0;
     }
@@ -174,9 +174,9 @@ int main(int argc, char** argv) {
 
     // Check if input params are of any sense
     if (Data2file.checkParamsIfWrong(numberOfThreads, mhcGeneLength, antigenLength, hostPopSize,
-                                     pathoPopSize, patho_sp, hostGeneNumbb, patoPerHostGeneration, numOfHostGenerations,
-                                     hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
-                                     maxGene, alpha, NumbPartners)){
+            pathoPopSize, patho_sp, hostGeneNumbb, patoPerHostGeneration, numOfHostGenerations,
+            hostMutationProb, pathoMutationProb, HeteroHomo, deletion, duplication,
+            maxGene, alpha, NumbPartners)){
         std::cout << std::endl;
         std::cout << "Error in parameters on input. Check them." << std::endl;
         printTipsToRun();
@@ -187,9 +187,9 @@ int main(int argc, char** argv) {
 
     // Save input parameters to file
     Data2file.inputParamsToFile(numberOfThreads, mhcGeneLength, antigenLength, hostPopSize,
-                                pathoPopSize, patho_sp, hostGeneNumbb, patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
-                                pathoMutationProb, HeteroHomo, deletion, duplication, maxGene,
-                                alpha, NumbPartners);
+            pathoPopSize, patho_sp, hostGeneNumbb, patoPerHostGeneration, numOfHostGenerations, hostMutationProb,
+            pathoMutationProb, HeteroHomo, deletion, duplication, maxGene,
+            alpha, NumbPartners);
 
 // === And now doing the calculations! ===
 
@@ -220,7 +220,7 @@ int main(int argc, char** argv) {
     InputParams.open("InputParameters.json");
     InputParams << s;
     InputParams.close();
-
+    
     std::cout << "Calculating...." << std::endl;
     // Heterozygote advantage
     if(HeteroHomo == 10){
@@ -230,7 +230,7 @@ int main(int argc, char** argv) {
         Data2file.saveMhcNumbersBeforeMating(ENV, 0);
         Data2file.saveMhcNumbersWhenMating(ENV, 0);
         Data2file.saveMhcNumbersAfterMating(ENV, 0);
-        Data2file.savePresentedPathos(ENV, 0);
+	Data2file.savePresentedPathos(ENV, 0);
         for(int i = 1; i <= numOfHostGenerations; ++i){
             for(int j = 0; j < patoPerHostGeneration; ++j){
                 ENV.infectOneFromOneSpecHetero();
@@ -240,11 +240,10 @@ int main(int argc, char** argv) {
             }
             Data2file.savePresentedPathos(ENV, i);
             ENV.calculateHostsFitnessExpScalingUniqAlleles(alpha); // alpha-bounded fitness
-//            ENV.calculateHostsFitnessPlainPresent();
 //            ENV.selectAndReprodHostsReplace();
             ENV.selectAndReprodHostsNoMating();  // changed for sexual reproduction
             Data2file.saveMhcNumbersBeforeMating(ENV, i);
-            ENV.matingMaxDifferentNumber(NumbPartners); // changed for sexual reproduction
+            ENV.matingMeanOptimalNumberMHCsmallSubset(NumbPartners); // changed for sexual reproduction
             Data2file.saveMhcNumbersWhenMating(ENV, i);
             Data2file.saveMhcNumbersAfterMating(ENV, i);
             ENV.mutateHostsWithDelDuplPointMuts(hostMutationProb, deletion, duplication, maxGene, i, tag);
@@ -255,9 +254,9 @@ int main(int argc, char** argv) {
         }
         ENV.infectOneFromOneSpecHetero();
     } else {
-        std::cout << "This instance of the model allows only heterozygote";
-        std::cout << " advantage. Sorry :-(" << std::endl;
-        return 0;
+       std::cout << "This instance of the model allows only heterozygote";
+       std::cout << " advantage. Sorry :-(" << std::endl;
+       return 0;
     }
 //    Data2file.savePathoPopulToFile(ENV, numOfHostGenerations);
     Data2file.saveHostPopulToFile(ENV, numOfHostGenerations);

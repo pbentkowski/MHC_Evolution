@@ -111,7 +111,7 @@ def aggrDataByRunsCI(datOut):
             aggrOut.append((rP, np.mean(WW, axis=1), ci))
         except Exception:
             print("problem in", rP, np.mean(WW, axis=1))
-    return aggrOut
+    return sorted(aggrOut)
 
 
 def smoothing(inv, NN=500):
@@ -156,8 +156,8 @@ def main():
     startDate = None
     try:
         startDate = ppma.readDate(sys.argv[1])
-        ymaxx = 5
-        frame = 50
+        ymaxx = 75
+        frame = 250
     except ValueError:
         print("Cannot convert argument #1 to a date format.")
         sys.exit()

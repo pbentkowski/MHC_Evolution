@@ -24,10 +24,11 @@
 
 #include <iostream>     // std::cout
 #include <algorithm>    // std::shuffle
-#include <chrono>       // std::chrono::system_clock
-#include <iterator>
+//#include <chrono>       // std::chrono::system_clock
+//#include <iterator>
 #include <thread>
 #include <functional>   // std::bind
+#include <iomanip>      // std::setprecision(n);
 
 #include "Environment.h"
 #include "H2Pinteraction.h"
@@ -1250,8 +1251,8 @@ std::string Environment::getNumbersOfMhcInMother() {
  */
 std::string Environment::getNumbersOfMhcInFather()  {
     sttr mhcsInFather;
-    for(auto indvidual : HostPopulation){
-        mhcsInFather += sttr(" ") + std::to_string(indvidual.getFatherMhcNumber());
+    for(auto individual : HostPopulation){
+        mhcsInFather += sttr(" ") + std::to_string(individual.getFatherMhcNumber());
     }
     mhcsInFather +=  sttr("\n");
     return mhcsInFather;
@@ -1260,12 +1261,13 @@ std::string Environment::getNumbersOfMhcInFather()  {
 
 std::string Environment::getNumbersOfUniqueMHCs() {
     sttr uniqueMHCs;
-    for(auto indvidual : HostPopulation){
-        uniqueMHCs += sttr(" ") + std::to_string(indvidual.getNumbOfUniqMHCgenes());
+    for(auto individual : HostPopulation){
+        uniqueMHCs += sttr(" ") + std::to_string(individual.getNumbOfUniqMHCgenes());
     }
     uniqueMHCs +=  sttr("\n");
     return uniqueMHCs;
 }
+
 
 unsigned long Environment::getSingleHostGenomeSize(unsigned long indx){
     return HostPopulation[indx].getGenomeSize();
