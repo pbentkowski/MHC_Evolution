@@ -501,6 +501,7 @@ def main():
         + 'stdFitt meanCvFitt cvFitSTD meanPatho stdPato sourceDir'
     try:
         startDate = readDate(sys.argv[1])
+        workingDir = os.getcwd()
     except ValueError:
         print("Cannot convert argument #1 to a date format.")
         sys.exit()
@@ -517,8 +518,7 @@ def main():
             print("Cannot load the template file. Exiting.")
             sys.exit()
         if True:
-            # third argument is very important
-            theData = getTheData(startDate, template, int(sys.argv[3]))
+            theData = getTheData(startDate, template, workingDir)
             print(theData)
 #        except Exception:
         else:
