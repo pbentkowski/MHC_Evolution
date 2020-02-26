@@ -28,7 +28,7 @@ ul. Umultowska 89
 61-614 Poznań  
 Poland  
 
-www: https://sites.google.com/site/evobiolab/home  
+www: http://evobio.home.amu.edu.pl/  
 PI : **Jacek Radwan** - jradwan@amu.edu.pl
 
 How to compile:
